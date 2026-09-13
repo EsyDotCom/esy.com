@@ -241,9 +241,12 @@ export default function Footer () {
               <Logo href="" wordmarkOnly wordmarkFont="blackops" theme={logoTheme} />
             </div>
             <p className="footer-desc" style={{ color: theme.muted }}>
-              <strong style={{ color: isLightMode || isNavyDark ? theme.text : 'inherit' }}>Put marketing production on autopilot.</strong>
+              {/* Newsletter-first tagline (2026-09-13). Product-era copy, for
+                  reverting: "Put marketing production on autopilot." /
+                  "Build, review and scale marketing with AI." */}
+              <strong style={{ color: isLightMode || isNavyDark ? theme.text : 'inherit' }}>The Marketing Engineer.</strong>
               <br />
-              Build, review and scale marketing with AI.
+              Systems that turn marketing data into actions, and the results they get.
             </p>
             <div className="footer-socials">
               <a href="https://www.youtube.com/@EsyDotCom" target="_blank" className="social-link" aria-label="YouTube">
@@ -272,9 +275,11 @@ export default function Footer () {
           />
 
           <FooterColumn 
-            title="Learn"
+            title="Newsletter"
             links={[
-              { href: "/engineer/", text: "The Marketing Engineer" },
+              { href: "/#subscribe", text: "Subscribe" },
+              { href: "/engineer/", text: "All issues" },
+              { href: "https://www.youtube.com/@EsyDotCom", text: "YouTube" },
               { href: "/docs", text: "Docs" },
             ]}
           />

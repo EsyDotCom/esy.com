@@ -1,0 +1,54 @@
+import HomeV3Page from "@/archive/homepage-autopilot-story/HomeV3Page";
+
+// Previous homepage metadata (Automate & Audit era):
+// title: "Esy — Automate & Audit. Agentic Workflows."
+// description:
+//   "Automate research, verify citations, and produce publishable artifacts — all through agentic workflow templates. Structured, auditable output by default."
+
+const HOME_META_DESCRIPTION =
+  "Put marketing production on autopilot with ESY. Create campaigns, creative, SEO, and content with AI, quality control, and human review built in.";
+
+export const metadata = {
+  title: "Esy — Put Marketing Production on Autopilot",
+  description: HOME_META_DESCRIPTION,
+  keywords: [
+    "agentic workflow templates",
+    "digital products",
+    "agentic workflows",
+    "workflow templates",
+    "token cost tracking",
+    "AI budget management",
+    "workflow automation",
+    "verified artifacts",
+    "human in the loop",
+    "auditable artifacts",
+    "batch generation",
+  ],
+  // og:image / twitter:image come from src/app/opengraph-image.tsx —
+  // don't pin images here or they override the generated card.
+  openGraph: {
+    title: "Esy — Put Marketing Production on Autopilot",
+    description: HOME_META_DESCRIPTION,
+    type: "website",
+    url: "https://esy.com",
+    siteName: "Esy",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Esy — Put Marketing Production on Autopilot",
+    description: HOME_META_DESCRIPTION,
+    site: "@EsyDotCom",
+  },
+  alternates: {
+    canonical: "https://esy.com",
+  },
+};
+
+// The homepage now reads published articles for The Marketing Engineer shelf.
+// Same posture as /engineer: the publish/unpublish webhook purges the
+// published-articles tags for instant updates, and this hourly revalidate is
+// only a backstop if a webhook is ever missed.
+export const revalidate = 3600;
+
+export default HomeV3Page;

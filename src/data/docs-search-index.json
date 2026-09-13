@@ -145,6 +145,24 @@
     "What a refusal looks like",
     "Estimating before you commit"
   ],
+  "/docs/concepts/experiments": [
+    "Why this exists",
+    "The six nouns",
+    "The rules, and why each one is there",
+    "Running one, start to finish",
+    "Designing one that answers something",
+    "Pick one primary metric",
+    "Choose the baseline deliberately",
+    "Cases, and the hold-out",
+    "Repeats, not seeds",
+    "Multiple arms",
+    "Reading the report",
+    "The scorers",
+    "When not to use an experiment",
+    "Anti-drift rules",
+    "API",
+    "What exists today"
+  ],
   "/docs/concepts/gates-and-review": [
     "Steps do, gates judge",
     "When an automatic gate rejects",
@@ -160,6 +178,20 @@
     "The rule behind the schemas",
     "Why it is built this way",
     "Seeing what was actually used"
+  ],
+  "/docs/concepts/library": [
+    "Three planes",
+    "The five kinds",
+    "The spine: version, promote, resolve",
+    "Deleting",
+    "Writing a standard",
+    "Writing a direction",
+    "What the compiler produces",
+    "Writing an axes set, and what the allocator does with it",
+    "The coverage ledger",
+    "Pointing work at the Library",
+    "Anti-drift rules",
+    "API"
   ],
   "/docs/concepts/orders": [
     "Two-phase by design",

@@ -2108,3 +2108,346 @@ body.docs-dark .docs-takeaways {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   Rewrite primitives (2026-09) — PageHeader art, callout tones,
+   property tables, endpoint cards, status pills, diagrams.
+   Everything below reads the token layer at the top of this file, so
+   both themes follow from one definition.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── PageHeader with a section opener ───────────────────────────── */
+.pageHead.pageHeadArt {
+  flex-direction: row;
+  align-items: center;
+  gap: clamp(16px, 3vw, 32px);
+}
+
+.pageHeadText {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+/* The opener is decorative: it never dictates the header's height and it is
+   the first thing dropped when the column gets narrow. */
+.pageHeadOpener {
+  flex: 0 0 auto;
+  width: clamp(150px, 22vw, 260px);
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
+
+@media (max-width: 760px) {
+  .pageHead.pageHeadArt { flex-direction: column; align-items: flex-start; }
+  .pageHeadOpener { width: min(220px, 60%); align-self: center; }
+}
+
+/* ── Callout tones ──────────────────────────────────────────────── */
+.calloutText { margin: 6px 0 0; color: var(--color-text-secondary); font-size: 14.5px; line-height: 1.6; }
+.calloutText > :first-child { margin-top: 0; }
+.calloutText > :last-child { margin-bottom: 0; }
+.calloutText p { margin: 0 0 8px; }
+.calloutText p:last-child { margin-bottom: 0; }
+
+.callout-tip { border-color: var(--color-accent-border); background: var(--color-accent-bg); }
+.callout-tip::before { background: var(--color-accent); }
+
+.callout-warning { border-color: rgba(217, 145, 32, 0.28); background: rgba(217, 145, 32, 0.07); }
+.callout-warning::before { background: var(--color-amber); }
+.callout-warning strong { color: #8a5a10; }
+body.docs-dark .callout-warning strong { color: #e6b35c; }
+
+.callout-danger { border-color: rgba(200, 62, 88, 0.26); background: rgba(200, 62, 88, 0.06); }
+.callout-danger::before { background: var(--color-rose); }
+.callout-danger strong { color: #9c2740; }
+body.docs-dark .callout-danger strong { color: #f0869c; }
+
+/* ── Property table ─────────────────────────────────────────────── */
+.propTable code.propName {
+  font-size: 12.5px;
+  white-space: nowrap;
+  color: var(--color-primary);
+}
+body.docs-dark .propTable code.propName { color: var(--color-accent-light); }
+
+.propType {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.propReq, .propOpt {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+.propReq { background: var(--color-accent-muted); color: var(--color-accent-dark); }
+.propOpt { background: var(--color-bg-subtle); color: var(--color-text-faint); }
+body.docs-dark .propReq { color: var(--color-accent-light); }
+
+/* ── Endpoint method badges ─────────────────────────────────────── */
+.endpointMethod.endpointPost { background: rgba(0, 168, 150, 0.14); color: var(--color-accent-dark); }
+.endpointMethod.endpointPatch { background: rgba(217, 145, 32, 0.16); color: #8a5a10; }
+.endpointMethod.endpointDelete { background: rgba(200, 62, 88, 0.14); color: #9c2740; }
+body.docs-dark .endpointMethod.endpointPost { color: var(--color-accent-light); }
+body.docs-dark .endpointMethod.endpointPatch { color: #e6b35c; }
+body.docs-dark .endpointMethod.endpointDelete { color: #f0869c; }
+
+/* ── Endpoint card ──────────────────────────────────────────────── */
+.endpointCard {
+  margin: 28px 0;
+  padding: 20px 22px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-bg-card);
+  scroll-margin-top: 90px;
+}
+
+.endpointCardHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+.endpointCardPath {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--color-text);
+  background: none;
+  padding: 0;
+  overflow-wrap: anywhere;
+}
+
+.endpointCardTitle {
+  margin: 8px 0 14px;
+  color: var(--color-text-secondary);
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+
+.endpointCard h4 {
+  margin: 18px 0 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* ── Status pill ────────────────────────────────────────────────── */
+.statusPill {
+  display: inline-block;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 11.5px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  background: var(--color-bg-subtle);
+  color: var(--color-text-secondary);
+}
+.statusPill-good { background: rgba(0, 168, 150, 0.14); color: var(--color-accent-dark); }
+.statusPill-active { background: rgba(0, 168, 150, 0.10); color: var(--color-accent-dark); }
+.statusPill-warn { background: rgba(217, 145, 32, 0.16); color: #8a5a10; }
+.statusPill-bad { background: rgba(200, 62, 88, 0.14); color: #9c2740; }
+body.docs-dark .statusPill-good,
+body.docs-dark .statusPill-active { color: var(--color-accent-light); }
+body.docs-dark .statusPill-warn { color: #e6b35c; }
+body.docs-dark .statusPill-bad { color: #f0869c; }
+
+/* ── Takeaways (component added 2026-09; CSS predated it) ───────── */
+.docs-takeaways strong {
+  display: block;
+  margin: 0 0 12px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent-dark);
+}
+body.docs-dark .docs-takeaways strong { color: var(--color-accent-light); }
+
+/* ── Pipeline strip ─────────────────────────────────────────────── */
+.pipelineName { display: block; font-size: 13px; font-weight: 600; color: var(--color-text); }
+.pipelineDesc { display: block; margin-top: 3px; font-size: 12px; color: var(--color-text-muted); line-height: 1.45; }
+
+/* ── Diagrams ───────────────────────────────────────────────────── */
+.diagram { margin: 28px 0; }
+
+.diagramPlate {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-bg-card);
+  padding: 20px 18px;
+}
+
+/* Only the diagram scrolls sideways — never the page. */
+.diagramScroll { overflow-x: auto; }
+.diagramScroll > svg { display: block; width: 100%; height: auto; min-width: var(--dg-min, 720px); }
+
+/* The min-width is a phone-legibility floor: below it a diagram scrolls inside
+   its frame rather than shrinking its labels to nothing. On a desktop reading
+   column (~650px) that same floor made every wide diagram overflow and clip,
+   so from tablet width up the drawing simply fits its container. */
+@media (min-width: 1024px) {
+  .diagramScroll > svg { min-width: 0; }
+  .diagramPlate { padding: 16px 12px; }
+}
+
+.diagramCaption {
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+.diagramTitle {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-dark);
+  margin-bottom: 4px;
+}
+body.docs-dark .diagramTitle { color: var(--color-accent-light); }
+
+.diagramDefs { position: absolute; width: 0; height: 0; }
+
+/* Drawing vocabulary. Every diagram is authored against these classes, so a
+   token change restyles all of them and dark mode needs no second drawing. */
+.diagram svg text { font-family: inherit; fill: var(--color-text); }
+.dg-node { fill: var(--color-bg-elevated); stroke: var(--color-border-strong); stroke-width: 1.2; }
+.dg-node.dg-term { fill: var(--color-bg-subtle); stroke: var(--color-text-muted); stroke-width: 1.4; }
+.dg-node.dg-accent { stroke: var(--color-accent); stroke-width: 1.6; }
+.dg-node.dg-bad { stroke: var(--color-rose); stroke-width: 1.6; }
+.dg-node.dg-warn { stroke: var(--color-amber); stroke-width: 1.6; }
+.dg-node.dg-ghost { fill: none; stroke: var(--color-border); stroke-dasharray: 4 4; }
+
+/* Sized in SVG user units for a ~0.75 render scale on a desktop column, so the
+   smallest caption still lands near 8px rather than 7. */
+.dg-label { font-size: 14.5px; font-weight: 600; }
+.dg-label-sm { font-size: 13px; font-weight: 600; }
+.dg-sub { font-size: 11px; fill: var(--color-text-muted); font-family: var(--font-geist-mono), ui-monospace, monospace; }
+.dg-cap { font-size: 11px; fill: var(--color-text-muted); font-family: var(--font-geist-mono), ui-monospace, monospace; }
+.dg-hdr { font-size: 11.5px; fill: var(--color-accent-dark); font-family: var(--font-geist-mono), ui-monospace, monospace; letter-spacing: 0.1em; }
+
+/* The legacy `.callout strong { display:block }` rule styles the callout
+   title, but it also caught every inline <strong> in the body and broke the
+   sentence onto its own line. Body emphasis stays inline. */
+.calloutText strong {
+  display: inline;
+  font-size: inherit;
+  letter-spacing: normal;
+  color: var(--color-text);
+}
+
+/* `.docs-page pre` (the prose rule for bare <pre>) sits later in this file at
+   equal specificity, so it was overriding `.codeBlock pre`: every CodeBlock
+   rendered a light, bordered slab inside its navy window, with muted-grey code
+   on top. Scope the reset to code blocks so bare prose <pre> is untouched. */
+.docs-page .codeBlock pre {
+  margin: 0;
+  padding: 20px 22px;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+.docs-page .codeBlock pre code {
+  color: #cad7e2;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* Code blocks read `--color-bg-inverse`, which the dark theme flips to white —
+   so in dark mode every block was a white slab with light, unreadable code.
+   Code stays on a dark surface in both themes; in dark it sits a step below
+   the page ground so it still reads as its own object. */
+body.docs-dark .codeBlock {
+  background: #061a2e;
+  border-color: var(--color-border);
+  box-shadow: none;
+}
+body.docs-dark .codeBlock .apiHeader {
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+body.docs-dark .codeBlock .apiTitle { color: #e2ebf2; }
+body.docs-dark .codeBlock .apiMeta { color: #7d97a8; }
+
+/* Same inverse-token trap on the docs hub: the hero's API card painted
+   `--color-bg-inverse` (white in dark) under white-alpha text. */
+body.docs-dark .apiPreview {
+  background: #061a2e;
+  border-color: var(--color-border);
+}
+body.docs-dark .dg-hdr { fill: var(--color-accent-light); }
+.dg-muted { fill: var(--color-text-muted); }
+
+.dg-edge { stroke: var(--color-border-strong); stroke-width: 1.4; fill: none; marker-end: url(#dg-ar); }
+.dg-edge.dg-accent { stroke: var(--color-accent); marker-end: url(#dg-ar-accent); }
+.dg-edge.dg-bad { stroke: var(--color-rose); marker-end: url(#dg-ar-bad); }
+.dg-edge.dg-warn { stroke: var(--color-amber); marker-end: url(#dg-ar-warn); }
+.dg-edge.dg-dash { stroke-dasharray: 4 4; stroke-width: 1.1; }
+.dg-rule { stroke: var(--color-border); stroke-width: 1; }
+
+.dg-mk { fill: var(--color-border-strong); }
+.dg-mk-accent { fill: var(--color-accent); }
+.dg-mk-bad { fill: var(--color-rose); }
+.dg-mk-warn { fill: var(--color-amber); }
+
+/* ── Glossary ───────────────────────────────────────────────────── */
+.glossary { margin: 28px 0 0; }
+
+.glossaryItem {
+  padding: 18px 0;
+  border-top: 1px solid var(--color-border);
+  scroll-margin-top: 90px;
+}
+.glossaryItem:last-child { border-bottom: 1px solid var(--color-border); }
+
+.glossary dt {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.005em;
+}
+.glossary dt a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--color-accent-border); }
+.glossary dt a:hover { color: var(--color-accent-dark); border-bottom-color: var(--color-accent); }
+body.docs-dark .glossary dt a:hover { color: var(--color-accent-light); }
+
+.glossaryAlso {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--color-text-faint);
+}
+
+.glossary dd {
+  margin: 6px 0 0;
+  color: var(--color-text-secondary);
+  font-size: 14.5px;
+  line-height: 1.62;
+  max-width: 68ch;
+}

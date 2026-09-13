@@ -31,6 +31,7 @@ export default function OutletsPage() {
       <PageHeader
         eyebrow="Concepts · Outlets"
         title="Outlets"
+        opener="docks"
         lead={
           <>
             An outlet is the channel <strong>artifacts</strong> ship to — a factory outlet and a media outlet at

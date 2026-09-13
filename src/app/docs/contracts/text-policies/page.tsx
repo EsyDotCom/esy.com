@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { DocsPageShell } from '@/components/docs/DocsPageShell';
 import { Callout, PageHeader, Table } from '@/components/docs/Primitives';
 
@@ -45,7 +47,7 @@ export default function Page() {
       <p>
         Intake fields named <code>textPolicy</code> on the clip-art generation templates, and the
         required <code>textPolicy</code> on every pack-manifest item. See any contract page, e.g.{' '}
-        <a href="/workflows/generate-clip-art-asset-v2/contract">generate-clip-art-asset-v2</a>.
+        <Link href="/workflows/generate-clip-art-asset-v2/contract">generate-clip-art-asset-v2</Link>.
       </p>
     </DocsPageShell>
   );

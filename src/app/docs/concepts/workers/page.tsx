@@ -51,6 +51,7 @@ export default function WorkersPage() {
       <PageHeader
         eyebrow="Concepts · Workers"
         title="Workers"
+        opener="shift"
         lead={
           <>
             A worker is a durable principal you hire to own one responsibility — one worker per report you want to

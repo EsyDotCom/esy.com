@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { DocsPageShell } from '@/components/docs/DocsPageShell';
 import { Callout, PageHeader, Table } from '@/components/docs/Primitives';
 
@@ -35,7 +37,7 @@ export default function Page() {
       </p>
       <Callout title="Where you see it">
         The <code>repeat</code> declaration on a step in any contract page — e.g.{' '}
-        <a href="/workflows/plan-clipart-pack/contract">plan-clipart-pack</a>&rsquo;s manifest
+        <Link href="/workflows/plan-clipart-pack/contract">plan-clipart-pack</Link>&rsquo;s manifest
         step, badged <em>chunked</em> in the step topology.
       </Callout>
     </DocsPageShell>

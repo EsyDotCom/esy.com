@@ -7,7 +7,24 @@ export const metadata = {
     'Public API and platform changes as Esy formalizes runtime contracts. Breaking changes will land under a new versioned path.',
 };
 
+/**
+ * Newest first. Each entry describes what shipped, not the order it was
+ * drafted in: where several changes landed the same day and later ones
+ * replaced earlier ones, the entry states the model that survived.
+ */
 const entries = [
+  {
+    date: '2026-09-13',
+    tag: 'docs',
+    title: 'The docs, rewritten against the running API',
+    items: [
+      'New Get started path: Quickstart (real requests, real responses), How Esy works, Authentication, Errors, and a Glossary that maps every term to the name the code uses.',
+      'Concepts reorganised into a reading order and merged where pages overlapped: Workflows (was Workflow schemas + Workflow templates + Template naming), Runs and steps (absorbs Runtime steps), Versioning (was Workflow versioning + Workflow specifications), Costs and budgets, and new Intake and Gates and review pages. Old URLs redirect.',
+      'API reference pages for Runs, Artifacts, Workflows and catalog, Orders, Review queue, Costs and budgets, and Webhooks.',
+      'Corrections. The API says workspace, not organization. There are three cost states — estimated, provider_reported, reconciled — not four. There is no Workflow Specification resource; a run pins workflowVersion and specVersionHash. Runs have nine statuses, not five. Dry-run and estimate take a draft definition, not a templateId. Budgets have no scope field.',
+      'Every endpoint the docs mention is now checked against api.esy.com/openapi.json (npm run check:docs-endpoints), and search matches section headings, not only page titles.',
+    ],
+  },
   {
     date: '2026-09-12',
     tag: 'platform',
@@ -21,51 +38,43 @@ const entries = [
     ],
   },
   {
-    date: '2026-07-07',
-    tag: 'platform',
-    title: 'Specialty: the demand hierarchy — team produces → worker specialty → goals',
+    date: '2026-08-02',
+    tag: 'docs',
+    title: 'Guide: publish packs with a worker team',
     items: [
-      'A team is a department, named for what it produces: teams gain a “produces” domain, and members inherit it as their specialty when they don’t state a narrower one.',
-      'A worker’s specialty (formerly “description”) now steers every shift’s planning — identity that never reached the planner produced off-mission batches.',
-      'No worker without a WHAT: creation requires a specialty or a producing team; shifts refuse to run without one, loudly.',
-      'Reporters may not flatter: reports describe the record’s actual categories and must flag batches that don’t match the specialty.',
-      'The new-worker form gains a Publishing choice (publish classified work / keep private) — previously new workers silently never published.',
+      'A five-step walkthrough — outlet, team, workers, schedule, receive the pack — with the checks that prove it worked and a troubleshooting section for when nothing appears on your site.',
+    ],
+  },
+  {
+    date: '2026-07-21',
+    tag: 'docs',
+    title: 'Image quality contracts',
+    items: [
+      'Five rule pages the workflow contract chips link to: text policies (none / exact / freeform), element types and render modes, quality tiers, gates and checks, and chunked planning.',
+      'Gates and checks has since merged into Gates and review.',
+    ],
+  },
+  {
+    date: '2026-07-11',
+    tag: 'docs',
+    title: 'Run events, runtime steps, and template naming',
+    items: [
+      'Run events (SSE) reference: snapshot on connect, the event names, heartbeats, and a reconnect ladder with a polling fallback.',
+      'The runtime step contract: step kinds, dotted input references, model binding by role, structured output, and the sizing limits — maxTokens, timeouts, estimates.',
+      'Workflow ids follow a verb-noun convention with a registry of verbs: generate invents, build computes, compose writes from sources.',
     ],
   },
   {
     date: '2026-07-07',
     tag: 'platform',
-    title: 'The publish routing framework: the fence, Solo outlets, provenance, syndication',
+    title: 'Teams, specialties, and publish routing',
     items: [
-      'One law: goals decide WHAT gets made; designations and sections decide WHERE it ships. Goals no longer carry outlets — steering demand and routing distribution are separate systems.',
-      'The fence: a team with a designated outlet is a publishing contract — everything the crew publishes ships there; a member’s Solo outlet defers (kept dormant, wakes on leaving), sibling sections can’t poach, and “this team publishes only to X” is provable by one query.',
-      'Solo outlets replace the worker default (and the legacy job.publishTo, now fully retired): a worker’s own channel while solo — the home site’s sections sort by category, the rest lands home.',
-      'Publish provenance: every published item records why it landed where it did (routedVia: team | section | solo | manual | subscription); every assignment change is on the record.',
-      'Syndication (wire-service model): an outlet can carry every published artifact of its accepted kinds as its own act — one artifact on many sites, unpublishable per outlet, with worker fences untouched.',
-    ],
-  },
-  {
-    date: '2026-07-07',
-    tag: 'platform',
-    title: 'Teams: workers organized into crews with titles and a shared channel',
-    items: [
-      'Teams group the roster: one team has many workers (a worker belongs to at most one), and a team carries a default outlet — the last rung of the publish ladder, so every worker on a team gets a sane publish destination with no per-worker config.',
-      'Workers gain a title — their role, especially within a team (e.g. Illustrator) — which colors how they sign their reports. Workers on one team can hold different titles.',
-      'A worker’s publish destination is now a first-class, validated default outlet (promoting the old job.publishTo slug, which still works for compatibility).',
-      'The routing ladder grows to four rungs, most specific first: the goal’s outlet → category/section match → the worker’s default outlet → the team’s outlet → unpublished.',
-      'New Teams management on the Workers page: workers grouped under team headers, inline team create/rename/outlet-change, and an Assignment card on each worker for title, team, and default outlet.',
-    ],
-  },
-  {
-    date: '2026-07-07',
-    tag: 'platform',
-    title: 'Outlets go URL-defined: sections, the routing ladder, endpoint secrets',
-    items: [
-      'An outlet is now URL-defined (siteUrl + sectionPath): clip.art/free, clip.art/flowers, and clip.art/worksheets are different outlets; any site — including esy.com/* surfaces — is another. projectId scopes which workers publish where.',
-      'The publish routing ladder decides WHERE each artifact ships, most specific rung first: the assigned goal’s outlet (goals carry an optional outletId) → the same-site outlet whose section matches the artifact’s category → the job’s publishTo fallback. No rung matched → the artifact stays unpublished.',
-      'Webhook secrets belong to the endpoint, not the channel (the Stripe model): outlets sharing a revalidateUrl share one secret; rotating any rotates the endpoint. A consumer holds exactly one secret no matter how many outlets ship to it.',
-      'Consumers discover their outlets from the platform roster (GET /v1/outlets filtered by their own domain) — channel lists never live in consumer configuration.',
-      'The items feed pages deterministically (stable id tiebreak), so consumer scans never re-serve or skip rows across page boundaries.',
+      'Outlets are URL-defined (siteUrl + sectionPath): clip.art/free and clip.art/flowers are different outlets. Consumers discover theirs from GET /v1/outlets rather than holding a channel list in config.',
+      'Webhook secrets belong to the endpoint, not the channel: outlets sharing a revalidate URL share one secret, so a consumer holds exactly one no matter how many outlets ship to it.',
+      'Teams group workers into crews, each worker at most one team, each with a title. A team names what it produces, and members inherit that as their specialty unless they state a narrower one. A worker cannot run a shift without a specialty.',
+      'Routing, as it stands: goals decide WHAT gets made; teams, sections, and Solo outlets decide WHERE it ships. A team with a designated outlet fences everything its crew publishes to that outlet; otherwise a same-site section matching the artifact’s category takes it; otherwise the worker’s Solo outlet. Goals no longer carry outlets, and job.publishTo is retired.',
+      'Every published item records why it landed where it did (routedVia: team | section | solo | manual | subscription), and an outlet can syndicate every published artifact of the kinds it accepts.',
+      'Earlier the same day, routing went through a goal-outlet-first ladder and then a four-rung ladder ending at the team’s outlet. Both were replaced by the model above before the day ended; if you read about either elsewhere, it is out of date.',
     ],
   },
   {
@@ -74,10 +83,10 @@ const entries = [
     title: 'The manufacturing tier: Workers, Assigned work, Orders, and Outlets',
     items: [
       'Workers: durable principals that run bounded shifts on schedules, produce against a standing job, and report to your Inbox in their own voice (with stop-condition escalation).',
-      'Assigned work: goals and tasks carry an assignee — yours or a worker\u2019s. Worker goals require measurable targets, progress by live catalog census, and achieve themselves; scheduled tasks are day directives workers check off with a completion note.',
-      'Generation Orders documented: one template fanned into N child runs with variation, per-child dedupe keys, and a hard budget cap — two-phase (planned \u2192 start).',
-      'Outlets (new, separate from compose\u2019s Publications): channels for publishing artifacts of any kind from os.esy.com. Publish/unpublish are platform acts fired to your site as signed webhooks ({ outlet, action, artifactIds }).',
-      'New references: Workers API, Planning API (goals/tasks/messages), and the expanded Outlets API.',
+      'Assigned work: goals and tasks carry an assignee — yours or a worker’s. Worker goals require measurable targets, progress by live catalog census, and achieve themselves; scheduled tasks are day directives workers check off with a completion note.',
+      'Generation Orders documented: one template fanned into N child runs with variation, per-child dedupe keys, and a hard budget cap — two-phase (planned → start).',
+      'Outlets (new, separate from Publications): channels for publishing artifacts of any kind from os.esy.com. Publish and unpublish are platform acts fired to your site as signed webhooks.',
+      'New references: Workers API, Planning API (goals, tasks, messages), and the expanded Outlets API.',
     ],
   },
   {
@@ -95,7 +104,7 @@ const entries = [
     tag: 'docs',
     title: 'Public reference layer',
     items: [
-      'Launched docs.esy.com with the Esy brand system aligned to esy.com and os.esy.com.',
+      'Launched docs.esy.com (now esy.com/docs) with the Esy brand system aligned to esy.com and os.esy.com.',
       'Added concept pages for Workflow templates, Runs, Artifacts, and Costs.',
       'Documented the generate-clip-art-asset workflow end-to-end with step-level telemetry.',
       'Introduced the provider cost ledger with estimated, provider-reported, and reconciled states.',
@@ -107,7 +116,7 @@ export default function ChangelogPage() {
   return (
     <DocsPageShell>
       <PageHeader
-        eyebrow="Reference · Changelog"
+        eyebrow="Resources · Changelog"
         title="Changelog"
         lead={
           <>
@@ -119,7 +128,7 @@ export default function ChangelogPage() {
 
       <div style={{ marginTop: 16 }}>
         {entries.map((entry) => (
-          <article key={entry.date} className="changelogEntry">
+          <article key={`${entry.date}-${entry.title}`} className="changelogEntry">
             <div>
               <div className="changelogDate">{entry.date}</div>
               <span className="changelogTag">{entry.tag}</span>

@@ -111,3 +111,15 @@
 /agentic /engineer 301
 /agentic/:slug* /engineer/:slug* 301
 /marketing-engineer /engineer 301
+
+# Docs IA rewrite (2026-09-12). Six concept pages merged into four, and the
+# orphaned runtime-steps page folded into Runs. These URLs carry inbound links
+# and search traffic, so every retired route points at the page that absorbed it.
+/docs/concepts/workflow-schemas /docs/concepts/workflows 301
+/docs/concepts/workflow-templates /docs/concepts/workflows 301
+/docs/concepts/template-naming /docs/concepts/workflows 301
+/docs/concepts/runtime-steps /docs/concepts/runs 301
+/docs/concepts/workflow-specifications /docs/concepts/versioning 301
+/docs/concepts/workflow-versioning /docs/concepts/versioning 301
+/docs/concepts/budgets /docs/concepts/costs 301
+/docs/contracts/gates-and-checks /docs/concepts/gates-and-review 301

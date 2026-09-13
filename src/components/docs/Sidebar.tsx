@@ -29,8 +29,12 @@ import {
   Wallet,
   Workflow,
   X,
+  AlertTriangle,
+  Terminal,
+  ShieldCheck,
 } from 'lucide-react';
 
+import { BrandMark } from '@/components/docs/BrandMark';
 import { isItemNew, navigation, type NavIcon, type NavItem, type NavSection } from '@/lib/docs-navigation';
 
 const iconMap: Record<NavIcon, React.ReactNode> = {
@@ -53,6 +57,9 @@ const iconMap: Record<NavIcon, React.ReactNode> = {
   key: <KeyRound size={14} />,
   radio: <Radio size={14} />,
   plug: <Plug size={14} />,
+  alert: <AlertTriangle size={14} />,
+  terminal: <Terminal size={14} />,
+  shield: <ShieldCheck size={14} />,
 };
 
 function normalizePath(p: string | null): string {
@@ -60,49 +67,6 @@ function normalizePath(p: string | null): string {
   return p.length > 1 && p.endsWith('/') ? p.slice(0, -1) : p;
 }
 
-function BrandMark() {
-  return (
-    <span
-      style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: 10,
-      }}
-      aria-label="Esy docs"
-    >
-      <span
-        aria-hidden="true"
-        style={{
-          fontFamily: 'var(--font-black-ops-one), Impact, sans-serif',
-          fontSize: '1.35rem',
-          letterSpacing: '0.03em',
-          lineHeight: 1,
-          color: 'var(--color-text)',
-          userSelect: 'none',
-        }}
-      >
-        <span style={{ color: 'var(--color-accent)' }}>e</span>sy
-      </span>
-      <span
-        aria-hidden="true"
-        style={{
-          padding: '4px 8px',
-          border: '1px solid var(--color-border)',
-          borderRadius: 'var(--radius-control)',
-          background: 'var(--color-bg-elevated)',
-          color: 'var(--color-text-muted)',
-          fontSize: 10,
-          fontWeight: 700,
-          letterSpacing: '0.16em',
-          textTransform: 'uppercase',
-          lineHeight: 1,
-        }}
-      >
-        Docs
-      </span>
-    </span>
-  );
-}
 
 function NavItemRow({ item, isActive }: { item: NavItem; isActive: boolean }) {
   const [hovered, setHovered] = useState(false);

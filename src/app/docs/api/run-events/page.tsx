@@ -114,6 +114,7 @@ export default function RunEventsPage() {
         head={['Event', 'Fires when', 'On the firehose?']}
         rows={[
           [<code key="1">run.created</code>, 'run accepted (pending)', 'yes'],
+          [<code key="1q">run.queued</code>, 'waiting for an execution slot', 'yes'],
           [<code key="2">run.started</code>, 'execution begins', 'yes'],
           [
             <code key="3">step.started / step.completed / step.failed</code>,
@@ -129,6 +130,16 @@ export default function RunEventsPage() {
           [
             <code key="6">run.completed / run.review / run.failed</code>,
             'terminal state',
+            'yes',
+          ],
+          [
+            <code key="7">run.cancelled</code>,
+            'you cancelled the run — terminal',
+            'yes',
+          ],
+          [
+            <code key="8">run.rejected / run.changes_requested</code>,
+            'a reviewer decided a run that was in review — terminal',
             'yes',
           ],
         ]}

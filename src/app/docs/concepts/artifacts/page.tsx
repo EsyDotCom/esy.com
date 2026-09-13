@@ -70,6 +70,7 @@ export default function ArtifactsPage() {
       <PageHeader
         eyebrow="Concepts · Artifacts"
         title="Artifacts"
+        opener="artifact"
         lead={
           <>
             Artifacts are the durable outputs produced by workflow runs — visual, video, research, or knowledge.

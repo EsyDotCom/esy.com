@@ -334,7 +334,7 @@ const ArtifactCTA: React.FC = () => (
         What&apos;s an artifact?
       </a>
       <a
-        href="/docs/concepts/workflow-templates"
+        href="/docs/concepts/workflows"
         target="_blank"
         rel="noopener noreferrer"
         className="artifact-cta-link"

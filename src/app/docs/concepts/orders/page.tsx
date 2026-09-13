@@ -31,6 +31,7 @@ export default function OrdersPage() {
       <PageHeader
         eyebrow="Concepts · Generation Orders"
         title="Generation Orders"
+        opener="fanout"
         lead={
           <>
             An order fans one workflow template out into N child runs with automated variation — the batch

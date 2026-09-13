@@ -1,9 +1,16 @@
 /**
- * Sidebar information architecture for docs.esy.com.
- * Sections render top-down in the order listed here. Items support
- * an optional `icon` (from the lucide icon map in Sidebar.tsx),
- * a `since` date (drives an auto-expiring "New" badge), an `external`
- * flag, and a `description` for search / hub rendering.
+ * Sidebar information architecture for esy.com/docs.
+ *
+ * Sections render top-down in the order listed here, and this array is the
+ * single source for the sidebar, breadcrumbs, prev/next, and search — so the
+ * order below *is* the reading order. It is arranged as an external developer
+ * actually moves: get a key and make a run, understand the nouns, then look
+ * things up. Reference material never comes before the thing it references.
+ *
+ * Items support an optional `icon` (from the lucide map in Sidebar.tsx), a
+ * `since` date (drives an auto-expiring "New" badge), an `external` flag, a
+ * `description` for search/hub rendering, and an `opener` — the section art in
+ * public/brand/docs, which is a transparent cutout so it works on both themes.
  */
 
 export type NavIcon =
@@ -25,7 +32,10 @@ export type NavIcon =
   | 'globe'
   | 'plug'
   | 'key'
-  | 'radio';
+  | 'radio'
+  | 'alert'
+  | 'terminal'
+  | 'shield';
 
 export interface NavItem {
   title: string;
@@ -38,6 +48,8 @@ export interface NavItem {
    */
   since?: string;
   external?: boolean;
+  /** Basename in public/brand/docs (no extension). Transparent, theme-safe. */
+  opener?: string;
 }
 
 export interface NavSection {
@@ -52,146 +64,123 @@ export const navigation: NavSection[] = [
       {
         title: 'Overview',
         href: '/docs',
-        description: 'What the Esy docs cover and how the API is structured.',
+        description: 'What Esy does, and how to find your way around these docs.',
         icon: 'home',
       },
-    ],
-  },
-  {
-    title: 'Contract rules',
-    items: [
       {
-        title: 'Text policies',
-        href: '/docs/contracts/text-policies',
-        description: 'none / exact / freeform — what text is allowed and what the gate verifies.',
-        since: '2026-07-21',
+        title: 'Quickstart',
+        href: '/docs/quickstart',
+        description: 'Make your first run with curl and get a finished artifact back.',
+        icon: 'rocket',
+        opener: 'handoff',
+        since: '2026-09-12',
       },
       {
-        title: 'Element types & render modes',
-        href: '/docs/contracts/element-types-and-render-modes',
-        description: 'Transparent cutouts vs full-bleed tiles, and why patterns never get background removal.',
-        since: '2026-07-21',
+        title: 'How Esy works',
+        href: '/docs/how-esy-works',
+        description: 'The whole system on one page: workspace, workflow, run, artifact.',
+        icon: 'compass',
+        opener: 'template',
+        since: '2026-09-12',
       },
       {
-        title: 'Quality tiers',
-        href: '/docs/contracts/quality-tiers',
-        description: 'What each tier is validated for; quality is added after acceptance.',
-        since: '2026-07-21',
+        title: 'Authentication',
+        href: '/docs/authentication',
+        description: 'API keys, bearer tokens, and how a key is scoped to a workspace.',
+        icon: 'key',
+        opener: 'keys',
+        since: '2026-09-12',
       },
       {
-        title: 'Gates & checks',
-        href: '/docs/contracts/gates-and-checks',
-        description: 'Humans approve at gates; machines preserve between them.',
-        since: '2026-07-21',
+        title: 'Errors',
+        href: '/docs/errors',
+        description: 'Every error the API returns, what causes it, and how to fix it.',
+        icon: 'alert',
+        opener: 'errors',
+        since: '2026-09-12',
       },
       {
-        title: 'Chunked planning',
-        href: '/docs/contracts/chunked-planning',
-        description: 'How big-list planning scales: bounded calls, disjoint slices, deterministic merge.',
-        since: '2026-07-21',
-      },
-    ],
-  },
-  {
-    title: 'Concepts',
-    items: [
-      {
-        title: 'Workflow schemas',
-        href: '/docs/concepts/workflow-schemas',
-        description: 'The platform contract every Workflow Template must satisfy.',
-        icon: 'layers',
-      },
-      {
-        title: 'Workflow templates',
-        href: '/docs/concepts/workflow-templates',
-        description: 'Reusable, versioned blueprints that produce a class of artifacts.',
-        icon: 'workflow',
-      },
-      {
-        title: 'Template naming',
-        href: '/docs/concepts/template-naming',
-        description: 'The verb-first id convention and the verb registry — generate invents, build computes, compose writes from sources.',
+        title: 'Glossary',
+        href: '/docs/glossary',
+        description: 'Every term in one place, each defined in a sentence.',
         icon: 'book',
-        since: '2026-07-11',
+        since: '2026-09-12',
+      },
+    ],
+  },
+  {
+    title: 'Core concepts',
+    items: [
+      {
+        title: 'Workflows',
+        href: '/docs/concepts/workflows',
+        description: 'The versioned template a run executes — intake, steps, providers, gates.',
+        icon: 'workflow',
+        opener: 'template',
       },
       {
-        title: 'Workflow specifications',
-        href: '/docs/concepts/workflow-specifications',
-        description: 'Per-run populated instances of a Template. The deterministic blueprint production reads.',
+        title: 'Intake',
+        href: '/docs/concepts/intake',
+        description: 'The inputs a workflow accepts, and why intake asks for outcomes, not mechanisms.',
         icon: 'file-text',
+        opener: 'handoff',
+        since: '2026-09-12',
       },
       {
-        title: 'Workflow versioning',
-        href: '/docs/concepts/workflow-versioning',
-        description: 'Templates are immutable and versioned; runs pin the exact version they executed for reproducibility.',
-        icon: 'history',
-      },
-      {
-        title: 'Runs',
+        title: 'Runs and steps',
         href: '/docs/concepts/runs',
-        description: 'One execution of a workflow template, with cost and step telemetry.',
+        description: 'One execution of a workflow: the status lifecycle, step telemetry, and costs.',
         icon: 'play',
+        opener: 'pipeline',
+      },
+      {
+        title: 'Gates and review',
+        href: '/docs/concepts/gates-and-review',
+        description: 'How work is judged: quality gates, the review queue, and typed holds.',
+        icon: 'shield',
+        opener: 'review',
+        since: '2026-09-12',
       },
       {
         title: 'Artifacts',
         href: '/docs/concepts/artifacts',
-        description: 'The output of a run — files, metadata, and provenance.',
+        description: 'The output of a run — files, QA record, cost ledger, and provenance.',
         icon: 'image',
+        opener: 'artifact',
+      },
+      {
+        title: 'Versioning',
+        href: '/docs/concepts/versioning',
+        description: 'Immutable versions, a movable live pointer, and the frozen spec a run pins.',
+        icon: 'history',
+        opener: 'versions',
+      },
+      {
+        title: 'Costs and budgets',
+        href: '/docs/concepts/costs',
+        description: 'What a run costs, the three cost states, and how budgets refuse work.',
+        icon: 'wallet',
+        opener: 'meter',
       },
       {
         title: 'Source policies',
         href: '/docs/concepts/source-policies',
-        description: 'Which approved sources a subject may be researched from, and what a run records about them.',
+        description: 'Which approved sources a subject may be researched from, and where each one stops.',
         icon: 'book',
-        since: '2026-09-12',
       },
       {
         title: 'Sub-workflows',
         href: '/docs/concepts/sub-workflows',
-        description: 'How a workflow composes another workflow as a child run, with linked artifacts and rolled-up cost.',
-        icon: 'workflow',
-      },
-      {
-        title: 'Costs',
-        href: '/docs/concepts/costs',
-        description: 'How cost is tracked across steps, runs, workflows, and projects.',
-        icon: 'wallet',
-      },
-      {
-        title: 'Budgets',
-        href: '/docs/concepts/budgets',
-        description: 'Spend limits at organization, project, or workflow scope, enforced before a run executes.',
-        icon: 'wallet',
-      },
-      {
-        title: 'Workers',
-        href: '/docs/concepts/workers',
-        description: 'Durable principals that run bounded shifts on a schedule and report in plain language.',
-        icon: 'users',
-      },
-      {
-        title: 'Assigned work',
-        href: '/docs/concepts/assigned-work',
-        description: 'Goals and tasks, assignable to you or a worker — measurable, tracked, and accounted for.',
-        icon: 'compass',
+        description: 'A step that runs another workflow, with linked artifacts and rolled-up cost.',
+        icon: 'layers',
+        opener: 'subflow',
       },
       {
         title: 'Generation Orders',
         href: '/docs/concepts/orders',
-        description: 'One template fanned into N child runs with variation, dedupe keys, and a budget cap.',
+        description: 'One template fanned into N child runs with variation and a budget cap.',
         icon: 'layers',
-      },
-      {
-        title: 'Publications',
-        href: '/docs/concepts/publications',
-        description: 'Headless destinations that own published documents, categories, and a revalidation webhook.',
-        icon: 'globe',
-      },
-      {
-        title: 'Outlets',
-        href: '/docs/concepts/outlets',
-        description: 'Channels for publishing artifacts of any kind from os.esy.com — separate from Publications.',
-        icon: 'globe',
+        opener: 'fanout',
       },
       {
         title: 'The Library',
@@ -212,30 +201,97 @@ export const navigation: NavSection[] = [
     ],
   },
   {
-    title: 'Reference',
+    title: 'API reference',
     items: [
       {
-        title: 'API',
+        title: 'Conventions',
         href: '/docs/api',
-        description: 'Endpoints, request shapes, and response schemas.',
+        description: 'Base URL, versioning, camelCase, ids, pagination, and idempotency.',
         icon: 'plug',
       },
       {
-        title: 'Publications API',
-        href: '/docs/api/publications',
-        description: 'Public reads plus authoring endpoints for publications and categories.',
-        icon: 'globe',
+        title: 'Runs',
+        href: '/docs/api/runs',
+        description: 'Create, read, cancel, and finalize runs.',
+        icon: 'play',
+        since: '2026-09-12',
       },
       {
-        title: 'Outlets API',
-        href: '/docs/api/outlets',
-        description: 'Publish and unpublish artifacts, read the consumer feed, receive signed webhooks.',
-        icon: 'globe',
+        title: 'Artifacts',
+        href: '/docs/api/artifacts',
+        description: 'List and read artifacts, their families, and their comments.',
+        icon: 'image',
+        since: '2026-09-12',
+      },
+      {
+        title: 'Workflows and catalog',
+        href: '/docs/api/workflows',
+        description: 'Browse published templates, read a contract, estimate and dry-run.',
+        icon: 'workflow',
+        since: '2026-09-12',
+      },
+      {
+        title: 'Orders',
+        href: '/docs/api/orders',
+        description: 'Plan a batch, start it, retry failures, and accept a short settle.',
+        icon: 'layers',
+        since: '2026-09-12',
+      },
+      {
+        title: 'Review queue',
+        href: '/docs/api/review-queue',
+        description: 'Read what is waiting on a human and post a decision.',
+        icon: 'shield',
+        since: '2026-09-12',
+      },
+      {
+        title: 'Costs and budgets',
+        href: '/docs/api/costs',
+        description: 'Query spend, manage budgets, and read refusals.',
+        icon: 'wallet',
+        since: '2026-09-12',
+      },
+      {
+        title: 'Run events (SSE)',
+        href: '/docs/api/run-events',
+        description: 'Live run updates over Server-Sent Events — snapshot, events, reconnect ladder.',
+        icon: 'radio',
+      },
+      {
+        title: 'Webhooks',
+        href: '/docs/api/webhooks',
+        description: 'Verify a signed delivery from an outlet or publication.',
+        icon: 'plug',
+        since: '2026-09-12',
+      },
+      {
+        title: 'API keys',
+        href: '/docs/api/api-keys',
+        description: 'Create, scope, and revoke machine credentials.',
+        icon: 'key',
+      },
+    ],
+  },
+  {
+    title: 'Automation',
+    items: [
+      {
+        title: 'Workers',
+        href: '/docs/concepts/workers',
+        description: 'Durable principals that run bounded shifts on a schedule and report back.',
+        icon: 'users',
+        opener: 'shift',
+      },
+      {
+        title: 'Assigned work',
+        href: '/docs/concepts/assigned-work',
+        description: 'Goals and tasks, assignable to you or a worker — measurable and tracked.',
+        icon: 'compass',
       },
       {
         title: 'Workers API',
         href: '/docs/api/workers',
-        description: 'Hire and steer workers: run-now, shift records, and the schedules that wake them.',
+        description: 'Hire and steer workers: run-now, shift records, and schedules.',
         icon: 'users',
       },
       {
@@ -244,36 +300,66 @@ export const navigation: NavSection[] = [
         description: 'Goals, tasks, and Inbox messages — the assignable planning plane.',
         icon: 'compass',
       },
+    ],
+  },
+  {
+    title: 'Publishing',
+    items: [
       {
-        title: 'API Keys',
-        href: '/docs/api/api-keys',
-        description: 'Machine credentials — create, workspace-bind, authenticate, and revoke.',
-        icon: 'key',
+        title: 'Outlets',
+        href: '/docs/concepts/outlets',
+        description: 'The destination channel run-produced artifacts ship to.',
+        icon: 'globe',
+        opener: 'docks',
       },
       {
-        title: 'Run Events (SSE)',
-        href: '/docs/api/run-events',
-        description: 'Live run updates over Server-Sent Events — snapshot, lifecycle events, reconnect ladder.',
-        icon: 'radio',
-        since: '2026-07-04',
+        title: 'Publications',
+        href: '/docs/concepts/publications',
+        description: 'Headless destinations that own published documents and categories.',
+        icon: 'globe',
       },
       {
-        title: 'Changelog',
-        href: '/docs/changelog',
-        description: 'API and platform changes over time.',
-        icon: 'history',
+        title: 'Outlets API',
+        href: '/docs/api/outlets',
+        description: 'Publish and unpublish artifacts, read the consumer feed, receive webhooks.',
+        icon: 'globe',
+      },
+      {
+        title: 'Publications API',
+        href: '/docs/api/publications',
+        description: 'Public reads plus authoring endpoints for publications and categories.',
+        icon: 'globe',
+      },
+      {
+        title: 'Beehiiv (newsletters)',
+        href: '/docs/integrations/beehiiv',
+        description: 'Turn published articles into email-safe drafts you send from Beehiiv.',
+        icon: 'plug',
       },
     ],
   },
   {
-    title: 'Integrations',
+    title: 'Image quality contracts',
     items: [
       {
-        title: 'Beehiiv (newsletters)',
-        href: '/docs/integrations/beehiiv',
-        description:
-          'Connect a publication to your Beehiiv newsletter — articles become email-safe drafts you send from Beehiiv.',
-        icon: 'plug',
+        title: 'Text policies',
+        href: '/docs/contracts/text-policies',
+        description: 'none / exact / freeform — what text is allowed and what the gate verifies.',
+      },
+      {
+        title: 'Element types & render modes',
+        href: '/docs/contracts/element-types-and-render-modes',
+        description: 'Cutouts vs full-bleed tiles, and why patterns never get background removal.',
+      },
+      {
+        title: 'Quality tiers',
+        href: '/docs/contracts/quality-tiers',
+        description: 'What each tier is validated for; quality is added after acceptance.',
+      },
+      {
+        title: 'Chunked planning',
+        href: '/docs/contracts/chunked-planning',
+        description: 'How big-list planning scales: bounded calls, disjoint slices, deterministic merge.',
       },
     ],
   },
@@ -301,7 +387,7 @@ export const navigation: NavSection[] = [
       {
         title: 'Publish packs with a worker team',
         href: '/docs/guides/publish-packs-with-a-worker-team',
-        description: 'A crew that plans a themed pack daily, generates every asset, composes a cover, and publishes to your site.',
+        description: 'A crew that plans a themed pack daily, generates it, and publishes to your site.',
         icon: 'users',
       },
       {
@@ -321,6 +407,12 @@ export const navigation: NavSection[] = [
   {
     title: 'Resources',
     items: [
+      {
+        title: 'Changelog',
+        href: '/docs/changelog',
+        description: 'API and platform changes over time.',
+        icon: 'history',
+      },
       {
         title: 'Open the app',
         href: 'https://os.esy.com',

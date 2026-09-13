@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/sync-workflow-catalog.mjs || (node scripts/sync-workflow-catalog.mjs --check && echo 'Catalog sync skipped (API unreachable); using committed snapshot.')",
+    "prebuild": "node scripts/build-docs-search-index.mjs && (node scripts/sync-workflow-catalog.mjs || (node scripts/sync-workflow-catalog.mjs --check && echo 'Catalog sync skipped (API unreachable); using committed snapshot.'))",
     "build": "ESY_BUILD_PHASE=1 next build",
     "start": "next start",
     "lint": "next lint",
@@ -16,7 +16,8 @@
     "test:contracts": "node --test orchestration/runner/__tests__/contracts.test.js",
     "test:regression": "node --test orchestration/runner/__tests__/regression.test.js",
     "test:smoke": "node --test orchestration/runner/__tests__/smoke.test.js",
-    "test:install-hook": "cp scripts/pre-commit-hook.sh .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit && echo 'Pre-commit hook installed'"
+    "test:install-hook": "cp scripts/pre-commit-hook.sh .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit && echo 'Pre-commit hook installed'",
+    "check:docs-endpoints": "node scripts/check-docs-endpoints.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.74.0",

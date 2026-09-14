@@ -31,9 +31,8 @@ const ConditionalNavigation = () => {
   
   // Agentic pages (The Agentic Engineer — merged /learn + /research, Jul 2026).
   // Strict match so /agentic-workflows (separate SEO page) doesn't count.
-  // (Articles now live at the site root and can't be matched by prefix; they
-  // take the default navigation, which is what /engineer/* got before.)
-  const isLearnPage = normalizedPath === '/agentic';
+  // Articles live at /engineer/<slug>/ and take the default navigation.
+  const isLearnPage = normalizedPath === '/agentic' || normalizedPath?.startsWith('/engineer/');
   const isLearnIndex = normalizedPath === '/agentic';
   
   // Check if we're on course lesson pages (focused learning experience)

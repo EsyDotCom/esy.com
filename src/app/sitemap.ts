@@ -8,7 +8,6 @@ import {
   getAllAgenticArticles,
 } from '@/lib/published-articles'
 import { articlePath } from '@/lib/article-path'
-import { shadowedArticleSlugs } from '@/lib/article-slugs'
 import {
   getAllPatternSlugs,
   getAllTermSlugs,
@@ -162,13 +161,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // their content in TS data registries (not content directories), so each
   // must be enumerated explicitly. prompt-library is intentionally excluded.
 
-  // The Marketing Engineer articles, at the site root. Slugs come from every
-  // publication via the merged getter (lastModified from real publish dates).
-  // A slug shadowed by a top-level route would list a URL that renders some
-  // other page, so those are left out (the build warns about them).
-  const allArticles = await getAllAgenticArticles()
-  const shadowed = new Set(shadowedArticleSlugs(allArticles.map(v => v.slug)))
-  const agenticVideos = allArticles.filter(v => !shadowed.has(v.slug))
+  // The Marketing Engineer articles, at /engineer/<slug>/. Slugs come from
+  // every publication via the merged getter (lastModified from real publish
+  // dates).
+  const agenticVideos = await getAllAgenticArticles()
   agenticVideos.forEach(video => {
     sitemap.push({
       url: `${baseUrl}${articlePath(video.slug)}`,

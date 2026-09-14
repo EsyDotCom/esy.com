@@ -27,6 +27,8 @@ import { lightTheme } from "@/lib/lightTheme";
 // Shared suffix logic
 export const getPageSuffix = (pathname) => {
   if (pathname?.startsWith('/essays')) return 'Essays';
+  // The Marketing Engineer's articles, back under their own namespace.
+  if (pathname === '/engineer' || pathname?.startsWith('/engineer/')) return 'Engineer';
   if (pathname?.startsWith('/glossary')) return 'Glossary';
   if (pathname?.startsWith('/blog')) return 'Blog';
   return '';

@@ -81,13 +81,13 @@ export function getContract(id: string): WorkflowContract | null {
 }
 
 // Enum values with doctrine get deep links into the rules pages
-// (/docs/contracts/*). Keys are intake field names or enum members.
+// (docs.esy.com/contracts/*). Keys are intake field names or enum members.
 export const RULE_LINKS: Record<string, string> = {
-  textPolicy: '/docs/contracts/text-policies',
-  none: '/docs/contracts/text-policies',
-  exact: '/docs/contracts/text-policies',
-  freeform: '/docs/contracts/text-policies',
-  elementType: '/docs/contracts/element-types-and-render-modes',
-  pattern: '/docs/contracts/element-types-and-render-modes',
-  quality: '/docs/contracts/quality-tiers',
+  textPolicy: 'https://docs.esy.com/contracts/text-policies',
+  none: 'https://docs.esy.com/contracts/text-policies',
+  exact: 'https://docs.esy.com/contracts/text-policies',
+  freeform: 'https://docs.esy.com/contracts/text-policies',
+  elementType: 'https://docs.esy.com/contracts/element-types-and-render-modes',
+  pattern: 'https://docs.esy.com/contracts/element-types-and-render-modes',
+  quality: 'https://docs.esy.com/contracts/quality-tiers',
 };

@@ -281,7 +281,7 @@ export default function Footer () {
               { href: "/#subscribe", text: "Subscribe" },
               { href: LATEST_ARTICLES_HREF, text: "Latest articles" },
               { href: "https://www.youtube.com/@EsyDotCom", text: "YouTube" },
-              { href: "/docs", text: "Docs" },
+              { href: "https://docs.esy.com", text: "Docs" },
             ]}
           />
 

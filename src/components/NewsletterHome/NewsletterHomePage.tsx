@@ -79,7 +79,9 @@ const PROPERTIES = [
   },
   {
     name: 'Esy',
-    href: '/docs/',
+    // Docs live on their own site now (docs.esy.com); link there directly
+    // rather than through an esy.com redirect.
+    href: 'https://docs.esy.com',
     role: 'The engine',
     body: 'The workflow platform underneath. Every run is recorded with what it cost and who approved it.',
   },

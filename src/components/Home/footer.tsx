@@ -264,7 +264,7 @@ export default function Footer () {
           <FooterColumn 
             title="Product"
             links={[
-              { href: "https://app.esy.com", text: "App" },
+              { href: "https://os.esy.com", text: "OS" },
               // Managed and Pricing rejoin when their pages ship (parked
               // 2026-09-02 — a footer link to an unready page is a promise
               // the site can't keep).

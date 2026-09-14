@@ -7,7 +7,6 @@ import FooterColumn from "@/components/Home/footerColumn";
 import Logo from "@/components/Logo";
 import { getPageSuffix } from "./navigation";
 import { elevatedDarkTheme } from '@/lib/theme';
-import { LATEST_ARTICLES_HREF } from '@/lib/article-path';
 
 // Light theme colors for footer - Navy Calm palette
 const lightThemeFooter = {
@@ -242,12 +241,9 @@ export default function Footer () {
               <Logo href="" wordmarkOnly wordmarkFont="blackops" theme={logoTheme} />
             </div>
             <p className="footer-desc" style={{ color: theme.muted }}>
-              {/* Newsletter-first tagline (2026-09-13). Product-era copy, for
-                  reverting: "Put marketing production on autopilot." /
-                  "Build, review and scale marketing with AI." */}
-              <strong style={{ color: isLightMode || isNavyDark ? theme.text : 'inherit' }}>The Marketing Engineer.</strong>
+              <strong style={{ color: isLightMode || isNavyDark ? theme.text : 'inherit' }}>Put marketing production on autopilot.</strong>
               <br />
-              Systems that turn marketing data into actions, and the results they get.
+              Build, review and scale marketing with AI.
             </p>
             <div className="footer-socials">
               <a href="https://www.youtube.com/@EsyDotCom" target="_blank" className="social-link" aria-label="YouTube">
@@ -276,12 +272,10 @@ export default function Footer () {
           />
 
           <FooterColumn 
-            title="Newsletter"
+            title="Learn"
             links={[
-              { href: "/#subscribe", text: "Subscribe" },
-              { href: LATEST_ARTICLES_HREF, text: "Latest articles" },
-              { href: "https://www.youtube.com/@EsyDotCom", text: "YouTube" },
-              { href: "https://docs.esy.com", text: "Docs" },
+              { href: "/engineer/", text: "The Marketing Engineer" },
+              { href: "/docs", text: "Docs" },
             ]}
           />
 

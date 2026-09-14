@@ -4,8 +4,8 @@
  * intersection of AI, marketing, and engineering, published most days, with
  * the best of each week sent as one email. The one action is subscribing to
  * that email. Everything below the fold is evidence for the promise: the
- * latest articles, what a tutorial contains, the real properties the work
- * runs on, and the person writing it.
+ * latest articles, the real properties the work runs on (with the clip.art
+ * case study), and the person writing it.
  *
  * Vocabulary: articles are the pages (esy.com/<slug>/); issues are the weekly
  * emails. The previous product-story homepage lives in
@@ -23,7 +23,7 @@ import LightHeader from '@/components/LightHeader/LightHeader';
 import { AUTHOR_SOCIALS } from '@/components/Agentic/authorSocials';
 import { articlePath } from '@/lib/article-path';
 import NewsletterSignup from './NewsletterSignup';
-import CountUp from './CountUp';
+import ClipArtWordmark from './ClipArtWordmark';
 import './NewsletterHome.css';
 
 // Same scoped Cormorant cuts the story homepage loaded: the global sheet only
@@ -42,60 +42,57 @@ const YOUTUBE_URL = 'https://www.youtube.com/@EsyDotCom';
 // shows the front of the stack; topic and archive pages will carry the rest.
 const LATEST_COUNT = 12;
 
-// What every tutorial carries. Three parts because the promise has three
-// verbs: build it, explain it, show what it did.
-const TUTORIAL_PARTS = [
-  {
-    step: '01',
-    title: 'The system',
-    body: 'A working build: the prompts, the code, and the data it reads, from analytics and search to the site itself.',
-  },
-  {
-    step: '02',
-    title: 'The walkthrough',
-    body: 'Step by step, often on video. You see how it works, not just a screenshot of the output.',
-  },
-  {
-    step: '03',
-    title: 'The result',
-    body: 'What changed after it ran on a live property, and what didn’t. The misses are published too.',
-  },
-];
-
-// The properties the work runs on. Each one is real and in production; the
-// articles document the work, these are where the work happens.
+// The two businesses the work runs on, both real and in production. The
+// articles document the work; these are where it happens. clip.art is set in
+// its own wordmark; SEOPage in the display serif.
 const PROPERTIES = [
   {
     name: 'clip.art',
+    wordmark: true,
     href: 'https://clip.art',
+    domain: 'clip.art',
     role: 'The testbed',
     body: 'A live clip art library. Its search traffic is where most experiments start.',
   },
   {
     name: 'SEOPage',
+    wordmark: false,
     href: 'https://seopage.com',
+    domain: 'seopage.com',
     role: 'The service',
     body: 'The SEO systems from these articles, run every week for sites that want the results without the upkeep.',
   },
-  {
-    name: 'Esy',
-    // Docs live on their own site now (docs.esy.com); link there directly
-    // rather than through an esy.com redirect.
-    href: 'https://docs.esy.com',
-    role: 'The engine',
-    body: 'The workflow platform underneath. Every run is recorded with what it cost and who approved it.',
-  },
 ];
 
-// Real output, straight from the live clip.art catalog CDN — finished work,
-// not UI. The proof under "Real properties, real traffic".
-const CATALOG = [
-  { url: 'https://images.clip.art/christmas/decorated-christmas-tree-gifts-fxjmtg.webp', alt: 'Decorated Christmas tree clip art' },
-  { url: 'https://images.clip.art/halloween/grinning-jack-o-lantern-candle-r2avcr.webp', alt: "Jack-o'-lantern clip art" },
-  { url: 'https://images.clip.art/school/chemistry-set-bubbling-beakers-rd9f4o.webp', alt: 'Chemistry set clip art' },
-  { url: 'https://images.clip.art/flower/watercolor-lavender-flowers-bqkae5.webp', alt: 'Watercolor lavender clip art' },
-  { url: 'https://images.clip.art/cat/cozy-black-cat-on-pumpkin-1c6qun.webp', alt: 'Black cat on pumpkin clip art' },
-  { url: 'https://images.clip.art/school/friendly-yellow-school-bus-hjo5n2.webp', alt: 'School bus clip art' },
+// The clip.art case study, restored from the Intelligence Circuitry homepage
+// (src/archive/homepage-intelligence-circuitry): the same style vocabulary,
+// with the grid filled from our Clay Office pack on clip.art
+// (clip.art/packs/25-boutique-consulting-clipart-pngs-clay-office) — the
+// office scenes fit a publication about marketing work better than the old
+// seasonal mix. Scenes, poses and props only; the pack's seamless patterns,
+// borders and frames read as wallpaper in a tile, so they're left out.
+const CLIPART_STYLES = [
+  'Flat', 'Minimal', 'Line Art', 'Black & White', 'Cartoon',
+  'Mascot', 'Sticker', 'Emoji', 'Vintage', 'Watercolor',
+  'Storybook', 'Isometric', 'Clay', 'Chibi', 'Pixel',
+  'Kawaii', '3D', 'Doodle',
+];
+
+const CLAY_OFFICE = 'https://images.clip.art/packs/business/25-boutique-consulting-clipart-pngs-clay-office';
+
+const CLIPART_SHOWCASE = [
+  { url: `${CLAY_OFFICE}/consultant-pitch-deck-presentation-scene-hbs2mr.webp`, alt: 'Clay consultant presenting a pitch deck' },
+  { url: `${CLAY_OFFICE}/clay-laptop-open-muted-teal-screen-prop-24ahuy.webp`, alt: 'Clay laptop with a muted teal screen' },
+  { url: `${CLAY_OFFICE}/strategy-workshop-in-action-sticky-note-wall-scene-mscrxi.webp`, alt: 'Clay strategy workshop at a sticky-note wall' },
+  { url: `${CLAY_OFFICE}/ceramic-coffee-mug-break-time-prop-e4f8x6.webp`, alt: 'Clay ceramic coffee mug' },
+  { url: `${CLAY_OFFICE}/consultant-presenting-insights-standing-pitch-pose-gzg4x8.webp`, alt: 'Clay consultant standing and presenting insights' },
+  { url: `${CLAY_OFFICE}/analytics-dashboard-review-scene-b0300v.webp`, alt: 'Clay analytics dashboard review' },
+  { url: `${CLAY_OFFICE}/focused-laptop-work-solo-consultant-deep-work-pose-opxz8r.webp`, alt: 'Clay consultant in focused laptop work' },
+  { url: `${CLAY_OFFICE}/hybrid-video-meeting-room-scene-su3c6h.webp`, alt: 'Clay hybrid video meeting room' },
+  { url: `${CLAY_OFFICE}/team-strategy-workshop-whiteboard-huddle-pose-onbdtz.webp`, alt: 'Clay team huddled at a whiteboard' },
+  { url: `${CLAY_OFFICE}/coffee-break-lounge-corner-scene-o9uuji.webp`, alt: 'Clay coffee-break lounge corner' },
+  { url: `${CLAY_OFFICE}/colleagues-reviewing-analytics-duo-desk-pose-ilf5g0.webp`, alt: 'Clay colleagues reviewing analytics at a desk' },
+  { url: `${CLAY_OFFICE}/client-discovery-call-laptop-and-notepad-desk-scene-9mszcr.webp`, alt: 'Clay client discovery call at a desk with laptop and notepad' },
 ];
 
 // Newest first, by publish date — the same merged publication list the article
@@ -149,11 +146,6 @@ export default async function NewsletterHomePage() {
           <p className="nl-promise">
             I build systems that turn marketing data into actions, explain how
             they work, and <span className="nl-promise-accent">show you the results</span>.
-          </p>
-          <p className="nl-sub">
-            Tutorials, guides, and news at the intersection of AI, marketing,
-            and engineering, built on sites that are live in production. New
-            articles most days, and the best of them in one email a week.
           </p>
           <NewsletterSignup />
         </div>
@@ -215,98 +207,100 @@ export default async function NewsletterHomePage() {
         </section>
       )}
 
-      {/* ══ What a tutorial contains ══ */}
-      <section className="nl-section" aria-labelledby="nl-tutorial-title">
-        <div className="nl-container">
-          <p className="nl-eyebrow">Every tutorial</p>
-          <h2 className="nl-title" id="nl-tutorial-title">Built, explained, and measured.</h2>
-          <ol className="nl-parts">
-            {TUTORIAL_PARTS.map(({ step, title, body }) => (
-              <li key={step}>
-                <span className="nl-part-step">{step}</span>
-                <h3 className="nl-part-title">{title}</h3>
-                <p className="nl-part-body">{body}</p>
+      {/* ══ Where the experiments run ══
+          Editorial, not a card grid: the claim on the left, the two
+          businesses as a ledger on the right. White ground, so it reads as
+          its own beat between the grey Latest section and the navy case
+          study below. */}
+      <section className="nl-section nl-where" aria-labelledby="nl-where-title">
+        <div className="nl-container nl-where-grid">
+          <div>
+            <p className="nl-eyebrow">Where the experiments run</p>
+            <h2 className="nl-title" id="nl-where-title">Real properties, real traffic.</h2>
+            <p className="nl-lede">
+              Nothing here is a sandbox demo. Each system gets built on a business
+              that runs every day, so the results in each article are the results
+              it actually got.
+            </p>
+          </div>
+          <ul className="nl-ledger">
+            {PROPERTIES.map(({ name, wordmark, href, domain, role, body }) => (
+              <li key={name} className="nl-ledger-row">
+                <span className="nl-ledger-name">
+                  {wordmark ? <ClipArtWordmark className="nl-ledger-wordmark" /> : name}
+                </span>
+                <div className="nl-ledger-body">
+                  <span className="nl-ledger-role">{role}</span>
+                  <p>{body}</p>
+                  <a href={href} target="_blank" rel="noopener noreferrer" className="nl-inline-link">
+                    {domain} <ArrowUpRight size={15} aria-hidden="true" />
+                  </a>
+                </div>
               </li>
             ))}
-          </ol>
+          </ul>
         </div>
       </section>
 
-      {/* ══ Where the work happens ══
-          Navy band: the one place the page talks about the businesses, framed
-          as the lab the articles report from, not as a pitch. */}
-      <section className="nl-lab" aria-labelledby="nl-lab-title">
+      {/* ══ The proof, on navy ══
+          The case study has the band to itself now, so it lands as the
+          evidence for the ledger above rather than a fourth card. */}
+      <section className="nl-lab" aria-label="Case study: clip.art runs on Esy OS">
         <div className="nl-container">
-          <p className="nl-eyebrow nl-eyebrow--onDark">Where the experiments run</p>
-          <h2 className="nl-title nl-title--onDark" id="nl-lab-title">
-            Real properties, real traffic.
-          </h2>
-          <p className="nl-lede nl-lede--onDark">
-            Nothing here is a sandbox demo. Each system gets built on a business
-            that runs every day, so the results in each article are the results
-            it actually got.
-          </p>
-          <ul className="nl-props">
-            {PROPERTIES.map(({ name, href, role, body }) => {
-              const external = href.startsWith('http');
-              return (
-                <li key={name}>
-                  <a
-                    href={href}
-                    className="nl-prop"
-                    {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                  >
-                    <span className="nl-prop-role">{role}</span>
-                    <span className="nl-prop-name">
-                      {name}
-                      {external && <ArrowUpRight size={16} aria-hidden="true" />}
-                    </span>
-                    <span className="nl-prop-body">{body}</span>
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
+          {/* ══ Case study: clip.art runs on Esy OS ══
+              The two-column case study from the Intelligence Circuitry
+              homepage, restored as the proof under "real properties": story on
+              the left (the clip.art wordmark, what it is, the styles it ships),
+              a 4×3 grid of live catalog assets on the right. */}
+          <div className="nl-case">
+            <div className="nl-case-story">
+              <div className="nl-case-meta">
+                <span className="nl-case-tag">Case Study</span>
+                <span className="nl-case-live">
+                  <span className="nl-case-live-dot" aria-hidden="true" />
+                  Live · In Production
+                </span>
+              </div>
 
-          {/* ══ The receipts: clip.art in production ══
-              Carried over from the product-era homepage, and it fits better
-              here: the claim above is "real properties", and this is one of
-              them, with its own numbers and its own goods. Stats are
-              point-in-time figures from the live system. */}
-          <div className="nl-receipts">
-            <p className="nl-eyebrow nl-eyebrow--onDark nl-live">
-              <span className="nl-live-dot" aria-hidden="true" /> Live · In production
-            </p>
-            <h3 className="nl-receipts-title">This isn&apos;t a demo. clip.art runs on it.</h3>
-            <p className="nl-lede nl-lede--onDark">
-              A consumer marketplace, fed entirely by Esy workflows: every asset
-              generated, processed, stored, and billed with a full record. Six of
-              them, straight from the live catalog.
-            </p>
-            <dl className="nl-stats">
-              <div>
-                <dt><CountUp value={14889} /></dt>
-                <dd>Artifacts filed, each with provenance</dd>
+              <h3 className="nl-case-title">
+                <span className="nl-case-title-mark">
+                  <ClipArtWordmark className="nl-case-wordmark" />
+                </span>
+                <span className="nl-case-title-tail">runs on Esy OS</span>
+              </h3>
+
+              <p className="nl-case-desc">
+                Consumer marketplace for clip art, coloring pages, and
+                illustrations. Esy workflows generate, post-process, and store
+                every asset — each run recorded on prompt, model, processing,
+                storage, and cost.
+              </p>
+
+              <div className="nl-case-styles">
+                <span className="nl-case-styles-label">
+                  {CLIPART_STYLES.length} styles supported
+                </span>
+                <div className="nl-case-pills">
+                  {CLIPART_STYLES.map((style) => (
+                    <span key={style} className="nl-case-pill">{style}</span>
+                  ))}
+                </div>
               </div>
+
               <div>
-                <dt><CountUp value={227} /></dt>
-                <dd>Waiting on a human right now</dd>
+                <Link href="/workflows/generate-clip-art-asset/" className="nl-case-cta">
+                  See the workflow <ArrowRight size={14} aria-hidden="true" />
+                </Link>
               </div>
-              <div>
-                <dt><CountUp value={0.064} prefix="$" /></dt>
-                <dd>A worker&apos;s cost per item, at most</dd>
-              </div>
-            </dl>
-            <ul className="nl-catalog" aria-label="Assets produced by these workflows, live on clip.art">
-              {CATALOG.map(({ url, alt }) => (
-                <li key={url}>
-                  <img src={url} alt={alt} loading="lazy" width={280} height={280} />
+            </div>
+
+            <ul className="nl-case-grid" aria-label="Sample assets from clip.art's Clay Office pack">
+              {CLIPART_SHOWCASE.map(({ url, alt }) => (
+                <li key={url} className="nl-case-tile">
+                  <img src={url} alt={alt} loading="lazy" width={228} height={228} />
                 </li>
               ))}
             </ul>
-            <Link href="/workflows/generate-clip-art-asset/" className="nl-inline-link nl-inline-link--onDark">
-              See the workflow behind it <ArrowRight size={15} aria-hidden="true" />
-            </Link>
           </div>
         </div>
       </section>
@@ -358,7 +352,7 @@ export default async function NewsletterHomePage() {
             The week&apos;s best tutorials, guides, and news in one email.
             Unsubscribe whenever you like.
           </p>
-          <NewsletterSignup tone="dark" note="Free · one email a week" />
+          <NewsletterSignup tone="dark" />
         </div>
       </section>
     </div>

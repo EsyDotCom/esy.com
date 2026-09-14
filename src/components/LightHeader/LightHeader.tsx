@@ -49,6 +49,7 @@ export default function LightHeader() {
               The waitlist CTA it replaced, for reverting:
           <Link href="/waitlist/?src=header" className="lh-cta">Join the waitlist</Link>
           */}
+          <Link href="/topics/" className="lh-signin">Topics</Link>
           <Link href={LATEST_ARTICLES_HREF} className="lh-signin">Articles</Link>
           <Link href="/#subscribe" className="lh-cta">Subscribe</Link>
         </nav>

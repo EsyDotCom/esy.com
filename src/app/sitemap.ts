@@ -8,6 +8,7 @@ import {
   getAllAgenticArticles,
 } from '@/lib/published-articles'
 import { articlePath } from '@/lib/article-path'
+import { TOPICS, topicHref } from '@/data/topics'
 import {
   getAllPatternSlugs,
   getAllTermSlugs,
@@ -170,6 +171,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${baseUrl}${articlePath(video.slug)}`,
       lastModified: new Date(video.publishedAt),
       changeFrequency: 'monthly',
+      priority: 0.7,
+    })
+  })
+
+  // Topic hubs. The /topics index is auto-discovered above; each hub is a
+  // dynamic route, so it's listed here from the fixed topic registry.
+  TOPICS.forEach(topic => {
+    sitemap.push({
+      url: `${baseUrl}${topicHref(topic.slug)}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
       priority: 0.7,
     })
   })

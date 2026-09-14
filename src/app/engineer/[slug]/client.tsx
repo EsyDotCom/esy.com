@@ -20,6 +20,7 @@ import { TurnstileWidget } from "@/components/Turnstile/TurnstileWidget";
 import { AgenticRelatedVideos } from "@/components/Agentic/AgenticRelatedVideos";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { LATEST_ARTICLES_HREF } from "@/lib/article-path";
+import { topicHref, topicsForArticle } from "@/data/topics";
 import EnhancedMarkdownRenderer from "@/components/SchoolArticle/EnhancedMarkdownRenderer";
 import { AUTHOR_SOCIALS } from "@/components/Agentic/authorSocials";
 import { navyCalmLightTheme as theme } from "@/lib/theme";
@@ -577,6 +578,11 @@ export default function AgenticVideoPageClient({
               // The homepage is the publication's front page, so "Home" and
               // "The Marketing Engineer" are one crumb now.
               { label: "The Marketing Engineer", href: LATEST_ARTICLES_HREF },
+              // The article's primary topic hub (category match first), so
+              // every article links up to the subject it belongs to.
+              ...topicsForArticle(video)
+                .slice(0, 1)
+                .map((t) => ({ label: t.name, href: topicHref(t.slug) })),
               {
                 label:
                   isMobile && video.title.length > 30

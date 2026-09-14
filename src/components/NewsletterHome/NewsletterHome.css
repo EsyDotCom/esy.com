@@ -206,6 +206,21 @@
    the old /engineer index redirect both land here. */
 #latest { scroll-margin-top: 64px; }
 
+/* Topic chips: next to the Latest heading on the homepage and at the foot of
+   each topic hub. Quiet pills, so they read as navigation, not buttons. */
+.nl-topic-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.nl-topic-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px; border-radius: 999px;
+  font-size: 0.8rem; font-weight: 600; text-decoration: none;
+  color: var(--nl-ink-soft); background: var(--nl-bg);
+  border: 1px solid var(--nl-seam);
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.nl-topic-chip:hover { color: var(--nl-navy); border-color: var(--nl-jade); }
+.nl-topic-chip:focus-visible { outline: 2px solid var(--nl-jade); outline-offset: 2px; }
+.nl-topic-chip--all { color: var(--nl-jade); }
+
 /* ── Where the experiments run: the claim left, a two-row ledger right ──
    Hairline rules and big names instead of boxes, so it reads as editorial
    rather than a feature grid. A heavier navy rule opens the ledger. */

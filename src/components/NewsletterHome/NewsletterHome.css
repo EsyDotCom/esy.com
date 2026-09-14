@@ -82,10 +82,6 @@
 
 /* ══ Signup ══ */
 .nl-signup { width: 100%; max-width: 480px; }
-/* The demo-first promise, sitting right on top of the box it sells. */
-.nl-signup-pitch { margin: 0 0 14px; font-size: 0.95rem; line-height: 1.55; }
-.nl-signup--light .nl-signup-pitch { color: var(--nl-ink-soft); }
-.nl-signup--dark .nl-signup-pitch { color: rgba(255, 255, 255, 0.78); }
 .nl-signup-form { display: flex; flex-wrap: wrap; gap: 10px; }
 .nl-signup-input {
   flex: 1 1 220px; min-width: 0;
@@ -210,39 +206,39 @@
    the old /engineer index redirect both land here. */
 #latest { scroll-margin-top: 64px; }
 
-/* ── The lab: navy band ── */
-.nl-lab { background: var(--nl-navy); padding: 88px 0; }
-.nl-props {
-  list-style: none; margin: 36px 0 0; padding: 0;
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+/* ── Where the experiments run: the claim left, a two-row ledger right ──
+   Hairline rules and big names instead of boxes, so it reads as editorial
+   rather than a feature grid. A heavier navy rule opens the ledger. */
+.nl-where-grid {
+  display: grid; grid-template-columns: 5fr 7fr; gap: 56px; align-items: start;
 }
-.nl-prop {
-  display: flex; flex-direction: column; gap: 8px; height: 100%;
-  padding: 24px; border-radius: 12px; text-decoration: none;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  transition: border-color 0.18s ease, background 0.18s ease;
+.nl-ledger { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--nl-seam); }
+.nl-ledger-row {
+  display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 32px;
+  align-items: start; padding: 28px 0; border-top: 1px solid var(--nl-seam);
 }
-.nl-prop:hover { border-color: rgba(0, 212, 170, 0.55); background: rgba(255, 255, 255, 0.08); }
-.nl-prop:focus-visible { outline: 2px solid var(--nl-jade-bright); outline-offset: 2px; }
-.nl-prop-role {
+.nl-ledger-row:first-child { border-top: 2px solid var(--nl-navy); }
+.nl-ledger-name {
+  font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif;
+  font-weight: 700; font-size: 2.1rem; line-height: 1; letter-spacing: -0.02em;
+  color: var(--nl-navy);
+}
+/* clip.art's own mark, in navy; it draws with currentColor. */
+.nl-ledger-wordmark { display: block; height: 2.4rem; width: auto; color: var(--nl-navy); }
+.nl-ledger-role {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
   font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--nl-jade-bright);
+  text-transform: uppercase; color: var(--nl-jade);
 }
-.nl-prop-name {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 1.25rem; font-weight: 600; color: #FFFFFF;
-}
-.nl-prop-name svg { color: rgba(255, 255, 255, 0.5); }
-.nl-prop-body { font-size: 0.95rem; line-height: 1.6; color: rgba(255, 255, 255, 0.72); }
+.nl-ledger-body p { margin: 8px 0 12px; font-size: 1rem; line-height: 1.65; color: var(--nl-ink-soft); }
 
-/* ── Case study: clip.art runs on Esy, inside the navy band ──
+/* ── The proof: navy band carrying only the case study ── */
+.nl-lab { background: var(--nl-navy); padding: 88px 0; }
+
+/* ── Case study: clip.art runs on Esy OS, alone in the navy band ──
    Ported from the Intelligence Circuitry homepage's .ic-casestudy-* rules
-   (dark variant): story left, 4×3 catalog grid right. A hairline and space
-   set it apart from the property cards so it reads as their evidence. */
+   (dark variant): story left, 4×3 catalog grid right. */
 .nl-case {
-  margin-top: 64px; padding-top: 56px;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
   display: grid; grid-template-columns: 5fr 7fr; gap: 48px; align-items: center;
 }
 .nl-case-story { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
@@ -363,7 +359,8 @@
   .nl-section, .nl-lab { padding: 64px 0; }
   .nl-final { padding: 72px 0; }
   .nl-featured { grid-template-columns: 1fr; gap: 20px; }
-  .nl-props { grid-template-columns: 1fr; gap: 20px; }
+  .nl-where-grid { grid-template-columns: 1fr; gap: 28px; }
+  .nl-ledger-row { grid-template-columns: 1fr; gap: 12px; }
   .nl-row { grid-template-columns: minmax(0, 1fr); gap: 4px; }
   .nl-row-cat { display: none; }
 }

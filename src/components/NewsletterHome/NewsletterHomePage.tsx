@@ -42,28 +42,25 @@ const YOUTUBE_URL = 'https://www.youtube.com/@EsyDotCom';
 // shows the front of the stack; topic and archive pages will carry the rest.
 const LATEST_COUNT = 12;
 
-// The properties the work runs on. Each one is real and in production; the
-// articles document the work, these are where the work happens.
+// The two businesses the work runs on, both real and in production. The
+// articles document the work; these are where it happens. clip.art is set in
+// its own wordmark; SEOPage in the display serif.
 const PROPERTIES = [
   {
     name: 'clip.art',
+    wordmark: true,
     href: 'https://clip.art',
+    domain: 'clip.art',
     role: 'The testbed',
     body: 'A live clip art library. Its search traffic is where most experiments start.',
   },
   {
     name: 'SEOPage',
+    wordmark: false,
     href: 'https://seopage.com',
+    domain: 'seopage.com',
     role: 'The service',
     body: 'The SEO systems from these articles, run every week for sites that want the results without the upkeep.',
-  },
-  {
-    name: 'Esy',
-    // Docs live on their own site now (docs.esy.com); link there directly
-    // rather than through an esy.com redirect.
-    href: 'https://docs.esy.com',
-    role: 'The engine',
-    body: 'The workflow platform underneath. Every run is recorded with what it cost and who approved it.',
   },
 ];
 
@@ -210,43 +207,47 @@ export default async function NewsletterHomePage() {
         </section>
       )}
 
-      {/* ══ Where the work happens ══
-          Navy band: the one place the page talks about the businesses, framed
-          as the lab the articles report from, not as a pitch. */}
-      <section className="nl-lab" aria-labelledby="nl-lab-title">
-        <div className="nl-container">
-          <p className="nl-eyebrow nl-eyebrow--onDark">Where the experiments run</p>
-          <h2 className="nl-title nl-title--onDark" id="nl-lab-title">
-            Real properties, real traffic.
-          </h2>
-          <p className="nl-lede nl-lede--onDark">
-            Nothing here is a sandbox demo. Each system gets built on a business
-            that runs every day, so the results in each article are the results
-            it actually got.
-          </p>
-          <ul className="nl-props">
-            {PROPERTIES.map(({ name, href, role, body }) => {
-              const external = href.startsWith('http');
-              return (
-                <li key={name}>
-                  <a
-                    href={href}
-                    className="nl-prop"
-                    {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                  >
-                    <span className="nl-prop-role">{role}</span>
-                    <span className="nl-prop-name">
-                      {name}
-                      {external && <ArrowUpRight size={16} aria-hidden="true" />}
-                    </span>
-                    <span className="nl-prop-body">{body}</span>
+      {/* ══ Where the experiments run ══
+          Editorial, not a card grid: the claim on the left, the two
+          businesses as a ledger on the right. White ground, so it reads as
+          its own beat between the grey Latest section and the navy case
+          study below. */}
+      <section className="nl-section nl-where" aria-labelledby="nl-where-title">
+        <div className="nl-container nl-where-grid">
+          <div>
+            <p className="nl-eyebrow">Where the experiments run</p>
+            <h2 className="nl-title" id="nl-where-title">Real properties, real traffic.</h2>
+            <p className="nl-lede">
+              Nothing here is a sandbox demo. Each system gets built on a business
+              that runs every day, so the results in each article are the results
+              it actually got.
+            </p>
+          </div>
+          <ul className="nl-ledger">
+            {PROPERTIES.map(({ name, wordmark, href, domain, role, body }) => (
+              <li key={name} className="nl-ledger-row">
+                <span className="nl-ledger-name">
+                  {wordmark ? <ClipArtWordmark className="nl-ledger-wordmark" /> : name}
+                </span>
+                <div className="nl-ledger-body">
+                  <span className="nl-ledger-role">{role}</span>
+                  <p>{body}</p>
+                  <a href={href} target="_blank" rel="noopener noreferrer" className="nl-inline-link">
+                    {domain} <ArrowUpRight size={15} aria-hidden="true" />
                   </a>
-                </li>
-              );
-            })}
+                </div>
+              </li>
+            ))}
           </ul>
+        </div>
+      </section>
 
-          {/* ══ Case study: clip.art runs on Esy ══
+      {/* ══ The proof, on navy ══
+          The case study has the band to itself now, so it lands as the
+          evidence for the ledger above rather than a fourth card. */}
+      <section className="nl-lab" aria-label="Case study: clip.art runs on Esy OS">
+        <div className="nl-container">
+          {/* ══ Case study: clip.art runs on Esy OS ══
               The two-column case study from the Intelligence Circuitry
               homepage, restored as the proof under "real properties": story on
               the left (the clip.art wordmark, what it is, the styles it ships),

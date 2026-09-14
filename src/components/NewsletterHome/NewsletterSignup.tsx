@@ -13,13 +13,10 @@ import { TurnstileWidget } from "@/components/Turnstile/TurnstileWidget";
    hero sits on white, the closing band on navy. */
 export default function NewsletterSignup({
   tone = "light",
-  // The /engineer hero's demo-first promise, cut to one line, above the box;
-  // its original cadence line, verbatim, under it.
-  pitch = "Demo first, then the system and the business behind it.",
+  // The original /engineer cadence line, verbatim, under the box.
   note = "One issue per week · video + full transcript",
 }: {
   tone?: "light" | "dark";
-  pitch?: string;
   note?: string;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -49,7 +46,6 @@ export default function NewsletterSignup({
 
   return (
     <div className={`nl-signup nl-signup--${tone}`}>
-      <p className="nl-signup-pitch">{pitch}</p>
       <form className="nl-signup-form" onSubmit={handleSubmit} noValidate>
         {/* Bot trap: off-screen, never focusable, never filled by a human. */}
         <input {...honeypotProps} />

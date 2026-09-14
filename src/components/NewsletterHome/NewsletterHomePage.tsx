@@ -150,11 +150,6 @@ export default async function NewsletterHomePage() {
             I build systems that turn marketing data into actions, explain how
             they work, and <span className="nl-promise-accent">show you the results</span>.
           </p>
-          <p className="nl-sub">
-            Tutorials, guides, and news at the intersection of AI, marketing,
-            and engineering, built on sites that are live in production. New
-            articles most days, and the best of them in one email a week.
-          </p>
           <NewsletterSignup />
         </div>
       </section>
@@ -270,7 +265,7 @@ export default async function NewsletterHomePage() {
                 <span className="nl-case-title-mark">
                   <ClipArtWordmark className="nl-case-wordmark" />
                 </span>
-                <span className="nl-case-title-tail">runs on Esy</span>
+                <span className="nl-case-title-tail">runs on Esy OS</span>
               </h3>
 
               <p className="nl-case-desc">

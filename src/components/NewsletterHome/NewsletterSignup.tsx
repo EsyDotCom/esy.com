@@ -13,9 +13,9 @@ import { TurnstileWidget } from "@/components/Turnstile/TurnstileWidget";
    hero sits on white, the closing band on navy. */
 export default function NewsletterSignup({
   tone = "light",
-  // The original /engineer hero copy, kept verbatim on both homepage forms:
-  // the demo-first promise above the box, the cadence under it.
-  pitch = "Agentic workflows that ship real products — the demo first, then the system design and the business behind it.",
+  // The /engineer hero's demo-first promise, cut to one line, above the box;
+  // its original cadence line, verbatim, under it.
+  pitch = "Demo first, then the system and the business behind it.",
   note = "One issue per week · video + full transcript",
 }: {
   tone?: "light" | "dark";

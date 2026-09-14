@@ -42,7 +42,13 @@ export default function LightHeader() {
               Restore the line below the day the studio opens.
           <Link href="https://app.esy.com" className="lh-cta">Start producing</Link>
           */}
+          {/* The site is The Marketing Engineer first (2026-09-13): the header
+              points at the issues and the signup on the homepage masthead.
+              The waitlist CTA it replaced, for reverting:
           <Link href="/waitlist/?src=header" className="lh-cta">Join the waitlist</Link>
+          */}
+          <Link href="/engineer/" className="lh-signin">Issues</Link>
+          <Link href="/#subscribe" className="lh-cta">Subscribe</Link>
         </nav>
       </div>
     </header>

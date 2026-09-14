@@ -56,20 +56,28 @@ const blackOpsOne = Black_Ops_One({
 // Check if QA environment (set via NEXT_PUBLIC_IS_QA=true)
 const isQA = process.env.NEXT_PUBLIC_IS_QA === 'true';
 
+// Site-wide defaults for pages that don't set their own. esy.com is The
+// Marketing Engineer first (2026-09-13); the product-era defaults were
+// "Esy — Automate & Audit. Agentic Workflows." / "Put marketing production on
+// autopilot with ESY…" if the archived homepage is ever restored.
+const DEFAULT_TITLE = 'Esy — The Marketing Engineer';
+const DEFAULT_DESCRIPTION =
+  'The Marketing Engineer: systems that turn marketing data into actions, built on live sites, explained step by step, and measured.';
+
 export const metadata = {
   title: {
     template: '%s | Esy',
-    default: 'Esy — Automate & Audit. Agentic Workflows.',
+    default: DEFAULT_TITLE,
   },
-  description: "Put marketing production on autopilot with ESY. Create campaigns, creative, SEO, and content with AI, quality control, and human review built in.",
-  keywords: 'agentic workflow templates, agentic engineer, workflow automation, token cost tracking, AI budget management, batch generation, auditable workflows',
+  description: DEFAULT_DESCRIPTION,
+  keywords: 'The Marketing Engineer, marketing engineering, Claude Code for marketing, AI marketing systems, marketing automation, SEO automation, agentic workflows',
   metadataBase: new URL('https://esy.com'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: 'Esy — Automate & Audit. Agentic Workflows.',
-    description: 'Put marketing production on autopilot with ESY. Create campaigns, creative, SEO, and content with AI, quality control, and human review built in.',
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
     url: 'https://esy.com',
     siteName: 'Esy',
     locale: 'en_US',

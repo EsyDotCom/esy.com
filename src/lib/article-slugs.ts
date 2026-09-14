@@ -12,7 +12,7 @@ import path from "node:path";
 // Root paths claimed outside src/app folders: redirects in next.config.mjs and
 // public/_redirects, and rewrites. Keep in sync when adding a root redirect.
 const CLAIMED_BY_REDIRECTS = [
-  "agentic", "agents", "cities", "contact", "engineer", "guide", "cdn-proxy",
+  "agentic", "agents", "cities", "contact", "docs", "engineer", "guide", "cdn-proxy",
   "learn", "marketing-engineer", "prompt-library", "prompts", "research",
   "school", "templates",
 ];

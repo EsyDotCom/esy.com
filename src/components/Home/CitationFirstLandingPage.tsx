@@ -591,7 +591,7 @@ const CitationFirstLandingPage: React.FC = () => {
               <span>Start a Workflow</span>
               <ArrowRight size={18} />
             </Link>
-            <Link href="/docs" className="cf-final-cta-secondary">
+            <Link href="https://docs.esy.com" className="cf-final-cta-secondary">
               <span>Read the Docs</span>
             </Link>
           </div>

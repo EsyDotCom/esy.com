@@ -115,3 +115,9 @@
 /engineer / 301
 /engineer/:slug* /:slug* 301
 /marketing-engineer / 301
+
+# The docs moved to docs.esy.com as their own site (2026-09-13). Every docs
+# address forwards to the same path there, so old links and search results
+# keep resolving; docs.esy.com handles its own merged-page redirects.
+/docs https://docs.esy.com 301
+/docs/:path* https://docs.esy.com/:path* 301

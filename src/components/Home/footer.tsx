@@ -274,7 +274,7 @@ export default function Footer () {
           <FooterColumn 
             title="Learn"
             links={[
-              { href: "/engineer/", text: "The Marketing Engineer" },
+              { href: "/courses/", text: "Courses" },
               { href: "/docs", text: "Docs" },
             ]}
           />

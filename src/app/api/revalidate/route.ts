@@ -97,6 +97,8 @@ export async function POST(request: NextRequest) {
   // The homepage lists the latest articles; the article itself lives at /engineer/<slug>/.
   const paths = ["/", articlePath(slug), "/sitemap.xml"];
   paths.forEach((path) => revalidatePath(path));
+  // Topic hubs list articles too; refresh the index and every hub under it.
+  revalidatePath("/topics", "layout");
 
   return NextResponse.json({
     revalidated: true,

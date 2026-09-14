@@ -14,7 +14,6 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Cormorant_Garamond } from 'next/font/google';
 import { ArrowRight, ArrowUpRight, Play } from 'lucide-react';
 
 import { getAllAgenticArticles } from '@/lib/published-articles';
@@ -22,18 +21,13 @@ import type { AgenticVideo } from '@/data/agentic-videos';
 import LightHeader from '@/components/LightHeader/LightHeader';
 import { AUTHOR_SOCIALS } from '@/components/Agentic/authorSocials';
 import { articlePath } from '@/lib/article-path';
+import { formatDate, formatMinutes, thumbnailFor } from '@/lib/article-format';
+import { TOPICS, topicHref } from '@/data/topics';
 import NewsletterSignup from './NewsletterSignup';
+import WeeklyEmailBand from './WeeklyEmailBand';
+import { nlSerif } from './serif';
 import ClipArtWordmark from './ClipArtWordmark';
 import './NewsletterHome.css';
-
-// Same scoped Cormorant cuts the story homepage loaded: the global sheet only
-// ships weight 400, so real 600/700 cuts keep the headlines from faux-bolding.
-const cormorant = Cormorant_Garamond({
-  weight: ['600', '700'],
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--nl-serif',
-});
 
 const YOUTUBE_URL = 'https://www.youtube.com/@EsyDotCom';
 
@@ -104,38 +98,13 @@ async function latestArticles(): Promise<AgenticVideo[]> {
     .slice(0, LATEST_COUNT);
 }
 
-// An explicit still if the article has one, otherwise the first Mux frame —
-// the same fallback the article cards use.
-function thumbnailFor(article: AgenticVideo): string | null {
-  if (article.thumbnailUrl) return article.thumbnailUrl;
-  return article.muxPlaybackId
-    ? `https://image.mux.com/${article.muxPlaybackId}/thumbnail.jpg?time=0`
-    : null;
-}
-
-// Date-only strings format in UTC so they don't render a day early for
-// readers behind UTC.
-function formatDate(iso: string): string | null {
-  if (!iso) return null;
-  return new Date(iso).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    timeZone: 'UTC',
-  });
-}
-
-function formatMinutes(seconds: number): string | null {
-  return seconds > 0 ? `${Math.max(1, Math.round(seconds / 60))} min` : null;
-}
-
 export default async function NewsletterHomePage() {
   const articles = await latestArticles();
   const [featured, ...more] = articles;
   const featuredThumb = featured ? thumbnailFor(featured) : null;
 
   return (
-    <div className={`nl ${cormorant.variable}`}>
+    <div className={`nl ${nlSerif.variable}`}>
       <LightHeader />
 
       {/* ══ Masthead: name, promise, one action ══ */}
@@ -161,6 +130,18 @@ export default async function NewsletterHomePage() {
           <div className="nl-container">
             <div className="nl-section-head">
               <h2 className="nl-title" id="nl-latest-title">Latest</h2>
+              {/* Browse by subject: the topic hubs hold the full archive the
+                  Latest list scrolls past. */}
+              <nav className="nl-topic-chips" aria-label="Browse by topic">
+                {TOPICS.map((t) => (
+                  <Link key={t.slug} href={topicHref(t.slug)} className="nl-topic-chip">
+                    {t.name}
+                  </Link>
+                ))}
+                <Link href="/topics/" className="nl-topic-chip nl-topic-chip--all">
+                  All topics
+                </Link>
+              </nav>
             </div>
 
             <Link href={articlePath(featured.slug)} className="nl-featured">
@@ -345,16 +326,7 @@ export default async function NewsletterHomePage() {
       </section>
 
       {/* ══ The ask, once more ══ */}
-      <section className="nl-final" aria-labelledby="nl-final-title">
-        <div className="nl-container nl-final-inner">
-          <h2 className="nl-final-title" id="nl-final-title">Get the weekly email.</h2>
-          <p className="nl-lede nl-lede--onDark nl-lede--center">
-            The week&apos;s best tutorials, guides, and news in one email.
-            Unsubscribe whenever you like.
-          </p>
-          <NewsletterSignup tone="dark" />
-        </div>
-      </section>
+      <WeeklyEmailBand />
     </div>
   );
 }

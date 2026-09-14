@@ -1,0 +1,71 @@
+/* Topic hubs (/topics and /topics/<slug>). Built on the publication's own
+ * sheet (NewsletterHome.css: tokens, type, rows, the email band); this file
+ * only adds what a topic page needs beyond the homepage. */
+
+/* ── Hero: the topic's name, what it covers, how much there is ── */
+.tp-hero { padding: 72px 0 56px; border-bottom: 1px solid var(--nl-seam); }
+.tp-crumb {
+  display: inline-flex; align-items: center; gap: 6px; margin: 0 0 18px;
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--nl-jade); text-decoration: none;
+}
+.tp-crumb:hover { color: var(--nl-navy); }
+.tp-title {
+  font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif;
+  font-weight: 700; font-size: clamp(2.4rem, 5vw, 3.6rem);
+  line-height: 1.05; letter-spacing: -0.03em; color: var(--nl-navy);
+  margin: 0 0 16px; text-wrap: balance;
+}
+.tp-desc { font-size: 1.1rem; line-height: 1.7; color: var(--nl-ink-soft); max-width: 62ch; margin: 0 0 12px; }
+.tp-count { margin: 0; font-size: 0.85rem; color: var(--nl-ink-soft); font-variant-numeric: tabular-nums; }
+
+/* ── Start here: three picks as cards ── */
+.tp-cards {
+  list-style: none; margin: 20px 0 0; padding: 0;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+}
+.tp-card { display: flex; flex-direction: column; gap: 10px; text-decoration: none; color: inherit; }
+.tp-card-thumb {
+  width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; display: block;
+  border-radius: 10px; background: rgba(10, 37, 64, 0.06);
+  transition: opacity 0.18s ease;
+}
+.tp-card:hover .tp-card-thumb { opacity: 0.88; }
+.tp-card-title {
+  font-size: 1.05rem; line-height: 1.42; font-weight: 600; color: var(--nl-navy);
+  transition: color 0.18s ease;
+}
+.tp-card:hover .tp-card-title { color: var(--nl-jade); }
+.tp-card:focus-visible { outline: 2px solid var(--nl-jade); outline-offset: 4px; border-radius: 10px; }
+
+/* ── Topics index: one card per topic ── */
+.tp-index-grid {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+}
+.tp-index-card {
+  display: flex; flex-direction: column; gap: 12px; height: 100%;
+  padding: 28px; border-radius: 14px; text-decoration: none; color: inherit;
+  background: var(--nl-bg); border: 1px solid var(--nl-seam);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.tp-index-card:hover { border-color: var(--nl-jade); box-shadow: 0 12px 30px -22px rgba(10, 37, 64, 0.35); }
+.tp-index-card:focus-visible { outline: 2px solid var(--nl-jade); outline-offset: 2px; }
+.tp-index-name {
+  font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif;
+  font-weight: 700; font-size: 1.8rem; line-height: 1.1; color: var(--nl-navy);
+}
+.tp-index-desc { font-size: 1rem; line-height: 1.65; color: var(--nl-ink-soft); }
+.tp-index-count {
+  margin-top: auto; display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.95rem; font-weight: 600; color: var(--nl-jade);
+}
+
+/* ══ Responsive ══ */
+@media (max-width: 900px) {
+  .tp-hero { padding: 52px 0 40px; }
+  .tp-cards { grid-template-columns: 1fr; gap: 24px; }
+}
+@media (max-width: 760px) {
+  .tp-index-grid { grid-template-columns: 1fr; }
+}

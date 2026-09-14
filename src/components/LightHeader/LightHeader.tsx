@@ -3,6 +3,7 @@
 import Link from 'next/link';
 
 import Logo from '@/components/Logo';
+import { LATEST_ARTICLES_HREF } from '@/lib/article-path';
 
 import './LightHeader.css';
 
@@ -43,11 +44,12 @@ export default function LightHeader() {
           <Link href="https://app.esy.com" className="lh-cta">Start producing</Link>
           */}
           {/* The site is The Marketing Engineer first (2026-09-13): the header
-              points at the issues and the signup on the homepage masthead.
+              points at the latest articles and the signup on the homepage
+              masthead.
               The waitlist CTA it replaced, for reverting:
           <Link href="/waitlist/?src=header" className="lh-cta">Join the waitlist</Link>
           */}
-          <Link href="/engineer/" className="lh-signin">Issues</Link>
+          <Link href={LATEST_ARTICLES_HREF} className="lh-signin">Articles</Link>
           <Link href="/#subscribe" className="lh-cta">Subscribe</Link>
         </nav>
       </div>

@@ -31,7 +31,9 @@ const ConditionalNavigation = () => {
   
   // Agentic pages (The Agentic Engineer — merged /learn + /research, Jul 2026).
   // Strict match so /agentic-workflows (separate SEO page) doesn't count.
-  const isLearnPage = normalizedPath === '/agentic' || normalizedPath?.startsWith('/engineer/');
+  // (Articles now live at the site root and can't be matched by prefix; they
+  // take the default navigation, which is what /engineer/* got before.)
+  const isLearnPage = normalizedPath === '/agentic';
   const isLearnIndex = normalizedPath === '/agentic';
   
   // Check if we're on course lesson pages (focused learning experience)
@@ -72,8 +74,8 @@ const ConditionalNavigation = () => {
   const isClipArtViewPage = normalizedPath?.startsWith('/clip-art/') && normalizedPath !== '/clip-art';
 
   // Light-first pages carry their own light header (the global bar is navy and
-  // would sit on a white hero): the homepage, and The Marketing Engineer index.
-  const isEngineerIndex = normalizedPath === '/engineer';
+  // would sit on a white hero): the homepage (the publication's front page)
+  // and the waitlist.
   const isWaitlistPage = normalizedPath === '/waitlist';
 
   // Don't render navigation on:
@@ -84,7 +86,7 @@ const ConditionalNavigation = () => {
   // - Agents pages (own sidebar navigation)
   // - Scrollytelling story pages (own header via ScrollytellingHeader)
   // - Photo essays landing page (immersive experience with own header)
-  if (isEssayViewPage || isInfographicViewPage || isClipArtViewPage || isDocsPage || isAgentsPage || isScrollytellingStoryPage || isPhotoEssaysPage || isHomepage || isEngineerIndex || isWaitlistPage) {
+  if (isEssayViewPage || isInfographicViewPage || isClipArtViewPage || isDocsPage || isAgentsPage || isScrollytellingStoryPage || isPhotoEssaysPage || isHomepage || isWaitlistPage) {
     return null;
   }
 

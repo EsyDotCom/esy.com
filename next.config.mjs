@@ -481,50 +481,51 @@ const nextConfig = {
         destination: '/glossary',
         permanent: true,
       },
-      // School renamed to Learn (June 2026), then Learn + Research merged into
-      // The Agentic Engineer at /agentic (Jul 2026). Chain both so pre-rename
-      // /school URLs still land: /school -> /learn -> /agentic collapses here.
+      // School renamed to Learn (June 2026), Learn + Research merged into
+      // /agentic (Jul 2026), which became The Marketing Engineer and then moved
+      // to the site root (Sep 2026): the homepage is the front page and each
+      // article lives at /<slug>/. These point straight at the root so old links
+      // land in one hop instead of chaining through /agentic and /engineer.
       {
         source: '/school',
-        destination: '/agentic',
+        destination: '/',
         permanent: true,
       },
       {
         source: '/school/:path*',
-        destination: '/agentic/:path*',
+        destination: '/:path*',
         permanent: true,
       },
-      // Learn + Research merged into /agentic (Jul 2026). The retired
-      // /learn/articles subtree has no /agentic equivalent, so fold it into the
-      // hub with specific rules BEFORE the catch-all slug mapping.
+      // The retired /learn/articles subtree has no article equivalent, so fold it
+      // into the index with specific rules BEFORE the catch-all slug mapping.
       {
         source: '/learn',
-        destination: '/agentic',
+        destination: '/',
         permanent: true,
       },
       {
         source: '/learn/articles',
-        destination: '/agentic',
+        destination: '/',
         permanent: true,
       },
       {
         source: '/learn/articles/:path*',
-        destination: '/agentic',
+        destination: '/',
         permanent: true,
       },
       {
         source: '/learn/:slug*',
-        destination: '/agentic/:slug*',
+        destination: '/:slug*',
         permanent: true,
       },
       {
         source: '/research',
-        destination: '/agentic',
+        destination: '/',
         permanent: true,
       },
       {
         source: '/research/:slug*',
-        destination: '/agentic/:slug*',
+        destination: '/:slug*',
         permanent: true,
       },
       ...netlifyRedirectsFromFile(),

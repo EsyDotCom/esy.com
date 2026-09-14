@@ -103,10 +103,10 @@ export function AgenticNewsletterBar() {
               fontFamily: "var(--font-inter)",
             }}
           >
-            The Agentic Engineer
+            The Marketing Engineer
           </h3>
           <p style={{ fontSize: "0.75rem", color: theme.muted, margin: "2px 0 0" }}>
-            One weekly breakdown of the AI, software, and systems behind modern marketing
+            One email a week: the best tutorials, guides, and news on AI, marketing, and engineering
           </p>
         </div>
 

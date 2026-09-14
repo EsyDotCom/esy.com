@@ -27,8 +27,6 @@ import { lightTheme } from "@/lib/lightTheme";
 // Shared suffix logic
 export const getPageSuffix = (pathname) => {
   if (pathname?.startsWith('/essays')) return 'Essays';
-  // Strict match: /agentic-workflows is a separate SEO page, not the hub.
-  if (pathname === '/engineer' || pathname?.startsWith('/engineer/')) return 'Engineer';
   if (pathname?.startsWith('/glossary')) return 'Glossary';
   if (pathname?.startsWith('/blog')) return 'Blog';
   return '';
@@ -733,8 +731,8 @@ export default function Navigation({
             </Link>
 
             <Link
-              href="/engineer/"
-              className={`mnav-item ${normalizedPathForNav === '/engineer' || normalizedPathForNav.startsWith('/engineer/') ? 'mnav-item--active' : ''}`}
+              href="/"
+              className="mnav-item"
               onClick={() => setIsMobileMenuOpen(false)}
               style={{ animationDelay: '0.16s' }}
             >

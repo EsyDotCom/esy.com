@@ -5,7 +5,7 @@ import NewsletterHomePage from "../components/NewsletterHome/NewsletterHomePage"
 
 const HOME_TITLE = "The Marketing Engineer — a newsletter by Esy";
 const HOME_META_DESCRIPTION =
-  "I build systems that turn marketing data into actions, explain how they work, and show you the results. Claude Code, analytics, and search data on live sites — one system per issue.";
+  "Tutorials, guides, and news at the intersection of AI, marketing, and engineering. I build systems that turn marketing data into actions, explain how they work, and show you the results.";
 
 export const metadata = {
   title: HOME_TITLE,
@@ -42,9 +42,9 @@ export const metadata = {
   },
 };
 
-// The homepage lists the latest published issues. Same posture as /engineer:
-// the publish/unpublish webhook purges the published-articles tags for instant
-// updates, and this hourly revalidate is only a backstop if a webhook is missed.
+// The homepage lists the latest articles. Same posture as the article pages: the
+// publish/unpublish webhook purges the published-articles tags (and revalidates
+// "/") for instant updates; this hourly revalidate is only a backstop.
 export const revalidate = 3600;
 
 export default NewsletterHomePage;

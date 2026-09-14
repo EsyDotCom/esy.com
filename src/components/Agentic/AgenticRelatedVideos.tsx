@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Clock, ArrowRight, Play } from "lucide-react";
 import { type AgenticVideo, formatDuration } from "@/data/agentic-videos";
 import { navyCalmLightTheme as theme } from "@/lib/theme";
+import { LATEST_ARTICLES_HREF, articlePath } from "@/lib/article-path";
 
 export interface AgenticRelatedVideosProps {
   videos: AgenticVideo[];
@@ -29,10 +30,10 @@ export function AgenticRelatedVideos({ videos }: AgenticRelatedVideosProps) {
             color: theme.muted,
           }}
         >
-          More from The Agentic Engineer
+          More from The Marketing Engineer
         </span>
         <Link
-          href="/agentic"
+          href={LATEST_ARTICLES_HREF}
           style={{
             display: "flex",
             alignItems: "center",
@@ -56,7 +57,7 @@ export function AgenticRelatedVideos({ videos }: AgenticRelatedVideosProps) {
           return (
             <Link
               key={video.slug}
-              href={`/agentic/${video.slug}`}
+              href={articlePath(video.slug)}
               style={{
                 display: "flex",
                 gap: 12,

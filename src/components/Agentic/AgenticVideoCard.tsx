@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Play, Clock } from "lucide-react";
 import { formatDuration } from "@/data/agentic-videos";
 import { navyCalmLightTheme as theme } from "@/lib/theme";
+import { articlePath } from "@/lib/article-path";
 
 export interface AgenticVideoCardProps {
   title: string;
@@ -43,7 +44,7 @@ export function AgenticVideoCard({
     : null;
 
   return (
-    <Link href={`/engineer/${slug}`} style={{ textDecoration: "none", color: "inherit", minWidth: 0 }}>
+    <Link href={articlePath(slug)} style={{ textDecoration: "none", color: "inherit", minWidth: 0 }}>
       <div
         style={{
           borderRadius: "16px",

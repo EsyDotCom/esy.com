@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Play, Clock } from "lucide-react";
 import { AgenticHeroSignup } from "./AgenticHeroSignup";
 import { type AgenticVideo, formatDuration } from "@/data/agentic-videos";
+import { articlePath } from "@/lib/article-path";
 
 // Bespoke above-the-fold stage for /agentic. Instead of the shared LibraryHero
 // + card carousel, this renders a "screening room": decluttered editorial copy
@@ -29,7 +30,7 @@ function FeaturedPoster({ video }: { video: AgenticVideo }) {
 
   return (
     <Link
-      href={`/engineer/${video.slug}`}
+      href={articlePath(video.slug)}
       aria-label={`Watch: ${video.title}`}
       style={{ textDecoration: "none", color: "inherit", display: "block" }}
       onMouseEnter={() => setHovered(true)}
@@ -221,7 +222,7 @@ function UpNextStrip({ videos }: { videos: AgenticVideo[] }) {
           return (
             <Link
               key={v.slug}
-              href={`/engineer/${v.slug}`}
+              href={articlePath(v.slug)}
               style={{ textDecoration: "none", color: "inherit", minWidth: 0 }}
               onMouseEnter={() => setHoveredSlug(v.slug)}
               onMouseLeave={() => setHoveredSlug(null)}

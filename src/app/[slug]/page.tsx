@@ -7,8 +7,17 @@ import {
 } from "@/lib/published-articles";
 import { loadTranscriptSegments } from "@/lib/transcript-loader";
 import { transcriptToPlainText, toIsoDuration } from "@/lib/transcripts";
+import { isArticleSlugShape, articlePath } from "@/lib/article-path";
+import { shadowedArticleSlugs } from "@/lib/article-slugs";
 import AgenticVideoPageClient from "./client";
 import type { Metadata } from "next";
+
+// One article of The Marketing Engineer, at the site root: esy.com/<slug>/.
+// (Moved from /engineer/<slug>/ on 2026-09-13; those URLs 301 here.)
+//
+// This route only catches single-segment paths that no static route claims —
+// Next.js always tries /about, /docs, /workflows… first — so it also sees every
+// mistyped top-level URL. Those resolve to a 404 via one cached list lookup.
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -23,15 +32,36 @@ export const revalidate = 3600;
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  return getPublishedAgenticVideos().map((v) => ({ slug: v.slug }));
+  const slugs = getPublishedAgenticVideos().map((v) => v.slug);
+
+  // Build-time guard: an article whose slug matches a top-level route can
+  // never be reached (the static route wins), so say so loudly rather than let
+  // it vanish. Checked against the merged list so API-published articles count.
+  const allSlugs = (await getAllAgenticArticles()).map((v) => v.slug);
+  const shadowed = shadowedArticleSlugs(allSlugs);
+  if (shadowed.length > 0) {
+    console.warn(
+      `[articles] ${shadowed.length} article slug(s) collide with a top-level route and are unreachable: ${shadowed.join(", ")}. Rename the slug in Compose.`,
+    );
+  }
+
+  return slugs.filter((slug) => !shadowed.includes(slug)).map((slug) => ({ slug }));
+}
+
+// Junk-shaped paths (file probes, uppercase, dots) can't be articles, so they
+// skip the article lookup entirely.
+async function resolveArticle(slug: string) {
+  if (!isArticleSlugShape(slug)) return undefined;
+  return findAgenticArticle(slug);
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const video = await findAgenticArticle(slug);
+  const video = await resolveArticle(slug);
 
   if (!video) return {};
 
+  const url = `${BASE_URL}${articlePath(video.slug)}`;
   const ogImage = video.muxPlaybackId
     ? `https://image.mux.com/${video.muxPlaybackId}/thumbnail.jpg?time=0`
     : undefined;
@@ -40,13 +70,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${video.title} — The Marketing Engineer`,
     description: video.description.slice(0, 160),
     alternates: {
-      canonical: `${BASE_URL}/engineer/${video.slug}/`,
+      canonical: url,
     },
     openGraph: {
       title: video.title,
       description: video.description.slice(0, 160),
       type: "video.other",
-      url: `${BASE_URL}/engineer/${video.slug}/`,
+      url,
       images: ogImage ? [ogImage] : [],
     },
     twitter: {
@@ -60,7 +90,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function AgenticVideoPage({ params }: Props) {
   const { slug } = await params;
-  const video = await findAgenticArticle(slug);
+  const video = await resolveArticle(slug);
 
   if (!video) notFound();
 
@@ -86,7 +116,7 @@ export default async function AgenticVideoPage({ params }: Props) {
     contentUrl: video.muxPlaybackId
       ? `https://stream.mux.com/${video.muxPlaybackId}.m3u8`
       : undefined,
-    embedUrl: `${BASE_URL}/engineer/${video.slug}/`,
+    embedUrl: `${BASE_URL}${articlePath(video.slug)}`,
     transcript: transcriptSegments
       ? transcriptToPlainText(transcriptSegments)
       : undefined,

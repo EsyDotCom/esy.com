@@ -1,5 +1,6 @@
 import { revalidatePath, revalidateTag } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
+import { articlePath } from "@/lib/article-path";
 import {
   hasSignature,
   readWebhookHeaders,
@@ -15,16 +16,12 @@ type RevalidateBody = {
   categories?: string[];
 };
 
-// Publication slug -> esy.com URL prefix. All three publications feed the merged
-// /agentic hub (The Agentic Engineer, Jul 2026), so a publish/unpublish on any of
-// them revalidates the same routes. `agentic` is the publication going forward;
+// Publications that feed The Marketing Engineer. All three render at the site
+// root (homepage Latest + /<slug>/ articles), so a publish/unpublish on any of them
+// revalidates the same routes. `agentic` is the publication going forward;
 // `esy-research` / `esy-learn` are the pre-merge sections, kept so their existing
 // articles and Connect wiring keep working.
-const PUBLICATION_TO_PATH: Record<string, string> = {
-  agentic: "agentic",
-  "esy-research": "agentic",
-  "esy-learn": "agentic",
-};
+const KNOWN_PUBLICATIONS = new Set(["agentic", "esy-research", "esy-learn"]);
 
 /**
  * Legacy Bearer / x-revalidate-secret check. Kept as a fallback during the HMAC
@@ -80,11 +77,10 @@ export async function POST(request: NextRequest) {
 
   const publication = body.publication?.trim();
   const slug = body.slug?.trim();
-  const pathPrefix = publication ? PUBLICATION_TO_PATH[publication] : undefined;
-  if (!pathPrefix || !slug) {
-    // Derive the list from the map so a newly wired publication never leaves a
+  if (!publication || !KNOWN_PUBLICATIONS.has(publication) || !slug) {
+    // Derive the list from the set so a newly wired publication never leaves a
     // stale name in the error a Connect panel shows the operator.
-    const known = Object.keys(PUBLICATION_TO_PATH)
+    const known = [...KNOWN_PUBLICATIONS]
       .map((s) => `"${s}"`)
       .join(" | ");
     return NextResponse.json(
@@ -98,7 +94,8 @@ export async function POST(request: NextRequest) {
   revalidateTag("published-articles");
   revalidateTag(`published-articles:${publication}`);
 
-  const paths = [`/${pathPrefix}`, `/${pathPrefix}/${slug}`, "/sitemap.xml"];
+  // The homepage lists the latest articles; the article itself lives at the root.
+  const paths = ["/", articlePath(slug), "/sitemap.xml"];
   paths.forEach((path) => revalidatePath(path));
 
   return NextResponse.json({

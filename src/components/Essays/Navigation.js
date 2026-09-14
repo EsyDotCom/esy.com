@@ -46,13 +46,13 @@ const Navigation = ({ scrolled }) => {
               }}>
                 Essays
               </Link>
-              <Link href="/engineer/" style={{
+              <Link href="/" style={{
                 color: 'rgba(255, 255, 255, 0.6)',
                 textDecoration: 'none',
                 fontSize: '0.875rem',
                 transition: 'color 0.2s'
               }}>
-                Agentic
+                Newsletter
               </Link>
             </nav>
           </div>

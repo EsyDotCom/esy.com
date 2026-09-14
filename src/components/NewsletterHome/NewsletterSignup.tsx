@@ -13,7 +13,7 @@ import { TurnstileWidget } from "@/components/Turnstile/TurnstileWidget";
    hero sits on white, the closing band on navy. */
 export default function NewsletterSignup({
   tone = "light",
-  note = "One issue a week · video + full walkthrough",
+  note = "One email a week · the best of the week's articles",
 }: {
   tone?: "light" | "dark";
   note?: string;

@@ -3,6 +3,22 @@
 Code that shipped, was replaced, and is kept out of the live tree rather than
 deleted — so a decision can be revisited without digging through history.
 
+## engineer-index (retired 2026-09-13)
+
+The `/engineer` article index for The Marketing Engineer: studio-stage hero,
+category shelves (Latest, Workflow Research, Model Research, AI Coding Tools,
+Tutorials & Guides), the operator band, courses promo, and newsletter capture.
+Retired when the publication became the site: the homepage is now the front
+page (`/#latest`) and each article lives at the root, `esy.com/<slug>/`
+(`src/app/[slug]`). `/engineer` and `/engineer/<slug>` 301 to those
+(`public/_redirects`).
+
+Not routed. The components it renders (`src/components/Agentic/*`) stay in
+place, so it still compiles. Its category shelves are the seed of topic pages:
+to revive it as a browse page, move these files under a route folder (e.g.
+`src/app/topics/`) and drop the matching redirect; the article URLs themselves
+don't need to move.
+
 ## homepage-autopilot-story (retired 2026-09-13)
 
 The "Put marketing production on autopilot" homepage (formerly

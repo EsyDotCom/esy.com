@@ -1,13 +1,14 @@
 /* The homepage as the front page of The Marketing Engineer.
  *
- * esy.com is a publication first: the newsletter is the product on this page,
- * and the one action is subscribing. The promise is concrete — build and
- * explain systems that turn marketing data into actions, then show what they
- * did — and everything below the fold is evidence for it: the latest issues,
- * what an issue contains, the real properties the experiments run on, and the
- * person writing it.
+ * esy.com is a publication first: tutorials, guides, and news at the
+ * intersection of AI, marketing, and engineering, published most days, with
+ * the best of each week sent as one email. The one action is subscribing to
+ * that email. Everything below the fold is evidence for the promise: the
+ * latest articles, what a tutorial contains, the real properties the work
+ * runs on, and the person writing it.
  *
- * The previous product-story homepage lives in
+ * Vocabulary: articles are the pages (esy.com/<slug>/); issues are the weekly
+ * emails. The previous product-story homepage lives in
  * src/archive/homepage-autopilot-story (see src/archive/README.md to revert).
  */
 
@@ -20,7 +21,9 @@ import { getAllAgenticArticles } from '@/lib/published-articles';
 import type { AgenticVideo } from '@/data/agentic-videos';
 import LightHeader from '@/components/LightHeader/LightHeader';
 import { AUTHOR_SOCIALS } from '@/components/Agentic/authorSocials';
+import { articlePath } from '@/lib/article-path';
 import NewsletterSignup from './NewsletterSignup';
+import CountUp from './CountUp';
 import './NewsletterHome.css';
 
 // Same scoped Cormorant cuts the story homepage loaded: the global sheet only
@@ -34,18 +37,23 @@ const cormorant = Cormorant_Garamond({
 
 const YOUTUBE_URL = 'https://www.youtube.com/@EsyDotCom';
 
-// What every issue carries. Three parts because the promise has three verbs:
-// build it, explain it, show what it did.
-const ISSUE_PARTS = [
+// How many articles the Latest section shows: one featured plus a list. At a
+// daily cadence a full list stops being useful within weeks, so the homepage
+// shows the front of the stack; topic and archive pages will carry the rest.
+const LATEST_COUNT = 12;
+
+// What every tutorial carries. Three parts because the promise has three
+// verbs: build it, explain it, show what it did.
+const TUTORIAL_PARTS = [
   {
     step: '01',
     title: 'The system',
-    body: 'One working build per issue: the prompts, the code, and the data it reads, from analytics and search to the site itself.',
+    body: 'A working build: the prompts, the code, and the data it reads, from analytics and search to the site itself.',
   },
   {
     step: '02',
     title: 'The walkthrough',
-    body: 'A video and a written walkthrough, step by step. You see how it works, not just a screenshot of the output.',
+    body: 'Step by step, often on video. You see how it works, not just a screenshot of the output.',
   },
   {
     step: '03',
@@ -54,8 +62,8 @@ const ISSUE_PARTS = [
   },
 ];
 
-// The properties the experiments run on. Each one is real and in production;
-// the newsletter documents the work, these are where the work happens.
+// The properties the work runs on. Each one is real and in production; the
+// articles document the work, these are where the work happens.
 const PROPERTIES = [
   {
     name: 'clip.art',
@@ -67,7 +75,7 @@ const PROPERTIES = [
     name: 'SEOPage',
     href: 'https://seopage.com',
     role: 'The service',
-    body: 'The SEO systems from these issues, run every week for sites that want the results without the upkeep.',
+    body: 'The SEO systems from these articles, run every week for sites that want the results without the upkeep.',
   },
   {
     name: 'Esy',
@@ -77,19 +85,32 @@ const PROPERTIES = [
   },
 ];
 
-// Newest first, by publish date — the same merged publication list /engineer
-// reads, so the homepage and the issue index can never disagree.
-async function latestIssues(): Promise<AgenticVideo[]> {
+// Real output, straight from the live clip.art catalog CDN — finished work,
+// not UI. The proof under "Real properties, real traffic".
+const CATALOG = [
+  { url: 'https://images.clip.art/christmas/decorated-christmas-tree-gifts-fxjmtg.webp', alt: 'Decorated Christmas tree clip art' },
+  { url: 'https://images.clip.art/halloween/grinning-jack-o-lantern-candle-r2avcr.webp', alt: "Jack-o'-lantern clip art" },
+  { url: 'https://images.clip.art/school/chemistry-set-bubbling-beakers-rd9f4o.webp', alt: 'Chemistry set clip art' },
+  { url: 'https://images.clip.art/flower/watercolor-lavender-flowers-bqkae5.webp', alt: 'Watercolor lavender clip art' },
+  { url: 'https://images.clip.art/cat/cozy-black-cat-on-pumpkin-1c6qun.webp', alt: 'Black cat on pumpkin clip art' },
+  { url: 'https://images.clip.art/school/friendly-yellow-school-bus-hjo5n2.webp', alt: 'School bus clip art' },
+];
+
+// Newest first, by publish date — the same merged publication list the article
+// pages resolve against, so the homepage and the articles can never disagree.
+async function latestArticles(): Promise<AgenticVideo[]> {
   const all = await getAllAgenticArticles();
-  return [...all].sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1));
+  return [...all]
+    .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1))
+    .slice(0, LATEST_COUNT);
 }
 
-// An explicit still if the issue has one, otherwise the first Mux frame —
-// the same fallback the /engineer cards use.
-function thumbnailFor(issue: AgenticVideo): string | null {
-  if (issue.thumbnailUrl) return issue.thumbnailUrl;
-  return issue.muxPlaybackId
-    ? `https://image.mux.com/${issue.muxPlaybackId}/thumbnail.jpg?time=0`
+// An explicit still if the article has one, otherwise the first Mux frame —
+// the same fallback the article cards use.
+function thumbnailFor(article: AgenticVideo): string | null {
+  if (article.thumbnailUrl) return article.thumbnailUrl;
+  return article.muxPlaybackId
+    ? `https://image.mux.com/${article.muxPlaybackId}/thumbnail.jpg?time=0`
     : null;
 }
 
@@ -110,9 +131,9 @@ function formatMinutes(seconds: number): string | null {
 }
 
 export default async function NewsletterHomePage() {
-  const issues = await latestIssues();
-  const [featured, ...rest] = issues;
-  const more = rest.slice(0, 4);
+  const articles = await latestArticles();
+  const [featured, ...more] = articles;
+  const featuredThumb = featured ? thumbnailFor(featured) : null;
 
   return (
     <div className={`nl ${cormorant.variable}`}>
@@ -121,44 +142,37 @@ export default async function NewsletterHomePage() {
       {/* ══ Masthead: name, promise, one action ══ */}
       <section className="nl-hero" id="subscribe">
         <div className="nl-container nl-hero-inner">
-          <p className="nl-kicker">A newsletter by Esy</p>
+          <p className="nl-kicker">By Esy</p>
           <h1 className="nl-masthead">The Marketing Engineer</h1>
           <p className="nl-promise">
             I build systems that turn marketing data into actions, explain how
             they work, and <span className="nl-promise-accent">show you the results</span>.
           </p>
           <p className="nl-sub">
-            Claude Code, analytics, and search data, wired into real marketing
-            work on sites that are live in production. One system per issue,
-            start to finish.
+            Tutorials, guides, and news at the intersection of AI, marketing,
+            and engineering, built on sites that are live in production. New
+            articles most days, and the best of them in one email a week.
           </p>
           <NewsletterSignup />
         </div>
       </section>
 
-      {/* ══ Latest issues ══
-          The featured issue earns the width; the next four are a quiet list.
-          Nothing renders if the registry is empty, rather than an empty shelf. */}
+      {/* ══ Latest ══
+          The newest article earns the width; the rest of the latest dozen are
+          a quiet list. `#latest` is where the header link and the old
+          /engineer index redirect land. Nothing renders if the list is empty,
+          rather than an empty shelf. */}
       {featured && (
-        <section className="nl-section nl-section--alt" aria-labelledby="nl-latest-title">
+        <section className="nl-section nl-section--alt" id="latest" aria-labelledby="nl-latest-title">
           <div className="nl-container">
             <div className="nl-section-head">
-              <h2 className="nl-title" id="nl-latest-title">Latest issues</h2>
-              <Link href="/engineer/" className="nl-inline-link">
-                All issues <ArrowRight size={15} aria-hidden="true" />
-              </Link>
+              <h2 className="nl-title" id="nl-latest-title">Latest</h2>
             </div>
 
-            <Link href={`/engineer/${featured.slug}/`} className="nl-featured">
-              {thumbnailFor(featured) && (
+            <Link href={articlePath(featured.slug)} className="nl-featured">
+              {featuredThumb && (
                 <span className="nl-featured-media">
-                  <img
-                    src={thumbnailFor(featured)!}
-                    alt=""
-                    width={960}
-                    height={540}
-                    loading="lazy"
-                  />
+                  <img src={featuredThumb} alt="" width={960} height={540} loading="lazy" />
                   {featured.muxPlaybackId && (
                     <span className="nl-play" aria-hidden="true">
                       <Play size={18} fill="currentColor" />
@@ -177,19 +191,19 @@ export default async function NewsletterHomePage() {
                   <span className="nl-featured-desc">{featured.description}</span>
                 )}
                 <span className="nl-read">
-                  Read the issue <ArrowRight size={15} aria-hidden="true" />
+                  Read the article <ArrowRight size={15} aria-hidden="true" />
                 </span>
               </span>
             </Link>
 
             {more.length > 0 && (
               <ul className="nl-list">
-                {more.map((issue) => (
-                  <li key={issue.slug}>
-                    <Link href={`/engineer/${issue.slug}/`} className="nl-row">
-                      <span className="nl-row-date">{formatDate(issue.publishedAt)}</span>
-                      <span className="nl-row-title">{issue.title}</span>
-                      <span className="nl-row-cat">{issue.categoryLabel}</span>
+                {more.map((article) => (
+                  <li key={article.slug}>
+                    <Link href={articlePath(article.slug)} className="nl-row">
+                      <span className="nl-row-date">{formatDate(article.publishedAt)}</span>
+                      <span className="nl-row-title">{article.title}</span>
+                      <span className="nl-row-cat">{article.categoryLabel}</span>
                     </Link>
                   </li>
                 ))}
@@ -199,13 +213,13 @@ export default async function NewsletterHomePage() {
         </section>
       )}
 
-      {/* ══ What's in an issue ══ */}
-      <section className="nl-section" aria-labelledby="nl-issue-title">
+      {/* ══ What a tutorial contains ══ */}
+      <section className="nl-section" aria-labelledby="nl-tutorial-title">
         <div className="nl-container">
-          <p className="nl-eyebrow">Every issue</p>
-          <h2 className="nl-title" id="nl-issue-title">Built, explained, and measured.</h2>
+          <p className="nl-eyebrow">Every tutorial</p>
+          <h2 className="nl-title" id="nl-tutorial-title">Built, explained, and measured.</h2>
           <ol className="nl-parts">
-            {ISSUE_PARTS.map(({ step, title, body }) => (
+            {TUTORIAL_PARTS.map(({ step, title, body }) => (
               <li key={step}>
                 <span className="nl-part-step">{step}</span>
                 <h3 className="nl-part-title">{title}</h3>
@@ -218,7 +232,7 @@ export default async function NewsletterHomePage() {
 
       {/* ══ Where the work happens ══
           Navy band: the one place the page talks about the businesses, framed
-          as the lab the newsletter reports from, not as a pitch. */}
+          as the lab the articles report from, not as a pitch. */}
       <section className="nl-lab" aria-labelledby="nl-lab-title">
         <div className="nl-container">
           <p className="nl-eyebrow nl-eyebrow--onDark">Where the experiments run</p>
@@ -227,8 +241,8 @@ export default async function NewsletterHomePage() {
           </h2>
           <p className="nl-lede nl-lede--onDark">
             Nothing here is a sandbox demo. Each system gets built on a business
-            that runs every day, so the results in each issue are the results it
-            actually got.
+            that runs every day, so the results in each article are the results
+            it actually got.
           </p>
           <ul className="nl-props">
             {PROPERTIES.map(({ name, href, role, body }) => {
@@ -251,6 +265,47 @@ export default async function NewsletterHomePage() {
               );
             })}
           </ul>
+
+          {/* ══ The receipts: clip.art in production ══
+              Carried over from the product-era homepage, and it fits better
+              here: the claim above is "real properties", and this is one of
+              them, with its own numbers and its own goods. Stats are
+              point-in-time figures from the live system. */}
+          <div className="nl-receipts">
+            <p className="nl-eyebrow nl-eyebrow--onDark nl-live">
+              <span className="nl-live-dot" aria-hidden="true" /> Live · In production
+            </p>
+            <h3 className="nl-receipts-title">This isn&apos;t a demo. clip.art runs on it.</h3>
+            <p className="nl-lede nl-lede--onDark">
+              A consumer marketplace, fed entirely by Esy workflows: every asset
+              generated, processed, stored, and billed with a full record. Six of
+              them, straight from the live catalog.
+            </p>
+            <dl className="nl-stats">
+              <div>
+                <dt><CountUp value={14889} /></dt>
+                <dd>Artifacts filed, each with provenance</dd>
+              </div>
+              <div>
+                <dt><CountUp value={227} /></dt>
+                <dd>Waiting on a human right now</dd>
+              </div>
+              <div>
+                <dt><CountUp value={0.064} prefix="$" /></dt>
+                <dd>A worker&apos;s cost per item, at most</dd>
+              </div>
+            </dl>
+            <ul className="nl-catalog" aria-label="Assets produced by these workflows, live on clip.art">
+              {CATALOG.map(({ url, alt }) => (
+                <li key={url}>
+                  <img src={url} alt={alt} loading="lazy" width={280} height={280} />
+                </li>
+              ))}
+            </ul>
+            <Link href="/workflows/generate-clip-art-asset/" className="nl-inline-link nl-inline-link--onDark">
+              See the workflow behind it <ArrowRight size={15} aria-hidden="true" />
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -266,8 +321,8 @@ export default async function NewsletterHomePage() {
             <p className="nl-lede">
               I spent a decade shipping production web products, from
               fuboTV&apos;s streaming apps to Vroom&apos;s online car storefront.
-              Now I build Esy and the businesses that run on it. Every issue comes
-              out of that work: what I built that week, how it works, and what it
+              Now I build Esy and the businesses that run on it. Everything here
+              comes out of that work: what I built, how it works, and what it
               did.
             </p>
             <div className="nl-author-links">
@@ -296,12 +351,12 @@ export default async function NewsletterHomePage() {
       {/* ══ The ask, once more ══ */}
       <section className="nl-final" aria-labelledby="nl-final-title">
         <div className="nl-container nl-final-inner">
-          <h2 className="nl-final-title" id="nl-final-title">Get the next issue.</h2>
+          <h2 className="nl-final-title" id="nl-final-title">Get the weekly email.</h2>
           <p className="nl-lede nl-lede--onDark nl-lede--center">
-            One system, one walkthrough, one result, delivered to your inbox.
+            The week&apos;s best tutorials, guides, and news in one email.
             Unsubscribe whenever you like.
           </p>
-          <NewsletterSignup tone="dark" note="Free · one issue a week" />
+          <NewsletterSignup tone="dark" note="Free · one email a week" />
         </div>
       </section>
     </div>

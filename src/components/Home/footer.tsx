@@ -7,6 +7,7 @@ import FooterColumn from "@/components/Home/footerColumn";
 import Logo from "@/components/Logo";
 import { getPageSuffix } from "./navigation";
 import { elevatedDarkTheme } from '@/lib/theme';
+import { LATEST_ARTICLES_HREF } from '@/lib/article-path';
 
 // Light theme colors for footer - Navy Calm palette
 const lightThemeFooter = {
@@ -278,7 +279,7 @@ export default function Footer () {
             title="Newsletter"
             links={[
               { href: "/#subscribe", text: "Subscribe" },
-              { href: "/engineer/", text: "All issues" },
+              { href: LATEST_ARTICLES_HREF, text: "Latest articles" },
               { href: "https://www.youtube.com/@EsyDotCom", text: "YouTube" },
               { href: "/docs", text: "Docs" },
             ]}

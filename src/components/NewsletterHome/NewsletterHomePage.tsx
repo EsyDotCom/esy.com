@@ -19,6 +19,7 @@ import { ArrowRight, ArrowUpRight, Play } from 'lucide-react';
 import { getAllAgenticArticles } from '@/lib/published-articles';
 import type { AgenticVideo } from '@/data/agentic-videos';
 import LightHeader from '@/components/LightHeader/LightHeader';
+import { toNavArticles } from '@/lib/nav-articles';
 import { AUTHOR_SOCIALS } from '@/components/Agentic/authorSocials';
 import { articlePath } from '@/lib/article-path';
 import { formatDate, formatMinutes, thumbnailFor } from '@/lib/article-format';
@@ -105,7 +106,7 @@ export default async function NewsletterHomePage() {
 
   return (
     <div className={`nl ${nlSerif.variable}`}>
-      <LightHeader />
+      <LightHeader latest={toNavArticles(articles)} />
 
       {/* ══ Masthead: name, promise, one action ══ */}
       <section className="nl-hero" id="subscribe">

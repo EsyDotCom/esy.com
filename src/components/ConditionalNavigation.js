@@ -78,6 +78,9 @@ const ConditionalNavigation = () => {
   const isWaitlistPage = normalizedPath === '/waitlist';
   // Topic hubs are part of the publication and carry the light header too.
   const isTopicsPage = normalizedPath === '/topics' || normalizedPath?.startsWith('/topics/');
+  // Articles too: the whole publication (homepage, topics, articles) shares
+  // the light header instead of the navy site bar.
+  const isArticlePage = normalizedPath?.startsWith('/engineer/');
 
   // Don't render navigation on:
   // - Essay view pages (focused reading)
@@ -87,7 +90,7 @@ const ConditionalNavigation = () => {
   // - Agents pages (own sidebar navigation)
   // - Scrollytelling story pages (own header via ScrollytellingHeader)
   // - Photo essays landing page (immersive experience with own header)
-  if (isEssayViewPage || isInfographicViewPage || isClipArtViewPage || isDocsPage || isAgentsPage || isScrollytellingStoryPage || isPhotoEssaysPage || isHomepage || isWaitlistPage || isTopicsPage) {
+  if (isEssayViewPage || isInfographicViewPage || isClipArtViewPage || isDocsPage || isAgentsPage || isScrollytellingStoryPage || isPhotoEssaysPage || isHomepage || isWaitlistPage || isTopicsPage || isArticlePage) {
     return null;
   }
 

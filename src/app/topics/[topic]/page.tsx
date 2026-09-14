@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import TopicPage from "@/components/Topics/TopicPage";
 import { TOPICS, articlesForTopic, findTopic, topicHref } from "@/data/topics";
 import { getAllAgenticArticles } from "@/lib/published-articles";
+import { toNavArticles } from "@/lib/nav-articles";
 
 type Props = {
   params: Promise<{ topic: string }>;
@@ -43,6 +44,9 @@ export default async function Page({ params }: Props) {
   const topic = findTopic((await params).topic);
   if (!topic) notFound();
 
-  const articles = articlesForTopic(await getAllAgenticArticles(), topic);
-  return <TopicPage topic={topic} articles={articles} />;
+  const all = await getAllAgenticArticles();
+  const articles = articlesForTopic(all, topic);
+  // The header's Articles dropdown previews the publication's newest articles,
+  // not just this topic's.
+  return <TopicPage topic={topic} articles={articles} latest={toNavArticles(all)} />;
 }

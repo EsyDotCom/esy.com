@@ -9,6 +9,7 @@ import { ArrowRight } from "lucide-react";
 import type { AgenticVideo } from "@/data/agentic-videos";
 import { TOPICS, articlesForTopic, topicHref } from "@/data/topics";
 import LightHeader from "@/components/LightHeader/LightHeader";
+import { toNavArticles } from "@/lib/nav-articles";
 import { nlSerif } from "@/components/NewsletterHome/serif";
 import WeeklyEmailBand from "@/components/NewsletterHome/WeeklyEmailBand";
 import "@/components/NewsletterHome/NewsletterHome.css";
@@ -17,7 +18,7 @@ import "./Topics.css";
 export default function TopicsIndex({ articles }: { articles: AgenticVideo[] }) {
   return (
     <div className={`nl ${nlSerif.variable}`}>
-      <LightHeader />
+      <LightHeader latest={toNavArticles(articles)} />
 
       <section className="tp-hero">
         <div className="nl-container">

@@ -46,3 +46,12 @@
 }
 .lh-cta:hover { color: #0A2540; border-color: #d1d5db; }
 
+/* The Articles dropdown. Its surface, motion, and content styles are the
+   shared nav panel rules in globals.css (.nav-panel, .nav-agentic-*); this
+   only anchors it under the Articles link. Hover-only UI, so phones (which
+   tap straight through to the link) never render it. */
+.lh-menu { position: relative; display: inline-flex; }
+@media (max-width: 767px) {
+  .lh-menu .nav-panel { display: none; }
+}
+

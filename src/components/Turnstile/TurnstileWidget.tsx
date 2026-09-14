@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 /* Cloudflare Turnstile widget.
 
@@ -57,9 +57,32 @@ interface TurnstileWidgetProps {
   onToken: (token: string) => void;
 }
 
+/* Until Cloudflare asks for a click, the container takes no space: out of
+   flow (so it never becomes a flex item and adds a row gap to the form) and
+   clipped to nothing. Same off-screen technique as the honeypot field. */
+const COLLAPSED_STYLE: React.CSSProperties = {
+  position: "absolute",
+  width: 0,
+  height: 0,
+  overflow: "hidden",
+};
+
+/* flexBasis 100% makes the widget claim its own line inside the wrapping
+   flex rows these signup forms use, instead of squeezing in beside the input.
+   In a plain block parent it is just a normal div. */
+const INTERACTIVE_STYLE: React.CSSProperties = {
+  margin: "0.75rem 0",
+  flexBasis: "100%",
+  maxWidth: 320,
+};
+
 export function TurnstileWidget({ onToken }: TurnstileWidgetProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string | null>(null);
+
+  // True only while Cloudflare needs the visitor to interact (a suspicious
+  // session). Everyone else never sees the widget: the check runs invisibly.
+  const [needsInteraction, setNeedsInteraction] = useState(false);
 
   // Kept in a ref so re-renders of the parent never re-run the effect and
   // re-render the widget underneath the user.
@@ -78,6 +101,12 @@ export function TurnstileWidget({ onToken }: TurnstileWidgetProps) {
         widgetIdRef.current = window.turnstile.render(containerRef.current, {
           sitekey: siteKey,
           action: "turnstile-spin-v1",
+          // Invisible by default: the Cloudflare box (and its "Success!" card
+          // with their logo) only renders when a click is actually required.
+          // Verification is unchanged; the token still arrives via callback.
+          appearance: "interaction-only",
+          "before-interactive-callback": () => setNeedsInteraction(true),
+          "after-interactive-callback": () => setNeedsInteraction(false),
           callback: (token: string) => onTokenRef.current(token),
           // Both clear the token so a stale one is never submitted; the user
           // sees the widget re-challenge rather than a silent failure.
@@ -102,13 +131,10 @@ export function TurnstileWidget({ onToken }: TurnstileWidgetProps) {
 
   if (!siteKey) return null;
 
-  /* flexBasis 100% makes the widget claim its own line inside the wrapping
-     flex rows these signup forms use, instead of squeezing in beside the input.
-     In a plain block parent it is just a normal div. */
   return (
     <div
       ref={containerRef}
-      style={{ margin: "0.75rem 0", flexBasis: "100%", maxWidth: 320 }}
+      style={needsInteraction ? INTERACTIVE_STYLE : COLLAPSED_STYLE}
     />
   );
 }

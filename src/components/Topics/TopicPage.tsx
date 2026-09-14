@@ -15,6 +15,7 @@ import { type Topic, TOPICS, findTopic, topicHref } from "@/data/topics";
 import { articlePath } from "@/lib/article-path";
 import { formatDate, formatMinutes, thumbnailFor } from "@/lib/article-format";
 import LightHeader from "@/components/LightHeader/LightHeader";
+import type { NavArticle } from "@/lib/nav-articles";
 import { nlSerif } from "@/components/NewsletterHome/serif";
 import WeeklyEmailBand from "@/components/NewsletterHome/WeeklyEmailBand";
 import "@/components/NewsletterHome/NewsletterHome.css";
@@ -38,10 +39,13 @@ function pickStartHere(topic: Topic, articles: AgenticVideo[]): AgenticVideo[] {
 export default function TopicPage({
   topic,
   articles,
+  latest,
 }: {
   topic: Topic;
   /** This topic's articles, newest first. */
   articles: AgenticVideo[];
+  /** The publication's newest articles, for the header's Articles dropdown. */
+  latest: NavArticle[];
 }) {
   const startHere =
     articles.length >= START_HERE_MIN_ARTICLES ? pickStartHere(topic, articles) : [];
@@ -51,7 +55,7 @@ export default function TopicPage({
 
   return (
     <div className={`nl ${nlSerif.variable}`}>
-      <LightHeader />
+      <LightHeader latest={latest} />
 
       {/* ══ The topic: name, what it covers, how much there is ══ */}
       <section className="tp-hero">

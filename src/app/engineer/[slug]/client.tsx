@@ -19,6 +19,8 @@ import { AgenticNewsletterBar } from "@/components/Agentic/AgenticNewsletterBar"
 import { TurnstileWidget } from "@/components/Turnstile/TurnstileWidget";
 import { AgenticRelatedVideos } from "@/components/Agentic/AgenticRelatedVideos";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import LightHeader from "@/components/LightHeader/LightHeader";
+import type { NavArticle } from "@/lib/nav-articles";
 import { LATEST_ARTICLES_HREF } from "@/lib/article-path";
 import { topicHref, topicsForArticle } from "@/data/topics";
 import EnhancedMarkdownRenderer from "@/components/SchoolArticle/EnhancedMarkdownRenderer";
@@ -30,6 +32,8 @@ interface AgenticVideoPageClientProps {
   related: AgenticVideo[];
   /** Build-time parsed SRT segments; null when no transcript file exists. */
   transcriptSegments?: TranscriptSegment[] | null;
+  /** The publication's newest articles, for the header's Articles dropdown. */
+  latest?: NavArticle[];
 }
 
 type Breakpoint = "mobile" | "tablet" | "desktop";
@@ -533,6 +537,7 @@ export default function AgenticVideoPageClient({
   video,
   related,
   transcriptSegments,
+  latest,
 }: AgenticVideoPageClientProps) {
   const bp = useBreakpoint();
   const isMobile = bp === "mobile";
@@ -554,10 +559,15 @@ export default function AgenticVideoPageClient({
         minHeight: "100vh",
         backgroundColor: theme.bg,
         fontFamily: "var(--font-inter)",
-        paddingTop: isMobile ? 72 : 96,
+        // The light publication header sits in flow (sticky), so there's no
+        // fixed navy bar to clear any more.
+        paddingTop: 0,
         width: "100%",
       }}
     >
+      {/* The publication's light header, same as the homepage and topics. */}
+      <LightHeader latest={latest} />
+
       {/* Breadcrumbs */}
       <div
         style={{

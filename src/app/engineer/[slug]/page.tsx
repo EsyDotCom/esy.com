@@ -8,6 +8,7 @@ import {
 import { loadTranscriptSegments } from "@/lib/transcript-loader";
 import { transcriptToPlainText, toIsoDuration } from "@/lib/transcripts";
 import { isArticleSlugShape, articlePath } from "@/lib/article-path";
+import { toNavArticles } from "@/lib/nav-articles";
 import AgenticVideoPageClient from "./client";
 import type { Metadata } from "next";
 
@@ -80,7 +81,8 @@ export default async function AgenticVideoPage({ params }: Props) {
 
   // Related resolves against the merged list so API and registry articles
   // can cross-reference each other.
-  const related = relatedFrom(await getAllAgenticArticles(), video.slug, video.relatedSlugs);
+  const all = await getAllAgenticArticles();
+  const related = relatedFrom(all, video.slug, video.relatedSlugs);
   // Build-time SRT load — segments ship in the static HTML for SEO and power
   // the click-to-seek transcript UI. Null when no SRT exists for the slug.
   const transcriptSegments = loadTranscriptSegments(video.slug);
@@ -127,6 +129,7 @@ export default async function AgenticVideoPage({ params }: Props) {
         video={video}
         related={related}
         transcriptSegments={transcriptSegments}
+        latest={toNavArticles(all)}
       />
     </>
   );

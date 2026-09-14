@@ -562,11 +562,12 @@ export default function Navigation({
 
             {/* The single dominant CTA — reinforces the category verb. */}
             {!isMobile && (
-              <a
-                /* Pre-launch: points at the waitlist, not app.esy.com.
-                   Restore href="https://app.esy.com" and the "Start producing"
-                   label below when the studio opens. */
-                href="/waitlist/?src=nav"
+              <Link
+                /* The site is The Marketing Engineer first, so the one action
+                   is the weekly email, matching the light header. (It pointed
+                   at the waitlist pre-launch, /waitlist/?src=nav; when the
+                   studio opens: href="https://app.esy.com", "Start producing".) */
+                href="/#subscribe"
                 className="nav-cta-start"
                 /* Back to the subtle bordered button this CTA originally wore.
                    Weight and text colour stay a step above Sign in so the
@@ -591,8 +592,8 @@ export default function Navigation({
                   e.currentTarget.style.borderColor = !navOnDark ? '#e5e7eb' : 'rgba(255, 255, 255, 0.15)';
                 }}
               >
-                Join the waitlist
-              </a>
+                Subscribe
+              </Link>
             )}
 
             {/* Pre-launch the header carries exactly one action, so Sign in is
@@ -755,13 +756,15 @@ export default function Navigation({
               <span className="mnav-item__label">Sign in</span>
             </a>
             */}
-            <a
-              href="/waitlist/?src=mobile_nav"
+            {/* Mobile twin of the desktop CTA: the weekly email, not the
+                waitlist (was /waitlist/?src=mobile_nav pre-launch). */}
+            <Link
+              href="/#subscribe"
               className="mnav-cta"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Join the waitlist
-            </a>
+              Subscribe
+            </Link>
           </div>
         </div>
       )}

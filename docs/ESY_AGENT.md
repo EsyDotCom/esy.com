@@ -1,6 +1,6 @@
 # esy-agent (GitHub App) — Quick Reference
 
-> **Canonical reference:** [`app.esy.com/docs/DEPLOYMENT_WORKFLOW.md`](https://github.com/EsyDotCom/app/blob/main/docs/DEPLOYMENT_WORKFLOW.md#github-app-identity-for-agents), section *GitHub App Identity For Agents*.
+> **Canonical reference:** [`os.esy.com/docs/DEPLOYMENT_WORKFLOW.md`](https://github.com/EsyDotCom/os.esy.com/blob/main/docs/DEPLOYMENT_WORKFLOW.md#github-app-identity-for-agents), section *GitHub App Identity For Agents*.
 > Locally (sibling repo): `../app.esy.com/docs/DEPLOYMENT_WORKFLOW.md`.
 
 That file is the source of truth. This file exists so agents working in `esy.com` can find the rule without leaving the repo. **Any conflict between the two — the canonical reference wins.**
@@ -9,7 +9,7 @@ That file is the source of truth. This file exists so agents working in `esy.com
 
 ## What it is
 
-`esy-agent` is a GitHub App owned by the `EsyDotCom` org, used as a non-human identity for agent-authored commits, pushes, PR comments, and PR management. It is **installed on this repo** (`EsyDotCom/home.esy.com`).
+`esy-agent` is a GitHub App owned by the `EsyDotCom` org, used as a non-human identity for agent-authored commits, pushes, PR comments, and PR management. It is **installed on this repo** (`EsyDotCom/esy.com`, named `home.esy.com` until 2026-09-14).
 
 - Installation ID (org-level): `131305027`
 - App slug: `esy-agent`

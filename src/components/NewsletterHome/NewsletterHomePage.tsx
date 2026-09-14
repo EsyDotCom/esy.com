@@ -7,7 +7,7 @@
  * latest articles, the real properties the work runs on (with the clip.art
  * case study), and the person writing it.
  *
- * Vocabulary: articles are the pages (esy.com/<slug>/); issues are the weekly
+ * Vocabulary: articles are the pages (esy.com/engineer/<slug>/); issues are the weekly
  * emails. The previous product-story homepage lives in
  * src/archive/homepage-autopilot-story (see src/archive/README.md to revert).
  */

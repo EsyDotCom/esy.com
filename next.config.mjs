@@ -482,10 +482,10 @@ const nextConfig = {
         permanent: true,
       },
       // School renamed to Learn (June 2026), Learn + Research merged into
-      // /agentic (Jul 2026), which became The Marketing Engineer and then moved
-      // to the site root (Sep 2026): the homepage is the front page and each
-      // article lives at /<slug>/. These point straight at the root so old links
-      // land in one hop instead of chaining through /agentic and /engineer.
+      // /agentic (Jul 2026), which became The Marketing Engineer (Sep 2026):
+      // the homepage is its front page and each article lives at
+      // /engineer/<slug>/. These point straight there so old links land in one
+      // hop instead of chaining through /agentic.
       {
         source: '/school',
         destination: '/',
@@ -493,7 +493,7 @@ const nextConfig = {
       },
       {
         source: '/school/:path*',
-        destination: '/:path*',
+        destination: '/engineer/:path*',
         permanent: true,
       },
       // The retired /learn/articles subtree has no article equivalent, so fold it
@@ -515,7 +515,7 @@ const nextConfig = {
       },
       {
         source: '/learn/:slug*',
-        destination: '/:slug*',
+        destination: '/engineer/:slug*',
         permanent: true,
       },
       {
@@ -525,7 +525,7 @@ const nextConfig = {
       },
       {
         source: '/research/:slug*',
-        destination: '/:slug*',
+        destination: '/engineer/:slug*',
         permanent: true,
       },
       ...netlifyRedirectsFromFile(),

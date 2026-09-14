@@ -9,9 +9,9 @@ The `/engineer` article index for The Marketing Engineer: studio-stage hero,
 category shelves (Latest, Workflow Research, Model Research, AI Coding Tools,
 Tutorials & Guides), the operator band, courses promo, and newsletter capture.
 Retired when the publication became the site: the homepage is now the front
-page (`/#latest`) and each article lives at the root, `esy.com/<slug>/`
-(`src/app/[slug]`). `/engineer` and `/engineer/<slug>` 301 to those
-(`public/_redirects`).
+page (`/#latest`), and the bare `/engineer` index 301s there
+(`public/_redirects`). Articles still live under the namespace, at
+`esy.com/engineer/<slug>/` (`src/app/engineer/[slug]`).
 
 Not routed. The components it renders (`src/components/Agentic/*`) stay in
 place, so it still compiles. Its category shelves are the seed of topic pages:

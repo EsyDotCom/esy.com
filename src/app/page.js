@@ -5,7 +5,7 @@ import NewsletterHomePage from "../components/NewsletterHome/NewsletterHomePage"
 
 const HOME_TITLE = "The Marketing Engineer — a newsletter by Esy";
 const HOME_META_DESCRIPTION =
-  "Tutorials, guides, and news at the intersection of AI, marketing, and engineering. I build systems that turn marketing data into actions, explain how they work, and show you the results.";
+  "Turn your marketing data into action with AI systems you can build yourself. Tutorials, guides, and news at the intersection of AI, marketing, and engineering.";
 
 export const metadata = {
   title: HOME_TITLE,

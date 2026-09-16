@@ -113,9 +113,12 @@ export default async function NewsletterHomePage() {
         <div className="nl-container nl-hero-inner">
           <p className="nl-kicker">By Esy</p>
           <h1 className="nl-masthead">The Marketing Engineer</h1>
+          {/* The promise speaks to the reader, not the author: what they walk
+              away able to do. (Author-first predecessor, for reverting: "I
+              build systems that turn marketing data into actions, explain how
+              they work, and show you the results.") */}
           <p className="nl-promise">
-            I build systems that turn marketing data into actions, explain how
-            they work, and <span className="nl-promise-accent">show you the results</span>.
+            Turn your marketing data into action, with AI systems <span className="nl-promise-accent">you can build yourself</span>.
           </p>
           <NewsletterSignup />
         </div>

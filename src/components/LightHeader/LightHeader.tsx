@@ -34,6 +34,10 @@ const REGISTRY_LATEST = toNavArticles(agenticVideos);
 const PANEL_OPEN_DELAY_MS = 150;
 const PANEL_CLOSE_DELAY_MS = 250;
 
+// The Articles link and its dropdown, off while the header carries only the
+// waitlist (2026-09-18). Flip to true to restore them.
+const SHOW_ARTICLES_MENU = false;
+
 export default function LightHeader({
   latest = REGISTRY_LATEST,
 }: {
@@ -83,6 +87,10 @@ export default function LightHeader({
             size={60}
             priority
           />
+          {/* Product lockup, matching os.esy.com's side rail: wordmark ·
+              hairline · tag. */}
+          <span className="lh-lockup-rule" aria-hidden="true" />
+          <span className="lh-lockup-tag">OS</span>
         </Link>
         <nav className="lh-nav" aria-label="Primary">
           {/* Pre-launch the header carries exactly one action. Restore Sign in
@@ -93,16 +101,13 @@ export default function LightHeader({
               Restore the line below the day the studio opens.
           <Link href="https://app.esy.com" className="lh-cta">Start producing</Link>
           */}
-          {/* The site is The Marketing Engineer first (2026-09-13): the header
-              points at the latest articles and the signup on the homepage
-              masthead. Topics lives in the footer's Learn column.
-              The waitlist CTA it replaced, for reverting:
-          <Link href="/waitlist/?src=header" className="lh-cta">Join the waitlist</Link>
-          */}
-
           {/* ══ Articles, with the publication's preview dropdown ══
-              The link still navigates; hovering (or focusing) opens the panel.
-              Escape, a click, or focus leaving the subtree closes it. */}
+              Switched off 2026-09-18 (SHOW_ARTICLES_MENU): the header carries
+              only the waitlist while the homepage sells Esy OS. Set the flag
+              to true to bring it back. The link still navigates; hovering (or
+              focusing) opens the panel. Escape, a click, or focus leaving the
+              subtree closes it. */}
+          {SHOW_ARTICLES_MENU && (
           <div
             className="lh-menu"
             ref={menuRef}
@@ -199,8 +204,14 @@ export default function LightHeader({
               </div>
             </div>
           </div>
+          )}
 
-          <Link href="/#subscribe" className="lh-cta">Subscribe</Link>
+          {/* The homepage sells Esy OS again (2026-09-18), so the header's one
+              action is the waitlist. The newsletter signup it replaced, for
+              reverting:
+          <Link href="/engineer/#subscribe" className="lh-cta">Subscribe</Link>
+          */}
+          <Link href="/waitlist/?src=header" className="lh-cta">Join the waitlist</Link>
         </nav>
       </div>
     </header>

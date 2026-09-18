@@ -1,4 +1,4 @@
-/* Hero directions for the Esy OS homepage (prototypes under /lab/hero).
+/* Hero directions for the Esy OS homepage (clickable at /prototypes/).
  * Brand palette from the light header: navy ink #0A2540, jade #00A896
  * (#007F72 where jade carries text). Display type is Newsreader, the same
  * serif the office uses, so the page and the window read as one product. */
@@ -196,6 +196,26 @@
 .hl-tour .hl-step { padding-block: 11px; }
 @media (max-width: 1000px) {
   .hl-tour { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+}
+
+/* ── E · Stage Tour: C's two columns under B's centred top ──────────── */
+.hl-stage-tour-body { margin-top: 56px; grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.38fr); gap: 40px; align-items: center; }
+.hl-stage-tour-body .hl-steps { margin-top: 0; }
+.hl-stage-tour-body .hl-step { padding-block: 12px; }
+@media (max-width: 1000px) {
+  .hl-stage-tour-body { grid-template-columns: minmax(0, 1fr); }
+  .hl-stage-tour-body .hl-shot { position: static; }
+}
+
+/* ── D · Split Tour: C's column beside A's edge-bleeding window ─────── */
+.hl-split-tour { display: grid; grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr); gap: 56px; align-items: start; }
+.hl-split-tour .hl-h1 { font-size: clamp(2.3rem, 4vw, 3.4rem); }
+.hl-split-tour .hl-steps { margin-top: 22px; }
+.hl-split-tour .hl-step { padding-block: 11px; }
+.hl-split-tour .hl-shot { position: sticky; top: 90px; margin-right: -140px; }
+@media (max-width: 1000px) {
+  .hl-split-tour { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .hl-split-tour .hl-shot { position: static; margin-right: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,0 +1,105 @@
+/* Preview-only tweaks over the copied office stylesheets.
+ *
+ * The office is a full-viewport app (`.office { position: fixed; inset: 0 }`).
+ * On the hero it has to be a window: rendered at a fixed desktop width, then
+ * scaled down as one picture so it looks the same at every screen size. */
+
+/* ── The frame: browser chrome + a scaled desktop render ─────────────── */
+.op-frame {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(10, 37, 64, 0.1);
+  box-shadow:
+    0 1px 2px rgba(10, 37, 64, 0.06),
+    0 24px 60px -24px rgba(10, 37, 64, 0.35),
+    0 60px 120px -60px rgba(10, 37, 64, 0.25);
+}
+.op-frame.is-dark { background: #161a17; border-color: rgba(255, 255, 255, 0.08); }
+
+.op-chrome {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 14px;
+  background: #f3f5f7;
+  border-bottom: 1px solid #e6eaee;
+}
+.op-frame.is-dark .op-chrome { background: #131714; border-color: #2a312c; }
+.op-dots { display: flex; gap: 6px; }
+.op-dots i { width: 10px; height: 10px; border-radius: 50%; background: #d5dce3; }
+.op-frame.is-dark .op-dots i { background: #39413b; }
+.op-url {
+  flex: 1;
+  max-width: 300px;
+  margin: 0 auto;
+  height: 20px;
+  border-radius: 7px;
+  background: #fff;
+  border: 1px solid #e6eaee;
+  font: 500 11px/18px var(--font-plex-mono), ui-monospace, monospace;
+  color: #5f7185;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.op-frame.is-dark .op-url { background: #1d221f; border-color: #2a312c; color: #8c958e; }
+.op-url b { color: #102033; font-weight: 500; }
+.op-frame.is-dark .op-url b { color: #e5e9e3; }
+.op-chrome-spacer { width: 46px; }
+
+.op-viewport { position: relative; overflow: hidden; }
+.op-scaler { position: absolute; top: 0; left: 0; transform-origin: 0 0; }
+
+/* ── The office, un-fixed ─────────────────────────────────────────────── */
+.office.op-office { position: relative; inset: auto; font-size: 15px; }
+.office.op-office .ofc-app { height: 100%; }
+
+/* Always the desktop layout: the frame is scaled, so the office's own
+   viewport breakpoints would otherwise stack panels inside a wide picture. */
+.office.op-office .ofc-page { padding: 34px 40px 72px; }
+.office.op-office .ofc-bk-grid { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); }
+.office.op-office .ofc-stats { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.office.op-office .ofc-stats > div { border-bottom: 0; border-right: 1px solid var(--o-line); }
+.office.op-office .ofc-stats > div:last-child { border-right: 0; }
+.office.op-office .ofc-main { scroll-behavior: smooth; }
+
+/* ── Focus: one part of the Books lit, the rest set back ──────────────── */
+.office.op-office [data-op-part] { transition: opacity 0.35s ease, box-shadow 0.35s ease; border-radius: 14px; }
+.office.op-office.has-focus [data-op-part] { opacity: 0.32; }
+.office.op-office.has-focus [data-op-part].is-focus {
+  opacity: 1;
+  box-shadow: 0 0 0 2px var(--o-act), 0 18px 40px -18px rgba(0, 127, 114, 0.45);
+}
+
+/* A room that isn't in the preview says so, briefly, instead of doing nothing. */
+.office.op-office .op-toast {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  background: var(--o-ink);
+  color: var(--o-paper);
+  font-size: 14px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  box-shadow: var(--o-shadow);
+  z-index: 10;
+  white-space: nowrap;
+  animation: op-toast-in 0.25s ease;
+}
+@keyframes op-toast-in { from { opacity: 0; transform: translate(-50%, 8px); } }
+
+/* Fade the cropped bottom edge into the page instead of a hard cut. */
+.op-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 90px;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, var(--op-fade-to, #fff));
+}

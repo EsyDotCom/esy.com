@@ -1,0 +1,204 @@
+/* Hero directions for the Esy OS homepage (prototypes under /lab/hero).
+ * Brand palette from the light header: navy ink #0A2540, jade #00A896
+ * (#007F72 where jade carries text). Display type is Newsreader, the same
+ * serif the office uses, so the page and the window read as one product. */
+
+.hl {
+  --hl-ink: #0a2540;
+  --hl-ink-2: #41566d;
+  --hl-muted: #5f7185;
+  --hl-line: #e6eaee;
+  --hl-jade: #00a896;
+  --hl-jade-ink: #007f72;
+  --hl-jade-soft: #e3f4f1;
+  --hl-ground: #f8f9fa;
+  --hl-serif: var(--font-newsreader), Georgia, serif;
+  --hl-sans: var(--font-inter), var(--font-geist-sans), system-ui, sans-serif;
+  background: var(--hl-ground);
+  color: var(--hl-ink);
+  font-family: var(--hl-sans);
+}
+
+.hl-hero { position: relative; overflow: hidden; padding: 72px 24px 96px; }
+/* A quiet jade wash behind the window, not a gradient poster. */
+.hl-hero::before {
+  content: '';
+  position: absolute;
+  inset: -20% -10% auto 30%;
+  height: 90%;
+  background: radial-gradient(closest-side, rgba(0, 168, 150, 0.12), transparent);
+  pointer-events: none;
+}
+.hl-wrap { position: relative; max-width: 1240px; margin: 0 auto; }
+
+/* ── Shared type and actions ──────────────────────────────────────────── */
+.hl-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--hl-jade-ink);
+}
+.hl-eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--hl-jade); box-shadow: 0 0 0 4px var(--hl-jade-soft); }
+.hl-pill {
+  padding: 6px 12px 6px 8px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--hl-line);
+  box-shadow: 0 1px 2px rgba(10, 37, 64, 0.05);
+}
+.hl-h1 {
+  font-family: var(--hl-serif);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.04;
+  font-size: clamp(2.5rem, 5.2vw, 4.25rem);
+  margin: 18px 0 0;
+  text-wrap: balance;
+}
+.hl-h1 em { font-style: italic; color: var(--hl-jade-ink); }
+.hl-sub {
+  margin: 20px 0 0;
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  line-height: 1.55;
+  color: var(--hl-ink-2);
+  max-width: 34em;
+  text-wrap: pretty;
+}
+.hl-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+.hl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 46px;
+  padding: 0 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.hl-btn--primary { background: var(--hl-ink); color: #fff; box-shadow: 0 8px 20px -10px rgba(10, 37, 64, 0.6); }
+.hl-btn--primary:hover { transform: translateY(-1px); background: #0d2f52; }
+.hl-btn--ghost { background: #fff; color: var(--hl-ink); border: 1px solid var(--hl-line); }
+.hl-btn--ghost:hover { border-color: #cfd7df; }
+.hl-proof { margin-top: 22px; font-size: 14px; color: var(--hl-muted); }
+.hl-proof b { color: var(--hl-ink); font-weight: 600; }
+
+/* A plain note under the window: what it is, what to try. */
+.hl-caption { display: flex; gap: 8px; align-items: center; margin-top: 14px; font-size: 13px; color: var(--hl-muted); }
+.hl-caption .tag {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--hl-jade-soft);
+  color: var(--hl-jade-ink);
+}
+
+/* ── A · Split ────────────────────────────────────────────────────────── */
+.hl-split { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 56px; align-items: center; }
+.hl-split .hl-shot { margin-right: -140px; } /* let the window run off the edge */
+@media (max-width: 1000px) {
+  .hl-split { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .hl-split .hl-shot { margin-right: 0; }
+}
+
+/* ── B · Stage ────────────────────────────────────────────────────────── */
+.hl-stage { text-align: center; }
+.hl-stage .hl-h1 { margin-top: 0; } /* no eyebrow above it */
+.hl-stage .hl-sub { margin-left: auto; margin-right: auto; }
+.hl-stage .hl-actions { justify-content: center; }
+.hl-stage-shot { margin: 56px auto 0; max-width: 1120px; text-align: left; }
+.hl-controls { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+.hl-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.hl-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 14px 0 8px;
+  border-radius: 999px;
+  border: 1px solid var(--hl-line);
+  background: #fff;
+  font: 500 14px var(--hl-sans);
+  color: var(--hl-ink-2);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.hl-chip .n {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  background: #f3f5f7;
+  color: var(--hl-muted);
+}
+.hl-chip:hover { border-color: #cfd7df; color: var(--hl-ink); }
+.hl-chip[aria-pressed='true'] { border-color: var(--hl-jade); color: var(--hl-ink); background: var(--hl-jade-soft); }
+.hl-chip[aria-pressed='true'] .n { background: var(--hl-jade); color: #fff; }
+.hl-seg { display: inline-flex; padding: 3px; border-radius: 10px; background: #eef1f4; }
+.hl-seg button {
+  height: 30px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 7px;
+  background: none;
+  font: 600 13px var(--hl-sans);
+  color: var(--hl-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.hl-seg button[aria-pressed='true'] { background: #fff; color: var(--hl-ink); box-shadow: 0 1px 2px rgba(10, 37, 64, 0.08); }
+.hl-explain { min-height: 24px; margin: 0 0 14px; font-size: 15px; color: var(--hl-ink-2); }
+.hl-explain b { color: var(--hl-ink); }
+
+/* ── C · Tour ─────────────────────────────────────────────────────────── */
+.hl-tour { display: grid; grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr); gap: 56px; align-items: start; }
+.hl-steps { list-style: none; margin: 32px 0 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.hl-step {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: none;
+  padding: 14px 16px 14px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: var(--hl-sans);
+  color: var(--hl-ink);
+  transition: background 0.2s ease;
+}
+.hl-step::before { content: ''; position: absolute; left: 0; top: 14px; bottom: 14px; width: 2px; border-radius: 2px; background: var(--hl-line); }
+.hl-step .q { display: block; font-size: 17px; font-weight: 600; }
+.hl-step .a { display: block; margin-top: 4px; font-size: 14.5px; line-height: 1.5; color: var(--hl-muted); }
+.hl-step:hover { background: rgba(10, 37, 64, 0.03); }
+.hl-step[aria-current='true'] { background: #fff; box-shadow: 0 1px 2px rgba(10, 37, 64, 0.06), 0 10px 24px -16px rgba(10, 37, 64, 0.3); }
+.hl-step[aria-current='true']::before { background: var(--hl-jade); }
+.hl-step[aria-current='true'] .a { color: var(--hl-ink-2); }
+/* Autoplay progress rides the active step's rule. */
+.hl-step .bar { position: absolute; left: 0; top: 14px; width: 2px; border-radius: 2px; background: var(--hl-jade-ink); height: 0; }
+.hl-step[aria-current='true'] .bar.is-running { animation: hl-fill var(--hl-step-ms, 5000ms) linear forwards; }
+@keyframes hl-fill { to { height: calc(100% - 28px); } }
+.hl-tour .hl-shot { position: sticky; top: 90px; }
+/* The questions carry this layout, so the headline steps down to keep them in view. */
+.hl-tour .hl-h1 { font-size: clamp(2.2rem, 3.8vw, 3.2rem); }
+.hl-tour .hl-steps { margin-top: 24px; }
+.hl-tour .hl-step { padding-block: 11px; }
+@media (max-width: 1000px) {
+  .hl-tour { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hl *, .hl *::before { transition: none !important; animation: none !important; }
+}
+

@@ -1,4 +1,5 @@
-/* The homepage as the front page of The Marketing Engineer.
+/* The front page of The Marketing Engineer, at /engineer. It was the
+ * homepage from 2026-09-13 to 09-18; the homepage now sells Esy OS.
  *
  * esy.com is a publication first: tutorials, guides, and news at the
  * intersection of AI, marketing, and engineering, published most days, with
@@ -24,7 +25,7 @@ import { AUTHOR_SOCIALS } from '@/components/Agentic/authorSocials';
 import { articlePath } from '@/lib/article-path';
 import { formatDate, formatMinutes, thumbnailFor } from '@/lib/article-format';
 import { TOPICS, topicHref } from '@/data/topics';
-import NewsletterSignup from './NewsletterSignup';
+import NewsletterHero from './NewsletterHero';
 import WeeklyEmailBand from './WeeklyEmailBand';
 import { nlSerif } from './serif';
 import ClipArtWordmark from './ClipArtWordmark';
@@ -99,7 +100,13 @@ async function latestArticles(): Promise<AgenticVideo[]> {
     .slice(0, LATEST_COUNT);
 }
 
-export default async function NewsletterHomePage() {
+export default async function NewsletterHomePage({
+  hero,
+}: {
+  /** What sits above the sections. /engineer uses the masthead; the homepage
+   *  swaps in the Esy OS hero and keeps everything below. */
+  hero?: React.ReactNode;
+} = {}) {
   const articles = await latestArticles();
   const [featured, ...more] = articles;
   const featuredThumb = featured ? thumbnailFor(featured) : null;
@@ -108,21 +115,8 @@ export default async function NewsletterHomePage() {
     <div className={`nl ${nlSerif.variable}`}>
       <LightHeader latest={toNavArticles(articles)} />
 
-      {/* ══ Masthead: name, promise, one action ══ */}
-      <section className="nl-hero" id="subscribe">
-        <div className="nl-container nl-hero-inner">
-          <p className="nl-kicker">By Esy</p>
-          <h1 className="nl-masthead">The Marketing Engineer</h1>
-          {/* The promise speaks to the reader, not the author: what they walk
-              away able to do. (Author-first predecessor, for reverting: "I
-              build systems that turn marketing data into actions, explain how
-              they work, and show you the results.") */}
-          <p className="nl-promise">
-            Turn your marketing data into action, with AI systems <span className="nl-promise-accent">you can build yourself</span>.
-          </p>
-          <NewsletterSignup />
-        </div>
-      </section>
+      {/* ══ Masthead: name, promise, one action (or the page's own hero) ══ */}
+      {hero ?? <NewsletterHero />}
 
       {/* ══ Latest ══
           The newest article earns the width; the rest of the latest dozen are

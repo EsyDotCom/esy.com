@@ -1,0 +1,269 @@
+/* Copied verbatim from os.esy.com (src/components/office/office-rooms.css,
+   2026-09-17). Re-copy rather than edit; preview tweaks live in preview.css. */
+
+/* ───────────────────────────────────────────────────────────────────────────
+   The office rooms added in phase 2: Letters, Team, Books, Today, the page
+   viewer and ⌘K. Same rules as office.css — every selector under `.office`,
+   every color a token.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── Shared small pieces ──────────────────────────────────────────────── */
+.office .ofc-small { font-size: 13px; }
+.office .ofc-btn.is-small { height: 32px; padding: 0 12px; font-size: 13px; border-radius: 8px; }
+.office .ofc-btn.is-quiet { border-color: transparent; background: transparent; color: var(--o-ink-2); }
+.office .ofc-btn.is-quiet:hover { background: var(--o-sunk); }
+.office .ofc-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.office .ofc-icon-btn { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 8px; color: var(--o-muted); }
+.office .ofc-icon-btn:hover { background: var(--o-sunk); color: var(--o-ink); }
+.office .ofc-icon-btn.is-disabled { opacity: 0.3; pointer-events: none; }
+.office .ofc-tag { font-size: 11px; font-weight: 600; padding: 1px 8px; border-radius: 999px; background: var(--o-sunk); color: var(--o-muted); white-space: nowrap; }
+.office .ofc-tag.is-warn { background: var(--o-amber-soft); color: var(--o-amber); }
+.office .ofc-tag.is-bad { background: var(--o-rose-soft); color: var(--o-rose); }
+.office .ofc-tag.is-good { background: var(--o-act-soft); color: var(--o-act); }
+.office .ofc-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.office .ofc-chip { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--o-line); background: var(--o-surface); font-size: 13px; color: var(--o-ink-2); white-space: nowrap; }
+.office .ofc-chip:hover { border-color: var(--o-line-2); color: var(--o-ink); }
+.office .ofc-chip.is-on { background: var(--o-ink); color: var(--o-paper); border-color: var(--o-ink); }
+.office .ofc-chip .ofc-num { opacity: 0.7; font-size: 11.5px; }
+.office .ofc-inline-link { color: var(--o-act); }
+.office .ofc-inline-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+.office .ofc-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+/* ── Letters ──────────────────────────────────────────────────────────── */
+.office .ofc-letters { max-width: 860px; margin: 0 auto; }
+.office .ofc-tabs { display: flex; gap: 26px; border-bottom: 1px solid var(--o-line); overflow-x: auto; }
+.office .ofc-tabs a { display: inline-flex; align-items: center; gap: 7px; padding: 10px 0 12px; font-size: 14px; color: var(--o-muted); border-bottom: 2px solid transparent; margin-bottom: -1px; white-space: nowrap; }
+.office .ofc-tabs a:hover { color: var(--o-ink); }
+.office .ofc-tabs a.is-on { color: var(--o-ink); font-weight: 600; border-color: var(--o-act); }
+.office .ofc-tabs span { font-family: var(--o-mono); font-size: 11.5px; color: var(--o-faint); }
+.office .ofc-tabs span.is-hot { color: var(--o-rose); }
+.office .ofc-grp { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--o-muted); font-weight: 600; margin: 26px 0 8px; }
+.office .ofc-lrows { display: flex; flex-direction: column; border-top: 1px solid var(--o-line); }
+.office .ofc-lrow { position: relative; display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 16px; align-items: start; padding: 16px 12px; border-bottom: 1px solid var(--o-line); }
+.office .ofc-lrow:hover { background: var(--o-surface); }
+.office .ofc-lrow.is-unread::before { content: ''; position: absolute; left: -4px; top: 28px; width: 7px; height: 7px; border-radius: 50%; background: var(--o-act); }
+.office .ofc-lr-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.office .ofc-lr-top { display: flex; align-items: center; gap: 10px; font-size: 13.5px; }
+.office .ofc-lr-top b { font-weight: 600; }
+.office .ofc-lr-when { margin-left: auto; font-size: 12.5px; color: var(--o-faint); white-space: nowrap; }
+.office .ofc-lr-subj { font-size: 20px; line-height: 1.25; }
+.office .ofc-lrow.is-unread .ofc-lr-subj { font-weight: 500; }
+.office .ofc-lr-ex { font-size: 14px; color: var(--o-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.office .ofc-reader { min-height: 100%; display: flex; flex-direction: column; }
+.office .ofc-reader-bar { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; gap: 14px; padding: 12px 28px; border-bottom: 1px solid var(--o-line); background: var(--o-paper); }
+.office .ofc-reader-actions { margin-left: auto; display: flex; align-items: center; gap: 4px; }
+.office .ofc-letter { width: 100%; max-width: 720px; margin: 0 auto; padding: 40px 32px 72px; display: flex; flex-direction: column; gap: 22px; }
+.office .ofc-letter-from { display: flex; align-items: center; gap: 12px; font-size: 14px; }
+.office .ofc-letter-from b { font-weight: 600; }
+.office .ofc-letter-when { margin-left: auto; font-size: 13px; color: var(--o-muted); }
+.office .ofc-letter-subject { font-size: 38px; line-height: 1.1; }
+.office .ofc-prose { font-family: var(--o-serif); font-size: 19px; line-height: 1.62; display: flex; flex-direction: column; gap: 14px; }
+.office .ofc-letter-block { display: flex; flex-direction: column; gap: 10px; }
+.office .ofc-block-h { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--o-muted); font-weight: 600; }
+.office .ofc-checks { display: flex; flex-direction: column; gap: 8px; padding: 14px 16px; border-radius: 12px; background: var(--o-sunk); }
+.office .ofc-checks.is-bad { box-shadow: inset 3px 0 0 var(--o-rose); }
+.office .ofc-checks-lead { font-size: 14px; color: var(--o-ink-2); }
+.office .ofc-checks ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; font-size: 14px; }
+.office .ofc-checks li { display: grid; grid-template-columns: 18px 1fr; gap: 8px; }
+.office .ofc-check-mark { font-weight: 700; color: var(--o-muted); }
+.office .ofc-checks li.is-confirmed .ofc-check-mark { color: var(--o-act); }
+.office .ofc-checks li.is-contradicted .ofc-check-mark { color: var(--o-amber); }
+.office .ofc-check-said { color: var(--o-muted); }
+.office .ofc-details { font-size: 13px; color: var(--o-muted); }
+.office .ofc-details summary { cursor: pointer; color: var(--o-ink-2); }
+.office .ofc-details pre { white-space: pre-wrap; font-family: var(--o-mono); font-size: 12px; background: var(--o-sunk); padding: 12px; border-radius: 8px; margin-top: 8px; }
+
+/* ── Team: a desk per worker, grouped by team ─────────────────────────── */
+.office .ofc-team { margin-bottom: 34px; }
+.office .ofc-team h2 { font-size: 13px; font-weight: 600; color: var(--o-ink-2); margin-bottom: 12px; display: flex; gap: 8px; align-items: baseline; }
+.office .ofc-team h2 span { color: var(--o-faint); font-family: var(--o-mono); font-size: 12px; }
+.office .ofc-desks { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+.office .ofc-desk { padding: 18px; border-radius: 14px; background: var(--o-surface); border: 1px solid var(--o-line); display: flex; flex-direction: column; gap: 10px; }
+.office .ofc-desk.is-attention { border-color: color-mix(in srgb, var(--o-amber) 45%, var(--o-line)); }
+.office .ofc-desk.is-paused, .office .ofc-desk.is-retired { background: var(--o-paper); }
+.office .ofc-desk-top { display: flex; gap: 12px; align-items: center; }
+.office .ofc-avatar.is-lg { width: 40px; height: 40px; font-size: 19px; }
+.office .ofc-desk-name { font-weight: 600; font-size: 15px; }
+.office .ofc-desk-title { color: var(--o-muted); font-size: 13px; }
+.office .ofc-state { display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; color: var(--o-muted); }
+.office .ofc-state i { width: 7px; height: 7px; border-radius: 50%; background: var(--o-faint); }
+.office .ofc-state.is-good { color: var(--o-act); }
+.office .ofc-state.is-good i { background: var(--o-act); box-shadow: 0 0 0 3px var(--o-act-soft); }
+.office .ofc-state.is-warn { color: var(--o-amber); }
+.office .ofc-state.is-warn i { background: var(--o-amber); }
+.office .ofc-state.is-bad i { background: var(--o-rose); }
+.office .ofc-desk-doing { font-family: var(--o-serif); font-size: 16px; line-height: 1.4; color: var(--o-ink); flex: 1; }
+.office .ofc-desk-meta { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12.5px; color: var(--o-muted); }
+.office .ofc-desk-meta:empty { display: none; }
+.office .ofc-desk-error { font-size: 13px; color: var(--o-rose); }
+.office .ofc-desk-actions { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 10px; border-top: 1px solid var(--o-line); }
+.office .ofc-desk-open { margin-left: auto; }
+@media (prefers-reduced-motion: no-preference) {
+  .office .ofc-state.is-good i { animation: ofc-breathe 2.4s ease-in-out infinite; }
+}
+@keyframes ofc-breathe { 50% { box-shadow: 0 0 0 6px transparent; } }
+
+/* ── Books: ported from the prototype's Books room ─────────────────────── */
+.office .ofc-panel { padding: 20px 22px; border-radius: 14px; background: var(--o-surface); border: 1px solid var(--o-line); margin-bottom: 16px; }
+.office .ofc-panel-h { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; }
+.office .ofc-panel-h h2 { font-size: 14px; font-weight: 600; color: var(--o-ink-2); }
+.office .ofc-muted-line { color: var(--o-muted); font-size: 14px; }
+.office .ofc-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--o-muted); }
+.office .ofc-hint { font-size: 12.5px; color: var(--o-muted); }
+.office .muted { color: var(--o-muted); }
+.office .ofc-bk-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 24px; flex-wrap: wrap; }
+.office .ofc-bk-head h1 { font-size: 34px; line-height: 1.12; margin-top: 8px; max-width: 28ch; text-wrap: balance; }
+.office .ofc-bk-head p { color: var(--o-ink-2); margin-top: 10px; max-width: 70ch; }
+.office .ofc-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--o-line); border-bottom: 1px solid var(--o-line); margin-bottom: 18px; }
+.office .ofc-stats > div { padding: 16px 18px; display: flex; flex-direction: column; gap: 3px; border-right: 1px solid var(--o-line); min-width: 0; }
+.office .ofc-stats > div:last-child { border-right: 0; }
+.office .ofc-stats .k { font-size: 12.5px; color: var(--o-muted); }
+.office .ofc-stats .v { font-size: 32px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.office .ofc-stats .s { font-size: 12.5px; color: var(--o-ink-2); display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.office .ofc-bk-grid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 14px; margin-bottom: 14px; }
+.office .ofc-bk-panel { border: 1px solid var(--o-line); border-radius: 14px; background: var(--o-surface); padding: 18px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.office .ofc-books > .ofc-bk-panel { margin-bottom: 14px; }
+.office .ofc-bk-panel-h { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.office .ofc-bk-panel-h h3 { font-size: 15px; font-weight: 600; }
+.office .ofc-bk-panel-h p { font-size: 12.5px; color: var(--o-muted); }
+.office .ofc-bk-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 13px; color: var(--o-ink-2); }
+.office .ofc-bk-legend > span { display: inline-flex; align-items: center; gap: 6px; }
+.office .ofc-bk-legend i { width: 10px; height: 10px; border-radius: 3px; }
+.office .ofc-bk-chart { position: relative; }
+.office .ofc-bk-chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.office .ofc-bk-chart text { font-family: var(--o-mono); font-size: 10.5px; fill: var(--o-muted); }
+.office .ofc-bk-chart text.dl { font-family: var(--o-sans); font-size: 11.5px; fill: var(--o-ink-2); }
+.office .ofc-bk-hit { outline: none; cursor: default; }
+.office .ofc-bk-hit:focus-visible { stroke: var(--o-act); stroke-width: 1.5; }
+.office .ofc-bk-tip { position: absolute; pointer-events: none; background: var(--o-raised); border: 1px solid var(--o-line-2); border-radius: 10px; box-shadow: var(--o-shadow); padding: 9px 12px; font-size: 12.5px; min-width: 180px; z-index: 5; display: flex; flex-direction: column; gap: 3px; }
+.office .ofc-bk-tip strong { font-weight: 600; }
+.office .ofc-bk-tip div { display: flex; justify-content: space-between; gap: 12px; }
+.office .ofc-bk-tip span { display: inline-flex; gap: 6px; align-items: center; color: var(--o-ink-2); }
+.office .ofc-bk-tip i { width: 8px; height: 8px; border-radius: 2px; }
+.office .ofc-bk-tip .tot { border-top: 1px solid var(--o-line); padding-top: 4px; margin-top: 2px; font-weight: 600; }
+.office .ofc-bk-tip .tot span { color: var(--o-ink); }
+.office .ofc-meter { display: flex; flex-direction: column; gap: 6px; }
+.office .ofc-meter.is-total { border-top: 1px solid var(--o-line); padding-top: 12px; }
+.office .ofc-meter .mh { display: flex; justify-content: space-between; gap: 10px; font-size: 13.5px; }
+.office .ofc-meter .mh b { font-weight: 600; }
+.office .ofc-meter .track { position: relative; height: 8px; border-radius: 4px; background: var(--o-sunk); }
+.office .ofc-meter .track i { position: absolute; inset: 0 auto 0 0; border-radius: 4px; }
+.office .ofc-meter .pace { position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--o-ink); opacity: 0.55; }
+.office .ofc-meter .ms { font-size: 12.5px; color: var(--o-muted); display: flex; gap: 8px; align-items: center; }
+.office .ofc-tscroll { overflow-x: auto; }
+.office .ofc-tbl { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.office .ofc-tbl th { text-align: left; font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--o-faint); padding: 8px 10px; border-bottom: 1px solid var(--o-line); white-space: nowrap; }
+.office .ofc-tbl td { padding: 9px 10px; border-bottom: 1px solid var(--o-line); vertical-align: top; }
+.office .ofc-tbl tr:last-child td { border-bottom: 0; }
+.office .ofc-tbl .r { text-align: right; font-family: var(--o-mono); font-variant-numeric: tabular-nums; }
+.office .ofc-tbl b { font-weight: 600; }
+.office .ofc-wk-row { display: grid; grid-template-columns: 30px 110px 1fr 56px; gap: 10px; align-items: center; font-size: 13.5px; width: 100%; padding: 4px; border-radius: 8px; color: var(--o-ink); }
+.office .ofc-wk-row:hover { background: var(--o-sunk); }
+.office .ofc-wk-n b { display: block; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.office .ofc-wk-n small { font-size: 12px; color: var(--o-muted); }
+.office .ofc-wk-bar { height: 6px; border-radius: 3px; background: var(--o-sunk); position: relative; overflow: hidden; }
+.office .ofc-wk-bar i { position: absolute; inset: 0 auto 0 0; background: var(--o-act); border-radius: 3px; }
+.office .ofc-wk-row .ofc-num { text-align: right; }
+@media (max-width: 900px) {
+  .office .ofc-bk-grid { grid-template-columns: minmax(0, 1fr); }
+  .office .ofc-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .office .ofc-stats > div:nth-child(2) { border-right: 0; }
+  .office .ofc-stats > div:nth-child(-n + 2) { border-bottom: 1px solid var(--o-line); }
+}
+
+/* ── Today: the brief, the asks, the quieter world ────────────────────── */
+.office .ofc-today { max-width: 980px; }
+.office .ofc-brief { margin: 8px 0 34px; max-width: 680px; }
+.office .ofc-brief-date { font-size: 12.5px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--o-muted); margin-bottom: 10px; }
+.office .ofc-brief h1 { font-size: 44px; line-height: 1.05; }
+.office .ofc-brief-p { font-family: var(--o-serif); font-size: 21px; line-height: 1.45; color: var(--o-ink-2); margin-top: 14px; text-wrap: pretty; }
+.office .ofc-section-h { font-size: 14px; font-weight: 600; color: var(--o-ink-2); margin-bottom: 12px; }
+.office .ofc-asks { margin-bottom: 30px; }
+.office .ofc-ask-list { display: flex; flex-direction: column; border: 1px solid var(--o-line-2); border-radius: 14px; background: var(--o-surface); overflow: hidden; }
+.office .ofc-ask-list li + li { border-top: 1px solid var(--o-line); }
+.office .ofc-ask { display: flex; align-items: center; gap: 14px; padding: 14px 18px; color: var(--o-ink); }
+.office .ofc-ask:hover { background: var(--o-sunk); }
+.office .ofc-ask:focus-visible { outline: 2px solid var(--o-act); outline-offset: -2px; }
+.office .ofc-ask > svg { color: var(--o-faint); flex: 0 0 auto; }
+.office .ofc-ask .ofc-tag { flex: 0 0 64px; justify-content: center; text-align: center; }
+.office .ofc-ask-t { flex: 1; min-width: 0; font-weight: 600; font-size: 14.5px; display: flex; flex-direction: column; gap: 2px; }
+.office .ofc-ask-t small { font-weight: 400; color: var(--o-muted); font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.office .ofc-ask-thumbs { display: flex; gap: 4px; }
+.office .ofc-ask-thumbs img, .office .ofc-thumb-blank { width: 36px; height: 36px; border-radius: 6px; object-fit: cover; background: var(--o-sunk); display: block; }
+.office .ofc-today-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-bottom: 30px; }
+.office .ofc-today-grid > .ofc-panel { margin-bottom: 0; }
+.office .ofc-studio { display: flex; flex-direction: column; gap: 14px; }
+.office .ofc-studio li { display: flex; gap: 12px; align-items: flex-start; }
+.office .ofc-studio small { color: var(--o-act); font-size: 12.5px; }
+.office .ofc-studio em { display: block; font-style: normal; font-family: var(--o-serif); color: var(--o-ink-2); font-size: 15px; margin-top: 2px; }
+.office .ofc-glance-num { font-size: 30px; color: var(--o-ink); margin-bottom: 8px; }
+.office .ofc-spark { width: 100%; height: 48px; display: block; margin-bottom: 6px; }
+.office .ofc-today-sets { display: flex; flex-direction: column; gap: 10px; }
+.office .ofc-today-set { display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; padding: 14px 16px; border-radius: 14px; border: 1px solid var(--o-line); color: var(--o-ink); }
+.office .ofc-today-set:hover { border-color: var(--o-line-2); background: var(--o-surface); }
+.office .ofc-today-set-t { display: flex; flex-direction: column; gap: 2px; font-weight: 600; }
+.office .ofc-today-set-t small { font-weight: 400; color: var(--o-muted); font-size: 13px; }
+.office .ofc-today-covers { display: flex; gap: 6px; overflow: hidden; }
+.office .ofc-home-switch { margin-top: 36px; }
+.office button.ofc-inline-link { background: none; border: 0; padding: 0; font: inherit; cursor: pointer; }
+
+/* ── Library: Pages shelf and the full-width page viewer ──────────────── */
+.office .ofc-pagecards { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
+.office .ofc-pagecard { display: flex; flex-direction: column; gap: 6px; height: 100%; padding: 0 18px 16px; border-radius: 14px; border: 1px solid var(--o-line); background: var(--o-surface); color: var(--o-ink); overflow: hidden; }
+.office .ofc-pagecard:hover { border-color: var(--o-line-2); box-shadow: var(--o-shadow); }
+.office .ofc-pagecard:focus-visible { outline: 2px solid var(--o-act); outline-offset: 2px; }
+.office .ofc-pagecard-chrome { display: flex; gap: 5px; margin: 0 -18px 12px; padding: 10px 14px; background: var(--o-sunk); border-bottom: 1px solid var(--o-line); }
+.office .ofc-pagecard-chrome i { width: 7px; height: 7px; border-radius: 50%; background: var(--o-line-2); }
+.office .ofc-pagecard-title { font-family: var(--o-serif); font-size: 19px; line-height: 1.25; text-wrap: balance; }
+.office .ofc-pagecard-sub { font-size: 13px; color: var(--o-muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.office .ofc-pagecard-meta { margin-top: auto; padding-top: 8px; display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; font-size: 12.5px; color: var(--o-faint); }
+
+.office .ofc-viewer { height: 100%; display: flex; flex-direction: column; min-height: 0; background: var(--o-ground); }
+.office .ofc-viewer.is-fullscreen { position: fixed; inset: 0; z-index: 60; }
+.office .ofc-viewer-loading { height: calc(100% - 32px); margin: 16px; }
+.office .ofc-viewer-bar { display: flex; align-items: center; gap: 10px; padding: 10px 16px; padding-top: max(10px, env(safe-area-inset-top, 0px)); border-bottom: 1px solid var(--o-line); background: var(--o-surface); flex-wrap: wrap; }
+.office .ofc-viewer-t { flex: 1; min-width: 180px; display: flex; flex-direction: column; }
+.office .ofc-viewer-t strong { font-weight: 600; font-size: 14.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.office .ofc-viewer-audit { font-size: 12.5px; color: var(--o-muted); }
+.office .ofc-viewer-audit.is-good { color: var(--o-act); }
+.office .ofc-viewer-audit.is-warn { color: var(--o-amber); }
+.office .ofc-viewer-audit.is-bad { color: var(--o-rose); }
+.office .ofc-seg button svg { margin-right: 6px; }
+.office .ofc-viewer-body { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr); }
+.office .ofc-viewer-body.has-drawer { grid-template-columns: minmax(0, 1fr) 340px; }
+.office .ofc-stage { min-height: 0; display: flex; justify-content: center; background: var(--o-sunk); }
+.office .ofc-stage-frame { width: 100%; height: 100%; border: 0; background: #fff; display: block; }
+.office .ofc-stage.is-phone { padding: 24px 0; overflow-y: auto; }
+.office .ofc-stage.is-phone .ofc-stage-frame { width: 390px; max-width: calc(100% - 32px); height: 100%; min-height: 640px; border-radius: 28px; border: 8px solid var(--o-raised); box-shadow: var(--o-shadow); }
+.office .ofc-stage > .ofc-empty { margin: 40px; align-self: flex-start; }
+.office .ofc-audit { border-left: 1px solid var(--o-line); background: var(--o-surface); overflow-y: auto; padding: 20px 20px 40px; }
+.office .ofc-audit h2 { font-size: 14px; font-weight: 600; color: var(--o-ink-2); margin-bottom: 10px; }
+.office .ofc-audit-summary { font-family: var(--o-serif); font-size: 16px; line-height: 1.45; margin-bottom: 16px; }
+.office .ofc-findings { display: flex; flex-direction: column; gap: 10px; }
+.office .ofc-findings li { padding: 12px 12px 12px 14px; border-radius: 10px; background: var(--o-sunk); border-left: 3px solid var(--o-line-2); font-size: 13.5px; display: flex; flex-direction: column; gap: 4px; }
+.office .ofc-findings li.is-blocking, .office .ofc-findings li.is-critical { border-left-color: var(--o-rose); }
+.office .ofc-findings li.is-important { border-left-color: var(--o-amber); }
+.office .ofc-finding-sev { font-size: 11.5px; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; color: var(--o-muted); }
+.office .ofc-findings small { color: var(--o-faint); font-family: var(--o-mono); font-size: 11.5px; }
+.office .ofc-finding-fix { color: var(--o-ink-2); }
+@media (max-width: 860px) {
+  .office .ofc-viewer-body.has-drawer { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) 40%; }
+  .office .ofc-audit { border-left: 0; border-top: 1px solid var(--o-line); }
+}
+
+/* ── ⌘K palette ───────────────────────────────────────────────────────── */
+.office .ofc-k-scrim { position: fixed; inset: 0; z-index: 80; background: color-mix(in srgb, var(--o-ground) 55%, transparent); backdrop-filter: blur(3px); display: flex; justify-content: center; align-items: flex-start; padding: max(12vh, env(safe-area-inset-top, 0px)) 16px 16px; }
+.office .ofc-k { width: 100%; max-width: 580px; border-radius: 16px; background: var(--o-raised); border: 1px solid var(--o-line-2); box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.5); overflow: hidden; display: flex; flex-direction: column; max-height: 70vh; }
+.office .ofc-k-input { display: flex; align-items: center; gap: 10px; padding: 0 16px; border-bottom: 1px solid var(--o-line); color: var(--o-muted); }
+.office .ofc-k-input input { flex: 1; height: 54px; background: none; border: 0; outline: none; color: var(--o-ink); font: inherit; font-size: 16px; }
+.office .ofc-k-input input::placeholder { color: var(--o-faint); }
+.office .ofc-k-input kbd, .office .ofc-k-hint { font-family: var(--o-mono); font-size: 11px; color: var(--o-faint); }
+.office .ofc-k-input kbd { border: 1px solid var(--o-line-2); border-radius: 5px; padding: 1px 6px; }
+.office .ofc-k-list { overflow-y: auto; padding: 6px; }
+.office .ofc-k-group { font-size: 11.5px; font-weight: 600; color: var(--o-muted); padding: 10px 10px 4px; }
+.office .ofc-k-item { display: flex; align-items: center; gap: 11px; padding: 9px 10px; border-radius: 9px; cursor: pointer; color: var(--o-ink-2); font-size: 14px; }
+.office .ofc-k-item.is-active { background: var(--o-act-soft); color: var(--o-ink); }
+.office .ofc-k-item.is-active svg { color: var(--o-act); }
+.office .ofc-k-label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.office .ofc-k-hint { flex: 0 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 40%; }
+.office .ofc-k-empty { padding: 22px; text-align: center; color: var(--o-muted); }

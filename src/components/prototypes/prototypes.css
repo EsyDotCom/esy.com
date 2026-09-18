@@ -1,0 +1,81 @@
+/* Chrome for /prototypes: the index cards and the floating switcher that lets
+ * directions be compared in place. Deliberately plain — the prototypes are the
+ * show, this is the frame. See docs/prototypes/README.md. */
+
+.proto {
+  --p-ink: #0a2540;
+  --p-ink-2: #41566d;
+  --p-muted: #5f7185;
+  --p-line: #e6eaee;
+  --p-jade: #00a896;
+  --p-jade-ink: #007f72;
+  --p-serif: var(--font-newsreader), Georgia, serif;
+  --p-sans: var(--font-inter), var(--font-geist-sans), system-ui, sans-serif;
+  min-height: 100vh;
+  background: #f8f9fa;
+  color: var(--p-ink);
+  font-family: var(--p-sans);
+}
+
+/* ── Index ────────────────────────────────────────────────────────────── */
+.proto-index { max-width: 980px; margin: 0 auto; padding: 64px 24px 120px; }
+.proto-index .k { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--p-jade-ink); }
+.proto-index h1 { font-family: var(--p-serif); font-weight: 400; font-size: 2.6rem; letter-spacing: -0.02em; margin: 8px 0 0; }
+.proto-index > p { color: var(--p-ink-2); margin: 12px 0 36px; max-width: 42em; line-height: 1.55; }
+.proto-index h2 { font-family: var(--p-sans); font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--p-muted); margin: 40px 0 14px; }
+.proto-summary { margin: 0 0 16px; max-width: 46em; font-size: 15px; line-height: 1.55; color: var(--p-ink-2); }
+.proto-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.proto-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 22px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid var(--p-line);
+  color: var(--p-ink);
+  text-decoration: none;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.proto-card:hover { border-color: var(--p-jade); transform: translateY(-2px); }
+.proto-card .k { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--p-jade-ink); }
+.proto-card .t { font-family: var(--p-serif); font-size: 1.5rem; line-height: 1.15; }
+.proto-card .d { font-size: 14.5px; line-height: 1.5; color: var(--p-muted); }
+.proto-card .live {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #e3f4f1;
+  color: var(--p-jade-ink);
+}
+
+/* ── Floating switcher ────────────────────────────────────────────────── */
+.proto-bar {
+  position: fixed;
+  left: 50%;
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  max-width: calc(100vw - 32px);
+  overflow-x: auto;
+  padding: 5px;
+  border-radius: 12px;
+  background: rgba(10, 37, 64, 0.92);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 12px 30px -10px rgba(10, 37, 64, 0.5);
+  font: 500 13px var(--font-inter), system-ui, sans-serif;
+}
+.proto-bar span { padding: 0 10px 0 8px; color: rgba(255, 255, 255, 0.55); font-size: 12px; white-space: nowrap; }
+.proto-bar a { padding: 7px 12px; border-radius: 8px; color: rgba(255, 255, 255, 0.8); text-decoration: none; white-space: nowrap; }
+.proto-bar a:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+.proto-bar a[aria-current='page'] { background: #fff; color: #0a2540; }

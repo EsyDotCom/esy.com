@@ -1,12 +1,12 @@
 // Articles of The Marketing Engineer live under one namespace:
-// esy.com/engineer/<slug>/. The homepage (/) is the publication's front page
+// esy.com/engineer/<slug>/. /engineer is the publication's front page
 // and index; the namespace keeps articles out of the site root, so they read
 // as the publication's own and never compete with top-level routes. (They sat
 // at the root briefly, 2026-09-14; src/app/[slug] 308s those URLs here.)
 // One helper so every link, canonical URL, and sitemap entry agrees.
 
-/** Where "latest articles" points: the Latest section on the homepage. */
-export const LATEST_ARTICLES_HREF = "/#latest";
+/** Where "latest articles" points: the Latest section on /engineer (the homepage until 2026-09-18). */
+export const LATEST_ARTICLES_HREF = "/engineer/#latest";
 
 /** Canonical path for one article (trailing slash, per next.config trailingSlash). */
 export function articlePath(slug: string): string {

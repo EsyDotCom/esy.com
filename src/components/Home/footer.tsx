@@ -239,6 +239,21 @@ export default function Footer () {
           <div className="footer-brand">
             <div className="footer-logo">
               <Logo href="" wordmarkOnly wordmarkFont="blackops" theme={logoTheme} />
+              {/* "esy | OS" lockup, matching the header and os.esy.com's side
+                  rail; colours follow the footer's own theme. */}
+              <span aria-hidden="true" style={{ width: 1, height: 16, background: theme.faint }} />
+              <span
+                style={{
+                  fontSize: 11,
+                  fontWeight: 500,
+                  lineHeight: 1,
+                  letterSpacing: '0.22em',
+                  textTransform: 'uppercase',
+                  color: theme.subtle,
+                }}
+              >
+                OS
+              </span>
             </div>
             <p className="footer-desc" style={{ color: theme.muted }}>
               <strong style={{ color: isLightMode || isNavyDark ? theme.text : 'inherit' }}>Put marketing production on autopilot.</strong>

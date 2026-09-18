@@ -64,6 +64,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const excludedRoutes = [
     '/essays/visual',
     '/blog',
+    '/prototypes', // noindex clickable directions, not public pages
   ]
   
   // Automatically discover all static routes from the app directory

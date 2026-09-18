@@ -483,12 +483,12 @@ const nextConfig = {
       },
       // School renamed to Learn (June 2026), Learn + Research merged into
       // /agentic (Jul 2026), which became The Marketing Engineer (Sep 2026):
-      // the homepage is its front page and each article lives at
+      // /engineer is its front page (the homepage until 2026-09-18) and each article lives at
       // /engineer/<slug>/. These point straight there so old links land in one
       // hop instead of chaining through /agentic.
       {
         source: '/school',
-        destination: '/',
+        destination: '/engineer',
         permanent: true,
       },
       {
@@ -500,17 +500,17 @@ const nextConfig = {
       // into the index with specific rules BEFORE the catch-all slug mapping.
       {
         source: '/learn',
-        destination: '/',
+        destination: '/engineer',
         permanent: true,
       },
       {
         source: '/learn/articles',
-        destination: '/',
+        destination: '/engineer',
         permanent: true,
       },
       {
         source: '/learn/articles/:path*',
-        destination: '/',
+        destination: '/engineer',
         permanent: true,
       },
       {
@@ -520,7 +520,7 @@ const nextConfig = {
       },
       {
         source: '/research',
-        destination: '/',
+        destination: '/engineer',
         permanent: true,
       },
       {

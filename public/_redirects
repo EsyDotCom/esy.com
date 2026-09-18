@@ -109,12 +109,13 @@
 # The Agentic Engineer became The Marketing Engineer (2026-09-02). The
 # homepage is the publication's front page and index, and each article lives
 # at esy.com/engineer/<slug>/. /agentic carries months of shared links, so hub
-# and episode URLs redirect forever, in one hop. (/engineer/<slug> is a live
-# route, so only the bare /engineer index redirects.)
-/agentic / 301
+# and episode URLs redirect forever, in one hop.
+# 2026-09-18: the homepage moved to Esy OS and the front page moved to
+# /engineer, so the bare /engineer no longer redirects and the old hub
+# addresses land there instead of on the homepage.
+/agentic /engineer 301
 /agentic/:slug* /engineer/:slug* 301
-/engineer / 301
-/marketing-engineer / 301
+/marketing-engineer /engineer 301
 
 # The docs moved to docs.esy.com as their own site (2026-09-13). Every docs
 # address forwards to the same path there, so old links and search results

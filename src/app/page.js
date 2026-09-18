@@ -1,10 +1,10 @@
 import NewsletterHomePage from "../components/NewsletterHome/NewsletterHomePage";
-import { HeroStage } from "../components/HomeHero";
+import { HeroStageTour } from "../components/HomeHero";
 
-// The homepage sells Esy OS (2026-09-18): hero B · Stage, a working copy of
-// the office's Books page under a plain promise. The other directions (Split,
-// Tour) are components in src/components/HomeHero and stay clickable at
-// /prototypes/.
+// The homepage sells Esy OS (2026-09-18): hero E · Stage Tour, B's centred
+// promise over C's questions, each lighting its answer in a working copy of
+// the office's Books page. The other directions are components in
+// src/components/HomeHero and stay clickable at /prototypes/.
 //
 // Earlier homepages:
 // - The Marketing Engineer front page (2026-09-13 → 09-18) now lives at
@@ -55,5 +55,5 @@ export const metadata = {
 export const revalidate = 3600;
 
 export default function HomePage() {
-  return <NewsletterHomePage hero={<HeroStage />} />;
+  return <NewsletterHomePage hero={<HeroStageTour />} />;
 }

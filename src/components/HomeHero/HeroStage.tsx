@@ -1,6 +1,7 @@
 'use client';
 
-/* Hero B · Stage — the live homepage hero (2026-09-18).
+/* Hero B · Stage — briefly the live homepage hero (2026-09-18), before
+ * E · Stage Tour replaced it.
  *
  * Centred promise over a full-width Books window. Numbered chips light the
  * part of the page they name and say, in one line, what it tells you; a

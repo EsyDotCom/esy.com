@@ -2,7 +2,7 @@
 
 Clickable directions we compare by using them, not by looking at mockups. They live at **esy.com/prototypes/** (noindex, kept out of the sitemap) and stay there after a pick, so the next prototype starts from a working example.
 
-**The reference build is the homepage hero (2026-09-18):** three directions for selling Esy OS, each built around a working copy of the office's Books page. Hero B · Stage shipped as the homepage. If you're building a new prototype, read that one first.
+**The reference build is the homepage hero (2026-09-18):** three directions for selling Esy OS (A · Split, B · Stage, C · Tour), each built around a working copy of the office's Books page. Then came a second round that merged the parts Zev liked: D · Split Tour (A's headline, C's flow) and E · Stage Tour (B's centred top, C's side-by-side flow under it). **E shipped as the homepage.** If you're building a new prototype, read that one first.
 
 ## The pattern
 
@@ -14,6 +14,7 @@ Clickable directions we compare by using them, not by looking at mockups. They l
 4. **Make it interactive in small ways.** Keep the product's own controls working: toggles, hover tooltips, theme switch. Anything outside the prototype answers with a one-line note instead of doing nothing. Expose a small set of hooks for the page around it, e.g. `focus` (light one part and dim the rest, scrolling it into view) and `onInteract` (stop an autoplay).
 5. **Write several directions, each as its own component.** Each direction is its own component file with shared pieces factored out. They all use the same preview, so the comparison is about layout and copy, not about which one got the better screenshot.
    - Reference: `src/components/HomeHero/`, with `HeroSplit.tsx`, `HeroStage.tsx`, `HeroTour.tsx` and `shared.tsx`.
+   - **Expect a merge round.** The pick is often "this part of A with that part of C". Keep each direction's moving parts as shared pieces (the Tour's questions, timer and step list live in `tour.tsx`) so a merge is a new small component, not a copy. `HeroSplitTour.tsx` and `HeroStageTour.tsx` are the merges.
 6. **Copy says what the product does, in the customer's words.** No riddles, and no engine vocabulary (workflow, run, gate, provider). Each hero answers: what is it, what does it show you, what do I click.
 7. **Show each direction in the real site chrome**, with the real header and footer, at `/prototypes/<prototype>/<variant>/`. A floating switcher moves between variants.
 
@@ -27,7 +28,7 @@ Clickable directions we compare by using them, not by looking at mockups. They l
 
 ## Screenshots
 
-`docs/prototypes/screenshots/` holds the hero build as it shipped: `home-hero-stage.png` (live), `hero-a-split.png`, `hero-c-tour.png`, `home-full.png`, `prototypes-index.png`, and `engineer.png` (where the old newsletter hero went). Add pictures of a new prototype here when it's picked.
+`docs/prototypes/screenshots/` holds the hero build as it shipped: `home-hero.png` (E, live), `hero-a-split.png`, `hero-b-stage.png`, `hero-c-tour.png`, `hero-d-split-tour.png`, `home-full.png`, `prototypes-index.png`, and `engineer.png` (where the old newsletter hero went). Add pictures of a new prototype here when it's picked.
 
 ## Files
 
@@ -36,4 +37,4 @@ Clickable directions we compare by using them, not by looking at mockups. They l
 | `src/app/prototypes/` | Routes: the index, one folder per prototype. The layout sets noindex. |
 | `src/components/prototypes/` | Registry, floating switcher, index styles. |
 | `src/components/OfficePreview/` | The working Books window: copied office CSS, sample data, the scaled frame. Reusable for any os.esy.com surface. |
-| `src/components/HomeHero/` | The three hero directions. Stage is live on `/`. |
+| `src/components/HomeHero/` | The five hero directions. Stage Tour (E) is live on `/`. |

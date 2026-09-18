@@ -20,7 +20,8 @@ Clickable directions we compare by using them, not by looking at mockups. They l
 
 ## Adding a prototype
 
-1. Add an entry to `src/components/prototypes/registry.ts` (slug, name, date, summary, variants). The index at `/prototypes/` picks it up.
+1. Add an entry to `src/components/prototypes/registry.ts`: slug, name, date, a headline and intro (the index opens with the newest prototype's), `rounds`, and `variants`. Each variant needs a `round`, an `image`, and `mergeOf` if it combines others. The index at `/prototypes/` picks it up. That page is shared publicly (e.g. on LinkedIn), so it's a showcase: story first, then every variant as a card with a screenshot and a "Try it" link.
+   - Card images: a 1200×750 WebP of each variant's hero in `public/prototypes/<slug>/<variant>.webp`. Crop them from the screenshots below, skipping the site header.
 2. Put the variants in `src/components/<Feature>/` as real components. They should be shippable as-is, not throwaway code.
 3. Add `src/app/prototypes/<slug>/[variant]/page.tsx` that maps variant slugs to components and renders `<PrototypeBar>`. Copy `src/app/prototypes/hero/[direction]/page.tsx`.
 4. Tag any conversion links with a `proto-` source (e.g. `/waitlist/?src=proto-hero-stage`) so prototype clicks never count as real signups.

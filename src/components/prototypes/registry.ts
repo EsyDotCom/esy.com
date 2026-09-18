@@ -26,7 +26,7 @@ export const PROTOTYPES: Prototype[] = [
     name: 'Homepage hero for Esy OS',
     date: '2026-09-18',
     summary:
-      'Three ways to put Esy OS on the front of esy.com, each built around a working copy of the office’s Books page (os.esy.com/office/books) fed sample numbers.',
+      'Ways to put Esy OS on the front of esy.com (three directions, then two merges), each built around a working copy of the office’s Books page (os.esy.com/office/books) fed sample numbers.',
     variants: [
       {
         slug: 'split',
@@ -41,7 +41,6 @@ export const PROTOTYPES: Prototype[] = [
         name: 'Stage',
         title: 'Your AI team’s work and spend, on one page.',
         blurb: 'Centred headline over a full-width window. Numbered chips light each part of the page and say what it tells you.',
-        live: true,
       },
       {
         slug: 'tour',
@@ -49,6 +48,21 @@ export const PROTOTYPES: Prototype[] = [
         name: 'Tour',
         title: 'Every piece, every dollar, every sign-off.',
         blurb: 'Four plain questions on the left. Each one scrolls the window to its answer; it plays itself until you click.',
+      },
+      {
+        slug: 'split-tour',
+        key: 'D',
+        name: 'Split Tour',
+        title: 'Know what your AI made, and what it cost.',
+        blurb: 'A + C. A’s headline leads the left column; C’s questions play through beneath it, lighting a window that runs off the right edge.',
+      },
+      {
+        slug: 'stage-tour',
+        key: 'E',
+        name: 'Stage Tour',
+        title: 'Your AI team’s work and spend, on one page.',
+        blurb: 'B + C. B’s centred headline and button on top; under them, C’s questions sit beside the window and play through on their own.',
+        live: true,
       },
     ],
   },

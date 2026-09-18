@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import LightHeader from '@/components/LightHeader/LightHeader';
-import { HeroSplit, HeroStage, HeroTour } from '@/components/HomeHero';
+import { HeroSplit, HeroSplitTour, HeroStage, HeroStageTour, HeroTour } from '@/components/HomeHero';
 import PrototypeBar from '@/components/prototypes/PrototypeBar';
 import { findPrototype } from '@/components/prototypes/registry';
 
@@ -11,6 +11,8 @@ const HEROES: Record<string, React.ComponentType<{ src?: string }>> = {
   split: HeroSplit,
   stage: HeroStage,
   tour: HeroTour,
+  'split-tour': HeroSplitTour,
+  'stage-tour': HeroStageTour,
 };
 
 const prototype = findPrototype('hero')!;

@@ -1,25 +1,32 @@
 import NewsletterHomePage from "../components/NewsletterHome/NewsletterHomePage";
+import { HeroStage } from "../components/HomeHero";
 
-// Previous homepage (marketing-production story, retired 2026-09-13) is
-// archived with its metadata at src/archive/homepage-autopilot-story/route-page.js.
+// The homepage sells Esy OS (2026-09-18): hero B · Stage, a working copy of
+// the office's Books page under a plain promise. The other directions (Split,
+// Tour) are components in src/components/HomeHero and stay clickable at
+// /prototypes/.
+//
+// Earlier homepages:
+// - The Marketing Engineer front page (2026-09-13 → 09-18) now lives at
+//   /engineer (src/app/engineer/page.js, NewsletterHomePage).
+// - The marketing-production story (retired 2026-09-13) is archived with its
+//   metadata at src/archive/homepage-autopilot-story/route-page.js.
 
-const HOME_TITLE = "The Marketing Engineer — a newsletter by Esy";
+const HOME_TITLE = "Esy OS — your AI team's work and spend, on one page";
 const HOME_META_DESCRIPTION =
-  "Turn your marketing data into action with AI systems you can build yourself. Tutorials, guides, and news at the intersection of AI, marketing, and engineering.";
+  "Esy runs AI workers that make your marketing and keeps the books: what was made, what it cost for each client, and what's waiting for your sign-off.";
 
 export const metadata = {
   title: HOME_TITLE,
   description: HOME_META_DESCRIPTION,
   keywords: [
-    "The Marketing Engineer",
-    "marketing engineering",
-    "marketing engineering newsletter",
-    "Claude Code for marketing",
-    "AI marketing systems",
+    "Esy OS",
+    "AI workers",
+    "AI marketing production",
+    "AI cost tracking",
+    "AI spend by client",
+    "AI budgets",
     "marketing automation",
-    "SEO automation",
-    "Google Analytics automation",
-    "marketing data",
   ],
   // og:image / twitter:image come from src/app/opengraph-image.tsx —
   // don't pin images here or they override the generated card.
@@ -42,9 +49,11 @@ export const metadata = {
   },
 };
 
-// The homepage lists the latest articles. Same posture as the article pages: the
-// publish/unpublish webhook purges the published-articles tags (and revalidates
-// "/") for instant updates; this hourly revalidate is only a backstop.
+// Same sections as /engineer (latest articles, the properties, the clip.art
+// case study, the author, the weekly email); only the hero differs. Same
+// posture as /engineer: webhook purges for instant updates, hourly backstop.
 export const revalidate = 3600;
 
-export default NewsletterHomePage;
+export default function HomePage() {
+  return <NewsletterHomePage hero={<HeroStage />} />;
+}

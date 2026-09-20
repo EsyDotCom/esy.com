@@ -289,6 +289,9 @@ export default function Footer () {
           <FooterColumn 
             title="Learn"
             links={[
+              // The newsletter had no way in from the footer; it sits above
+              // the reference links because it's the thing to subscribe to.
+              { href: "/engineer/", text: "The Marketing Engineer" },
               { href: "/topics/", text: "Topics" },
               { href: "/courses/", text: "Courses" },
               { href: "/docs", text: "Docs" },

@@ -265,3 +265,17 @@
 .proto-bar a { padding: 7px 12px; border-radius: 8px; color: rgba(255, 255, 255, 0.8); text-decoration: none; white-space: nowrap; }
 .proto-bar a:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
 .proto-bar a[aria-current='page'] { background: #fff; color: #0a2540; }
+
+/* Poster for a variant with no screenshot yet: its colours and its headline,
+ * in the same 1200×750 slot a picture would fill. */
+.pi-poster {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 8px;
+  aspect-ratio: 1200 / 750;
+  padding: 26px;
+  text-align: left;
+}
+.pi-poster-key { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.72; }
+.pi-poster-title { font-family: var(--font-newsreader), Georgia, serif; font-size: clamp(1.1rem, 2.1vw, 1.7rem); line-height: 1.15; }

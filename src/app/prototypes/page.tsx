@@ -5,9 +5,9 @@ import LightHeader from '@/components/LightHeader/LightHeader';
 import { PROTOTYPES, type Prototype, type PrototypeVariant } from '@/components/prototypes/registry';
 import '@/components/prototypes/prototypes.css';
 
-const TITLE = 'We built five versions of the Esy homepage — Esy prototypes';
-const DESCRIPTION =
-  'Five working versions of the esy.com homepage hero, each with a live copy of Esy OS inside. Open any one and try it: hover the chart, switch to dark mode, let the questions play.';
+const [featured] = PROTOTYPES;
+const TITLE = `${featured.headline} — Esy prototypes`;
+const DESCRIPTION = featured.summary;
 
 // Shared on LinkedIn, so the title, description and card (opengraph-image.tsx)
 // carry the page. Still noindex (from the layout): it's for people with the link.
@@ -18,13 +18,28 @@ export const metadata = {
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION, site: '@EsyDotCom' },
 };
 
+// A variant gets a screenshot once it's been picked over; until then the card
+// draws a poster from the variant's colours and its own headline, so a new
+// prototype can go on the index the day it's built.
+function VariantShot({ v }: { v: PrototypeVariant }) {
+  if (v.image) return <Image src={v.image} alt="" width={1200} height={750} sizes="(max-width: 700px) 100vw, 380px" />;
+  const [a, b] = v.poster ?? ['#0a2540', '#00a896'];
+  const dark = !v.poster || v.poster[0].toLowerCase() < '#8';
+  return (
+    <span className="pi-poster" style={{ background: `linear-gradient(140deg, ${a}, ${b})`, color: dark ? '#eef4f3' : '#0a2540' }}>
+      <span className="pi-poster-key">{v.key} · {v.name}</span>
+      <span className="pi-poster-title">{v.title}</span>
+    </span>
+  );
+}
+
 const hrefOf = (p: Prototype, v: PrototypeVariant) => `/prototypes/${p.slug}/${v.slug}/`;
 
-// The index as a showcase: the newest prototype's story first (what we built,
-// how we narrowed it, what shipped), then every variant as a card with a
-// picture and one obvious thing to click.
+// The index as a showcase: the first prototype's story up top (what we built,
+// how we narrowed it, what shipped), then every prototype in registry order,
+// each variant a card with a picture and one obvious thing to click.
 export default function PrototypesIndex() {
-  const list = [...PROTOTYPES].sort((a, b) => b.date.localeCompare(a.date));
+  const list = PROTOTYPES;
   const [latest] = list;
   const shipped = latest.variants.find((v) => v.live);
 
@@ -88,7 +103,11 @@ export default function PrototypesIndex() {
           <section className="pi-wrap pi-featured-wrap" aria-label="The version we shipped">
             <div className="pi-featured">
               <Link href={hrefOf(latest, shipped)} className="pi-shot" aria-label={`Try ${shipped.key} · ${shipped.name}`}>
-                <Image src={shipped.image} alt="" width={1200} height={750} priority sizes="(max-width: 900px) 100vw, 720px" />
+                {shipped.image ? (
+                  <Image src={shipped.image} alt="" width={1200} height={750} priority sizes="(max-width: 900px) 100vw, 720px" />
+                ) : (
+                  <VariantShot v={shipped} />
+                )}
                 <span className="pi-shot-cta" aria-hidden="true">
                   <MousePointerClick size={16} /> Try it
                 </span>
@@ -131,7 +150,7 @@ export default function PrototypesIndex() {
                     .map((v) => (
                       <Link key={v.slug} href={hrefOf(p, v)} className={`pi-card ${v.live ? 'is-live' : ''}`}>
                         <span className="pi-card-shot">
-                          <Image src={v.image} alt="" width={1200} height={750} sizes="(max-width: 700px) 100vw, 380px" />
+                          <VariantShot v={v} />
                           {v.live && <span className="pi-live">Live</span>}
                         </span>
                         <span className="pi-card-body">

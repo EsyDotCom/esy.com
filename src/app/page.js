@@ -12,7 +12,7 @@ import { HeroStageTour } from "../components/HomeHero";
 // - The marketing-production story (retired 2026-09-13) is archived with its
 //   metadata at src/archive/homepage-autopilot-story/route-page.js.
 
-const HOME_TITLE = "Esy OS — your AI team's work and spend, on one page";
+const HOME_TITLE = "Esy OS — your AI Marketing team's work and spend, on one page";
 const HOME_META_DESCRIPTION =
   "Esy runs AI workers that make your marketing and keeps the books: what was made, what it cost for each client, and what's waiting for your sign-off.";
 

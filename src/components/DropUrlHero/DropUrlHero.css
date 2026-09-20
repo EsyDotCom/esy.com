@@ -1,0 +1,283 @@
+/* "Drop your URL" heroes. Brand palette as on the homepage: navy ink #0A2540,
+ * jade #00A896, warm sand #E8B04B for the one accent. Display type is
+ * Newsreader, the serif the office uses, so the page and the product agree. */
+
+.du {
+  --du-ink: #0a2540;
+  --du-ink-2: #41566d;
+  --du-jade: #00a896;
+  --du-jade-lit: #7ad7c8;
+  --du-sand: #e8b04b;
+  --du-line: rgba(255, 255, 255, 0.16);
+  --du-serif: var(--font-newsreader), Georgia, serif;
+  --du-sans: var(--font-inter), var(--font-geist-sans), system-ui, sans-serif;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 72px 24px 0;
+  font-family: var(--du-sans);
+  color: #eef4f3;
+}
+.du--daybreak { color: var(--du-ink); }
+
+/* The backdrop sits behind everything and never intercepts a click. The
+ * picture is generated art; the scrim is what guarantees the type stays
+ * readable over whatever came back from the render. */
+.du-bg { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.du-bg-img { object-fit: cover; object-position: center 62%; }
+.du-bg-scrim { position: absolute; inset: 0; }
+/* Dark heroes: darken the middle band the headline sits in, and the top where
+ * the site header crosses the picture. */
+.du-bg--dusk .du-bg-scrim,
+.du-bg--ledger .du-bg-scrim {
+  background:
+    linear-gradient(180deg, rgba(4, 14, 26, 0.72) 0%, rgba(4, 14, 26, 0.5) 46%, rgba(4, 14, 26, 0.34) 68%, rgba(4, 14, 26, 0.68) 100%),
+    radial-gradient(120% 70% at 50% 34%, rgba(4, 14, 26, 0.5), transparent 70%);
+}
+/* The light hero goes the other way: lift the paper so ink type holds. */
+.du-bg--daybreak .du-bg-scrim {
+  background:
+    linear-gradient(180deg, rgba(253, 250, 243, 0.9) 0%, rgba(253, 250, 243, 0.72) 42%, rgba(253, 250, 243, 0.42) 70%, rgba(243, 227, 205, 0.7) 100%);
+}
+
+.du-wrap { position: relative; max-width: 940px; margin: 0 auto; text-align: center; }
+.du--daybreak .du-wrap { max-width: 1240px; text-align: left; }
+
+/* ── Type ─────────────────────────────────────────────────────────────── */
+
+.du-h1 {
+  font-family: var(--du-serif);
+  font-weight: 400;
+  letter-spacing: -0.028em;
+  line-height: 1.02;
+  font-size: clamp(2.8rem, 6.4vw, 5.2rem);
+  margin: 22px 0 0;
+  text-wrap: balance;
+}
+.du-h1 em { display: block; font-style: italic; color: var(--du-sand); }
+.du--daybreak .du-h1 { font-size: clamp(2.4rem, 4.6vw, 4rem); }
+.du--daybreak .du-h1 em { display: inline; color: #b4651a; }
+.du-rotate { color: var(--du-sand); }
+.du-caret {
+  display: inline-block;
+  width: 3px;
+  height: 0.82em;
+  margin-left: 4px;
+  vertical-align: -0.06em;
+  background: currentColor;
+  animation: du-blink 1.05s steps(2, start) infinite;
+}
+@keyframes du-blink { to { opacity: 0; } }
+
+.du-tagline {
+  font-family: var(--du-serif);
+  font-style: italic;
+  font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+  margin: 20px auto 0;
+  max-width: 30em;
+  color: rgba(238, 244, 243, 0.82);
+}
+.du-sub { margin: 20px 0 0; font-size: 1.1rem; line-height: 1.6; max-width: 33em; color: var(--du-ink-2); }
+.du-hint { margin: 14px 0 0; font-size: 0.95rem; color: rgba(238, 244, 243, 0.72); font-style: italic; }
+.du-hint.is-light { color: var(--du-ink-2); }
+
+/* ── The field ────────────────────────────────────────────────────────── */
+.du-form {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 30px auto 0;
+  max-width: 660px;
+  padding: 8px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow: 0 24px 60px rgba(3, 12, 24, 0.38);
+  backdrop-filter: blur(14px);
+}
+.du--daybreak .du-form { margin-left: 0; }
+.du-form--light {
+  background: rgba(255, 255, 255, 0.82);
+  border-color: rgba(10, 37, 64, 0.12);
+  box-shadow: 0 18px 40px rgba(10, 37, 64, 0.12);
+}
+.du-form input {
+  flex: 1;
+  min-width: 0;
+  height: 52px;
+  padding: 0 16px;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 1.05rem;
+  color: #fff;
+}
+.du-form--light input { color: var(--du-ink); }
+.du-form input::placeholder { color: rgba(255, 255, 255, 0.6); }
+.du-form--light input::placeholder { color: rgba(65, 86, 109, 0.6); }
+.du-form input:focus { outline: none; }
+.du-form:focus-within { border-color: var(--du-jade-lit); }
+
+.du-generate {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 52px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 12px;
+  background: #0a2540;
+  color: #fff;
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.15s ease;
+}
+.du-generate:hover { background: #123a5e; transform: translateY(-1px); }
+.du-generate:disabled { opacity: 0.7; cursor: progress; transform: none; }
+
+.du-working {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0 0;
+  font-size: 0.95rem;
+  color: var(--du-jade-lit);
+}
+.du--daybreak .du-working { color: #0f766e; }
+
+/* ── The receipt ──────────────────────────────────────────────────────── */
+.du-summary {
+  margin: 26px auto 0;
+  max-width: 720px;
+  padding: 20px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--du-line);
+  backdrop-filter: blur(10px);
+}
+.du--daybreak .du-summary { margin-left: 0; background: rgba(255, 255, 255, 0.72); border-color: rgba(10, 37, 64, 0.1); }
+.du-summary-figs { display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: center; font-size: 0.98rem; }
+.du--daybreak .du-summary-figs { justify-content: flex-start; color: var(--du-ink-2); }
+.du-fig b { font-family: var(--du-serif); font-size: 1.28rem; font-weight: 600; }
+.du-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 46px;
+  margin-top: 16px;
+  padding: 0 20px;
+  border-radius: 11px;
+  font-weight: 650;
+  text-decoration: none;
+}
+.du-btn--primary { background: var(--du-jade); color: #04211d; }
+.du-btn--primary:hover { background: #17c0ad; }
+.du-disclaimer { margin: 14px 0 0; font-size: 0.82rem; opacity: 0.66; }
+
+
+/* ── Sample posts ─────────────────────────────────────────────────────── */
+.du-shelf { margin-top: 72px; }
+.du-marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
+.du-marquee-track { display: flex; gap: 18px; width: max-content; animation: du-scroll linear infinite; }
+.du-marquee:hover .du-marquee-track, .du-columns:hover .du-column { animation-play-state: paused; }
+@keyframes du-scroll { to { transform: translate3d(-50%, 0, 0); } }
+
+.du-card {
+  width: 268px;
+  flex: none;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--du-ink);
+  box-shadow: 0 18px 40px rgba(3, 14, 26, 0.3);
+  text-align: left;
+}
+.du-card-head { display: flex; align-items: center; gap: 8px; padding: 12px 14px 8px; font-size: 0.85rem; }
+.du-brand { font-weight: 650; }
+.du-ch--instagram { color: #c13584; }
+.du-ch--facebook { color: #1877f2; }
+.du-ch--linkedin { color: #0a66c2; }
+.du-flag { margin-left: auto; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #b4651a; }
+.du-caption { margin: 0; padding: 0 14px 10px; font-size: 0.9rem; line-height: 1.4; color: var(--du-ink-2); }
+.du-art {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 6px;
+  color: #fff;
+}
+.du-art-type { font-family: var(--du-serif); font-size: 1.6rem; line-height: 1.05; white-space: pre-line; letter-spacing: -0.02em; }
+.du-art-sub { font-size: 0.82rem; opacity: 0.85; }
+.du-art-cta { align-self: flex-start; margin-top: 6px; padding: 6px 12px; border-radius: 999px; background: rgba(255, 255, 255, 0.92); color: #0a2540; font-size: 0.76rem; font-weight: 650; }
+.du-card-foot { display: flex; gap: 14px; padding: 10px 14px 12px; font-size: 0.76rem; color: #7b8b9c; }
+.du-cost { margin-left: auto; font-weight: 700; color: #0f766e; }
+
+/* Daybreak's two drifting columns */
+.du-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 520px); gap: 48px; align-items: center; }
+.du-columns { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; height: 620px; overflow: hidden; }
+.du-column { display: flex; flex-direction: column; gap: 18px; animation: du-rise linear infinite; }
+@keyframes du-rise { to { transform: translate3d(0, -50%, 0); } }
+.du-columns-fade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, #fbf3e6 0%, rgba(251, 243, 230, 0) 18%, rgba(243, 227, 205, 0) 82%, #f3e3cd 100%);
+}
+
+/* ── Ledger ───────────────────────────────────────────────────────────── */
+.du-ledger-stage { margin-top: 30px; display: grid; gap: 22px; justify-items: center; }
+.du-ledger {
+  width: min(100%, 680px);
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(4, 26, 32, 0.66);
+  border: 1px solid rgba(122, 215, 200, 0.28);
+  backdrop-filter: blur(12px);
+  text-align: left;
+}
+.du-ledger-head { display: flex; align-items: baseline; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid rgba(122, 215, 200, 0.18); font-size: 0.95rem; }
+.du-ledger-head b { font-family: var(--du-serif); font-size: 1.9rem; color: var(--du-jade-lit); }
+.du-ledger-rows { list-style: none; margin: 0; padding: 6px 0; }
+.du-ledger-rows li { display: grid; grid-template-columns: minmax(0, 1fr) 84px 110px 64px; gap: 10px; align-items: center; padding: 9px 20px; font-size: 0.88rem; }
+.du-ledger-rows li + li { border-top: 1px solid rgba(122, 215, 200, 0.1); }
+.du-ledger-what { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.du-ledger-ch { text-transform: capitalize; opacity: 0.6; font-size: 0.8rem; }
+.du-ledger-ok { color: var(--du-jade-lit); font-size: 0.78rem; }
+.du-ledger-flag { color: var(--du-sand); font-size: 0.78rem; }
+.du-ledger-cost { text-align: right; font-variant-numeric: tabular-nums; font-weight: 650; }
+.du-ledger-rest { grid-template-columns: minmax(0, 1fr) 64px !important; opacity: 0.72; font-style: italic; }
+.du-ledger-foot { display: flex; align-items: center; gap: 9px; padding: 14px 20px; border-top: 1px solid rgba(122, 215, 200, 0.18); font-size: 0.85rem; color: rgba(238, 244, 243, 0.78); }
+.du-ledger-idle { max-width: 44em; font-size: 0.92rem; color: rgba(238, 244, 243, 0.7); }
+
+
+/* ── Narrow screens ───────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .du { padding-top: 48px; }
+  .du-split { grid-template-columns: 1fr; gap: 32px; }
+  .du-columns { height: 420px; }
+  .du-form { flex-wrap: wrap; }
+  .du-form input { width: 100%; flex-basis: 100%; }
+  .du-generate { width: 100%; justify-content: center; }
+  .du-ledger-rows li { grid-template-columns: minmax(0, 1fr) 64px; }
+  .du-ledger-ch, .du-ledger-ok, .du-ledger-flag { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .du-aurora, .du-marquee-track, .du-column, .du-caret { animation: none !important; }
+  .du-marquee { overflow-x: auto; }
+}
+
+/* The generated picture sits under the type; the scrim is what makes the
+ * headline readable over a render we didn't get to art-direct pixel by pixel. */
+.du-art > * { position: relative; z-index: 2; }
+.du-art-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.du-art-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(0deg, rgba(4, 14, 26, 0.86) 0%, rgba(4, 14, 26, 0.42) 42%, rgba(4, 14, 26, 0.08) 72%);
+}

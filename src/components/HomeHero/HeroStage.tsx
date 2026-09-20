@@ -28,7 +28,7 @@ export default function HeroStage({ src = 'hero-stage' }: { src?: string }) {
     <section className="hl hl-hero">
       <div className="hl-wrap hl-stage">
         <h1 className="hl-h1">
-          Your AI team&apos;s work and spend, <em>on one page</em>.
+          Your AI Marketing team&apos;s work and spend, <em>on one page</em>.
         </h1>
         <p className="hl-sub">
           See what your AI workers made this week, what it cost for each client, and what&apos;s waiting on you. Esy

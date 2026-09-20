@@ -20,7 +20,7 @@ export default function HeroStageTour({ src = 'hero-stage-tour' }: { src?: strin
         {/* ── B: the promise and one action, centred ───────────────────── */}
         <div className="hl-stage">
           <h1 className="hl-h1">
-            Your AI team&apos;s work and spend, <em>on one page</em>.
+            Your AI Marketing team&apos;s work and spend, <em>on one page</em>.
           </h1>
           <p className="hl-sub">
             See what your AI workers made this week, what it cost for each client, and what&apos;s waiting on you. Esy

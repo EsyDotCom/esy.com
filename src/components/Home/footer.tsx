@@ -312,7 +312,7 @@ export default function Footer () {
           <h4>From Esy</h4>
           <div className="footer-extended-links">
             <a href="https://clip.art" target="_blank" rel="noreferrer" className="footer-link">Clip.Art</a>
-            <a href="https://seopage.com" target="_blank" rel="noreferrer" className="footer-link">SEOPage</a>
+            <a href="https://seo.page" target="_blank" rel="noreferrer" className="footer-link">seo.page</a>
           </div>
         </div>
 

@@ -51,10 +51,10 @@ const PROPERTIES = [
     body: 'A live clip art library. Its search traffic is where most experiments start.',
   },
   {
-    name: 'SEOPage',
+    name: 'seo.page',
     wordmark: false,
-    href: 'https://seopage.com',
-    domain: 'seopage.com',
+    href: 'https://seo.page',
+    domain: 'seo.page',
     role: 'The service',
     body: 'The SEO systems from these articles, run every week for sites that want the results without the upkeep.',
   },

@@ -29,6 +29,7 @@ import NewsletterHero from './NewsletterHero';
 import WeeklyEmailBand from './WeeklyEmailBand';
 import { nlSerif } from './serif';
 import ClipArtWordmark from './ClipArtWordmark';
+import SeoPageWordmark from './SeoPageWordmark';
 import './NewsletterHome.css';
 
 const YOUTUBE_URL = 'https://www.youtube.com/@EsyDotCom';
@@ -40,11 +41,18 @@ const LATEST_COUNT = 12;
 
 // The two businesses the work runs on, both real and in production. The
 // articles document the work; these are where it happens. clip.art is set in
-// its own wordmark; SEOPage in the display serif.
-const PROPERTIES = [
+// its own wordmark, and SEOPage in its own (seopage¹).
+const PROPERTIES: {
+  name: string;
+  wordmark: 'clipart' | 'seopage';
+  href: string;
+  domain: string;
+  role: string;
+  body: string;
+}[] = [
   {
     name: 'clip.art',
-    wordmark: true,
+    wordmark: 'clipart',
     href: 'https://clip.art',
     domain: 'clip.art',
     role: 'The testbed',
@@ -52,7 +60,7 @@ const PROPERTIES = [
   },
   {
     name: 'seo.page',
-    wordmark: false,
+    wordmark: 'seopage',
     href: 'https://seo.page',
     domain: 'seo.page',
     role: 'The service',
@@ -206,7 +214,11 @@ export default async function NewsletterHomePage({
             {PROPERTIES.map(({ name, wordmark, href, domain, role, body }) => (
               <li key={name} className="nl-ledger-row">
                 <span className="nl-ledger-name">
-                  {wordmark ? <ClipArtWordmark className="nl-ledger-wordmark" /> : name}
+                  {wordmark === 'clipart' ? (
+                    <ClipArtWordmark className="nl-ledger-wordmark" />
+                  ) : (
+                    <SeoPageWordmark className="nl-ledger-seopage" />
+                  )}
                 </span>
                 <div className="nl-ledger-body">
                   <span className="nl-ledger-role">{role}</span>

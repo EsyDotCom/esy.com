@@ -240,6 +240,18 @@
 }
 /* clip.art's own mark, in navy; it draws with currentColor. */
 .nl-ledger-wordmark { display: block; height: 2.4rem; width: auto; color: var(--nl-navy); }
+/* SEOPage's mark: letters in navy (currentColor), the citation badge in its blue. */
+.seopage-wordmark {
+  display: inline-flex; align-items: flex-start;
+  font-weight: 700; line-height: 1; letter-spacing: -0.04em;
+}
+.seopage-wordmark-badge {
+  display: flex; align-items: center; justify-content: center;
+  margin-left: 0.29em; margin-top: 0.07em;
+  height: 1.5em; min-width: 1.5em; border-radius: 0.43em;
+  background: #3D6BFF; color: #fff; font-size: 0.28em; letter-spacing: 0;
+}
+.nl-ledger-seopage { font-size: 2.05rem; color: var(--nl-navy); }
 .nl-ledger-role {
   font-family: var(--font-geist-mono), ui-monospace, monospace;
   font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;

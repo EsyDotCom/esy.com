@@ -291,9 +291,9 @@ export default async function NewsletterHomePage({
               </div>
 
               <div>
-                <Link href="/workflows/generate-clip-art-asset/" className="nl-case-cta">
-                  See the workflow <ArrowRight size={14} aria-hidden="true" />
-                </Link>
+                <a href="https://clip.art" target="_blank" rel="noopener noreferrer" className="nl-case-cta">
+                  See clip.art <ArrowUpRight size={14} aria-hidden="true" />
+                </a>
               </div>
             </div>
 

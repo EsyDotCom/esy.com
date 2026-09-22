@@ -30,6 +30,7 @@ import WeeklyEmailBand from './WeeklyEmailBand';
 import { nlSerif } from './serif';
 import ClipArtWordmark from './ClipArtWordmark';
 import SeoPageWordmark from './SeoPageWordmark';
+import SeoPageReplay from './SeoPageReplay';
 import './NewsletterHome.css';
 
 const YOUTUBE_URL = 'https://www.youtube.com/@EsyDotCom';
@@ -64,9 +65,20 @@ const PROPERTIES: {
     href: 'https://seo.page',
     domain: 'seo.page',
     role: 'The service',
-    body: 'The SEO systems from these articles, run every week for sites that want the results without the upkeep.',
+    body: 'A self-serve builder for local SEO landing pages that get cited by AI and rank on Google. Each page is researched from live search data, then written, designed, and scored on Esy OS.',
   },
 ];
+
+// SEOPage's case study: the 19 steps of one production page build, in order,
+// as a live generate-seo-landing-page-v3 run on api.esy.com recorded them
+// (2026-09-22). Names are the run's own, shortened; repeats are counted.
+const SEOPAGE_STEPS: [string, number][] = [
+  ['SEO research', 1], ['Live Google results', 1], ['Competitor pages', 2],
+  ["The business's own site", 1], ['Market evidence', 1], ['Design research', 1],
+  ['Design critique', 1], ['Imagery direction', 1], ['Photography', 3],
+  ['Clip art pack', 4], ['Build the page', 1], ['Slop audit', 1], ['Slop fix', 1],
+];
+const SEOPAGE_STEP_COUNT = SEOPAGE_STEPS.reduce((n, [, times]) => n + times, 0);
 
 // The clip.art case study, restored from the Intelligence Circuitry homepage
 // (src/archive/homepage-intelligence-circuitry): the same style vocabulary,
@@ -279,9 +291,9 @@ export default async function NewsletterHomePage({
               </div>
 
               <div>
-                <Link href="/workflows/generate-clip-art-asset/" className="nl-case-cta">
-                  See the workflow <ArrowRight size={14} aria-hidden="true" />
-                </Link>
+                <a href="https://clip.art" target="_blank" rel="noopener noreferrer" className="nl-case-cta">
+                  See clip.art <ArrowUpRight size={14} aria-hidden="true" />
+                </a>
               </div>
             </div>
 
@@ -292,6 +304,69 @@ export default async function NewsletterHomePage({
                 </li>
               ))}
             </ul>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ══ SEOPage's proof, in its own ink band ══
+          A second band, not a second block in clip.art's: each property's
+          case study sits on its own ground and in its own accent. */}
+      <section className="nl-lab nl-lab--seopage" aria-label="Case study: SEOPage runs on Esy OS">
+        <div className="nl-container">
+          {/* ══ Case study: SEOPage runs on Esy OS ══
+              clip.art's layout mirrored: the product on the left (a replay of
+              the real builder at create.seopage.com), the story on the right.
+              The pills are the steps one production page build ran. */}
+          <div className="nl-case nl-case--flip">
+            <div className="nl-case-replay">
+              <SeoPageReplay />
+            </div>
+
+            <div className="nl-case-story">
+              <div className="nl-case-meta">
+                <span className="nl-case-tag">Case Study</span>
+                <span className="nl-case-live">
+                  <span className="nl-case-live-dot" aria-hidden="true" />
+                  Live · In Production
+                </span>
+              </div>
+
+              <h3 className="nl-case-title">
+                <span className="nl-case-title-mark nl-case-title-mark--seopage">
+                  <SeoPageWordmark weight="light" />
+                </span>
+                <span className="nl-case-title-tail">runs on Esy OS</span>
+              </h3>
+
+              <p className="nl-case-desc">
+                SEO landing pages that get cited by AI and rank on Google. A
+                business types four details; Esy workflows research the market,
+                write, design, illustrate, and judge the page. Claude Opus 5
+                builds it, Claude Fable 5 audits it, and the illustrations come
+                from clip.art&apos;s own workflows. Every run recorded on sources,
+                model, and cost.
+              </p>
+
+              <div className="nl-case-styles">
+                <span className="nl-case-styles-label">
+                  {SEOPAGE_STEP_COUNT} steps in a page build
+                </span>
+                <div className="nl-case-pills">
+                  {SEOPAGE_STEPS.map(([step, times]) => (
+                    <span key={step} className="nl-case-pill">
+                      {times > 1 ? `${step} ×${times}` : step}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <a href="https://seopage.com" target="_blank" rel="noopener noreferrer" className="nl-case-cta">
+                  See seopage.com <ArrowUpRight size={14} aria-hidden="true" />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>

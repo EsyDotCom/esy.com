@@ -12,11 +12,22 @@
 import { Funnel_Display } from 'next/font/google';
 
 // seopage.com's wordmark face, loaded only where this mark renders.
-const funnelDisplay = Funnel_Display({ weight: '700', subsets: ['latin'], display: 'swap' });
+const funnelDisplay = Funnel_Display({ weight: ['600', '700'], subsets: ['latin'], display: 'swap' });
 
-export default function SeoPageWordmark({ className = '' }: { className?: string }) {
+export default function SeoPageWordmark({
+  className = '',
+  weight = 'regular',
+}: {
+  className?: string;
+  /** 'light' sets the letters a weight down (600), for large display sizes. */
+  weight?: 'regular' | 'light';
+}) {
   return (
-    <span role="img" aria-label="SEOPage" className={`seopage-wordmark ${funnelDisplay.className} ${className}`}>
+    <span
+      role="img"
+      aria-label="SEOPage"
+      className={`seopage-wordmark ${weight === 'light' ? 'seopage-wordmark--light' : ''} ${funnelDisplay.className} ${className}`}
+    >
       seopage
       <span aria-hidden="true" className="seopage-wordmark-badge">1</span>
     </span>

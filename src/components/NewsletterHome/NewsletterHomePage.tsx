@@ -65,7 +65,7 @@ const PROPERTIES: {
     href: 'https://seo.page',
     domain: 'seo.page',
     role: 'The service',
-    body: 'The SEO systems from these articles, run every week for sites that want the results without the upkeep.',
+    body: 'A self-serve builder for local SEO landing pages that get cited by AI and rank on Google. Each page is researched from live search data, then written, designed, and scored on Esy OS.',
   },
 ];
 

@@ -248,7 +248,7 @@ export default async function NewsletterHomePage({
       {/* ══ The proof, on navy ══
           The case study has the band to itself now, so it lands as the
           evidence for the ledger above rather than a fourth card. */}
-      <section className="nl-lab" aria-label="Case studies: clip.art and SEOPage run on Esy OS">
+      <section className="nl-lab" aria-label="Case study: clip.art runs on Esy OS">
         <div className="nl-container">
           {/* ══ Case study: clip.art runs on Esy OS ══
               The two-column case study from the Intelligence Circuitry
@@ -306,6 +306,14 @@ export default async function NewsletterHomePage({
             </ul>
           </div>
 
+        </div>
+      </section>
+
+      {/* ══ SEOPage's proof, in its own ink band ══
+          A second band, not a second block in clip.art's: each property's
+          case study sits on its own ground and in its own accent. */}
+      <section className="nl-lab nl-lab--seopage" aria-label="Case study: SEOPage runs on Esy OS">
+        <div className="nl-container">
           {/* ══ Case study: SEOPage runs on Esy OS ══
               clip.art's layout mirrored: the product on the left (a replay of
               the real builder at create.seopage.com), the story on the right.
@@ -326,7 +334,7 @@ export default async function NewsletterHomePage({
 
               <h3 className="nl-case-title">
                 <span className="nl-case-title-mark nl-case-title-mark--seopage">
-                  <SeoPageWordmark />
+                  <SeoPageWordmark weight="light" />
                 </span>
                 <span className="nl-case-title-tail">runs on Esy OS</span>
               </h3>

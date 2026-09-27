@@ -102,3 +102,17 @@ export function resolveDesks(articles: AgenticVideo[]): ResolvedDesk[] {
     return { ...desk, lessons: [...published, ...planned], publishedCount: published.length };
   });
 }
+
+/** The newest published article as a lesson row, for heroes that show "the
+ *  latest" beside the signup. Null when nothing is published. */
+export function latestLesson(articles: AgenticVideo[]): Lesson | null {
+  const newest = [...articles].sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1))[0];
+  if (!newest) return null;
+  return {
+    title: newest.title,
+    published: true,
+    href: articlePath(newest.slug),
+    meta: [formatDate(newest.publishedAt), formatMinutes(newest.durationSeconds)].filter(Boolean).join(' · '),
+    video: Boolean(newest.muxPlaybackId),
+  };
+}

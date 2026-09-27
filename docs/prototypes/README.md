@@ -4,7 +4,7 @@ Clickable directions we compare by using them, not by looking at mockups. They l
 
 **The reference build is the homepage hero (2026-09-18):** three directions for selling Esy OS (A · Split, B · Stage, C · Tour), each built around a working copy of the office's Books page. Then came a second round that merged the parts Zev liked: D · Split Tour (A's headline, C's flow) and E · Stage Tour (B's centred top, C's side-by-side flow under it). **E shipped as the homepage** (2026-09-18 → 09-25). If you're building a new prototype, read that one first.
 
-**The Marketing Engineering hero (2026-09-25)** replaced it when esy.com became a publication that teaches, not a product page: A · Front Page, B · Syllabus, C · The Issue, at `/prototypes/education/`. **A shipped as the homepage.** Its desks link the real published articles (`src/components/EducationHero/desks.ts`), so a hero can point at live content without inventing any. The Esy OS story moved to os.esy.com's public homepage.
+**The Marketing Engineering hero (2026-09-25)** replaced it when esy.com became a publication that teaches, not a product page: A · Front Page, B · Syllabus, C · The Issue, at `/prototypes/education/`. A shipped first (2026-09-25). A second round (2026-09-27) put Zev's face on it: D · Face Split, E · Scene (a background generated through api.esy.com by `scripts/generate-education-backdrops.mjs`), F · Studio. F's big portrait pushed the signup below a phone's first screen, so a third round tried three phone layouts, compared side by side with measured button positions at `/prototypes/education/phones/`: G · Avatar, H · Profile, I · Photo after. **The homepage is F on desktop with H's profile row on phones.** Its desks link the real published articles (`src/components/EducationHero/desks.ts`), so a hero can point at live content without inventing any. The Esy OS story moved to os.esy.com's public homepage.
 
 ## The pattern
 
@@ -31,7 +31,7 @@ Clickable directions we compare by using them, not by looking at mockups. They l
 
 ## Screenshots
 
-`docs/prototypes/screenshots/` holds the hero build as it shipped: `home-hero.png` (E, live), `hero-a-split.png`, `hero-b-stage.png`, `hero-c-tour.png`, `hero-d-split-tour.png`, `home-full.png`, `prototypes-index.png`, and `engineer.png` (where the old newsletter hero went). Then the education build: `education-a-front-page.png` and `education-a-front-page-phone.png` (A, live), `education-b-syllabus.png`, `education-c-issue.png`. Add pictures of a new prototype here when it's picked.
+`docs/prototypes/screenshots/` holds the hero build as it shipped: `home-hero.png` (E, live), `hero-a-split.png`, `hero-b-stage.png`, `hero-c-tour.png`, `hero-d-split-tour.png`, `home-full.png`, `prototypes-index.png`, and `engineer.png` (where the old newsletter hero went). Then the education build: `education-a-front-page.png` and `education-a-front-page-phone.png` (A), `education-b-syllabus.png`, `education-c-issue.png`, `education-d-face-split.png`, `education-e-scene.png`, `education-f-studio.png` (F, the live desktop) with `education-f-studio-phone.png` (F's original phone layout), `education-h-studio-profile-phone.png` (the live phone layout), and `education-phones-compare.png` (F, G, H and I side by side). Add pictures of a new prototype here when it's picked.
 
 ## Files
 
@@ -41,4 +41,5 @@ Clickable directions we compare by using them, not by looking at mockups. They l
 | `src/components/prototypes/` | Registry, floating switcher, index styles. |
 | `src/components/OfficePreview/` | The working Books window: copied office CSS, sample data, the scaled frame. Reusable for any os.esy.com surface. |
 | `src/components/HomeHero/` | The five Esy OS hero directions. Stage Tour (E) was the homepage until 2026-09-25; it now lives on os.esy.com. |
-| `src/components/EducationHero/` | The three education heroes and their desks. Front Page (A) is live on `/`. |
+| `src/components/EducationHero/` | The education heroes and their desks. Studio (F) is live on `/`, with `phone="profile"` (H) on phones. |
+| `src/components/prototypes/PhoneFrame.tsx` | A prototype in a 390×844 phone frame that measures where its Subscribe button lands. Used by `/prototypes/education/phones/`. |

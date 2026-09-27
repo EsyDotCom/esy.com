@@ -1,0 +1,35 @@
+/* Phone-frame comparison (/prototypes/education/phones/). Inside `.proto`, so
+ * it uses the prototype tokens. Frames sit in a row that scrolls sideways on
+ * narrow screens rather than shrinking below phone size. */
+
+.pf-page { max-width: 1840px; margin: 0 auto; padding: 48px 24px 96px; }
+.pf-intro { max-width: 720px; margin-bottom: 32px; }
+.pf-intro h1 { font-size: clamp(2rem, 4vw, 3rem); margin-top: 10px !important; color: var(--p-ink); }
+.pf-intro p:last-child { margin-top: 12px !important; color: var(--p-ink-2); line-height: 1.55; }
+
+.pf-row { display: flex; gap: 28px; overflow-x: auto; padding-bottom: 12px; }
+.pf { flex: none; width: 410px; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.pf-head { display: flex; flex-direction: column; gap: 2px; }
+.pf-head b { font-size: 1rem; }
+.pf-head span { font-size: 0.85rem; color: var(--p-muted); }
+
+/* The device: a rounded bezel around the 390×844 frame. */
+.pf-device {
+  position: relative; width: 410px; padding: 10px; border-radius: 44px;
+  background: #0b1320; box-shadow: 0 30px 60px -30px rgba(10, 37, 64, 0.55);
+}
+.pf-device iframe { display: block; width: 390px; height: 844px; border: 0; border-radius: 34px; background: #fff; }
+/* The fold line sits over the frame, measured from the top of the screen. */
+.pf-fold {
+  position: absolute; left: 10px; right: 10px; margin-top: 10px; height: 0;
+  border-top: 2px dashed rgba(230, 72, 72, 0.85); pointer-events: none;
+}
+.pf-fold span {
+  position: absolute; right: 12px; top: -22px; padding: 2px 8px; border-radius: 6px;
+  font: 600 11px var(--p-sans); color: #fff; background: rgba(230, 72, 72, 0.9);
+}
+
+.pf-verdict { font-size: 0.9rem; font-weight: 600; color: var(--p-muted); }
+.pf-verdict--ok { color: #0a7a52; }
+.pf-verdict--low { color: #b3261e; }
+.pf-open { font-size: 0.85rem; font-weight: 600; color: var(--p-jade-ink); }

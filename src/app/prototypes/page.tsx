@@ -22,7 +22,12 @@ export const metadata = {
 // draws a poster from the variant's colours and its own headline, so a new
 // prototype can go on the index the day it's built.
 function VariantShot({ v }: { v: PrototypeVariant }) {
-  if (v.image) return <Image src={v.image} alt="" width={1200} height={750} sizes="(max-width: 700px) 100vw, 380px" />;
+  if (v.image) {
+    // `imageFit: 'contain'` shows an image of another shape (a 1.9:1 share
+    // card) whole inside the 16:10 slot, instead of cropping its sides.
+    const fit = v.imageFit === 'contain' ? { objectFit: 'contain' as const, objectPosition: 'center', background: '#e9edf1' } : undefined;
+    return <Image src={v.image} alt="" width={1200} height={750} sizes="(max-width: 700px) 100vw, 380px" style={fit} />;
+  }
   const [a, b] = v.poster ?? ['#0a2540', '#00a896'];
   const dark = !v.poster || v.poster[0].toLowerCase() < '#8';
   return (

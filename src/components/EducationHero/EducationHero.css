@@ -1,0 +1,261 @@
+/* Education heroes (2026-09-25): esy.com as a Marketing Engineering
+ * publication. They render inside NewsletterHomePage's `.nl` scope and reuse
+ * its tokens and display serif, so a hero can swap onto the homepage without
+ * the sections below changing look. One accent (jade), white ground,
+ * editorial type. The signup is the loudest thing above the fold. */
+
+.eh {
+  scroll-margin-top: 64px;
+  border-bottom: 1px solid var(--nl-seam);
+}
+
+/* ── Shared type ─────────────────────────────────────────────────────── */
+.eh-kicker {
+  margin: 0 0 18px;
+  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--nl-jade);
+}
+.eh-h1 {
+  margin: 0 0 22px;
+  font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif;
+  font-weight: 700; font-size: clamp(2.5rem, 5.6vw, 4.4rem);
+  line-height: 1.02; letter-spacing: -0.03em; color: var(--nl-navy);
+  text-wrap: balance;
+}
+.eh-h1 em { font-style: italic; color: var(--nl-jade); }
+.eh-h1--left { font-size: clamp(2.4rem, 4.6vw, 3.8rem); }
+.eh-sub {
+  margin: 0 auto 30px; max-width: 58ch;
+  font-size: 1.1rem; line-height: 1.65; color: var(--nl-ink-soft); text-wrap: pretty;
+}
+.eh-sub--left { margin-left: 0; }
+
+/* ── Channel line and byline ─────────────────────────────────────────── */
+.eh-channels {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px;
+  margin: 18px 0 0; font-size: 0.86rem; color: #6C757D;
+}
+.eh-channels a {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--nl-ink-soft); font-weight: 600; text-decoration: none;
+}
+.eh-channels a:hover { color: var(--nl-jade); }
+
+.eh-byline { display: flex; align-items: center; gap: 12px; margin-top: 28px; }
+.eh-byline--compact { margin-top: 22px; }
+/* globals.css zooms every portrait of Zev to crop it (img[src*="zev-uhuru"]),
+ * so the frame clips, like .nl-author-photo does. */
+.eh-byline-photo {
+  flex: none; width: 44px; height: 44px; border-radius: 50%; overflow: hidden;
+  background: var(--nl-bg-alt);
+}
+.eh-byline-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.eh-byline p { margin: 0; display: flex; flex-direction: column; gap: 2px; font-size: 0.9rem; line-height: 1.35; }
+.eh-byline b { color: var(--nl-navy); }
+.eh-byline span { color: var(--nl-ink-soft); }
+
+/* ── Lesson rows (A's columns and B's card) ──────────────────────────── */
+.eh-lessons { list-style: none; margin: 0; padding: 0; }
+.eh-lesson { border-top: 1px solid var(--nl-seam); }
+.eh-lesson-link, .eh-lesson--upcoming {
+  display: flex; flex-direction: column; gap: 4px; padding: 12px 0;
+  text-decoration: none;
+}
+.eh-lesson-title {
+  font-size: 0.95rem; font-weight: 600; line-height: 1.35; color: var(--nl-ink);
+}
+.eh-lesson-icon { display: inline; vertical-align: -2px; margin-right: 6px; color: var(--nl-jade); }
+.eh-lesson-meta {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.78rem; color: #6C757D;
+}
+.eh-lesson-link:hover .eh-lesson-title { color: var(--nl-jade); }
+.eh-lesson--upcoming .eh-lesson-title { font-weight: 500; color: var(--nl-ink-soft); }
+.eh-lesson--upcoming .eh-lesson-meta {
+  align-self: flex-start; padding: 1px 8px; border-radius: 999px;
+  background: var(--nl-bg-alt); border: 1px dashed rgba(10, 37, 64, 0.2);
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.02em;
+}
+
+/* ══ A · Front Page ════════════════════════════════════════════════════ */
+.eh-front { padding: 88px 0 64px; }
+.eh-front-head {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  margin-bottom: 64px;
+}
+.eh-front-head .eh-channels { justify-content: center; }
+.eh-front-head > * { animation: ehEnter 0.7s cubic-bezier(0.16, 1, 0.3, 1) backwards; }
+.eh-front-head > :nth-child(2) { animation-delay: 80ms; }
+.eh-front-head > :nth-child(3) { animation-delay: 160ms; }
+.eh-front-head > :nth-child(4) { animation-delay: 240ms; }
+
+/* The section index: a heavy rule on top, like a newspaper's section strip. */
+.eh-desks {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px;
+  border-top: 3px solid var(--nl-navy); padding-top: 22px;
+}
+.eh-desk-name {
+  margin: 0 0 6px;
+  font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif;
+  font-size: 1.7rem; font-weight: 700; letter-spacing: -0.01em; color: var(--nl-navy);
+}
+.eh-desk-line { margin: 0 0 12px; font-size: 0.9rem; line-height: 1.5; color: var(--nl-ink-soft); min-height: 2.7em; }
+
+/* ══ B · Syllabus and C · Issue: copy left, the thing on the right ═══ */
+.eh-syllabus, .eh-issue { padding: 80px 0 88px; }
+.eh-split {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 56px; align-items: center;
+}
+.eh-split--issue { align-items: start; }
+.eh-split-copy > * { animation: ehEnter 0.7s cubic-bezier(0.16, 1, 0.3, 1) backwards; }
+.eh-split-copy > :nth-child(2) { animation-delay: 80ms; }
+.eh-split-copy > :nth-child(3) { animation-delay: 160ms; }
+.eh-split-copy > :nth-child(4) { animation-delay: 240ms; }
+.eh-split-copy > :nth-child(5) { animation-delay: 320ms; }
+
+/* ── B's curriculum card ─────────────────────────────────────────────── */
+.eh-card {
+  border: 1px solid var(--nl-seam); border-radius: 18px; background: #FFFFFF;
+  box-shadow: 0 30px 60px -30px rgba(10, 37, 64, 0.28), 0 2px 6px rgba(10, 37, 64, 0.04);
+  overflow: hidden;
+}
+.eh-card-head { padding: 20px 24px 0; background: var(--nl-bg-alt); border-bottom: 1px solid var(--nl-seam); }
+.eh-card-label {
+  display: block; margin-bottom: 12px;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #6C757D;
+}
+.eh-tabs { display: flex; gap: 4px; }
+.eh-tab {
+  position: relative; padding: 10px 16px 12px;
+  font: inherit; font-size: 0.95rem; font-weight: 600; color: var(--nl-ink-soft);
+  background: none; border: none; cursor: pointer; border-radius: 8px 8px 0 0;
+}
+.eh-tab:hover { color: var(--nl-navy); }
+.eh-tab[aria-selected='true'] { color: var(--nl-navy); background: #FFFFFF; box-shadow: 0 1px 0 #FFFFFF; }
+.eh-tab[aria-selected='true']::after {
+  content: ''; position: absolute; left: 12px; right: 12px; bottom: 0; height: 2px;
+  background: rgba(0, 168, 150, 0.25);
+}
+.eh-tab-clock {
+  position: absolute; left: 12px; bottom: 0; height: 2px; width: calc(100% - 24px);
+  background: var(--nl-jade); transform-origin: left; z-index: 1;
+  animation: ehClock linear forwards;
+}
+@keyframes ehClock { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.eh-tab:focus-visible { outline: 2px solid var(--nl-jade); outline-offset: -2px; }
+
+.eh-card-body { padding: 22px 24px 8px; min-height: 360px; animation: ehFade 0.35s ease; }
+.eh-card-line { margin: 0 0 14px; font-size: 1.05rem; line-height: 1.5; color: var(--nl-ink); font-weight: 500; }
+.eh-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.eh-chip {
+  padding: 4px 10px; border-radius: 999px; font-size: 0.78rem; font-weight: 600;
+  color: #007f72; background: rgba(0, 168, 150, 0.08);
+}
+.eh-lessons--card .eh-lesson-link, .eh-lessons--card .eh-lesson--upcoming {
+  flex-direction: row; justify-content: space-between; align-items: baseline; gap: 16px;
+}
+.eh-lessons--card .eh-lesson-meta { flex-shrink: 0; }
+.eh-card-foot {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px;
+  padding: 14px 24px; border-top: 1px solid var(--nl-seam);
+  font-size: 0.82rem; color: #6C757D;
+}
+.eh-card-foot .eh-channels { margin: 0; }
+
+/* ── C's inbox ───────────────────────────────────────────────────────── */
+.eh-inbox-tabs { display: flex; gap: 6px; margin-bottom: 12px; }
+.eh-inbox-tab {
+  padding: 7px 14px; border-radius: 999px;
+  font: inherit; font-size: 0.85rem; font-weight: 600; color: var(--nl-ink-soft);
+  background: var(--nl-bg-alt); border: 1px solid var(--nl-seam); cursor: pointer;
+}
+.eh-inbox-tab:hover { color: var(--nl-navy); border-color: rgba(10, 37, 64, 0.25); }
+.eh-inbox-tab[aria-selected='true'] { color: #FFFFFF; background: var(--nl-navy); border-color: var(--nl-navy); }
+.eh-inbox-tab:focus-visible { outline: 2px solid var(--nl-jade); outline-offset: 2px; }
+
+.eh-mail {
+  border: 1px solid var(--nl-seam); border-radius: 16px; background: #FFFFFF; overflow: hidden;
+  box-shadow: 0 30px 60px -30px rgba(10, 37, 64, 0.28), 0 2px 6px rgba(10, 37, 64, 0.04);
+  animation: ehFade 0.35s ease;
+}
+.eh-mail-envelope {
+  display: flex; gap: 14px; padding: 18px 22px;
+  background: var(--nl-bg-alt); border-bottom: 1px solid var(--nl-seam);
+}
+.eh-mail-avatar {
+  flex: none; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%;
+  font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 1.2rem;
+  color: #FFFFFF; background: var(--nl-navy);
+}
+.eh-mail-envelope p { margin: 0; }
+.eh-mail-from { font-size: 0.85rem; color: var(--nl-ink); }
+.eh-mail-from span { margin-left: 6px; color: #6C757D; }
+.eh-mail-subject { margin-top: 3px !important; font-size: 1rem; font-weight: 700; color: var(--nl-navy); }
+.eh-mail-pre { margin-top: 2px !important; font-size: 0.86rem; color: #6C757D; }
+
+.eh-mail-body { padding: 24px 28px 26px; }
+.eh-mail-desk {
+  margin: 0 0 8px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--nl-jade);
+}
+.eh-mail-title {
+  margin: 0 0 12px;
+  font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif;
+  font-size: 1.65rem; font-weight: 700; line-height: 1.12; letter-spacing: -0.01em; color: var(--nl-navy);
+  text-wrap: balance;
+}
+.eh-mail-p { margin: 0 0 10px; font-size: 0.93rem; line-height: 1.6; color: var(--nl-ink-soft); }
+.eh-mail-product {
+  margin: 12px 0 0; padding: 10px 14px; border-left: 3px solid var(--nl-jade);
+  background: rgba(0, 168, 150, 0.06); font-size: 0.9rem; font-weight: 600; color: var(--nl-navy);
+}
+.eh-mail-read {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 14px;
+  font-size: 0.9rem; font-weight: 600; color: var(--nl-jade);
+}
+.eh-mail-section {
+  margin: 22px 0 8px; padding-top: 16px; border-top: 1px solid var(--nl-seam);
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #6C757D;
+}
+.eh-mail-links { margin: 0; padding-left: 18px; }
+.eh-mail-links li { margin: 0 0 6px; font-size: 0.88rem; line-height: 1.5; color: var(--nl-ink-soft); }
+.eh-mail-links b { color: var(--nl-ink); }
+.eh-mail-tool {
+  display: flex; gap: 10px; align-items: flex-start; margin: 16px 0 0; padding: 12px 14px;
+  border-radius: 10px; background: var(--nl-bg-alt); font-size: 0.86rem; line-height: 1.5; color: var(--nl-ink-soft);
+}
+.eh-mail-tool svg { flex: none; margin-top: 3px; color: var(--nl-jade); }
+.eh-mail-tool b { color: var(--nl-ink); }
+
+.eh-caption { display: flex; align-items: center; gap: 10px; margin: 14px 0 0; font-size: 0.82rem; color: #6C757D; }
+.eh-caption-tag {
+  padding: 2px 8px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; color: #007f72; background: rgba(0, 168, 150, 0.1);
+}
+
+/* ── Motion ──────────────────────────────────────────────────────────── */
+@keyframes ehEnter { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@keyframes ehFade { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .eh *, .eh *::after { animation: none !important; }
+}
+
+/* ── Narrow screens: everything stacks, copy first ───────────────────── */
+@media (max-width: 960px) {
+  .eh-split { grid-template-columns: minmax(0, 1fr); gap: 44px; }
+  .eh-desks { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 36px; }
+}
+@media (max-width: 560px) {
+  .eh-front { padding: 56px 0 44px; }
+  .eh-syllabus, .eh-issue { padding: 52px 0 60px; }
+  .eh-desks { grid-template-columns: minmax(0, 1fr); }
+  .eh-desk-line { min-height: 0; }
+  .eh-tabs { overflow-x: auto; }
+  .eh-tab { padding: 10px 12px 12px; }
+  .eh-card-body { padding: 18px 16px 6px; min-height: 0; }
+  .eh-card-head, .eh-card-foot { padding-left: 16px; padding-right: 16px; }
+  .eh-lessons--card .eh-lesson-link, .eh-lessons--card .eh-lesson--upcoming { flex-direction: column; gap: 4px; }
+  .eh-mail-body { padding: 20px 18px 22px; }
+  .eh-mail-envelope { padding: 14px 16px; }
+}

@@ -259,3 +259,150 @@
   .eh-mail-body { padding: 20px 18px 22px; }
   .eh-mail-envelope { padding: 14px 16px; }
 }
+
+/* ══ Round 2: heroes with Zev's face (2026-09-27) ════════════════════════ */
+
+/* Shared on-dark type for E and F. */
+.eh-kicker--onDark { color: var(--nl-jade-bright); }
+.eh-h1--onDark { color: #FFFFFF; }
+.eh-h1--onDark em { color: var(--nl-jade-bright); }
+.eh-sub--onDark { color: rgba(255, 255, 255, 0.78); }
+.eh-scene .eh-channels, .eh-studio .eh-channels { color: rgba(255, 255, 255, 0.55); }
+.eh-scene .eh-channels a, .eh-studio .eh-channels a { color: rgba(255, 255, 255, 0.85); }
+.eh-scene .eh-channels a:hover, .eh-studio .eh-channels a:hover { color: var(--nl-jade-bright); }
+
+/* ── D · Face Split ─────────────────────────────────────────────────── */
+.eh-face { padding: 72px 0 84px; }
+.eh-face .eh-split-copy > * { animation: ehEnter 0.7s cubic-bezier(0.16, 1, 0.3, 1) backwards; }
+.eh-face-figure { position: relative; margin: 0; display: flex; justify-content: center; padding: 24px 0 40px; }
+/* The ring: a jade gradient edge and a soft wash behind, so the face is the
+   brightest thing on the page after the button. */
+.eh-face-ring {
+  position: relative; width: min(420px, 78vw); aspect-ratio: 1; border-radius: 50%; padding: 10px;
+  background: linear-gradient(140deg, var(--nl-jade-bright), var(--nl-jade) 55%, rgba(0, 168, 150, 0.25));
+  box-shadow: 0 40px 80px -40px rgba(10, 37, 64, 0.45);
+}
+.eh-face-ring::before {
+  content: ''; position: absolute; inset: -18%; z-index: -1; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0, 168, 150, 0.16), transparent);
+}
+/* The photo circle. globals.css zooms every zev-uhuru image (it's cropped for
+   small avatars); a hero-size portrait wants the shoulders, so zoom less. */
+.eh-face-photo {
+  position: relative; width: 100%; height: 100%; border-radius: 50%; overflow: hidden;
+  border: 6px solid #FFFFFF; background: var(--nl-bg-alt);
+  --zev-avatar-scale: 1.1; --zev-avatar-x: 0%; --zev-avatar-y: 3%;
+}
+.eh-face-photo img { object-fit: cover; }
+.eh-face-card {
+  position: absolute; display: flex; flex-direction: column; gap: 3px;
+  max-width: 250px; padding: 14px 16px; border-radius: 14px;
+  background: #FFFFFF; border: 1px solid var(--nl-seam);
+  box-shadow: 0 18px 40px -18px rgba(10, 37, 64, 0.35);
+  font-size: 0.86rem; line-height: 1.4; color: var(--nl-ink-soft); text-decoration: none;
+  animation: ehEnter 0.7s cubic-bezier(0.16, 1, 0.3, 1) 300ms backwards;
+}
+.eh-face-card b { color: var(--nl-navy); font-size: 0.95rem; }
+.eh-face-card--who { left: 0; top: 30px; }
+.eh-face-card--latest { right: 0; bottom: 18px; animation-delay: 450ms; }
+.eh-face-card--latest:hover b { color: var(--nl-jade); }
+.eh-face-card-label {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--nl-jade);
+}
+.eh-face-card-meta { display: inline-flex; align-items: center; gap: 4px; font-size: 0.78rem; color: #6C757D; }
+
+/* ── E · Scene ──────────────────────────────────────────────────────── */
+.eh-scene { position: relative; overflow: hidden; background: #061527; border-bottom: 0; }
+.eh-scene-bg { object-fit: cover; object-position: 70% center; }
+/* Navy from the left: the copy side stays dark whatever the picture does. */
+.eh-scene-shade {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(6, 21, 39, 0.96) 0%, rgba(6, 21, 39, 0.82) 38%, rgba(6, 21, 39, 0.2) 70%, rgba(6, 21, 39, 0.05) 100%);
+}
+/* Scoped twice so it beats .nl-container's padding shorthand. */
+.eh-scene .eh-scene-inner { position: relative; padding-top: 104px; padding-bottom: 112px; }
+.eh-scene-inner > * { max-width: 600px; animation: ehEnter 0.7s cubic-bezier(0.16, 1, 0.3, 1) backwards; }
+.eh-scene-inner > :nth-child(2) { animation-delay: 80ms; }
+.eh-scene-inner > :nth-child(3) { animation-delay: 160ms; }
+.eh-scene-inner > :nth-child(4) { animation-delay: 240ms; }
+.eh-scene-inner > :nth-child(5) { animation-delay: 320ms; }
+.eh-scene-byline { display: flex; align-items: center; gap: 12px; margin-top: 26px; }
+.eh-scene-avatar {
+  flex: none; width: 48px; height: 48px; border-radius: 50%; overflow: hidden;
+  box-shadow: 0 0 0 2px rgba(0, 212, 170, 0.7);
+}
+.eh-scene-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.eh-scene-byline p { margin: 0; display: flex; flex-direction: column; font-size: 0.9rem; line-height: 1.35; }
+.eh-scene-byline b { color: #FFFFFF; }
+.eh-scene-byline span { color: rgba(255, 255, 255, 0.7); }
+
+/* ── F · Studio ─────────────────────────────────────────────────────── */
+.eh-studio { position: relative; overflow: hidden; background: #0A1626; border-bottom: 0; }
+/* The headshot in a large jade-ringed circle, right of the copy. zev-uhuru.png
+   is cropped to a circle on white, so it can only be shown as a circle.
+   globals.css zooms every zev-uhuru image for small avatars; at this size we
+   want the shoulders, so it zooms less (just enough to hide the white rim). */
+.eh-studio-photo { order: 2; display: flex; justify-content: center; }
+.eh-studio-ring {
+  position: relative; width: min(440px, 36vw); aspect-ratio: 1; border-radius: 50%; padding: 8px;
+  background: linear-gradient(140deg, var(--nl-jade-bright), var(--nl-jade) 55%, rgba(0, 168, 150, 0.2));
+  box-shadow: 0 40px 90px -40px rgba(0, 0, 0, 0.8);
+}
+.eh-studio-ring::before {
+  content: ''; position: absolute; inset: -22%; z-index: -1; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0, 212, 170, 0.18), transparent);
+}
+.eh-studio-circle {
+  position: relative; width: 100%; height: 100%; border-radius: 50%; overflow: hidden;
+  border: 5px solid #0A1626;
+  --zev-avatar-scale: 1.1; --zev-avatar-x: 0%; --zev-avatar-y: 3%;
+}
+.eh-studio-circle img { object-fit: cover; }
+.eh-studio .eh-studio-inner {
+  position: relative; padding-top: 96px; padding-bottom: 104px;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 56px; align-items: center;
+}
+/* The dark-tone signup centres itself for the closing band; here it lines up with the copy. */
+.eh-scene .nl-signup--dark, .eh-studio .nl-signup--dark { margin-left: 0; margin-right: 0; }
+.eh-studio-copy { order: 1; max-width: 580px; }
+.eh-studio-copy > * { animation: ehEnter 0.7s cubic-bezier(0.16, 1, 0.3, 1) backwards; }
+.eh-studio-copy > :nth-child(2) { animation-delay: 80ms; }
+.eh-studio-copy > :nth-child(3) { animation-delay: 160ms; }
+.eh-studio-copy > :nth-child(4) { animation-delay: 240ms; }
+.eh-studio-hello {
+  margin: 0 0 10px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif;
+  font-style: italic; font-weight: 600; font-size: 1.6rem; color: var(--nl-jade-bright);
+}
+.eh-studio-proof { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; margin-top: 30px; }
+.eh-studio-proof-label {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255, 255, 255, 0.5);
+}
+.eh-studio-proof a { display: inline-flex; align-items: center; color: rgba(255, 255, 255, 0.88); text-decoration: none; }
+.eh-studio-proof a:hover { color: #FFFFFF; }
+.eh-studio-clipart { height: 1.6rem; width: auto; display: block; }
+.eh-studio-seopage { font-size: 1.55rem; }
+.eh-studio-latest {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 20px;
+  font-size: 0.9rem; color: rgba(255, 255, 255, 0.78); text-decoration: none;
+}
+.eh-studio-latest span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--nl-jade-bright);
+}
+.eh-studio-latest:hover { color: #FFFFFF; }
+
+/* ── Round 2 on narrow screens ──────────────────────────────────────── */
+@media (max-width: 960px) {
+  .eh-face-figure { padding-top: 8px; }
+  /* The circle moves above the copy. */
+  .eh-studio .eh-studio-inner { grid-template-columns: minmax(0, 1fr); gap: 36px; padding-top: 56px; padding-bottom: 64px; }
+  .eh-studio-photo { order: 0; }
+  .eh-studio-ring { width: min(260px, 66vw); }
+  .eh-scene-shade { background: linear-gradient(0deg, rgba(6, 21, 39, 0.95) 30%, rgba(6, 21, 39, 0.7) 100%); }
+  .eh-scene .eh-scene-inner { padding-top: 72px; padding-bottom: 76px; }
+}
+@media (max-width: 560px) {
+  .eh-face { padding: 48px 0 56px; }
+  .eh-face-card { position: relative; left: auto; right: auto; top: auto; bottom: auto; max-width: none; margin-top: 12px; }
+  .eh-face-figure { flex-direction: column; align-items: center; }
+  .eh-face-ring { width: min(300px, 80vw); }
+}

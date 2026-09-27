@@ -176,6 +176,12 @@ export const PROTOTYPES: Prototype[] = [
         summary:
           'Same promise and the same signup in all three. A sells a publication with a beat, B sells a curriculum, C shows the email itself.',
       },
+      {
+        n: 2,
+        title: 'Put a face on it',
+        summary:
+          'A newsletter is a person writing to you, so round 2 shows the person. D sets the portrait beside the signup, E puts the promise over a generated scene with a face byline, F makes Zev’s headshot the cover of a dark, first-person page. F shipped.',
+      },
     ],
     variants: [
       {
@@ -187,8 +193,7 @@ export const PROTOTYPES: Prototype[] = [
         blurb:
           'A centred masthead and signup over a newspaper-style index of the four desks, each with its latest pieces.',
         poster: ['#ffffff', '#cfe3df'],
-        live: true,
-        liveHref: '/',
+        // Was the homepage 2026-09-25 → 09-27, until F · Studio replaced it.
       },
       {
         slug: 'syllabus',
@@ -209,6 +214,38 @@ export const PROTOTYPES: Prototype[] = [
         blurb:
           'The product is the email, so the hero shows one: three sample issues as they land in an inbox, beside the signup.',
         poster: ['#0a2540', '#00d4aa'],
+      },
+      {
+        slug: 'face-split',
+        key: 'D',
+        name: 'Face Split',
+        round: 2,
+        title: 'Learn to build the AI systems that run marketing.',
+        blurb:
+          'Copy and signup on the left; Zev’s portrait on the right in a jade ring, with cards for who he is and the latest issue.',
+        poster: ['#ffffff', '#00a896'],
+      },
+      {
+        slug: 'scene',
+        key: 'E',
+        name: 'Scene',
+        round: 2,
+        title: 'Learn to build the AI systems that run marketing.',
+        blurb:
+          'White type over a background generated through api.esy.com, with a small face byline under the signup: written by Zev.',
+        poster: ['#061527', '#12564f'],
+      },
+      {
+        slug: 'studio',
+        key: 'F',
+        name: 'Studio',
+        round: 2,
+        title: 'I build the AI systems that run marketing, and show you how.',
+        blurb:
+          'A magazine cover in the first person: navy, Zev’s headshot large in a jade ring beside “Hi, I’m Zev”, with clip.art and SEOPage as proof.',
+        poster: ['#0a1626', '#0a2540'],
+        live: true,
+        liveHref: '/',
       },
     ],
   },

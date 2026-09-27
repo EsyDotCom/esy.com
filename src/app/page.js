@@ -1,14 +1,17 @@
 import NewsletterHomePage from "../components/NewsletterHome/NewsletterHomePage";
-import { EduFrontPage, resolveDesks } from "../components/EducationHero";
+import { EduStudio, latestLesson, resolveDesks } from "../components/EducationHero";
 import { getAllAgenticArticles } from "../lib/published-articles";
 
-// The homepage is a Marketing Engineering publication (2026-09-25): hero A ·
-// Front Page, a centred promise and the weekly email over the four desks
-// (Build, Grow, Operate, Learn), each linking its latest articles. esy.com
-// teaches; the software no longer leads above the fold. The other directions
-// stay clickable at /prototypes/education/.
+// The homepage is a Marketing Engineering publication, fronted by Zev (2026-09-27):
+// hero F · Studio. Navy, "Hi, I'm Zev" and a first-person promise beside his
+// headshot in a jade ring, the weekly email signup, then the proof (clip.art and
+// SEOPage, where the systems run) and the newest real article. A newsletter is a
+// person writing to you, so the page leads with the person. The other education
+// directions stay clickable at /prototypes/education/.
 //
 // Earlier homepages:
+// - Education hero A · Front Page (2026-09-25 → 09-27): the promise over the
+//   four desks. EduFrontPage, still at /prototypes/education/front-page/.
 // - The Esy OS hero, E · Stage Tour (2026-09-18 → 09-25), is HeroStageTour in
 //   src/components/HomeHero, still clickable at /prototypes/hero/stage-tour/.
 // - The Marketing Engineer front page (2026-09-13 → 09-18) lives at
@@ -60,8 +63,8 @@ export const metadata = {
 export const revalidate = 3600;
 
 export default async function HomePage() {
-  // The desks link real articles, so they resolve against the same list the
-  // Latest section reads.
-  const desks = resolveDesks(await getAllAgenticArticles());
-  return <NewsletterHomePage hero={<EduFrontPage desks={desks} />} />;
+  // The hero's "latest" line reads the same article list as the Latest section,
+  // so the two can never disagree.
+  const articles = await getAllAgenticArticles();
+  return <NewsletterHomePage hero={<EduStudio desks={resolveDesks(articles)} latest={latestLesson(articles)} />} />;
 }

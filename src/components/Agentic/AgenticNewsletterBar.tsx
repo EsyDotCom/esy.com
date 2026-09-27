@@ -2,16 +2,18 @@
 
 import { useState, useEffect } from "react";
 import { EsyLoader } from "@/components/EsyLoader";
+import { useNewsletterSubscribe } from "@/hooks/useNewsletterSubscribe";
 import { navyCalmLightTheme as theme } from "@/lib/theme";
 
-type Status = "idle" | "loading" | "success" | "error" | "invalid";
-
-// Sticky capture bar on /agentic detail pages. Posts to the default (surviving)
-// newsletter endpoint so every Agentic surface feeds one Beehiiv list.
+// Capture bar under the video on article pages (and under the cover on
+// image-led ones). Subscribes through useNewsletterSubscribe, like every other
+// signup on the site: it sends the honeypot and fill-time signals the
+// newsletter route's bot check requires. (It used to post only the email, and
+// from 2026-09-08, when the route began requiring a fill time, the route took
+// every signup from here for a bot and silently dropped it.)
 export function AgenticNewsletterBar() {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<Status>("idle");
-  const [message, setMessage] = useState("");
+  const { subscribe, status, errorMessage, reset, honeypotProps } = useNewsletterSubscribe();
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 640);
@@ -20,49 +22,10 @@ export function AgenticNewsletterBar() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  const isValidEmail = (value: string) =>
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  // The hook validates the address and reports errors itself.
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const trimmed = email.trim();
-
-    if (!trimmed) {
-      setStatus("invalid");
-      setMessage("Please enter your email address.");
-      return;
-    }
-
-    if (!isValidEmail(trimmed)) {
-      setStatus("invalid");
-      setMessage("Please enter a valid email address.");
-      return;
-    }
-
-    setStatus("loading");
-    setMessage("");
-
-    try {
-      const res = await fetch("/api/newsletter/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: trimmed }),
-      });
-
-      const data = await res.json().catch(() => ({}));
-
-      if (!res.ok) {
-        setStatus("error");
-        setMessage(data.message || "Something went wrong. Please try again.");
-        return;
-      }
-
-      setStatus("success");
-      setEmail("");
-    } catch {
-      setStatus("error");
-      setMessage("Something went wrong. Please try again.");
-    }
+    subscribe(email);
   };
 
   return (
@@ -106,6 +69,8 @@ export function AgenticNewsletterBar() {
         </div>
 
         <div style={{ display: "flex", alignItems: isMobile ? "stretch" : "center", gap: "0.5rem", flexWrap: "wrap", flexDirection: isMobile ? "column" : "row" }}>
+          {/* Bot trap: off-screen, never focusable, never filled by a human. */}
+          <input {...honeypotProps} />
           {status === "success" ? (
             <p style={{ fontSize: "0.875rem", color: theme.success, margin: 0 }}>
               You&apos;re in! Check your inbox.
@@ -117,16 +82,13 @@ export function AgenticNewsletterBar() {
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
-                  if (status === "invalid" || status === "error") {
-                    setStatus("idle");
-                    setMessage("");
-                  }
+                  if (status === "error") reset();
                 }}
                 placeholder="you@example.com"
                 disabled={status === "loading"}
                 style={{
                   borderRadius: 8,
-                  border: `1px solid ${status === "invalid" ? theme.error : theme.border}`,
+                  border: `1px solid ${status === "error" ? theme.error : theme.border}`,
                   backgroundColor: theme.surfaceElevated,
                   padding: "0.5rem 0.75rem",
                   fontSize: "0.875rem",
@@ -168,7 +130,7 @@ export function AgenticNewsletterBar() {
         </div>
       </form>
 
-      {(status === "error" || status === "invalid") && message && (
+      {status === "error" && errorMessage && (
         <p
           style={{
             maxWidth: 1200,
@@ -178,7 +140,7 @@ export function AgenticNewsletterBar() {
             color: theme.error,
           }}
         >
-          {message}
+          {errorMessage}
         </p>
       )}
     </div>

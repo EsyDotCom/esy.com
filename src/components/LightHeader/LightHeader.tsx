@@ -206,12 +206,13 @@ export default function LightHeader({
           </div>
           )}
 
-          {/* The homepage sells Esy OS again (2026-09-18), so the header's one
-              action is the waitlist. The newsletter signup it replaced, for
-              reverting:
+          {/* No header action since 2026-09-27: esy.com teaches Marketing
+              Engineering, and the page's own signup is the one ask. The waitlist
+              link it carried from 2026-09-18, and the newsletter link before
+              that, for reverting:
+          <Link href="/waitlist/?src=header" className="lh-cta">Join the waitlist</Link>
           <Link href="/engineer/#subscribe" className="lh-cta">Subscribe</Link>
           */}
-          <Link href="/waitlist/?src=header" className="lh-cta">Join the waitlist</Link>
         </nav>
       </div>
     </header>

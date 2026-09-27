@@ -380,7 +380,10 @@
 .eh-studio-proof a { display: inline-flex; align-items: center; color: rgba(255, 255, 255, 0.88); text-decoration: none; }
 .eh-studio-proof a:hover { color: #FFFFFF; }
 .eh-studio-clipart { height: 1.6rem; width: auto; display: block; }
-.eh-studio-seopage { font-size: 1.55rem; }
+/* Optically matched to clip.art (measured at 3x): the same x-height (1.42rem
+   vs 1.55rem) and the same baseline (lifted 0.075em), so the two wordmarks read
+   as one row. A text wordmark and an SVG one don't line up by box. */
+.eh-studio-seopage { font-size: 1.42rem; position: relative; top: -0.075em; }
 .eh-studio-latest {
   display: inline-flex; align-items: center; gap: 8px; margin-top: 20px;
   font-size: 0.9rem; color: rgba(255, 255, 255, 0.78); text-decoration: none;

@@ -9,5 +9,7 @@ export { default as EduIssue } from './EduIssue';
 export { default as EduFaceSplit } from './EduFaceSplit';
 export { default as EduScene } from './EduScene';
 export { default as EduStudio } from './EduStudio';
+// Round 3 (2026-09-27): F's phone layouts; desktop is unchanged.
+export { EduStudioAfter, EduStudioAvatar, EduStudioProfile } from './EduStudio';
 export { latestLesson, resolveDesks } from './desks';
 export type { Lesson, ResolvedDesk } from './desks';

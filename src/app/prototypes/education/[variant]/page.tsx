@@ -6,6 +6,9 @@ import {
   EduIssue,
   EduScene,
   EduStudio,
+  EduStudioAfter,
+  EduStudioAvatar,
+  EduStudioProfile,
   EduSyllabus,
   latestLesson,
   resolveDesks,
@@ -30,6 +33,10 @@ const HEROES: Record<string, React.ComponentType<{ desks: ResolvedDesk[]; latest
   'face-split': EduFaceSplit,
   scene: EduScene,
   studio: EduStudio,
+  // Round 3: F's phone layouts (desktop is F either way).
+  'studio-avatar': EduStudioAvatar,
+  'studio-profile': EduStudioProfile,
+  'studio-after': EduStudioAfter,
 };
 
 const prototype = findPrototype('education')!;

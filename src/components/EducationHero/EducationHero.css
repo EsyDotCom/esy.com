@@ -406,3 +406,42 @@
   .eh-face-figure { flex-direction: column; align-items: center; }
   .eh-face-ring { width: min(300px, 80vw); }
 }
+
+/* ══ Round 3: F's phone layouts (2026-09-27) ═════════════════════════════
+   Desktop is identical for all four; under 960px `eh-studio--phone-*` picks
+   where the face goes. The identity row (.eh-studio-me) exists only on phones. */
+.eh-studio-me { display: none; }
+@media (max-width: 960px) {
+  /* G · Avatar and H · Profile: the big circle and the standalone greeting
+     step aside for the identity row. */
+  .eh-studio--phone-avatar .eh-studio-photo,
+  .eh-studio--phone-profile .eh-studio-photo,
+  .eh-studio--phone-avatar .eh-studio-hello--main,
+  .eh-studio--phone-profile .eh-studio-hello--main { display: none; }
+  .eh-studio--phone-avatar .eh-studio-me,
+  .eh-studio--phone-profile .eh-studio-me { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+  /* The photo circle; the global zev-uhuru zoom turned down, as on desktop. */
+  .eh-studio-me-photo {
+    flex: none; border-radius: 50%; overflow: hidden;
+    box-shadow: 0 0 0 3px var(--nl-jade-bright);
+    --zev-avatar-scale: 1.1; --zev-avatar-x: 0%; --zev-avatar-y: 3%;
+  }
+  .eh-studio-me-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .eh-studio-me-text { display: flex; flex-direction: column; gap: 2px; }
+  .eh-studio-me .eh-studio-hello { margin: 0; }
+  .eh-studio-me-role { font-size: 0.85rem; line-height: 1.35; color: rgba(255, 255, 255, 0.7); }
+
+  /* G · Avatar: a 64px face beside the greeting, no role line. */
+  .eh-studio--phone-avatar .eh-studio-me-photo { width: 64px; height: 64px; }
+  .eh-studio--phone-avatar .eh-studio-me-role { display: none; }
+
+  /* H · Profile: a 112px face with the name and role beside it. */
+  .eh-studio--phone-profile .eh-studio-me { margin-bottom: 22px; }
+  .eh-studio--phone-profile .eh-studio-me-photo {
+    width: 112px; height: 112px;
+    box-shadow: 0 0 0 4px var(--nl-jade-bright), 0 20px 40px -20px rgba(0, 0, 0, 0.8);
+  }
+
+  /* I · Photo after: the copy and signup first, the big circle under the form. */
+  .eh-studio--phone-after .eh-studio-photo { order: 2; }
+}

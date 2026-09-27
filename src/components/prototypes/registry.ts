@@ -182,6 +182,12 @@ export const PROTOTYPES: Prototype[] = [
         summary:
           'A newsletter is a person writing to you, so round 2 shows the person. D sets the portrait beside the signup, E puts the promise over a generated scene with a face byline, F makes Zev’s headshot the cover of a dark, first-person page. F shipped.',
       },
+      {
+        n: 3,
+        title: 'F on a phone',
+        summary:
+          'F’s big portrait pushes the signup below the first screen on a phone. Same desktop in all three; on phones G shrinks the face to an avatar, H makes it a profile row, and I moves the portrait under the form. Compare them side by side at /prototypes/education/phones/. H shipped.',
+      },
     ],
     variants: [
       {
@@ -244,8 +250,36 @@ export const PROTOTYPES: Prototype[] = [
         blurb:
           'A magazine cover in the first person: navy, Zev’s headshot large in a jade ring beside “Hi, I’m Zev”, with clip.art and SEOPage as proof.',
         poster: ['#0a1626', '#0a2540'],
+        // The live desktop; on phones the homepage uses H's profile row.
+      },
+      {
+        slug: 'studio-avatar',
+        key: 'G',
+        name: 'Studio · Avatar',
+        round: 3,
+        title: 'I build the AI systems that run marketing, and show you how.',
+        blurb: 'F on desktop. On a phone, a 64px photo sits beside “Hi, I’m Zev.” and the signup comes up on the first screen.',
+        poster: ['#0a1626', '#00a896'],
+      },
+      {
+        slug: 'studio-profile',
+        key: 'H',
+        name: 'Studio · Profile',
+        round: 3,
+        title: 'I build the AI systems that run marketing, and show you how.',
+        blurb: 'F on desktop. On a phone, a profile row: a 112px photo with name and role, then the headline and signup.',
+        poster: ['#0a1626', '#00d4aa'],
         live: true,
         liveHref: '/',
+      },
+      {
+        slug: 'studio-after',
+        key: 'I',
+        name: 'Studio · Photo after',
+        round: 3,
+        title: 'I build the AI systems that run marketing, and show you how.',
+        blurb: 'F on desktop. On a phone, the copy and signup come first and the big portrait sits under the form.',
+        poster: ['#0a2540', '#0a1626'],
       },
     ],
   },

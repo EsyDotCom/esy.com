@@ -3,7 +3,13 @@
  * Dark navy. Zev's headshot, large, in a jade-ringed circle on the right, so
  * the face is the first thing seen and the words beside it are his. Under the
  * signup, the proof: the two businesses the systems run on, in their own
- * wordmarks, and the newest real article. */
+ * wordmarks, and the newest real article.
+ *
+ * `phone` picks the layout under 960px only; desktop is the same for all:
+ *   photo   — the big circle above the copy (F as shipped; the signup can fall below the fold)
+ *   avatar  — a 64px photo inline with "Hi, I'm Zev." (G)
+ *   profile — a profile row: 112px photo, name and role, then the copy (H)
+ *   after   — copy and signup first, the big circle under the form (I) */
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13,9 +19,13 @@ import SeoPageWordmark from '@/components/NewsletterHome/SeoPageWordmark';
 import type { Lesson, ResolvedDesk } from './desks';
 import { EduSignup } from './shared';
 
-export default function EduStudio({ latest }: { desks: ResolvedDesk[]; latest?: Lesson | null }) {
+export type StudioPhoneLayout = 'photo' | 'avatar' | 'profile' | 'after';
+
+type StudioProps = { desks: ResolvedDesk[]; latest?: Lesson | null; phone?: StudioPhoneLayout };
+
+export default function EduStudio({ latest, phone = 'photo' }: StudioProps) {
   return (
-    <section className="eh eh-studio" id="subscribe">
+    <section className={`eh eh-studio eh-studio--phone-${phone}`} id="subscribe">
       <div className="nl-container eh-studio-inner">
         {/* The portrait: zev-uhuru.png, the headshot used across the site. It
             is cropped to a circle on a white ground, so it's shown in a circle. */}
@@ -28,7 +38,20 @@ export default function EduStudio({ latest }: { desks: ResolvedDesk[]; latest?: 
         </div>
 
         <div className="eh-studio-copy">
-          <p className="eh-studio-hello">Hi, I&apos;m Zev.</p>
+          {/* Phone-only identity row for the avatar and profile layouts: the
+              face shrinks to sit beside the greeting, so the signup stays on
+              the first screen. Hidden on desktop and in the other layouts. */}
+          <div className="eh-studio-me">
+            <span className="eh-studio-me-photo">
+              <Image src="/images/zev-uhuru.png" alt="" width={224} height={224} />
+            </span>
+            <span className="eh-studio-me-text">
+              <span className="eh-studio-hello">Hi, I&apos;m Zev.</span>
+              <span className="eh-studio-me-role">Marketing engineer · runs clip.art and SEOPage</span>
+            </span>
+          </div>
+
+          <p className="eh-studio-hello eh-studio-hello--main">Hi, I&apos;m Zev.</p>
           <h1 className="eh-h1 eh-h1--left eh-h1--onDark">
             I build the AI systems that <em>run marketing</em>, and show you how.
           </h1>
@@ -58,3 +81,8 @@ export default function EduStudio({ latest }: { desks: ResolvedDesk[]; latest?: 
     </section>
   );
 }
+
+/* The phone-layout prototypes (round 3), as components the prototype route can map to. */
+export const EduStudioAvatar = (props: StudioProps) => <EduStudio {...props} phone="avatar" />;
+export const EduStudioProfile = (props: StudioProps) => <EduStudio {...props} phone="profile" />;
+export const EduStudioAfter = (props: StudioProps) => <EduStudio {...props} phone="after" />;

@@ -108,7 +108,7 @@ The same 75 seconds ship three ways:
 
 The first vertical render put captions right over the text already on screen. The fix was to place captions only where nothing else is written.
 
-![The vertical cut, with captions placed clear of the on-screen text](/images/articles/how-we-made-our-explainer-video-in-code/vertical.jpg)
+<div class="ai-phone"><img src="/images/articles/how-we-made-our-explainer-video-in-code/vertical.jpg" alt="The vertical cut on a phone, with captions placed clear of the on-screen text"></div>
 
 ## Pick the thumbnail at phone size
 

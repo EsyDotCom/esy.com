@@ -41,7 +41,7 @@ export const agenticVideos: AgenticVideo[] = [
     durationSeconds: 0,
     publishedAt: "2026-09-27",
     muxPlaybackId: "",
-    thumbnailUrl: "/images/articles/how-we-made-our-explainer-video-in-code/cover.webp",
+    thumbnailUrl: "/images/articles/how-we-made-our-explainer-video-in-code/cover-nora-phone.webp",
     transcript: "",
     content: `We needed one video that explains SEOPage to the people it's for: plumbers, roofers, HVAC owners. Seventy-five seconds, with sound that means something in every second of it. We made it in one working session, and we built it in code: the scenes, the camera, the cursor, the captions, and three different cuts from one timeline.
 

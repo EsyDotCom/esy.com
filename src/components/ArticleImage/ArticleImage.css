@@ -149,7 +149,8 @@
 
 /* ══ B · Cover ════════════════════════════════════════════════════════ */
 .ai-cover-hero { position: relative; min-height: min(76vh, 720px); display: flex; align-items: flex-end; background: #0F1B33; overflow: hidden; }
-.ai-cover-img { object-fit: cover; object-position: 75% center; }
+/* Right-weighted and slightly high: covers put the subject right of the title, and heads sit near the top. */
+.ai-cover-img { object-fit: cover; object-position: 75% 20%; }
 /* Navy rising from the bottom-left: the title's side stays readable. */
 .ai-cover-shade {
   position: absolute; inset: 0;

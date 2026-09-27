@@ -3,12 +3,11 @@
 import React, { useState } from 'react';
 import { CheckCircle2 } from 'lucide-react';
 import { useNewsletterSubscribe } from '@/hooks/useNewsletterSubscribe';
-import { TurnstileWidget } from "@/components/Turnstile/TurnstileWidget";
 
 const NewsletterSection = () => {
   const [email, setEmail] = useState('');
   const [newsletterHovered, setNewsletterHovered] = useState(false);
-  const { subscribe, status, errorMessage, reset, honeypotProps, setTurnstileToken } = useNewsletterSubscribe();
+  const { subscribe, status, errorMessage, reset, honeypotProps } = useNewsletterSubscribe();
 
   const isError = status === 'error';
   const isSuccess = status === 'success';
@@ -143,7 +142,6 @@ const NewsletterSection = () => {
               <div style={styles.newsletterForm}>
                 {/* Bot trap: off-screen, never focusable, never filled by a human. */}
                 <input {...honeypotProps} />
-                <TurnstileWidget onToken={setTurnstileToken} />
                 <input
                   type="email"
                   placeholder="Enter your email"

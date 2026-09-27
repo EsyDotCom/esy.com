@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 
 import { EMAIL_REGEX, clientIp, detectBot } from '@/lib/botCheck';
-import { verifyTurnstile } from '@/lib/turnstile';
 
 // Only these are forwarded to Beehiiv as referring_site, so a spoofed `source`
 // in the request body cannot write arbitrary text into subscriber records.
@@ -18,7 +17,7 @@ function silentlyAccept(reason, meta) {
 
 export async function POST(request) {
   try {
-    const { email, hp, elapsedMs, source, turnstileToken } = await request.json();
+    const { email, hp, elapsedMs, source } = await request.json();
 
     if (!email || !EMAIL_REGEX.test(String(email).trim())) {
       return NextResponse.json(
@@ -41,17 +40,12 @@ export async function POST(request) {
     }
     if (bot) return silentlyAccept(bot.reason, { address });
 
-    /* Turnstile last: it costs a network round trip, so the free local gates
-       above run first. Rejections here are visible — a blocked or failed widget
-       is a real user's problem and they need to know the signup didn't land. */
-    const turnstile = await verifyTurnstile(turnstileToken, ip);
-    if (!turnstile.ok) {
-      console.warn('[newsletter] turnstile rejected:', turnstile.reason, { address });
-      return NextResponse.json(
-        { error: 'We could not verify that you are human. Please refresh and try again.' },
-        { status: 403 }
-      );
-    }
+    /* No Turnstile here (removed 2026-09-27; the waitlist keeps it). Its
+       Managed widget showed a "verify you are human" box to many real readers,
+       and a newsletter signup is a low-value target: the honeypot, fill-time
+       and per-IP gates above catch scripted fills, junk that slips through is
+       never sent to (nothing sends from this Beehiiv list), and it is filtered
+       before any import into Substack. */
 
     const apiKey = process.env.BEEHIIV_API_KEY;
     const publicationId = process.env.BEEHIIV_PUBLICATION_ID;

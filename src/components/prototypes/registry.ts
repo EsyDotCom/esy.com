@@ -106,8 +106,7 @@ export const PROTOTYPES: Prototype[] = [
         title: 'Your AI Marketing team’s work and spend, on one page.',
         blurb: 'B’s centred headline and button, with C’s questions and the window side by side underneath.',
         image: '/prototypes/hero/stage-tour.webp',
-        live: true,
-        liveHref: '/',
+        // Was the homepage 2026-09-18 → 09-25, until the education hero (A · Front Page) replaced it.
       },
     ],
   },
@@ -158,6 +157,58 @@ export const PROTOTYPES: Prototype[] = [
         blurb:
           'The receipt is the hero: every piece itemised with what it cost, the total counting up, and the flagged ones marked as held for you.',
         poster: ['#06202f', '#12564f'],
+      },
+    ],
+  },
+  {
+    slug: 'education',
+    name: 'The Marketing Engineering hero',
+    date: '2026-09-25',
+    headline: 'esy.com, rebuilt as a place to learn Marketing Engineering.',
+    intro:
+      'Three versions of a homepage that sells an education instead of software: how to build the AI systems that run marketing, one email a week. Open each one, click through the desks, and read a sample issue.',
+    summary:
+      'Three homepage heroes that put the weekly email first. Each one maps the teaching to four desks (Build, Grow, Operate, Learn), links the articles already published, and marks what’s coming.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Three ways to sell the email',
+        summary:
+          'Same promise and the same signup in all three. A sells a publication with a beat, B sells a curriculum, C shows the email itself.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'front-page',
+        key: 'A',
+        name: 'Front Page',
+        round: 1,
+        title: 'Learn to build the AI systems that run marketing.',
+        blurb:
+          'A centred masthead and signup over a newspaper-style index of the four desks, each with its latest pieces.',
+        poster: ['#ffffff', '#cfe3df'],
+        live: true,
+        liveHref: '/',
+      },
+      {
+        slug: 'syllabus',
+        key: 'B',
+        name: 'Syllabus',
+        round: 1,
+        title: 'Marketing Engineering for the AI era.',
+        blurb:
+          'Copy, signup, and the teacher on the left; a curriculum card on the right that plays through the four desks, taught and coming up.',
+        poster: ['#f8f9fa', '#00a896'],
+      },
+      {
+        slug: 'issue',
+        key: 'C',
+        name: 'The Issue',
+        round: 1,
+        title: 'One email a week on how AI actually runs marketing.',
+        blurb:
+          'The product is the email, so the hero shows one: three sample issues as they land in an inbox, beside the signup.',
+        poster: ['#0a2540', '#00d4aa'],
       },
     ],
   },

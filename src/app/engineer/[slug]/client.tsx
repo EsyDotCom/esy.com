@@ -16,7 +16,6 @@ import { VideoPlayer } from "@/components/School/VideoPlayer";
 import { TranscriptToggle } from "@/components/School/TranscriptToggle";
 import { VideoTranscript } from "@/components/Research/VideoTranscript";
 import { AgenticNewsletterBar } from "@/components/Agentic/AgenticNewsletterBar";
-import { TurnstileWidget } from "@/components/Turnstile/TurnstileWidget";
 import { AgenticRelatedVideos } from "@/components/Agentic/AgenticRelatedVideos";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import LightHeader from "@/components/LightHeader/LightHeader";
@@ -264,10 +263,6 @@ function SidebarNewsletter() {
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error" | "invalid"
   >("idle");
-  // Turnstile token for the newsletter route, so the sidebar passes the same
-  // check as the waitlist and hero forms. A ref, so a passing challenge never
-  // re-renders mid-typing.
-  const turnstileToken = useRef("");
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -283,7 +278,7 @@ function SidebarNewsletter() {
       const res = await fetch("/api/newsletter/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: trimmed, turnstileToken: turnstileToken.current }),
+        body: JSON.stringify({ email: trimmed }),
       });
       if (res.ok) {
         setStatus("success");
@@ -373,7 +368,6 @@ function SidebarNewsletter() {
               boxSizing: "border-box",
             }}
           />
-          <TurnstileWidget onToken={(t) => { turnstileToken.current = t; }} />
           <button
             type="submit"
             disabled={status === "loading"}

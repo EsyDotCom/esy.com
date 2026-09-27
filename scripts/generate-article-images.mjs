@@ -55,7 +55,8 @@ function apiKey() {
 
 const PALETTE = 'palette pinned to deep navy #1B2A44, warm cream #EDE6D6 and jade #2E9E78, with soft shadows';
 
-/** Two candidates for one article's lead image; the prototypes use whichever reads best. */
+/** Lead images. Without `outDir` an image lands in public/prototypes/article/;
+ *  a real article's cover sets `outDir` (under public/) and `name`. */
 const IMAGES = [
   {
     id: 'workshop',
@@ -64,6 +65,14 @@ const IMAGES = [
   {
     id: 'lanes',
     scene: `Isometric editorial illustration: four parallel lanes of glowing task cards, each lane tended by a small robot agent, merging at the right into one bright finished document on a pedestal, on a clean floating platform. Calm and orderly, ${PALETTE}. The lower-left third of the frame is empty and quiet`,
+  },
+  {
+    // The cover of "How We Made Our Explainer Video in Code" (the first
+    // image-led article in production).
+    id: 'explainer',
+    outDir: 'public/images/articles/how-we-made-our-explainer-video-in-code',
+    name: 'cover',
+    scene: `Isometric editorial illustration of a video being built in code: a wide monitor on a tidy desk showing an editing timeline of coloured clip blocks above stacked audio waveform tracks, a small virtual camera on a rail aimed at a floating interface panel, a studio microphone with soft sound rings, and three phone screens beside it showing the same scene as a wide frame and a tall frame. Calm and precise, ${PALETTE}. The whole left half of the frame is dark, open and empty`,
   },
 ];
 
@@ -129,8 +138,9 @@ async function main() {
   const force = process.argv.includes('--force');
   fs.mkdirSync(OUT_DIR, { recursive: true });
 
-  const exists = (id) => ['webp', 'png'].some((ext) => fs.existsSync(path.join(OUT_DIR, `${id}.${ext}`)));
-  const queue = IMAGES.filter((img) => (!only || img.id === only) && (force || !exists(img.id)));
+  const dirOf = (img) => (img.outDir ? path.join(ROOT, img.outDir) : OUT_DIR);
+  const exists = (img) => ['webp', 'png'].some((ext) => fs.existsSync(path.join(dirOf(img), `${img.name ?? img.id}.${ext}`)));
+  const queue = IMAGES.filter((img) => (!only || img.id === only) && (force || !exists(img)));
   if (!queue.length) return console.log('Nothing to render.');
   console.log(`Rendering ${queue.length} image${queue.length > 1 ? 's' : ''} via ${API_BASE}…`);
 
@@ -142,7 +152,8 @@ async function main() {
       const run = await render(image);
       const url = imageUrlOf(run);
       const bytes = Buffer.from(await (await fetch(url)).arrayBuffer());
-      const file = path.join(OUT_DIR, `${image.id}.${url.includes('.png') ? 'png' : 'webp'}`);
+      fs.mkdirSync(dirOf(image), { recursive: true });
+      const file = path.join(dirOf(image), `${image.name ?? image.id}.${url.includes('.png') ? 'png' : 'webp'}`);
       fs.writeFileSync(file, bytes);
       const costs = run.totalCosts || {};
       const cost = Number(costs.actualUsd ?? costs.estimatedUsd ?? 0);
@@ -152,7 +163,7 @@ async function main() {
       console.log(`FAILED\n     ${err.message}`);
     }
   }
-  console.log(`Done. Spend: $${spend.toFixed(2)}. Files in ${path.relative(ROOT, OUT_DIR)}.`);
+  console.log(`Done. Spend: $${spend.toFixed(2)}.`);
 }
 
 main().catch((err) => {

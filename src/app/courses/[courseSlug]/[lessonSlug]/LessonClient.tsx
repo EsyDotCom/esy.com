@@ -44,7 +44,6 @@ import Link from 'next/link';
 import { useNewsletterSubscribe } from '@/hooks/useNewsletterSubscribe';
 
 import './lesson.css';
-import { TurnstileWidget } from "@/components/Turnstile/TurnstileWidget";
 
 interface LessonClientProps {
   course: Course;
@@ -115,7 +114,7 @@ export default function LessonClient({ course, lesson, chapterTitle }: LessonCli
 
   // Newsletter
   const [nlEmail, setNlEmail] = useState('');
-  const { subscribe, status: nlStatus, errorMessage: nlError, reset: nlReset, honeypotProps, setTurnstileToken } = useNewsletterSubscribe();
+  const { subscribe, status: nlStatus, errorMessage: nlError, reset: nlReset, honeypotProps } = useNewsletterSubscribe();
 
   useEffect(() => {
     const check = () => {
@@ -528,7 +527,6 @@ export default function LessonClient({ course, lesson, chapterTitle }: LessonCli
                   >
                     {/* Bot trap: off-screen, never focusable, never filled by a human. */}
                     <input {...honeypotProps} />
-                    <TurnstileWidget onToken={setTurnstileToken} />
                     <input
                       type="email"
                       placeholder="you@example.com"

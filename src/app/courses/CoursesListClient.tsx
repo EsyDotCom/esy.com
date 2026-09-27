@@ -7,7 +7,6 @@ import { courses } from '@/lib/learn/mockData';
 import { useNewsletterSubscribe } from '@/hooks/useNewsletterSubscribe';
 import { LearnHeroSignup } from '@/components/School/LearnHeroSignup';
 import LibraryHero from '@/components/LibraryHero/LibraryHero';
-import { TurnstileWidget } from "@/components/Turnstile/TurnstileWidget";
 
 /* ─────────────────────────────────────────────
    Courses Index — light surface, shared library stage
@@ -32,7 +31,7 @@ export default function CoursesListClient() {
   const [isMobile, setIsMobile] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [nlEmail, setNlEmail] = useState('');
-  const { subscribe, status: nlStatus, errorMessage: nlError, reset: nlReset, honeypotProps, setTurnstileToken } = useNewsletterSubscribe();
+  const { subscribe, status: nlStatus, errorMessage: nlError, reset: nlReset, honeypotProps } = useNewsletterSubscribe();
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth <= 768);
@@ -431,7 +430,6 @@ export default function CoursesListClient() {
               >
                 {/* Bot trap: off-screen, never focusable, never filled by a human. */}
                 <input {...honeypotProps} />
-                <TurnstileWidget onToken={setTurnstileToken} />
                 <input
                   type="email"
                   placeholder="you@example.com"

@@ -139,7 +139,6 @@ export default function AgenticClient({ videos }: { videos: AgenticVideo[] }) {
     errorMessage: newsletterError,
     reset: resetNewsletter,
     honeypotProps,
-    setTurnstileToken,
   } = useNewsletterSubscribe();
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
@@ -302,7 +301,6 @@ export default function AgenticClient({ videos }: { videos: AgenticVideo[] }) {
         emailInputRef={emailInputRef}
         handleNewsletterSubmit={handleNewsletterSubmit}
         honeypotProps={honeypotProps}
-        setTurnstileToken={setTurnstileToken}
         onInputChange={resetNewsletter}
         isMobile={isMobile}
         isTablet={isTablet}

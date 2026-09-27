@@ -4,7 +4,6 @@ import React, { useRef } from "react";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { EsyLoader } from "@/components/EsyLoader";
 import { useNewsletterSubscribe } from "@/hooks/useNewsletterSubscribe";
-import { TurnstileWidget } from "@/components/Turnstile/TurnstileWidget";
 
 /* The homepage's one action: subscribe to The Marketing Engineer. Posts to the
    same Beehiiv-backed endpoint as every other signup on the site, so the list
@@ -20,7 +19,7 @@ export default function NewsletterSignup({
   note?: string;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { subscribe, status, errorMessage, reset, honeypotProps, setTurnstileToken } =
+  const { subscribe, status, errorMessage, reset, honeypotProps } =
     useNewsletterSubscribe();
 
   const isLoading = status === "loading";
@@ -49,7 +48,6 @@ export default function NewsletterSignup({
       <form className="nl-signup-form" onSubmit={handleSubmit} noValidate>
         {/* Bot trap: off-screen, never focusable, never filled by a human. */}
         <input {...honeypotProps} />
-        <TurnstileWidget onToken={setTurnstileToken} />
         <input
           ref={inputRef}
           className="nl-signup-input"

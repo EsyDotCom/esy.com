@@ -40,11 +40,6 @@ export function useNewsletterSubscribe({ endpoint = '/api/newsletter/subscribe',
   const errorTimerRef = useRef(null);
   const honeypotRef = useRef(null);
 
-  // Turnstile token, held in a ref so a passing challenge doesn't re-render the
-  // form mid-typing. Empty when the widget is absent, expired, or errored.
-  const turnstileTokenRef = useRef('');
-  const setTurnstileToken = useCallback((t) => { turnstileTokenRef.current = t || ''; }, []);
-
   // Mount time is the clock start for the fill-speed check. useRef's initializer
   // runs once per mounted form, so remounts correctly restart the timer.
   const mountedAtRef = useRef(Date.now());
@@ -89,7 +84,6 @@ export function useNewsletterSubscribe({ endpoint = '/api/newsletter/subscribe',
           hp: honeypotRef.current?.value || '',
           elapsedMs: Date.now() - mountedAtRef.current,
           source: typeof window !== 'undefined' ? window.location.pathname : '',
-          turnstileToken: turnstileTokenRef.current,
         }),
       });
 
@@ -143,5 +137,5 @@ export function useNewsletterSubscribe({ endpoint = '/api/newsletter/subscribe',
     style: HONEYPOT_STYLE,
   };
 
-  return { subscribe, status, errorMessage, reset, honeypotProps, setTurnstileToken };
+  return { subscribe, status, errorMessage, reset, honeypotProps };
 }

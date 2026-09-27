@@ -13,7 +13,6 @@ import { getAllLessonsFlat } from '@/lib/learn/mockData';
 import { navyCalmDarkTheme } from '@/lib/theme';
 import { lightTheme } from '@/lib/lightTheme';
 import { useNewsletterSubscribe } from '@/hooks/useNewsletterSubscribe';
-import { TurnstileWidget } from "@/components/Turnstile/TurnstileWidget";
 
 /* ─────────────────────────────────────────────
    Course Detail — Premium Landing Page
@@ -39,7 +38,7 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
   const [expandedChapters, setExpandedChapters] = useState<Set<number>>(new Set([0]));
   const [shared, setShared] = useState(false);
   const [nlEmail, setNlEmail] = useState('');
-  const { subscribe, status: nlStatus, errorMessage: nlError, reset: nlReset, honeypotProps, setTurnstileToken } = useNewsletterSubscribe();
+  const { subscribe, status: nlStatus, errorMessage: nlError, reset: nlReset, honeypotProps } = useNewsletterSubscribe();
 
   const firstLesson = getAllLessonsFlat(course)[0];
   const allLessons = getAllLessonsFlat(course);
@@ -637,7 +636,6 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
                 >
                   {/* Bot trap: off-screen, never focusable, never filled by a human. */}
                   <input {...honeypotProps} />
-                  <TurnstileWidget onToken={setTurnstileToken} />
                   <input
                     type="email"
                     placeholder="you@example.com"

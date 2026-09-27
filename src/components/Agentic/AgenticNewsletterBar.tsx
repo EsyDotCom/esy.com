@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { EsyLoader } from "@/components/EsyLoader";
-import { TurnstileWidget } from "@/components/Turnstile/TurnstileWidget";
 import { navyCalmLightTheme as theme } from "@/lib/theme";
 
 type Status = "idle" | "loading" | "success" | "error" | "invalid";
@@ -14,10 +13,6 @@ export function AgenticNewsletterBar() {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
   const [isMobile, setIsMobile] = useState(false);
-  // Turnstile token for the newsletter route, so this bar passes the same
-  // check as the waitlist and hero forms. A ref, so a passing challenge never
-  // re-renders the form mid-typing.
-  const turnstileToken = useRef("");
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 640);
     check();
@@ -51,7 +46,7 @@ export function AgenticNewsletterBar() {
       const res = await fetch("/api/newsletter/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: trimmed, turnstileToken: turnstileToken.current }),
+        body: JSON.stringify({ email: trimmed }),
       });
 
       const data = await res.json().catch(() => ({}));
@@ -168,7 +163,6 @@ export function AgenticNewsletterBar() {
                   "Subscribe"
                 )}
               </button>
-              <TurnstileWidget onToken={(t) => { turnstileToken.current = t; }} />
             </>
           )}
         </div>

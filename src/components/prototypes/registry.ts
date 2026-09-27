@@ -13,6 +13,7 @@ export interface PrototypeVariant {
   round: number; // which round of the prototype it came from
   mergeOf?: string[]; // keys of the variants it combines, e.g. ['A', 'C']
   image?: string; // card screenshot under /public; without one the index draws a poster
+  imageFit?: 'cover' | 'contain'; // 'contain' for images that aren't 16:10, e.g. 1200×630 share cards
   poster?: [string, string]; // the poster's two colours, when there's no screenshot
   live?: boolean; // shipped on the real site
   liveHref?: string; // where it's live
@@ -209,6 +210,62 @@ export const PROTOTYPES: Prototype[] = [
         blurb:
           'The product is the email, so the hero shows one: three sample issues as they land in an inbox, beside the signup.',
         poster: ['#0a2540', '#00d4aa'],
+      },
+    ],
+  },
+  {
+    slug: 'og',
+    name: 'The homepage share card',
+    date: '2026-09-27',
+    headline: 'Three share cards that sell the newsletter.',
+    intro:
+      'When someone shares esy.com, this picture is what their feed shows. Each version sells the free weekly email and what you get from it. Open one to see it full size, in a feed, and at the size a chat app shows it.',
+    summary:
+      'Three 1200×630 share cards for the Marketing Engineering homepage, each built by the same code that will draw the live card. The images here are those real cards.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Three ways to sell the email',
+        summary:
+          'A carries the homepage hero onto the card, B lists what every issue gives you, and C leads with the person who writes it.',
+      },
+    ],
+    // Each card image is the real generated PNG (src/lib/og/newsletterCards.tsx).
+    variants: [
+      {
+        slug: 'masthead',
+        key: 'A',
+        name: 'Masthead',
+        round: 1,
+        title: 'Learn to build the AI systems that run marketing.',
+        blurb:
+          'The hero as a card: light paper, the same serif promise, "Free weekly email", and the four desks under a heavy rule with "Subscribe free".',
+        image: '/prototypes/og/masthead/card/',
+        imageFit: 'contain',
+      },
+      {
+        slug: 'offer',
+        key: 'B',
+        name: 'The Offer',
+        round: 1,
+        title: 'One email a week on building the AI systems that run marketing.',
+        blurb:
+          'Navy, with the promise and a Subscribe button on the left, and a card on the right of what every issue gives you.',
+        image: '/prototypes/og/offer/card/',
+        imageFit: 'contain',
+        live: true,
+        liveHref: '/',
+      },
+      {
+        slug: 'author',
+        key: 'C',
+        name: 'The Author',
+        round: 1,
+        title: 'I build AI marketing systems in production, and show you how.',
+        blurb:
+          'People first: Zev’s portrait, a promise in his own voice, the title of the newest real article, and the ask.',
+        image: '/prototypes/og/author/card/',
+        imageFit: 'contain',
       },
     ],
   },

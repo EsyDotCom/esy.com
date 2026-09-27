@@ -53,6 +53,39 @@
   margin: 1.8em 0 0.45em !important;
 }
 
+/* Tables in the body. The renderer's light theme sets no background on odd
+   rows (a dark rule shows through) and forces display:block, which squeezes
+   columns until words break ("Tim/e"). Its rules are !important, so these are
+   too, scoped to article bodies. */
+.ai-body [class*='markdownContainer'] table {
+  display: table !important; width: 100% !important; table-layout: auto !important;
+  border-collapse: separate !important; border-spacing: 0 !important;
+  border: 1px solid var(--nl-seam) !important; border-radius: 12px !important; overflow: hidden !important;
+  margin: 1.5rem 0 !important; font-size: 0.98rem;
+}
+.ai-body [class*='markdownContainer'] tr,
+.ai-body [class*='markdownContainer'] th,
+.ai-body [class*='markdownContainer'] td {
+  background: #FFFFFF !important; border: 0 !important; border-bottom: 1px solid var(--nl-seam) !important;
+}
+.ai-body [class*='markdownContainer'] tr:last-child td { border-bottom: 0 !important; }
+.ai-body [class*='markdownContainer'] tr:nth-child(even) td { background: var(--nl-bg-alt) !important; }
+.ai-body [class*='markdownContainer'] th {
+  padding: 0.7rem 1rem !important; white-space: nowrap; text-align: left !important;
+  font-size: 0.78rem; font-weight: 700 !important; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--nl-navy) !important; background: var(--nl-bg-alt) !important;
+}
+.ai-body [class*='markdownContainer'] td { padding: 0.75rem 1rem !important; color: var(--nl-ink-soft) !important; vertical-align: top; line-height: 1.55; }
+/* The first column is a label (a time, a platform): keep it on one line and strong. */
+.ai-body [class*='markdownContainer'] td:first-child { white-space: nowrap; font-weight: 600; color: var(--nl-navy) !important; }
+@media (max-width: 560px) {
+  .ai-body [class*='markdownContainer'] table { font-size: 0.9rem; }
+  .ai-body [class*='markdownContainer'] th,
+  .ai-body [class*='markdownContainer'] td { padding: 0.6rem 0.7rem !important; }
+  /* On a phone a long label ("Reels, TikTok and Shorts") has to wrap. */
+  .ai-body [class*='markdownContainer'] td:first-child { white-space: normal; }
+}
+
 /* A video embedded in the body (an article that isn't a video article can
    still show one): a 16:9 box as wide as the text, raw HTML in the markdown. */
 .ai-body .ai-embed {

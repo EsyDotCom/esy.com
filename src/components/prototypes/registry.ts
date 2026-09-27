@@ -418,6 +418,54 @@ export const PROTOTYPES: Prototype[] = [
       },
     ],
   },
+  {
+    slug: 'article-video',
+    name: 'The framed video article page',
+    date: '2026-09-27',
+    headline: 'Three ways to frame the video on an article page.',
+    intro:
+      'Video articles open on a black strip across the page today. These three set the video in a frame with room around it: a real article, its real video and transcript. Press play, click a line of the transcript, and scroll.',
+    summary:
+      'Three openings for video articles, each framing the real Mux player (Claude Fable 5 first impressions) differently, above the image-led article’s reading layout.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Three frames',
+        summary: 'A sets the video in a navy panel on a light page, B centres it in a dark room with a jade ring, C hangs it in a light mat beside the title. B shipped as the page for every video article.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'studio',
+        key: 'A',
+        name: 'Studio',
+        round: 1,
+        title: 'A screen on a stage.',
+        blurb: 'Title and byline in the reading column, then the video in a wide navy panel with generous padding, rounded corners and a soft jade glow.',
+        poster: ['#ffffff', '#0a2540'],
+      },
+      {
+        slug: 'theater',
+        key: 'B',
+        name: 'Theater',
+        round: 1,
+        title: 'A screen in a dark room.',
+        blurb: 'A navy opening with the title in white, the video centred beneath in a spotlight with a thin jade ring and dark space all round.',
+        poster: ['#0a1626', '#00a896'],
+        // The page for every article with a video (src/app/engineer/[slug]).
+        live: true,
+      },
+      {
+        slug: 'mat',
+        key: 'C',
+        name: 'Mat',
+        round: 1,
+        title: 'A framed print.',
+        blurb: 'The title on the left; the video on the right in a white mat with a hairline shadow, on a quiet light ground.',
+        poster: ['#f8f9fa', '#cfd7df'],
+      },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

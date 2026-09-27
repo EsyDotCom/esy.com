@@ -18,8 +18,19 @@ import { longDate, type ArticleSection } from './article';
 import '@/components/NewsletterHome/NewsletterHome.css';
 import './ArticleImage.css';
 
-/** Who wrote it, when, and how long it takes to read. `onDark` for the Cover. */
-export function Byline({ publishedAt, minutes, onDark = false }: { publishedAt: string; minutes: number; onDark?: boolean }) {
+/** Who wrote it, when, and how long it takes. `detail` replaces "N min read"
+ *  (a video article says how long the video is). `onDark` for the covers. */
+export function Byline({
+  publishedAt,
+  minutes,
+  detail,
+  onDark = false,
+}: {
+  publishedAt: string;
+  minutes: number;
+  detail?: string;
+  onDark?: boolean;
+}) {
   return (
     <div className={`ai-byline${onDark ? ' ai-byline--onDark' : ''}`}>
       <span className="ai-byline-photo">
@@ -28,7 +39,7 @@ export function Byline({ publishedAt, minutes, onDark = false }: { publishedAt: 
       <span className="ai-byline-text">
         <b>Zev Uhuru</b>
         <span>
-          {longDate(publishedAt)} · {minutes} min read
+          {longDate(publishedAt)} · {detail ?? `${minutes} min read`}
         </span>
       </span>
     </div>

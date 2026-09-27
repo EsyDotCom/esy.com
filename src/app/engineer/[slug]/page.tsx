@@ -1,16 +1,11 @@
 import { notFound } from "next/navigation";
 import { getPublishedAgenticVideos } from "@/data/agentic-videos";
-import {
-  findAgenticArticle,
-  getAllAgenticArticles,
-  relatedFrom,
-} from "@/lib/published-articles";
+import { findAgenticArticle, getAllAgenticArticles } from "@/lib/published-articles";
 import { loadTranscriptSegments } from "@/lib/transcript-loader";
 import { transcriptToPlainText, toIsoDuration } from "@/lib/transcripts";
 import { isArticleSlugShape, articlePath } from "@/lib/article-path";
-import { toNavArticles } from "@/lib/nav-articles";
-import AgenticVideoPageClient from "./client";
 import ImageArticlePage from "@/components/ArticleImage/ImageArticlePage";
+import VideoArticlePage from "@/components/ArticleVideo/VideoArticlePage";
 import type { Metadata } from "next";
 
 // One article of The Marketing Engineer, at esy.com/engineer/<slug>/. The
@@ -81,11 +76,11 @@ export default async function AgenticVideoPage({ params }: Props) {
 
   if (!video) notFound();
 
-  // Related resolves against the merged list so API and registry articles
-  // can cross-reference each other.
+  // Related articles resolve against the merged list so API and registry
+  // articles can cross-reference each other.
   const all = await getAllAgenticArticles();
 
-  // No video: the image-led article page (D · Cover Guide), described to search
+  // No video: the image-led article page (E · Cover Bar), described to search
   // engines as an Article rather than a VideoObject.
   if (!video.muxPlaybackId) {
     const articleLd = {
@@ -111,7 +106,7 @@ export default async function AgenticVideoPage({ params }: Props) {
     );
   }
 
-  const related = relatedFrom(all, video.slug, video.relatedSlugs);
+  // A video: the framed video page (B · Theater).
   // Build-time SRT load — segments ship in the static HTML for SEO and power
   // the click-to-seek transcript UI. Null when no SRT exists for the slug.
   const transcriptSegments = loadTranscriptSegments(video.slug);
@@ -154,12 +149,7 @@ export default async function AgenticVideoPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <AgenticVideoPageClient
-        video={video}
-        related={related}
-        transcriptSegments={transcriptSegments}
-        latest={toNavArticles(all)}
-      />
+      <VideoArticlePage article={video} all={all} segments={transcriptSegments} />
     </>
   );
 }

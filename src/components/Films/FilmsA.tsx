@@ -43,7 +43,7 @@ export function FilmsIndexA() {
             <h1 className="fa-title">
               The Letter With <i>No Address</i>
             </h1>
-            <p className="fa-log">A four-minute bedtime film made from a clip.art pack. Milo Moonbear, the night postman, follows a letter with no address across the sky.</p>
+            <p className="fa-log">A four-minute bedtime film made from a clip.art pack. Lullo the Moon Bear, the night postman, follows a letter with no address across the sky.</p>
             <div className="fa-btns">
               <a className="fa-btn fa-btn--go" href={LETTER.animaticUrl} {...ext}>▶ Watch the animatic</a>
               <Link className="fa-btn" href={FILM_HREF}>How it was made</Link>
@@ -58,17 +58,17 @@ export function FilmsIndexA() {
           <div className="fa-slate">
             <Link className="fa-poster" href={FILM_HREF}>
               <span className="fa-poster-im">
-                <FilmFrame name="moon-rise" alt="Milo's balloon rising toward the sleeping Moon" sizes="(max-width: 900px) 50vw, 280px" />
+                <FilmFrame name="moon-rise" alt="Lullo's balloon rising toward the sleeping Moon" sizes="(max-width: 900px) 50vw, 280px" />
                 <b>{LETTER.title}</b>
               </span>
               <small>{LETTER.series} · animatic · {LETTER.runtime}</small>
             </Link>
             <div className="fa-poster fa-poster--ghost">
-              <span className="fa-poster-im"><p>Milo, film two<span>in script</span></p></span>
+              <span className="fa-poster-im"><p>Lullo, film two<span>in script</span></p></span>
               <small>{LETTER.series} · next</small>
             </div>
             <a className="fa-poster fa-poster--ghost" href={LETTER.storybookUrl} {...ext}>
-              <span className="fa-poster-im"><p>The storybook<span>where Milo started, on clip.art ↗</span></p></span>
+              <span className="fa-poster-im"><p>The storybook<span>where Lullo started, on clip.art ↗</span></p></span>
               <small>{LETTER.series} · read now</small>
             </a>
             <a className="fa-poster fa-poster--ghost" href={LETTER.packsUrl} {...ext}>

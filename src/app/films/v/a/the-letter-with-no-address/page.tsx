@@ -6,12 +6,12 @@ import { FilmDetailA } from "@/components/Films/FilmsA";
 export const metadata = {
   title: "The Letter With No Address (version A)",
   description:
-    "A four-minute bedtime film made from the Milo Moonbear clip.art pack with Esy: the animatic, the cast, how it was made and every file behind it.",
+    "A four-minute bedtime film made from the Lullo the Moon Bear clip.art pack with Esy: the animatic, the cast, how it was made and every file behind it.",
   robots: { index: false, follow: true },
   openGraph: {
     title: "The Letter With No Address (version A)",
     description:
-      "A four-minute bedtime film made from the Milo Moonbear clip.art pack with Esy: the animatic, the cast, how it was made and every file behind it.",
+      "A four-minute bedtime film made from the Lullo the Moon Bear clip.art pack with Esy: the animatic, the cast, how it was made and every file behind it.",
     url: "https://esy.com/films/v/a/the-letter-with-no-address/",
     type: "website",
     images: [{ url: "https://esy.com/films/the-letter-with-no-address/dawn-home.webp", width: 1600, height: 900 }],

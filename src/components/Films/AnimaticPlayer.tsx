@@ -9,12 +9,12 @@
 
 import { useEffect, useRef, useState } from "react";
 
-type Line = { at: number; dur: number; file: string; v: string; sub: string; gain?: number; duck?: number };
+type Line = { at: number; dur: number; file: string; v: string; sub: string; gain?: number; duck?: number; hold?: number };
 type Sfx = { at: number; file: string; gain: number; loop?: boolean; end?: number };
 type Shot = { id: string; scene: string; what: string; frame: string; card?: boolean; clip?: string | null; start: number; dur: number; tx?: { type: string; dur: number }; pan?: string | null; lines: Line[]; sfx: Sfx[] };
 type Timeline = { runtime: number; shots: Shot[]; music: { file: string; start: number; end: number }[]; mix?: { master: number } };
 
-const WHO: Record<string, string> = { MILO: "Milo", OTTO: "Ottoline", MOON: "The Moon", TALL: "Tall Star", ROUND: "Round Star", TINY: "Tiny Star" };
+const WHO: Record<string, string> = { MILO: "Lullo", OTTO: "Ottoline", MOON: "The Moon", TALL: "Tall Star", ROUND: "Round Star", TINY: "Tiny Star" };
 const COLORS = ["#e9a64a", "#c9924a", "#f08a4b", "#e8c46a", "#9fb3df", "#5a6aa8", "#ffcf73", "#f3e4cc", "#d98f7c", "#b7a5d8", "#7fb5a8", "#e3b660"];
 const fmt = (s: number) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
 
@@ -43,8 +43,8 @@ export default function AnimaticPlayer({ media, title, poster, cardLine }: { med
     const SPANS: { a: number; e: number; duck: number }[] = [];
     for (const l of TL.shots.flatMap((s) => s.lines).sort((a, b) => a.at - b.at)) {
       const last = SPANS[SPANS.length - 1];
-      if (last && l.at - last.e < 1.0) { last.e = Math.max(last.e, l.at + l.dur); last.duck = Math.min(last.duck, l.duck ?? 0.13); }
-      else SPANS.push({ a: l.at, e: l.at + l.dur, duck: l.duck ?? 0.13 });
+      if (last && l.at - last.e < 1.0) { last.e = Math.max(last.e, l.at + l.dur + (l.hold ?? 0)); last.duck = Math.min(last.duck, l.duck ?? 0.13); }
+      else SPANS.push({ a: l.at, e: l.at + l.dur + (l.hold ?? 0), duck: l.duck ?? 0.13 });
     }
     const layers = [l0.current!, l1.current!];
     let ctx: AudioContext | null = null, MASTER: GainNode | null = null;

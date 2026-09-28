@@ -6,12 +6,12 @@ import { FilmsIndexA } from "@/components/Films/FilmsA";
 export const metadata = {
   title: "Films (version A)",
   description:
-    "Animated shorts made from clip.art packs with Esy, starting with the Milo Moonbear series.",
+    "Animated shorts made from clip.art packs with Esy, starting with the Lullo the Moon Bear series.",
   robots: { index: false, follow: true },
   openGraph: {
     title: "Films (version A)",
     description:
-      "Animated shorts made from clip.art packs with Esy, starting with the Milo Moonbear series.",
+      "Animated shorts made from clip.art packs with Esy, starting with the Lullo the Moon Bear series.",
     url: "https://esy.com/films/v/a/",
     type: "website",
     images: [{ url: "https://esy.com/films/the-letter-with-no-address/look-world.webp", width: 1600, height: 900 }],

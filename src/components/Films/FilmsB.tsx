@@ -1,5 +1,5 @@
 /* Films, direction B · "Night Post". The index is the publication's light page
- * with a night-sky shelf for the Milo Moonbear series. The film page lives in
+ * with a night-sky shelf for the Lullo the Moon Bear series. The film page lives in
  * Starlight Town: the story in chapters (stopping before the ending), the cast,
  * how it was made, and every file kept in the Lost Letters drawer. */
 
@@ -41,14 +41,14 @@ export function FilmsIndexB() {
           <p className="fb-series" id="fb-series">The {LETTER.series} series</p>
           <div className="fb-shelf-row">
             <Link className="fb-film" href={FILM_HREF}>
-              <FilmFrame name="moon-rise" alt="Milo's balloon rising toward the sleeping Moon" sizes="(max-width: 900px) 100vw, 520px" priority />
+              <FilmFrame name="moon-rise" alt="Lullo's balloon rising toward the sleeping Moon" sizes="(max-width: 900px) 100vw, 520px" priority />
               <span className="fb-film-ov">
                 <b>{LETTER.title}</b>
                 <span>Film one · animatic · {LETTER.runtime} · ages {LETTER.ages}</span>
               </span>
             </Link>
             <div className="fb-film fb-film--soon"><div><b>Film two</b><span>In script</span></div></div>
-            <a className="fb-film fb-film--soon" href={LETTER.storybookUrl} {...ext}><div><b>The storybook</b><span>Where Milo started, on clip.art ↗</span></div></a>
+            <a className="fb-film fb-film--soon" href={LETTER.storybookUrl} {...ext}><div><b>The storybook</b><span>Where Lullo started, on clip.art ↗</span></div></a>
           </div>
         </section>
       </div>

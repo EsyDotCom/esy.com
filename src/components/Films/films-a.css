@@ -223,3 +223,35 @@ a.fr-can:hover { border-color: var(--fa-gold); }
 .fr-mark { display: inline-flex; color: inherit; }
 .fr-copy { margin: 0; padding: 0 0 32px; font: 500 0.74rem/1.6 var(--font-geist-mono), monospace; color: #6d7094; }
 @media (prefers-reduced-motion: reduce) { .fr-roll { height: auto; -webkit-mask: none; mask: none; } .fr-roll-in { animation: none; } }
+
+/* ── the animatic, playable on the page ── */
+.fp { border-radius: 6px; overflow: hidden; background: #000; box-shadow: 0 0 0 1px var(--fa-line), 0 60px 120px -40px rgba(227, 182, 96, 0.28); }
+.fp-stage { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #05060f; }
+.fp-layer { position: absolute; inset: 0; opacity: 0; }
+.fp-layer.on { opacity: 1; }
+.fp-layer img, .fp-layer video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; will-change: transform; }
+.fp-card { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; background: radial-gradient(ellipse at center, #141a4a, #05060f 70%); }
+.fp-card h3 { margin: 0 0 10px; font-family: var(--nl-serif), Georgia, serif; font-weight: 700; font-size: clamp(1.8rem, 5vw, 3.6rem); line-height: 1.05; color: var(--fa-gold2); }
+.fp-card p { margin: 0; font: 600 0.78rem/1.4 var(--font-inter), sans-serif; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fa-mute); }
+.fp-badge { position: absolute; left: 12px; top: 12px; z-index: 2; font: 500 0.74rem/1 var(--font-geist-mono), monospace; color: var(--fa-gold2); background: rgba(7, 9, 26, 0.62); padding: 7px 9px; border-radius: 4px; }
+.fp-sub { position: absolute; left: 50%; bottom: 6%; z-index: 2; transform: translateX(-50%); max-width: 84%; text-align: center; font: 500 clamp(0.92rem, 2vw, 1.3rem)/1.35 var(--font-inter), sans-serif; color: #fff; background: rgba(7, 9, 26, 0.68); padding: 8px 14px; border-radius: 9px; opacity: 0; transition: opacity 0.2s; }
+.fp-sub.on { opacity: 1; }
+.fp-sub b { display: block; font: 700 0.64rem/1 var(--font-inter), sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fa-gold); margin-bottom: 5px; }
+.fp-cover { position: absolute; inset: 0; z-index: 3; border: 0; padding: 0; cursor: pointer; background: #05060f; }
+.fp-cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.85; }
+.fp-cover-in { position: absolute; inset: 0; display: grid; place-items: center; align-content: center; gap: 14px; background: radial-gradient(circle at 50% 50%, rgba(7, 9, 26, 0.1) 20%, rgba(7, 9, 26, 0.6)); font: 600 0.95rem/1.2 var(--font-inter), sans-serif; color: var(--fa-cream); }
+.fp-cover-in i { width: 84px; height: 84px; border-radius: 50%; background: var(--fa-gold); display: grid; place-items: center; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5); }
+.fp-cover-in i::before { content: ""; border-left: 24px solid #1b1405; border-top: 14px solid transparent; border-bottom: 14px solid transparent; margin-left: 6px; }
+.fp-cover:hover .fp-cover-in i { background: var(--fa-gold2); }
+.fp-cover:disabled { cursor: progress; }
+.fp-bar { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: #0b0e24; }
+.fp-pp { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 0; background: var(--fa-gold); cursor: pointer; display: grid; place-items: center; }
+.fp-pp::before { content: ""; border-left: 13px solid #1b1405; border-top: 8px solid transparent; border-bottom: 8px solid transparent; margin-left: 3px; }
+.fp-pp.is-playing::before { border: 0; width: 12px; height: 14px; border-left: 4px solid #1b1405; border-right: 4px solid #1b1405; margin: 0; }
+.fp-time { flex: none; min-width: 92px; font: 500 0.86rem/1 var(--font-geist-mono), monospace; font-variant-numeric: tabular-nums; color: var(--fa-mute); }
+.fp-track { position: relative; flex: 1; height: 24px; display: flex; gap: 1px; border-radius: 5px; overflow: hidden; cursor: pointer; }
+.fp-track span { height: 100%; opacity: 0.55; }
+.fp-track span:hover { opacity: 0.85; }
+.fp-head { position: absolute; top: -2px; bottom: -2px; width: 2px; background: #fff; box-shadow: 0 0 8px #fff; pointer-events: none; }
+@media (max-width: 560px) { .fp-time { min-width: 0; font-size: 0.76rem; } }
+@media (prefers-reduced-motion: reduce) { .fp-layer img { transform: none !important; } }

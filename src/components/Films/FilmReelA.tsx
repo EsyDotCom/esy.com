@@ -12,6 +12,8 @@ import { useEffect, useRef, useState } from "react";
 import Logo from "@/components/Logo";
 import { LETTER } from "@/data/films/the-letter-with-no-address";
 
+import AnimaticPlayer from "./AnimaticPlayer";
+
 const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
 const IMG = (n: string) => `/films/${LETTER.slug}/${n}.webp`;
 const SCENES = [
@@ -68,11 +70,8 @@ export default function FilmReelA() {
       <div className="fa-wrap">
         <section className="fr-sec" id="fr-now" aria-labelledby="fr-now-h">
           <h2 className="fr-h" id="fr-now-h"><small>Scene 01 · Now showing</small>The animatic</h2>
-          <a className="fr-screen" href={LETTER.animaticUrl} {...ext} aria-label="Open the animatic player">
-            <img src={IMG("animatic-player")} alt="The animatic player: the balloon beside the Moon, with a subtitle and the scene-coloured timeline" />
-            <span className="fr-play"><i /></span>
-          </a>
-          <div className="fr-tc"><span>00:00:00:00</span><span>version {LETTER.version} · {LETTER.shots} shots · every line recorded</span><span>00:0{LETTER.runtime}:00</span></div>
+          <AnimaticPlayer media={`/films/${LETTER.slug}/animatic`} title={LETTER.title} poster={IMG("look-world")} cardLine={`${LETTER.series} · a film made with Esy`} />
+          <div className="fr-tc"><span>00:00:00:00</span><span>version {LETTER.version} · {LETTER.shots} shots · every line recorded · <a href={LETTER.animaticUrl} {...ext}>open full screen ↗</a></span><span>00:0{LETTER.runtime}:00</span></div>
         </section>
 
         <section className="fr-sec" id="fr-story" aria-labelledby="fr-story-h">

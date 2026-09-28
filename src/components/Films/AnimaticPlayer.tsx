@@ -5,7 +5,12 @@
  * by the level the mix check set), the sound effects and the beds; two picture
  * layers cross with the transition the timeline chose; stills drift slowly; clips
  * are kept locked to the soundtrack. Media lives under MEDIA (timeline.json, f/,
- * v/, a/). The opening plays with the town music only (no cricket bed). */
+ * v/, a/). The opening plays with the town music only (no cricket bed).
+ *
+ * `media` is either a URL or path (a local copy) or a key in esy.com's R2 bucket.
+ * A key loads straight from images.esy.com on esy.com, the one site the bucket
+ * allows cross-site reads from, and through the site's /cdn-proxy rewrite
+ * everywhere else (preview deploys, localhost). */
 
 import { useEffect, useRef, useState } from "react";
 
@@ -16,6 +21,8 @@ type Timeline = { runtime: number; shots: Shot[]; music: { file: string; start: 
 
 const WHO: Record<string, string> = { MILO: "Lullo", OTTO: "Ottoline", MOON: "The Moon", TALL: "Tall Star", ROUND: "Round Star", TINY: "Tiny Star" };
 const COLORS = ["#e9a64a", "#c9924a", "#f08a4b", "#e8c46a", "#9fb3df", "#5a6aa8", "#ffcf73", "#f3e4cc", "#d98f7c", "#b7a5d8", "#7fb5a8", "#e3b660"];
+const mediaRoot = (media: string) =>
+  /^(https?:)?\//.test(media) ? media : `${window.location.hostname === "esy.com" ? "https://images.esy.com" : "/cdn-proxy"}/${media}`;
 const fmt = (s: number) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
 
 export default function AnimaticPlayer({ media, title, poster, cardLine }: { media: string; title: string; poster: string; cardLine: string }) {
@@ -33,13 +40,14 @@ export default function AnimaticPlayer({ media, title, poster, cardLine }: { med
 
   useEffect(() => {
     let alive = true;
-    fetch(`${media}/timeline.json`).then((r) => r.json()).then((d: Timeline) => { if (alive) setTl(d); }).catch(() => {});
+    fetch(`${mediaRoot(media)}/timeline.json`).then((r) => r.json()).then((d: Timeline) => { if (alive) setTl(d); }).catch(() => {});
     return () => { alive = false; };
   }, [media]);
 
   useEffect(() => {
     if (!tl) return;
     const TL = tl;
+    const root = mediaRoot(media);
     const SPANS: { a: number; e: number; duck: number }[] = [];
     for (const l of TL.shots.flatMap((s) => s.lines).sort((a, b) => a.at - b.at)) {
       const last = SPANS[SPANS.length - 1];
@@ -62,7 +70,7 @@ export default function AnimaticPlayer({ media, title, poster, cardLine }: { med
       TL.music.forEach((m) => files.add(m.file));
       let n = 0;
       await Promise.all([...files].map(async (f) => {
-        try { const r = await fetch(`${media}/a/${f}`); buffers[f] = await ctx!.decodeAudioData(await r.arrayBuffer()); } catch { /* a missing sound never blocks the film */ }
+        try { const r = await fetch(`${root}/a/${f}`); buffers[f] = await ctx!.decodeAudioData(await r.arrayBuffer()); } catch { /* a missing sound never blocks the film */ }
         setLoadMsg(`Loading sound… ${++n}/${files.size}`);
       }));
     }
@@ -120,7 +128,7 @@ export default function AnimaticPlayer({ media, title, poster, cardLine }: { med
         const h = document.createElement("h3"); h.textContent = s.frame; const p = document.createElement("p"); p.textContent = cardLine;
         const wrap = document.createElement("div"); wrap.append(h, p); c.append(wrap); L.append(c);
       } else if (s.clip) {
-        const v = document.createElement("video"); v.src = `${media}/v/${s.clip}.mp4`; v.muted = true; v.playsInline = true; v.preload = "auto"; v.poster = `${media}/f/${s.frame}.webp`; L.append(v);
+        const v = document.createElement("video"); v.src = `${root}/v/${s.clip}.mp4`; v.muted = true; v.playsInline = true; v.preload = "auto"; v.poster = `${root}/f/${s.frame}.webp`; L.append(v);
         const fit = () => {
           const r = v.duration / s.dur; v.playbackRate = r < 1 && r >= 0.8 ? r : 1; v.dataset.rate = String(v.playbackRate);
           v.currentTime = Math.min(Math.max(0, (now() - s.start + (playing ? 0.12 : 0)) * v.playbackRate), v.duration - 0.05);
@@ -128,7 +136,7 @@ export default function AnimaticPlayer({ media, title, poster, cardLine }: { med
         };
         if (v.readyState >= 1) fit(); else v.addEventListener("loadedmetadata", fit, { once: true });
       } else {
-        const img = document.createElement("img"); img.src = `${media}/f/${s.frame}.webp`; img.alt = s.what; L.append(img);
+        const img = document.createElement("img"); img.src = `${root}/f/${s.frame}.webp`; img.alt = s.what; L.append(img);
       }
       const tx = instant ? { type: "cut", dur: 0 } : s.tx || { type: "dissolve", dur: 0.25 };
       if (tx.type === "fade") { O.style.transition = "opacity 1s ease"; L.style.transition = "opacity 1s ease 1.4s"; }

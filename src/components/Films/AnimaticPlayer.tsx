@@ -181,7 +181,9 @@ export default function AnimaticPlayer({ media, title, poster, cardLine }: { med
       if (playing && ctx) { schedule(offset); startCtx = ctx.currentTime + 0.08 - offset; } else { show(shotAt(offset), true); frame(); }
     }
     api.current = { play, pause, seek, toggle: () => (playing ? pause() : play()) };
-    show(0, true); setTime(0);
+    // Nothing is fetched until someone presses play: the cover shows a still, and
+    // the first shot (and its clip) is only built once playback starts.
+    setTime(0);
     return () => {
       cancelAnimationFrame(raf);
       sources.forEach((s) => { try { s.stop(); } catch { /* already stopped */ } });

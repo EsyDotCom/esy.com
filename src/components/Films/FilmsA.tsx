@@ -89,7 +89,7 @@ export function FilmsIndexA() {
 
 export function FilmDetailA() {
   return (
-    <div className={`fa ${nlSerif.variable}`}>
+    <div className={`fa fa--film ${nlSerif.variable}`}>
       <FilmHeader tone="a" />
       <FilmHeroA />
       <FilmReelA />

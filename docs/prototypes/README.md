@@ -9,6 +9,9 @@ Clickable directions we compare by using them, not by looking at mockups. They l
 
 **The image-led article page (2026-09-27)** is at `/prototypes/article/`: A · Editorial, B · Cover, C · Guide, D · Cover Guide (B's cover with C's contents rail and the email signup on top of it), and E · Cover Bar (D with the video articles' email bar under the cover instead of the rail form). **E shipped as the default for every article without a video**: `src/app/engineer/[slug]/page.tsx` renders `ImageArticlePage` when an article has no `muxPlaybackId`, with its Compose thumbnail as the cover. The prototypes render a real article through the same builder (`src/components/ArticleImage/build.ts`), with lead images from `scripts/generate-article-images.mjs`.
 
+
+**The framed video article page (2026-09-27)** is at `/prototypes/article-video/`: A · Studio, B · Theater, C · Mat, each framing the real Mux player. **B shipped as the page for every article with a video**: `VideoArticlePage` replaces the full-width black player (the old `src/app/engineer/[slug]/client.tsx`, deleted), keeps the transcript and workflow pipeline, and shares the image-led article's reading layout below the video.
+
 ## The pattern
 
 1. **Show the real product, not a picture of it.** Don't screenshot the app and don't draw a mockup. Rebuild the page from the product's own source: same markup, same class names, and the product's stylesheets **copied verbatim** (with a provenance header saying where they came from and when). Keep any tweaks for the new setting in a separate file. The result looks like the product because it *is* the product's UI.

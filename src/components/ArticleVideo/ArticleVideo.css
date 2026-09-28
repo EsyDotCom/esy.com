@@ -1,0 +1,100 @@
+/* Video-article prototypes (/prototypes/article-video/): A · Studio, B ·
+ * Theater, C · Mat. They build on the image-led article's styles
+ * (ArticleImage.css: .ai, the rail, the body) and add only the openings: how
+ * the video is framed. Inside the publication's `.nl` scope. */
+
+.av-grid { margin-top: 40px; }
+.av-transcript { max-width: 1120px; margin: 20px auto 0; padding: 0 24px; }
+
+/* The player itself: rounded, with its own shadow, in every frame. */
+.av-frame { margin: 0; }
+.av-frame-screen { position: relative; overflow: hidden; background: #000; }
+
+/* ══ A · Studio: a navy panel on the light page ══════════════════════════ */
+.av-studio .av-head { padding-top: 56px; padding-bottom: 32px; }
+.av-framed--studio .av-room { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+.av-framed--studio .av-room-inner {
+  position: relative; overflow: hidden;
+  padding: clamp(16px, 3.4vw, 44px); border-radius: 28px;
+  background:
+    radial-gradient(60% 70% at 85% 0%, rgba(0, 212, 170, 0.18), transparent 70%),
+    radial-gradient(50% 60% at 0% 100%, rgba(0, 168, 150, 0.12), transparent 70%),
+    linear-gradient(135deg, #0A1626 0%, var(--nl-navy) 60%, #0F3460 100%);
+  box-shadow: 0 40px 80px -40px rgba(10, 37, 64, 0.55);
+}
+.av-framed--studio .av-frame-screen {
+  border-radius: 14px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 24px 50px -20px rgba(0, 0, 0, 0.7);
+}
+
+/* ══ B · Theater: a dark room, the video centred in a spotlight ══════════ */
+.av-framed--theater .av-room {
+  padding: 64px 24px 80px;
+  background:
+    radial-gradient(55% 60% at 50% 72%, rgba(0, 212, 170, 0.16), transparent 70%),
+    #0A1626;
+}
+.av-framed--theater .av-room-inner { max-width: 1000px; margin: 0 auto; }
+.av-theater-head { max-width: 780px; margin: 0 auto 40px; text-align: center; }
+.av-theater-head .ai-byline { justify-content: center; }
+.av-theater-head .ai-byline-text { text-align: left; }
+/* The ring: a thin jade line around a band of dark space. */
+.av-framed--theater .av-frame {
+  padding: 12px; border-radius: 22px;
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: 0 0 0 1px rgba(0, 212, 170, 0.45), 0 50px 100px -40px rgba(0, 0, 0, 0.9);
+}
+.av-framed--theater .av-frame-screen { border-radius: 12px; }
+.av-framed--theater .av-transcript { margin-top: 24px; }
+
+/* ══ C · Mat: a framed print on a quiet light ground ═════════════════════ */
+.av-framed--mat .av-room { padding: 56px 24px; background: var(--nl-bg-alt); border-bottom: 1px solid var(--nl-seam); }
+.av-framed--mat .av-room-inner { max-width: 1160px; margin: 0 auto; }
+.av-framed--mat .av-room-row {
+  display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 52px; align-items: center;
+}
+/* The mat: a white border and a hairline, like a mounted print. */
+.av-framed--mat .av-frame {
+  padding: 14px; background: #FFFFFF; border: 1px solid var(--nl-seam); border-radius: 6px;
+  box-shadow: 0 30px 60px -32px rgba(10, 37, 64, 0.4);
+}
+.av-framed--mat .av-frame-screen { border-radius: 3px; }
+.av-mat-head .ai-title { font-size: clamp(2.1rem, 3.6vw, 3.1rem); }
+
+/* ── After the body: the workflow pipeline and "Try this workflow" ─────── */
+.av-pipeline { margin: 40px 0 0; padding: 20px 22px; border-radius: 14px; border: 1px solid var(--nl-seam); background: var(--nl-bg-alt); }
+.av-pipeline-label { margin: 0 0 14px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-jade); }
+/* One row of numbered stages; it scrolls sideways on a phone instead of squeezing. */
+.av-pipeline-steps { list-style: none; margin: 0; padding: 0 0 4px; display: flex; gap: 8px; overflow-x: auto; }
+.av-pipeline-step { flex: 1 0 96px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; }
+.av-pipeline-num {
+  display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%;
+  font-size: 0.75rem; font-weight: 700; color: var(--nl-jade); background: rgba(0, 168, 150, 0.12);
+}
+.av-pipeline-step--last .av-pipeline-num { color: #FFFFFF; background: var(--nl-jade); }
+.av-pipeline-name { font-size: 0.72rem; font-weight: 600; line-height: 1.25; color: var(--nl-ink); }
+.av-pipeline-sub { font-size: 0.66rem; line-height: 1.3; color: #6C757D; }
+.av-template { margin-top: 32px; padding: 26px; border-radius: 14px; border: 1px solid var(--nl-seam); text-align: center; }
+.av-template-title { margin: 0 0 6px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 1.45rem; color: var(--nl-navy); }
+.av-template-body { margin: 0 0 16px; font-size: 0.92rem; color: var(--nl-ink-soft); }
+.av-template-cta {
+  display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; border-radius: 10px;
+  font-weight: 600; font-size: 0.92rem; color: #FFFFFF; background: var(--nl-jade); text-decoration: none;
+}
+.av-template-cta:hover { background: var(--nl-jade-bright); }
+
+/* ── Narrow screens ──────────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .av-framed--mat .av-room-row { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .av-framed--theater .av-room { padding: 44px 16px 52px; }
+}
+@media (max-width: 560px) {
+  .av-studio .av-head { padding-top: 36px; padding-bottom: 22px; }
+  .av-framed--studio .av-room { padding: 0 12px; }
+  .av-framed--studio .av-room-inner { border-radius: 18px; }
+  .av-framed--studio .av-frame-screen { border-radius: 10px; }
+  .av-framed--theater .av-frame { padding: 8px; border-radius: 16px; }
+  .av-framed--mat .av-room { padding: 36px 16px; }
+  .av-framed--mat .av-frame { padding: 8px; }
+  .av-transcript { padding: 0 16px; }
+}

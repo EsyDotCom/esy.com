@@ -53,9 +53,17 @@ function apiKey() {
   return line.slice('ESY_API_KEY='.length).trim();
 }
 
+/** Nora, as the reference image shows her (the character bible for the ref workflow). */
+const NORA =
+  'Character: Nora, the friendly young plumber from the reference image: long blonde hair in a high ponytail with an orange clip, blue eyes, a blue work shirt with a small wrench emblem and rolled sleeves, a brown belt, navy cargo work pants, tan work boots.';
+// Nora's image in Esy storage: the image-edit step only takes references from
+// images.esy.com or images.clip.art (uploaded by scripts/r2-upload-single-image.mjs).
+const NORA_REFERENCE = 'https://images.esy.com/essays/how-we-made-our-explainer-video-in-code/nora-reference.e03da68ca1.webp';
+
 const PALETTE = 'palette pinned to deep navy #1B2A44, warm cream #EDE6D6 and jade #2E9E78, with soft shadows';
 
-/** Two candidates for one article's lead image; the prototypes use whichever reads best. */
+/** Lead images. Without `outDir` an image lands in public/prototypes/article/;
+ *  a real article's cover sets `outDir` (under public/) and `name`. */
 const IMAGES = [
   {
     id: 'workshop',
@@ -64,6 +72,32 @@ const IMAGES = [
   {
     id: 'lanes',
     scene: `Isometric editorial illustration: four parallel lanes of glowing task cards, each lane tended by a small robot agent, merging at the right into one bright finished document on a pedestal, on a clean floating platform. Calm and orderly, ${PALETTE}. The lower-left third of the frame is empty and quiet`,
+  },
+  {
+    // The cover of "How We Made Our Explainer Video in Code" (the first
+    // image-led article in production).
+    id: 'explainer',
+    outDir: 'public/images/articles/how-we-made-our-explainer-video-in-code',
+    name: 'cover',
+    scene: `Isometric editorial illustration of a video being built in code: a wide monitor on a tidy desk showing an editing timeline of coloured clip blocks above stacked audio waveform tracks, a small virtual camera on a rail aimed at a floating interface panel, a studio microphone with soft sound rings, and three phone screens beside it showing the same scene as a wide frame and a tall frame. Calm and precise, ${PALETTE}. The whole left half of the frame is dark, open and empty`,
+  },
+  // Nora, the explainer's illustrated plumber, as the explainer article's cover:
+  // rendered against her real image (the SEOPage replay's nora-proud.webp) as
+  // a character reference, so it's recognisably her. 4:3 is the widest this
+  // workflow draws; the cover crops it top and bottom, keeping Nora on the right.
+  {
+    id: 'nora-phone',
+    outDir: 'public/images/articles/how-we-made-our-explainer-video-in-code',
+    name: 'cover-nora-phone',
+    template: 'generate-clip-art-asset-ref',
+    scene: `${NORA} Scene: dusk outside her plumbing shop, the blue scalloped awning and warm window light behind her. Nora stands on the right third of the frame holding her phone, looking at its screen with a surprised, worried expression, as if it just recommended someone else. The left half of the frame is the quiet street and deep navy evening sky, dark and nearly empty. Style: a still from a 3D animated film, warm shop light against cool blue dusk, cinematic`,
+  },
+  {
+    id: 'nora-proud',
+    outDir: 'public/images/articles/how-we-made-our-explainer-video-in-code',
+    name: 'cover-nora-proud',
+    template: 'generate-clip-art-asset-ref',
+    scene: `${NORA} Scene: dusk outside her plumbing shop, the blue scalloped awning and warm window light behind her. Nora stands on the right third of the frame, confident and smiling, a red pipe wrench resting on her shoulder. The left half of the frame is the quiet street and deep navy evening sky, dark and nearly empty. Style: a still from a 3D animated film, warm shop light against cool blue dusk, cinematic`,
   },
 ];
 
@@ -81,20 +115,36 @@ async function api(pathname, init = {}) {
 
 /** Start a run and wait for it to settle. Returns the finished run. */
 async function render(image) {
+  const noText = 'No text, no lettering, no numbers, no logos, no readable screens, no watermarks anywhere in the image.';
+  // The reference workflow draws a full-bleed scene around the referenced
+  // character (at most 4:3); the illustration workflow draws the rest (16:9).
+  const intake =
+    image.template === 'generate-clip-art-asset-ref'
+      ? {
+          prompt: `${image.scene}. ${noText}`,
+          referenceUrl: NORA_REFERENCE,
+          anchorMode: 'character',
+          style: '3d',
+          aspectRatio: '4:3',
+          quality: 'high',
+          backgroundRemovalEnabled: false,
+          elementType: 'scene',
+          categories: 'business,people',
+          textPolicy: 'none',
+          textBearing: false,
+        }
+      : {
+          prompt: `${image.scene}. ${noText}`,
+          style: 'isometric',
+          aspectRatio: '16:9',
+          quality: 'xhigh',
+          categories: 'technology,business',
+          textPolicy: 'none',
+          textBearing: false,
+        };
   const run = await api('/v1/runs', {
     method: 'POST',
-    body: JSON.stringify({
-      templateId: TEMPLATE,
-      intake: {
-        prompt: `${image.scene}. No text, no lettering, no numbers, no logos, no readable screens, no watermarks anywhere in the image.`,
-        style: 'isometric',
-        aspectRatio: '16:9',
-        quality: 'xhigh',
-        categories: 'technology,business',
-        textPolicy: 'none',
-        textBearing: false,
-      },
-    }),
+    body: JSON.stringify({ templateId: image.template ?? TEMPLATE, intake }),
   });
 
   const id = run.id || run.runId;
@@ -129,8 +179,9 @@ async function main() {
   const force = process.argv.includes('--force');
   fs.mkdirSync(OUT_DIR, { recursive: true });
 
-  const exists = (id) => ['webp', 'png'].some((ext) => fs.existsSync(path.join(OUT_DIR, `${id}.${ext}`)));
-  const queue = IMAGES.filter((img) => (!only || img.id === only) && (force || !exists(img.id)));
+  const dirOf = (img) => (img.outDir ? path.join(ROOT, img.outDir) : OUT_DIR);
+  const exists = (img) => ['webp', 'png'].some((ext) => fs.existsSync(path.join(dirOf(img), `${img.name ?? img.id}.${ext}`)));
+  const queue = IMAGES.filter((img) => (!only || img.id === only) && (force || !exists(img)));
   if (!queue.length) return console.log('Nothing to render.');
   console.log(`Rendering ${queue.length} image${queue.length > 1 ? 's' : ''} via ${API_BASE}…`);
 
@@ -142,7 +193,8 @@ async function main() {
       const run = await render(image);
       const url = imageUrlOf(run);
       const bytes = Buffer.from(await (await fetch(url)).arrayBuffer());
-      const file = path.join(OUT_DIR, `${image.id}.${url.includes('.png') ? 'png' : 'webp'}`);
+      fs.mkdirSync(dirOf(image), { recursive: true });
+      const file = path.join(dirOf(image), `${image.name ?? image.id}.${url.includes('.png') ? 'png' : 'webp'}`);
       fs.writeFileSync(file, bytes);
       const costs = run.totalCosts || {};
       const cost = Number(costs.actualUsd ?? costs.estimatedUsd ?? 0);
@@ -152,7 +204,7 @@ async function main() {
       console.log(`FAILED\n     ${err.message}`);
     }
   }
-  console.log(`Done. Spend: $${spend.toFixed(2)}. Files in ${path.relative(ROOT, OUT_DIR)}.`);
+  console.log(`Done. Spend: $${spend.toFixed(2)}.`);
 }
 
 main().catch((err) => {

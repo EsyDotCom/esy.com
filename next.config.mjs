@@ -90,6 +90,12 @@ const nextConfig = {
         destination: '/ai-agents/:path*',
         permanent: true,
       },
+      // The films directions under review moved to /prototypes/films when
+      // /films shipped (Sep 2026).
+      { source: '/films/v/a', destination: '/prototypes/films/a-index/', permanent: true },
+      { source: '/films/v/a/the-letter-with-no-address', destination: '/prototypes/films/a-film/', permanent: true },
+      { source: '/films/v/b', destination: '/prototypes/films/b-index/', permanent: true },
+      { source: '/films/v/b/the-letter-with-no-address', destination: '/prototypes/films/b-film/', permanent: true },
       // Prompt library retired (Jun 2026) — send old traffic to workflows
       {
         source: '/prompt-library',

@@ -58,8 +58,10 @@ const ConditionalFooter = () => {
     return null;
   }
   
-  // Both film pages end on their own immersive footers (A: end credits, B: the last letter).
-  if (normalizedPath === '/films/v/a/the-letter-with-no-address' || normalizedPath === '/films/v/b/the-letter-with-no-address') {
+  // The films index ends on "Fin." and each film page on its own footer (the
+  // live page and prototype A: end credits; prototype B: the last letter).
+  const isFilmsPage = normalizedPath === '/films' || normalizedPath?.startsWith('/films/');
+  if (isFilmsPage || normalizedPath === '/prototypes/films/a-film' || normalizedPath === '/prototypes/films/b-film') {
     return null;
   }
 

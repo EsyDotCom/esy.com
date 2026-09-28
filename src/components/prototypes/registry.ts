@@ -466,6 +466,68 @@ export const PROTOTYPES: Prototype[] = [
       },
     ],
   },
+  {
+    slug: 'films',
+    name: 'The films pages',
+    date: '2026-09-28',
+    headline: 'Two ways to show a film, and the index we picked.',
+    intro:
+      'Two directions for the first Esy film’s page and for the films index, built around the real film: its stills, its animatic and every file behind it. Open a film page and scroll to the end credits.',
+    summary:
+      'Two directions for esy.com/films, index and film page each, for The Letter With No Address. A’s film page shipped; the index shipped as a third design, the title sequence.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Two directions',
+        summary: 'A is a premiere: dark and gold, the page as the film’s last reel. B is a storybook: a light index and a starlit film page that ends on a last letter. A’s film page shipped as /films/the-letter-with-no-address.',
+      },
+      {
+        n: 2,
+        title: 'Six indexes',
+        summary: 'The index had to hold films of every kind, not just children’s. Six directions followed (Premiere, Programme, Screens, Picture House, The Reel, Title Sequence); the title sequence shipped as /films.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'a-index',
+        key: 'A',
+        name: 'Premiere index',
+        round: 1,
+        title: 'The Letter With No Address.',
+        blurb: 'A full-screen featured film over a slate of posters and the ten stages.',
+        poster: ['#07091a', '#e3b660'],
+      },
+      {
+        slug: 'a-film',
+        key: 'A',
+        name: 'Final Reel film page',
+        round: 1,
+        title: 'The page is the film’s last reel.',
+        blurb: 'Curtain-up opening, the animatic, a film strip of the story, cast posters, the cuts as leader frames, the files as film cans, and rolling end credits.',
+        poster: ['#07091a', '#f6dda3'],
+        live: true,
+        liveHref: '/films/the-letter-with-no-address/',
+      },
+      {
+        slug: 'b-index',
+        key: 'B',
+        name: 'Storybook index',
+        round: 1,
+        title: 'Films made from clip art.',
+        blurb: 'A light index in the publication’s style, with the film as a storybook card.',
+        poster: ['#fbf7ef', '#0b1030'],
+      },
+      {
+        slug: 'b-film',
+        key: 'B',
+        name: 'Starlight film page',
+        round: 1,
+        title: 'A starlit film page that ends on a letter.',
+        blurb: 'The Moon path opening, the chapters, and a last letter in place of a footer.',
+        poster: ['#0b1030', '#ffe7b0'],
+      },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

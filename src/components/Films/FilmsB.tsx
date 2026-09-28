@@ -17,8 +17,8 @@ import FilmHeroB from "./FilmHeroB";
 import { storySans, storySerif } from "./fonts";
 import "./films-b.css";
 
-const BASE = "/films/v/b";
-const FILM_HREF = `${BASE}/${LETTER.slug}/`;
+// Direction B is a prototype (/prototypes/films/b-index and b-film).
+const FILM_HREF = "/prototypes/films/b-film/";
 const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
 const fontVars = `${storySerif.variable} ${storySans.variable} ${nlSerif.variable}`;
 

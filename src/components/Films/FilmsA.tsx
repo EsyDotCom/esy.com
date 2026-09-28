@@ -1,4 +1,5 @@
-/* Films, direction A · "Premiere". The index is a slate of posters under a
+/* Films, direction A · "Premiere". The film page shipped as
+ * /films/the-letter-with-no-address; the index is a prototype. The index is a slate of posters under a
  * featured film; the film page reads like a release: hero, the animatic,
  * credits, the world, the cast, the making, and the package as a press kit. */
 
@@ -13,8 +14,9 @@ import FilmHeroA from "./FilmHeroA";
 import FilmReelA from "./FilmReelA";
 import "./films-a.css";
 
-const BASE = "/films/v/a";
-const FILM_HREF = `${BASE}/${LETTER.slug}/`;
+// Direction A's index is a prototype now (/films shipped the title sequence);
+// its film card opens prototype A's film page.
+const FILM_HREF = "/prototypes/films/a-film/";
 const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
 
 function Steps() {

@@ -40,7 +40,7 @@ const CREDITS: [string, string][] = [
   ["Studio", "ESY LLC"],
 ];
 const LINKS = [
-  { label: "All films", href: "/films/v/a/" },
+  { label: "All films", href: "/films/" },
   { label: "Read the storybook", href: LETTER.storybookUrl, external: true },
   { label: "The Marketing Engineer", href: "/engineer/" },
   { label: "Topics", href: "/topics/" },
@@ -70,7 +70,18 @@ export default function FilmReelA() {
       <div className="fa-wrap">
         <section className="fr-sec" id="fr-now" aria-labelledby="fr-now-h">
           <h2 className="fr-h" id="fr-now-h"><small>Scene 01 · Now showing</small>The animatic</h2>
-          <AnimaticPlayer media={`/films/${LETTER.slug}/animatic`} title={LETTER.title} poster={IMG("look-world")} cardLine={`${LETTER.series} · a film made with Esy`} />
+          {LETTER.animaticMedia ? (
+            <AnimaticPlayer media={LETTER.animaticMedia} title={LETTER.title} poster={IMG("look-world")} cardLine={`${LETTER.series} · a film made with Esy`} />
+          ) : (
+            <div className="fp">
+              <div className="fp-stage">
+                <div className="fp-cover fp-cover--soon">
+                  <img src={IMG("look-world")} alt="" />
+                  <span className="fp-cover-in">The animatic premieres here soon</span>
+                </div>
+              </div>
+            </div>
+          )}
           <div className="fr-tc"><span>00:00:00:00</span><span>version {LETTER.version} · {LETTER.shots} shots · every line recorded · <a href={LETTER.animaticUrl} {...ext}>open full screen ↗</a></span><span>00:0{LETTER.runtime}:00</span></div>
         </section>
 

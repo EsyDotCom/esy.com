@@ -1,6 +1,7 @@
 /* The first Esy film: everything the /films pages show about it, in one place.
  *
- * Both page directions (/films/v/a and /films/v/b) read this file, so the
+ * The live film page (/films/the-letter-with-no-address, direction A) and the
+ * prototypes it was picked from (/prototypes/films/) read this file, so the
  * facts, the cast and the package stay identical while the designs differ.
  * Frames live in /public/films/the-letter-with-no-address/. Zuri and her
  * mother are drawn from family photos, so no frame of them is used here.
@@ -43,17 +44,25 @@ export const LETTER = {
   slug: "the-letter-with-no-address",
   title: "The Letter With No Address",
   series: "Lullo the Moon Bear",
-  runtime: "4:07",
+  runtime: "4:08",
   shots: 39,
   lines: 33,
   voices: 6,
   ages: "3–7",
   stageIndex: FILM_STAGES.indexOf("Animatic"),
-  version: 9,
+  version: 11,
   logline:
     "A letter arrives at the Cloud Post Office with no address, only a child's crayon drawing of a star, a moon and a pair of tiny booties. Lullo follows the drawing from the Sleepy Stars to the Moon to a quiet lane, until a window lights up.",
   tagline: "A letter with no address, a crayon drawing for a clue, and one very determined postman.",
   animaticUrl: "https://claude.ai/artifact/LqbXkKbumDwiqZK8BL2e2B",
+  // The animatic's own media (46 MB of frames, clips and recorded lines) isn't in
+  // the repo. It plays from NEXT_PUBLIC_FILMS_MEDIA_BASE once hosted; on a dev
+  // machine, from public/ (gitignored). With neither, the page shows the poster.
+  animaticMedia: process.env.NEXT_PUBLIC_FILMS_MEDIA_BASE
+    ? `${process.env.NEXT_PUBLIC_FILMS_MEDIA_BASE}/the-letter-with-no-address/animatic`
+    : process.env.NODE_ENV === "development"
+      ? "/films/the-letter-with-no-address/animatic"
+      : null,
   storybookUrl: "https://clip.art/stories/milo/",
   packsUrl: "https://clip.art/packs/",
   chapters: [

@@ -85,6 +85,8 @@ const ConditionalNavigation = () => {
   // making room for Esy OS), and /prototypes render their own header.
   const isEngineerIndex = normalizedPath === '/engineer';
   const isPrototypesPage = normalizedPath === '/prototypes' || normalizedPath?.startsWith('/prototypes/');
+  // Films version B's index is a light page and carries the light header.
+  const isFilmsLightIndex = normalizedPath === '/films/v/b';
 
   // Don't render navigation on:
   // - Essay view pages (focused reading)
@@ -94,7 +96,7 @@ const ConditionalNavigation = () => {
   // - Agents pages (own sidebar navigation)
   // - Scrollytelling story pages (own header via ScrollytellingHeader)
   // - Photo essays landing page (immersive experience with own header)
-  if (isEssayViewPage || isInfographicViewPage || isClipArtViewPage || isDocsPage || isAgentsPage || isScrollytellingStoryPage || isPhotoEssaysPage || isHomepage || isWaitlistPage || isTopicsPage || isArticlePage || isEngineerIndex || isPrototypesPage) {
+  if (isEssayViewPage || isInfographicViewPage || isClipArtViewPage || isDocsPage || isAgentsPage || isScrollytellingStoryPage || isPhotoEssaysPage || isHomepage || isWaitlistPage || isTopicsPage || isArticlePage || isEngineerIndex || isPrototypesPage || isFilmsLightIndex) {
     return null;
   }
 

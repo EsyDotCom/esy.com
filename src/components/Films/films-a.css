@@ -257,5 +257,3 @@ a.fr-can:hover { border-color: var(--fa-gold); }
 .fp-head { position: absolute; top: -2px; bottom: -2px; width: 2px; background: #fff; box-shadow: 0 0 8px #fff; pointer-events: none; }
 @media (max-width: 560px) { .fp-time { min-width: 0; font-size: 0.76rem; } }
 @media (prefers-reduced-motion: reduce) { .fp-layer img { transform: none !important; } }
-.fp-cover--soon { cursor: default; }
-.fp-cover--soon .fp-cover-in { font: 600 clamp(1rem, 2.4vw, 1.4rem)/1.2 var(--nl-serif), Georgia, serif; letter-spacing: 0.02em; }

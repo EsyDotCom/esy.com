@@ -55,14 +55,11 @@ export const LETTER = {
     "A letter arrives at the Cloud Post Office with no address, only a child's crayon drawing of a star, a moon and a pair of tiny booties. Lullo follows the drawing from the Sleepy Stars to the Moon to a quiet lane, until a window lights up.",
   tagline: "A letter with no address, a crayon drawing for a clue, and one very determined postman.",
   animaticUrl: "https://claude.ai/artifact/LqbXkKbumDwiqZK8BL2e2B",
-  // The animatic's own media (46 MB of frames, clips and recorded lines) isn't in
-  // the repo. It plays from NEXT_PUBLIC_FILMS_MEDIA_BASE once hosted; on a dev
-  // machine, from public/ (gitignored). With neither, the page shows the poster.
-  animaticMedia: process.env.NEXT_PUBLIC_FILMS_MEDIA_BASE
-    ? `${process.env.NEXT_PUBLIC_FILMS_MEDIA_BASE}/the-letter-with-no-address/animatic`
-    : process.env.NODE_ENV === "development"
-      ? "/films/the-letter-with-no-address/animatic"
-      : null,
+  // The animatic's own media (48 MB of frames, clips and recorded lines) lives in
+  // esy.com's R2 bucket, one folder per cut (upload with
+  // scripts/r2-upload-film-media.mjs). Files are cached for a year, so a new cut
+  // goes up under a new folder and this line moves to it.
+  animaticMedia: "films/the-letter-with-no-address/animatic/v11",
   storybookUrl: "https://clip.art/stories/milo/",
   packsUrl: "https://clip.art/packs/",
   chapters: [

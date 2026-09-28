@@ -8,6 +8,7 @@ import { nlSerif } from "@/components/NewsletterHome/serif";
 import { FILM_STAGES, LETTER, PACKAGE_GROUPS } from "@/data/films/the-letter-with-no-address";
 
 import FilmFrame from "./FilmFrame";
+import FilmHeader from "./FilmHeader";
 import FilmHeroA from "./FilmHeroA";
 import "./films-a.css";
 
@@ -88,6 +89,7 @@ export function FilmsIndexA() {
 export function FilmDetailA() {
   return (
     <div className={`fa ${nlSerif.variable}`}>
+      <FilmHeader tone="a" />
       <FilmHeroA />
 
       <div className="fa-wrap">

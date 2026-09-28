@@ -58,6 +58,11 @@ const ConditionalFooter = () => {
     return null;
   }
   
+  // Film version B ends on its own immersive footer (the dawn / last letter / goodnight endings).
+  if (normalizedPath === '/films/v/b/the-letter-with-no-address') {
+    return null;
+  }
+
   // Check if we're on course lesson pages (focused learning experience, no footer)
   const isCourseLessonPage = normalizedPath?.match(/^\/courses\/[^/]+\/[^/]+$/);
   if (isCourseLessonPage) {

@@ -10,7 +10,9 @@ import { nlSerif } from "@/components/NewsletterHome/serif";
 import "@/components/NewsletterHome/NewsletterHome.css";
 import { LETTER, PACKAGE_GROUPS } from "@/data/films/the-letter-with-no-address";
 
+import FilmEndingsB from "./FilmEndingsB";
 import FilmFrame from "./FilmFrame";
+import FilmHeader from "./FilmHeader";
 import FilmHeroB from "./FilmHeroB";
 import { storySans, storySerif } from "./fonts";
 import "./films-b.css";
@@ -64,6 +66,7 @@ export function FilmsIndexB() {
 export function FilmDetailB() {
   return (
     <div className={`fb fb-night ${fontVars}`}>
+      <FilmHeader tone="b" />
       <FilmHeroB />
       <div className="fb-wrap">
 
@@ -147,13 +150,9 @@ export function FilmDetailB() {
           })}
         </section>
 
-        <footer className="fb-foot">
-          <span>Esy Films</span>
-          <span>{LETTER.series} is a clip.art character</span>
-          <a href={LETTER.storybookUrl} {...ext}>Read the storybook on clip.art ↗</a>
-          <Link href={`${BASE}/`}>All films</Link>
-        </footer>
+
       </div>
+      <FilmEndingsB />
     </div>
   );
 }

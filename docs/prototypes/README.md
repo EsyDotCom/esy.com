@@ -12,6 +12,8 @@ Clickable directions we compare by using them, not by looking at mockups. They l
 
 **The framed video article page (2026-09-27)** is at `/prototypes/article-video/`: A · Studio, B · Theater, C · Mat, each framing the real Mux player. **B shipped as the page for every article with a video**: `VideoArticlePage` replaces the full-width black player (the old `src/app/engineer/[slug]/client.tsx`, deleted), keeps the transcript and workflow pipeline, and shares the image-led article's reading layout below the video.
 
+**The films pages (2026-09-28)** are at `/prototypes/films/`: A · Premiere (index `a-index`, film page `a-film`, "The Final Reel") and B · Storybook (`b-index`, `b-film`, ending on a last letter). **A's film page shipped as `/films/the-letter-with-no-address`.** The index had to hold films of every kind, not just children's, so six more index directions were tried as artifacts (Premiere, Programme, Screens, Picture House, The Reel, Title Sequence), and **the title sequence shipped as `/films`** (`src/components/Films/FilmsIndex.tsx`, films listed in `src/data/films/index.ts`). Screenshots: `films-index-opening.png`, `films-index-featured.png`, `films-index-stages.png`, `films-film-page-animatic.png`.
+
 ## The pattern
 
 1. **Show the real product, not a picture of it.** Don't screenshot the app and don't draw a mockup. Rebuild the page from the product's own source: same markup, same class names, and the product's stylesheets **copied verbatim** (with a provenance header saying where they came from and when). Keep any tweaks for the new setting in a separate file. The result looks like the product because it *is* the product's UI.

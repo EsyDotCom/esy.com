@@ -58,6 +58,13 @@ const ConditionalFooter = () => {
     return null;
   }
   
+  // The films index ends on "Fin." and each film page on its own footer (the
+  // live page and prototype A: end credits; prototype B: the last letter).
+  const isFilmsPage = normalizedPath === '/films' || normalizedPath?.startsWith('/films/');
+  if (isFilmsPage || normalizedPath === '/prototypes/films/a-film' || normalizedPath === '/prototypes/films/b-film') {
+    return null;
+  }
+
   // Check if we're on course lesson pages (focused learning experience, no footer)
   const isCourseLessonPage = normalizedPath?.match(/^\/courses\/[^/]+\/[^/]+$/);
   if (isCourseLessonPage) {

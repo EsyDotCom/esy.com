@@ -33,7 +33,7 @@ export type PackageItem = {
   private?: boolean;
 };
 
-export type Chapter = { label: string; title: string; text: string; image: string; alt: string; speaker?: string; line?: string };
+export type Chapter = { label: string; title: string; text: string; image: string; alt: string; tc: string; speaker?: string; line?: string };
 export type CastMember = { name: string; role: string; image: string; position: string; zoom: string };
 
 const IMG = "/films/the-letter-with-no-address";
@@ -60,6 +60,7 @@ export const LETTER = {
     {
       label: "Chapter one",
       title: "The Cloud Post Office",
+      tc: "00:07",
       text: "Every letter in Starlight Town is delivered before sunrise. Tonight one arrives with no address at all.",
       image: "milo-stamp",
       alt: "Milo stamping a letter at his sorting desk",
@@ -69,6 +70,7 @@ export const LETTER = {
     {
       label: "Chapter two",
       title: "The Sleepy Stars",
+      tc: "01:12",
       text: "In starlight, the first line of the letter appears.",
       image: "stars-bounce",
       alt: "The three Sleepy Stars bouncing on a cloud as the balloon arrives",
@@ -78,6 +80,7 @@ export const LETTER = {
     {
       label: "Chapter three",
       title: "The Moon",
+      tc: "01:48",
       text: "Moonlight shows the second line, and the Moon lays a silver path down to the rooftops.",
       image: "d1-moon",
       alt: "Milo's balloon beside the Moon",
@@ -87,6 +90,7 @@ export const LETTER = {
     {
       label: "Chapter four",
       title: "Morning",
+      tc: "03:29",
       text: "Home by sunrise, with the Lost Letters drawer glowing. What happens at the window, you'll have to watch.",
       image: "dawn-home",
       alt: "Dawn over the Cloud Post Office as the balloon comes home",

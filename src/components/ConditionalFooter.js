@@ -58,8 +58,8 @@ const ConditionalFooter = () => {
     return null;
   }
   
-  // Film version B ends on its own immersive footer (the dawn / last letter / goodnight endings).
-  if (normalizedPath === '/films/v/b/the-letter-with-no-address') {
+  // Both film pages end on their own immersive footers (A: end credits, B: the last letter).
+  if (normalizedPath === '/films/v/a/the-letter-with-no-address' || normalizedPath === '/films/v/b/the-letter-with-no-address') {
     return null;
   }
 

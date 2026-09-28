@@ -5,11 +5,12 @@
 import Link from "next/link";
 
 import { nlSerif } from "@/components/NewsletterHome/serif";
-import { FILM_STAGES, LETTER, PACKAGE_GROUPS } from "@/data/films/the-letter-with-no-address";
+import { FILM_STAGES, LETTER } from "@/data/films/the-letter-with-no-address";
 
 import FilmFrame from "./FilmFrame";
 import FilmHeader from "./FilmHeader";
 import FilmHeroA from "./FilmHeroA";
+import FilmReelA from "./FilmReelA";
 import "./films-a.css";
 
 const BASE = "/films/v/a";
@@ -91,99 +92,7 @@ export function FilmDetailA() {
     <div className={`fa ${nlSerif.variable}`}>
       <FilmHeader tone="a" />
       <FilmHeroA />
-
-      <div className="fa-wrap">
-        <section className="fa-sec" aria-labelledby="fa-now">
-          <h2 className="fa-h2" id="fa-now"><small>Now showing</small>The animatic</h2>
-          <a className="fa-player" href={LETTER.animaticUrl} {...ext} aria-label="Open the animatic player">
-            <FilmFrame name="animatic-player" alt="The Milo animatic player: Milo beside the Moon, with a subtitle and the scene-coloured timeline" sizes="(max-width: 1180px) 100vw, 1130px" />
-            <span className="fa-player-play"><i /></span>
-          </a>
-          <div className="fa-cap">
-            <span>Version {LETTER.version} · every line recorded · temp music · mixed to −16 LUFS</span>
-            <span>Opens the full player ↗</span>
-          </div>
-        </section>
-
-        <section className="fa-sec" aria-labelledby="fa-credits">
-          <h2 className="fa-h2" id="fa-credits"><small>Credits</small>Who and what made it</h2>
-          <dl className="fa-credits">
-            {LETTER.credits.map((c) => (
-              <div key={c.label}>
-                <dt>{c.label}</dt>
-                <dd>{c.title}<span>{c.note}</span></dd>
-              </div>
-            ))}
-          </dl>
-        </section>
-
-        <section className="fa-sec" aria-labelledby="fa-world">
-          <h2 className="fa-h2" id="fa-world"><small>The world</small>Starlight Town</h2>
-          <div className="fa-reel">
-            {LETTER.reel.map((r) => (
-              <FilmFrame key={r.image} name={r.image} alt={r.alt} sizes="320px" />
-            ))}
-          </div>
-        </section>
-
-        <section className="fa-sec" aria-labelledby="fa-cast">
-          <h2 className="fa-h2" id="fa-cast"><small>The cast</small>Who&apos;s in it</h2>
-          <div className="fa-cast">
-            {LETTER.cast.map((c) => (
-              <figure key={c.name}>
-                <span className="fa-cast-ph" style={{ backgroundImage: `url(/films/${LETTER.slug}/${c.image}.webp)`, backgroundPosition: c.position, backgroundSize: c.zoom }} role="img" aria-label={c.name} />
-                <figcaption><b>{c.name}</b><span>{c.role}</span></figcaption>
-              </figure>
-            ))}
-          </div>
-        </section>
-
-        <section className="fa-sec" aria-labelledby="fa-making">
-          <h2 className="fa-h2" id="fa-making"><small>The making</small>{LETTER.versions.length} versions of the animatic</h2>
-          <ol className="fa-versions">
-            {LETTER.versions.map((v) => (
-              <li key={v.v}><b>{v.v}</b><span>{v.text}</span></li>
-            ))}
-          </ol>
-          <Steps />
-        </section>
-
-        <section className="fa-sec" id="package" aria-labelledby="fa-package">
-          <h2 className="fa-h2" id="fa-package"><small>The package</small>Every file behind the film</h2>
-          {PACKAGE_GROUPS.map((g) => (
-            <div key={g.key} style={{ display: "grid", gap: 14 }}>
-              <p className="fa-group">{g.title}</p>
-              <div className="fa-kit">
-                {LETTER.package.filter((p) => p.group === g.key).map((p) => {
-                  const body = (
-                    <>
-                      <FilmFrame name={p.image} alt="" sizes="96px" />
-                      <span className="fa-card-t">
-                        <small>{p.kind} · {p.updated}</small>
-                        <b>{p.title}</b>
-                        <p>{p.description}</p>
-                        <em>{p.private ? "Private for now" : "Open ↗"}</em>
-                      </span>
-                    </>
-                  );
-                  return p.private ? (
-                    <div key={p.title} className="fa-card fa-card--private">{body}</div>
-                  ) : (
-                    <a key={p.title} className="fa-card" href={p.url} {...ext}>{body}</a>
-                  );
-                })}
-              </div>
-            </div>
-          ))}
-        </section>
-
-        <footer className="fa-foot">
-          <span>Esy Films</span>
-          <span>{LETTER.series} is a clip.art character</span>
-          <a href={LETTER.storybookUrl} {...ext}>Read the storybook on clip.art ↗</a>
-          <Link href={`${BASE}/`}>All films</Link>
-        </footer>
-      </div>
+      <FilmReelA />
     </div>
   );
 }

@@ -340,6 +340,84 @@ export const PROTOTYPES: Prototype[] = [
       },
     ],
   },
+  {
+    slug: 'article',
+    name: 'The image-led article page',
+    date: '2026-09-27',
+    headline: 'Three article pages for posts with a picture instead of a video.',
+    intro:
+      'Every article on esy.com opens with a video today. These three open with an image: a real published article, with a lead illustration generated through Esy. Open each one and read it the way a subscriber would.',
+    summary:
+      'Three layouts for articles without a video, each rendering a real published article (Building Multi-Agent Workflows with Claude Code) with a lead image generated through api.esy.com.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Three ways to lead with an image',
+        summary:
+          'A reads like a magazine with the signup mid-article, B makes the image the cover with the title on it, C is a guide with a sticky table of contents and a reading-progress bar.',
+      },
+      {
+        n: 2,
+        title: 'One merge',
+        summary: 'D keeps B’s cover and puts C’s contents rail, with the email signup on top, beside the article under it.',
+      },
+      {
+        n: 3,
+        title: 'Where the email goes',
+        summary: 'Same page, two places for the first ask: D keeps it at the top of the rail, E puts the video articles’ email bar right under the cover. E shipped as the default for articles without a video.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'editorial',
+        key: 'A',
+        name: 'Editorial',
+        round: 1,
+        title: 'A magazine read.',
+        blurb: 'Title, summary and byline in a reading column, a wide captioned image, and the signup card after the second section.',
+        image: '/prototypes/article/workshop.webp',
+      },
+      {
+        slug: 'cover',
+        key: 'B',
+        name: 'Cover',
+        round: 1,
+        title: 'The picture is the cover.',
+        blurb: 'The image fills the first screen with the title and byline on it in white; a centred body, then a navy “get the next one” band.',
+        image: '/prototypes/article/lanes.webp',
+      },
+      {
+        slug: 'guide',
+        key: 'C',
+        name: 'Guide',
+        round: 1,
+        title: 'Built for tutorials people skim.',
+        blurb: 'Title and signup beside the image, then a sticky table of contents that follows your place, and a reading-progress bar.',
+        image: '/prototypes/article/workshop.webp',
+      },
+      {
+        slug: 'cover-guide',
+        key: 'D',
+        name: 'Cover Guide',
+        round: 2,
+        mergeOf: ['B', 'C'],
+        title: 'The cover, then a guide.',
+        blurb: 'B’s full-screen cover with the title on the image; under it, a sticky left rail with the email signup and the contents, the article on the right, and B’s navy signup band at the end.',
+        image: '/prototypes/article/lanes.webp',
+      },
+      {
+        slug: 'cover-bar',
+        key: 'E',
+        name: 'Cover Bar',
+        round: 3,
+        title: 'The cover, the email bar, then a guide.',
+        blurb: 'D with the email ask moved: the same full-width bar that sits under the video on video articles, right under the cover; the rail keeps only the contents.',
+        image: '/prototypes/article/lanes.webp',
+        // The default for every article without a video (src/app/engineer/[slug]).
+        live: true,
+      },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

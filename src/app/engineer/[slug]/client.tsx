@@ -16,6 +16,7 @@ import { VideoPlayer } from "@/components/School/VideoPlayer";
 import { TranscriptToggle } from "@/components/School/TranscriptToggle";
 import { VideoTranscript } from "@/components/Research/VideoTranscript";
 import { AgenticNewsletterBar } from "@/components/Agentic/AgenticNewsletterBar";
+import { useNewsletterSubscribe } from "@/hooks/useNewsletterSubscribe";
 import { AgenticRelatedVideos } from "@/components/Agentic/AgenticRelatedVideos";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import LightHeader from "@/components/LightHeader/LightHeader";
@@ -256,39 +257,19 @@ function useBreakpoint(): Breakpoint {
   return bp;
 }
 
-// Sidebar capture posts to the surviving (default) newsletter list, matching
-// the hero and the sticky bar.
+// Sidebar capture, through useNewsletterSubscribe like every other signup on
+// the site: it sends the honeypot and fill-time signals the newsletter route's
+// bot check requires. (It used to post only the email, and from 2026-09-08,
+// when the route began requiring a fill time, the route took every signup from
+// here for a bot and silently dropped it.)
 function SidebarNewsletter() {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<
-    "idle" | "loading" | "success" | "error" | "invalid"
-  >("idle");
+  const { subscribe, status, errorMessage, reset, honeypotProps } = useNewsletterSubscribe();
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  async function handleSubmit(e: React.FormEvent) {
+  // The hook validates the address and reports errors itself.
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const trimmed = email.trim();
-    if (!emailRegex.test(trimmed)) {
-      setStatus("invalid");
-      return;
-    }
-    setStatus("loading");
-    try {
-      const res = await fetch("/api/newsletter/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: trimmed }),
-      });
-      if (res.ok) {
-        setStatus("success");
-        setEmail("");
-      } else {
-        setStatus("error");
-      }
-    } catch {
-      setStatus("error");
-    }
+    subscribe(email);
   }
 
   return (
@@ -345,20 +326,21 @@ function SidebarNewsletter() {
             gap: 8,
           }}
         >
+          {/* Bot trap: off-screen, never focusable, never filled by a human. */}
+          <input {...honeypotProps} />
           <input
             type="email"
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
-              if (status === "invalid" || status === "error")
-                setStatus("idle");
+              if (status === "error") reset();
             }}
             placeholder="you@example.com"
             disabled={status === "loading"}
             style={{
               width: "100%",
               borderRadius: 8,
-              border: `1px solid ${status === "invalid" ? (theme.error || "#ef4444") : theme.border}`,
+              border: `1px solid ${status === "error" ? (theme.error || "#ef4444") : theme.border}`,
               backgroundColor: theme.bg,
               padding: "0.5rem 0.75rem",
               fontSize: "0.8125rem",
@@ -399,7 +381,7 @@ function SidebarNewsletter() {
         </form>
       )}
 
-      {status === "invalid" && (
+      {status === "error" && errorMessage && (
         <p
           style={{
             fontSize: "0.6875rem",
@@ -407,18 +389,7 @@ function SidebarNewsletter() {
             margin: "6px 0 0",
           }}
         >
-          Enter a valid email address.
-        </p>
-      )}
-      {status === "error" && (
-        <p
-          style={{
-            fontSize: "0.6875rem",
-            color: theme.error || "#ef4444",
-            margin: "6px 0 0",
-          }}
-        >
-          Something went wrong. Try again.
+          {errorMessage}
         </p>
       )}
     </div>

@@ -10,6 +10,7 @@ import { transcriptToPlainText, toIsoDuration } from "@/lib/transcripts";
 import { isArticleSlugShape, articlePath } from "@/lib/article-path";
 import { toNavArticles } from "@/lib/nav-articles";
 import AgenticVideoPageClient from "./client";
+import ImageArticlePage from "@/components/ArticleImage/ImageArticlePage";
 import type { Metadata } from "next";
 
 // One article of The Marketing Engineer, at esy.com/engineer/<slug>/. The
@@ -47,9 +48,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!video) return {};
 
   const url = `${BASE_URL}${articlePath(video.slug)}`;
+  // A video article shares its first frame; an image-led one shares its cover.
   const ogImage = video.muxPlaybackId
     ? `https://image.mux.com/${video.muxPlaybackId}/thumbnail.jpg?time=0`
-    : undefined;
+    : video.thumbnailUrl || undefined;
 
   return {
     title: `${video.title} — The Marketing Engineer`,
@@ -60,7 +62,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: video.title,
       description: video.description.slice(0, 160),
-      type: "video.other",
+      type: video.muxPlaybackId ? "video.other" : "article",
       url,
       images: ogImage ? [ogImage] : [],
     },
@@ -82,6 +84,33 @@ export default async function AgenticVideoPage({ params }: Props) {
   // Related resolves against the merged list so API and registry articles
   // can cross-reference each other.
   const all = await getAllAgenticArticles();
+
+  // No video: the image-led article page (D · Cover Guide), described to search
+  // engines as an Article rather than a VideoObject.
+  if (!video.muxPlaybackId) {
+    const articleLd = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: video.title,
+      description: video.description,
+      image: video.thumbnailUrl || undefined,
+      datePublished: video.publishedAt,
+      mainEntityOfPage: `${BASE_URL}${articlePath(video.slug)}`,
+      author: { "@type": "Person", name: "Zev Uhuru", url: BASE_URL },
+      publisher: { "@type": "Organization", name: "Esy", url: BASE_URL },
+      keywords: video.tags.join(", "),
+    };
+    return (
+      <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
+        />
+        <ImageArticlePage article={video} all={all} />
+      </>
+    );
+  }
+
   const related = relatedFrom(all, video.slug, video.relatedSlugs);
   // Build-time SRT load — segments ship in the static HTML for SEO and power
   // the click-to-seek transcript UI. Null when no SRT exists for the slug.

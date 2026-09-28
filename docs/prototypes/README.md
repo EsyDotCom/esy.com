@@ -12,6 +12,8 @@ Clickable directions we compare by using them, not by looking at mockups. They l
 
 **The framed video article page (2026-09-27)** is at `/prototypes/article-video/`: A · Studio, B · Theater, C · Mat, each framing the real Mux player. **B shipped as the page for every article with a video**: `VideoArticlePage` replaces the full-width black player (the old `src/app/engineer/[slug]/client.tsx`, deleted), keeps the transcript and workflow pipeline, and shares the image-led article's reading layout below the video.
 
+**The LinkedIn banner (2026-09-28)** is at `/prototypes/linkedin-banner/`: A · Masthead, B · Proof, C · Scene. It's artwork, not a page, so each direction is one fixed 1584×396 canvas (`src/components/LinkedInBanner/`). The preview page scales that same canvas onto a desktop profile and the phone app and marks where the profile photo covers it. `scripts/export-linkedin-banners.mjs` screenshots the bare canvas (`/<variant>/raw/`) into the downloadable PNG.
+
 ## The pattern
 
 1. **Show the real product, not a picture of it.** Don't screenshot the app and don't draw a mockup. Rebuild the page from the product's own source: same markup, same class names, and the product's stylesheets **copied verbatim** (with a provenance header saying where they came from and when). Keep any tweaks for the new setting in a separate file. The result looks like the product because it *is* the product's UI.

@@ -466,6 +466,60 @@ export const PROTOTYPES: Prototype[] = [
       },
     ],
   },
+  {
+    slug: 'linkedin-banner',
+    name: 'The LinkedIn banner',
+    date: '2026-09-28',
+    headline: 'Three LinkedIn banners for a marketing engineer.',
+    intro:
+      'The banner is the first thing people see on Zev\u2019s profile. Each one says what he does and where to read it, and keeps clear of the profile photo. Open one to see it on a desktop profile and in the phone app, and download the PNG.',
+    summary:
+      'Three 1584\u00d7396 LinkedIn profile banners. Each preview is the same canvas the downloadable PNG is exported from (scripts/export-linkedin-banners.mjs).',
+    rounds: [
+      {
+        n: 1,
+        title: 'Three ways to say what he does',
+        summary:
+          'A carries the homepage promise onto paper, B lists what he runs on navy, and C puts one short line over a generated scene.',
+      },
+    ],
+    // Each card image is the exported PNG (src/components/LinkedInBanner/).
+    variants: [
+      {
+        slug: 'masthead',
+        key: 'A',
+        name: 'Masthead',
+        round: 1,
+        title: 'I build the AI systems that run marketing, and show you how.',
+        blurb:
+          'Light paper with a navy rule on top: the homepage promise in the serif, and clip.art and SEOPage as the proof under it.',
+        image: '/prototypes/linkedin-banner/masthead.png',
+        imageFit: 'contain',
+      },
+      {
+        slug: 'proof',
+        key: 'B',
+        name: 'Proof',
+        round: 1,
+        title: 'Marketing engineer.',
+        blurb:
+          'Navy. The title and where to read him on the left, and a ledger on the right of what he runs: clip.art, SEOPage, and Esy underneath both.',
+        image: '/prototypes/linkedin-banner/proof.png',
+        imageFit: 'contain',
+      },
+      {
+        slug: 'scene',
+        key: 'C',
+        name: 'Scene',
+        round: 1,
+        title: 'Marketing, engineered.',
+        blurb:
+          'The education hero\u2019s generated backdrop, glowing paths over a dark valley, with one short line and the newsletter on its dark side.',
+        image: '/prototypes/linkedin-banner/scene.png',
+        imageFit: 'contain',
+      },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

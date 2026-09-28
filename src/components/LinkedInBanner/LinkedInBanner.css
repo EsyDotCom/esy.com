@@ -1,0 +1,100 @@
+/* LinkedIn banners (LinkedInBanner.tsx). Everything is in px at the 1584×396
+ * upload size; ScaledBanner shrinks the whole canvas for previews. The copy
+ * block starts at x=540 because LinkedIn's profile photo covers the
+ * bottom-left. */
+
+.lib-root {
+  --lib-navy: #0A2540;
+  --lib-ink: #102033;
+  --lib-ink-soft: #41566D;
+  --lib-jade: #00A896;
+  --lib-jade-text: #007F72;
+  --lib-jade-bright: #00D4AA;
+  --lib-serif: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif;
+  --lib-sans: var(--font-inter, 'Inter'), system-ui, sans-serif;
+  width: 1584px; height: 396px;
+}
+.lib-canvas {
+  position: relative; width: 1584px; height: 396px; overflow: hidden;
+  font-family: var(--lib-sans); -webkit-font-smoothing: antialiased;
+}
+.lib-canvas * { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ── Shared pieces ── */
+.lib-corner { position: absolute; top: 34px; left: 56px; font-size: 44px; line-height: 1; }
+.lib-wordmark { font-family: var(--font-black-ops-one), 'Black Ops One', system-ui; letter-spacing: 0.03em; color: var(--lib-navy); }
+.lib-wordmark--dark { color: rgba(255, 255, 255, 0.92); }
+.lib-wordmark-e { color: var(--lib-jade); }
+.lib-serif { font-family: var(--lib-serif); font-weight: 700; letter-spacing: -0.02em; }
+.lib-serif em { font-style: italic; }
+.lib-label { font-size: 17px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--lib-jade-text); }
+
+/* The two businesses' own wordmarks, sized by font-size. SEOPage's rules are
+   copied from NewsletterHome.css (.seopage-wordmark), so this file stands alone. */
+.lib-clipart { height: 1em; width: auto; display: inline-block; }
+.lib-root .seopage-wordmark { display: inline-flex; align-items: flex-start; font-weight: 700; line-height: 1; letter-spacing: -0.04em; }
+.lib-root .seopage-wordmark--light { font-weight: 600; }
+.lib-root .seopage-wordmark-badge {
+  display: flex; align-items: center; justify-content: center;
+  margin-left: 0.29em; margin-top: 0.07em; height: 1.5em; min-width: 1.5em; border-radius: 0.43em;
+  background: #3D6BFF; color: #fff; font-size: 0.28em; letter-spacing: 0;
+}
+
+/* ── A · Masthead ── */
+.lib-masthead { background: #FFFFFF; }
+/* A heavy navy rule across the top, like the homepage's section index. */
+.lib-masthead::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 10px; background: var(--lib-navy); }
+/* A faint jade wash in the photo's corner, so the empty side isn't blank. */
+.lib-masthead::after {
+  content: ''; position: absolute; left: -160px; bottom: -260px; width: 720px; height: 560px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0, 168, 150, 0.13), rgba(0, 168, 150, 0));
+}
+.lib-masthead .lib-corner { top: 42px; }
+.lib-masthead-copy {
+  position: absolute; left: 540px; right: 80px; top: 56px; bottom: 44px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.lib-masthead-title { font-size: 66px; line-height: 1.02; color: var(--lib-navy); max-width: 900px; }
+.lib-masthead-title em { color: var(--lib-jade); }
+.lib-masthead-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 18px; border-top: 2px solid rgba(10, 37, 64, 0.12);
+}
+.lib-masthead-proof { display: inline-flex; align-items: center; gap: 22px; font-size: 20px; color: var(--lib-ink-soft); }
+.lib-masthead-proof .lib-clipart { font-size: 34px; color: var(--lib-navy); }
+.lib-masthead-proof .lib-seopage { font-size: 34px; color: var(--lib-navy); }
+.lib-url { font-size: 24px; font-weight: 600; color: var(--lib-jade-text); }
+
+/* ── B · Proof ── */
+.lib-proof { background: linear-gradient(120deg, #061527 0%, var(--lib-navy) 55%, #0F3460 100%); color: #fff; }
+.lib-proof-glow {
+  position: absolute; left: -200px; bottom: -320px; width: 820px; height: 640px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0, 212, 170, 0.2), rgba(0, 212, 170, 0));
+}
+.lib-proof-copy { position: absolute; left: 540px; top: 0; bottom: 0; width: 470px; display: flex; flex-direction: column; justify-content: center; }
+.lib-proof-title { font-size: 84px; line-height: 0.98; color: #F8FAFC; }
+.lib-proof-title em { color: var(--lib-jade-bright); }
+.lib-proof-sub { margin-top: 18px !important; font-size: 22px; line-height: 1.45; color: rgba(255, 255, 255, 0.74); }
+.lib-proof-sub b { color: #fff; font-weight: 600; }
+.lib-ledger {
+  position: absolute; right: 72px; top: 50%; transform: translateY(-50%); width: 470px;
+  list-style: none; border-radius: 22px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 8px 30px !important;
+}
+.lib-ledger li { display: flex; flex-direction: column; gap: 8px; padding: 18px 0 !important; }
+.lib-ledger li + li { border-top: 1px solid rgba(255, 255, 255, 0.1); }
+.lib-ledger-mark { display: flex; font-size: 30px; line-height: 1; color: #fff; }
+.lib-ledger-what { font-size: 18px; color: rgba(255, 255, 255, 0.7); }
+
+/* ── C · Scene ── */
+.lib-scene { background: #07131F; color: #fff; }
+/* The art, enlarged so its glowing paths fill the right side and the figure on
+   the cliff sits bottom-right; its own dark left half melts into the canvas. */
+.lib-scene-img { position: absolute; left: 384px; top: -170px; width: 1300px; height: auto; }
+/* Fade the art's left edge into the backdrop's own navy, so there's no seam. */
+.lib-scene-shade { position: absolute; top: 0; bottom: 0; left: 384px; width: 460px; background: linear-gradient(90deg, #07131F 0%, rgba(7, 19, 31, 0) 100%); }
+.lib-scene-copy { position: absolute; left: 540px; top: 0; bottom: 0; width: 640px; display: flex; flex-direction: column; justify-content: center; }
+.lib-scene-title { font-size: 92px; line-height: 0.98; color: #F8FAFC; }
+.lib-scene-title em { color: var(--lib-jade-bright); }
+.lib-scene-sub { margin-top: 18px !important; font-size: 23px; line-height: 1.45; color: rgba(255, 255, 255, 0.78); }
+.lib-scene-cta { display: block; margin-top: 6px !important; font-weight: 600; color: var(--lib-jade-bright); }

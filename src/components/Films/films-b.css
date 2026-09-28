@@ -132,3 +132,38 @@ a.fb-film:hover .fb-film-ov b { text-decoration: underline; text-underline-offse
 @media (max-width: 860px) { .fb-how { grid-template-columns: minmax(0, 1fr); gap: 20px; } }
 .fb-how h2 { font-family: var(--nl-serif), Georgia, serif; font-weight: 700; font-size: 1.45rem; color: #0a2540; margin: 0 0 6px; }
 .fb-how p { font-size: 0.98rem; line-height: 1.65; color: #41566d; margin: 0; }
+
+/* ── immersive header, "written in starlight" ── */
+.fb-imm { --lx: 0; --ly: 0; position: relative; min-height: 100svh; display: grid; align-items: center; overflow: hidden; isolation: isolate; }
+.fb-imm-scene { position: absolute; inset: -3%; z-index: -2; transform: translate3d(calc(var(--lx) * -14px), calc(var(--ly) * -10px), 0) scale(1.04); transition: transform 0.6s ease-out; }
+.fb-imm-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 1.2s ease; }
+.fb-imm-wash { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(11, 16, 48, 0.92) 0%, rgba(11, 16, 48, 0.7) 34%, rgba(11, 16, 48, 0.1) 62%, rgba(11, 16, 48, 0.25) 100%), linear-gradient(180deg, rgba(11, 16, 48, 0.55) 0%, transparent 22%, transparent 70%, #0b1030 100%); }
+@media (max-width: 860px) { .fb-imm-wash { background: linear-gradient(180deg, rgba(11, 16, 48, 0.5) 0%, rgba(11, 16, 48, 0.35) 30%, rgba(11, 16, 48, 0.85) 62%, #0b1030 100%); } .fb-imm { align-items: end; } }
+.fb-imm-sky { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; transform: translate3d(calc(var(--lx) * 8px), calc(var(--ly) * 6px), 0); transition: transform 0.6s ease-out; pointer-events: none; }
+.fb-imm-in { width: 100%; max-width: 1180px; margin: 0 auto; padding: 110px 28px 90px; display: grid; gap: 4px; }
+.fb-imm-in > * { max-width: 560px; }
+@media (max-width: 640px) { .fb-imm-in { padding: 96px 16px 96px; } }
+.fb-imm-title { position: relative; margin: 12px 0 16px; font-family: var(--film-story), Georgia, serif; font-weight: 400; font-size: clamp(2.8rem, 6.4vw, 5rem); line-height: 1.02; text-wrap: balance; }
+.fb-imm-ink { display: block; padding-bottom: 0.08em; background: linear-gradient(100deg, #b8792a, #fff3cc 22%, #f0bd5e 42%, #fff3cc 62%, #f0bd5e 80%, #b8792a); -webkit-background-clip: text; background-clip: text; color: transparent; clip-path: inset(0 100% 0 0); animation: fb-write 2.8s cubic-bezier(0.55, 0, 0.3, 1) 0.5s forwards; }
+@keyframes fb-write { to { clip-path: inset(0 0 0 0); } }
+.fb-imm-spark { position: absolute; top: 0; bottom: 0; left: 0; width: 3px; background: radial-gradient(closest-side, #fff8e0, rgba(255, 220, 150, 0)); box-shadow: 0 0 18px 6px rgba(255, 220, 150, 0.55); opacity: 0; animation: fb-spark 2.8s cubic-bezier(0.55, 0, 0.3, 1) 0.5s forwards; }
+@keyframes fb-spark { 0% { left: 0; opacity: 1; } 92% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
+.fb-imm .fb-series, .fb-imm .fb-tagline, .fb-imm .fb-chips, .fb-imm .fb-btns { opacity: 0; animation: fb-in 1s ease forwards; }
+.fb-imm .fb-series { animation-delay: 0.2s; }
+.fb-imm .fb-tagline { animation-delay: 2.6s; }
+.fb-imm .fb-chips { animation-delay: 2.9s; }
+.fb-imm .fb-btns { animation-delay: 3.1s; }
+@keyframes fb-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.fb-imm-pause { cursor: pointer; background: transparent; }
+.fb-imm-seal { position: absolute; right: clamp(16px, 6vw, 90px); bottom: clamp(70px, 14vh, 150px); width: 104px; height: 104px; border-radius: 50%; background: radial-gradient(circle at 38% 34%, #f7d78b, #c8913e 60%, #8c5a1c); display: grid; place-items: center; font: 400 0.74rem/1.15 var(--film-story), serif; color: #4a2a05; text-align: center; box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5), inset 0 -4px 10px rgba(90, 50, 10, 0.35); transform: rotate(-12deg) scale(1.8); opacity: 0; animation: fb-press 0.7s cubic-bezier(0.3, 1.4, 0.6, 1) 3.4s forwards; }
+@keyframes fb-press { to { transform: rotate(-12deg) scale(1); opacity: 1; } }
+@media (max-width: 860px) { .fb-imm-seal { top: 100px; bottom: auto; width: 78px; height: 78px; } }
+.fb-imm-cue { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); font: 600 0.8rem/1 var(--film-ui), sans-serif; color: #ffe7b0; text-decoration: none; opacity: 0; animation: fb-in 1s ease 3.8s forwards, fb-bob 2.4s ease-in-out 4.8s infinite; }
+@keyframes fb-bob { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 5px); } }
+@media (prefers-reduced-motion: reduce) {
+  .fb-imm *, .fb-imm { animation: none !important; transition: none !important; }
+  .fb-imm-ink { clip-path: none; }
+  .fb-imm .fb-series, .fb-imm .fb-tagline, .fb-imm .fb-chips, .fb-imm .fb-btns, .fb-imm-seal, .fb-imm-cue { opacity: 1; }
+  .fb-imm-seal { transform: rotate(-12deg); }
+  .fb-imm-spark { display: none; }
+}

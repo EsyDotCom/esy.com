@@ -8,6 +8,7 @@ import { nlSerif } from "@/components/NewsletterHome/serif";
 import { FILM_STAGES, LETTER, PACKAGE_GROUPS } from "@/data/films/the-letter-with-no-address";
 
 import FilmFrame from "./FilmFrame";
+import FilmHeroA from "./FilmHeroA";
 import "./films-a.css";
 
 const BASE = "/films/v/a";
@@ -87,29 +88,7 @@ export function FilmsIndexA() {
 export function FilmDetailA() {
   return (
     <div className={`fa ${nlSerif.variable}`}>
-      <section className="fa-hero" aria-label={LETTER.title}>
-        <FilmFrame name="dawn-home" alt="Dawn over the Cloud Post Office as Milo's balloon comes home" sizes="100vw" priority />
-        <div className="fa-wrap" style={{ width: "100%" }}>
-          <div className="fa-hero-in">
-            <span className="fa-kick">A {LETTER.series} film · ages {LETTER.ages}</span>
-            <h1 className="fa-title">
-              The Letter With <i>No Address</i>
-            </h1>
-            <p className="fa-log">{LETTER.logline}</p>
-            <div className="fa-meta">
-              <span>{LETTER.runtime}</span>
-              <span>{LETTER.shots} shots</span>
-              <span>{LETTER.voices} voices</span>
-              <span>animatic stage</span>
-              <span>made with Esy</span>
-            </div>
-            <div className="fa-btns">
-              <a className="fa-btn fa-btn--go" href={LETTER.animaticUrl} {...ext}>▶ Watch the animatic</a>
-              <a className="fa-btn" href="#package">The package · {LETTER.package.length} files</a>
-            </div>
-          </div>
-        </div>
-      </section>
+      <FilmHeroA />
 
       <div className="fa-wrap">
         <section className="fa-sec" aria-labelledby="fa-now">

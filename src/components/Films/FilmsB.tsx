@@ -11,6 +11,7 @@ import "@/components/NewsletterHome/NewsletterHome.css";
 import { LETTER, PACKAGE_GROUPS } from "@/data/films/the-letter-with-no-address";
 
 import FilmFrame from "./FilmFrame";
+import FilmHeroB from "./FilmHeroB";
 import { storySans, storySerif } from "./fonts";
 import "./films-b.css";
 
@@ -62,33 +63,14 @@ export function FilmsIndexB() {
 
 export function FilmDetailB() {
   return (
-    <div className={`fb fb-night fb-page ${fontVars}`}>
+    <div className={`fb fb-night ${fontVars}`}>
+      <FilmHeroB />
       <div className="fb-wrap">
-        <section className="fb-hero" aria-label={LETTER.title}>
-          <div>
-            <p className="fb-series">A {LETTER.series} film</p>
-            <h1 className="fb-title">{LETTER.title}</h1>
-            <p className="fb-tagline">{LETTER.tagline}</p>
-            <div className="fb-chips">
-              <span className="fb-chip">{LETTER.runtime}</span>
-              <span className="fb-chip">Ages {LETTER.ages}</span>
-              <span className="fb-chip">{LETTER.shots} shots</span>
-              <span className="fb-chip">Animatic</span>
-            </div>
-            <div className="fb-btns">
-              <a className="fb-btn fb-btn--go" href={LETTER.animaticUrl} {...ext}>▶ Watch the animatic</a>
-              <a className="fb-btn" href="#drawer">Open the drawer</a>
-            </div>
-          </div>
-          <div className="fb-art">
-            <FilmFrame name="envelope-desk" alt="The blank envelope on Milo's desk: a crayon star, a moon and tiny booties, and a star-shaped seal" sizes="(max-width: 860px) 100vw, 600px" priority />
-            <span className="fb-seal" aria-hidden="true">Starlight<br />Mail</span>
-          </div>
-        </section>
+
 
         <div className="fb-chapters">
-          {LETTER.chapters.map((c) => (
-            <section className="fb-ch" key={c.title} aria-label={c.title}>
+          {LETTER.chapters.map((c, i) => (
+            <section className="fb-ch" key={c.title} id={i === 0 ? "fb-ch1" : undefined} aria-label={c.title}>
               <div className="fb-ch-fr">
                 <FilmFrame name={c.image} alt={c.alt} sizes="(max-width: 860px) 100vw, 620px" />
                 {c.line ? <span className="fb-subtitle"><b>{c.speaker}</b>{c.line}</span> : null}

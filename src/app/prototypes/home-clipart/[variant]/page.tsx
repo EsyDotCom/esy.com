@@ -9,7 +9,14 @@ import { getAllAgenticArticles } from '@/lib/published-articles';
 // The real homepage with the clip.art case study's visual swapped. Jump to it
 // with #work-apps and scroll to the navy clip.art band.
 
-const VISUALS: Record<string, ClipArtVisual> = { grid: 'grid', replay: 'replay', styles: 'styles' };
+const VISUALS: Record<string, ClipArtVisual> = {
+  grid: 'grid',
+  replay: 'replay',
+  styles: 'styles',
+  control: 'control',
+  line: 'line',
+  spotlight: 'spotlight',
+};
 
 const prototype = findPrototype('home-clipart')!;
 

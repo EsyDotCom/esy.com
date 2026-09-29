@@ -1018,6 +1018,12 @@ export const PROTOTYPES: Prototype[] = [
         summary:
           'A is live: 12 Clay Office assets. B replays a real run (run-e9d17422) from prompt to receipt. C shows one prompt in six styles, each its own run.',
       },
+      {
+        n: 2,
+        title: 'The replay, made to sell',
+        summary:
+          'Zev picked B and asked for it to be far more appealing. D is a cinematic control room, E the brand\u2019s factory as an assembly line, F a spotlight with callouts. All play the same real run, with a clock and cost that track its real timings.',
+      },
     ],
     variants: [
       {
@@ -1051,6 +1057,39 @@ export const PROTOTYPES: Prototype[] = [
         blurb: 'One prompt, a hot dog in sunglasses, in six of clip.art\u2019s styles: flat, watercolor, line art, pixel, clay and 3D. Each is its own recorded run.',
         image: '/prototypes/home-clipart/pixel.webp',
         imageFit: 'contain',
+      },
+      {
+        slug: 'control',
+        key: 'D',
+        name: 'Control room',
+        round: 2,
+        mergeOf: ['B'],
+        title: 'clip.art runs on Esy OS',
+        blurb:
+          'A dark console: the render develops from blur under a scan line, the green screen wipes away, the audit traces a jade outline, the name types in, with a live clock, cost ticker and a timeline in the run\u2019s real proportions.',
+        poster: ['#071323', '#00D4AA'],
+      },
+      {
+        slug: 'line',
+        key: 'E',
+        name: 'Assembly line',
+        round: 2,
+        mergeOf: ['B'],
+        title: 'clip.art runs on Esy OS',
+        blurb:
+          'The factory: the hot dog rides a belt through five lit stations, gets cut out, outlined, labelled and stamped PASS, then lands on a shelf beside its style siblings under 53,506 runs recorded. Full width.',
+        poster: ['#0A2540', '#F6DDA3'],
+      },
+      {
+        slug: 'spotlight',
+        key: 'F',
+        name: 'Spotlight',
+        round: 2,
+        mergeOf: ['B'],
+        title: 'clip.art runs on Esy OS',
+        blurb:
+          'The piece under a spotlight; as each step finishes, a callout pops in on a leader line with its real result, ending on a stamped receipt: $0.057, 37.9 seconds, live on clip.art.',
+        poster: ['#06101d', '#FFFFFF'],
       },
     ],
   },

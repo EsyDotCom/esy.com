@@ -5,13 +5,20 @@
  *   styles  — C: one subject in six of clip.art's styles, each a real run of
  *             the same workflow (scripts/generate-clipart-styles.mjs).
  *
+ * Round 2, B made more appealing: control (D), line (E, full width) and
+ * spotlight (F), all driven by useRunReplay on the same real run.
+ *
  * Compare them at /prototypes/home-clipart/.
  */
 import ClipArtRunReplay from './ClipArtRunReplay';
 import { CLIPART_RUN } from './clipartRun';
 import './ClipArtRunReplay.css';
+import './RunReplays.css';
+import ReplayControlRoom from './ReplayControlRoom';
+import ReplayAssemblyLine from './ReplayAssemblyLine';
+import ReplaySpotlight from './ReplaySpotlight';
 
-export type ClipArtVisual = 'grid' | 'replay' | 'styles';
+export type ClipArtVisual = 'grid' | 'replay' | 'styles' | 'control' | 'line' | 'spotlight';
 
 const CLAY_OFFICE = 'https://images.clip.art/packs/business/25-boutique-consulting-clipart-pngs-clay-office';
 
@@ -74,6 +81,9 @@ function Styles() {
 
 export default function ClipArtVisuals({ visual = 'grid' }: { visual?: ClipArtVisual }) {
   if (visual === 'replay') return <ClipArtRunReplay />;
+  if (visual === 'control') return <ReplayControlRoom />;
+  if (visual === 'line') return <ReplayAssemblyLine />;
+  if (visual === 'spotlight') return <ReplaySpotlight />;
   if (visual === 'styles') return <Styles />;
   return <Grid />;
 }

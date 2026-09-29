@@ -301,7 +301,7 @@ export default async function NewsletterHomePage({
               the left (the clip.art wordmark, what it is, the styles it ships),
               and on the right what ClipArtVisuals shows: the live pack grid, a
               replayed run, or one subject in six styles. */}
-          <div className="nl-case">
+          <div className={`nl-case ${clipartVisual === 'line' ? 'nl-case--stack' : ''}`}>
             <div className="nl-case-story">
               <div className="nl-case-meta">
                 <span className="nl-case-tag">Case Study</span>

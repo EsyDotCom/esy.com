@@ -777,7 +777,7 @@ export const PROTOTYPES: Prototype[] = [
         round: 1,
         title: 'Every column holds one kind of thing.',
         blurb:
-          'Learn, Films, Built on Esy (Esy OS, clip.art, SEOPage, each with a one-line note) and Company. The From Esy row goes, and the brand line becomes the publication\u2019s.',
+          'Learn, Films, Powered by Esy (Esy OS, clip.art, SEOPage, each with a one-line note) and Company. The From Esy row goes, and the brand line becomes the publication\u2019s.',
         poster: ['#F8FAFC', '#00A896'],
       },
       {

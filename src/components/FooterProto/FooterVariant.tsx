@@ -5,7 +5,7 @@
  *
  *   yours    — A: today's footer plus a Films column (titles, All films);
  *              the From Esy row keeps the apps.
- *   by-kind  — B: columns by what they hold: Learn, Films, Built on Esy (OS,
+ *   by-kind  — B: columns by what they hold: Learn, Films, Powered by Esy (OS,
  *              clip.art, SEOPage), Company; the brand line becomes the
  *              publication's; the From Esy row goes.
  *   shelves  — C: compact columns, and the bottom band becomes two shelves:
@@ -152,7 +152,7 @@ function ByKind() {
         <Column title="Films" links={filmLinks(true)} />
         {/* Everything that runs on Esy, the OS first: one column, one kind of thing. */}
         <Column
-          title="Built on Esy"
+          title="Powered by Esy"
           links={[
             { href: 'https://os.esy.com', text: 'Esy OS', note: 'The platform' },
             { href: 'https://clip.art', text: 'clip.art', note: 'Clip art library', external: true },
@@ -198,7 +198,7 @@ function Shelves() {
           </ul>
         </div>
         <div className="fp-shelf">
-          <h4>Apps built on Esy</h4>
+          <h4>Apps powered by Esy</h4>
           <div className="fp-apps">
             <a href="https://clip.art" target="_blank" rel="noreferrer" className="fp-app" aria-label="clip.art">
               <ClipArtWordmark className="fp-app-clipart" />

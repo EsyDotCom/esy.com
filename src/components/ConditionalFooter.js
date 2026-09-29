@@ -3,6 +3,7 @@ import { usePathname } from 'next/navigation';
 import Footer from "@/components/Home/footer";
 import FooterWorld from "@/components/FooterWorld/FooterWorld";
 import CopyrightFooter from "@/components/CopyrightFooter";
+import FooterVariant, { FOOTER_VARIANTS } from "@/components/FooterProto/FooterVariant";
 
 const ConditionalFooter = () => {
   const pathname = usePathname();
@@ -65,12 +66,21 @@ const ConditionalFooter = () => {
     return null;
   }
 
-  // Check if we're on course lesson pages (focused learning experience, no footer)
-  const isCourseLessonPage = normalizedPath?.match(/^\/courses\/[^/]+\/[^/]+$/);
-  if (isCourseLessonPage) {
-    return null;
+  // The footer prototypes put the direction under test in the footer's own
+  // slot, over the same factory scene (/prototypes/footer/<variant>/).
+  const footerProto = normalizedPath?.match(/^\/prototypes\/footer\/([^/]+)$/);
+  if (footerProto && FOOTER_VARIANTS.includes(footerProto[1])) {
+    return (
+      <>
+        <FooterWorld />
+        <FooterVariant variant={footerProto[1]} />
+      </>
+    );
   }
-  
+
+  // Course lesson pages used to drop the footer for a focused player; since
+  // 2026-09-29 they're publication pages (LessonPage H) and keep it.
+
   // Render the common footer on all other pages (including homepage). The
   // world rides with it: the footer is a card floating over the factory
   // scene, sitewide. Pages that return null above (docs, agents, essays,

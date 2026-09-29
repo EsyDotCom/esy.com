@@ -17,11 +17,14 @@ export default function ArticleNav({
   sections,
   bodySelector,
   railSignup = false,
+  label = 'In this article',
 }: {
   sections: ArticleSection[];
   /** The element whose scroll position drives the progress bar. */
   bodySelector: string;
   railSignup?: boolean;
+  /** The list's heading: "In this article" by default, "In this lesson" on a lesson page. */
+  label?: string;
 }) {
   const [progress, setProgress] = useState(0);
   const [current, setCurrent] = useState(sections[0]?.id ?? '');
@@ -69,8 +72,8 @@ export default function ArticleNav({
         )}
 
         {headed.length > 0 && (
-          <nav className="ai-toc" aria-label="In this article">
-            <p className="ai-toc-label">In this article</p>
+          <nav className="ai-toc" aria-label={label}>
+            <p className="ai-toc-label">{label}</p>
             <ol>
               {headed.map((s) => (
                 <li key={s.id}>

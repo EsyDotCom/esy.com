@@ -49,6 +49,8 @@ export interface Lesson {
   title: string;
   description: string;
   videoUrl: string;
+  /** The lesson's own recording on Mux. Until it's set, the lesson page plays a stand-in (LessonPage/video.ts). */
+  muxPlaybackId?: string;
   durationMs: number;
   durationLabel: string;
   publishedAt: string; // ISO date

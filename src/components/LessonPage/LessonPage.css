@@ -1,0 +1,235 @@
+/* Lesson page directions (/prototypes/lesson/). Built on the video article's
+ * frames (ArticleVideo.css) and the article's reading styles
+ * (ArticleImage.css); this adds the course parts: the lesson list, up next,
+ * the sample-video notice. */
+
+/* ── Shared ── */
+.lp-kicker { margin: 0 0 12px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-jade); }
+.lp-kicker a { color: inherit; text-decoration: none; border-bottom: 1px solid currentColor; }
+.lp-kicker--onDark { color: var(--nl-jade-bright); }
+.lp-sample { margin: 14px 0 0; font-size: 0.82rem; line-height: 1.5; color: var(--nl-ink-soft); }
+.lp-sample b { color: #9A5B00; }
+.lp-sample a { color: inherit; }
+.lp-sample--onDark { color: rgba(255, 255, 255, 0.6); }
+.lp-sample--onDark b { color: #F6DDA3; }
+.lp-part { margin: 12px 0 0; font-size: 0.85rem; color: var(--nl-ink-soft); }
+
+/* The lesson list: the course name, parts in small caps, lessons as rows, the current one filled. */
+.lp-lessons-course {
+  display: block; margin: 0 0 6px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700;
+  font-size: 1.25rem; line-height: 1.2; color: var(--nl-navy); text-decoration: none;
+}
+.lp-lessons-course:hover { color: var(--nl-jade); }
+.lp-lessons-part { margin: 16px 0 6px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-jade); }
+.lp-lessons-list { list-style: none; margin: 0; padding: 0; }
+.lp-lesson {
+  display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; gap: 10px; align-items: baseline;
+  margin: 0 -10px; padding: 9px 10px; border-radius: 10px; text-decoration: none; color: var(--nl-ink); font-size: 0.93rem;
+}
+.lp-lesson:hover { background: var(--nl-bg-alt); }
+.lp-lesson.is-current { background: rgba(0, 168, 150, 0.1); color: var(--nl-navy); font-weight: 600; }
+.lp-lesson-n { color: var(--nl-jade); font-weight: 700; font-variant-numeric: tabular-nums; }
+.lp-lesson-time { font-size: 0.8rem; color: var(--nl-ink-soft); font-variant-numeric: tabular-nums; }
+.lp-lessons--onDark .lp-lessons-course { color: #fff; }
+.lp-lessons--onDark .lp-lessons-part { color: var(--nl-jade-bright); }
+.lp-lessons--onDark .lp-lesson { color: rgba(255, 255, 255, 0.88); }
+.lp-lessons--onDark .lp-lesson:hover { background: rgba(255, 255, 255, 0.07); }
+.lp-lessons--onDark .lp-lesson.is-current { background: rgba(0, 212, 170, 0.14); color: #fff; }
+.lp-lessons--onDark .lp-lesson-n { color: var(--nl-jade-bright); }
+.lp-lessons--onDark .lp-lesson-time { color: rgba(255, 255, 255, 0.55); }
+
+/* The rail beside the notes (A, C). */
+.lp-grid { margin-top: 48px; }
+.lp-rail { position: sticky; top: 96px; align-self: start; padding-top: 12px; }
+
+/* Up next: one big card for the next lesson, a small link back. */
+.lp-next { margin: 40px 0 8px; display: grid; gap: 14px; }
+.lp-next-card {
+  display: grid; gap: 6px; padding: 22px 24px; border-radius: 16px; text-decoration: none;
+  background: var(--nl-bg-alt); border: 1px solid var(--nl-seam); transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.lp-next-card:hover { border-color: var(--nl-jade); transform: translateY(-2px); }
+.lp-next-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-jade); }
+.lp-next-title { font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 1.7rem; line-height: 1.15; color: var(--nl-navy); }
+.lp-next-desc { font-size: 0.95rem; line-height: 1.6; color: var(--nl-ink-soft); }
+.lp-next-go { display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; font-weight: 600; color: var(--nl-jade); }
+.lp-prev { display: inline-flex; align-items: center; gap: 6px; font-size: 0.88rem; color: var(--nl-ink-soft); text-decoration: none; }
+.lp-prev:hover { color: var(--nl-navy); }
+.lp-next--onDark .lp-next-card { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.14); }
+.lp-next--onDark .lp-next-card:hover { border-color: var(--nl-jade-bright); }
+.lp-next--onDark .lp-next-label, .lp-next--onDark .lp-next-go { color: var(--nl-jade-bright); }
+.lp-next--onDark .lp-next-title { color: #fff; }
+.lp-next--onDark .lp-next-desc, .lp-next--onDark .lp-prev { color: rgba(255, 255, 255, 0.7); }
+.lp-next--onDark .lp-prev:hover { color: #fff; }
+
+/* ── B · Studio: the player and the playlist side by side, on a quiet light stage ── */
+.lp-stage { padding: 44px 0 40px; background: var(--nl-bg-alt); border-bottom: 1px solid var(--nl-seam); }
+.lp-stage .lp-kicker a { color: inherit; }
+.lp-stage .lp-kicker--onDark { color: var(--nl-jade); }
+.lp-stage .lp-sample--onDark { color: var(--nl-ink-soft); }
+.lp-stage .lp-sample--onDark b { color: #9A5B00; }
+.lp-stage-inner { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+.lp-stage-title {
+  margin: 0 0 24px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700;
+  font-size: clamp(2rem, 3.6vw, 2.9rem); line-height: 1.06; letter-spacing: -0.02em; color: var(--nl-navy);
+}
+.lp-player { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 24px; align-items: start; }
+/* The studio frame fills its column here instead of centring itself on the page. */
+.lp-player .av-framed--studio .av-room { max-width: none; padding: 0; }
+.lp-player .av-transcript { max-width: none; padding: 0; }
+.lp-player-list {
+  padding: 20px 22px; border-radius: 22px; color: #fff;
+  background: linear-gradient(160deg, #0A1626 0%, var(--nl-navy) 70%, #0F3460 100%);
+  box-shadow: 0 40px 80px -40px rgba(10, 37, 64, 0.55);
+}
+.lp-player-rail { display: flex; flex-direction: column; gap: 16px; }
+.lp-col { padding-top: 8px; padding-bottom: 32px; }
+
+/* ── D and E · Night: A's dark room behind B (ArticleVideo.css, the theater room) ── */
+.lp-studio--night .lp-stage {
+  padding: 52px 0 56px; border-bottom: 0;
+  background: radial-gradient(55% 60% at 40% 72%, rgba(0, 212, 170, 0.16), transparent 70%), #0A1626;
+}
+.lp-studio--night .lp-stage .lp-kicker--onDark { color: var(--nl-jade-bright); }
+.lp-studio--night .lp-stage-title { color: #fff; }
+.lp-studio--night .lp-stage .lp-sample--onDark { color: rgba(255, 255, 255, 0.6); }
+.lp-studio--night .lp-stage .lp-sample--onDark b { color: #F6DDA3; }
+/* On the dark room the video gets A's thin jade ring instead of the studio panel. */
+.lp-studio--night .av-framed--studio .av-room-inner {
+  padding: 12px; border-radius: 22px; background: rgba(255, 255, 255, 0.03);
+  box-shadow: 0 0 0 1px rgba(0, 212, 170, 0.45), 0 50px 100px -40px rgba(0, 0, 0, 0.9);
+}
+.lp-studio--night .av-framed--studio .av-frame-screen { border-radius: 12px; }
+/* The playlist as glass on the dark room. */
+.lp-studio--night .lp-player-list { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: none; }
+
+/* ── E · the rail's course line and signup ── */
+.lp-rail-meta { margin: 0 0 4px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255, 255, 255, 0.55); }
+.lp-rail-signup { padding: 18px 20px 16px; border-radius: 18px; background: #fff; }
+.lp-rail-signup-title { margin: 0 0 4px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 1.25rem; line-height: 1.15; color: var(--nl-navy); }
+.lp-rail-signup-body { margin: 0 0 12px; font-size: 0.85rem; line-height: 1.45; color: var(--nl-ink-soft); }
+.lp-rail-signup .nl-signup { max-width: none; }
+.lp-rail-signup .nl-signup-form { flex-direction: column; gap: 8px; }
+.lp-rail-signup .nl-signup-input { flex: none; width: 100%; padding: 10px 12px; font-size: 0.9rem; }
+.lp-rail-signup .nl-signup-btn { width: 100%; min-width: 0; padding: 10px 14px; font-size: 0.92rem; }
+.lp-rail-signup .nl-signup-note { font-size: 0.74rem; }
+.lp-desc { margin-top: 32px !important; }
+
+/* ── C · Mat ── */
+.lp-mat-title { font-size: clamp(2rem, 3.4vw, 2.8rem) !important; }
+.lp-next-band { margin-top: 48px; padding: 56px 0 64px; background: var(--nl-bg-alt); border-top: 1px solid var(--nl-seam); }
+.lp-next-band .lp-next-card { background: #fff; }
+.lp-next-band .lp-next { margin: 0; }
+
+/* ══ Round 3: the body and up next (body.tsx) ══════════════════════════ */
+.lp-body { padding-top: 56px; }
+.lp-body-dek { margin-bottom: 8px !important; }
+
+/* ── F · Guide ── */
+.lp-body-grid { margin-top: 0; }
+.lp-nextband { margin: 64px 0 72px; background: linear-gradient(150deg, #061527 0%, var(--nl-navy) 60%, #0F3460 100%); }
+.lp-nextband-inner {
+  max-width: 1120px; margin: 0 auto; padding: 56px 24px;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 32px; align-items: end;
+}
+.lp-nextband-main { display: grid; gap: 8px; text-decoration: none; max-width: 680px; }
+.lp-nextband-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-jade-bright); }
+.lp-nextband-title {
+  font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700;
+  font-size: clamp(2.2rem, 4vw, 3.2rem); line-height: 1.04; letter-spacing: -0.02em; color: #fff;
+}
+.lp-nextband-main:hover .lp-nextband-title { color: var(--nl-jade-bright); }
+.lp-nextband-desc { font-size: 1.02rem; line-height: 1.6; color: rgba(255, 255, 255, 0.72); }
+.lp-nextband-go {
+  display: inline-flex; align-items: center; gap: 8px; justify-self: start; margin-top: 10px;
+  padding: 12px 20px; border-radius: 12px; background: var(--nl-jade-bright); color: #06241F; font-weight: 600;
+}
+.lp-nextband-side { display: grid; gap: 10px; justify-items: end; }
+.lp-nextband-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.9rem; color: rgba(255, 255, 255, 0.72); text-decoration: none; }
+.lp-nextband-link:hover { color: #fff; }
+
+/* ── G · Kit ── */
+.lp-kit-grid { max-width: 1120px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 56px; align-items: start; }
+.lp-kit-main { max-width: 720px; }
+.lp-kit { position: sticky; top: 96px; display: grid; gap: 14px; }
+.lp-kit-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-jade-bright); }
+.lp-kit-label--ink { margin: 0 0 8px; color: var(--nl-jade); }
+.lp-kit-next {
+  display: grid; gap: 6px; padding: 18px 20px; border-radius: 16px; text-decoration: none;
+  background: linear-gradient(150deg, #061527 0%, var(--nl-navy) 70%, #0F3460 100%);
+}
+.lp-kit-next-title { font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 1.45rem; line-height: 1.12; color: #fff; }
+.lp-kit-go { display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; font-size: 0.88rem; font-weight: 600; color: var(--nl-jade-bright); }
+.lp-kit-next:hover .lp-kit-next-title { color: var(--nl-jade-bright); }
+.lp-kit-block { padding: 16px 18px; border-radius: 16px; border: 1px solid var(--nl-seam); background: #fff; }
+.lp-kit-points { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.lp-kit-points li { display: flex; gap: 8px; align-items: baseline; font-size: 0.92rem; line-height: 1.45; color: var(--nl-ink); }
+.lp-kit-points svg { flex-shrink: 0; color: var(--nl-jade); transform: translateY(2px); }
+.lp-kit-res { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 6px 0; font-size: 0.92rem; font-weight: 600; color: var(--nl-navy); text-decoration: none; }
+.lp-kit-res:hover { color: var(--nl-jade); }
+.lp-slimbar {
+  max-width: 1120px; margin: 48px auto 72px; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  border-top: 1px solid var(--nl-seam); border-bottom: 1px solid var(--nl-seam);
+}
+.lp-slimbar-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.92rem; color: var(--nl-ink-soft); text-decoration: none; }
+.lp-slimbar-link:hover { color: var(--nl-navy); }
+.lp-slimbar-next { font-weight: 600; color: var(--nl-jade); }
+.lp-slimbar-pos { font-size: 0.8rem; color: var(--nl-ink-soft); }
+
+/* ── H · End card ── */
+.lp-learn { margin: 0 0 32px; padding: 20px 22px; border-radius: 16px; background: var(--nl-bg-alt); border: 1px solid var(--nl-seam); }
+.lp-learn-title { margin: 0 0 10px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 1.35rem; color: var(--nl-navy); }
+.lp-learn ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 20px; }
+.lp-learn li { display: flex; gap: 10px; align-items: baseline; font-size: 0.95rem; color: var(--nl-ink); }
+.lp-learn li span {
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%;
+  background: rgba(0, 168, 150, 0.12); color: var(--nl-jade); transform: translateY(3px);
+}
+.lp-endcard-wrap { margin-top: 64px; padding: 64px 24px 72px; background: var(--nl-bg-alt); border-top: 1px solid var(--nl-seam); }
+.lp-endcard { max-width: 880px; margin: 0 auto; display: grid; gap: 22px; }
+.lp-endcard-next {
+  display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 28px; align-items: center; padding: 18px; border-radius: 20px;
+  background: #fff; border: 1px solid var(--nl-seam); text-decoration: none; box-shadow: 0 30px 60px -40px rgba(10, 37, 64, 0.45);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.lp-endcard-next:hover { transform: translateY(-3px); border-color: var(--nl-jade); }
+.lp-endcard-next--done { grid-template-columns: minmax(0, 1fr); padding: 28px 30px; }
+.lp-endcard-img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 12px; }
+.lp-endcard-body { display: grid; gap: 8px; }
+.lp-endcard-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-jade); }
+.lp-endcard-title { font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 2.1rem; line-height: 1.06; color: var(--nl-navy); }
+.lp-endcard-desc { font-size: 0.98rem; line-height: 1.6; color: var(--nl-ink-soft); }
+.lp-endcard-go {
+  display: inline-flex; align-items: center; gap: 8px; justify-self: start; margin-top: 6px;
+  padding: 11px 18px; border-radius: 12px; background: var(--nl-jade); color: #fff; font-weight: 600;
+}
+.lp-endcard-rest-title { margin: 0 0 6px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-ink-soft); }
+.lp-endcard-rest ol { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--nl-seam); }
+.lp-endcard-rest a {
+  display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; gap: 10px; align-items: baseline;
+  padding: 12px 4px; border-bottom: 1px solid var(--nl-seam); color: var(--nl-navy); font-weight: 600; text-decoration: none;
+}
+.lp-endcard-rest a:hover { color: var(--nl-jade); }
+.lp-endcard-n { color: var(--nl-jade); }
+.lp-endcard-rest em { font-style: normal; font-weight: 500; font-size: 0.85rem; color: var(--nl-ink-soft); }
+.lp-endcard-back { display: inline-flex; align-items: center; gap: 6px; justify-self: start; font-size: 0.9rem; color: var(--nl-ink-soft); text-decoration: none; }
+.lp-endcard-back:hover { color: var(--nl-navy); }
+
+/* A missing piece, said plainly instead of left blank. */
+.lp-placeholder { margin: 8px 0 0; padding: 18px 20px; border: 1px dashed var(--nl-seam); border-radius: 14px; color: var(--nl-ink-soft); font-size: 0.95rem; }
+
+/* ── Tablet and phone ── */
+@media (max-width: 1000px) {
+  .lp-player { grid-template-columns: minmax(0, 1fr); }
+  .lp-rail { position: static; padding-top: 0; margin-bottom: 24px; }
+  .lp-kit-grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .lp-kit { position: static; }
+  .lp-nextband-inner { grid-template-columns: minmax(0, 1fr); }
+  .lp-nextband-side { justify-items: start; }
+}
+@media (max-width: 720px) {
+  .lp-learn ul { grid-template-columns: minmax(0, 1fr); }
+  .lp-endcard-next { grid-template-columns: minmax(0, 1fr); }
+  .lp-slimbar { flex-wrap: wrap; }
+  .lp-slimbar-pos { order: -1; width: 100%; }
+}

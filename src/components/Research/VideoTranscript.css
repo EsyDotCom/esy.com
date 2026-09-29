@@ -1,0 +1,117 @@
+/* The interactive transcript (VideoTranscript.tsx). A card of its own under
+ * the player: closed it invites ("Read the transcript", the length, Open, the
+ * first lines fading out); open it reads like prose with a search box. Colours
+ * use the publication's tokens and fall back to the brand hexes, so the card
+ * looks the same outside the `.nl` scope. */
+
+.vt {
+  --vt-navy: var(--nl-navy, #0A2540);
+  --vt-ink: var(--nl-ink, #102033);
+  --vt-soft: var(--nl-ink-soft, #41566D);
+  --vt-jade: var(--nl-jade, #00A896);
+  --vt-seam: var(--nl-seam, rgba(10, 37, 64, 0.1));
+  --vt-alt: var(--nl-bg-alt, #F8F9FA);
+  --vt-tint: rgba(0, 168, 150, 0.08);
+  --vt-serif: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif;
+  border: 1px solid var(--vt-seam); border-radius: 16px; background: #fff; overflow: hidden;
+  box-shadow: 0 18px 40px -30px rgba(10, 37, 64, 0.35);
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+.vt [hidden] { display: none !important; }
+
+/* ── Shared bits: the icon, the pill, the timestamp chip ── */
+.vt-icon {
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+  width: 40px; height: 40px; border-radius: 12px; background: var(--vt-tint); color: var(--vt-jade);
+}
+.vt-icon--sm { width: 30px; height: 30px; border-radius: 9px; }
+.vt-pill {
+  display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0;
+  padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(0, 168, 150, 0.35);
+  background: #fff; color: var(--vt-jade); font: 600 0.85rem/1 var(--font-inter), system-ui, sans-serif; cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.vt-pill:hover { background: var(--vt-jade); border-color: var(--vt-jade); color: #fff; }
+.vt-flip { transform: rotate(180deg); }
+.vt-time {
+  flex-shrink: 0; min-width: 48px; padding: 3px 8px; border: 0; border-radius: 999px; background: var(--vt-alt);
+  font: 600 0.72rem/1.4 var(--font-geist-mono), ui-monospace, monospace; font-variant-numeric: tabular-nums;
+  color: var(--vt-soft); text-align: center; cursor: pointer; transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* ── Closed ── */
+.vt-closed { display: block; width: 100%; padding: 18px 20px 0; border: 0; background: transparent; text-align: left; cursor: pointer; font: inherit; }
+.vt-head { display: flex; align-items: center; gap: 14px; }
+.vt-head-text { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+.vt-title { font-family: var(--vt-serif); font-weight: 700; font-size: 1.35rem; line-height: 1.15; color: var(--vt-navy); }
+.vt-sub { font-size: 0.85rem; color: var(--vt-soft); }
+.vt-closed:hover .vt-pill { background: var(--vt-jade); border-color: var(--vt-jade); color: #fff; }
+/* The preview: the first lines, fading into the card's bottom edge. */
+.vt-preview {
+  position: relative; display: flex; flex-direction: column; gap: 8px; margin-top: 16px; padding: 14px 0 22px;
+  border-top: 1px solid var(--vt-seam);
+  -webkit-mask-image: linear-gradient(180deg, #000 30%, transparent 100%); mask-image: linear-gradient(180deg, #000 30%, transparent 100%);
+}
+.vt-preview-line { display: flex; align-items: baseline; gap: 14px; }
+.vt-preview-text {
+  font-size: 0.95rem; line-height: 1.55; color: var(--vt-ink);
+  display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+/* ── Open ── */
+.vt-bar {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  padding: 14px 20px; border-bottom: 1px solid var(--vt-seam); background: var(--vt-alt);
+}
+.vt-bar-title { display: inline-flex; align-items: center; gap: 10px; font-family: var(--vt-serif); font-weight: 700; font-size: 1.25rem; color: var(--vt-navy); }
+.vt-bar-len { font-family: var(--font-inter), system-ui, sans-serif; font-weight: 500; font-size: 0.82rem; color: var(--vt-soft); font-variant-numeric: tabular-nums; }
+.vt-bar-tools { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.vt-search {
+  display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 999px;
+  border: 1px solid var(--vt-seam); background: #fff; color: var(--vt-soft);
+}
+.vt-search:focus-within { border-color: var(--vt-jade); box-shadow: 0 0 0 3px var(--vt-tint); }
+.vt-search input { width: 170px; border: 0; outline: 0; background: transparent; font: 0.85rem/1.2 var(--font-inter), system-ui, sans-serif; color: var(--vt-ink); }
+.vt-search-clear { display: flex; padding: 0; border: 0; background: transparent; color: var(--vt-soft); cursor: pointer; }
+.vt-count { font-size: 0.78rem; color: var(--vt-soft); white-space: nowrap; }
+.vt-count.has-matches { color: var(--vt-jade); font-weight: 600; }
+
+.vt-panel-wrap { position: relative; }
+.vt-panel { max-height: min(62vh, 560px); overflow-y: auto; padding: 14px 20px 28px; scrollbar-width: thin; scrollbar-color: var(--vt-seam) transparent; }
+.vt-lines { max-width: 760px; margin: 0 auto; }
+.vt-line {
+  position: relative; display: flex; align-items: baseline; gap: 18px; margin: 2px 0; padding: 10px 14px;
+  border-radius: 12px; cursor: pointer; transition: background 0.25s ease, opacity 0.2s ease;
+}
+.vt-line:hover { background: var(--vt-alt); }
+.vt-line:hover .vt-time { background: var(--vt-tint); color: var(--vt-jade); }
+.vt-text { margin: 0; font-size: 0.98rem; line-height: 1.75; color: var(--vt-soft); transition: color 0.25s ease; }
+/* The line being spoken: a jade bar and tint, the text in full ink. */
+.vt-line.is-active { background: var(--vt-tint); }
+.vt-line.is-active::before { content: ''; position: absolute; left: 0; top: 10px; bottom: 10px; width: 3px; border-radius: 3px; background: var(--vt-jade); }
+.vt-line.is-active .vt-time { background: var(--vt-jade); color: #fff; }
+.vt-line.is-active .vt-text { color: var(--vt-ink); }
+.vt-line.is-dim { opacity: 0.35; }
+.vt-mark { padding: 0 2px; border-radius: 3px; background: rgba(0, 168, 150, 0.16); color: var(--vt-navy); font-weight: 600; }
+
+.vt-fade { position: absolute; left: 0; right: 0; pointer-events: none; }
+.vt-fade--top { top: 0; height: 18px; background: linear-gradient(#fff, rgba(255, 255, 255, 0)); }
+.vt-fade--bottom { bottom: 0; height: 30px; background: linear-gradient(rgba(255, 255, 255, 0), #fff); }
+.vt-back {
+  position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
+  display: inline-flex; align-items: center; gap: 6px; padding: 8px 15px; border: 0; border-radius: 999px;
+  background: var(--vt-jade); color: #fff; font: 600 0.78rem/1 var(--font-inter), system-ui, sans-serif; cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+/* ── Phone ── */
+@media (max-width: 639px) {
+  .vt-closed { padding: 16px 16px 0; }
+  .vt-title { font-size: 1.2rem; }
+  .vt-sub { font-size: 0.8rem; }
+  .vt-icon { width: 34px; height: 34px; }
+  .vt-bar { padding: 12px 16px; }
+  .vt-search input { width: 120px; }
+  .vt-panel { max-height: 55vh; padding: 10px 12px 24px; }
+  .vt-line { flex-direction: column; gap: 6px; padding: 10px 12px; }
+}

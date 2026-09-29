@@ -7,10 +7,10 @@ import {
   useState,
   type RefObject,
 } from "react";
-import { FileText, ChevronDown, Search, ArrowDown, X } from "lucide-react";
+import { ChevronDown, Search, ArrowDown, X, AlignLeft } from "lucide-react";
 import type { MuxPlayerElement } from "@mux/mux-player-react";
 import { type TranscriptSegment, formatTimestamp } from "@/lib/transcripts";
-import { navyCalmLightTheme as theme } from "@/lib/theme";
+import "./VideoTranscript.css";
 
 type VideoTranscriptProps = {
   segments: TranscriptSegment[];
@@ -18,21 +18,8 @@ type VideoTranscriptProps = {
   playerRef: RefObject<MuxPlayerElement | null>;
 };
 
-// Reading column inside the wide (1200px) container — transcripts read like
-// prose, so cap the measure instead of running lines edge to edge.
-const READING_MAX_WIDTH = 760;
-
-function useIsMobile(): boolean {
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 639px)");
-    const update = () => setIsMobile(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
-  return isMobile;
-}
+// How many lines the closed card previews, fading out under the header.
+const PREVIEW_LINES = 3;
 
 // Highlight search matches inside a segment without breaking SSR text content.
 function HighlightedText({ text, query }: { text: string; query: string }) {
@@ -43,18 +30,7 @@ function HighlightedText({ text, query }: { text: string; query: string }) {
     <>
       {parts.map((part, i) =>
         part.toLowerCase() === query.toLowerCase() ? (
-          <mark
-            key={i}
-            style={{
-              backgroundColor: theme.accentTint,
-              color: theme.accent,
-              fontWeight: 600,
-              borderRadius: 3,
-              padding: "0 2px",
-            }}
-          >
-            {part}
-          </mark>
+          <mark key={i} className="vt-mark">{part}</mark>
         ) : (
           <span key={i}>{part}</span>
         ),
@@ -63,20 +39,29 @@ function HighlightedText({ text, query }: { text: string; query: string }) {
   );
 }
 
+/** "15 min" from the last segment's start, for the closed card's subtitle. */
+function minutesLabel(seconds: number): string {
+  return `${Math.max(1, Math.round(seconds / 60))} min`;
+}
+
 /**
- * Interactive video transcript docked beneath the player.
+ * Interactive video transcript, set as its own card under the player.
  *
  * Follows the Apple Podcasts / Mux interactive-transcript pattern: paragraphs
  * are tap-to-seek, the spoken segment is highlighted while others stay dimmed,
  * the panel auto-follows playback (pausing politely when the user scrolls),
  * and the text is searchable.
  *
+ * Closed, it's an invitation rather than a flap: a serif "Read the transcript"
+ * with the length and an Open button, over the first lines fading out. Styles
+ * live in VideoTranscript.css and fall back to the brand hexes, so the card
+ * reads the same inside and outside the publication's `.nl` scope.
+ *
  * SEO contract: every segment is always in the DOM — the panel is hidden with
  * CSS when collapsed, never conditionally rendered — so the full transcript
  * ships in the statically exported HTML.
  */
 export function VideoTranscript({ segments, playerRef }: VideoTranscriptProps) {
-  const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
   const [isFollowing, setIsFollowing] = useState(true);
@@ -151,228 +136,88 @@ export function VideoTranscript({ segments, playerRef }: VideoTranscriptProps) {
     player.scrollIntoView({ behavior: "smooth", block: "nearest" });
   };
 
-  const totalLabel = formatTimestamp(segments[segments.length - 1].start);
+  const lastStart = segments[segments.length - 1].start;
+  const totalLabel = formatTimestamp(lastStart);
 
   return (
-    <section
-      aria-label="Video transcript"
-      style={{
-        borderLeft: `1px solid ${theme.border}`,
-        borderRight: `1px solid ${theme.border}`,
-        borderBottom: `1px solid ${theme.border}`,
-        borderRadius: "0 0 14px 14px",
-        overflow: "hidden",
-        backgroundColor: theme.surfaceElevated,
-      }}
-    >
-      {/* ── Collapsed: inviting teaser with the opening words ───────────── */}
+    <section aria-label="Video transcript" className={`vt ${isOpen ? "is-open" : ""}`}>
+      {/* ── Closed: an invitation, then the opening lines fading out ─────── */}
       <button
         type="button"
-        onClick={() => setIsOpen(!isOpen)}
+        className="vt-closed"
+        onClick={() => setIsOpen(true)}
         aria-expanded={isOpen}
-        style={{
-          width: "100%",
-          display: isOpen ? "none" : "block",
-          padding: isMobile ? "0.875rem 1rem" : "1rem 1.25rem",
-          border: "none",
-          backgroundColor: "transparent",
-          cursor: "pointer",
-          fontFamily: "inherit",
-          textAlign: "left",
-        }}
+        hidden={isOpen}
       >
-        <span
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: 12,
-          }}
-        >
-          <span
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-              fontSize: "0.8125rem",
-              fontWeight: 600,
-              letterSpacing: "0.04em",
-              textTransform: "uppercase",
-              color: theme.accent,
-            }}
-          >
-            <FileText size={15} />
-            Transcript
+        <span className="vt-head">
+          <span className="vt-icon" aria-hidden="true">
+            <AlignLeft size={18} />
           </span>
-          <span
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 10,
-              fontSize: "0.75rem",
-              color: theme.muted,
-              flexShrink: 0,
-            }}
-          >
-            {!isMobile && <span>{totalLabel} · tap to read &amp; jump</span>}
-            <ChevronDown size={16} />
+          <span className="vt-head-text">
+            <span className="vt-title">Read the transcript</span>
+            <span className="vt-sub">
+              {minutesLabel(lastStart)} · click any line to jump there
+            </span>
+          </span>
+          <span className="vt-pill">
+            Open <ChevronDown size={15} aria-hidden="true" />
           </span>
         </span>
-        <span
-          style={{
-            display: "-webkit-box",
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: "vertical",
-            overflow: "hidden",
-            marginTop: 8,
-            fontSize: "0.875rem",
-            lineHeight: 1.6,
-            color: theme.textSecondary,
-            fontStyle: "italic",
-          }}
-        >
-          &ldquo;{segments[0].text}&rdquo;
+        <span className="vt-preview" aria-hidden="true">
+          {segments.slice(0, PREVIEW_LINES).map((s) => (
+            <span key={s.start} className="vt-preview-line">
+              <span className="vt-time">{formatTimestamp(s.start)}</span>
+              <span className="vt-preview-text">{s.text}</span>
+            </span>
+          ))}
         </span>
       </button>
 
-      {/* ── Expanded: header + reading panel ─────────────────────────────── */}
-      <div style={{ display: isOpen ? "block" : "none" }}>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-            gap: 10,
-            padding: isMobile ? "0.75rem 1rem" : "0.75rem 1.25rem",
-            borderBottom: `1px solid ${theme.border}`,
-          }}
-        >
-          <span
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-              fontSize: "0.8125rem",
-              fontWeight: 600,
-              letterSpacing: "0.04em",
-              textTransform: "uppercase",
-              color: theme.accent,
-            }}
-          >
-            <FileText size={15} />
-            Transcript
-            <span
-              style={{
-                fontWeight: 400,
-                textTransform: "none",
-                letterSpacing: 0,
-                color: theme.muted,
-              }}
-            >
-              {totalLabel}
+      {/* ── Open: header with search, then the reading panel ─────────────── */}
+      <div className="vt-open" hidden={!isOpen}>
+        <div className="vt-bar">
+          <span className="vt-bar-title">
+            <span className="vt-icon vt-icon--sm" aria-hidden="true">
+              <AlignLeft size={15} />
             </span>
+            Transcript
+            <span className="vt-bar-len">{totalLabel}</span>
           </span>
 
-          <span style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            {/* Search within the transcript (Apple Podcasts pattern) */}
-            <span
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 6,
-                borderRadius: 8,
-                border: `1px solid ${theme.border}`,
-                backgroundColor: theme.bg,
-                padding: "0.3125rem 0.625rem",
-              }}
-            >
-              <Search size={13} style={{ color: theme.muted, flexShrink: 0 }} />
+          <span className="vt-bar-tools">
+            {/* Search within the transcript (Apple Podcasts pattern). */}
+            <label className="vt-search">
+              <Search size={14} aria-hidden="true" />
               <input
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search transcript"
+                placeholder="Search the transcript"
                 aria-label="Search transcript"
-                style={{
-                  border: "none",
-                  outline: "none",
-                  backgroundColor: "transparent",
-                  fontSize: "0.8125rem",
-                  color: theme.text,
-                  fontFamily: "inherit",
-                  width: isMobile ? 120 : 160,
-                }}
               />
               {query && (
-                <button
-                  type="button"
-                  onClick={() => setQuery("")}
-                  aria-label="Clear search"
-                  style={{
-                    border: "none",
-                    backgroundColor: "transparent",
-                    padding: 0,
-                    cursor: "pointer",
-                    color: theme.muted,
-                    display: "flex",
-                  }}
-                >
+                <button type="button" className="vt-search-clear" onClick={() => setQuery("")} aria-label="Clear search">
                   <X size={13} />
                 </button>
               )}
-            </span>
+            </label>
             {query && (
-              <span
-                style={{
-                  fontSize: "0.75rem",
-                  color: matchCount > 0 ? theme.accent : theme.muted,
-                  whiteSpace: "nowrap",
-                }}
-              >
+              <span className={`vt-count ${matchCount > 0 ? "has-matches" : ""}`}>
                 {matchCount} match{matchCount === 1 ? "" : "es"}
               </span>
             )}
-            <button
-              type="button"
-              onClick={() => setIsOpen(false)}
-              aria-label="Hide transcript"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 4,
-                border: "none",
-                backgroundColor: "transparent",
-                padding: "0.25rem",
-                cursor: "pointer",
-                color: theme.textSecondary,
-                fontSize: "0.75rem",
-                fontFamily: "inherit",
-              }}
-            >
-              <ChevronDown size={16} style={{ transform: "rotate(180deg)" }} />
+            <button type="button" className="vt-pill" onClick={() => setIsOpen(false)} aria-label="Hide transcript">
+              Close <ChevronDown size={15} className="vt-flip" aria-hidden="true" />
             </button>
           </span>
         </div>
 
-        <div style={{ position: "relative" }}>
-          <div
-            ref={scrollRef}
-            style={{
-              position: "relative",
-              maxHeight: isMobile ? "55vh" : "min(62vh, 580px)",
-              overflowY: "auto",
-              scrollbarWidth: "thin",
-              scrollbarColor: `${theme.border} transparent`,
-              padding: isMobile ? "0.75rem 1rem 1.5rem" : "1rem 1.25rem 2rem",
-            }}
-          >
-            <div style={{ maxWidth: READING_MAX_WIDTH, margin: "0 auto" }}>
+        <div className="vt-panel-wrap">
+          <div ref={scrollRef} className="vt-panel">
+            <div className="vt-lines">
               {segments.map((segment, i) => {
                 const isActive = i === activeIndex;
-                const hasMatch =
-                  !!query &&
-                  segment.text.toLowerCase().includes(query.toLowerCase());
+                const hasMatch = !!query && segment.text.toLowerCase().includes(query.toLowerCase());
                 return (
                   <div
                     key={segment.start}
@@ -380,68 +225,20 @@ export function VideoTranscript({ segments, playerRef }: VideoTranscriptProps) {
                       segmentEls.current[i] = el;
                     }}
                     onClick={() => seekTo(segment.start)}
-                    style={{
-                      display: "flex",
-                      flexDirection: isMobile ? "column" : "row",
-                      gap: isMobile ? 4 : 18,
-                      alignItems: "baseline",
-                      padding: isMobile
-                        ? "0.625rem 0.75rem"
-                        : "0.75rem 0.875rem",
-                      margin: "2px 0",
-                      borderRadius: 10,
-                      cursor: "pointer",
-                      backgroundColor: isActive
-                        ? theme.accentTint
-                        : "transparent",
-                      opacity: query && !hasMatch ? 0.35 : 1,
-                      transition:
-                        "background-color 0.25s ease, opacity 0.2s ease",
-                    }}
-                    onMouseEnter={(e) => {
-                      if (!isActive)
-                        e.currentTarget.style.backgroundColor =
-                          "rgba(0, 0, 0, 0.03)";
-                    }}
-                    onMouseLeave={(e) => {
-                      if (!isActive)
-                        e.currentTarget.style.backgroundColor = "transparent";
-                    }}
+                    className={`vt-line ${isActive ? "is-active" : ""} ${query && !hasMatch ? "is-dim" : ""}`}
                   >
                     <button
                       type="button"
+                      className="vt-time"
                       onClick={(e) => {
                         e.stopPropagation();
                         seekTo(segment.start);
                       }}
                       aria-label={`Jump to ${formatTimestamp(segment.start)}`}
-                      style={{
-                        flexShrink: 0,
-                        width: isMobile ? "auto" : 44,
-                        textAlign: isMobile ? "left" : "right",
-                        border: "none",
-                        backgroundColor: "transparent",
-                        padding: 0,
-                        fontFamily: "var(--font-geist-mono)",
-                        fontSize: "0.6875rem",
-                        fontWeight: 600,
-                        color: isActive ? theme.accent : theme.muted,
-                        cursor: "pointer",
-                        fontVariantNumeric: "tabular-nums",
-                        transition: "color 0.25s ease",
-                      }}
                     >
                       {formatTimestamp(segment.start)}
                     </button>
-                    <p
-                      style={{
-                        margin: 0,
-                        fontSize: isMobile ? "0.875rem" : "0.9375rem",
-                        lineHeight: 1.75,
-                        color: isActive ? theme.text : theme.textSecondary,
-                        transition: "color 0.25s ease",
-                      }}
-                    >
+                    <p className="vt-text">
                       <HighlightedText text={segment.text} query={query} />
                     </p>
                   </div>
@@ -450,57 +247,13 @@ export function VideoTranscript({ segments, playerRef }: VideoTranscriptProps) {
             </div>
           </div>
 
-          {/* Soft edge fades so the scroll area reads as continuous prose */}
-          <div
-            aria-hidden
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              height: 20,
-              background: `linear-gradient(${theme.surfaceElevated}, transparent)`,
-              pointerEvents: "none",
-            }}
-          />
-          <div
-            aria-hidden
-            style={{
-              position: "absolute",
-              bottom: 0,
-              left: 0,
-              right: 0,
-              height: 28,
-              background: `linear-gradient(transparent, ${theme.surfaceElevated})`,
-              pointerEvents: "none",
-            }}
-          />
+          {/* Soft edge fades so the scroll area reads as continuous prose. */}
+          <div aria-hidden className="vt-fade vt-fade--top" />
+          <div aria-hidden className="vt-fade vt-fade--bottom" />
 
-          {/* Re-engage auto-follow after the reader scrolled away */}
+          {/* Re-engage auto-follow after the reader scrolled away. */}
           {!isFollowing && activeIndex >= 0 && !query && (
-            <button
-              type="button"
-              onClick={() => setIsFollowing(true)}
-              style={{
-                position: "absolute",
-                bottom: 14,
-                left: "50%",
-                transform: "translateX(-50%)",
-                display: "flex",
-                alignItems: "center",
-                gap: 6,
-                borderRadius: 999,
-                border: "none",
-                backgroundColor: theme.accent,
-                color: "#fff",
-                padding: "0.4375rem 0.875rem",
-                fontSize: "0.75rem",
-                fontWeight: 600,
-                fontFamily: "inherit",
-                cursor: "pointer",
-                boxShadow: "0 4px 14px rgba(0, 0, 0, 0.18)",
-              }}
-            >
+            <button type="button" className="vt-back" onClick={() => setIsFollowing(true)}>
               <ArrowDown size={13} />
               Back to current
             </button>

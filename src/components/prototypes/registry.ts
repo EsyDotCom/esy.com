@@ -488,6 +488,12 @@ export const PROTOTYPES: Prototype[] = [
         summary:
           'Zev asked for no product names and for the banner to say The Marketing Engineer. Two of them are our navy. D sets the name as a newspaper nameplate on paper, E adds the four desks on navy, and F screens C\u2019s scene onto navy.',
       },
+      {
+        n: 3,
+        title: 'His desk, with the name',
+        summary:
+          'Zev\u2019s current banner is a photo of his setup: real, but it says nothing. G keeps the photo under a navy wash and puts the name on it.',
+      },
     ],
     // Each card image is the exported PNG (src/components/LinkedInBanner/).
     variants: [
@@ -554,6 +560,18 @@ export const PROTOTYPES: Prototype[] = [
         title: 'The Marketing Engineer',
         blurb: 'Our navy, with C\u2019s generated scene screened onto it so only the glowing paths show, the name as the headline, and the promise and esy.com under it.',
         image: '/prototypes/linkedin-banner/night.png',
+        imageFit: 'contain',
+      },
+      {
+        slug: 'desk',
+        key: 'G',
+        name: 'Desk',
+        round: 3,
+        mergeOf: ['D'],
+        title: 'The Marketing Engineer',
+        blurb:
+          'Zev\u2019s own desk photo, the banner he uses now, under a navy wash that deepens to the right, with the name, the promise and esy.com on it.',
+        image: '/prototypes/linkedin-banner/desk.png',
         imageFit: 'contain',
       },
     ],

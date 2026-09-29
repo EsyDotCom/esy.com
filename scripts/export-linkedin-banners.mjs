@@ -24,7 +24,7 @@ const { chromium } = await import('playwright').catch(() => {
   process.exit(1);
 });
 const BASE = process.env.BASE || 'http://localhost:3217';
-const VARIANTS = ['masthead', 'proof', 'scene', 'nameplate', 'desks', 'night'];
+const VARIANTS = ['masthead', 'proof', 'scene', 'nameplate', 'desks', 'night', 'desk'];
 
 await mkdir(OUT_DIR, { recursive: true });
 const browser = await chromium.launch(process.env.CHROME ? { executablePath: process.env.CHROME } : {});

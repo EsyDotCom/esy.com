@@ -16,6 +16,10 @@
  *   E · Desks     — navy: the name, and the four desks every issue files under.
  *   F · Night     — navy too: C's backdrop screened onto it, the name as the headline.
  *
+ * Round 3 merges Zev's own banner (a photo of his desk) with the nameplate:
+ *
+ *   G · Desk      — his setup under a navy wash, the name on the right.
+ *
  * Every banner is drawn at LinkedIn's upload size, 1584×396, in plain px, and
  * exported to PNG by scripts/export-linkedin-banners.mjs. LinkedIn lays the
  * profile photo over the bottom-left (about the left 380px on desktop and 490px
@@ -28,8 +32,8 @@ import { nlSerif } from '@/components/NewsletterHome/serif';
 import { DESKS } from '@/components/EducationHero/desks';
 import './LinkedInBanner.css';
 
-export type BannerVariant = 'masthead' | 'proof' | 'scene' | 'nameplate' | 'desks' | 'night';
-export const BANNER_VARIANTS: BannerVariant[] = ['masthead', 'proof', 'scene', 'nameplate', 'desks', 'night'];
+export type BannerVariant = 'masthead' | 'proof' | 'scene' | 'nameplate' | 'desks' | 'night' | 'desk';
+export const BANNER_VARIANTS: BannerVariant[] = ['masthead', 'proof', 'scene', 'nameplate', 'desks', 'night', 'desk'];
 export { BANNER_SIZE } from './size';
 
 /** The real wordmark: "esy" in Black Ops One, the "e" in jade. */
@@ -209,6 +213,27 @@ function Night() {
   );
 }
 
+/* ── G · Desk ─────────────────────────────────────────────────────────── */
+
+function Desk() {
+  return (
+    <div className="lib-canvas lib-desk">
+      {/* Zev's real setup: the proof he builds. The wash keeps the monitor
+          visible on the left and goes deep navy under the name on the right. */}
+      {/* eslint-disable-next-line @next/next/no-img-element -- exported as a fixed-size PNG, no responsive sizes needed */}
+      <img className="lib-desk-img" src="/prototypes/linkedin-banner/zev-setup.jpg" alt="" />
+      <div className="lib-desk-wash" aria-hidden="true" />
+      <div className="lib-desk-copy">
+        <div className="lib-serif lib-desk-name">
+          The Marketing <em>Engineer</em>
+        </div>
+        <div className="lib-desk-sub">Learn to build the AI systems that run marketing.</div>
+        <div className="lib-desk-url">esy.com</div>
+      </div>
+    </div>
+  );
+}
+
 const BANNERS: Record<BannerVariant, () => React.JSX.Element> = {
   masthead: Masthead,
   proof: Proof,
@@ -216,6 +241,7 @@ const BANNERS: Record<BannerVariant, () => React.JSX.Element> = {
   nameplate: Nameplate,
   desks: Desks,
   night: Night,
+  desk: Desk,
 };
 
 /** One banner at full upload size. Scale it with ScaledBanner to show it smaller. */

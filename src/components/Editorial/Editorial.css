@@ -1,0 +1,59 @@
+/* /editorial-standards/. Built on the publication's sheet (NewsletterHome.css:
+ * tokens, type, the email band), like the topic hubs; this adds the reading
+ * column, the contents list and the comparison table. */
+
+.es-hero { padding: 72px 0 48px; border-bottom: 1px solid var(--nl-seam); }
+.es-title {
+  margin: 0 0 16px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700;
+  font-size: clamp(2.6rem, 5.4vw, 4rem); line-height: 1.02; letter-spacing: -0.03em; color: var(--nl-navy);
+}
+.es-lede { margin: 0 0 12px; max-width: 62ch; font-size: 1.12rem; line-height: 1.7; color: var(--nl-ink-soft); }
+.es-updated { margin: 0; font-size: 0.85rem; color: var(--nl-ink-soft); }
+
+.es-grid { display: grid; grid-template-columns: 220px minmax(0, 720px); gap: 64px; padding-top: 56px; padding-bottom: 96px; }
+.es-toc { position: sticky; top: 96px; align-self: start; }
+.es-toc-label { margin: 0 0 10px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-jade); }
+.es-toc ol { list-style: none; margin: 0; padding: 0 0 0 12px; border-left: 1px solid var(--nl-seam); display: grid; gap: 6px; }
+.es-toc a { font-size: 0.9rem; color: var(--nl-ink-soft); text-decoration: none; }
+.es-toc a:hover { color: var(--nl-navy); }
+
+/* The reading column. */
+.es-body section { scroll-margin-top: 88px; padding-bottom: 36px; }
+.es-body section + section { padding-top: 36px; border-top: 1px solid var(--nl-seam); }
+.es-body h2 {
+  margin: 0 0 14px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700;
+  font-size: 1.9rem; line-height: 1.1; letter-spacing: -0.02em; color: var(--nl-navy);
+}
+.es-body p, .es-body li { font-size: 1.04rem; line-height: 1.75; color: var(--nl-ink); }
+.es-body p { margin: 0 0 14px; }
+.es-body ul, .es-body ol { margin: 0 0 14px; padding-left: 22px; display: grid; gap: 8px; }
+/* globals.css strips list markers; a standards page reads better with them. */
+.es-body ul { list-style: disc; }
+.es-body ol { list-style: decimal; }
+.es-body li::marker { color: var(--nl-jade); font-weight: 700; }
+.es-body b { color: var(--nl-navy); }
+.es-body a { color: var(--nl-jade); }
+.es-callout {
+  padding: 20px 24px; border-left: 4px solid var(--nl-jade); border-radius: 0 14px 14px 0; background: rgba(0, 168, 150, 0.06);
+  font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-size: 1.45rem !important; line-height: 1.4 !important; color: var(--nl-navy) !important;
+}
+.es-kicker { margin: 0 0 8px !important; font-size: 0.75rem !important; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-jade) !important; }
+
+/* News vs article, side by side. */
+.es-table-wrap { overflow-x: auto; }
+.es-table { width: 100%; border-collapse: collapse; font-size: 0.96rem; }
+.es-table th, .es-table td { padding: 12px 14px; border-bottom: 1px solid var(--nl-seam); text-align: left; vertical-align: top; line-height: 1.55; color: var(--nl-ink); background: #fff; }
+.es-table thead th { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--nl-jade); border-bottom: 2px solid var(--nl-navy); }
+.es-table tbody th { width: 120px; font-weight: 600; color: var(--nl-navy); }
+
+.es-two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+.es-body .es-examples { list-style: none; padding: 0 !important; border-top: 1px solid var(--nl-seam); gap: 0 !important; }
+.es-examples li { padding: 10px 0; border-bottom: 1px solid var(--nl-seam); font-weight: 600; }
+.es-examples a { color: var(--nl-navy); text-decoration: none; }
+.es-examples a:hover { color: var(--nl-jade); }
+
+@media (max-width: 900px) {
+  .es-grid { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-top: 40px; }
+  .es-toc { position: static; }
+  .es-two { grid-template-columns: minmax(0, 1fr); }
+}

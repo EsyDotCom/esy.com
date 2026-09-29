@@ -972,6 +972,131 @@ export const PROTOTYPES: Prototype[] = [
       },
     ],
   },
+  {
+    slug: 'home-films',
+    name: 'The homepage\u2019s 03 Films band',
+    date: '2026-09-29',
+    headline: 'A poster, or a running strip of the film.',
+    intro:
+      'Two ways to present the newest film under the homepage\u2019s 03 Films: the poster band that\u2019s live now, and the strip of its own frames from the \u201cApps and Films Apart\u201d prototype. Scroll to 03 on each.',
+    summary: 'The real homepage with 03 Films as the poster band or as a film strip that runs slowly sideways.',
+    rounds: [
+      { n: 1, title: 'Poster or strip', summary: 'A is the live poster band. B presents the film as a strip of its frames running sideways, pausing on hover.' },
+    ],
+    variants: [
+      {
+        slug: 'poster',
+        key: 'A',
+        name: 'Poster band',
+        round: 1,
+        title: 'Now showing',
+        blurb: 'The band until 2026-09-29: the 2:3 poster beside the logline, the credits, Watch the film and the film page.',
+        image: '/films/the-letter-with-no-address/poster.webp',
+        imageFit: 'contain',
+      },
+      {
+        slug: 'strip',
+        key: 'B',
+        name: 'Film strip',
+        round: 1,
+        title: 'Now showing',
+        blurb: 'A card with the title, logline and facts beside a strip of the film\u2019s own frames running slowly sideways, sprocket holes and scene marks included. The next film stacks as a second strip.',
+        image: '/films/the-letter-with-no-address/launch.webp',
+        live: true,
+        liveHref: '/#work-films',
+      },
+    ],
+  },
+  {
+    slug: 'home-clipart',
+    name: 'The homepage\u2019s clip.art case study',
+    date: '2026-09-29',
+    headline: 'Show the run, not just the art.',
+    intro:
+      'The clip.art band says it runs on Esy OS, but its grid only shows finished art. Three ways to fill that side: the live pack grid, a real run replayed step by step, and one subject in six styles. Scroll to the navy clip.art band on each.',
+    summary: 'The real homepage with the clip.art case study showing a pack grid, a replayed run, or a style range.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Grid, replay, or range',
+        summary:
+          'A is live: 12 Clay Office assets. B replays a real run (run-e9d17422) from prompt to receipt. C shows one prompt in six styles, each its own run.',
+      },
+      {
+        n: 2,
+        title: 'The replay, made to sell',
+        summary:
+          'Zev picked B and asked for it to be far more appealing. D is a cinematic control room, E the brand\u2019s factory as an assembly line, F a spotlight with callouts. All play the same real run, with a clock and cost that track its real timings.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'grid',
+        key: 'A',
+        name: 'Pack grid',
+        round: 1,
+        title: 'clip.art runs on Esy OS',
+        blurb: 'The band until 2026-09-29: a 4\u00d73 grid of finished assets from one pack, Clay Office.',
+        poster: ['#0A2540', '#F4F1EA'],
+      },
+      {
+        slug: 'replay',
+        key: 'B',
+        name: 'Run replay',
+        round: 1,
+        title: 'clip.art runs on Esy OS',
+        blurb:
+          'A real run, replayed in code: the prompt, six workflow steps lighting up (render, background removal, cutout audit, naming, text gate), the art changing as they do, and the receipt: $0.057 in 37.9 seconds.',
+        image: '/prototypes/home-clipart/3d.webp',
+        imageFit: 'contain',
+      },
+      {
+        slug: 'styles',
+        key: 'C',
+        name: 'Style range',
+        round: 1,
+        title: 'clip.art runs on Esy OS',
+        blurb: 'One prompt, a hot dog in sunglasses, in six of clip.art\u2019s styles: flat, watercolor, line art, pixel, clay and 3D. Each is its own recorded run.',
+        image: '/prototypes/home-clipart/pixel.webp',
+        imageFit: 'contain',
+      },
+      {
+        slug: 'control',
+        key: 'D',
+        name: 'Control room',
+        round: 2,
+        mergeOf: ['B'],
+        title: 'clip.art runs on Esy OS',
+        blurb:
+          'A dark console: the render develops from blur under a scan line, the green screen wipes away, the audit traces a jade outline, the name types in, with a live clock, cost ticker and a timeline in the run\u2019s real proportions.',
+        poster: ['#071323', '#00D4AA'],
+        live: true,
+        liveHref: '/#work-apps',
+      },
+      {
+        slug: 'line',
+        key: 'E',
+        name: 'Assembly line',
+        round: 2,
+        mergeOf: ['B'],
+        title: 'clip.art runs on Esy OS',
+        blurb:
+          'The factory: the hot dog rides a belt through five lit stations, gets cut out, outlined, labelled and stamped PASS, then lands on a shelf beside its style siblings under 53,506 runs recorded. Full width.',
+        poster: ['#0A2540', '#F6DDA3'],
+      },
+      {
+        slug: 'spotlight',
+        key: 'F',
+        name: 'Spotlight',
+        round: 2,
+        mergeOf: ['B'],
+        title: 'clip.art runs on Esy OS',
+        blurb:
+          'The piece under a spotlight; as each step finishes, a callout pops in on a leader line with its real result, ending on a stamped receipt: $0.057, 37.9 seconds, live on clip.art.',
+        poster: ['#06101d', '#FFFFFF'],
+      },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

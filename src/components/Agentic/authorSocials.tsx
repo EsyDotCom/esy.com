@@ -24,7 +24,7 @@ export const AUTHOR_SOCIALS = [
     Icon: Linkedin,
   },
   {
-    href: "https://x.com/EsyDotCom",
+    href: "https://x.com/ESYdotcom",
     label: "X",
     Icon: XSocialIcon,
   },

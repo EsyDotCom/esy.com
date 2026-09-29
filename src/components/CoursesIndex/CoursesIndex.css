@@ -255,3 +255,7 @@
   .ci-next-item .ci-cover { display: none; }
   .ci-ledger-row { grid-template-columns: minmax(0, 1fr); gap: 12px; }
 }
+
+/* When nothing sits between the navy spotlight and the navy email band (one
+   course, nothing upcoming), white space keeps them from merging. */
+.ci-show + .nl-final { margin-top: 80px; }

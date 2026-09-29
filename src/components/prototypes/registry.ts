@@ -596,7 +596,7 @@ export const PROTOTYPES: Prototype[] = [
         title: 'Courses',
         blurb:
           '/engineer\u2019s centred serif masthead with the signup, then the homepage\u2019s Latest block: the course as the lead story with a generated cover, and every lesson as a dated row.',
-        image: '/prototypes/courses/claude-code.webp',
+        image: '/images/courses/claude-code.webp',
       },
       {
         slug: 'numbered',
@@ -616,7 +616,7 @@ export const PROTOTYPES: Prototype[] = [
         title: 'Courses',
         blurb:
           'The course announced like the homepage\u2019s film: a tilted poster beside a logline and credits (taught by, each lesson, running time), in navy and jade.',
-        image: '/prototypes/courses/claude-code-poster.webp',
+        image: '/images/courses/claude-code-poster.webp',
       },
       {
         slug: 'masthead-showing',
@@ -627,7 +627,9 @@ export const PROTOTYPES: Prototype[] = [
         title: 'Courses',
         blurb:
           'D\u2019s centred masthead with the signup, then F\u2019s poster, logline and credits spotlighting the newest course, then what\u2019s coming.',
-        image: '/prototypes/courses/claude-code-poster.webp',
+        image: '/images/courses/claude-code-poster.webp',
+        live: true,
+        liveHref: '/courses/',
       },
       {
         slug: 'masthead-sections',
@@ -638,7 +640,7 @@ export const PROTOTYPES: Prototype[] = [
         title: 'Courses',
         blurb:
           'G\u2019s masthead and poster spotlight as course 01, then every other course as E\u2019s numbered section (02, 03\u2026) with its lessons as a ledger, and chips to jump between them.',
-        image: '/prototypes/courses/claude-code-poster.webp',
+        image: '/images/courses/claude-code-poster.webp',
       },
     ],
   },
@@ -668,7 +670,9 @@ export const PROTOTYPES: Prototype[] = [
         title: 'How to Use Claude Code for the AI Solopreneur',
         blurb:
           'The index\u2019s Now showing band as the hero, then what you\u2019ll learn beside the lessons as the homepage\u2019s ledger, the teacher, and the resources.',
-        image: '/prototypes/courses/claude-code-poster.webp',
+        image: '/images/courses/claude-code-poster.webp',
+        live: true,
+        liveHref: '/courses/how-to-use-claude-code/',
       },
       {
         slug: 'masthead',
@@ -678,7 +682,7 @@ export const PROTOTYPES: Prototype[] = [
         title: 'How to Use Claude Code for the AI Solopreneur',
         blurb:
           '/engineer\u2019s centred serif masthead with a Start button, then a sticky course card with the cover and the facts beside the lessons as dated rows.',
-        image: '/prototypes/courses/claude-code.webp',
+        image: '/images/courses/claude-code.webp',
       },
       {
         slug: 'theater',
@@ -688,7 +692,7 @@ export const PROTOTYPES: Prototype[] = [
         title: 'How to Use Claude Code for the AI Solopreneur',
         blurb:
           'Watch first: the cover in a framed screen with a big play button, and every lesson as a playlist beside it, then what you\u2019ll learn and the teacher.',
-        image: '/prototypes/courses/claude-code.webp',
+        image: '/images/courses/claude-code.webp',
       },
     ],
   },

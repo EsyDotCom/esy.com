@@ -27,6 +27,11 @@ import { articlePath } from '@/lib/article-path';
 import { formatDate, formatMinutes, thumbnailFor } from '@/lib/article-format';
 import { TOPICS, topicHref } from '@/data/topics';
 import { FILMS, filmHref } from '@/data/films';
+import { CREATIVES } from '@/data/creatives';
+import CreativePlayer from './CreativePlayer';
+import FilmPosterBand from './FilmPosterBand';
+import FilmStrip from './FilmStrip';
+import ClipArtVisuals, { type ClipArtVisual } from './ClipArtVisuals';
 import NewsletterHero from './NewsletterHero';
 import WeeklyEmailBand from './WeeklyEmailBand';
 import { nlSerif } from './serif';
@@ -96,23 +101,6 @@ const CLIPART_STYLES = [
   'Kawaii', '3D', 'Doodle',
 ];
 
-const CLAY_OFFICE = 'https://images.clip.art/packs/business/25-boutique-consulting-clipart-pngs-clay-office';
-
-const CLIPART_SHOWCASE = [
-  { url: `${CLAY_OFFICE}/consultant-pitch-deck-presentation-scene-hbs2mr.webp`, alt: 'Clay consultant presenting a pitch deck' },
-  { url: `${CLAY_OFFICE}/clay-laptop-open-muted-teal-screen-prop-24ahuy.webp`, alt: 'Clay laptop with a muted teal screen' },
-  { url: `${CLAY_OFFICE}/strategy-workshop-in-action-sticky-note-wall-scene-mscrxi.webp`, alt: 'Clay strategy workshop at a sticky-note wall' },
-  { url: `${CLAY_OFFICE}/ceramic-coffee-mug-break-time-prop-e4f8x6.webp`, alt: 'Clay ceramic coffee mug' },
-  { url: `${CLAY_OFFICE}/consultant-presenting-insights-standing-pitch-pose-gzg4x8.webp`, alt: 'Clay consultant standing and presenting insights' },
-  { url: `${CLAY_OFFICE}/analytics-dashboard-review-scene-b0300v.webp`, alt: 'Clay analytics dashboard review' },
-  { url: `${CLAY_OFFICE}/focused-laptop-work-solo-consultant-deep-work-pose-opxz8r.webp`, alt: 'Clay consultant in focused laptop work' },
-  { url: `${CLAY_OFFICE}/hybrid-video-meeting-room-scene-su3c6h.webp`, alt: 'Clay hybrid video meeting room' },
-  { url: `${CLAY_OFFICE}/team-strategy-workshop-whiteboard-huddle-pose-onbdtz.webp`, alt: 'Clay team huddled at a whiteboard' },
-  { url: `${CLAY_OFFICE}/coffee-break-lounge-corner-scene-o9uuji.webp`, alt: 'Clay coffee-break lounge corner' },
-  { url: `${CLAY_OFFICE}/colleagues-reviewing-analytics-duo-desk-pose-ilf5g0.webp`, alt: 'Clay colleagues reviewing analytics at a desk' },
-  { url: `${CLAY_OFFICE}/client-discovery-call-laptop-and-notepad-desk-scene-9mszcr.webp`, alt: 'Clay client discovery call at a desk with laptop and notepad' },
-];
-
 // Newest first, by publish date — the same merged publication list the article
 // pages resolve against, so the homepage and the articles can never disagree.
 async function latestArticles(): Promise<AgenticVideo[]> {
@@ -123,10 +111,11 @@ async function latestArticles(): Promise<AgenticVideo[]> {
 }
 
 // The groups' index: jump between the kinds of work, each with its count.
-function WorkIndex({ current }: { current: 'apps' | 'films' }) {
+function WorkIndex({ current }: { current: 'apps' | 'creatives' | 'films' }) {
   const groups = [
     { key: 'apps', n: '01', label: 'Apps', count: PROPERTIES.length },
-    { key: 'films', n: '02', label: 'Films', count: FILMS.length },
+    { key: 'creatives', n: '02', label: 'Creatives', count: CREATIVES.length },
+    { key: 'films', n: '03', label: 'Films', count: FILMS.length },
   ] as const;
   return (
     <nav className="nl-work-index" aria-label="The work">
@@ -139,35 +128,27 @@ function WorkIndex({ current }: { current: 'apps' | 'films' }) {
   );
 }
 
-// The newest film on its own night: a 2:3 poster beside its logline and
-// credits, the way a film is announced. Older films stay in the ledger above.
-function FilmPoster() {
-  const f = FILMS[0];
+// The newest creative, playing: the video beside its logline and credits, in
+// the film band's shape but the house navy and jade. Older ones stay in the
+// ledger above it.
+function CreativeShowcase() {
+  const c = CREATIVES[0];
+  if (!c) return null;
   return (
-    <section className="nl-lab nl-lab--film" aria-label={`${f.title}: now showing`}>
-      <div className="nl-container nl-film">
-        <Link href={filmHref(f)} className="nl-film-poster">
-          <Image src={f.poster} alt={f.posterAlt} width={600} height={900} sizes="(max-width: 900px) 70vw, 400px" />
-          <span className="nl-film-poster-top">Esy presents</span>
-          <span className="nl-film-poster-foot">
-            <span className="nl-film-poster-title">{f.title}</span>
-            <span className="nl-film-poster-billing">{f.credits.map(([, name]) => name).join(' · ')}</span>
-          </span>
-        </Link>
+    <section className="nl-lab nl-lab--film nl-lab--creative" aria-label={`${c.title}: now playing`}>
+      <div className="nl-container nl-creative">
+        <CreativePlayer youtubeId={c.youtubeId} title={c.title} />
         <div className="nl-film-side">
-          <p className="nl-film-kicker">Now showing · {f.meta}</p>
-          <p className="nl-film-log">“{f.logline}”</p>
+          <p className="nl-film-kicker">Now playing · {c.kind} · for {c.client}</p>
+          <p className="nl-film-log">“{c.logline}”</p>
           <dl className="nl-film-credits">
-            {f.credits.map(([role, name]) => (
+            {c.credits.map(([role, name]) => (
               <div key={role}><dt>{role}</dt><dd>{name}</dd></div>
             ))}
           </dl>
           <div className="nl-film-ctas">
-            <Link href={`${filmHref(f)}#fr-now`} className="nl-film-cta">
-              <Play size={14} aria-hidden="true" /> Watch the film
-            </Link>
-            <Link href={filmHref(f)} className="nl-inline-link nl-film-link">
-              The film page <ArrowRight size={15} aria-hidden="true" />
+            <Link href={articlePath(c.articleSlug)} className="nl-film-cta">
+              How we made it <ArrowRight size={14} aria-hidden="true" />
             </Link>
           </div>
         </div>
@@ -178,7 +159,13 @@ function FilmPoster() {
 
 export default async function NewsletterHomePage({
   hero,
+  filmBand = 'strip',
+  clipartVisual = 'control',
 }: {
+  /** What sits beside the clip.art case study: D · Control room since 2026-09-29 (/prototypes/home-clipart/). */
+  clipartVisual?: ClipArtVisual;
+  /** How 03 Films presents the films: the running strip since 2026-09-29, or the poster band (/prototypes/home-films/). */
+  filmBand?: 'poster' | 'strip';
   /** What sits above the sections. /engineer uses the masthead; the homepage
    *  swaps in the Esy OS hero and keeps everything below. */
   hero?: React.ReactNode;
@@ -312,8 +299,9 @@ export default async function NewsletterHomePage({
               The two-column case study from the Intelligence Circuitry
               homepage, restored as the proof under "real properties": story on
               the left (the clip.art wordmark, what it is, the styles it ships),
-              a 4×3 grid of live catalog assets on the right. */}
-          <div className="nl-case">
+              and on the right what ClipArtVisuals shows: the live pack grid, a
+              replayed run, or one subject in six styles. */}
+          <div className={`nl-case ${clipartVisual === 'line' ? 'nl-case--stack' : ''}`}>
             <div className="nl-case-story">
               <div className="nl-case-meta">
                 <span className="nl-case-tag">Case Study</span>
@@ -355,13 +343,7 @@ export default async function NewsletterHomePage({
               </div>
             </div>
 
-            <ul className="nl-case-grid" aria-label="Sample assets from clip.art's Clay Office pack">
-              {CLIPART_SHOWCASE.map(({ url, alt }) => (
-                <li key={url} className="nl-case-tile">
-                  <img src={url} alt={alt} loading="lazy" width={228} height={228} />
-                </li>
-              ))}
-            </ul>
+            <ClipArtVisuals visual={clipartVisual} />
           </div>
 
         </div>
@@ -429,14 +411,56 @@ export default async function NewsletterHomePage({
         </div>
       </section>
 
-      {/* ══ The work, 02 · Films ══
-          The same head and ledger as 01, on the same white. The film's own
-          night and gold start with the poster band below it, the way
+      {/* ══ The work, 02 · Creatives ══
+          Ads and explainers: marketing work that runs in feeds, as opposed to
+          films, which are stories. The same head and ledger as 01; the newest
+          creative plays in the band under it. */}
+      <section className="nl-section nl-where" id="work-creatives" aria-labelledby="nl-creatives-title">
+        <div className="nl-container nl-where-grid">
+          <div className="nl-work-head">
+            <span className="nl-work-n" aria-hidden="true">02</span>
+            <p className="nl-eyebrow">Creatives we made</p>
+            <h2 className="nl-title nl-work-title" id="nl-creatives-title">Real creatives, shipped.</h2>
+            <p className="nl-lede">
+              The ads and explainers behind our own businesses, built in code
+              and cut for every feed. Each one comes with how it was made and
+              what broke on the way.
+            </p>
+            <WorkIndex current="creatives" />
+          </div>
+          <ul className="nl-ledger">
+            {CREATIVES.map((c) => (
+              <li key={c.slug} className="nl-ledger-row nl-ledger-row--film">
+                <span className="nl-film-mark">
+                  <span className="nl-film-mark-title">{c.title}</span>
+                  <span className="nl-film-mark-frames" aria-hidden="true">
+                    {c.frames.map((src) => <span key={src} style={{ backgroundImage: `url(${src})` }} />)}
+                  </span>
+                </span>
+                <div className="nl-ledger-body">
+                  <span className="nl-ledger-role">{c === CREATIVES[0] ? 'Now playing' : c.client} · {c.kind}</span>
+                  <p>{c.summary}</p>
+                  <Link href={articlePath(c.articleSlug)} className="nl-inline-link">
+                    How we made it <ArrowRight size={15} aria-hidden="true" />
+                  </Link>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* ══ The newest creative, playing, with its credits ══ */}
+      <CreativeShowcase />
+
+      {/* ══ The work, 03 · Films ══
+          The same head and ledger as 01 and 02, on the same white. The film's
+          own night and gold start with the poster band below it, the way
           clip.art's and SEOPage's colours start with their case studies. */}
       <section className="nl-section nl-where" id="work-films" aria-labelledby="nl-films-title">
         <div className="nl-container nl-where-grid">
           <div className="nl-work-head">
-            <span className="nl-work-n" aria-hidden="true">02</span>
+            <span className="nl-work-n" aria-hidden="true">03</span>
             <p className="nl-eyebrow">Films made with Esy</p>
             <h2 className="nl-title nl-work-title" id="nl-films-title">Real films, start to finish.</h2>
             <p className="nl-lede">
@@ -476,7 +500,7 @@ export default async function NewsletterHomePage({
       </section>
 
       {/* ══ The newest film, as a poster with its credits ══ */}
-      <FilmPoster />
+      {filmBand === 'strip' ? <FilmStrip /> : <FilmPosterBand />}
 
       {/* ══ The author ══ */}
       <section className="nl-section" aria-labelledby="nl-author-title">

@@ -998,6 +998,8 @@ export const PROTOTYPES: Prototype[] = [
         title: 'Courses',
         blurb: 'The promise and signup on the left, the intro framed in navy on the right, both on the first screen.',
         poster: ['#FFFFFF', '#0A2540'],
+        live: true,
+        liveHref: '/courses/',
       },
       {
         slug: 'screening',

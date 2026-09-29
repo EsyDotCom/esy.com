@@ -46,7 +46,8 @@ export function IntroSampleNote({ onDark = false }: { onDark?: boolean }) {
   if (!INTRO_VIDEO.sample) return null;
   return (
     <p className={`civ-sample ${onDark ? 'civ-sample--onDark' : ''}`}>
-      <b>Sample.</b> The courses intro isn&apos;t made yet; this is the SEOPage explainer, standing in.
+      <b>Intro coming soon.</b> Until it&apos;s ready, here&apos;s a 75-second film made the same way: the SEOPage
+      explainer.
     </p>
   );
 }

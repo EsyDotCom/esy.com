@@ -27,6 +27,8 @@ import { articlePath } from '@/lib/article-path';
 import { formatDate, formatMinutes, thumbnailFor } from '@/lib/article-format';
 import { TOPICS, topicHref } from '@/data/topics';
 import { FILMS, filmHref } from '@/data/films';
+import { CREATIVES } from '@/data/creatives';
+import CreativePlayer from './CreativePlayer';
 import NewsletterHero from './NewsletterHero';
 import WeeklyEmailBand from './WeeklyEmailBand';
 import { nlSerif } from './serif';
@@ -123,10 +125,11 @@ async function latestArticles(): Promise<AgenticVideo[]> {
 }
 
 // The groups' index: jump between the kinds of work, each with its count.
-function WorkIndex({ current }: { current: 'apps' | 'films' }) {
+function WorkIndex({ current }: { current: 'apps' | 'creatives' | 'films' }) {
   const groups = [
     { key: 'apps', n: '01', label: 'Apps', count: PROPERTIES.length },
-    { key: 'films', n: '02', label: 'Films', count: FILMS.length },
+    { key: 'creatives', n: '02', label: 'Creatives', count: CREATIVES.length },
+    { key: 'films', n: '03', label: 'Films', count: FILMS.length },
   ] as const;
   return (
     <nav className="nl-work-index" aria-label="The work">
@@ -136,6 +139,35 @@ function WorkIndex({ current }: { current: 'apps' | 'films' }) {
         </a>
       ))}
     </nav>
+  );
+}
+
+// The newest creative, playing: the video beside its logline and credits, in
+// the film band's shape but the house navy and jade. Older ones stay in the
+// ledger above it.
+function CreativeShowcase() {
+  const c = CREATIVES[0];
+  if (!c) return null;
+  return (
+    <section className="nl-lab nl-lab--film nl-lab--creative" aria-label={`${c.title}: now playing`}>
+      <div className="nl-container nl-creative">
+        <CreativePlayer youtubeId={c.youtubeId} title={c.title} />
+        <div className="nl-film-side">
+          <p className="nl-film-kicker">Now playing · {c.kind} · for {c.client}</p>
+          <p className="nl-film-log">“{c.logline}”</p>
+          <dl className="nl-film-credits">
+            {c.credits.map(([role, name]) => (
+              <div key={role}><dt>{role}</dt><dd>{name}</dd></div>
+            ))}
+          </dl>
+          <div className="nl-film-ctas">
+            <Link href={articlePath(c.articleSlug)} className="nl-film-cta">
+              How we made it <ArrowRight size={14} aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -429,14 +461,56 @@ export default async function NewsletterHomePage({
         </div>
       </section>
 
-      {/* ══ The work, 02 · Films ══
-          The same head and ledger as 01, on the same white. The film's own
-          night and gold start with the poster band below it, the way
+      {/* ══ The work, 02 · Creatives ══
+          Ads and explainers: marketing work that runs in feeds, as opposed to
+          films, which are stories. The same head and ledger as 01; the newest
+          creative plays in the band under it. */}
+      <section className="nl-section nl-where" id="work-creatives" aria-labelledby="nl-creatives-title">
+        <div className="nl-container nl-where-grid">
+          <div className="nl-work-head">
+            <span className="nl-work-n" aria-hidden="true">02</span>
+            <p className="nl-eyebrow">Creatives we made</p>
+            <h2 className="nl-title nl-work-title" id="nl-creatives-title">Real creatives, shipped.</h2>
+            <p className="nl-lede">
+              The ads and explainers behind our own businesses, built in code
+              and cut for every feed. Each one comes with how it was made and
+              what broke on the way.
+            </p>
+            <WorkIndex current="creatives" />
+          </div>
+          <ul className="nl-ledger">
+            {CREATIVES.map((c) => (
+              <li key={c.slug} className="nl-ledger-row nl-ledger-row--film">
+                <span className="nl-film-mark">
+                  <span className="nl-film-mark-title">{c.title}</span>
+                  <span className="nl-film-mark-frames" aria-hidden="true">
+                    {c.frames.map((src) => <span key={src} style={{ backgroundImage: `url(${src})` }} />)}
+                  </span>
+                </span>
+                <div className="nl-ledger-body">
+                  <span className="nl-ledger-role">{c === CREATIVES[0] ? 'Now playing' : c.client} · {c.kind}</span>
+                  <p>{c.summary}</p>
+                  <Link href={articlePath(c.articleSlug)} className="nl-inline-link">
+                    How we made it <ArrowRight size={15} aria-hidden="true" />
+                  </Link>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* ══ The newest creative, playing, with its credits ══ */}
+      <CreativeShowcase />
+
+      {/* ══ The work, 03 · Films ══
+          The same head and ledger as 01 and 02, on the same white. The film's
+          own night and gold start with the poster band below it, the way
           clip.art's and SEOPage's colours start with their case studies. */}
       <section className="nl-section nl-where" id="work-films" aria-labelledby="nl-films-title">
         <div className="nl-container nl-where-grid">
           <div className="nl-work-head">
-            <span className="nl-work-n" aria-hidden="true">02</span>
+            <span className="nl-work-n" aria-hidden="true">03</span>
             <p className="nl-eyebrow">Films made with Esy</p>
             <h2 className="nl-title nl-work-title" id="nl-films-title">Real films, start to finish.</h2>
             <p className="nl-lede">

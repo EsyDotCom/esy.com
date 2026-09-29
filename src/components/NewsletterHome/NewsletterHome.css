@@ -448,7 +448,7 @@
    lede, the groups' index) beside a ledger. 01 Apps and 02 Films share the
    white ground and the same parts; each kind's own colours start with the band
    that follows its head. */
-#work-apps, #work-films { scroll-margin-top: 64px; }
+#work-apps, #work-creatives, #work-films { scroll-margin-top: 64px; }
 .nl-work-head { display: flex; flex-direction: column; align-items: flex-start; }
 .nl-work-n {
   font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif;
@@ -554,4 +554,32 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .nl-film-poster, .nl-film-poster:hover { transform: none; }
+}
+
+/* ══ The newest creative, playing: the film band's shape in navy and jade ══ */
+.nl-lab--creative {
+  background: radial-gradient(60% 80% at 20% 0%, rgba(0, 212, 170, 0.16), transparent 70%), linear-gradient(150deg, #061527 0%, var(--nl-navy) 60%, #0F3460 100%);
+  border-top: 1px solid rgba(0, 212, 170, 0.3);
+}
+.nl-lab--creative .nl-film-kicker, .nl-lab--creative .nl-film-credits dt { color: var(--nl-jade-bright); }
+.nl-lab--creative .nl-film-cta { background: var(--nl-jade-bright); color: #06241F; box-shadow: 0 6px 18px rgba(0, 212, 170, 0.28); }
+.nl-lab--creative .nl-film-cta:hover { background: #7FF0D8; }
+.nl-creative { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+/* The video: 16:9, in the lesson page's thin jade ring. */
+.nl-creative-player {
+  position: relative; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; background: #000;
+  box-shadow: 0 0 0 12px rgba(255, 255, 255, 0.03), 0 0 0 13px rgba(0, 212, 170, 0.45), 0 50px 100px -40px rgba(0, 0, 0, 0.9);
+}
+.nl-creative-player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.nl-creative-poster { position: absolute; inset: 0; padding: 0; border: 0; background: #000; cursor: pointer; }
+.nl-creative-poster img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease, opacity 0.2s ease; }
+.nl-creative-poster:hover img { transform: scale(1.02); opacity: 0.92; }
+.nl-creative-play {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center;
+  width: 76px; height: 76px; border-radius: 50%; padding-left: 4px; background: var(--nl-jade-bright); color: #06241F;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.35); transition: transform 0.2s ease;
+}
+.nl-creative-poster:hover .nl-creative-play { transform: translate(-50%, -50%) scale(1.06); }
+@media (max-width: 900px) {
+  .nl-creative { grid-template-columns: minmax(0, 1fr); gap: 40px; }
 }

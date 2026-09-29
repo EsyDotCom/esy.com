@@ -883,6 +883,11 @@ export const PROTOTYPES: Prototype[] = [
         summary:
           'Zev picked C. Its masthead and checker stay; the side-by-side and the rules each get three new treatments, one of each per page: D pairs Versus with an accordion, E a spectrum with rules by stage, F tiles with a sticky rule index.',
       },
+      {
+        n: 3,
+        title: 'The pick',
+        summary: 'G is Zev\u2019s combination: E\u2019s spectrum under D\u2019s two-sided header, with D\u2019s accordion for the rules.',
+      },
     ],
     variants: [
       {
@@ -947,6 +952,19 @@ export const PROTOTYPES: Prototype[] = [
         blurb:
           'Side by side as tiles: one card per attribute, split News and Article. The rules with a sticky numbered index beside them that follows your place.',
         poster: ['#F8F9FA', '#0A2540'],
+      },
+      {
+        slug: 'final',
+        key: 'G',
+        name: 'Spectrum in the frame + Accordion',
+        round: 3,
+        mergeOf: ['E', 'D'],
+        title: 'Editorial standards',
+        blurb:
+          'C\u2019s checker, then E\u2019s News-to-Article scales framed by D\u2019s two-sided header (News on jade, vs, Articles on navy), then D\u2019s accordion of rules.',
+        poster: ['#0A2540', '#00A896'],
+        live: true,
+        liveHref: '/editorial-standards/',
       },
     ],
   },

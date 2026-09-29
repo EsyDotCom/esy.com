@@ -4,12 +4,13 @@
  *   versus   — D: News left, Articles right, the row labels down a spine.
  *   spectrum — E: each row a scale from News to Article, examples under it.
  *   tiles    — F: one card per attribute, split News / Article.
+ *   spectrum-vs — G: E's scales under D's two-sided header.
  */
 import type { AgenticVideo } from '@/data/agentic-videos';
 import { ARTICLE_EXAMPLES, COMPARISON, COMPARISON_SHORT, KINDS, KindLink, NEWS_EXAMPLES } from './content';
 import { Examples } from './parts';
 
-export type CompareStyle = 'table' | 'versus' | 'spectrum' | 'tiles';
+export type CompareStyle = 'table' | 'versus' | 'spectrum' | 'spectrum-vs' | 'tiles';
 
 function Table({ articles }: { articles: AgenticVideo[] }) {
   return (
@@ -41,10 +42,10 @@ function Table({ articles }: { articles: AgenticVideo[] }) {
   );
 }
 
-/* D · Versus: two sides and a spine; each row reads across the spine. */
-function Versus({ articles }: { articles: AgenticVideo[] }) {
+/** D's header: News on pale jade, a "vs" badge on the seam, Articles on navy. */
+function VsHeader() {
   return (
-    <div className="ed-vs">
+    <>
       <div className="ed-vs-head ed-vs-head--news">
         <span className="ed-vs-name">{KINDS.news.name}</span>
         <KindLink kind="news" className="ed-vs-url" />
@@ -54,6 +55,15 @@ function Versus({ articles }: { articles: AgenticVideo[] }) {
         <span className="ed-vs-name">{KINDS.article.name}</span>
         <KindLink kind="article" className="ed-vs-url" />
       </div>
+    </>
+  );
+}
+
+/* D · Versus: two sides and a spine; each row reads across the spine. */
+function Versus({ articles }: { articles: AgenticVideo[] }) {
+  return (
+    <div className="ed-vs">
+      <VsHeader />
       {COMPARISON.map(([label, news, article]) => (
         <div key={label} className="ed-vs-row">
           <p className="ed-vs-cell ed-vs-cell--news">{news}</p>
@@ -105,6 +115,41 @@ function Spectrum({ articles }: { articles: AgenticVideo[] }) {
   );
 }
 
+/* G · Spectrum under D's header: the scales, framed by the two sides. */
+function SpectrumVs({ articles }: { articles: AgenticVideo[] }) {
+  return (
+    <div className="ed-specvs">
+      <div className="ed-vs ed-vs--head">
+        <VsHeader />
+      </div>
+      <ul className="ed-spec-rows ed-specvs-rows">
+        {COMPARISON_SHORT.map(([label, news, article]) => (
+          <li key={label} className="ed-spec-row">
+            <span className="ed-spec-news">{news}</span>
+            <span className="ed-spec-track" aria-hidden="true">
+              <span className="ed-spec-dot ed-spec-dot--news" />
+              <span className="ed-spec-label">{label}</span>
+              <span className="ed-spec-dot ed-spec-dot--article" />
+            </span>
+            <span className="ed-spec-article">{article}</span>
+          </li>
+        ))}
+        {/* The examples close the frame, one column per side. */}
+        <li className="ed-specvs-ex">
+          <div>
+            <p className="ed-mini">News, for example</p>
+            <Examples slugs={NEWS_EXAMPLES} articles={articles} className="ed-examples--table" />
+          </div>
+          <div>
+            <p className="ed-mini">Articles, for example</p>
+            <Examples slugs={ARTICLE_EXAMPLES} articles={articles} className="ed-examples--table" />
+          </div>
+        </li>
+      </ul>
+    </div>
+  );
+}
+
 /* F · Tiles: one card per attribute, News on top, Article below. */
 function Tiles({ articles }: { articles: AgenticVideo[] }) {
   return (
@@ -135,6 +180,7 @@ function Tiles({ articles }: { articles: AgenticVideo[] }) {
 export function Compare({ style, articles }: { style: CompareStyle; articles: AgenticVideo[] }) {
   if (style === 'versus') return <Versus articles={articles} />;
   if (style === 'spectrum') return <Spectrum articles={articles} />;
+  if (style === 'spectrum-vs') return <SpectrumVs articles={articles} />;
   if (style === 'tiles') return <Tiles articles={articles} />;
   return <Table articles={articles} />;
 }

@@ -10,7 +10,7 @@ import type { EditorialProps } from '@/components/Editorial/parts';
 import { toNavArticles } from '@/lib/nav-articles';
 import { getAllAgenticArticles } from '@/lib/published-articles';
 import '@/components/NewsletterHome/NewsletterHome.css';
-import '@/components/Editorial/EditorialProto.css';
+import '@/components/Editorial/Editorial.css';
 
 // One editorial standards direction, in the real site chrome and the
 // publication's `.nl` scope. All three render the same words
@@ -24,6 +24,8 @@ const LAYOUTS: Record<string, React.ComponentType<EditorialProps>> = {
   'versus-accordion': (props) => <EdDecide {...props} compare="versus" rules="accordion" />,
   'spectrum-stages': (props) => <EdDecide {...props} compare="spectrum" rules="stages" />,
   'tiles-index': (props) => <EdDecide {...props} compare="tiles" rules="index" />,
+  // Round 3: Zev's pick, live at /editorial-standards/.
+  final: (props) => <EdDecide {...props} compare="spectrum-vs" rules="accordion" />,
 };
 
 const prototype = findPrototype('editorial')!;

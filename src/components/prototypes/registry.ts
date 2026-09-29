@@ -532,7 +532,7 @@ export const PROTOTYPES: Prototype[] = [
     slug: 'courses',
     name: 'The courses index',
     date: '2026-09-29',
-    headline: 'Six ways into the courses.',
+    headline: 'Seven ways into the courses.',
     intro:
       'The /courses page, redone in The Marketing Engineer\u2019s look. Each version shows the same real courses and links to the real lessons. Open one and click through.',
     summary:
@@ -549,6 +549,12 @@ export const PROTOTYPES: Prototype[] = [
         title: 'Built from the homepage',
         summary:
           'Zev asked for no grids and nothing like the old style, taking from esy.com and /engineer instead. D is /engineer\u2019s masthead over the Latest list, E is the homepage\u2019s numbered sections, and F announces the course like the homepage\u2019s film.',
+      },
+      {
+        n: 3,
+        title: 'The masthead, then the spotlight',
+        summary:
+          'D kept the signup on the first screen and F\u2019s poster made the course enticing, so G puts F\u2019s spotlight straight under D\u2019s masthead.',
       },
     ],
     variants: [
@@ -610,6 +616,17 @@ export const PROTOTYPES: Prototype[] = [
         title: 'Courses',
         blurb:
           'The course announced like the homepage\u2019s film: a tilted poster beside a logline and credits (taught by, each lesson, running time), in navy and jade.',
+        image: '/prototypes/courses/claude-code-poster.webp',
+      },
+      {
+        slug: 'masthead-showing',
+        key: 'G',
+        name: 'Masthead + Now showing',
+        round: 3,
+        mergeOf: ['D', 'F'],
+        title: 'Courses',
+        blurb:
+          'D\u2019s centred masthead with the signup, then F\u2019s poster, logline and credits spotlighting the newest course, then what\u2019s coming.',
         image: '/prototypes/courses/claude-code-poster.webp',
       },
     ],

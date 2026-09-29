@@ -21,6 +21,23 @@ import {
   type CoursesIndexProps,
 } from './shared';
 
+/** /engineer's masthead for courses: the name, the promise, the signup, the totals. G reuses it. */
+export function CoursesMastheadHero({ courses }: { courses: CoursesIndexProps['courses'] }) {
+  return (
+    <section className="nl-hero">
+      <div className="nl-container nl-hero-inner">
+        <p className="nl-kicker">The Marketing Engineer</p>
+        <h1 className="nl-masthead">Courses</h1>
+        <p className="nl-promise">
+          Learn to build the AI systems that run marketing, <span className="nl-promise-accent">one lesson at a time</span>.
+        </p>
+        <NewsletterSignup note="New courses go out in the weekly email first" />
+        <StatsLine courses={courses} className="ci-stats--center" />
+      </div>
+    </section>
+  );
+}
+
 export default function CoursesMasthead({ courses, upcoming }: CoursesIndexProps) {
   const [lead] = newestFirst(courses);
   const art = lead ? COURSE_ART[lead.slug] : undefined;
@@ -29,17 +46,7 @@ export default function CoursesMasthead({ courses, upcoming }: CoursesIndexProps
   return (
     <>
       {/* ══ Masthead: the name, the promise, the one action ══ */}
-      <section className="nl-hero">
-        <div className="nl-container nl-hero-inner">
-          <p className="nl-kicker">The Marketing Engineer</p>
-          <h1 className="nl-masthead">Courses</h1>
-          <p className="nl-promise">
-            Learn to build the AI systems that run marketing, <span className="nl-promise-accent">one lesson at a time</span>.
-          </p>
-          <NewsletterSignup note="New courses go out in the weekly email first" />
-          <StatsLine courses={courses} className="ci-stats--center" />
-        </div>
-      </section>
+      <CoursesMastheadHero courses={courses} />
 
       {/* ══ The newest course as the lead story, every lesson as a row ══ */}
       {lead && (

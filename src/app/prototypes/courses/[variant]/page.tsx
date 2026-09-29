@@ -9,6 +9,7 @@ import CoursesFeatured from '@/components/CoursesIndex/CoursesFeatured';
 import CoursesMasthead from '@/components/CoursesIndex/CoursesMasthead';
 import CoursesNumbered from '@/components/CoursesIndex/CoursesNumbered';
 import CoursesNowShowing from '@/components/CoursesIndex/CoursesNowShowing';
+import CoursesMastheadShowing from '@/components/CoursesIndex/CoursesMastheadShowing';
 import { courses } from '@/lib/learn/mockData';
 import { toNavArticles } from '@/lib/nav-articles';
 import { getAllAgenticArticles } from '@/lib/published-articles';
@@ -31,6 +32,8 @@ const LAYOUTS: Record<string, React.ComponentType<CoursesIndexProps>> = {
   masthead: CoursesMasthead,
   numbered: CoursesNumbered,
   'now-showing': CoursesNowShowing,
+  // Round 3: D's masthead over F's spotlight.
+  'masthead-showing': CoursesMastheadShowing,
 };
 
 const prototype = findPrototype('courses')!;

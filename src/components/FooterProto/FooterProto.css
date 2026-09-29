@@ -35,10 +35,13 @@
 .fp-poster:hover .fp-poster-title { color: #00A896; }
 .fp-poster-meta { font-size: 11px; color: rgba(10, 37, 64, 0.55); }
 .fp-apps { display: flex; flex-wrap: wrap; align-items: center; gap: 28px; min-height: 84px; }
-.fp-app { display: inline-flex; color: #0A2540; opacity: 0.8; transition: opacity 0.2s ease; }
+.fp-app { display: inline-flex; align-items: center; color: #0A2540; opacity: 0.8; transition: opacity 0.2s ease; }
 .fp-app:hover { opacity: 1; }
-.fp-app-clipart { height: 26px; width: auto; }
-.fp-app-seopage { font-size: 26px; }
+.fp-app-clipart { height: 26px; width: auto; display: block; }
+/* Optically matched to clip.art, at the homepage proof row's ratio (EducationHero.css:
+   clip.art 1.6 : SEOPage 1.42, lifted 0.075em): same x-height, same baseline.
+   A text wordmark and an SVG one don't line up by box. */
+.fp-app-seopage { font-size: 23px; position: relative; top: -0.075em; }
 /* SEOPage's wordmark rules, copied from NewsletterHome.css so this sheet stands alone. */
 .fp .seopage-wordmark { display: inline-flex; align-items: flex-start; font-weight: 700; line-height: 1; letter-spacing: -0.04em; }
 .fp .seopage-wordmark--light { font-weight: 600; }

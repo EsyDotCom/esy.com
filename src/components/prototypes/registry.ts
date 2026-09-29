@@ -968,6 +968,41 @@ export const PROTOTYPES: Prototype[] = [
       },
     ],
   },
+  {
+    slug: 'home-films',
+    name: 'The homepage\u2019s 03 Films band',
+    date: '2026-09-29',
+    headline: 'A poster, or a running strip of the film.',
+    intro:
+      'Two ways to present the newest film under the homepage\u2019s 03 Films: the poster band that\u2019s live now, and the strip of its own frames from the \u201cApps and Films Apart\u201d prototype. Scroll to 03 on each.',
+    summary: 'The real homepage with 03 Films as the poster band or as a film strip that runs slowly sideways.',
+    rounds: [
+      { n: 1, title: 'Poster or strip', summary: 'A is the live poster band. B presents the film as a strip of its frames running sideways, pausing on hover.' },
+    ],
+    variants: [
+      {
+        slug: 'poster',
+        key: 'A',
+        name: 'Poster band',
+        round: 1,
+        title: 'Now showing',
+        blurb: 'The live band: the 2:3 poster beside the logline, the credits, Watch the film and the film page.',
+        image: '/films/the-letter-with-no-address/poster.webp',
+        imageFit: 'contain',
+        live: true,
+        liveHref: '/#work-films',
+      },
+      {
+        slug: 'strip',
+        key: 'B',
+        name: 'Film strip',
+        round: 1,
+        title: 'Now showing',
+        blurb: 'A card with the title, logline and facts beside a strip of the film\u2019s own frames running slowly sideways, sprocket holes and scene marks included. The next film stacks as a second strip.',
+        image: '/films/the-letter-with-no-address/launch.webp',
+      },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

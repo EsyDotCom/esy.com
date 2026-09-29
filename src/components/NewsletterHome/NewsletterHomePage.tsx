@@ -29,6 +29,8 @@ import { TOPICS, topicHref } from '@/data/topics';
 import { FILMS, filmHref } from '@/data/films';
 import { CREATIVES } from '@/data/creatives';
 import CreativePlayer from './CreativePlayer';
+import FilmPosterBand from './FilmPosterBand';
+import FilmStrip from './FilmStrip';
 import NewsletterHero from './NewsletterHero';
 import WeeklyEmailBand from './WeeklyEmailBand';
 import { nlSerif } from './serif';
@@ -171,46 +173,12 @@ function CreativeShowcase() {
   );
 }
 
-// The newest film on its own night: a 2:3 poster beside its logline and
-// credits, the way a film is announced. Older films stay in the ledger above.
-function FilmPoster() {
-  const f = FILMS[0];
-  return (
-    <section className="nl-lab nl-lab--film" aria-label={`${f.title}: now showing`}>
-      <div className="nl-container nl-film">
-        <Link href={filmHref(f)} className="nl-film-poster">
-          <Image src={f.poster} alt={f.posterAlt} width={600} height={900} sizes="(max-width: 900px) 70vw, 400px" />
-          <span className="nl-film-poster-top">Esy presents</span>
-          <span className="nl-film-poster-foot">
-            <span className="nl-film-poster-title">{f.title}</span>
-            <span className="nl-film-poster-billing">{f.credits.map(([, name]) => name).join(' · ')}</span>
-          </span>
-        </Link>
-        <div className="nl-film-side">
-          <p className="nl-film-kicker">Now showing · {f.meta}</p>
-          <p className="nl-film-log">“{f.logline}”</p>
-          <dl className="nl-film-credits">
-            {f.credits.map(([role, name]) => (
-              <div key={role}><dt>{role}</dt><dd>{name}</dd></div>
-            ))}
-          </dl>
-          <div className="nl-film-ctas">
-            <Link href={`${filmHref(f)}#fr-now`} className="nl-film-cta">
-              <Play size={14} aria-hidden="true" /> Watch the film
-            </Link>
-            <Link href={filmHref(f)} className="nl-inline-link nl-film-link">
-              The film page <ArrowRight size={15} aria-hidden="true" />
-            </Link>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export default async function NewsletterHomePage({
   hero,
+  filmBand = 'poster',
 }: {
+  /** How 03 Films presents the newest film: the poster band, or the running strip (/prototypes/home-films/). */
+  filmBand?: 'poster' | 'strip';
   /** What sits above the sections. /engineer uses the masthead; the homepage
    *  swaps in the Esy OS hero and keeps everything below. */
   hero?: React.ReactNode;
@@ -550,7 +518,7 @@ export default async function NewsletterHomePage({
       </section>
 
       {/* ══ The newest film, as a poster with its credits ══ */}
-      <FilmPoster />
+      {filmBand === 'strip' ? <FilmStrip /> : <FilmPosterBand />}
 
       {/* ══ The author ══ */}
       <section className="nl-section" aria-labelledby="nl-author-title">

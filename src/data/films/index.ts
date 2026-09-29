@@ -27,6 +27,10 @@ export type FilmCard = {
   poster: string;
   posterAlt: string;
   credits: [string, string][];
+  /** The film as a strip of stills in story order, each with its scene (FilmStrip). */
+  strip: { src: string; scene: number }[];
+  /** A short production line for the strip's card, e.g. "39 shots · 6 voices". */
+  facts: string;
 };
 
 export const FILMS: FilmCard[] = [
@@ -44,6 +48,13 @@ export const FILMS: FilmCard[] = [
     frames: ["look-world", "milo-stamp", "moon-tender", "dawn-home"].map((n) => `/films/${LETTER.slug}/${n}.webp`),
     poster: `/films/${LETTER.slug}/poster.webp`,
     posterAlt: "Lullo's balloon rising toward the sleeping Moon",
+    strip: (
+      [
+        ["milo-stamp", 1], ["envelope-desk", 1], ["ottoline-perch", 2], ["launch", 2], ["lane-search", 3],
+        ["stars-bounce", 3], ["letter-moonlight", 4], ["moon-tender", 4], ["stars-letter", 5], ["dawn-home", 6],
+      ] as [string, number][]
+    ).map(([n, scene]) => ({ src: `/films/${LETTER.slug}/${n}.webp`, scene })),
+    facts: `${LETTER.shots} shots · ${LETTER.voices} voices · 1 clip.art pack`,
     credits: [
       ["Starring", "Lullo the Moon Bear, Ottoline, the Moon, the Sleepy Stars"],
       ["Story", "Screenplay draft B"],

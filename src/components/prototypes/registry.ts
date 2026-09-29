@@ -972,6 +972,53 @@ export const PROTOTYPES: Prototype[] = [
       },
     ],
   },
+  {
+    slug: 'courses-hero',
+    name: 'The /courses hero, with an intro video',
+    date: '2026-09-29',
+    headline: 'A short intro video on /courses.',
+    intro:
+      'Three ways to put a one-minute \u201cwhat the courses are\u201d video at the top of /courses. The intro isn\u2019t made yet, so the SEOPage explainer stands in, labelled as a sample.',
+    summary:
+      'Three /courses heroes with an intro video over the live page\u2019s poster spotlight: a split, a screening, and a pill that opens a lightbox.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Beside, below, or on demand',
+        summary:
+          'A puts the video beside the promise and signup, B screens it large in a dark room under the masthead, and C keeps the masthead and adds a small Watch the intro pill.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'split',
+        key: 'A',
+        name: 'Split',
+        round: 1,
+        title: 'Courses',
+        blurb: 'The promise and signup on the left, the intro framed in navy on the right, both on the first screen.',
+        poster: ['#FFFFFF', '#0A2540'],
+      },
+      {
+        slug: 'screening',
+        key: 'B',
+        name: 'Screening',
+        round: 1,
+        title: 'Courses',
+        blurb: 'The centred masthead, then the intro playing large in the lesson page\u2019s dark room with its jade ring.',
+        poster: ['#0A1626', '#00D4AA'],
+      },
+      {
+        slug: 'pill',
+        key: 'C',
+        name: 'Pill',
+        round: 1,
+        title: 'Courses',
+        blurb: 'The centred masthead as it is, plus a small Watch the intro thumbnail by the signup that opens the video in a lightbox.',
+        poster: ['#FFFFFF', '#F8F9FA'],
+      },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

@@ -708,6 +708,12 @@ export const PROTOTYPES: Prototype[] = [
         summary:
           'A puts the lesson in the video article\u2019s dark room with the course in a rail, B is a course player with the playlist beside the video, and C frames the video like a print with the notes read as an article.',
       },
+      {
+        n: 2,
+        title: 'B, in A\u2019s dark room',
+        summary:
+          'B showed the whole course on the first screen, which sells it to a stranger. Zev asked for A\u2019s background behind it: D is that, and E adds the email signup under the playlist.',
+      },
     ],
     variants: [
       {
@@ -739,6 +745,28 @@ export const PROTOTYPES: Prototype[] = [
         blurb:
           'Light and bookish: the title beside the video in a white mat, the notes read like an article with the lessons in a rail, and a navy up-next band.',
         poster: ['#FFFFFF', '#F8F9FA'],
+      },
+      {
+        slug: 'studio-night',
+        key: 'D',
+        name: 'Studio · Night',
+        round: 2,
+        mergeOf: ['B', 'A'],
+        title: 'Introduction & Setup',
+        blurb:
+          'B\u2019s layout in A\u2019s dark room: the title in white, the video in A\u2019s thin jade ring, the playlist as glass beside it.',
+        poster: ['#0A1626', '#00A896'],
+      },
+      {
+        slug: 'studio-night-signup',
+        key: 'E',
+        name: 'Studio · Night + signup',
+        round: 2,
+        mergeOf: ['D'],
+        title: 'Introduction & Setup',
+        blurb:
+          'D with the rail doing two jobs: the course line and playlist, then \u201cGet the next lesson by email\u201d right under it, where a stranger decides whether to keep going.',
+        poster: ['#0A1626', '#FFFFFF'],
       },
     ],
   },

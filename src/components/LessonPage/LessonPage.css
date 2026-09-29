@@ -82,7 +82,37 @@
   background: linear-gradient(160deg, #0A1626 0%, var(--nl-navy) 70%, #0F3460 100%);
   box-shadow: 0 40px 80px -40px rgba(10, 37, 64, 0.55);
 }
+.lp-player-rail { display: flex; flex-direction: column; gap: 16px; }
 .lp-col { padding-top: 8px; padding-bottom: 32px; }
+
+/* ── D and E · Night: A's dark room behind B (ArticleVideo.css, the theater room) ── */
+.lp-studio--night .lp-stage {
+  padding: 52px 0 56px; border-bottom: 0;
+  background: radial-gradient(55% 60% at 40% 72%, rgba(0, 212, 170, 0.16), transparent 70%), #0A1626;
+}
+.lp-studio--night .lp-stage .lp-kicker--onDark { color: var(--nl-jade-bright); }
+.lp-studio--night .lp-stage-title { color: #fff; }
+.lp-studio--night .lp-stage .lp-sample--onDark { color: rgba(255, 255, 255, 0.6); }
+.lp-studio--night .lp-stage .lp-sample--onDark b { color: #F6DDA3; }
+/* On the dark room the video gets A's thin jade ring instead of the studio panel. */
+.lp-studio--night .av-framed--studio .av-room-inner {
+  padding: 12px; border-radius: 22px; background: rgba(255, 255, 255, 0.03);
+  box-shadow: 0 0 0 1px rgba(0, 212, 170, 0.45), 0 50px 100px -40px rgba(0, 0, 0, 0.9);
+}
+.lp-studio--night .av-framed--studio .av-frame-screen { border-radius: 12px; }
+/* The playlist as glass on the dark room. */
+.lp-studio--night .lp-player-list { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: none; }
+
+/* ── E · the rail's course line and signup ── */
+.lp-rail-meta { margin: 0 0 4px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255, 255, 255, 0.55); }
+.lp-rail-signup { padding: 18px 20px 16px; border-radius: 18px; background: #fff; }
+.lp-rail-signup-title { margin: 0 0 4px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 1.25rem; line-height: 1.15; color: var(--nl-navy); }
+.lp-rail-signup-body { margin: 0 0 12px; font-size: 0.85rem; line-height: 1.45; color: var(--nl-ink-soft); }
+.lp-rail-signup .nl-signup { max-width: none; }
+.lp-rail-signup .nl-signup-form { flex-direction: column; gap: 8px; }
+.lp-rail-signup .nl-signup-input { flex: none; width: 100%; padding: 10px 12px; font-size: 0.9rem; }
+.lp-rail-signup .nl-signup-btn { width: 100%; min-width: 0; padding: 10px 14px; font-size: 0.92rem; }
+.lp-rail-signup .nl-signup-note { font-size: 0.74rem; }
 .lp-desc { margin-top: 32px !important; }
 
 /* ── C · Mat ── */

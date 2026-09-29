@@ -31,6 +31,9 @@ const LAYOUTS: Record<string, React.ComponentType<LessonPageProps>> = {
   theater: LessonTheater,
   studio: LessonStudio,
   mat: LessonMat,
+  // Round 2: B with A's dark room behind it, then with the signup in its rail.
+  'studio-night': (props) => <LessonStudio {...props} night />,
+  'studio-night-signup': (props) => <LessonStudio {...props} night signup />,
 };
 
 const prototype = findPrototype('lesson')!;

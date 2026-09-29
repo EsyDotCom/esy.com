@@ -861,6 +861,113 @@ export const PROTOTYPES: Prototype[] = [
       },
     ],
   },
+  {
+    slug: 'editorial',
+    name: 'The editorial standards page',
+    date: '2026-09-29',
+    headline: 'Three looks for the editorial standards.',
+    intro:
+      'How The Marketing Engineer decides what\u2019s news and what\u2019s an article, and how it keeps every piece right. The same words in three designs built from the homepage\u2019s own patterns.',
+    summary:
+      'Three directions for /editorial-standards/, each borrowing a different part of esy.com: the /engineer masthead and numbered sections, the film\u2019s credits, and a working decision tool.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Front page, credits, or a tool',
+        summary:
+          'A makes the six-month test one huge statement and sets News against Articles as two cards. B bills them like the homepage\u2019s film. C turns the standards into a News-or-article checker you actually use.',
+      },
+      {
+        n: 2,
+        title: 'C\u2019s top, new middles',
+        summary:
+          'Zev picked C. Its masthead and checker stay; the side-by-side and the rules each get three new treatments, one of each per page: D pairs Versus with an accordion, E a spectrum with rules by stage, F tiles with a sticky rule index.',
+      },
+      {
+        n: 3,
+        title: 'The pick',
+        summary: 'G is Zev\u2019s combination: E\u2019s spectrum under D\u2019s two-sided header, with D\u2019s accordion for the rules.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'front-page',
+        key: 'A',
+        name: 'Front page',
+        round: 1,
+        title: 'Editorial standards',
+        blurb:
+          '/engineer\u2019s centred masthead, the six-month test huge on navy with its two answers, News and Articles as two cards facing off, and the rules as numbered cards.',
+        poster: ['#FFFFFF', '#0A2540'],
+      },
+      {
+        slug: 'credits',
+        key: 'B',
+        name: 'Credits',
+        round: 1,
+        title: 'Editorial standards',
+        blurb:
+          'The homepage\u2019s film announcement: News and Articles billed side by side in a dark room, each with a credits list and what\u2019s showing, then the rules as the homepage\u2019s ledger.',
+        poster: ['#0A1626', '#00D4AA'],
+      },
+      {
+        slug: 'decide',
+        key: 'C',
+        name: 'Decision tool',
+        round: 1,
+        title: 'Editorial standards',
+        blurb:
+          'A News-or-article checker: three yes/no questions, a verdict with where it goes and how to build it, then the comparison as a clean table and the rules as cards.',
+        poster: ['#0A1626', '#FFFFFF'],
+      },
+      {
+        slug: 'versus-accordion',
+        key: 'D',
+        name: 'Versus + Accordion',
+        round: 2,
+        mergeOf: ['C'],
+        title: 'Editorial standards',
+        blurb:
+          'Side by side as Versus: News on the left, Articles on the right, the row labels down a spine. The rules as an accordion: numbered titles you open one at a time.',
+        poster: ['#FFFFFF', '#0A2540'],
+      },
+      {
+        slug: 'spectrum-stages',
+        key: 'E',
+        name: 'Spectrum + By stage',
+        round: 2,
+        mergeOf: ['C'],
+        title: 'Editorial standards',
+        blurb:
+          'Side by side as a spectrum: every row a scale from News to Article (\u201cWeeks\u201d to \u201cYears\u201d). The rules grouped by stage: before you write, while you write, after you publish.',
+        poster: ['#FFFFFF', '#00A896'],
+      },
+      {
+        slug: 'tiles-index',
+        key: 'F',
+        name: 'Tiles + Index',
+        round: 2,
+        mergeOf: ['C'],
+        title: 'Editorial standards',
+        blurb:
+          'Side by side as tiles: one card per attribute, split News and Article. The rules with a sticky numbered index beside them that follows your place.',
+        poster: ['#F8F9FA', '#0A2540'],
+      },
+      {
+        slug: 'final',
+        key: 'G',
+        name: 'Spectrum in the frame + Accordion',
+        round: 3,
+        mergeOf: ['E', 'D'],
+        title: 'Editorial standards',
+        blurb:
+          'C\u2019s checker, then E\u2019s News-to-Article scales framed by D\u2019s two-sided header (News on jade, vs, Articles on navy), then D\u2019s accordion of rules.',
+        poster: ['#0A2540', '#00A896'],
+        live: true,
+        liveHref: '/editorial-standards/',
+      },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

@@ -302,6 +302,9 @@ export default function Footer () {
             title="Company"
             links={[
               { href: "/about/", text: "About" },
+              // Where readers (and search engines) look for how the
+              // publication decides what to publish and keeps it right.
+              { href: "/editorial-standards/", text: "Editorial standards" },
               { href: "mailto:zev@esy.com", text: "Contact" },
               { href: "/privacy/", text: "Privacy" },
               { href: "/terms/", text: "Terms" },

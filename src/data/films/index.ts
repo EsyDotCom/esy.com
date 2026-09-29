@@ -18,6 +18,15 @@ export type FilmCard = {
   /** A wide still, used for the title sequence, the chapter and the list hover. */
   still: string;
   stillAlt: string;
+  /** The homepage's films group: the kind of film (its ledger role), a short
+   * summary, four frames that stand in for a logo, and a 2:3 poster with its
+   * credits for the newest film's band. */
+  kind: string;
+  summary: string;
+  frames: string[];
+  poster: string;
+  posterAlt: string;
+  credits: [string, string][];
 };
 
 export const FILMS: FilmCard[] = [
@@ -30,6 +39,19 @@ export const FILMS: FilmCard[] = [
     status: "Animatic",
     still: `/films/${LETTER.slug}/look-world.webp`,
     stillAlt: "Starlight Town at night, under the Moon and the Cloud Post Office",
+    kind: "Animated short",
+    summary: "A night postman follows a letter with no address across the sky. Four minutes, made from one clip.art pack. Showing as an animatic while the motion is made.",
+    frames: ["look-world", "milo-stamp", "moon-tender", "dawn-home"].map((n) => `/films/${LETTER.slug}/${n}.webp`),
+    poster: `/films/${LETTER.slug}/poster.webp`,
+    posterAlt: "Lullo's balloon rising toward the sleeping Moon",
+    credits: [
+      ["Starring", "Lullo the Moon Bear, Ottoline, the Moon, the Sleepy Stars"],
+      ["Story", "Screenplay draft B"],
+      ["Frames", "Esy, from one clip.art pack"],
+      ["Voices", "Six designed voices"],
+      ["Sound", "Temp score, mixed to broadcast loudness"],
+      ["Made by", "Zev, with Claude and Esy"],
+    ],
   },
 ];
 

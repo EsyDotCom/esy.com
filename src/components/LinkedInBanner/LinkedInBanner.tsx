@@ -231,8 +231,8 @@ function Desk() {
         <div className="lib-serif lib-desk-name">
           The Marketing <em>Engineer</em>
         </div>
+        {/* No URL: the wordmark already names the brand, and the profile's website link is the clickable one. */}
         <div className="lib-desk-sub">Learn to build the AI systems that run marketing.</div>
-        <div className="lib-desk-url">esy.com</div>
       </div>
     </div>
   );

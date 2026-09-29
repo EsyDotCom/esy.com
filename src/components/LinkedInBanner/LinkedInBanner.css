@@ -153,4 +153,3 @@
 .lib-desk-name { font-size: 84px; line-height: 1; color: #F8FAFC; white-space: nowrap; }
 .lib-desk-name em { color: var(--lib-jade-bright); }
 .lib-desk-sub { margin-top: 14px !important; font-size: 24px; color: rgba(255, 255, 255, 0.8); }
-.lib-desk-url { margin-top: 20px !important; font-size: 24px; font-weight: 600; color: var(--lib-jade-bright); }

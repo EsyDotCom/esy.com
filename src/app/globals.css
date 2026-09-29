@@ -2197,6 +2197,21 @@ html {
   gap: 0.625rem 1.75rem;
 }
 
+/* From Esy: the businesses' own wordmarks, matched by measurement at 3x:
+   the same x-height (9.3 vs 9.7px) and the same baseline, SEOPage lifted
+   0.13em. A text wordmark and an SVG one don't line up by their boxes. */
+.footer-marks { align-items: center; gap: 1rem 2.25rem; }
+.footer-mark { display: inline-flex; align-items: center; color: #0A2540; opacity: 0.72; text-decoration: none; transition: opacity 0.2s ease, transform 0.2s ease; }
+.footer-mark:hover { opacity: 1; transform: translateY(-1px); }
+.footer--navy-dark .footer-mark { color: #fff; }
+.footer-mark-clipart { display: block; height: 22px; width: auto; }
+.footer-mark--seopage { font-size: 19.5px; position: relative; top: -0.13em; }
+.footer-mark .seopage-wordmark { display: inline-flex; align-items: flex-start; font-weight: 600; line-height: 1; letter-spacing: -0.04em; }
+.footer-mark .seopage-wordmark-badge {
+  display: flex; align-items: center; justify-content: center; margin-left: 0.29em; margin-top: 0.07em;
+  height: 1.5em; min-width: 1.5em; border-radius: 0.43em; background: #3D6BFF; color: #fff; font-size: 0.28em; letter-spacing: 0;
+}
+
 .footer-bottom {
   margin-top: 3rem;
   padding-top: 2rem;

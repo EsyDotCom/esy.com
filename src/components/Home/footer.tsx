@@ -5,6 +5,8 @@ import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import FooterColumn from "@/components/Home/footerColumn";
 import Logo from "@/components/Logo";
+import ClipArtWordmark from "@/components/NewsletterHome/ClipArtWordmark";
+import SeoPageWordmark from "@/components/NewsletterHome/SeoPageWordmark";
 import { getPageSuffix } from "./navigation";
 import { elevatedDarkTheme } from '@/lib/theme';
 
@@ -318,9 +320,15 @@ export default function Footer () {
             then the showcase catalogs its engine produced. */}
         <div className="footer-extended">
           <h4>From Esy</h4>
-          <div className="footer-extended-links">
-            <a href="https://clip.art" target="_blank" rel="noreferrer" className="footer-link">Clip.Art</a>
-            <a href="https://seo.page" target="_blank" rel="noreferrer" className="footer-link">seo.page</a>
+          {/* The businesses as their own wordmarks, not text (clip.art's SVG and
+              SEOPage's lettering), sized to read as one row. */}
+          <div className="footer-extended-links footer-marks">
+            <a href="https://clip.art" target="_blank" rel="noopener noreferrer" className="footer-mark" aria-label="clip.art">
+              <ClipArtWordmark className="footer-mark-clipart" />
+            </a>
+            <a href="https://seo.page" target="_blank" rel="noopener noreferrer" className="footer-mark footer-mark--seopage" aria-label="SEOPage">
+              <SeoPageWordmark weight="light" />
+            </a>
           </div>
         </div>
 

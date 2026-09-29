@@ -877,6 +877,12 @@ export const PROTOTYPES: Prototype[] = [
         summary:
           'A makes the six-month test one huge statement and sets News against Articles as two cards. B bills them like the homepage\u2019s film. C turns the standards into a News-or-article checker you actually use.',
       },
+      {
+        n: 2,
+        title: 'C\u2019s top, new middles',
+        summary:
+          'Zev picked C. Its masthead and checker stay; the side-by-side and the rules each get three new treatments, one of each per page: D pairs Versus with an accordion, E a spectrum with rules by stage, F tiles with a sticky rule index.',
+      },
     ],
     variants: [
       {
@@ -908,6 +914,39 @@ export const PROTOTYPES: Prototype[] = [
         blurb:
           'A News-or-article checker: three yes/no questions, a verdict with where it goes and how to build it, then the comparison as a clean table and the rules as cards.',
         poster: ['#0A1626', '#FFFFFF'],
+      },
+      {
+        slug: 'versus-accordion',
+        key: 'D',
+        name: 'Versus + Accordion',
+        round: 2,
+        mergeOf: ['C'],
+        title: 'Editorial standards',
+        blurb:
+          'Side by side as Versus: News on the left, Articles on the right, the row labels down a spine. The rules as an accordion: numbered titles you open one at a time.',
+        poster: ['#FFFFFF', '#0A2540'],
+      },
+      {
+        slug: 'spectrum-stages',
+        key: 'E',
+        name: 'Spectrum + By stage',
+        round: 2,
+        mergeOf: ['C'],
+        title: 'Editorial standards',
+        blurb:
+          'Side by side as a spectrum: every row a scale from News to Article (\u201cWeeks\u201d to \u201cYears\u201d). The rules grouped by stage: before you write, while you write, after you publish.',
+        poster: ['#FFFFFF', '#00A896'],
+      },
+      {
+        slug: 'tiles-index',
+        key: 'F',
+        name: 'Tiles + Index',
+        round: 2,
+        mergeOf: ['C'],
+        title: 'Editorial standards',
+        blurb:
+          'Side by side as tiles: one card per attribute, split News and Article. The rules with a sticky numbered index beside them that follows your place.',
+        poster: ['#F8F9FA', '#0A2540'],
       },
     ],
   },

@@ -52,6 +52,23 @@ export const COMPARISON: [string, string, string][] = [
   ['Headline', 'Needs a version or date to make sense', 'Makes sense without one'],
 ];
 
+/** The same rows in two or three words a side, for scales and tiles: [label, news, article]. */
+export const COMPARISON_SHORT: [string, string, string][] = [
+  ['Starts from', 'Something out there', 'Something we built'],
+  ['Answers', 'What changed?', 'How do I do it?'],
+  ['Shelf life', 'Weeks', 'Years'],
+  ['Speed', '1 to 2 days', 'When it’s right'],
+  ['Shape', '500 to 900 words', 'As long as it needs'],
+  ['Headline', 'Needs a version', 'Timeless'],
+];
+
+/** The rules grouped by when you need them (E · By stage), by PRINCIPLES id. */
+export const RULE_STAGES: { name: string; ids: string[] }[] = [
+  { name: 'Before you write', ids: ['grey-area', 'news-post', 'article'] },
+  { name: 'While you write', ids: ['accuracy', 'ai', 'style'] },
+  { name: 'After you publish', ids: ['how-they-connect', 'corrections', 'our-products'] },
+];
+
 // Real pieces, sorted by the six-month test (titles are looked up at render).
 export const NEWS_EXAMPLES = ['claude-fable-5-first-impressions', 'chatgpt-images-2-vs-nano-banana-2'];
 export const ARTICLE_EXAMPLES = [

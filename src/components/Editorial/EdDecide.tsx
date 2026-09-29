@@ -1,23 +1,23 @@
 /* C · Decision tool — the standards as something you use: a light masthead,
  * then the "News or article?" checker on navy (three questions, a verdict,
- * where it goes and how to build it), then the comparison as a clean table
- * with examples, and the rules as a grid of cards.
+ * where it goes and how to build it), then the side-by-side and the rules.
+ *
+ * Round 2 keeps the top and varies the two sections below it: `compare` and
+ * `rules` pick their treatment (compare.tsx, rules.tsx). C itself is the
+ * table and the cards.
  */
 import WeeklyEmailBand from '@/components/NewsletterHome/WeeklyEmailBand';
-import {
-  ARTICLE_EXAMPLES,
-  COMPARISON,
-  INTRO,
-  KINDS,
-  NEWS_EXAMPLES,
-  PRINCIPLES,
-  updatedLabel,
-  KindLink,
-} from './content';
+import { INTRO, updatedLabel } from './content';
+import { Compare, type CompareStyle } from './compare';
 import NewsOrArticle from './NewsOrArticle';
-import { Examples, type EditorialProps } from './parts';
+import type { EditorialProps } from './parts';
+import { Rules, type RulesStyle } from './rules';
 
-export default function EdDecide({ articles }: EditorialProps) {
+export default function EdDecide({
+  articles,
+  compare = 'table',
+  rules = 'cards',
+}: EditorialProps & { compare?: CompareStyle; rules?: RulesStyle }) {
   return (
     <>
       <section className="ed-hero">
@@ -38,56 +38,19 @@ export default function EdDecide({ articles }: EditorialProps) {
         </div>
       </section>
 
-      {/* ══ The comparison, with examples ══ */}
+      {/* ══ Side by side ══ */}
       <section className="nl-section" aria-labelledby="ed-cmp">
         <div className="nl-container">
           <h2 className="nl-title" id="ed-cmp">Side by side</h2>
-          <div className="ed-table-wrap">
-            <table className="ed-table">
-              <thead>
-                <tr>
-                  <th scope="col" />
-                  <th scope="col">
-                    {KINDS.news.name}
-                    <KindLink kind="news" className="ed-th-url" />
-                  </th>
-                  <th scope="col">
-                    {KINDS.article.name}
-                    <KindLink kind="article" className="ed-th-url" />
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {COMPARISON.map(([label, news, article]) => (
-                  <tr key={label}>
-                    <th scope="row">{label}</th>
-                    <td>{news}</td>
-                    <td>{article}</td>
-                  </tr>
-                ))}
-                <tr>
-                  <th scope="row">For example</th>
-                  <td><Examples slugs={NEWS_EXAMPLES} articles={articles} className="ed-examples--table" /></td>
-                  <td><Examples slugs={ARTICLE_EXAMPLES} articles={articles} className="ed-examples--table" /></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <Compare style={compare} articles={articles} />
         </div>
       </section>
 
-      {/* ══ The rules, as cards ══ */}
-      <section className="nl-section nl-section--alt" aria-labelledby="ed-rules-c">
+      {/* ══ The rules ══ */}
+      <section className={`nl-section ${rules === 'index' ? '' : 'nl-section--alt'}`} aria-labelledby="ed-rules-c">
         <div className="nl-container">
           <h2 className="nl-title" id="ed-rules-c">The rules</h2>
-          <div className="ed-cards">
-            {PRINCIPLES.map((p) => (
-              <section key={p.id} id={p.id} className="ed-card">
-                <h3 className="ed-card-title">{p.title}</h3>
-                <div className="ed-prose">{p.body}</div>
-              </section>
-            ))}
-          </div>
+          <Rules style={rules} />
         </div>
       </section>
 

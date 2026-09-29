@@ -20,6 +20,10 @@ const LAYOUTS: Record<string, React.ComponentType<EditorialProps>> = {
   'front-page': EdFrontPage,
   credits: EdCredits,
   decide: EdDecide,
+  // Round 2: C's top, with new side-by-side and rules treatments.
+  'versus-accordion': (props) => <EdDecide {...props} compare="versus" rules="accordion" />,
+  'spectrum-stages': (props) => <EdDecide {...props} compare="spectrum" rules="stages" />,
+  'tiles-index': (props) => <EdDecide {...props} compare="tiles" rules="index" />,
 };
 
 const prototype = findPrototype('editorial')!;

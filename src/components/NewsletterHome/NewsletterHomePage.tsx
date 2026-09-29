@@ -159,12 +159,12 @@ function CreativeShowcase() {
 
 export default async function NewsletterHomePage({
   hero,
-  filmBand = 'poster',
+  filmBand = 'strip',
   clipartVisual = 'control',
 }: {
   /** What sits beside the clip.art case study: D · Control room since 2026-09-29 (/prototypes/home-clipart/). */
   clipartVisual?: ClipArtVisual;
-  /** How 03 Films presents the newest film: the poster band, or the running strip (/prototypes/home-films/). */
+  /** How 03 Films presents the films: the running strip since 2026-09-29, or the poster band (/prototypes/home-films/). */
   filmBand?: 'poster' | 'strip';
   /** What sits above the sections. /engineer uses the masthead; the homepage
    *  swaps in the Esy OS hero and keeps everything below. */

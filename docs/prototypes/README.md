@@ -18,6 +18,8 @@ Clickable directions we compare by using them, not by looking at mockups. They l
 
 **The course page (2026-09-29)** is at `/prototypes/course/`: A · Poster, B · Masthead, C · Theater (`src/components/CourseDetail/`), each rendering the one live course. A reuses the index's `NowShowingBand` as its hero, and B and C use the covers from `scripts/generate-article-images.mjs`. Resources show only real links; the `#` placeholders in the course data never render.
 
+**The lesson page (2026-09-29)** is at `/prototypes/lesson/`: A · Theater, B · Studio, C · Mat (`src/components/LessonPage/`). They reuse the video article's `FramedVideo` (real Mux player, click-to-seek transcript) around the real first lesson of the Claude Code course. That lesson's own video is a placeholder clip, so the player shows a real published video (Claude Fable 5 first impressions, the one video with an SRT transcript), labelled on the page as a sample.
+
 ## The pattern
 
 1. **Show the real product, not a picture of it.** Don't screenshot the app and don't draw a mockup. Rebuild the page from the product's own source: same markup, same class names, and the product's stylesheets **copied verbatim** (with a provenance header saying where they came from and when). Keep any tweaks for the new setting in a separate file. The result looks like the product because it *is* the product's UI.

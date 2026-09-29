@@ -692,6 +692,56 @@ export const PROTOTYPES: Prototype[] = [
       },
     ],
   },
+  {
+    slug: 'lesson',
+    name: 'The lesson page',
+    date: '2026-09-29',
+    headline: 'Three lesson pages.',
+    intro:
+      'The page where a lesson plays, in The Marketing Engineer\u2019s look. Each version shows the real first lesson of the Claude Code course. Its own video isn\u2019t recorded yet, so a real published video with its transcript stands in, labelled on the page.',
+    summary:
+      'Three directions for /courses/<course>/<lesson>/, built on the video article\u2019s framed player and click-to-seek transcript.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Theater, studio, or mat',
+        summary:
+          'A puts the lesson in the video article\u2019s dark room with the course in a rail, B is a course player with the playlist beside the video, and C frames the video like a print with the notes read as an article.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'theater',
+        key: 'A',
+        name: 'Theater',
+        round: 1,
+        title: 'Introduction & Setup',
+        blurb:
+          'The video article\u2019s dark room: the lesson title in white, the video in a spotlight, the transcript under it, then the course\u2019s lessons in a sticky rail beside the notes and up next.',
+        poster: ['#0A1626', '#0A2540'],
+      },
+      {
+        slug: 'studio',
+        key: 'B',
+        name: 'Studio',
+        round: 1,
+        title: 'Introduction & Setup',
+        blurb:
+          'A course player: the video in the studio frame with the course\u2019s playlist beside it on navy, the transcript underneath, then up next and the notes.',
+        poster: ['#F8F9FA', '#0A2540'],
+      },
+      {
+        slug: 'mat',
+        key: 'C',
+        name: 'Mat',
+        round: 1,
+        title: 'Introduction & Setup',
+        blurb:
+          'Light and bookish: the title beside the video in a white mat, the notes read like an article with the lessons in a rail, and a navy up-next band.',
+        poster: ['#FFFFFF', '#F8F9FA'],
+      },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

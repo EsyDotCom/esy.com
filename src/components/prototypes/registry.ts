@@ -532,7 +532,7 @@ export const PROTOTYPES: Prototype[] = [
     slug: 'courses',
     name: 'The courses index',
     date: '2026-09-29',
-    headline: 'Seven ways into the courses.',
+    headline: 'Eight ways into the courses.',
     intro:
       'The /courses page, redone in The Marketing Engineer\u2019s look. Each version shows the same real courses and links to the real lessons. Open one and click through.',
     summary:
@@ -554,7 +554,7 @@ export const PROTOTYPES: Prototype[] = [
         n: 3,
         title: 'The masthead, then the spotlight',
         summary:
-          'D kept the signup on the first screen and F\u2019s poster made the course enticing, so G puts F\u2019s spotlight straight under D\u2019s masthead.',
+          'D kept the signup on the first screen and F\u2019s poster made the course enticing, so G puts F\u2019s spotlight straight under D\u2019s masthead. H then adds E\u2019s numbered sections for every other course.',
       },
     ],
     variants: [
@@ -627,6 +627,17 @@ export const PROTOTYPES: Prototype[] = [
         title: 'Courses',
         blurb:
           'D\u2019s centred masthead with the signup, then F\u2019s poster, logline and credits spotlighting the newest course, then what\u2019s coming.',
+        image: '/prototypes/courses/claude-code-poster.webp',
+      },
+      {
+        slug: 'masthead-sections',
+        key: 'H',
+        name: 'G + Numbered',
+        round: 3,
+        mergeOf: ['G', 'E'],
+        title: 'Courses',
+        blurb:
+          'G\u2019s masthead and poster spotlight as course 01, then every other course as E\u2019s numbered section (02, 03\u2026) with its lessons as a ledger, and chips to jump between them.',
         image: '/prototypes/courses/claude-code-poster.webp',
       },
     ],

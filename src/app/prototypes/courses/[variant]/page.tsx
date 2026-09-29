@@ -10,6 +10,7 @@ import CoursesMasthead from '@/components/CoursesIndex/CoursesMasthead';
 import CoursesNumbered from '@/components/CoursesIndex/CoursesNumbered';
 import CoursesNowShowing from '@/components/CoursesIndex/CoursesNowShowing';
 import CoursesMastheadShowing from '@/components/CoursesIndex/CoursesMastheadShowing';
+import CoursesMastheadSections from '@/components/CoursesIndex/CoursesMastheadSections';
 import { courses } from '@/lib/learn/mockData';
 import { toNavArticles } from '@/lib/nav-articles';
 import { getAllAgenticArticles } from '@/lib/published-articles';
@@ -34,6 +35,8 @@ const LAYOUTS: Record<string, React.ComponentType<CoursesIndexProps>> = {
   'now-showing': CoursesNowShowing,
   // Round 3: D's masthead over F's spotlight.
   'masthead-showing': CoursesMastheadShowing,
+  // G with E's numbered sections after the spotlight.
+  'masthead-sections': CoursesMastheadSections,
 };
 
 const prototype = findPrototype('courses')!;

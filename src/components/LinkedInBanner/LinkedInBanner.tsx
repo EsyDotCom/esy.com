@@ -51,7 +51,7 @@ function Masthead() {
       </div>
       {/* The promise and the proof, right of the photo. */}
       <div className="lib-masthead-copy">
-        <div className="lib-label">The Marketing Engineer · free every week</div>
+        <div className="lib-label">The Marketing Engineer · every week</div>
         <div className="lib-serif lib-masthead-title">
           I build the AI systems that <em>run marketing</em>, and show you how.
         </div>
@@ -125,7 +125,7 @@ function Scene() {
         </div>
         <div className="lib-scene-sub">
           The AI behind clip.art and SEOPage, built in the open.
-          <span className="lib-scene-cta">Free every week at esy.com</span>
+          <span className="lib-scene-cta">Every week at esy.com</span>
         </div>
       </div>
     </div>
@@ -142,7 +142,7 @@ function Nameplate() {
       </div>
       {/* A newspaper nameplate: the name as the masthead, the promise under a double rule. */}
       <div className="lib-nameplate-copy">
-        <div className="lib-label">A free weekly email</div>
+        <div className="lib-label">A weekly email</div>
         <div className="lib-serif lib-nameplate-name">
           The Marketing <em>Engineer</em>
         </div>
@@ -177,7 +177,7 @@ function Desks() {
               {d.name}
             </span>
           ))}
-          <span className="lib-desks-url">Free at esy.com</span>
+          <span className="lib-desks-url">esy.com</span>
         </div>
       </div>
     </div>
@@ -202,7 +202,7 @@ function Night() {
         </div>
         <div className="lib-scene-sub">
           Learn to build the AI systems that run marketing.
-          <span className="lib-scene-cta">Free every week at esy.com</span>
+          <span className="lib-scene-cta">Every week at esy.com</span>
         </div>
       </div>
     </div>

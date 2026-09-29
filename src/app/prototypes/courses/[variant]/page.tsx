@@ -6,6 +6,9 @@ import { findPrototype } from '@/components/prototypes/registry';
 import CoursesShelf from '@/components/CoursesIndex/CoursesShelf';
 import CoursesSyllabus from '@/components/CoursesIndex/CoursesSyllabus';
 import CoursesFeatured from '@/components/CoursesIndex/CoursesFeatured';
+import CoursesMasthead from '@/components/CoursesIndex/CoursesMasthead';
+import CoursesNumbered from '@/components/CoursesIndex/CoursesNumbered';
+import CoursesNowShowing from '@/components/CoursesIndex/CoursesNowShowing';
 import { courses } from '@/lib/learn/mockData';
 import { toNavArticles } from '@/lib/nav-articles';
 import { getAllAgenticArticles } from '@/lib/published-articles';
@@ -24,6 +27,10 @@ const LAYOUTS: Record<string, React.ComponentType<CoursesIndexProps>> = {
   shelf: CoursesShelf,
   syllabus: CoursesSyllabus,
   featured: CoursesFeatured,
+  // Round 2: built from the homepage's and /engineer's own patterns.
+  masthead: CoursesMasthead,
+  numbered: CoursesNumbered,
+  'now-showing': CoursesNowShowing,
 };
 
 const prototype = findPrototype('courses')!;

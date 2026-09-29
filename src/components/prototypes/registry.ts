@@ -532,7 +532,7 @@ export const PROTOTYPES: Prototype[] = [
     slug: 'courses',
     name: 'The courses index',
     date: '2026-09-29',
-    headline: 'Three ways into the courses.',
+    headline: 'Six ways into the courses.',
     intro:
       'The /courses page, redone in The Marketing Engineer\u2019s look. Each version shows the same real courses and links to the real lessons. Open one and click through.',
     summary:
@@ -543,6 +543,12 @@ export const PROTOTYPES: Prototype[] = [
         title: 'Shelf, syllabus, or stage',
         summary:
           'A lists each course as a book on a shelf with its chapters, B lays every lesson out as one syllabus with the signup in a sticky rail, and C puts the newest course on a navy stage above a grid.',
+      },
+      {
+        n: 2,
+        title: 'Built from the homepage',
+        summary:
+          'Zev asked for no grids and nothing like the old style, taking from esy.com and /engineer instead. D is /engineer\u2019s masthead over the Latest list, E is the homepage\u2019s numbered sections, and F announces the course like the homepage\u2019s film.',
       },
     ],
     variants: [
@@ -575,6 +581,36 @@ export const PROTOTYPES: Prototype[] = [
         blurb:
           'A navy stage for the newest course, with its big cover, its lessons and a Start button, then every course as a card below.',
         poster: ['#0A2540', '#061527'],
+      },
+      {
+        slug: 'masthead',
+        key: 'D',
+        name: 'Masthead',
+        round: 2,
+        title: 'Courses',
+        blurb:
+          '/engineer\u2019s centred serif masthead with the signup, then the homepage\u2019s Latest block: the course as the lead story with a generated cover, and every lesson as a dated row.',
+        image: '/prototypes/courses/claude-code.webp',
+      },
+      {
+        slug: 'numbered',
+        key: 'E',
+        name: 'Numbered',
+        round: 2,
+        title: 'Courses',
+        blurb:
+          'The homepage\u2019s 01 / 02 sections: a big jade number and the course on the left, a ruled ledger of its lessons on the right, and chips to jump between courses.',
+        poster: ['#FFFFFF', '#00A896'],
+      },
+      {
+        slug: 'now-showing',
+        key: 'F',
+        name: 'Now showing',
+        round: 2,
+        title: 'Courses',
+        blurb:
+          'The course announced like the homepage\u2019s film: a tilted poster beside a logline and credits (taught by, each lesson, running time), in navy and jade.',
+        image: '/prototypes/courses/claude-code-poster.webp',
       },
     ],
   },

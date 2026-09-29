@@ -99,6 +99,21 @@ const IMAGES = [
     template: 'generate-clip-art-asset-ref',
     scene: `${NORA} Scene: dusk outside her plumbing shop, the blue scalloped awning and warm window light behind her. Nora stands on the right third of the frame, confident and smiling, a red pipe wrench resting on her shoulder. The left half of the frame is the quiet street and deep navy evening sky, dark and nearly empty. Style: a still from a 3D animated film, warm shop light against cool blue dusk, cinematic`,
   },
+  // Covers for the Claude Code course, for the /courses index prototypes
+  // (/prototypes/courses/): a wide one for the lead story, a 2:3 poster.
+  {
+    id: 'course-claude-code',
+    outDir: 'public/prototypes/courses',
+    name: 'claude-code',
+    scene: `Isometric editorial illustration of a solo builder's desk at night: a wide monitor with a dark terminal pane beside a code editor, a small friendly robot assistant standing on the desk pointing at the screen, a tidy stack of glowing file cards being sorted into place, a coffee mug and a notebook. Calm and focused, ${PALETTE}`,
+  },
+  {
+    id: 'course-claude-code-poster',
+    outDir: 'public/prototypes/courses',
+    name: 'claude-code-poster',
+    aspect: '2:3',
+    scene: `Isometric editorial illustration, tall portrait composition: a small friendly robot assistant standing on top of a glowing terminal window that floats above a tidy desk, file cards rising from the desk into the window like a staircase, a soft night sky above. Calm and cinematic, ${PALETTE}. The top quarter and bottom quarter of the frame are dark and quiet`,
+  },
 ];
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -136,7 +151,7 @@ async function render(image) {
       : {
           prompt: `${image.scene}. ${noText}`,
           style: 'isometric',
-          aspectRatio: '16:9',
+          aspectRatio: image.aspect ?? '16:9',
           quality: 'xhigh',
           categories: 'technology,business',
           textPolicy: 'none',

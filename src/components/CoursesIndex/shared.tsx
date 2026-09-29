@@ -51,6 +51,22 @@ export function StatsLine({ courses, className = '' }: { courses: Course[]; clas
   );
 }
 
+/** "Dec 15, 2025", as the publication's lists print dates. */
+export function formatDate(iso: string): string {
+  return new Date(`${iso}T12:00:00Z`).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+}
+
+/** The first sentence of a description, for a one-line logline. */
+export function firstSentence(text: string): string {
+  const m = text.match(/^.*?[.!?](\s|$)/);
+  return (m ? m[0] : text).trim();
+}
+
 /** Newest first, by the course's publish date. */
 export function newestFirst(courses: Course[]): Course[] {
   return [...courses].sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1));

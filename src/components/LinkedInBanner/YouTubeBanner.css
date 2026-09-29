@@ -1,0 +1,27 @@
+/* YouTube channel art (YouTubeBanner.tsx): 2560×1440 in px, reusing the
+ * LinkedIn banners' tokens (.lib-root). Desktop shows y 508–932 of it; phones
+ * show x 507–2053 of that strip. */
+
+.ytb-root { width: 2560px; height: 1440px; }
+.ytb-canvas { width: 2560px; height: 1440px; background: var(--lib-navy); color: #fff; }
+
+/* The 4:1 photo at full width is 640px tall: centred, it covers the desktop strip with 108px to spare each side. */
+.ytb-img { position: absolute; left: 0; top: 400px; width: 2560px; height: 640px; object-fit: cover; }
+
+/* Two washes: G's left-to-right navy (monitor visible, text on deep navy), and
+   a fade to solid navy above and below the photo for TVs. */
+.ytb-wash {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, var(--lib-navy) 0%, var(--lib-navy) 27.8%, rgba(10, 37, 64, 0) 36%, rgba(10, 37, 64, 0) 64%, var(--lib-navy) 72.2%, var(--lib-navy) 100%),
+    linear-gradient(90deg, rgba(10, 37, 64, 0.35) 0%, rgba(10, 37, 64, 0.5) 30%, rgba(10, 37, 64, 0.92) 48%, rgba(8, 28, 50, 0.97) 100%);
+}
+
+/* The phone-safe box: 1546×423, centred. Text sits right, over the deep navy. */
+.ytb-safe {
+  position: absolute; left: 507px; top: 508px; width: 1546px; height: 423px; padding-right: 40px !important;
+  display: flex; flex-direction: column; justify-content: center; align-items: flex-end; text-align: right;
+}
+.ytb-name { font-size: 118px; line-height: 1; color: #F8FAFC; white-space: nowrap; }
+.ytb-name em { color: var(--lib-jade-bright); }
+.ytb-sub { margin-top: 22px !important; font-size: 34px; color: rgba(255, 255, 255, 0.82); }

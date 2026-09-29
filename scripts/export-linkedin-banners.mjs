@@ -1,5 +1,6 @@
 /**
- * Export the LinkedIn banner prototypes to upload-ready PNGs.
+ * Export the LinkedIn banner prototypes to upload-ready PNGs, and G · Desk as
+ * YouTube channel art (public/prototypes/linkedin-banner/youtube-desk.jpg).
  *
  * Screenshots each bare 1584×396 canvas (/prototypes/linkedin-banner/<v>/raw/)
  * from a running dev or preview server into
@@ -42,4 +43,17 @@ for (const variant of VARIANTS) {
   await page.locator('#banner').screenshot({ path: file });
   console.log(`  ${variant} → ${path.relative(ROOT, file)}`);
 }
+// The YouTube channel art: 2560×1440, as JPEG so it stays well under YouTube's 6 MB limit.
+const yt = await browser.newPage({ viewport: { width: 2560, height: 1440 }, deviceScaleFactor: 1 });
+await yt.goto(`${BASE}/prototypes/youtube-banner/raw/`, { waitUntil: 'networkidle', timeout: 180000 });
+// The dev server's floating badge sits inside a full-viewport capture; hide it.
+await yt.addStyleTag({ content: 'nextjs-portal { display: none !important; }' });
+await yt.evaluate(async () => {
+  await document.fonts.ready;
+  await Promise.all([...document.images].map((img) => (img.complete ? null : img.decode().catch(() => null))));
+});
+const ytFile = path.join(OUT_DIR, 'youtube-desk.jpg');
+await yt.locator('#banner').screenshot({ path: ytFile, type: 'jpeg', quality: 92 });
+console.log(`  youtube → ${path.relative(ROOT, ytFile)}`);
+
 await browser.close();

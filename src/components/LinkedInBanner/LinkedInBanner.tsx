@@ -37,7 +37,7 @@ export const BANNER_VARIANTS: BannerVariant[] = ['masthead', 'proof', 'scene', '
 export { BANNER_SIZE } from './size';
 
 /** The real wordmark: "esy" in Black Ops One, the "e" in jade. */
-function Wordmark({ onDark }: { onDark: boolean }) {
+export function Wordmark({ onDark }: { onDark: boolean }) {
   return (
     <span className={`lib-wordmark ${onDark ? 'lib-wordmark--dark' : ''}`} aria-label="esy">
       <span className="lib-wordmark-e">e</span>sy
@@ -224,6 +224,10 @@ function Desk() {
       <img className="lib-desk-img" src="/prototypes/linkedin-banner/zev-setup.jpg" alt="" />
       <div className="lib-desk-wash" aria-hidden="true" />
       <div className="lib-desk-copy">
+        {/* The brand as a signature over the name: esy presents The Marketing Engineer. */}
+        <div className="lib-desk-mark">
+          <Wordmark onDark />
+        </div>
         <div className="lib-serif lib-desk-name">
           The Marketing <em>Engineer</em>
         </div>

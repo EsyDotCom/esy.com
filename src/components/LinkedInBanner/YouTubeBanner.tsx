@@ -11,6 +11,7 @@
  * videos, and no URL (YouTube's own header links are the clickable ones).
  */
 import { nlSerif } from '@/components/NewsletterHome/serif';
+import { Wordmark } from './LinkedInBanner';
 import './LinkedInBanner.css';
 import './YouTubeBanner.css';
 
@@ -26,6 +27,10 @@ export default function YouTubeBanner() {
         <div className="ytb-wash" aria-hidden="true" />
         {/* Everything readable lives in the phone-safe centre box. */}
         <div className="ytb-safe">
+          {/* The brand as a signature over the name, inside the phone-safe box. */}
+          <div className="ytb-mark">
+            <Wordmark onDark />
+          </div>
           <div className="lib-serif ytb-name">
             The Marketing <em>Engineer</em>
           </div>

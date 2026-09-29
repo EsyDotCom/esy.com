@@ -149,6 +149,7 @@
   background: linear-gradient(90deg, rgba(10, 37, 64, 0.35) 0%, rgba(10, 37, 64, 0.55) 38%, rgba(10, 37, 64, 0.92) 58%, rgba(8, 28, 50, 0.97) 100%);
 }
 .lib-desk-copy { position: absolute; right: 80px; top: 0; bottom: 0; width: 700px; display: flex; flex-direction: column; justify-content: center; align-items: flex-end; text-align: right; }
+.lib-desk-mark { margin-bottom: 14px !important; font-size: 40px; line-height: 1; }
 .lib-desk-name { font-size: 84px; line-height: 1; color: #F8FAFC; white-space: nowrap; }
 .lib-desk-name em { color: var(--lib-jade-bright); }
 .lib-desk-sub { margin-top: 14px !important; font-size: 24px; color: rgba(255, 255, 255, 0.8); }

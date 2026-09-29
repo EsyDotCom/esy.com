@@ -88,6 +88,10 @@ const ConditionalNavigation = () => {
   // The films index and every film page carry their own header: just the
   // logo, floating over the film.
   const isFilmPage = normalizedPath === '/films' || normalizedPath?.startsWith('/films/');
+  // Publication pages added 2026-09-29 carry the light header too: the
+  // editorial standards, and course lessons (LessonPage H, which renders
+  // LightHeader itself).
+  const isEditorialPage = normalizedPath === '/editorial-standards';
 
   // Don't render navigation on:
   // - Essay view pages (focused reading)
@@ -97,7 +101,7 @@ const ConditionalNavigation = () => {
   // - Agents pages (own sidebar navigation)
   // - Scrollytelling story pages (own header via ScrollytellingHeader)
   // - Photo essays landing page (immersive experience with own header)
-  if (isEssayViewPage || isInfographicViewPage || isClipArtViewPage || isDocsPage || isAgentsPage || isScrollytellingStoryPage || isPhotoEssaysPage || isHomepage || isWaitlistPage || isTopicsPage || isArticlePage || isEngineerIndex || isPrototypesPage || isFilmPage) {
+  if (isEssayViewPage || isInfographicViewPage || isClipArtViewPage || isDocsPage || isAgentsPage || isScrollytellingStoryPage || isPhotoEssaysPage || isHomepage || isWaitlistPage || isTopicsPage || isArticlePage || isEngineerIndex || isPrototypesPage || isFilmPage || isEditorialPage || isCourseLessonPage) {
     return null;
   }
 

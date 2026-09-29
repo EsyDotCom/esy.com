@@ -1003,6 +1003,57 @@ export const PROTOTYPES: Prototype[] = [
       },
     ],
   },
+  {
+    slug: 'home-clipart',
+    name: 'The homepage\u2019s clip.art case study',
+    date: '2026-09-29',
+    headline: 'Show the run, not just the art.',
+    intro:
+      'The clip.art band says it runs on Esy OS, but its grid only shows finished art. Three ways to fill that side: the live pack grid, a real run replayed step by step, and one subject in six styles. Scroll to the navy clip.art band on each.',
+    summary: 'The real homepage with the clip.art case study showing a pack grid, a replayed run, or a style range.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Grid, replay, or range',
+        summary:
+          'A is live: 12 Clay Office assets. B replays a real run (run-e9d17422) from prompt to receipt. C shows one prompt in six styles, each its own run.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'grid',
+        key: 'A',
+        name: 'Pack grid',
+        round: 1,
+        title: 'clip.art runs on Esy OS',
+        blurb: 'The live band: a 4\u00d73 grid of finished assets from one pack, Clay Office.',
+        poster: ['#0A2540', '#F4F1EA'],
+        live: true,
+        liveHref: '/#work-apps',
+      },
+      {
+        slug: 'replay',
+        key: 'B',
+        name: 'Run replay',
+        round: 1,
+        title: 'clip.art runs on Esy OS',
+        blurb:
+          'A real run, replayed in code: the prompt, six workflow steps lighting up (render, background removal, cutout audit, naming, text gate), the art changing as they do, and the receipt: $0.057 in 37.9 seconds.',
+        image: '/prototypes/home-clipart/3d.webp',
+        imageFit: 'contain',
+      },
+      {
+        slug: 'styles',
+        key: 'C',
+        name: 'Style range',
+        round: 1,
+        title: 'clip.art runs on Esy OS',
+        blurb: 'One prompt, a hot dog in sunglasses, in six of clip.art\u2019s styles: flat, watercolor, line art, pixel, clay and 3D. Each is its own recorded run.',
+        image: '/prototypes/home-clipart/pixel.webp',
+        imageFit: 'contain',
+      },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

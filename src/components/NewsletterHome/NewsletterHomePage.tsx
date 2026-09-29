@@ -31,6 +31,7 @@ import { CREATIVES } from '@/data/creatives';
 import CreativePlayer from './CreativePlayer';
 import FilmPosterBand from './FilmPosterBand';
 import FilmStrip from './FilmStrip';
+import ClipArtVisuals, { type ClipArtVisual } from './ClipArtVisuals';
 import NewsletterHero from './NewsletterHero';
 import WeeklyEmailBand from './WeeklyEmailBand';
 import { nlSerif } from './serif';
@@ -100,23 +101,6 @@ const CLIPART_STYLES = [
   'Kawaii', '3D', 'Doodle',
 ];
 
-const CLAY_OFFICE = 'https://images.clip.art/packs/business/25-boutique-consulting-clipart-pngs-clay-office';
-
-const CLIPART_SHOWCASE = [
-  { url: `${CLAY_OFFICE}/consultant-pitch-deck-presentation-scene-hbs2mr.webp`, alt: 'Clay consultant presenting a pitch deck' },
-  { url: `${CLAY_OFFICE}/clay-laptop-open-muted-teal-screen-prop-24ahuy.webp`, alt: 'Clay laptop with a muted teal screen' },
-  { url: `${CLAY_OFFICE}/strategy-workshop-in-action-sticky-note-wall-scene-mscrxi.webp`, alt: 'Clay strategy workshop at a sticky-note wall' },
-  { url: `${CLAY_OFFICE}/ceramic-coffee-mug-break-time-prop-e4f8x6.webp`, alt: 'Clay ceramic coffee mug' },
-  { url: `${CLAY_OFFICE}/consultant-presenting-insights-standing-pitch-pose-gzg4x8.webp`, alt: 'Clay consultant standing and presenting insights' },
-  { url: `${CLAY_OFFICE}/analytics-dashboard-review-scene-b0300v.webp`, alt: 'Clay analytics dashboard review' },
-  { url: `${CLAY_OFFICE}/focused-laptop-work-solo-consultant-deep-work-pose-opxz8r.webp`, alt: 'Clay consultant in focused laptop work' },
-  { url: `${CLAY_OFFICE}/hybrid-video-meeting-room-scene-su3c6h.webp`, alt: 'Clay hybrid video meeting room' },
-  { url: `${CLAY_OFFICE}/team-strategy-workshop-whiteboard-huddle-pose-onbdtz.webp`, alt: 'Clay team huddled at a whiteboard' },
-  { url: `${CLAY_OFFICE}/coffee-break-lounge-corner-scene-o9uuji.webp`, alt: 'Clay coffee-break lounge corner' },
-  { url: `${CLAY_OFFICE}/colleagues-reviewing-analytics-duo-desk-pose-ilf5g0.webp`, alt: 'Clay colleagues reviewing analytics at a desk' },
-  { url: `${CLAY_OFFICE}/client-discovery-call-laptop-and-notepad-desk-scene-9mszcr.webp`, alt: 'Clay client discovery call at a desk with laptop and notepad' },
-];
-
 // Newest first, by publish date — the same merged publication list the article
 // pages resolve against, so the homepage and the articles can never disagree.
 async function latestArticles(): Promise<AgenticVideo[]> {
@@ -176,7 +160,10 @@ function CreativeShowcase() {
 export default async function NewsletterHomePage({
   hero,
   filmBand = 'poster',
+  clipartVisual = 'grid',
 }: {
+  /** What sits beside the clip.art case study (/prototypes/home-clipart/). */
+  clipartVisual?: ClipArtVisual;
   /** How 03 Films presents the newest film: the poster band, or the running strip (/prototypes/home-films/). */
   filmBand?: 'poster' | 'strip';
   /** What sits above the sections. /engineer uses the masthead; the homepage
@@ -312,7 +299,8 @@ export default async function NewsletterHomePage({
               The two-column case study from the Intelligence Circuitry
               homepage, restored as the proof under "real properties": story on
               the left (the clip.art wordmark, what it is, the styles it ships),
-              a 4×3 grid of live catalog assets on the right. */}
+              and on the right what ClipArtVisuals shows: the live pack grid, a
+              replayed run, or one subject in six styles. */}
           <div className="nl-case">
             <div className="nl-case-story">
               <div className="nl-case-meta">
@@ -355,13 +343,7 @@ export default async function NewsletterHomePage({
               </div>
             </div>
 
-            <ul className="nl-case-grid" aria-label="Sample assets from clip.art's Clay Office pack">
-              {CLIPART_SHOWCASE.map(({ url, alt }) => (
-                <li key={url} className="nl-case-tile">
-                  <img src={url} alt={alt} loading="lazy" width={228} height={228} />
-                </li>
-              ))}
-            </ul>
+            <ClipArtVisuals visual={clipartVisual} />
           </div>
 
         </div>

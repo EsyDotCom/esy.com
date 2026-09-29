@@ -16,6 +16,8 @@ Clickable directions we compare by using them, not by looking at mockups. They l
 
 **The courses index (2026-09-29)** is at `/prototypes/courses/`: A · Shelf, B · Syllabus, C · Featured, in the publication's look (`src/components/CoursesIndex/`). All three render the real course list that `/courses` reads. Only one course is live, so two labelled **sample** "coming soon" courses (`sample-upcoming.ts`) show how each layout grows. They're never linked. Courses have no cover art, so each gets a typographic navy cover.
 
+**The course page (2026-09-29)** is at `/prototypes/course/`: A · Poster, B · Masthead, C · Theater (`src/components/CourseDetail/`), each rendering the one live course. A reuses the index's `NowShowingBand` as its hero, and B and C use the covers from `scripts/generate-article-images.mjs`. Resources show only real links; the `#` placeholders in the course data never render.
+
 ## The pattern
 
 1. **Show the real product, not a picture of it.** Don't screenshot the app and don't draw a mockup. Rebuild the page from the product's own source: same markup, same class names, and the product's stylesheets **copied verbatim** (with a provenance header saying where they came from and when). Keep any tweaks for the new setting in a separate file. The result looks like the product because it *is* the product's UI.

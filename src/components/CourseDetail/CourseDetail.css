@@ -1,0 +1,105 @@
+/* Course detail directions (/prototypes/course/). Built on the publication's
+ * sheet (NewsletterHome.css) and the courses index sheet (CoursesIndex.css,
+ * for the poster band, ledger rows and stats); this adds the rest. */
+
+/* ── Shared: what you'll learn, resources, crumbs, the start button ── */
+.cd-learn { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 14px; }
+.cd-learn li { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 12px; font-size: 1.02rem; line-height: 1.6; color: var(--nl-ink); }
+.cd-learn-tick {
+  display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; margin-top: 2px;
+  border-radius: 50%; background: rgba(0, 168, 150, 0.12); color: var(--nl-jade);
+}
+.cd-resources { list-style: none; margin: 16px 0 0; padding: 0; border-top: 1px solid var(--nl-seam); }
+.cd-resource {
+  display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr) auto; gap: 16px; align-items: baseline;
+  padding: 14px 0; border-bottom: 1px solid var(--nl-seam); text-decoration: none; color: var(--nl-ink);
+}
+.cd-resource-title { font-weight: 600; color: var(--nl-navy); }
+.cd-resource-desc { font-size: 0.92rem; color: var(--nl-ink-soft); }
+.cd-resource:hover .cd-resource-title { color: var(--nl-jade); }
+.cd-crumb {
+  display: inline-flex; align-items: center; gap: 6px; margin: 0 0 18px; font-size: 0.8rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-jade); text-decoration: none;
+}
+.cd-crumb:hover { color: var(--nl-navy); }
+.cd-crumb--onDark { color: var(--nl-jade-bright); }
+.cd-crumb--onDark:hover { color: #fff; }
+.cd-start {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin-top: 8px;
+  padding: 14px 26px; border-radius: 12px; background: var(--nl-jade); color: #fff;
+  font-weight: 600; text-decoration: none; box-shadow: 0 8px 22px rgba(0, 168, 150, 0.28);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.cd-start:hover { background: var(--nl-navy); transform: translateY(-2px); }
+.cd-start--block { display: flex; margin-top: 20px; }
+.cd-gap { margin-top: 48px !important; }
+.cd-gap-sm { margin-top: 32px !important; }
+
+/* ── B · Masthead ── */
+.cd-hero { padding-bottom: 72px; }
+.cd-masthead { font-size: clamp(2.6rem, 5.6vw, 4.4rem); max-width: 16ch; text-wrap: balance; }
+.cd-hero .cd-start { margin-top: 18px; }
+.cd-split { display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: 56px; align-items: start; }
+.cd-card { position: sticky; top: 96px; padding: 18px; border: 1px solid var(--nl-seam); border-radius: 16px; background: #fff; }
+.cd-card-img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px; }
+.cd-facts { margin: 18px 0 0; display: grid; gap: 0; }
+.cd-facts div { display: flex; justify-content: space-between; gap: 12px; padding: 10px 2px; border-bottom: 1px solid var(--nl-seam); font-size: 0.92rem; }
+.cd-facts dt { color: var(--nl-ink-soft); }
+.cd-facts dd { margin: 0; font-weight: 600; color: var(--nl-navy); }
+.cd-chapter { margin-top: 24px; }
+.cd-chapter-name { margin: 0 0 4px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-jade); }
+.cd-list { margin-top: 8px; }
+
+/* ── C · Theater ── */
+.cd-stage { padding: 56px 0 72px; background: linear-gradient(150deg, #061527 0%, var(--nl-navy) 60%, #0F3460 100%); color: #fff; }
+.cd-stage-title {
+  margin: 0 0 32px; max-width: 22ch; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700;
+  font-size: clamp(2.2rem, 4.2vw, 3.4rem); line-height: 1.04; letter-spacing: -0.02em; color: #fff; text-wrap: balance;
+}
+.cd-theater { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 28px; align-items: stretch; }
+/* The screen: the cover in a bezel, like the framed video articles. */
+.cd-screen {
+  position: relative; display: block; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; text-decoration: none;
+  border: 10px solid rgba(255, 255, 255, 0.06); box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.85);
+}
+.cd-screen img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+.cd-screen:hover img { transform: scale(1.02); }
+.cd-screen::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(6, 21, 39, 0.85)); }
+.cd-screen-play {
+  position: absolute; z-index: 1; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  display: flex; align-items: center; justify-content: center; width: 84px; height: 84px; border-radius: 50%;
+  background: var(--nl-jade-bright); color: #06241F; padding-left: 5px; box-shadow: 0 12px 34px rgba(0, 212, 170, 0.4);
+  transition: transform 0.2s ease;
+}
+.cd-screen:hover .cd-screen-play { transform: translate(-50%, -50%) scale(1.06); }
+.cd-screen-caption { position: absolute; z-index: 1; left: 22px; bottom: 18px; font-size: 0.92rem; font-weight: 600; color: #fff; }
+.cd-playlist {
+  display: flex; flex-direction: column; padding: 20px; border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.cd-playlist-head { margin: 0 0 8px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255, 255, 255, 0.6); }
+.cd-playlist-part { margin: 16px 0 6px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-jade-bright); }
+.cd-playlist-list { list-style: none; margin: 0; padding: 0; }
+.cd-playlist-item {
+  display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; gap: 10px; align-items: baseline;
+  padding: 10px 10px; margin: 0 -10px; border-radius: 10px; color: rgba(255, 255, 255, 0.9); text-decoration: none;
+}
+.cd-playlist-item:hover { background: rgba(255, 255, 255, 0.07); }
+.cd-playlist-item.is-first { background: rgba(0, 212, 170, 0.12); }
+.cd-playlist-n { font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 1.3rem; line-height: 1; color: var(--nl-jade-bright); font-variant-numeric: lining-nums; }
+.cd-playlist-title { font-weight: 600; line-height: 1.35; }
+.cd-playlist-title em { display: block; margin-top: 2px; font-style: normal; font-size: 0.78rem; font-weight: 600; color: var(--nl-jade-bright); }
+.cd-playlist-time { font-size: 0.85rem; color: rgba(255, 255, 255, 0.6); font-variant-numeric: tabular-nums; }
+
+/* ── Tablet and phone ── */
+@media (max-width: 960px) {
+  .cd-split { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .cd-card { position: static; }
+  .cd-theater { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 720px) {
+  .cd-resource { grid-template-columns: minmax(0, 1fr) auto; }
+  .cd-resource-desc { grid-column: 1; }
+  .cd-screen { border-width: 6px; }
+  .cd-screen-play { width: 64px; height: 64px; }
+}

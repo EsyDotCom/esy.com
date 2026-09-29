@@ -642,6 +642,56 @@ export const PROTOTYPES: Prototype[] = [
       },
     ],
   },
+  {
+    slug: 'course',
+    name: 'The course page',
+    date: '2026-09-29',
+    headline: 'Three course pages.',
+    intro:
+      'The page for one course, in The Marketing Engineer\u2019s look. Each version shows the real Claude Code course and links to its real lessons. Open one and click through.',
+    summary:
+      'Three directions for /courses/<course>/, built from parts already on esy.com: the index\u2019s poster band, /engineer\u2019s masthead, and a watch-first player.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Poster, masthead, or theater',
+        summary:
+          'A opens on the index\u2019s poster and credits, B on /engineer\u2019s centred masthead with a sticky course card, and C on a framed screen with the lessons as a playlist.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'poster',
+        key: 'A',
+        name: 'Poster',
+        round: 1,
+        title: 'How to Use Claude Code for the AI Solopreneur',
+        blurb:
+          'The index\u2019s Now showing band as the hero, then what you\u2019ll learn beside the lessons as the homepage\u2019s ledger, the teacher, and the resources.',
+        image: '/prototypes/courses/claude-code-poster.webp',
+      },
+      {
+        slug: 'masthead',
+        key: 'B',
+        name: 'Masthead',
+        round: 1,
+        title: 'How to Use Claude Code for the AI Solopreneur',
+        blurb:
+          '/engineer\u2019s centred serif masthead with a Start button, then a sticky course card with the cover and the facts beside the lessons as dated rows.',
+        image: '/prototypes/courses/claude-code.webp',
+      },
+      {
+        slug: 'theater',
+        key: 'C',
+        name: 'Theater',
+        round: 1,
+        title: 'How to Use Claude Code for the AI Solopreneur',
+        blurb:
+          'Watch first: the cover in a framed screen with a big play button, and every lesson as a playlist beside it, then what you\u2019ll learn and the teacher.',
+        image: '/prototypes/courses/claude-code.webp',
+      },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

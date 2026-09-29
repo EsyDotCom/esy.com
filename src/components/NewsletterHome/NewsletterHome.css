@@ -442,3 +442,116 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ══ The work, grouped by kind ══
+   Each group opens with a numbered head (big serif number, eyebrow, headline,
+   lede, the groups' index) beside a ledger. 01 Apps and 02 Films share the
+   white ground and the same parts; each kind's own colours start with the band
+   that follows its head. */
+#work-apps, #work-films { scroll-margin-top: 64px; }
+.nl-work-head { display: flex; flex-direction: column; align-items: flex-start; }
+.nl-work-n {
+  font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif;
+  font-weight: 600; font-size: 5.4rem; line-height: 0.8; letter-spacing: -0.04em;
+  font-variant-numeric: lining-nums; color: var(--nl-jade); margin-bottom: 22px;
+}
+/* One line at desktop widths; phones may wrap. */
+@media (min-width: 901px) { .nl-work-title { white-space: nowrap; } }
+.nl-work-index { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.nl-work-chip {
+  display: inline-flex; align-items: center; gap: 6px; padding: 8px 11px; border-radius: 999px;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--nl-ink-soft); border: 1px solid var(--nl-seam); text-decoration: none;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.nl-work-chip b { color: var(--nl-jade); }
+.nl-work-chip:hover { color: var(--nl-navy); border-color: var(--nl-jade); }
+.nl-work-chip[aria-current] { background: var(--nl-navy); border-color: var(--nl-navy); color: #fff; }
+.nl-work-chip[aria-current] b { color: var(--nl-jade-bright); }
+.nl-work-chip:focus-visible { outline: 2px solid var(--nl-jade); outline-offset: 2px; }
+
+/* A film has no logo: its title in the serif, over a strip of its frames. */
+.nl-ledger-row--film { grid-template-columns: 230px minmax(0, 1fr); }
+.nl-film-mark { display: grid; gap: 12px; }
+.nl-film-mark-title {
+  font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif;
+  font-weight: 700; font-size: 1.8rem; line-height: 1; letter-spacing: -0.01em; color: var(--nl-navy);
+}
+.nl-film-mark-frames { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; max-width: 230px; }
+.nl-film-mark-frames span { aspect-ratio: 16 / 10; border-radius: 2px; background-size: cover; background-position: center; }
+.nl-films-all { margin: 16px 0 0; text-align: right; }
+
+/* ══ The newest film: poster and credits, on the film's own night ══ */
+.nl-lab--film {
+  background: radial-gradient(60% 80% at 80% 0%, rgba(227, 182, 96, 0.14), transparent 70%), #07091A;
+  border-top: 1px solid rgba(227, 182, 96, 0.35);
+}
+.nl-film { display: grid; grid-template-columns: 400px minmax(0, 1fr); gap: 64px; align-items: center; }
+.nl-film-poster {
+  position: relative; display: block; aspect-ratio: 2 / 3; border-radius: 6px; overflow: hidden;
+  transform: rotate(-1.5deg); transition: transform 0.3s ease;
+  box-shadow: 0 40px 80px -24px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(227, 182, 96, 0.3);
+}
+.nl-film-poster:hover { transform: rotate(0deg) translateY(-4px); }
+.nl-film-poster img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.nl-film-poster::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(7, 9, 26, 0.55), transparent 28%, transparent 55%, rgba(7, 9, 26, 0.95));
+}
+.nl-film-poster-top {
+  position: absolute; z-index: 1; left: 0; right: 0; top: 26px; text-align: center;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.66rem; font-weight: 600; letter-spacing: 0.34em; text-transform: uppercase; color: #F6DDA3;
+}
+.nl-film-poster-foot { position: absolute; z-index: 1; left: 22px; right: 22px; bottom: 22px; display: grid; gap: 10px; text-align: center; }
+.nl-film-poster-title {
+  font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif;
+  font-weight: 700; font-size: 2.5rem; line-height: 0.92; letter-spacing: -0.01em; color: #F6DDA3;
+}
+.nl-film-poster-billing {
+  font-size: 0.5rem; line-height: 1.5; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55); border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: 8px;
+}
+.nl-film-kicker {
+  margin: 0; font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #E3B660;
+}
+.nl-film-log {
+  margin: 14px 0 30px; max-width: 26ch; color: #FFFFFF;
+  font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif;
+  font-style: italic; font-weight: 600; font-size: 1.9rem; line-height: 1.25;
+}
+.nl-film-credits { margin: 0 0 34px; padding: 22px 0; display: grid; gap: 10px; border-block: 1px solid rgba(255, 255, 255, 0.1); }
+.nl-film-credits div { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 22px; align-items: baseline; }
+.nl-film-credits dt {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.66rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #E3B660; text-align: right;
+}
+.nl-film-credits dd {
+  margin: 0; color: #FFFFFF;
+  font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 600; font-size: 1.12rem; line-height: 1.5;
+}
+.nl-film-ctas { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; }
+.nl-film-cta {
+  display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 10px;
+  font-size: 0.9rem; font-weight: 600; color: #1B1405; background: #E3B660; text-decoration: none;
+  box-shadow: 0 6px 18px rgba(227, 182, 96, 0.25); transition: background 0.2s ease, transform 0.2s ease;
+}
+.nl-film-cta:hover { background: #F6DDA3; transform: translateY(-2px); }
+.nl-film-cta:focus-visible, .nl-film-poster:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 3px; }
+.nl-film-link { color: #F6DDA3; }
+.nl-film-link:hover { color: #FFFFFF; }
+@media (max-width: 900px) {
+  .nl-film { grid-template-columns: 1fr; gap: 40px; justify-items: center; }
+  .nl-film-poster { width: min(320px, 78vw); }
+  .nl-film-side { width: 100%; }
+  .nl-film-log { font-size: 1.5rem; }
+  .nl-film-credits div { grid-template-columns: 5.5rem minmax(0, 1fr); gap: 14px; }
+  .nl-film-credits dt { text-align: left; }
+  .nl-ledger-row--film { grid-template-columns: 1fr; }
+  .nl-films-all { text-align: left; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nl-film-poster, .nl-film-poster:hover { transform: none; }
+}

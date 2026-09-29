@@ -5,8 +5,9 @@
  * intersection of AI, marketing, and engineering, published most days, with
  * the best of each week sent as one email. The one action is subscribing to
  * that email. Everything below the fold is evidence for the promise: the
- * latest articles, the real properties the work runs on (with the clip.art
- * case study), and the person writing it.
+ * latest articles, then the work grouped by kind (01 Apps: the real
+ * properties with their case studies; 02 Films: the films, with the newest
+ * one's poster), and the person writing it.
  *
  * Vocabulary: articles are the pages (esy.com/engineer/<slug>/); issues are the weekly
  * emails. The previous product-story homepage lives in
@@ -25,6 +26,7 @@ import { AUTHOR_SOCIALS } from '@/components/Agentic/authorSocials';
 import { articlePath } from '@/lib/article-path';
 import { formatDate, formatMinutes, thumbnailFor } from '@/lib/article-format';
 import { TOPICS, topicHref } from '@/data/topics';
+import { FILMS, filmHref } from '@/data/films';
 import NewsletterHero from './NewsletterHero';
 import WeeklyEmailBand from './WeeklyEmailBand';
 import { nlSerif } from './serif';
@@ -120,6 +122,60 @@ async function latestArticles(): Promise<AgenticVideo[]> {
     .slice(0, LATEST_COUNT);
 }
 
+// The groups' index: jump between the kinds of work, each with its count.
+function WorkIndex({ current }: { current: 'apps' | 'films' }) {
+  const groups = [
+    { key: 'apps', n: '01', label: 'Apps', count: PROPERTIES.length },
+    { key: 'films', n: '02', label: 'Films', count: FILMS.length },
+  ] as const;
+  return (
+    <nav className="nl-work-index" aria-label="The work">
+      {groups.map((g) => (
+        <a key={g.key} href={`#work-${g.key}`} className="nl-work-chip" aria-current={g.key === current ? 'true' : undefined}>
+          {g.n} {g.label}<b>{g.count}</b>
+        </a>
+      ))}
+    </nav>
+  );
+}
+
+// The newest film on its own night: a 2:3 poster beside its logline and
+// credits, the way a film is announced. Older films stay in the ledger above.
+function FilmPoster() {
+  const f = FILMS[0];
+  return (
+    <section className="nl-lab nl-lab--film" aria-label={`${f.title}: now showing`}>
+      <div className="nl-container nl-film">
+        <Link href={filmHref(f)} className="nl-film-poster">
+          <Image src={f.poster} alt={f.posterAlt} width={600} height={900} sizes="(max-width: 900px) 70vw, 400px" />
+          <span className="nl-film-poster-top">Esy presents</span>
+          <span className="nl-film-poster-foot">
+            <span className="nl-film-poster-title">{f.title}</span>
+            <span className="nl-film-poster-billing">{f.credits.map(([, name]) => name).join(' · ')}</span>
+          </span>
+        </Link>
+        <div className="nl-film-side">
+          <p className="nl-film-kicker">Now showing · {f.meta}</p>
+          <p className="nl-film-log">“{f.logline}”</p>
+          <dl className="nl-film-credits">
+            {f.credits.map(([role, name]) => (
+              <div key={role}><dt>{role}</dt><dd>{name}</dd></div>
+            ))}
+          </dl>
+          <div className="nl-film-ctas">
+            <Link href={`${filmHref(f)}#fr-now`} className="nl-film-cta">
+              <Play size={14} aria-hidden="true" /> Watch the film
+            </Link>
+            <Link href={filmHref(f)} className="nl-inline-link nl-film-link">
+              The film page <ArrowRight size={15} aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default async function NewsletterHomePage({
   hero,
 }: {
@@ -206,21 +262,23 @@ export default async function NewsletterHomePage({
         </section>
       )}
 
-      {/* ══ Where the experiments run ══
-          Editorial, not a card grid: the claim on the left, the two
-          businesses as a ledger on the right. White ground, so it reads as
-          its own beat between the grey Latest section and the navy case
-          study below. */}
-      <section className="nl-section nl-where" aria-labelledby="nl-where-title">
+      {/* ══ The work, 01 · Apps ══
+          The work is grouped by kind, each group opening with a numbered head
+          on the left and a ledger on the right: 01 Apps (the businesses that
+          run on Esy OS, then their case-study bands), 02 Films (then the
+          newest film's poster). A new kind of work becomes 03 the same way. */}
+      <section className="nl-section nl-where" id="work-apps" aria-labelledby="nl-where-title">
         <div className="nl-container nl-where-grid">
-          <div>
-            <p className="nl-eyebrow">Where the experiments run</p>
-            <h2 className="nl-title" id="nl-where-title">Real properties, real traffic.</h2>
+          <div className="nl-work-head">
+            <span className="nl-work-n" aria-hidden="true">01</span>
+            <p className="nl-eyebrow">Apps that run on Esy OS</p>
+            <h2 className="nl-title nl-work-title" id="nl-where-title">Real properties, real traffic.</h2>
             <p className="nl-lede">
-              Nothing here is a sandbox demo. Each system gets built on a business
-              that runs every day, so the results in each article are the results
-              it actually got.
+              Two businesses built on Esy and run every day. Nothing here is a
+              sandbox demo, so the results in each article are the results
+              they actually got.
             </p>
+            <WorkIndex current="apps" />
           </div>
           <ul className="nl-ledger">
             {PROPERTIES.map(({ name, wordmark, href, domain, role, body }) => (
@@ -370,6 +428,55 @@ export default async function NewsletterHomePage({
           </div>
         </div>
       </section>
+
+      {/* ══ The work, 02 · Films ══
+          The same head and ledger as 01, on the same white. The film's own
+          night and gold start with the poster band below it, the way
+          clip.art's and SEOPage's colours start with their case studies. */}
+      <section className="nl-section nl-where" id="work-films" aria-labelledby="nl-films-title">
+        <div className="nl-container nl-where-grid">
+          <div className="nl-work-head">
+            <span className="nl-work-n" aria-hidden="true">02</span>
+            <p className="nl-eyebrow">Films made with Esy</p>
+            <h2 className="nl-title nl-work-title" id="nl-films-title">Real films, start to finish.</h2>
+            <p className="nl-lede">
+              Stories made on Esy workflows, from the first draft of the script
+              to the final sound mix. Every stage is recorded, so each film
+              shows how it was made.
+            </p>
+            <WorkIndex current="films" />
+          </div>
+          <div>
+            <ul className="nl-ledger">
+              {FILMS.map((f) => (
+                <li key={f.slug} className="nl-ledger-row nl-ledger-row--film">
+                  <span className="nl-film-mark">
+                    <span className="nl-film-mark-title">{f.title}</span>
+                    <span className="nl-film-mark-frames" aria-hidden="true">
+                      {f.frames.map((src) => <span key={src} style={{ backgroundImage: `url(${src})` }} />)}
+                    </span>
+                  </span>
+                  <div className="nl-ledger-body">
+                    <span className="nl-ledger-role">{f === FILMS[0] ? 'Now showing' : f.status} · {f.kind}</span>
+                    <p>{f.summary}</p>
+                    <Link href={filmHref(f)} className="nl-inline-link">
+                      Watch the film <ArrowRight size={15} aria-hidden="true" />
+                    </Link>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <p className="nl-films-all">
+              <Link href="/films/" className="nl-inline-link">
+                All films on esy.com/films <ArrowRight size={15} aria-hidden="true" />
+              </Link>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ══ The newest film, as a poster with its credits ══ */}
+      <FilmPoster />
 
       {/* ══ The author ══ */}
       <section className="nl-section" aria-labelledby="nl-author-title">

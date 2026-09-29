@@ -1,12 +1,29 @@
 import { Metadata } from 'next';
-import CoursesListClient from './CoursesListClient';
+import LightHeader from '@/components/LightHeader/LightHeader';
+import { nlSerif } from '@/components/NewsletterHome/serif';
+import CoursesMastheadShowing from '@/components/CoursesIndex/CoursesMastheadShowing';
+import { courses } from '@/lib/learn/mockData';
+import { toNavArticles } from '@/lib/nav-articles';
+import { getAllAgenticArticles } from '@/lib/published-articles';
+import '@/components/NewsletterHome/NewsletterHome.css';
+import '@/components/CoursesIndex/CoursesIndex.css';
+
+// The courses index (2026-09-29): prototype G from /prototypes/courses/.
+// /engineer's masthead with the signup, then the newest course announced like
+// the homepage's film (poster, logline, credits, Start watching). Older
+// courses follow as a list once there are any, and "Next in the studio" shows
+// once there are real upcoming courses (the prototypes' two are samples, so
+// none are passed here). It replaces CoursesListClient.
+
+const DESCRIPTION =
+  'Short video courses from The Marketing Engineer on the AI tools behind modern marketing. Each one takes a single tool from setup to a finished result, one lesson at a time.';
 
 export const metadata: Metadata = {
-  title: 'AI Courses | Esy',
-  description: 'Practical courses for the AI solopreneur — learn to build agents, design agentic workflows, and use AI Coding Tools to run and grow your business. Each course pairs a walkthrough with something you can apply immediately.',
+  title: 'Courses — The Marketing Engineer',
+  description: DESCRIPTION,
   openGraph: {
-    title: 'AI Courses | Esy',
-    description: 'Practical courses for the AI solopreneur — learn to build agents, design agentic workflows, and use AI Coding Tools to run and grow your business.',
+    title: 'Courses — The Marketing Engineer',
+    description: DESCRIPTION,
     type: 'website',
     url: 'https://esy.com/courses/',
     siteName: 'Esy',
@@ -14,14 +31,22 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI Courses | Esy',
-    description: 'Practical courses for the AI solopreneur — learn to build agents, design agentic workflows, and use AI Coding Tools to run and grow your business.',
+    title: 'Courses — The Marketing Engineer',
+    description: DESCRIPTION,
   },
   alternates: {
     canonical: '/courses/',
   },
 };
 
-export default function CoursesPage() {
-  return <CoursesListClient />;
+export const revalidate = 3600;
+
+export default async function CoursesPage() {
+  const articles = await getAllAgenticArticles();
+  return (
+    <div className={`nl ${nlSerif.variable}`}>
+      <LightHeader latest={toNavArticles(articles)} />
+      <CoursesMastheadShowing courses={courses} upcoming={[]} />
+    </div>
+  );
 }

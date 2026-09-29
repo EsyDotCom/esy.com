@@ -47,3 +47,6 @@ next-env.d.ts
 # Run records (orchestration/runs/**/record/) ARE committed
 orchestration/runs/**/logs/
 .claude/
+
+# The Milo animatic media (49 MB, includes family likenesses): local preview only until it is hosted on R2 and cleared
+/public/films/the-letter-with-no-address/animatic/

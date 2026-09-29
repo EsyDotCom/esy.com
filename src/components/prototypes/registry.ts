@@ -576,6 +576,512 @@ export const PROTOTYPES: Prototype[] = [
       },
     ],
   },
+  {
+    slug: 'films',
+    name: 'The films pages',
+    date: '2026-09-28',
+    headline: 'Two ways to show a film, and the index we picked.',
+    intro:
+      'Two directions for the first Esy film’s page and for the films index, built around the real film: its stills, its animatic and every file behind it. Open a film page and scroll to the end credits.',
+    summary:
+      'Two directions for esy.com/films, index and film page each, for The Letter With No Address. A’s film page shipped; the index shipped as a third design, the title sequence.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Two directions',
+        summary: 'A is a premiere: dark and gold, the page as the film’s last reel. B is a storybook: a light index and a starlit film page that ends on a last letter. A’s film page shipped as /films/the-letter-with-no-address.',
+      },
+      {
+        n: 2,
+        title: 'Six indexes',
+        summary: 'The index had to hold films of every kind, not just children’s. Six directions followed (Premiere, Programme, Screens, Picture House, The Reel, Title Sequence); the title sequence shipped as /films.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'a-index',
+        key: 'A',
+        name: 'Premiere index',
+        round: 1,
+        title: 'The Letter With No Address.',
+        blurb: 'A full-screen featured film over a slate of posters and the ten stages.',
+        poster: ['#07091a', '#e3b660'],
+      },
+      {
+        slug: 'a-film',
+        key: 'A',
+        name: 'Final Reel film page',
+        round: 1,
+        title: 'The page is the film’s last reel.',
+        blurb: 'Curtain-up opening, the animatic, a film strip of the story, cast posters, the cuts as leader frames, the files as film cans, and rolling end credits.',
+        poster: ['#07091a', '#f6dda3'],
+        live: true,
+        liveHref: '/films/the-letter-with-no-address/',
+      },
+      {
+        slug: 'b-index',
+        key: 'B',
+        name: 'Storybook index',
+        round: 1,
+        title: 'Films made from clip art.',
+        blurb: 'A light index in the publication’s style, with the film as a storybook card.',
+        poster: ['#fbf7ef', '#0b1030'],
+      },
+      {
+        slug: 'b-film',
+        key: 'B',
+        name: 'Starlight film page',
+        round: 1,
+        title: 'A starlit film page that ends on a letter.',
+        blurb: 'The Moon path opening, the chapters, and a last letter in place of a footer.',
+        poster: ['#0b1030', '#ffe7b0'],
+      },
+    ],
+  },
+  {
+    slug: 'courses',
+    name: 'The courses index',
+    date: '2026-09-29',
+    headline: 'Eight ways into the courses.',
+    intro:
+      'The /courses page, redone in The Marketing Engineer\u2019s look. Each version shows the same real courses and links to the real lessons. Open one and click through.',
+    summary:
+      'Three directions for the /courses index, built on the publication\u2019s serif, navy and jade. Every title, lesson and running time comes from the real course list.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Shelf, syllabus, or stage',
+        summary:
+          'A lists each course as a book on a shelf with its chapters, B lays every lesson out as one syllabus with the signup in a sticky rail, and C puts the newest course on a navy stage above a grid.',
+      },
+      {
+        n: 2,
+        title: 'Built from the homepage',
+        summary:
+          'Zev asked for no grids and nothing like the old style, taking from esy.com and /engineer instead. D is /engineer\u2019s masthead over the Latest list, E is the homepage\u2019s numbered sections, and F announces the course like the homepage\u2019s film.',
+      },
+      {
+        n: 3,
+        title: 'The masthead, then the spotlight',
+        summary:
+          'D kept the signup on the first screen and F\u2019s poster made the course enticing, so G puts F\u2019s spotlight straight under D\u2019s masthead. H then adds E\u2019s numbered sections for every other course.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'shelf',
+        key: 'A',
+        name: 'Shelf',
+        round: 1,
+        title: 'Courses',
+        blurb:
+          'A plain serif hero, then one row per course: a typographic cover, what it teaches, its chapters, and a \u201cstart with lesson 1\u201d link.',
+        poster: ['#FFFFFF', '#0A2540'],
+      },
+      {
+        slug: 'syllabus',
+        key: 'B',
+        name: 'Syllabus',
+        round: 1,
+        title: 'Courses',
+        blurb:
+          'Every course with every lesson listed and linked, so you can jump in anywhere. The pitch and the email signup ride along in a sticky rail.',
+        poster: ['#F8F9FA', '#00A896'],
+      },
+      {
+        slug: 'featured',
+        key: 'C',
+        name: 'Featured',
+        round: 1,
+        title: 'Courses',
+        blurb:
+          'A navy stage for the newest course, with its big cover, its lessons and a Start button, then every course as a card below.',
+        poster: ['#0A2540', '#061527'],
+      },
+      {
+        slug: 'masthead',
+        key: 'D',
+        name: 'Masthead',
+        round: 2,
+        title: 'Courses',
+        blurb:
+          '/engineer\u2019s centred serif masthead with the signup, then the homepage\u2019s Latest block: the course as the lead story with a generated cover, and every lesson as a dated row.',
+        image: '/images/courses/claude-code.webp',
+      },
+      {
+        slug: 'numbered',
+        key: 'E',
+        name: 'Numbered',
+        round: 2,
+        title: 'Courses',
+        blurb:
+          'The homepage\u2019s 01 / 02 sections: a big jade number and the course on the left, a ruled ledger of its lessons on the right, and chips to jump between courses.',
+        poster: ['#FFFFFF', '#00A896'],
+      },
+      {
+        slug: 'now-showing',
+        key: 'F',
+        name: 'Now showing',
+        round: 2,
+        title: 'Courses',
+        blurb:
+          'The course announced like the homepage\u2019s film: a tilted poster beside a logline and credits (taught by, each lesson, running time), in navy and jade.',
+        image: '/images/courses/claude-code-poster.webp',
+      },
+      {
+        slug: 'masthead-showing',
+        key: 'G',
+        name: 'Masthead + Now showing',
+        round: 3,
+        mergeOf: ['D', 'F'],
+        title: 'Courses',
+        blurb:
+          'D\u2019s centred masthead with the signup, then F\u2019s poster, logline and credits spotlighting the newest course, then what\u2019s coming.',
+        image: '/images/courses/claude-code-poster.webp',
+        live: true,
+        liveHref: '/courses/',
+      },
+      {
+        slug: 'masthead-sections',
+        key: 'H',
+        name: 'G + Numbered',
+        round: 3,
+        mergeOf: ['G', 'E'],
+        title: 'Courses',
+        blurb:
+          'G\u2019s masthead and poster spotlight as course 01, then every other course as E\u2019s numbered section (02, 03\u2026) with its lessons as a ledger, and chips to jump between them.',
+        image: '/images/courses/claude-code-poster.webp',
+      },
+    ],
+  },
+  {
+    slug: 'course',
+    name: 'The course page',
+    date: '2026-09-29',
+    headline: 'Three course pages.',
+    intro:
+      'The page for one course, in The Marketing Engineer\u2019s look. Each version shows the real Claude Code course and links to its real lessons. Open one and click through.',
+    summary:
+      'Three directions for /courses/<course>/, built from parts already on esy.com: the index\u2019s poster band, /engineer\u2019s masthead, and a watch-first player.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Poster, masthead, or theater',
+        summary:
+          'A opens on the index\u2019s poster and credits, B on /engineer\u2019s centred masthead with a sticky course card, and C on a framed screen with the lessons as a playlist.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'poster',
+        key: 'A',
+        name: 'Poster',
+        round: 1,
+        title: 'How to Use Claude Code for the AI Solopreneur',
+        blurb:
+          'The index\u2019s Now showing band as the hero, then what you\u2019ll learn beside the lessons as the homepage\u2019s ledger, the teacher, and the resources.',
+        image: '/images/courses/claude-code-poster.webp',
+        live: true,
+        liveHref: '/courses/how-to-use-claude-code/',
+      },
+      {
+        slug: 'masthead',
+        key: 'B',
+        name: 'Masthead',
+        round: 1,
+        title: 'How to Use Claude Code for the AI Solopreneur',
+        blurb:
+          '/engineer\u2019s centred serif masthead with a Start button, then a sticky course card with the cover and the facts beside the lessons as dated rows.',
+        image: '/images/courses/claude-code.webp',
+      },
+      {
+        slug: 'theater',
+        key: 'C',
+        name: 'Theater',
+        round: 1,
+        title: 'How to Use Claude Code for the AI Solopreneur',
+        blurb:
+          'Watch first: the cover in a framed screen with a big play button, and every lesson as a playlist beside it, then what you\u2019ll learn and the teacher.',
+        image: '/images/courses/claude-code.webp',
+      },
+    ],
+  },
+  {
+    slug: 'lesson',
+    name: 'The lesson page',
+    date: '2026-09-29',
+    headline: 'Three lesson pages.',
+    intro:
+      'The page where a lesson plays, in The Marketing Engineer\u2019s look. Each version shows the real first lesson of the Claude Code course. Its own video isn\u2019t recorded yet, so a real published video with its transcript stands in, labelled on the page.',
+    summary:
+      'Three directions for /courses/<course>/<lesson>/, built on the video article\u2019s framed player and click-to-seek transcript.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Theater, studio, or mat',
+        summary:
+          'A puts the lesson in the video article\u2019s dark room with the course in a rail, B is a course player with the playlist beside the video, and C frames the video like a print with the notes read as an article.',
+      },
+      {
+        n: 2,
+        title: 'B, in A\u2019s dark room',
+        summary:
+          'B showed the whole course on the first screen, which sells it to a stranger. Zev asked for A\u2019s background behind it: D is that, and E adds the email signup under the playlist.',
+      },
+      {
+        n: 3,
+        title: 'The notes and what comes next',
+        summary:
+          'E\u2019s stage stays; the part under it changes. F reads the notes as a guide with a contents rail and ends on a navy up-next band, G puts a sticky lesson kit beside them, and H ends on a big next-lesson card with the rest of the course.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'theater',
+        key: 'A',
+        name: 'Theater',
+        round: 1,
+        title: 'Introduction & Setup',
+        blurb:
+          'The video article\u2019s dark room: the lesson title in white, the video in a spotlight, the transcript under it, then the course\u2019s lessons in a sticky rail beside the notes and up next.',
+        poster: ['#0A1626', '#0A2540'],
+      },
+      {
+        slug: 'studio',
+        key: 'B',
+        name: 'Studio',
+        round: 1,
+        title: 'Introduction & Setup',
+        blurb:
+          'A course player: the video in the studio frame with the course\u2019s playlist beside it on navy, the transcript underneath, then up next and the notes.',
+        poster: ['#F8F9FA', '#0A2540'],
+      },
+      {
+        slug: 'mat',
+        key: 'C',
+        name: 'Mat',
+        round: 1,
+        title: 'Introduction & Setup',
+        blurb:
+          'Light and bookish: the title beside the video in a white mat, the notes read like an article with the lessons in a rail, and a navy up-next band.',
+        poster: ['#FFFFFF', '#F8F9FA'],
+      },
+      {
+        slug: 'studio-night',
+        key: 'D',
+        name: 'Studio · Night',
+        round: 2,
+        mergeOf: ['B', 'A'],
+        title: 'Introduction & Setup',
+        blurb:
+          'B\u2019s layout in A\u2019s dark room: the title in white, the video in A\u2019s thin jade ring, the playlist as glass beside it.',
+        poster: ['#0A1626', '#00A896'],
+      },
+      {
+        slug: 'studio-night-signup',
+        key: 'E',
+        name: 'Studio · Night + signup',
+        round: 2,
+        mergeOf: ['D'],
+        title: 'Introduction & Setup',
+        blurb:
+          'D with the rail doing two jobs: the course line and playlist, then \u201cGet the next lesson by email\u201d right under it, where a stranger decides whether to keep going.',
+        poster: ['#0A1626', '#FFFFFF'],
+      },
+      {
+        slug: 'body-guide',
+        key: 'F',
+        name: 'Body · Guide',
+        round: 3,
+        mergeOf: ['E'],
+        title: 'Introduction & Setup',
+        blurb:
+          'The notes read as a guide with a sticky \u201cIn this lesson\u201d rail made from their own headings, closing on a full-width navy band: the next lesson big, with Watch next.',
+        poster: ['#FFFFFF', '#0A2540'],
+      },
+      {
+        slug: 'body-kit',
+        key: 'G',
+        name: 'Body · Kit',
+        round: 3,
+        mergeOf: ['E'],
+        title: 'Introduction & Setup',
+        blurb:
+          'The notes beside a sticky lesson kit: up next on navy at the top, what the lesson covers, and its real resources. A slim previous / next bar closes the page.',
+        poster: ['#FFFFFF', '#F8F9FA'],
+      },
+      {
+        slug: 'body-endcard',
+        key: 'H',
+        name: 'Body · End card',
+        round: 3,
+        mergeOf: ['E'],
+        live: true,
+        liveHref: '/courses/how-to-use-claude-code/introduction-and-setup/',
+        title: 'Introduction & Setup',
+        blurb:
+          'The notes centred, opening on a \u201cWhat you\u2019ll learn\u201d checklist, ending on a big card for the next lesson with the course cover, then the rest of the course.',
+        poster: ['#F8F9FA', '#00A896'],
+      },
+    ],
+  },
+  {
+    slug: 'footer',
+    name: 'The footer',
+    date: '2026-09-29',
+    headline: 'Where films go in the footer.',
+    intro:
+      'Films need a place of their own in the footer, with creatives to follow. Each version is the live footer with a different structure, shown in its real place at the bottom of the page.',
+    summary:
+      'Three footer structures for films (and creatives next): Zev\u2019s Films column, columns by kind, and shelves.',
+    rounds: [
+      {
+        n: 1,
+        title: 'A column, columns by kind, or shelves',
+        summary:
+          'A is Zev\u2019s: today\u2019s footer plus a Films column. B sorts every column by what it holds and drops the From Esy row. C keeps the columns compact and turns the bottom band into shelves of posters and wordmarks.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'yours',
+        key: 'A',
+        name: 'Films column',
+        round: 1,
+        title: 'Today\u2019s footer, plus a Films column.',
+        blurb:
+          'Zev\u2019s idea: a Films column beside Product, Learn and Company, listing every film by title with All films under them. The From Esy row keeps the apps. Creatives become their own column later.',
+        poster: ['#F8FAFC', '#0A2540'],
+      },
+      {
+        slug: 'by-kind',
+        key: 'B',
+        name: 'By kind',
+        round: 1,
+        title: 'Every column holds one kind of thing.',
+        blurb:
+          'Learn, Films, Powered by Esy (Esy OS, clip.art, SEOPage, each with a one-line note) and Company. The From Esy row goes, and the brand line becomes the publication\u2019s.',
+        poster: ['#F8FAFC', '#00A896'],
+      },
+      {
+        slug: 'shelves',
+        key: 'C',
+        name: 'Shelves',
+        round: 1,
+        title: 'The work on shelves under the columns.',
+        blurb:
+          'The columns stay compact, and the bottom band becomes shelves: Films as small posters with title and runtime, and Apps as their wordmarks. Creatives become a third shelf.',
+        poster: ['#F8FAFC', '#061527'],
+      },
+    ],
+  },
+  {
+    slug: 'editorial',
+    name: 'The editorial standards page',
+    date: '2026-09-29',
+    headline: 'Three looks for the editorial standards.',
+    intro:
+      'How The Marketing Engineer decides what\u2019s news and what\u2019s an article, and how it keeps every piece right. The same words in three designs built from the homepage\u2019s own patterns.',
+    summary:
+      'Three directions for /editorial-standards/, each borrowing a different part of esy.com: the /engineer masthead and numbered sections, the film\u2019s credits, and a working decision tool.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Front page, credits, or a tool',
+        summary:
+          'A makes the six-month test one huge statement and sets News against Articles as two cards. B bills them like the homepage\u2019s film. C turns the standards into a News-or-article checker you actually use.',
+      },
+      {
+        n: 2,
+        title: 'C\u2019s top, new middles',
+        summary:
+          'Zev picked C. Its masthead and checker stay; the side-by-side and the rules each get three new treatments, one of each per page: D pairs Versus with an accordion, E a spectrum with rules by stage, F tiles with a sticky rule index.',
+      },
+      {
+        n: 3,
+        title: 'The pick',
+        summary: 'G is Zev\u2019s combination: E\u2019s spectrum under D\u2019s two-sided header, with D\u2019s accordion for the rules.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'front-page',
+        key: 'A',
+        name: 'Front page',
+        round: 1,
+        title: 'Editorial standards',
+        blurb:
+          '/engineer\u2019s centred masthead, the six-month test huge on navy with its two answers, News and Articles as two cards facing off, and the rules as numbered cards.',
+        poster: ['#FFFFFF', '#0A2540'],
+      },
+      {
+        slug: 'credits',
+        key: 'B',
+        name: 'Credits',
+        round: 1,
+        title: 'Editorial standards',
+        blurb:
+          'The homepage\u2019s film announcement: News and Articles billed side by side in a dark room, each with a credits list and what\u2019s showing, then the rules as the homepage\u2019s ledger.',
+        poster: ['#0A1626', '#00D4AA'],
+      },
+      {
+        slug: 'decide',
+        key: 'C',
+        name: 'Decision tool',
+        round: 1,
+        title: 'Editorial standards',
+        blurb:
+          'A News-or-article checker: three yes/no questions, a verdict with where it goes and how to build it, then the comparison as a clean table and the rules as cards.',
+        poster: ['#0A1626', '#FFFFFF'],
+      },
+      {
+        slug: 'versus-accordion',
+        key: 'D',
+        name: 'Versus + Accordion',
+        round: 2,
+        mergeOf: ['C'],
+        title: 'Editorial standards',
+        blurb:
+          'Side by side as Versus: News on the left, Articles on the right, the row labels down a spine. The rules as an accordion: numbered titles you open one at a time.',
+        poster: ['#FFFFFF', '#0A2540'],
+      },
+      {
+        slug: 'spectrum-stages',
+        key: 'E',
+        name: 'Spectrum + By stage',
+        round: 2,
+        mergeOf: ['C'],
+        title: 'Editorial standards',
+        blurb:
+          'Side by side as a spectrum: every row a scale from News to Article (\u201cWeeks\u201d to \u201cYears\u201d). The rules grouped by stage: before you write, while you write, after you publish.',
+        poster: ['#FFFFFF', '#00A896'],
+      },
+      {
+        slug: 'tiles-index',
+        key: 'F',
+        name: 'Tiles + Index',
+        round: 2,
+        mergeOf: ['C'],
+        title: 'Editorial standards',
+        blurb:
+          'Side by side as tiles: one card per attribute, split News and Article. The rules with a sticky numbered index beside them that follows your place.',
+        poster: ['#F8F9FA', '#0A2540'],
+      },
+      {
+        slug: 'final',
+        key: 'G',
+        name: 'Spectrum in the frame + Accordion',
+        round: 3,
+        mergeOf: ['E', 'D'],
+        title: 'Editorial standards',
+        blurb:
+          'C\u2019s checker, then E\u2019s News-to-Article scales framed by D\u2019s two-sided header (News on jade, vs, Articles on navy), then D\u2019s accordion of rules.',
+        poster: ['#0A2540', '#00A896'],
+        live: true,
+        liveHref: '/editorial-standards/',
+      },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

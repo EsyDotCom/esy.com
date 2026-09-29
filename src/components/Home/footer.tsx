@@ -76,7 +76,7 @@ export default function Footer () {
         // Reference unused page flags so future per-page overrides can re-attach
         // without re-discovering them. Navy Dark is the sitewide default footer;
         // pages opt out via explicit branches (models, 404, school articles, courses).
-        void (isHomepage || isEssaysPage || isAboutPage || isAgenticPage || isTemplatesPage || isDocsPage || isAgentsPage || isContactPage || isTermsPage || isPrivacyPage || isGlossaryPage || isInfographicsPage);
+        void (isCoursesPage || isHomepage || isEssaysPage || isAboutPage || isAgenticPage || isTemplatesPage || isDocsPage || isAgentsPage || isContactPage || isTermsPage || isPrivacyPage || isGlossaryPage || isInfographicsPage);
 
         if (isModelsPage) {
           // Check localStorage for models page theme
@@ -126,8 +126,10 @@ export default function Footer () {
             setIsLightMode(false);
             setIsNavyDark(true);
           }
-        } else if (isLearnArticle || isCoursesPage) {
-          // Check localStorage for learn article page theme (articles + courses)
+        } else if (isLearnArticle) {
+          // Check localStorage for learn article page theme. Course pages left
+          // this branch on 2026-09-29: they're light publication pages now and
+          // take the light footer below.
           const storedTheme = localStorage.getItem('theme-school');
           if (storedTheme === 'light') {
             setIsLightMode(true);
@@ -136,14 +138,9 @@ export default function Footer () {
             setIsLightMode(false);
             setIsNavyDark(true); // Use Navy Dark theme
           } else {
-            // Default: dark for courses, light for articles
-            if (isCoursesPage) {
-              setIsLightMode(false);
-              setIsNavyDark(true);
-            } else {
+            // Default: light for articles.
             setIsLightMode(true);
             setIsNavyDark(false);
-            }
           }
           
           // Check body classes as override
@@ -302,6 +299,9 @@ export default function Footer () {
             title="Company"
             links={[
               { href: "/about/", text: "About" },
+              // Where readers (and search engines) look for how the
+              // publication decides what to publish and keeps it right.
+              { href: "/editorial-standards/", text: "Editorial standards" },
               { href: "mailto:zev@esy.com", text: "Contact" },
               { href: "/privacy/", text: "Privacy" },
               { href: "/terms/", text: "Terms" },

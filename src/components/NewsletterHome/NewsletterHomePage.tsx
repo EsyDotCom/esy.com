@@ -160,9 +160,9 @@ function CreativeShowcase() {
 export default async function NewsletterHomePage({
   hero,
   filmBand = 'poster',
-  clipartVisual = 'grid',
+  clipartVisual = 'control',
 }: {
-  /** What sits beside the clip.art case study (/prototypes/home-clipart/). */
+  /** What sits beside the clip.art case study: D · Control room since 2026-09-29 (/prototypes/home-clipart/). */
   clipartVisual?: ClipArtVisual;
   /** How 03 Films presents the newest film: the poster band, or the running strip (/prototypes/home-films/). */
   filmBand?: 'poster' | 'strip';

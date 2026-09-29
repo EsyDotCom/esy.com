@@ -1032,10 +1032,8 @@ export const PROTOTYPES: Prototype[] = [
         name: 'Pack grid',
         round: 1,
         title: 'clip.art runs on Esy OS',
-        blurb: 'The live band: a 4\u00d73 grid of finished assets from one pack, Clay Office.',
+        blurb: 'The band until 2026-09-29: a 4\u00d73 grid of finished assets from one pack, Clay Office.',
         poster: ['#0A2540', '#F4F1EA'],
-        live: true,
-        liveHref: '/#work-apps',
       },
       {
         slug: 'replay',
@@ -1068,6 +1066,8 @@ export const PROTOTYPES: Prototype[] = [
         blurb:
           'A dark console: the render develops from blur under a scan line, the green screen wipes away, the audit traces a jade outline, the name types in, with a live clock, cost ticker and a timeline in the run\u2019s real proportions.',
         poster: ['#071323', '#00D4AA'],
+        live: true,
+        liveHref: '/#work-apps',
       },
       {
         slug: 'line',

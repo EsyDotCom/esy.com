@@ -193,6 +193,7 @@
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
 .lp-endcard-next:hover { transform: translateY(-3px); border-color: var(--nl-jade); }
+.lp-endcard-next--done { grid-template-columns: minmax(0, 1fr); padding: 28px 30px; }
 .lp-endcard-img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 12px; }
 .lp-endcard-body { display: grid; gap: 8px; }
 .lp-endcard-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-jade); }
@@ -213,6 +214,9 @@
 .lp-endcard-rest em { font-style: normal; font-weight: 500; font-size: 0.85rem; color: var(--nl-ink-soft); }
 .lp-endcard-back { display: inline-flex; align-items: center; gap: 6px; justify-self: start; font-size: 0.9rem; color: var(--nl-ink-soft); text-decoration: none; }
 .lp-endcard-back:hover { color: var(--nl-navy); }
+
+/* A missing piece, said plainly instead of left blank. */
+.lp-placeholder { margin: 8px 0 0; padding: 18px 20px; border: 1px dashed var(--nl-seam); border-radius: 14px; color: var(--nl-ink-soft); font-size: 0.95rem; }
 
 /* ── Tablet and phone ── */
 @media (max-width: 1000px) {

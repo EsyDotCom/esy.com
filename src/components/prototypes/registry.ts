@@ -802,6 +802,8 @@ export const PROTOTYPES: Prototype[] = [
         name: 'Body · End card',
         round: 3,
         mergeOf: ['E'],
+        live: true,
+        liveHref: '/courses/how-to-use-claude-code/introduction-and-setup/',
         title: 'Introduction & Setup',
         blurb:
           'The notes centred, opening on a \u201cWhat you\u2019ll learn\u201d checklist, ending on a big card for the next lesson with the course cover, then the rest of the course.',

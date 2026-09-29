@@ -78,12 +78,9 @@ const ConditionalFooter = () => {
     );
   }
 
-  // Check if we're on course lesson pages (focused learning experience, no footer)
-  const isCourseLessonPage = normalizedPath?.match(/^\/courses\/[^/]+\/[^/]+$/);
-  if (isCourseLessonPage) {
-    return null;
-  }
-  
+  // Course lesson pages used to drop the footer for a focused player; since
+  // 2026-09-29 they're publication pages (LessonPage H) and keep it.
+
   // Render the common footer on all other pages (including homepage). The
   // world rides with it: the footer is a card floating over the factory
   // scene, sitewide. Pages that return null above (docs, agents, essays,

@@ -202,7 +202,12 @@ export function BodyEndCard({ course, lesson }: { course: Course; lesson: Lesson
             </ul>
           </div>
         )}
-        <ArticleBody sections={sections} />
+        {sections.length > 0 ? (
+          <ArticleBody sections={sections} />
+        ) : (
+          // A placeholder, not a gap, while a lesson's notes are still being written.
+          <p className="lp-placeholder">Notes for this lesson are on the way.</p>
+        )}
       </div>
 
       {/* The end card: the next lesson big, then the rest of the course. */}
@@ -224,10 +229,17 @@ export function BodyEndCard({ course, lesson }: { course: Course; lesson: Lesson
               </span>
             </Link>
           ) : (
-            <Link href={courseHref(course)} className="lp-endcard-next">
+            // The last lesson: a finish, not a dead end.
+            <Link href="/courses/" className="lp-endcard-next lp-endcard-next--done">
               <span className="lp-endcard-body">
                 <span className="lp-endcard-label">You finished the course</span>
-                <span className="lp-endcard-title">Back to {course.title}</span>
+                <span className="lp-endcard-title">{course.title}</span>
+                <span className="lp-endcard-desc">
+                  That&apos;s every lesson. The next course goes out in the weekly email first.
+                </span>
+                <span className="lp-endcard-go">
+                  All courses <ArrowRight size={15} aria-hidden="true" />
+                </span>
               </span>
             </Link>
           )}
@@ -248,9 +260,11 @@ export function BodyEndCard({ course, lesson }: { course: Course; lesson: Lesson
               </ol>
             </div>
           )}
-          <Link href={courseHref(course)} className="lp-endcard-back">
-            <ArrowLeft size={14} aria-hidden="true" /> {course.title}
-          </Link>
+          {next && (
+            <Link href={courseHref(course)} className="lp-endcard-back">
+              <ArrowLeft size={14} aria-hidden="true" /> {course.title}
+            </Link>
+          )}
         </div>
       </section>
     </div>

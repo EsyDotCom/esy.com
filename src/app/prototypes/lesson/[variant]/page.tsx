@@ -68,6 +68,7 @@ export default async function LessonVariantPage({ params }: { params: Promise<{ 
     thumbnailUrl: sample.thumbnailUrl,
     durationSeconds: sample.durationSeconds,
     segments: loadTranscriptSegments(sample.slug),
+    standIn: true,
   };
   const all = await getAllAgenticArticles();
 

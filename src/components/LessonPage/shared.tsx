@@ -24,6 +24,8 @@ export interface SampleVideo {
   thumbnailUrl?: string;
   durationSeconds: number;
   segments: TranscriptSegment[] | null;
+  /** True while the lesson plays a stand-in instead of its own recording (video.ts). */
+  standIn?: boolean;
 }
 
 export interface LessonPageProps {
@@ -39,11 +41,12 @@ export function lessonPosition(course: Course, lesson: Lesson): string {
   return `Lesson ${all.findIndex((l) => l.slug === lesson.slug) + 1} of ${all.length}`;
 }
 
-/** Says, on the page, that the video is a stand-in, and which video it is. */
+/** Says, on the page, that the video is a stand-in, and which video it is. Gone once the lesson has its own. */
 export function SampleVideoNote({ video, onDark = false }: { video: SampleVideo; onDark?: boolean }) {
+  if (video.standIn === false) return null;
   return (
     <p className={`lp-sample ${onDark ? 'lp-sample--onDark' : ''}`}>
-      <b>Sample video.</b> This lesson&apos;s own video isn&apos;t recorded yet, so the prototype plays{' '}
+      <b>Video coming soon.</b> This lesson&apos;s video is still being recorded. In the meantime, you&apos;re watching{' '}
       <Link href={`/${video.slug}/`}>{video.title}</Link>.
     </p>
   );

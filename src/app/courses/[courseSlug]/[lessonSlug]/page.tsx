@@ -1,8 +1,25 @@
-import { Suspense } from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import LightHeader from '@/components/LightHeader/LightHeader';
+import { nlSerif } from '@/components/NewsletterHome/serif';
+import LessonStudio from '@/components/LessonPage/LessonStudio';
+import { lessonVideo } from '@/components/LessonPage/video';
 import { getLesson, courses } from '@/lib/learn/mockData';
-import LessonClient from './LessonClient';
+import { toNavArticles } from '@/lib/nav-articles';
+import { getAllAgenticArticles } from '@/lib/published-articles';
+import '@/components/NewsletterHome/NewsletterHome.css';
+import '@/components/ArticleImage/ArticleImage.css';
+import '@/components/ArticleVideo/ArticleVideo.css';
+import '@/components/LessonPage/LessonPage.css';
+
+// The lesson page (2026-09-29): lesson page H from /prototypes/lesson/. The
+// video and the course's playlist sit side by side in A's dark room, with the
+// email signup under the playlist (E). Below: what you'll learn, the notes,
+// and a big card for the next lesson with the rest of the course (H). It
+// replaces the dark/light player page (LessonClient, retired).
+//
+// A lesson without its own Mux recording plays a stand-in video and says so
+// on the page (LessonPage/video.ts); missing notes show a placeholder.
 
 interface PageProps {
   params: Promise<{ courseSlug: string; lessonSlug: string }>;
@@ -49,14 +66,13 @@ export default async function LessonPage({ params }: PageProps) {
   if (!result) notFound();
 
   const { course, lesson, chapter } = result;
+  const [video, all] = await Promise.all([lessonVideo(lesson), getAllAgenticArticles()]);
+  if (!video) notFound();
 
   return (
-    <Suspense fallback={null}>
-    <LessonClient
-      course={course}
-      lesson={lesson}
-      chapterTitle={chapter}
-    />
-    </Suspense>
+    <div className={`nl ${nlSerif.variable}`}>
+      <LightHeader latest={toNavArticles(all)} />
+      <LessonStudio course={course} lesson={lesson} chapterTitle={chapter} video={video} night signup body="endcard" />
+    </div>
   );
 }

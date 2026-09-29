@@ -714,6 +714,12 @@ export const PROTOTYPES: Prototype[] = [
         summary:
           'B showed the whole course on the first screen, which sells it to a stranger. Zev asked for A\u2019s background behind it: D is that, and E adds the email signup under the playlist.',
       },
+      {
+        n: 3,
+        title: 'The notes and what comes next',
+        summary:
+          'E\u2019s stage stays; the part under it changes. F reads the notes as a guide with a contents rail and ends on a navy up-next band, G puts a sticky lesson kit beside them, and H ends on a big next-lesson card with the rest of the course.',
+      },
     ],
     variants: [
       {
@@ -767,6 +773,39 @@ export const PROTOTYPES: Prototype[] = [
         blurb:
           'D with the rail doing two jobs: the course line and playlist, then \u201cGet the next lesson by email\u201d right under it, where a stranger decides whether to keep going.',
         poster: ['#0A1626', '#FFFFFF'],
+      },
+      {
+        slug: 'body-guide',
+        key: 'F',
+        name: 'Body · Guide',
+        round: 3,
+        mergeOf: ['E'],
+        title: 'Introduction & Setup',
+        blurb:
+          'The notes read as a guide with a sticky \u201cIn this lesson\u201d rail made from their own headings, closing on a full-width navy band: the next lesson big, with Watch next.',
+        poster: ['#FFFFFF', '#0A2540'],
+      },
+      {
+        slug: 'body-kit',
+        key: 'G',
+        name: 'Body · Kit',
+        round: 3,
+        mergeOf: ['E'],
+        title: 'Introduction & Setup',
+        blurb:
+          'The notes beside a sticky lesson kit: up next on navy at the top, what the lesson covers, and its real resources. A slim previous / next bar closes the page.',
+        poster: ['#FFFFFF', '#F8F9FA'],
+      },
+      {
+        slug: 'body-endcard',
+        key: 'H',
+        name: 'Body · End card',
+        round: 3,
+        mergeOf: ['E'],
+        title: 'Introduction & Setup',
+        blurb:
+          'The notes centred, opening on a \u201cWhat you\u2019ll learn\u201d checklist, ending on a big card for the next lesson with the course cover, then the rest of the course.',
+        poster: ['#F8F9FA', '#00A896'],
       },
     ],
   },

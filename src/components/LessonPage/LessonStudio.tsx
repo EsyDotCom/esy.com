@@ -13,6 +13,7 @@ import NewsletterSignup from '@/components/NewsletterHome/NewsletterSignup';
 import WeeklyEmailBand from '@/components/NewsletterHome/WeeklyEmailBand';
 import { courseHref, lessonsOf, minutesOf } from '@/components/CoursesIndex/shared';
 import { LessonList, LessonNotes, SampleVideoNote, UpNext, lessonPosition, type LessonPageProps } from './shared';
+import { BodyEndCard, BodyGuide, BodyKit } from './body';
 
 export default function LessonStudio({
   course,
@@ -21,11 +22,14 @@ export default function LessonStudio({
   video,
   night = false,
   signup = false,
+  body = 'default',
 }: LessonPageProps & {
   /** A's dark room behind the stage, title in white. */
   night?: boolean;
   /** The email signup in the rail, under the playlist. */
   signup?: boolean;
+  /** Below the player: B's original, or round 3's guide, kit or end card (body.tsx). */
+  body?: 'default' | 'guide' | 'kit' | 'endcard';
 }) {
   return (
     <article className={`ai av av-studio lp lp-studio ${night ? 'lp-studio--night' : ''}`}>
@@ -71,12 +75,20 @@ export default function LessonStudio({
         </div>
       </section>
 
-      {/* Up next first, since that's the next click; then what the lesson covered. */}
-      <div className="ai-col lp-col">
-        <UpNext course={course} lesson={lesson} />
-        <p className="ai-dek lp-desc">{lesson.description}</p>
-        <LessonNotes lesson={lesson} />
-      </div>
+      {/* Below the player: round 3's bodies, or B's original (up next, then the notes). */}
+      {body === 'guide' ? (
+        <BodyGuide course={course} lesson={lesson} />
+      ) : body === 'kit' ? (
+        <BodyKit course={course} lesson={lesson} />
+      ) : body === 'endcard' ? (
+        <BodyEndCard course={course} lesson={lesson} />
+      ) : (
+        <div className="ai-col lp-col">
+          <UpNext course={course} lesson={lesson} />
+          <p className="ai-dek lp-desc">{lesson.description}</p>
+          <LessonNotes lesson={lesson} />
+        </div>
+      )}
 
       <WeeklyEmailBand />
     </article>

@@ -470,7 +470,7 @@ export const PROTOTYPES: Prototype[] = [
     slug: 'linkedin-banner',
     name: 'The LinkedIn banner',
     date: '2026-09-28',
-    headline: 'Three LinkedIn banners for a marketing engineer.',
+    headline: 'LinkedIn banners for The Marketing Engineer.',
     intro:
       'The banner is the first thing people see on Zev\u2019s profile. Each one says what he does and where to read it, and keeps clear of the profile photo. Open one to see it on a desktop profile and in the phone app, and download the PNG.',
     summary:
@@ -481,6 +481,12 @@ export const PROTOTYPES: Prototype[] = [
         title: 'Three ways to say what he does',
         summary:
           'A carries the homepage promise onto paper, B lists what he runs on navy, and C puts one short line over a generated scene.',
+      },
+      {
+        n: 2,
+        title: 'The name leads',
+        summary:
+          'Zev asked for no product names and for the banner to say The Marketing Engineer. Two of them are our navy. D sets the name as a newspaper nameplate on paper, E adds the four desks on navy, and F screens C\u2019s scene onto navy.',
       },
     ],
     // Each card image is the exported PNG (src/components/LinkedInBanner/).
@@ -516,6 +522,38 @@ export const PROTOTYPES: Prototype[] = [
         blurb:
           'The education hero\u2019s generated backdrop, glowing paths over a dark valley, with one short line and the newsletter on its dark side.',
         image: '/prototypes/linkedin-banner/scene.png',
+        imageFit: 'contain',
+      },
+      {
+        slug: 'nameplate',
+        key: 'D',
+        name: 'Nameplate',
+        round: 2,
+        title: 'The Marketing Engineer',
+        blurb:
+          'The name set like a newspaper nameplate on paper, with a double rule under it and the promise and esy.com beneath.',
+        image: '/prototypes/linkedin-banner/nameplate.png',
+        imageFit: 'contain',
+      },
+      {
+        slug: 'desks',
+        key: 'E',
+        name: 'Desks',
+        round: 2,
+        title: 'The Marketing Engineer',
+        blurb:
+          'Navy. The name, one line on what the email is, and the four desks every issue files under: Build, Grow, Operate, Learn.',
+        image: '/prototypes/linkedin-banner/desks.png',
+        imageFit: 'contain',
+      },
+      {
+        slug: 'night',
+        key: 'F',
+        name: 'Night',
+        round: 2,
+        title: 'The Marketing Engineer',
+        blurb: 'Our navy, with C\u2019s generated scene screened onto it so only the glowing paths show, the name as the headline, and the promise and esy.com under it.',
+        image: '/prototypes/linkedin-banner/night.png',
         imageFit: 'contain',
       },
     ],

@@ -98,3 +98,42 @@
 .lib-scene-title em { color: var(--lib-jade-bright); }
 .lib-scene-sub { margin-top: 18px !important; font-size: 23px; line-height: 1.45; color: rgba(255, 255, 255, 0.78); }
 .lib-scene-cta { display: block; margin-top: 6px !important; font-weight: 600; color: var(--lib-jade-bright); }
+
+/* ══ Round 2: the name leads, no products ══════════════════════════════ */
+
+/* ── D · Nameplate ── */
+.lib-nameplate { background: #FFFFFF; }
+.lib-nameplate::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 10px; background: var(--lib-navy); }
+.lib-nameplate::after {
+  content: ''; position: absolute; left: -160px; bottom: -260px; width: 720px; height: 560px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0, 168, 150, 0.13), rgba(0, 168, 150, 0));
+}
+.lib-nameplate .lib-corner { top: 42px; }
+.lib-nameplate-copy { position: absolute; left: 540px; right: 80px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; }
+.lib-nameplate-name { margin-top: 10px !important; font-size: 104px; line-height: 1; color: var(--lib-navy); white-space: nowrap; }
+.lib-nameplate-name em { color: var(--lib-jade); }
+/* A newspaper's double rule under the nameplate. */
+.lib-nameplate-rule { margin-top: 22px !important; height: 8px; border-top: 3px solid var(--lib-navy); border-bottom: 1px solid var(--lib-navy); }
+.lib-nameplate-foot { margin-top: 16px !important; display: flex; align-items: baseline; justify-content: space-between; font-size: 24px; color: var(--lib-ink-soft); }
+
+/* ── E · Desks (shares B's navy and glow) ── */
+.lib-desks-copy { position: absolute; left: 540px; right: 80px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; }
+.lib-desks-name { font-size: 100px; line-height: 1; color: #F8FAFC; white-space: nowrap; }
+.lib-desks-name em { color: var(--lib-jade-bright); }
+.lib-desks-sub { margin-top: 14px !important; font-size: 24px; color: rgba(255, 255, 255, 0.74); }
+.lib-desks-row {
+  margin-top: 24px !important; padding-top: 18px !important; border-top: 1px solid rgba(255, 255, 255, 0.16);
+  display: flex; align-items: baseline; gap: 34px; font-size: 34px; color: #fff;
+}
+.lib-desks-url { margin-left: auto; font-family: var(--lib-sans); font-size: 22px; font-weight: 600; color: var(--lib-jade-bright); }
+
+/* ── F · Night: C's backdrop on our navy ── */
+.lib-night { background: linear-gradient(120deg, #061527 0%, var(--lib-navy) 55%, #0F3460 100%); color: #fff; }
+/* Pushed right of the name, and faded in from the left so there's no edge. */
+.lib-night-img {
+  left: 784px; top: -30px; width: 800px; mix-blend-mode: screen;
+  -webkit-mask-image: linear-gradient(90deg, transparent 20%, #000 55%); mask-image: linear-gradient(90deg, transparent 20%, #000 55%);
+}
+.lib-night-copy { width: 760px; }
+.lib-night-name { font-size: 84px; line-height: 1; color: #F8FAFC; white-space: nowrap; text-shadow: 0 2px 24px rgba(4, 12, 22, 0.8); }
+.lib-night-name em { color: var(--lib-jade-bright); }

@@ -9,6 +9,13 @@
  *   C · Scene    — the education hero's generated "flow" backdrop with one
  *                  short line over its dark side.
  *
+ * Round 2 leads with the name, The Marketing Engineer, and names no product:
+ *
+ *   D · Nameplate — a newspaper nameplate on paper: the name huge, the
+ *                   promise under a rule.
+ *   E · Desks     — navy: the name, and the four desks every issue files under.
+ *   F · Night     — navy too: C's backdrop screened onto it, the name as the headline.
+ *
  * Every banner is drawn at LinkedIn's upload size, 1584×396, in plain px, and
  * exported to PNG by scripts/export-linkedin-banners.mjs. LinkedIn lays the
  * profile photo over the bottom-left (about the left 380px on desktop and 490px
@@ -18,10 +25,11 @@
 import ClipArtWordmark from '@/components/NewsletterHome/ClipArtWordmark';
 import SeoPageWordmark from '@/components/NewsletterHome/SeoPageWordmark';
 import { nlSerif } from '@/components/NewsletterHome/serif';
+import { DESKS } from '@/components/EducationHero/desks';
 import './LinkedInBanner.css';
 
-export type BannerVariant = 'masthead' | 'proof' | 'scene';
-export const BANNER_VARIANTS: BannerVariant[] = ['masthead', 'proof', 'scene'];
+export type BannerVariant = 'masthead' | 'proof' | 'scene' | 'nameplate' | 'desks' | 'night';
+export const BANNER_VARIANTS: BannerVariant[] = ['masthead', 'proof', 'scene', 'nameplate', 'desks', 'night'];
 export { BANNER_SIZE } from './size';
 
 /** The real wordmark: "esy" in Black Ops One, the "e" in jade. */
@@ -124,8 +132,98 @@ function Scene() {
   );
 }
 
+/* ── D · Nameplate ────────────────────────────────────────────────────── */
+
+function Nameplate() {
+  return (
+    <div className="lib-canvas lib-nameplate">
+      <div className="lib-corner">
+        <Wordmark onDark={false} />
+      </div>
+      {/* A newspaper nameplate: the name as the masthead, the promise under a double rule. */}
+      <div className="lib-nameplate-copy">
+        <div className="lib-label">A free weekly email</div>
+        <div className="lib-serif lib-nameplate-name">
+          The Marketing <em>Engineer</em>
+        </div>
+        <div className="lib-nameplate-rule" aria-hidden="true" />
+        <div className="lib-nameplate-foot">
+          <span>Learn to build the AI systems that run marketing.</span>
+          <span className="lib-url">esy.com</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── E · Desks ────────────────────────────────────────────────────────── */
+
+function Desks() {
+  return (
+    <div className="lib-canvas lib-proof lib-desks">
+      <div className="lib-proof-glow" aria-hidden="true" />
+      <div className="lib-corner">
+        <Wordmark onDark />
+      </div>
+      <div className="lib-desks-copy">
+        <div className="lib-serif lib-desks-name">
+          The Marketing <em>Engineer</em>
+        </div>
+        <div className="lib-desks-sub">One email a week on building the AI systems that run marketing.</div>
+        {/* The four desks every issue files under, as on the homepage. */}
+        <div className="lib-desks-row">
+          {DESKS.map((d) => (
+            <span key={d.key} className="lib-serif">
+              {d.name}
+            </span>
+          ))}
+          <span className="lib-desks-url">Free at esy.com</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── F · Night ────────────────────────────────────────────────────────── */
+
+function Night() {
+  return (
+    <div className="lib-canvas lib-night">
+      {/* The scene screened onto our navy: its black drops out and only the
+          glowing paths and the lit valley stay. */}
+      {/* eslint-disable-next-line @next/next/no-img-element -- exported as a fixed-size PNG, no responsive sizes needed */}
+      <img className="lib-scene-img lib-night-img" src="/prototypes/education/backdrops/flow.webp" alt="" />
+      <div className="lib-corner">
+        <Wordmark onDark />
+      </div>
+      <div className="lib-scene-copy lib-night-copy">
+        <div className="lib-serif lib-night-name">
+          The Marketing <em>Engineer</em>
+        </div>
+        <div className="lib-scene-sub">
+          Learn to build the AI systems that run marketing.
+          <span className="lib-scene-cta">Free every week at esy.com</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const BANNERS: Record<BannerVariant, () => React.JSX.Element> = {
+  masthead: Masthead,
+  proof: Proof,
+  scene: Scene,
+  nameplate: Nameplate,
+  desks: Desks,
+  night: Night,
+};
+
 /** One banner at full upload size. Scale it with ScaledBanner to show it smaller. */
 export default function LinkedInBanner({ variant }: { variant: BannerVariant }) {
-  const banner = variant === 'masthead' ? <Masthead /> : variant === 'proof' ? <Proof /> : <Scene />;
-  return <div className={`lib-root ${nlSerif.variable}`}>{banner}</div>;
+  const Banner = BANNERS[variant];
+  return (
+    <div className={`lib-root ${nlSerif.variable}`}>
+      <Banner />
+    </div>
+  );
 }

@@ -100,7 +100,8 @@ export default function EditorialStandards({ articles }: { articles: AgenticVide
             <ul>
               <li>
                 <b>News</b>: short, fast takes on something that just happened in AI and marketing (a release, an
-                update, a pricing change), and what it means for the people who build marketing systems.
+                update, a pricing change), and what it means for the people who build marketing systems. They live
+                at <Link href="/news/">esy.com/news</Link>.
               </li>
               <li>
                 <b>Articles</b>: tutorials, builds and walkthroughs that teach something lasting. They live at{' '}

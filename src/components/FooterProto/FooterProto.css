@@ -1,0 +1,53 @@
+/* Footer prototypes (FooterVariant.tsx). The shell, columns and links are the
+ * live footer's own classes (globals.css: .footer, .footer--light,
+ * .footer-column, .footer-link, .footer-extended); this adds only what the
+ * variants need: a fifth column, notes under links, and C's shelves. */
+
+/* The brand lockup's inline styles, as classes (Home/footer.tsx sets them inline). */
+.fp-lockup-rule { width: 1px; height: 16px; background: rgba(10, 37, 64, 0.4); }
+.fp-lockup-os { font-size: 11px; font-weight: 500; line-height: 1; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(10, 37, 64, 0.5); }
+.fp .footer-desc { color: rgba(10, 37, 64, 0.7); }
+.fp .footer-desc strong { color: #0A2540; }
+.fp-social-icon { color: rgba(10, 37, 64, 0.5); }
+
+/* A and B: five columns (brand plus four). */
+/* Scoped under .footer.fp so it beats globals.css, which loads after this sheet. */
+.footer.fp .footer-content.fp-cols-5 { grid-template-columns: 2.4fr 1fr 1fr 1fr 1fr; }
+
+/* A link with a small note under it: a film's kind, an app's one-liner. */
+.footer.fp .footer-link.fp-link--noted { display: flex; flex-direction: column; gap: 1px; white-space: normal; }
+.fp-note { font-size: 11px; color: rgba(10, 37, 64, 0.45); }
+
+/* ── C · Shelves ── */
+.fp-shelves { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 2.5rem; }
+.fp-shelf h4 { display: flex; align-items: baseline; gap: 14px; }
+.fp-shelf-all { font-size: 12px; font-weight: 500; letter-spacing: 0; text-transform: none; color: #00A896; text-decoration: none; }
+.fp-shelf-all:hover { color: #0A2540; }
+.fp-posters { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 18px; }
+.fp-poster { display: flex; align-items: center; gap: 14px; text-decoration: none; max-width: 320px; }
+.fp-poster img {
+  width: 56px; height: 84px; object-fit: cover; border-radius: 4px; flex-shrink: 0;
+  box-shadow: 0 10px 20px -12px rgba(10, 37, 64, 0.6); transition: transform 0.2s ease;
+}
+.fp-poster:hover img { transform: translateY(-2px) rotate(-1.5deg); }
+.fp-poster-text { display: flex; flex-direction: column; gap: 4px; }
+.fp-poster-title { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 700; font-size: 1.15rem; line-height: 1.15; color: #0A2540; }
+.fp-poster:hover .fp-poster-title { color: #00A896; }
+.fp-poster-meta { font-size: 11px; color: rgba(10, 37, 64, 0.55); }
+.fp-apps { display: flex; flex-wrap: wrap; align-items: center; gap: 28px; min-height: 84px; }
+.fp-app { display: inline-flex; color: #0A2540; opacity: 0.8; transition: opacity 0.2s ease; }
+.fp-app:hover { opacity: 1; }
+.fp-app-clipart { height: 26px; width: auto; }
+.fp-app-seopage { font-size: 26px; }
+/* SEOPage's wordmark rules, copied from NewsletterHome.css so this sheet stands alone. */
+.fp .seopage-wordmark { display: inline-flex; align-items: flex-start; font-weight: 700; line-height: 1; letter-spacing: -0.04em; }
+.fp .seopage-wordmark--light { font-weight: 600; }
+.fp .seopage-wordmark-badge {
+  display: flex; align-items: center; justify-content: center; margin-left: 0.29em; margin-top: 0.07em;
+  height: 1.5em; min-width: 1.5em; border-radius: 0.43em; background: #3D6BFF; color: #fff; font-size: 0.28em; letter-spacing: 0;
+}
+
+@media (max-width: 1024px) {
+  .footer.fp .footer-content.fp-cols-5 { grid-template-columns: 1fr; }
+  .fp-shelves { grid-template-columns: minmax(0, 1fr); }
+}

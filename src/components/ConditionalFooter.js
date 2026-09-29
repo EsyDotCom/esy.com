@@ -3,6 +3,7 @@ import { usePathname } from 'next/navigation';
 import Footer from "@/components/Home/footer";
 import FooterWorld from "@/components/FooterWorld/FooterWorld";
 import CopyrightFooter from "@/components/CopyrightFooter";
+import FooterVariant, { FOOTER_VARIANTS } from "@/components/FooterProto/FooterVariant";
 
 const ConditionalFooter = () => {
   const pathname = usePathname();
@@ -63,6 +64,18 @@ const ConditionalFooter = () => {
   const isFilmsPage = normalizedPath === '/films' || normalizedPath?.startsWith('/films/');
   if (isFilmsPage || normalizedPath === '/prototypes/films/a-film' || normalizedPath === '/prototypes/films/b-film') {
     return null;
+  }
+
+  // The footer prototypes put the direction under test in the footer's own
+  // slot, over the same factory scene (/prototypes/footer/<variant>/).
+  const footerProto = normalizedPath?.match(/^\/prototypes\/footer\/([^/]+)$/);
+  if (footerProto && FOOTER_VARIANTS.includes(footerProto[1])) {
+    return (
+      <>
+        <FooterWorld />
+        <FooterVariant variant={footerProto[1]} />
+      </>
+    );
   }
 
   // Check if we're on course lesson pages (focused learning experience, no footer)

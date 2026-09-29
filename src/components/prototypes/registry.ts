@@ -742,6 +742,56 @@ export const PROTOTYPES: Prototype[] = [
       },
     ],
   },
+  {
+    slug: 'footer',
+    name: 'The footer',
+    date: '2026-09-29',
+    headline: 'Where films go in the footer.',
+    intro:
+      'Films need a place of their own in the footer, with creatives to follow. Each version is the live footer with a different structure, shown in its real place at the bottom of the page.',
+    summary:
+      'Three footer structures for films (and creatives next): Zev\u2019s Films column, columns by kind, and shelves.',
+    rounds: [
+      {
+        n: 1,
+        title: 'A column, columns by kind, or shelves',
+        summary:
+          'A is Zev\u2019s: today\u2019s footer plus a Films column. B sorts every column by what it holds and drops the From Esy row. C keeps the columns compact and turns the bottom band into shelves of posters and wordmarks.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'yours',
+        key: 'A',
+        name: 'Films column',
+        round: 1,
+        title: 'Today\u2019s footer, plus a Films column.',
+        blurb:
+          'Zev\u2019s idea: a Films column beside Product, Learn and Company, listing every film by title with All films under them. The From Esy row keeps the apps. Creatives become their own column later.',
+        poster: ['#F8FAFC', '#0A2540'],
+      },
+      {
+        slug: 'by-kind',
+        key: 'B',
+        name: 'By kind',
+        round: 1,
+        title: 'Every column holds one kind of thing.',
+        blurb:
+          'Learn, Films, Built on Esy (Esy OS, clip.art, SEOPage, each with a one-line note) and Company. The From Esy row goes, and the brand line becomes the publication\u2019s.',
+        poster: ['#F8FAFC', '#00A896'],
+      },
+      {
+        slug: 'shelves',
+        key: 'C',
+        name: 'Shelves',
+        round: 1,
+        title: 'The work on shelves under the columns.',
+        blurb:
+          'The columns stay compact, and the bottom band becomes shelves: Films as small posters with title and runtime, and Apps as their wordmarks. Creatives become a third shelf.',
+        poster: ['#F8FAFC', '#061527'],
+      },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

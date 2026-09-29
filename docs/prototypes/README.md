@@ -14,6 +14,8 @@ Clickable directions we compare by using them, not by looking at mockups. They l
 
 **The films pages (2026-09-28)** are at `/prototypes/films/`: A · Premiere (index `a-index`, film page `a-film`, "The Final Reel") and B · Storybook (`b-index`, `b-film`, ending on a last letter). **A's film page shipped as `/films/the-letter-with-no-address`.** The index had to hold films of every kind, not just children's, so six more index directions were tried as artifacts (Premiere, Programme, Screens, Picture House, The Reel, Title Sequence), and **the title sequence shipped as `/films`** (`src/components/Films/FilmsIndex.tsx`, films listed in `src/data/films/index.ts`). Screenshots: `films-index-opening.png`, `films-index-featured.png`, `films-index-stages.png`, `films-film-page-animatic.png`.
 
+**The courses index (2026-09-29)** is at `/prototypes/courses/`: A · Shelf, B · Syllabus, C · Featured, in the publication's look (`src/components/CoursesIndex/`). All three render the real course list that `/courses` reads. Only one course is live, so two labelled **sample** "coming soon" courses (`sample-upcoming.ts`) show how each layout grows. They're never linked. Courses have no cover art, so each gets a typographic navy cover.
+
 ## The pattern
 
 1. **Show the real product, not a picture of it.** Don't screenshot the app and don't draw a mockup. Rebuild the page from the product's own source: same markup, same class names, and the product's stylesheets **copied verbatim** (with a provenance header saying where they came from and when). Keep any tweaks for the new setting in a separate file. The result looks like the product because it *is* the product's UI.

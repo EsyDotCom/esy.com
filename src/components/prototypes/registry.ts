@@ -528,6 +528,56 @@ export const PROTOTYPES: Prototype[] = [
       },
     ],
   },
+  {
+    slug: 'courses',
+    name: 'The courses index',
+    date: '2026-09-29',
+    headline: 'Three ways into the courses.',
+    intro:
+      'The /courses page, redone in The Marketing Engineer\u2019s look. Each version shows the same real courses and links to the real lessons. Open one and click through.',
+    summary:
+      'Three directions for the /courses index, built on the publication\u2019s serif, navy and jade. Every title, lesson and running time comes from the real course list.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Shelf, syllabus, or stage',
+        summary:
+          'A lists each course as a book on a shelf with its chapters, B lays every lesson out as one syllabus with the signup in a sticky rail, and C puts the newest course on a navy stage above a grid.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'shelf',
+        key: 'A',
+        name: 'Shelf',
+        round: 1,
+        title: 'Courses',
+        blurb:
+          'A plain serif hero, then one row per course: a typographic cover, what it teaches, its chapters, and a \u201cstart with lesson 1\u201d link.',
+        poster: ['#FFFFFF', '#0A2540'],
+      },
+      {
+        slug: 'syllabus',
+        key: 'B',
+        name: 'Syllabus',
+        round: 1,
+        title: 'Courses',
+        blurb:
+          'Every course with every lesson listed and linked, so you can jump in anywhere. The pitch and the email signup ride along in a sticky rail.',
+        poster: ['#F8F9FA', '#00A896'],
+      },
+      {
+        slug: 'featured',
+        key: 'C',
+        name: 'Featured',
+        round: 1,
+        title: 'Courses',
+        blurb:
+          'A navy stage for the newest course, with its big cover, its lessons and a Start button, then every course as a card below.',
+        poster: ['#0A2540', '#061527'],
+      },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

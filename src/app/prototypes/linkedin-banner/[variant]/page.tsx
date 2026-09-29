@@ -86,7 +86,7 @@ export default async function LinkedInBannerPage({ params }: { params: Promise<{
           <section className="og-block" aria-labelledby="bp-desk">
             <h2 id="bp-desk">On your profile</h2>
             <ProfileCard variant={known} size="desk" />
-            <p className="og-note">Approximate. LinkedIn draws its own frame and buttons.</p>
+            <p className="og-note">Your photo here is the one already on your profile, laid on top to check what it covers. It isn't part of the banner or the PNG. Approximate: LinkedIn draws its own frame and buttons.</p>
           </section>
 
           {/* ── Phone app ───────────────────────────────────────────────── */}

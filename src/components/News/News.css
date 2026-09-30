@@ -33,7 +33,7 @@
 .nx-story-list { list-style: none; margin: 8px 0 0; padding: 0; border-top: 2px solid var(--nl-navy); }
 .nx-story-list li { display: grid; grid-template-columns: 90px minmax(0, 1fr); gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--nl-seam); }
 .nx-story-list time { font-size: 0.85rem; font-weight: 600; color: var(--nl-ink-soft); padding-top: 4px; }
-.nx-story-list h2 { margin: 0 0 6px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 1.6rem; line-height: 1.15; letter-spacing: 0; text-transform: none; color: var(--nl-navy); }
+.np .nx-story-list h2 { margin: 0 0 6px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 1.6rem; line-height: 1.15; letter-spacing: 0; text-transform: none; color: var(--nl-navy); }
 .nx-story-list p { margin: 0; font-size: 1rem; line-height: 1.6; color: var(--nl-ink-soft); }
 
 @media (max-width: 960px) {
@@ -78,3 +78,7 @@
 .nx-lead-cover, .nx-card-cover { display: block; margin-bottom: 14px; }
 .nx-row-cover { aspect-ratio: auto; background: none; }
 .nx-figure { margin: 24px 0; }
+
+/* The post and story pages read as one centered column (2026-09-30). The
+   prototype (I) stays left-aligned; only the shipped pages center. */
+.nx-col { max-width: 780px; margin: 0 auto; }

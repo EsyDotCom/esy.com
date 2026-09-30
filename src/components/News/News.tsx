@@ -232,7 +232,7 @@ export function NewsPostPage({ post }: { post: NewsPost }) {
   return (
     <>
       <article className="np np--spec">
-        <div className="nl-container"><div className="npi-col">
+        <div className="nl-container"><div className="npi-col nx-col">
           <StoryLine post={post} story={story} />
           <h1 className="np-title">{post.headline}</h1>
           <p className="np-dek">{post.dek}</p>
@@ -334,7 +334,7 @@ export function NewsStoryPage({ story }: { story: NewsStory }) {
   return (
     <>
       <section className="np nx-story">
-        <div className="nl-container"><div className="npi-col">
+        <div className="nl-container"><div className="npi-col nx-col">
           <p className="np-crumbs"><Link href="/news/">AI News</Link> <span aria-hidden="true">›</span> <span>The story</span></p>
           <h1 className="np-title">{story.name}</h1>
           <p className="np-dek">{story.line}</p>

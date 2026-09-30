@@ -380,3 +380,8 @@
   .nm-spark { grid-column: 1 / -1; }
   .nm-line-counts { display: none; }
 }
+
+/* ── Round 5: E + G rows + A wire (DeskPage.tsx) ── */
+.nw-wire--full { display: block; }
+.nw-wire--full .nw-wire-headline { font-size: 1.4rem; }
+.nm-more-path { margin-left: 10px; font-weight: 500; font-size: 0.8rem; color: var(--nl-ink-soft); }

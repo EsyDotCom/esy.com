@@ -1289,6 +1289,12 @@ export const PROTOTYPES: Prototype[] = [
         summary:
           'Rebuilt on real September 2026 stories. Zev wanted a reason to come back, so each takes E\u2019s lead and adds a monitor: H\u2019s board with charts (J), I\u2019s lanes with G\u2019s cards (K), Google\u2019s update rollout (L), a board of what changed per platform (M), what AI marketing costs from Esy\u2019s own runs (N), and a coverage line per story (O).',
       },
+      {
+        n: 5,
+        title: 'The pick: E, G and A',
+        summary:
+          'Back to the section\u2019s two jobs: jump on trends for SEO, and post to the domain daily. P is E\u2019s lead story, G\u2019s story rows (each pointing at its own story page), and A\u2019s wire of every post. No charts.',
+      },
     ],
     variants: [
       {
@@ -1437,6 +1443,16 @@ export const PROTOTYPES: Prototype[] = [
         title: 'AI News',
         blurb: 'A line per story of posts per week over four weeks, with rising, steady or cooling beside it.',
         poster: ['#FFFFFF', '#E5484D'],
+      },
+      {
+        slug: 'desk-rows-wire',
+        key: 'P',
+        name: 'Trend desk \u00b7 Rows \u00b7 Wire',
+        round: 5,
+        mergeOf: ['E', 'G', 'A'],
+        title: 'AI News',
+        blurb: 'E\u2019s lead story, then up to three more stories as G\u2019s rows (two posts or more, each pointing at its story page), then A\u2019s wire of every post by day.',
+        poster: ['#FFFFFF', '#0A2540'],
       },
     ],
   },

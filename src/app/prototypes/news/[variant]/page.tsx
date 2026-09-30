@@ -6,6 +6,7 @@ import { findPrototype } from '@/components/prototypes/registry';
 import { NewsBriefing, NewsFrontPage, NewsWire } from '@/components/NewsIndex/NewsIndex';
 import { NewsDeveloping, NewsLiveFront, NewsTrendDesk } from '@/components/NewsIndex/NewsFronts';
 import { TrendBoard, TrendLanes, TrendRows } from '@/components/NewsIndex/TrendSections';
+import { DeskRowsWire } from '@/components/NewsIndex/DeskPage';
 import { MonitorBoard, MonitorChanges, MonitorCosts, MonitorCoverage, MonitorLanes, MonitorRollout } from '@/components/NewsIndex/Monitors';
 import { toNavArticles } from '@/lib/nav-articles';
 import { getAllAgenticArticles } from '@/lib/published-articles';
@@ -35,6 +36,8 @@ const LAYOUTS: Record<string, React.ComponentType> = {
   changes: () => <NewsTrendDesk Desks={MonitorChanges} />,
   costs: () => <NewsTrendDesk Desks={MonitorCosts} />,
   coverage: () => <NewsTrendDesk Desks={MonitorCoverage} />,
+  // Round 5, the pick: E's lead, G's story rows, A's wire.
+  'desk-rows-wire': () => <NewsTrendDesk Desks={DeskRowsWire} />,
 };
 
 const prototype = findPrototype('news')!;

@@ -82,12 +82,16 @@ function StoryCards({ trend }: { trend: string }) {
   return (
     <div className="nt-row-cards">
       {list.slice(0, 3).map((p) => <Card key={p.slug} post={p} />)}
-      {list.length > 3 && (
-        <p className="nm-more">All {list.length} posts on {trend} <ArrowRight size={14} aria-hidden="true" /></p>
-      )}
+      <p className="nm-more">
+        {list.length > 3 ? `All ${list.length} posts on ${trend}` : `The ${trend} story page`} <ArrowRight size={14} aria-hidden="true" />
+        <span className="nm-more-path">{storyPath(trend)} · next to build</span>
+      </p>
     </div>
   );
 }
+
+/** A story's own page, the one that can rank for its name: /news/chatgpt-ads. */
+export const storyPath = (trend: string) => `/news/${trend.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`;
 
 /** One-post stories: a plain list, no row, no chart. */
 export function AlsoInTheNews() {
@@ -112,7 +116,7 @@ export function AlsoInTheNews() {
 }
 
 /** Story rows (G, with the round-4 rules): the other stories and their cards. */
-function StoryRows({ trends, title = 'Stories to follow' }: { trends: NewsTrend[]; title?: string }) {
+export function StoryRows({ trends, title = 'Stories to follow' }: { trends: NewsTrend[]; title?: string }) {
   const rows = storyTrends(trends, posts);
   if (!rows.length) return null;
   return (

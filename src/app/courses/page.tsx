@@ -2,14 +2,17 @@ import { Metadata } from 'next';
 import LightHeader from '@/components/LightHeader/LightHeader';
 import { nlSerif } from '@/components/NewsletterHome/serif';
 import CoursesMastheadShowing from '@/components/CoursesIndex/CoursesMastheadShowing';
+import { HeroSplit } from '@/components/CoursesIndex/CoursesHeroes';
 import { courses } from '@/lib/learn/mockData';
 import { toNavArticles } from '@/lib/nav-articles';
 import { getAllAgenticArticles } from '@/lib/published-articles';
 import '@/components/NewsletterHome/NewsletterHome.css';
 import '@/components/CoursesIndex/CoursesIndex.css';
+import '@/components/CoursesIndex/IntroVideo.css';
 
-// The courses index (2026-09-29): prototype G from /prototypes/courses/.
-// /engineer's masthead with the signup, then the newest course announced like
+// The courses index (2026-09-29): prototype G from /prototypes/courses/, with
+// hero A from /prototypes/courses-hero/ (the promise and signup beside a
+// short intro video). Then the newest course announced like
 // the homepage's film (poster, logline, credits, Start watching). Older
 // courses follow as a list once there are any, and "Next in the studio" shows
 // once there are real upcoming courses (the prototypes' two are samples, so
@@ -46,7 +49,7 @@ export default async function CoursesPage() {
   return (
     <div className={`nl ${nlSerif.variable}`}>
       <LightHeader latest={toNavArticles(articles)} />
-      <CoursesMastheadShowing courses={courses} upcoming={[]} />
+      <CoursesMastheadShowing courses={courses} upcoming={[]} hero={<HeroSplit courses={courses} />} />
     </div>
   );
 }

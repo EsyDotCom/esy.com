@@ -9,12 +9,19 @@ import { CoursesMastheadHero } from './CoursesMasthead';
 import { ComingSoonLedger, NowShowingBand } from './CoursesNowShowing';
 import { courseHref, lessonsOf, minutesOf, newestFirst, type CoursesIndexProps } from './shared';
 
-export default function CoursesMastheadShowing({ courses, upcoming }: CoursesIndexProps) {
+export default function CoursesMastheadShowing({
+  courses,
+  upcoming,
+  hero,
+}: CoursesIndexProps & {
+  /** Replaces the masthead (the intro-video heroes at /prototypes/courses-hero/). */
+  hero?: React.ReactNode;
+}) {
   const [lead, ...rest] = newestFirst(courses);
 
   return (
     <>
-      <CoursesMastheadHero courses={courses} />
+      {hero ?? <CoursesMastheadHero courses={courses} />}
       {lead && <NowShowingBand course={lead} n={courses.indexOf(lead) + 1} />}
 
       {/* Older courses, once there are any: the homepage's quiet list under the spotlight. */}

@@ -1,0 +1,74 @@
+/* The /courses intro-video heroes (CoursesHeroes.tsx, IntroVideo.tsx). */
+
+/* ── The player: a 16:9 poster that becomes the player ── */
+.civ-player { position: relative; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; background: #000; }
+.civ-player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.civ-poster { position: absolute; inset: 0; padding: 0; border: 0; background: #000; cursor: pointer; }
+.civ-poster img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease, opacity 0.2s ease; }
+.civ-poster:hover img { transform: scale(1.02); opacity: 0.92; }
+.civ-play {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center;
+  width: 76px; height: 76px; border-radius: 50%; padding-left: 4px; background: var(--nl-jade-bright); color: #06241F;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.35); transition: transform 0.2s ease;
+}
+.civ-poster:hover .civ-play { transform: translate(-50%, -50%) scale(1.06); }
+.civ-len { position: absolute; right: 12px; bottom: 12px; padding: 3px 9px; border-radius: 999px; background: rgba(6, 21, 39, 0.8); color: #fff; font-size: 0.78rem; font-weight: 600; }
+/* A: framed like the studio panel. */
+.civ-player--framed { border: 10px solid var(--nl-navy); border-radius: 22px; box-shadow: 0 40px 80px -40px rgba(10, 37, 64, 0.6); }
+/* B: the lesson page's thin jade ring. */
+.civ-player--ring { box-shadow: 0 0 0 12px rgba(255, 255, 255, 0.03), 0 0 0 13px rgba(0, 212, 170, 0.45), 0 50px 100px -40px rgba(0, 0, 0, 0.9); }
+
+.civ-sample { margin: 12px 0 0; font-size: 0.82rem; line-height: 1.5; color: var(--nl-ink-soft); }
+.civ-sample b { color: #9A5B00; }
+.civ-sample--onDark { color: rgba(255, 255, 255, 0.6); }
+.civ-sample--onDark b { color: #F6DDA3; }
+
+/* ── A · Split ── */
+.civ-split { padding: 72px 0 80px; }
+.civ-split-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 56px; align-items: center; }
+.civ-split-copy .nl-kicker { text-align: left; }
+.civ-split-title { text-align: left; }
+.civ-split-copy .nl-promise { text-align: left; margin-left: 0; }
+.civ-split-copy .nl-signup { margin-left: 0; }
+.civ-stats { margin-top: 20px; }
+.civ-split-video { margin: 0; }
+.civ-split-video figcaption { margin-top: 14px; font-size: 0.95rem; color: var(--nl-ink-soft); }
+.civ-split-video figcaption b { color: var(--nl-navy); }
+
+/* ── B · Screening ── */
+.civ-screening-top { padding-bottom: 56px; }
+.civ-room { padding: 56px 24px 72px; background: radial-gradient(55% 60% at 50% 70%, rgba(0, 212, 170, 0.16), transparent 70%), #0A1626; }
+.civ-room-inner { max-width: 880px; margin: 0 auto; }
+.civ-room-label { margin: 0 0 22px; text-align: center; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--nl-jade-bright); }
+.civ-room .civ-sample { text-align: center; margin-top: 24px; }
+/* The spotlight band follows the dark room; a seam keeps them apart. */
+.civ-room + .ci-show { border-top: 1px solid rgba(0, 212, 170, 0.3); }
+
+/* ── C · Pill ── */
+.civ-pill {
+  display: inline-flex; align-items: center; gap: 12px; margin: 4px 0 22px; padding: 6px 18px 6px 6px; border-radius: 999px;
+  border: 1px solid var(--nl-seam); background: #fff; cursor: pointer; text-align: left; font: inherit;
+  box-shadow: 0 10px 30px -18px rgba(10, 37, 64, 0.45); transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.civ-pill:hover { border-color: var(--nl-jade); transform: translateY(-2px); }
+.civ-pill-thumb { position: relative; width: 84px; height: 48px; border-radius: 999px; overflow: hidden; flex-shrink: 0; }
+.civ-pill-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.civ-pill-play {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%; padding-left: 2px; background: var(--nl-jade-bright); color: #06241F;
+}
+.civ-pill-text { display: grid; gap: 1px; }
+.civ-pill-text b { font-size: 0.95rem; color: var(--nl-navy); }
+.civ-pill-text span { font-size: 0.8rem; color: var(--nl-ink-soft); }
+/* The lightbox. */
+.civ-box { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(6, 21, 39, 0.82); backdrop-filter: blur(6px); }
+.civ-box-inner { position: relative; width: min(960px, 100%); }
+.civ-box-close {
+  position: absolute; right: 0; top: -46px; display: flex; align-items: center; justify-content: center; width: 36px; height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 50%; background: transparent; color: #fff; cursor: pointer;
+}
+.civ-box .civ-sample { text-align: center; }
+
+@media (max-width: 900px) {
+  .civ-split-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+}

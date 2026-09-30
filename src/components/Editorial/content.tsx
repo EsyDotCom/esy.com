@@ -6,7 +6,7 @@
  */
 import Link from 'next/link';
 
-export const STANDARDS_UPDATED = '2026-09-29';
+export const STANDARDS_UPDATED = '2026-09-30';
 
 export const updatedLabel = () =>
   new Date(`${STANDARDS_UPDATED}T12:00:00Z`).toLocaleDateString('en-US', {
@@ -47,8 +47,8 @@ export const COMPARISON: [string, string, string][] = [
   ['Starts from', 'Something that happened out there: a release, an update, a pricing change', 'Something we built, tested or figured out'],
   ['Answers', 'What changed, and does it matter to me?', 'How do I build or do this?'],
   ['Shelf life', 'Weeks. Dated and pinned to a version.', 'Months or years. Updated in place.'],
-  ['Speed', 'Within one or two days of the event', 'When it’s done right'],
-  ['Shape', '500 to 900 words in three parts', 'As long as the build needs: steps, video, results'],
+  ['Speed', 'Within a few days; a post about older news says when it happened', 'When it’s done right'],
+  ['Shape', '200 to 600 words: key facts, why it matters, what to check, sources', 'As long as the build needs: steps, video, results'],
   ['Headline', 'Needs a version or date to make sense', 'Makes sense without one'],
 ];
 
@@ -57,8 +57,8 @@ export const COMPARISON_SHORT: [string, string, string][] = [
   ['Starts from', 'Something out there', 'Something we built'],
   ['Answers', 'What changed?', 'How do I do it?'],
   ['Shelf life', 'Weeks', 'Years'],
-  ['Speed', '1 to 2 days', 'When it’s right'],
-  ['Shape', '500 to 900 words', 'As long as it needs'],
+  ['Speed', 'Days', 'When it’s right'],
+  ['Shape', '200 to 600 words', 'As long as it needs'],
   ['Headline', 'Needs a version', 'Timeless'],
 ];
 
@@ -78,14 +78,18 @@ export const ARTICLE_EXAMPLES = [
   'generate-clip-art-asset-walkthrough',
 ];
 
-/** The three parts every news post has, in order. */
+/** The parts every news post has, in order. */
 export const NEWS_PARTS: [string, string][] = [
-  ['What happened', 'The facts, with the version, the date, and a link to the primary source.'],
+  ['The story', 'Every post belongs to a story (Meta Muse, Google Search…), and the story line at the top links its other posts.'],
+  ['At a glance', 'The key facts in a few lines: what, who it’s for, where, price, when.'],
   [
     'Why it matters for marketers',
     'Our angle: what it changes for people who build marketing systems. Without this part it’s a rewrite of the announcement, and we don’t publish those.',
   ],
-  ['What to do', 'The next step, with links to the article or topic that goes deeper.'],
+  ['What happened', 'The facts in full, in our own words, with the version and the date.'],
+  ['What to check', 'The next step in your own setup.'],
+  ['Questions', 'The two to four questions people actually search, each answered in a sentence or two.'],
+  ['Sources', 'Every source, the company’s own page first, with what each one backs up.'],
 ];
 
 export interface Principle {
@@ -121,6 +125,10 @@ export const PRINCIPLES: Principle[] = [
           ))}
         </ol>
         <p>We publish at a pace we can keep: two good news posts a week beats seven thin ones.</p>
+        <p>
+          A post’s date is the day it went up here. When a post covers news from earlier, it says when that news
+          happened, and we never backdate a post.
+        </p>
       </>
     ),
   },
@@ -142,7 +150,8 @@ export const PRINCIPLES: Principle[] = [
       <>
         <p>News brings readers in. Articles are what they stay for.</p>
         <ul>
-          <li>Every news post ends with links to the articles and the topic that go deeper.</li>
+          <li>Every news post links its story, and the story’s page lists every post on it.</li>
+          <li>When an article goes deeper, the news post links to it.</li>
           <li>When a story keeps mattering, we write the article and link it from the news post.</li>
           <li>In the weekly email, an article leads and the week&apos;s news follows as a short roundup.</li>
         </ul>
@@ -154,8 +163,12 @@ export const PRINCIPLES: Principle[] = [
     title: 'Accuracy and sources',
     body: (
       <ul>
-        <li>Facts come from primary sources: release notes, documentation, pricing pages, and our own runs.</li>
+        <li>Facts come from primary sources: the company’s own announcement, release notes, documentation, pricing pages, and our own runs.</li>
+        <li>Every news post is checked against the company’s own page before it goes up. If we can’t check it there, it waits.</li>
+        <li>A company’s claim is written as theirs (&ldquo;Meta says&rdquo;), and reporting by another outlet is named and marked as reporting.</li>
+        <li>We write in our own words and don’t copy other outlets’ copy.</li>
         <li>Every number is checked against its source, and every news post names the version and the date.</li>
+        <li>Every news post ends with its sources, and what each one backs up.</li>
         <li>When we tested something ourselves, we say what we tested it on and how.</li>
       </ul>
     ),
@@ -178,6 +191,8 @@ export const PRINCIPLES: Principle[] = [
       <p>
         We write about AI tools, and we use them: for research, first drafts and images, mostly through Esy&apos;s own
         workflows and Claude. A person reviews, tests and signs off every piece, and AI images say so in their captions.
+        News covers aren&apos;t AI images: they&apos;re cards we draw from the post&apos;s own facts. We never have AI
+        draw a company&apos;s logo.
       </p>
     ),
   },
@@ -187,7 +202,9 @@ export const PRINCIPLES: Principle[] = [
     body: (
       <p>
         Esy, clip.art and SEOPage are ours. When a piece is about one of them, or uses one as the example, we say so. We
-        don&apos;t take payment to cover a product or to rank it.
+        don&apos;t take payment to cover a product or to rank it. The companies we cover don&apos;t sponsor, review or
+        approve what we write. Their logos appear only as their own files, unchanged, where their brand terms allow
+        news use; otherwise we just use their name.
       </p>
     ),
   },

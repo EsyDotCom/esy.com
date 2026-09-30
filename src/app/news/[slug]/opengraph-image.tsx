@@ -46,7 +46,6 @@ export default async function Image({ params }: { params: Promise<{ slug: string
       <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%', padding: '66px 72px', background: `linear-gradient(150deg, #061527 0%, ${NAVY} 60%, #0F3460 100%)`, color: '#fff', fontFamily: 'NotoSans' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           {logoSrc ? (
-            // eslint-disable-next-line @next/next/no-img-element -- the company's official SVG, unchanged
             <img src={logoSrc} height={50} alt="" style={{ height: 50 }} />
           ) : (
             <div style={{ fontSize: 54, fontWeight: 700 }}>{story.company.name}</div>

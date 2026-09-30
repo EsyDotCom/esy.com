@@ -1257,6 +1257,52 @@ export const PROTOTYPES: Prototype[] = [
     ],
   },
   {
+    slug: 'news-post',
+    name: 'The AI News post',
+    date: '2026-09-30',
+    headline: 'Three pages for one AI News post.',
+    intro:
+      'One real post, Meta\u2019s Muse for Small Business, written three ways: a brief news post, a post inside its story, and a post that leads with the key facts. Each carries news-article data for search.',
+    summary: 'Three directions for the AI News post page: brief, in the story, at a glance.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Brief, in the story, or at a glance',
+        summary:
+          'A reads like a news brief with the story in a rail. B puts the post inside its story with a timeline of the story\u2019s posts. C leads with a key-facts box and ends with short questions and answers.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'brief',
+        key: 'A',
+        name: 'Brief',
+        round: 1,
+        title: 'Meta\u2019s Muse agent comes to small businesses',
+        blurb: 'Headline, byline, image, then what happened, why it matters, the story and what to check, with the rest of the story and the signup in a rail.',
+        poster: ['#FFFFFF', '#0A2540'],
+      },
+      {
+        slug: 'in-story',
+        key: 'B',
+        name: 'In the story',
+        round: 1,
+        title: 'Meta\u2019s Muse agent comes to small businesses',
+        blurb: 'A navy bar with the Meta Muse story\u2019s posts on a timeline, this one lit, then the post, then \u201cEarlier in this story\u201d linking to the story page.',
+        poster: ['#0A2540', '#00D4AA'],
+      },
+      {
+        slug: 'at-a-glance',
+        key: 'C',
+        name: 'At a glance',
+        round: 1,
+        title: 'Meta\u2019s Muse agent comes to small businesses',
+        blurb: 'A key-facts box under the headline (what, for whom, where, price, control), then the post, then short questions and answers.',
+        poster: ['#F8F9FA', '#0A2540'],
+      },
+    ],
+  },
+  {
     slug: 'news',
     name: 'The news index',
     date: '2026-09-30',

@@ -241,3 +241,10 @@
 .nt-lanes-key { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 12px 0 0; padding: 12px 0 0; list-style: none; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.8rem; color: rgba(255, 255, 255, 0.7); }
 .nt-lanes-key li { display: inline-flex; align-items: center; gap: 8px; }
 .nt-lanes-key .nt-dot { width: 10px; height: 10px; cursor: default; box-shadow: none; }
+
+/* Real stories (2026-09-30): each post links its source and credits its image. */
+.nw-source { color: var(--nl-ink-soft); text-decoration: underline; text-decoration-color: var(--nl-seam); text-underline-offset: 2px; }
+.nw-source:hover { color: var(--nl-jade); }
+.nw-credit { position: absolute; right: 8px; bottom: 8px; z-index: 1; padding: 2px 7px; border-radius: 4px; background: rgba(6, 21, 39, 0.72); color: rgba(255, 255, 255, 0.85); font-size: 0.68rem; }
+.nt-tile .nw-credit { top: 8px; bottom: auto; }
+.nw-second .nw-source, .nw-live .nw-source, .nt-card .nw-source, .nw-desk .nw-source { display: none; }

@@ -13,11 +13,11 @@
 import { useState } from 'react';
 import { Art, type DesksProps } from './NewsFronts';
 import { Meta } from './NewsIndex';
-import { SAMPLE_NEWS, dayLabel, postsFor, type NewsLabel, type NewsPost, type NewsTrend } from './sample-news';
+import { NEWS_POSTS, dayLabel, postsFor, type NewsLabel, type NewsPost, type NewsTrend } from './news-examples';
 
 const LABELS: NewsLabel[] = ['Breaking', 'Tested', 'Follow-up', 'How-to', 'Explainer', 'Take'];
 
-const posts = SAMPLE_NEWS;
+const posts = NEWS_POSTS;
 
 /** A trend's heat as a small bar, shared by all three. */
 function Heat({ trend }: { trend: NewsTrend }) {

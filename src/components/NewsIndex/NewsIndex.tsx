@@ -9,21 +9,21 @@
  *   C · Briefing   — the week as a numbered briefing, each post split into
  *                    what happened and why it matters, with topic filters.
  *
- * All three read the same SAMPLE posts (sample-news.ts) and say so on the
- * page. Posts don't link yet: /news has no post pages.
+ * All three read the same example posts (news-examples.ts): real stories,
+ * rewritten, each linking its source. /news has no post pages yet.
  */
 import { useState } from 'react';
 import NewsletterSignup from '@/components/NewsletterHome/NewsletterSignup';
 import WeeklyEmailBand from '@/components/NewsletterHome/WeeklyEmailBand';
-import { NEWS_TOPICS, SAMPLE_NEWS, byDay, dayLabel, timeLabel, type NewsPost, type NewsTopic } from './sample-news';
+import { NEWS_TOPICS, NEWS_POSTS, byDay, dayLabel, timeLabel, type NewsPost, type NewsTopic } from './news-examples';
 
-const posts = SAMPLE_NEWS;
+const posts = NEWS_POSTS;
 
 /** Said plainly on every direction: these aren't real posts. */
 export function SampleNote({ onDark = false }: { onDark?: boolean }) {
   return (
     <p className={`nw-sample ${onDark ? 'nw-sample--onDark' : ''}`}>
-      Sample posts: /news hasn&apos;t published yet, so these show how the page reads when it&apos;s full.
+      Example posts: real September 2026 stories, rewritten for this prototype and linked to their sources. /news hasn&apos;t published yet.
     </p>
   );
 }
@@ -34,6 +34,7 @@ export function Meta({ post, time = false }: { post: NewsPost; time?: boolean })
       <span className={`nw-label nw-label--${post.label.toLowerCase()}`}>{post.label}</span>
       <span className="nw-topic">{post.topic}</span>
       <span>{time ? timeLabel(post.publishedAt) : dayLabel(post.publishedAt)}</span>
+      <a className="nw-source" href={post.source.url} target="_blank" rel="noopener noreferrer">via {post.source.name}</a>
       <span>{post.readMinutes} min read</span>
     </p>
   );
@@ -120,9 +121,11 @@ export function Masthead({ middle = 'AI tools for marketing, as they change' }: 
 
 /* ── B · Front page ── */
 export function NewsFrontPage() {
-  const [lead, ...rest] = posts;
+  // The newest story with an image leads, as an editor would pick it.
+  const lead = posts.find((p) => p.image) ?? posts[0];
+  const rest = posts.filter((p) => p !== lead);
   const second = rest.slice(0, 2);
-  const briefs = rest.slice(2);
+  const briefs = rest.slice(2, 8);
   return (
     <>
       <section className="nw-front">
@@ -133,7 +136,7 @@ export function NewsFrontPage() {
           <div className="nw-front-grid">
             <article className="nw-lead">
               {lead.image && (
-                <span className="nw-lead-art is-cutout">
+                <span className="nw-lead-art">
                   {/* eslint-disable-next-line @next/next/no-img-element -- a generated sample, fixed size */}
                   <img src={lead.image} alt="" />
                 </span>

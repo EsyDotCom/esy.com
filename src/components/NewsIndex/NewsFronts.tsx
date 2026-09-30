@@ -10,28 +10,27 @@
  *   F · Developing  — the lead is a running story with timestamped updates
  *                     under it, like a live blog; the rest follow as briefs.
  *
- * Same SAMPLE posts as round 1 (sample-news.ts), with a trend on each.
+ * Same example posts as round 1 (news-examples.ts): real stories, each with its story (trend).
  */
 import { useState } from 'react';
 import NewsletterSignup from '@/components/NewsletterHome/NewsletterSignup';
 import WeeklyEmailBand from '@/components/NewsletterHome/WeeklyEmailBand';
 import { Masthead, Meta, SampleNote } from './NewsIndex';
 import {
-  SAMPLE_NEWS, SAMPLE_TRENDS, SAMPLE_UPDATES, agoFrom, postsFor, timeLabel, type NewsPost, type NewsTrend,
-} from './sample-news';
+  DEVELOPING_TREND, NEWS_POSTS, NEWS_TRENDS, NOW, agoFrom, dayLabel, postsFor, type NewsPost, type NewsTrend,
+} from './news-examples';
 
-const posts = SAMPLE_NEWS;
-const NOW = posts[0].publishedAt;
+const posts = NEWS_POSTS;
 
 /* eslint-disable @next/next/no-img-element -- generated samples and site stills, fixed sizes */
 
-/** A post's image, contained on cream for cut-outs, covering otherwise. */
+/** A post's image (the company's own), with its credit. */
 export function Art({ post, className = 'nw-art' }: { post: NewsPost; className?: string }) {
   if (!post.image) return null;
-  const cutout = post.image.includes('/home-clipart/');
   return (
-    <span className={`${className} ${cutout ? 'is-cutout' : ''}`}>
+    <span className={className}>
       <img src={post.image} alt="" />
+      {post.imageCredit && <span className="nw-credit">Image: {post.imageCredit}</span>}
     </span>
   );
 }
@@ -42,7 +41,7 @@ function TrendBar({ active, onPick }: { active?: string | null; onPick?: (t: str
     <div className="nw-trendbar" role={onPick ? 'group' : undefined} aria-label="Trending">
       <span className="nw-trendbar-label"><i aria-hidden="true" /> Trending</span>
       <ol>
-        {SAMPLE_TRENDS.map((t, i) => {
+        {NEWS_TRENDS.map((t, i) => {
           const on = active === t.name;
           const body = (
             <>
@@ -69,7 +68,9 @@ function TrendBar({ active, onPick }: { active?: string | null; onPick?: (t: str
 /* ── D · Live front ── */
 export function NewsLiveFront() {
   const [trend, setTrend] = useState<string | null>(null);
-  const [lead, ...rest] = posts;
+  // The newest story with an image leads; everything else is the feed.
+  const lead = posts.find((p) => p.image) ?? posts[0];
+  const rest = posts.filter((p) => p !== lead);
   // The feed follows the trending bar: pick a trend and only its posts stay.
   const feed = trend ? posts.filter((p) => p.trend === trend) : rest;
   return (
@@ -150,13 +151,13 @@ function TrendColumns({ trends }: DesksProps) {
 export type DesksProps = { trends: NewsTrend[] };
 
 export function NewsTrendDesk({ Desks = TrendColumns }: { Desks?: React.ComponentType<DesksProps> }) {
-  const [top, ...others] = SAMPLE_TRENDS.filter((t) => postsFor(t.name, posts).length > 0);
+  const [top, ...others] = NEWS_TRENDS.filter((t) => postsFor(t.name, posts).length > 0);
   const [topLead, ...topMore] = postsFor(top.name, posts);
   return (
     <>
       <section className="nw-front">
         <div className="nl-container">
-          <Masthead middle={`${SAMPLE_TRENDS.length} trends this week`} />
+          <Masthead middle={`${NEWS_TRENDS.length} trends this week`} />
           <SampleNote />
 
           {/* The top trend: its lead post large, its follow-ups beside it. */}
@@ -199,9 +200,12 @@ export function NewsTrendDesk({ Desks = TrendColumns }: { Desks?: React.Componen
 
 /* ── F · Developing ── */
 export function NewsDeveloping() {
-  const [lead, ...rest] = posts;
+  // The running story leads; its own posts are the updates under it.
+  const story = postsFor(DEVELOPING_TREND, posts);
+  const lead = story[0];
+  const rest = posts.filter((p) => p.trend !== DEVELOPING_TREND);
   const second = rest.slice(0, 2);
-  const briefs = rest.slice(2);
+  const briefs = rest.slice(2, 8);
   return (
     <>
       <section className="nw-front">
@@ -212,17 +216,17 @@ export function NewsDeveloping() {
 
           <div className="nw-front-grid">
             <article className="nw-lead">
-              <p className="nw-developing"><i aria-hidden="true" /> Developing · updated {agoFrom(SAMPLE_UPDATES[0].at, NOW)}</p>
+              <p className="nw-developing"><i aria-hidden="true" /> Developing · {DEVELOPING_TREND} · updated {dayLabel(lead.publishedAt)}</p>
               <Art post={lead} className="nw-lead-art" />
               <Meta post={lead} />
               <h2 className="nw-lead-headline">{lead.headline}</h2>
               <p className="nw-lead-dek">{lead.dek}</p>
               {/* The running updates, newest first, on a timeline. */}
               <ol className="nw-updates" aria-label="Updates">
-                {SAMPLE_UPDATES.map((u) => (
-                  <li key={u.at}>
-                    <time dateTime={u.at}>{timeLabel(u.at)}</time>
-                    <p>{u.text}</p>
+                {story.map((u) => (
+                  <li key={u.slug}>
+                    <time dateTime={u.publishedAt}>{dayLabel(u.publishedAt)} · {u.label}</time>
+                    <p>{u.headline}</p>
                   </li>
                 ))}
               </ol>

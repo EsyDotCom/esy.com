@@ -1369,7 +1369,7 @@ export const PROTOTYPES: Prototype[] = [
         round: 3,
         mergeOf: ['D'],
         title: 'Meta\u2019s Muse agent comes to small businesses',
-        blurb: 'The story as a small dated timeline beside the headline; the key facts as a two-column spec sheet with an icon each.',
+        blurb: 'G\u2019s story line on top, named chapters you can click to preview; the key facts as a two-column spec sheet with an icon each.',
         poster: ['#FFFFFF', '#00A896'],
       },
     ],

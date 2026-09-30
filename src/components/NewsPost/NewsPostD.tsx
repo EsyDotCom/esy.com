@@ -8,8 +8,8 @@
  *                     between hairlines; key facts as a small-caps list, no box.
  *   H · Chapters    — the story as segments ("Part 3 of 3"); key facts as
  *                     tiles, the price and availability larger.
- *   I · Spec sheet  — the story as a small timeline beside the headline;
- *                     key facts as a two-column spec sheet with icons.
+ *   I · Spec sheet  — G's clickable story line on top; key facts as a
+ *                     two-column spec sheet with icons.
  */
 import {
   CalendarDays, Download, MapPin, Plug, ShieldCheck, Sparkles, Store, Tag, type LucideIcon,
@@ -130,29 +130,13 @@ export function PostSpecSheet() {
       <JsonLd />
       <FaqJsonLd />
       <article className="np np--spec">
-        <div className="nl-container npi-head">
-          <div>
-            <p className="np-crumbs"><span>AI News</span> <span aria-hidden="true">›</span> <span>{post.trend}</span></p>
-            <h1 className="np-title">{post.headline}</h1>
-            <p className="np-dek">{post.dek}</p>
-            <Byline />
-          </div>
-          {/* The story, small and dated, beside the headline. */}
-          <aside className="npi-story" aria-label={`The ${post.trend} story`}>
-            <p className="npi-story-name">The {post.trend} story</p>
-            <ol>
-              {CHAPTERS.map((p, i) => (
-                <li key={p.slug} className={i === HERE ? 'is-on' : ''}>
-                  <span className="npi-date">{dayLabel(p.publishedAt)}</span>
-                  <span className="npi-title">{p.headline}</span>
-                </li>
-              ))}
-            </ol>
-          </aside>
-        </div>
-        {/* Same columns as the head, so the body lines up under the headline. */}
-        <div className="nl-container npi-head npi-body">
-          <div>
+        {/* Left-aligned with the page, as I was before; not centered. */}
+        <div className="nl-container"><div className="npi-col">
+          {/* The story: G's named, clickable chapters (Zev's pick for I). */}
+          <StoryLine />
+          <h1 className="np-title">{post.headline}</h1>
+          <p className="np-dek">{post.dek}</p>
+          <Byline />
           <section className="npi-facts" aria-labelledby="npi-facts">
             <h2 id="npi-facts">At a glance</h2>
             <dl>
@@ -169,8 +153,7 @@ export function PostSpecSheet() {
             </dl>
           </section>
           <Rest />
-          </div>
-        </div>
+        </div></div>
       </article>
       <MoreNews />
       <WeeklyEmailBand />

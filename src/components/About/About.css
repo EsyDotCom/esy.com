@@ -125,3 +125,43 @@
   .ab-ledger li { grid-template-columns: minmax(0, 1fr); gap: 4px; }
   .ab-kit-facts div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
 }
+
+/* ══ Round 2: B, three ways ════════════════════════════════════════════ */
+/* The hero's signup (D, F) and in-hero numbers (F). */
+.ab-studio-signup { max-width: 460px; margin: 4px 0 24px; }
+.ab-studio-signup .nl-signup { margin: 0; max-width: none; }
+.ab-studio-facts { display: flex; flex-wrap: wrap; gap: 14px 34px; margin: 0 0 24px; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, 0.14); }
+.ab-studio-facts div { display: grid; }
+.ab-studio-facts dt { font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 2rem; line-height: 1; color: #fff; font-variant-numeric: lining-nums; }
+.ab-studio-facts dd { margin: 2px 0 0; font-size: 0.82rem; color: rgba(255, 255, 255, 0.65); }
+
+/* D · The path: a horizontal timeline, the last stop lit. */
+.ab-path { list-style: none; margin: 32px 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 20px; position: relative; }
+.ab-path::before { content: ''; position: absolute; left: 0; right: 0; top: 7px; height: 2px; background: linear-gradient(90deg, var(--nl-seam), var(--nl-jade)); }
+.ab-path li { position: relative; padding-top: 30px; }
+.ab-path-dot { position: absolute; left: 0; top: 0; width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 3px solid var(--nl-navy); }
+.ab-path li.is-now .ab-path-dot { background: var(--nl-jade); border-color: var(--nl-jade); box-shadow: 0 0 0 6px rgba(0, 168, 150, 0.18); }
+.ab-path-what { margin: 0; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-jade); }
+.ab-path-at { margin: 4px 0 6px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 1.5rem; line-height: 1.1; color: var(--nl-navy); }
+.ab-path-line { margin: 0; font-size: 0.93rem; line-height: 1.55; color: var(--nl-ink-soft); }
+
+/* E · Live: the run replay beside its story, then the explainer. */
+.ab-live { background: radial-gradient(60% 80% at 80% 20%, rgba(0, 212, 170, 0.14), transparent 70%), linear-gradient(150deg, #061527 0%, var(--nl-navy) 60%, #0F3460 100%); }
+.ab-live-grid { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 56px; align-items: center; }
+.ab-live-grid--flip { grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); }
+.ab-live-title { margin: 0 0 14px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: clamp(2rem, 3.6vw, 3rem); line-height: 1.05; color: #fff; }
+.ab-live-text { margin: 0 0 18px; font-size: 1.05rem; line-height: 1.7; color: rgba(255, 255, 255, 0.78); }
+.ab-live-link { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; color: var(--nl-jade-bright); text-decoration: none; }
+.ab-live-video .nl-creative-player { box-shadow: 0 30px 60px -30px rgba(10, 37, 64, 0.6); }
+
+/* F · Compact: the work as a slim row. */
+.ab-work--slim { padding: 56px 0; }
+.ab-work--slim .ab-card-art { aspect-ratio: 16 / 7; }
+.ab-work--slim .ab-card-line { display: none; }
+
+@media (max-width: 960px) {
+  .ab-path { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .ab-path::before { left: 7px; right: auto; top: 0; bottom: 0; width: 2px; height: auto; background: linear-gradient(180deg, var(--nl-seam), var(--nl-jade)); }
+  .ab-path li { padding: 0 0 26px 34px; }
+  .ab-live-grid, .ab-live-grid--flip { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+}

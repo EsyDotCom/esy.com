@@ -1271,6 +1271,12 @@ export const PROTOTYPES: Prototype[] = [
         summary:
           'A tells the story as a numbered letter under /engineer\u2019s masthead. B leads with the homepage\u2019s portrait hero, real numbers and the work as cards. C is practical: facts, a Now list, copyable bios and a headshot.',
       },
+      {
+        n: 2,
+        title: 'B, three ways',
+        summary:
+          'Zev picked B. D adds the signup to the hero and a timeline of the path, E makes the proof move (counting numbers, the run replay, the explainer, the film strip), and F tightens it to about two screens.',
+      },
     ],
     variants: [
       {
@@ -1299,6 +1305,36 @@ export const PROTOTYPES: Prototype[] = [
         title: 'Zev Uhuru',
         blurb: 'For people who want to feature him: quick facts, a dated Now list, short and long bios with copy buttons, a headshot download and every link.',
         poster: ['#F8F9FA', '#0A2540'],
+      },
+      {
+        slug: 'story',
+        key: 'D',
+        name: 'Studio · Story',
+        round: 2,
+        mergeOf: ['B'],
+        title: 'Hi, I\u2019m Zev.',
+        blurb: 'B with the weekly email in the hero, and The path between the numbers and the work: fuboTV, Vroom, Esy, clip.art and SEOPage, The Marketing Engineer.',
+        poster: ['#0A2540', '#FFFFFF'],
+      },
+      {
+        slug: 'live',
+        key: 'E',
+        name: 'Studio · Live',
+        round: 2,
+        mergeOf: ['B'],
+        title: 'Hi, I\u2019m Zev.',
+        blurb: 'B with the proof moving: the numbers count up, the clip.art run replays, the explainer plays, and the film runs as a strip.',
+        poster: ['#071323', '#00D4AA'],
+      },
+      {
+        slug: 'compact',
+        key: 'F',
+        name: 'Studio · Compact',
+        round: 2,
+        mergeOf: ['B'],
+        title: 'Hi, I\u2019m Zev.',
+        blurb: 'B in about two screens: the numbers and signup in the hero, the work as a slim row, the story beside the contact.',
+        poster: ['#0A2540', '#F8F9FA'],
       },
     ],
   },

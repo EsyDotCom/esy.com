@@ -6,6 +6,7 @@ import { findPrototype } from '@/components/prototypes/registry';
 import AboutLetter from '@/components/About/AboutLetter';
 import AboutStudio from '@/components/About/AboutStudio';
 import AboutPressKit from '@/components/About/AboutPressKit';
+import { AboutCompact, AboutLive, AboutStory } from '@/components/About/AboutStudioVariants';
 import { toNavArticles } from '@/lib/nav-articles';
 import { getAllAgenticArticles } from '@/lib/published-articles';
 import '@/components/NewsletterHome/NewsletterHome.css';
@@ -18,6 +19,10 @@ const LAYOUTS: Record<string, React.ComponentType> = {
   letter: AboutLetter,
   studio: AboutStudio,
   'press-kit': AboutPressKit,
+  // Round 2: three takes on B.
+  story: AboutStory,
+  live: AboutLive,
+  compact: AboutCompact,
 };
 
 const prototype = findPrototype('about')!;

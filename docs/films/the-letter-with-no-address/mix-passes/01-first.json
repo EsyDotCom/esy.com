@@ -1,0 +1,365 @@
+{
+ "integrated": {
+  "mix": -15,
+  "dialogue": -13.6
+ },
+ "truePeak": 1.93,
+ "dialogueOverMusic": 16.9,
+ "windows": {
+  "count": 1654,
+  "under0": 64,
+  "under10": 532,
+  "under15": 974,
+  "worst": [
+   {
+    "t": 63.3,
+    "margin": -16.7
+   },
+   {
+    "t": 63.2,
+    "margin": -16
+   },
+   {
+    "t": 63.1,
+    "margin": -15.2
+   },
+   {
+    "t": 63,
+    "margin": -14.5
+   }
+  ]
+ },
+ "quietDialogueWindows": 74,
+ "perLine": [
+  {
+   "id": "2.1",
+   "file": "lines/2.1-0.mp3",
+   "at": 7.6,
+   "dur": 4.88,
+   "d": -17.3,
+   "overMusic": 16.5,
+   "overSfx": 5.4,
+   "duck": 0.13
+  },
+  {
+   "id": "2.1b",
+   "file": "lines/2.1b-0.mp3",
+   "at": 13.78,
+   "dur": 5.04,
+   "d": -16.2,
+   "overMusic": 15.8,
+   "overSfx": 15.9,
+   "duck": 0.13
+  },
+  {
+   "id": "2.2",
+   "file": "lines/2.2-0.mp3",
+   "at": 20.12,
+   "dur": 2.32,
+   "d": -14.8,
+   "overMusic": 17.3,
+   "overSfx": 51.4,
+   "duck": 0.13
+  },
+  {
+   "id": "2.3",
+   "file": "lines/2.3-0.mp3",
+   "at": 23.74,
+   "dur": 1.04,
+   "d": -13.4,
+   "overMusic": 20.7,
+   "overSfx": null,
+   "duck": 0.13
+  },
+  {
+   "id": "2.4",
+   "file": "lines/2.4-0.mp3",
+   "at": 26.74,
+   "dur": 6.64,
+   "d": -18.5,
+   "overMusic": 13.5,
+   "overSfx": null,
+   "duck": 0.13
+  },
+  {
+   "id": "2.6",
+   "file": "lines/2.6-0.mp3",
+   "at": 37.68,
+   "dur": 3.12,
+   "d": -12.7,
+   "overMusic": 16.7,
+   "overSfx": null,
+   "duck": 0.13
+  },
+  {
+   "id": "2.6",
+   "file": "lines/2.6-1.mp3",
+   "at": 41.15,
+   "dur": 4.4,
+   "d": -17.7,
+   "overMusic": 18.3,
+   "overSfx": null,
+   "duck": 0.13
+  },
+  {
+   "id": "2.8",
+   "file": "lines/2.8-0.mp3",
+   "at": 49.85,
+   "dur": 3.76,
+   "d": -16.2,
+   "overMusic": 20.1,
+   "overSfx": null,
+   "duck": 0.13
+  },
+  {
+   "id": "2.9",
+   "file": "lines/2.9-0.mp3",
+   "at": 57.91,
+   "dur": 5.6,
+   "d": -17,
+   "overMusic": 22.3,
+   "overSfx": null,
+   "duck": 0.13
+  },
+  {
+   "id": "4.1",
+   "file": "lines/4.1-0.mp3",
+   "at": 69.81,
+   "dur": 1.28,
+   "d": -9.3,
+   "overMusic": 41.3,
+   "overSfx": 26.4,
+   "duck": 0.13
+  },
+  {
+   "id": "4.1",
+   "file": "lines/4.1-1.mp3",
+   "at": 71.44,
+   "dur": 1.36,
+   "d": -21.6,
+   "overMusic": 16.3,
+   "overSfx": 38.6,
+   "duck": 0.13
+  },
+  {
+   "id": "4.1",
+   "file": "lines/4.1-2.mp3",
+   "at": 73.15,
+   "dur": 1.36,
+   "d": -14.4,
+   "overMusic": 28.4,
+   "overSfx": null,
+   "duck": 0.13
+  },
+  {
+   "id": "4.2",
+   "file": "lines/4.2-0.mp3",
+   "at": 75.81,
+   "dur": 4.16,
+   "d": -13.5,
+   "overMusic": 27.1,
+   "overSfx": null,
+   "duck": 0.13
+  },
+  {
+   "id": "4.3",
+   "file": "lines/4.3-0.mp3",
+   "at": 81.27,
+   "dur": 3.84,
+   "d": -13.1,
+   "overMusic": 27.8,
+   "overSfx": 16.3,
+   "duck": 0.13
+  },
+  {
+   "id": "4.4",
+   "file": "lines/4.4-0.mp3",
+   "at": 86.41,
+   "dur": 2,
+   "d": -13.2,
+   "overMusic": 26.1,
+   "overSfx": null,
+   "duck": 0.13
+  },
+  {
+   "id": "4.4",
+   "file": "lines/4.4-1.mp3",
+   "at": 88.76,
+   "dur": 1.68,
+   "d": -17.3,
+   "overMusic": 22.1,
+   "overSfx": null,
+   "duck": 0.13
+  },
+  {
+   "id": "4.5",
+   "file": "lines/4.5-0.mp3",
+   "at": 91.74,
+   "dur": 4.72,
+   "d": -13.2,
+   "overMusic": 22.4,
+   "overSfx": null,
+   "duck": 0.13
+  },
+  {
+   "id": "5.1",
+   "file": "lines/5.1-0.mp3",
+   "at": 97.76,
+   "dur": 5.44,
+   "d": -12.9,
+   "overMusic": 18.2,
+   "overSfx": null,
+   "duck": 0.13
+  },
+  {
+   "id": "5.2",
+   "file": "lines/5.2-0.mp3",
+   "at": 104.5,
+   "dur": 1.92,
+   "d": -10.8,
+   "overMusic": 19,
+   "overSfx": null,
+   "duck": 0.13
+  },
+  {
+   "id": "5.2",
+   "file": "lines/5.2-1.mp3",
+   "at": 106.77,
+   "dur": 5.52,
+   "d": -11.7,
+   "overMusic": 11.4,
+   "overSfx": 7.6,
+   "duck": 0.13
+  },
+  {
+   "id": "5.3",
+   "file": "lines/5.3-0.mp3",
+   "at": 113.59,
+   "dur": 4.08,
+   "d": -13.1,
+   "overMusic": 17.4,
+   "overSfx": null,
+   "duck": 0.13
+  },
+  {
+   "id": "5.4",
+   "file": "lines/5.4-0.mp3",
+   "at": 121.97,
+   "dur": 8.4,
+   "d": -13.6,
+   "overMusic": 16.6,
+   "overSfx": null,
+   "duck": 0.13
+  },
+  {
+   "id": "6.2",
+   "file": "lines/6.2-0.mp3",
+   "at": 136.67,
+   "dur": 1.44,
+   "d": -18,
+   "overMusic": 13.1,
+   "overSfx": null,
+   "duck": 0.13
+  },
+  {
+   "id": "7.2",
+   "file": "lines/7.2-0.mp3",
+   "at": 146.71,
+   "dur": 2.16,
+   "d": -14.2,
+   "overMusic": null,
+   "overSfx": null,
+   "duck": 0.13
+  },
+  {
+   "id": "7.5",
+   "file": "lines/7.5-0.mp3",
+   "at": 160.47,
+   "dur": 1.84,
+   "d": -14.9,
+   "overMusic": 15.9,
+   "overSfx": null,
+   "duck": 0.13
+  },
+  {
+   "id": "7.6",
+   "file": "lines/7.6-0.mp3",
+   "at": 163.61,
+   "dur": 9.52,
+   "d": -13.5,
+   "overMusic": 16.4,
+   "overSfx": null,
+   "duck": 0.13
+  },
+  {
+   "id": "7.6b",
+   "file": "lines/7.6b-0.mp3",
+   "at": 174.43,
+   "dur": 4.72,
+   "d": -14.7,
+   "overMusic": 13.6,
+   "overSfx": null,
+   "duck": 0.13
+  },
+  {
+   "id": "7.7",
+   "file": "lines/7.7-0.mp3",
+   "at": 181.25,
+   "dur": 2.32,
+   "d": -14.6,
+   "overMusic": 16.8,
+   "overSfx": null,
+   "duck": 0.13
+  },
+  {
+   "id": "8.1",
+   "file": "lines/8.1-0.mp3",
+   "at": 194.17,
+   "dur": 2.08,
+   "d": -15.1,
+   "overMusic": 41.7,
+   "overSfx": 20.6,
+   "duck": 0.13
+  },
+  {
+   "id": "8.1",
+   "file": "lines/8.1-1.mp3",
+   "at": 196.6,
+   "dur": 1.6,
+   "d": -13.3,
+   "overMusic": 29.4,
+   "overSfx": 23.4,
+   "duck": 0.13
+  },
+  {
+   "id": "8.2",
+   "file": "lines/8.2-0.mp3",
+   "at": 199.5,
+   "dur": 1.44,
+   "d": -12.6,
+   "overMusic": 24.7,
+   "overSfx": 7.1,
+   "duck": 0.13
+  },
+  {
+   "id": "8.2",
+   "file": "lines/8.2-1.mp3",
+   "at": 201.29,
+   "dur": 1.04,
+   "d": -13.1,
+   "overMusic": 18.3,
+   "overSfx": 16.3,
+   "duck": 0.13
+  },
+  {
+   "id": "8.3",
+   "file": "lines/8.3-0.mp3",
+   "at": 203.63,
+   "dur": 5.76,
+   "d": -21.2,
+   "overMusic": 11.7,
+   "overSfx": null,
+   "duck": 0.13
+  }
+ ]
+}

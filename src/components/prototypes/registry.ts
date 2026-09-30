@@ -1257,6 +1257,52 @@ export const PROTOTYPES: Prototype[] = [
     ],
   },
   {
+    slug: 'news',
+    name: 'The news index',
+    date: '2026-09-30',
+    headline: 'Three front doors for esy.com/news.',
+    intro:
+      'The Marketing Engineer is adding news: short, dated posts on what changed in the AI tools behind marketing, and why it matters. These are three ways to open the section. The posts are samples until the first real ones publish.',
+    summary: 'Three directions for the /news index: a dated wire, a newspaper front page, and a weekly briefing.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Wire, front page, or briefing',
+        summary:
+          'A is a newswire grouped by day, with the time and a \u201cwhy it matters\u201d line on every post. B is a newspaper front: one lead story, two beside it, the rest in brief. C is the week as a numbered briefing you can filter by topic.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'wire',
+        key: 'A',
+        name: 'Wire',
+        round: 1,
+        title: 'News',
+        blurb: 'Posts grouped by day with the time, the topic and why it matters, beside a sticky rail with the weekly email and the topics.',
+        poster: ['#FFFFFF', '#0A2540'],
+      },
+      {
+        slug: 'front-page',
+        key: 'B',
+        name: 'Front page',
+        round: 1,
+        title: 'News',
+        blurb: 'A newspaper masthead with today\u2019s date, one lead story with an image, two stories beside it, then the rest in brief.',
+        poster: ['#F8F9FA', '#0A2540'],
+      },
+      {
+        slug: 'briefing',
+        key: 'C',
+        name: 'Briefing',
+        round: 1,
+        title: 'This week, briefly.',
+        blurb: 'A navy hero with the week\u2019s dates and the signup, then each post numbered and split into what happened and why it matters, with topic filters.',
+        poster: ['#0A2540', '#00D4AA'],
+      },
+    ],
+  },
+  {
     slug: 'about',
     name: 'The about page',
     date: '2026-09-29',

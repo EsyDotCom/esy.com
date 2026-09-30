@@ -1,0 +1,78 @@
+/* ClipArtRunReplay: a real run, replayed, in a light app window on the navy
+ * case-study band. */
+.cr { border-radius: 16px; overflow: hidden; background: #fff; color: #102033; box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.7); font-family: var(--font-inter), system-ui, sans-serif; }
+.cr-bar { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: #F3F5F8; border-bottom: 1px solid rgba(10, 37, 64, 0.08); font-size: 0.78rem; }
+.cr-dots { display: inline-flex; gap: 6px; }
+.cr-dots i { width: 10px; height: 10px; border-radius: 50%; background: #D5DBE3; }
+.cr-bar-title { font-weight: 600; color: #0A2540; }
+.cr-bar-id { margin-left: auto; font-family: var(--font-geist-mono), ui-monospace, monospace; color: #6B7C8F; }
+
+.cr-body { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 0; min-height: 360px; }
+.cr-side { padding: 16px; border-right: 1px solid rgba(10, 37, 64, 0.08); display: flex; flex-direction: column; gap: 12px; }
+.cr-label { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #6B7C8F; }
+.cr-prompt { padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(10, 37, 64, 0.1); transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+.cr-prompt.is-live { border-color: #00A896; box-shadow: 0 0 0 3px rgba(0, 168, 150, 0.12); }
+.cr-prompt p { margin: 4px 0 8px; font-size: 0.85rem; line-height: 1.4; color: #0A2540; }
+.cr-chips { display: flex; gap: 6px; }
+.cr-chips b { padding: 2px 8px; border-radius: 999px; background: #EEF2F6; font-size: 0.68rem; font-weight: 600; color: #41566D; }
+
+.cr-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.cr-step { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; align-items: center; padding: 6px 8px; border-radius: 8px; transition: background 0.3s ease, opacity 0.3s ease; }
+.cr-step-icon { display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid #CBD3DD; font-size: 0.66rem; font-weight: 700; color: #6B7C8F; }
+.cr-step-text { display: grid; gap: 1px; }
+.cr-step-text b { font-size: 0.8rem; color: #0A2540; }
+.cr-step-text span { font-size: 0.7rem; color: #6B7C8F; }
+.cr-step.is-wait { opacity: 0.45; }
+.cr-step.is-live { background: rgba(0, 168, 150, 0.08); }
+.cr-step.is-live .cr-step-icon { border-color: #00A896; color: #00A896; animation: cr-pulse 1s ease-in-out infinite; }
+.cr-step.is-done .cr-step-icon { border-color: #00A896; background: #00A896; color: #fff; }
+.cr-step.is-done.is-skipped .cr-step-icon { border-color: #CBD3DD; background: #EEF2F6; color: #6B7C8F; }
+@keyframes cr-pulse { 50% { box-shadow: 0 0 0 4px rgba(0, 168, 150, 0.18); } }
+
+.cr-stage { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+.cr-canvas { position: relative; aspect-ratio: 1; border-radius: 12px; overflow: hidden; background: #F3F5F8; }
+/* The checkerboard that says "transparent", once the background is gone. */
+.cr-canvas.is-cut { background: repeating-conic-gradient(#EEF1F4 0% 25%, #fff 0% 50%) 50% / 20px 20px; }
+.cr-canvas.is-empty { display: flex; align-items: center; justify-content: center; }
+.cr-waiting { font-size: 0.8rem; color: #6B7C8F; }
+.cr-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: opacity 0.6s ease, transform 0.6s ease; }
+.cr-img--render { animation: cr-in 0.7s ease both; }
+.cr-img--render.is-gone { opacity: 0; }
+.cr-img--cut { opacity: 0; }
+.cr-img--cut.is-on { opacity: 1; }
+@keyframes cr-in { from { opacity: 0; transform: scale(0.96); filter: blur(6px); } }
+.cr-badge {
+  position: absolute; left: 10px; top: 10px; padding: 5px 10px; border-radius: 999px; background: #00A896; color: #fff;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em; animation: cr-in 0.4s ease both;
+}
+.cr-meta { opacity: 0; transform: translateY(4px); transition: opacity 0.4s ease, transform 0.4s ease; }
+.cr-meta.is-on { opacity: 1; transform: none; }
+.cr-meta-title { margin: 0; font-size: 0.85rem; font-weight: 700; color: #0A2540; }
+.cr-meta-tags { margin: 2px 0 0; font-size: 0.7rem; color: #00A896; }
+
+.cr-receipt { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; padding: 10px 16px; border-top: 1px solid rgba(10, 37, 64, 0.08); background: #F8FAFB; font-size: 0.78rem; color: #41566D; opacity: 0.35; transition: opacity 0.4s ease; }
+.cr-receipt.is-on { opacity: 1; }
+.cr-receipt b { color: #0A2540; font-variant-numeric: tabular-nums; }
+.cr-receipt-live { margin-left: auto; padding: 3px 10px; border-radius: 999px; background: rgba(0, 168, 150, 0.12); color: #007F72; font-weight: 700; }
+
+@media (max-width: 640px) {
+  .cr-body { grid-template-columns: minmax(0, 1fr); }
+  .cr-side { border-right: 0; border-bottom: 1px solid rgba(10, 37, 64, 0.08); }
+  .cr-stage { order: -1; }
+  .cr-canvas { max-width: 260px; margin: 0 auto; width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cr-img, .cr-step, .cr-meta, .cr-receipt { transition: none; animation: none; }
+}
+
+/* ClipArtVisuals C: one subject, six styles, on light tiles. */
+.cs { margin: 0; }
+.cs-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.cs-tile { position: relative; aspect-ratio: 1; border-radius: 14px; background: #F4F1EA; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.cs-tile img { width: 86%; height: 86%; object-fit: contain; transition: transform 0.3s ease; }
+.cs-tile:hover img { transform: scale(1.05) rotate(-2deg); }
+.cs-tile span {
+  position: absolute; left: 10px; bottom: 8px; padding: 2px 9px; border-radius: 999px; background: rgba(10, 37, 64, 0.85); color: #fff;
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.04em;
+}
+.cs figcaption { margin-top: 14px; font-size: 0.9rem; line-height: 1.5; color: rgba(255, 255, 255, 0.72); }

@@ -1,0 +1,43 @@
+/* FilmStrip: a film as a running strip of frames, on the film band's night
+ * (.nl-lab--film). Ported from the "Apps and Films Apart" prototype. */
+
+.fs-stack { display: grid; gap: 28px; }
+.fs-film {
+  display: grid; grid-template-columns: 340px minmax(0, 1fr); border-radius: 14px; overflow: hidden;
+  background: #04050c; box-shadow: 0 0 0 1px rgba(227, 182, 96, 0.22);
+}
+.fs-card { display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: 32px 30px; border-right: 1px solid rgba(227, 182, 96, 0.2); }
+.fs-card small { font: 600 0.7rem/1 var(--font-geist-mono), ui-monospace, monospace; letter-spacing: 0.16em; text-transform: uppercase; color: #E3B660; }
+.fs-card h3 { margin: 0; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 2.4rem; line-height: 1; letter-spacing: -0.02em; }
+.fs-card h3 a { color: #F6DDA3; text-decoration: none; }
+.fs-card h3 a:hover { color: #fff; }
+.fs-card p { margin: 0; font-size: 0.95rem; line-height: 1.6; color: rgba(255, 255, 255, 0.72); }
+.fs-meta { font: 500 0.74rem/1.6 var(--font-geist-mono), ui-monospace, monospace; color: rgba(255, 255, 255, 0.55); }
+.fs-cta { align-self: flex-start; }
+
+/* The strip: sprocket holes top and bottom, the frames running between. */
+.fs-strip { position: relative; display: flex; align-items: center; overflow: hidden; padding: 26px 0; background: #0b0b0b; }
+.fs-strip::before, .fs-strip::after {
+  content: ''; position: absolute; left: 0; right: 0; z-index: 2; height: 14px; opacity: 0.85;
+  background: repeating-linear-gradient(90deg, transparent 0 10px, #d8d0bc 10px 24px, transparent 24px 34px);
+}
+.fs-strip::before { top: 6px; }
+.fs-strip::after { bottom: 6px; }
+.fs-run { display: flex; gap: 10px; width: max-content; animation: fs-run 70s linear infinite; }
+.fs-strip:hover .fs-run { animation-play-state: paused; }
+@keyframes fs-run { to { transform: translateX(-50%); } }
+.fs-run figure { position: relative; flex: 0 0 auto; height: 270px; aspect-ratio: 16 / 9; margin: 0; border-radius: 2px; overflow: hidden; }
+.fs-run img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.fs-run figcaption { position: absolute; left: 8px; bottom: 6px; font: 600 0.62rem/1 var(--font-geist-mono), ui-monospace, monospace; letter-spacing: 0.14em; color: #ff9d2e; }
+
+/* No motion for people who ask for none: a still strip they can scroll. */
+@media (prefers-reduced-motion: reduce) {
+  .fs-run { animation: none; }
+  .fs-strip { overflow-x: auto; }
+}
+
+@media (max-width: 900px) {
+  .fs-film { grid-template-columns: minmax(0, 1fr); }
+  .fs-card { border-right: 0; border-bottom: 1px solid rgba(227, 182, 96, 0.2); padding: 26px 22px; }
+  .fs-run figure { height: 180px; }
+}

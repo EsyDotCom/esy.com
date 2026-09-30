@@ -25,6 +25,10 @@ Per the shared workflow's "When Direct Push To Main Is Allowed" section, this is
 
 When in doubt, open the PR — agent overhead is cheap, broken `main` isn't.
 
+## AI News (esy.com/news)
+
+Before writing, checking or publishing anything in `src/data/news/` or `/news`, read `docs/news/README.md`. Every fact is checked against the company's own announcement (otherwise the post stays a draft), posts carry their real publish date, there are no labels, and company logos appear only as the companies' own files where their terms allow news use. Never generate a logo.
+
 ## Key Documentation (In This Repo)
 
 - `../../../org-docs/brand/ESY_DEFINITION.md` (org.esy) — Canonical brand definition and product philosophy (moved out of this repo; `docs/brand/ESY_DEFINITION.md` is now a pointer stub)

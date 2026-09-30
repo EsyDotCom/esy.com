@@ -280,36 +280,44 @@ export default function Footer () {
             </div>
           </div>
           
-          <FooterColumn 
+          {/* Four columns (2026-09-30): the product, what to read, what to
+              watch and learn from, and the company. */}
+          <FooterColumn
             title="Product"
             links={[
               { href: "https://os.esy.com", text: "OS" },
+              { href: "/docs", text: "Docs" },
               // Managed and Pricing rejoin when their pages ship (parked
               // 2026-09-02 — a footer link to an unready page is a promise
               // the site can't keep).
             ]}
           />
 
-          <FooterColumn 
-            title="Learn"
+          <FooterColumn
+            title="Read"
             links={[
-              // The newsletter had no way in from the footer; it sits above
-              // the reference links because it's the thing to subscribe to.
+              // The newsletter first: it's the thing to subscribe to.
               { href: "/engineer/", text: "The Marketing Engineer" },
+              { href: "/news/", text: "AI News" },
               { href: "/topics/", text: "Topics" },
-              { href: "/courses/", text: "Courses" },
-              { href: "/films/", text: "Films" },
-              { href: "/docs", text: "Docs" },
-            ]}
-          />
-
-          <FooterColumn 
-            title="Company"
-            links={[
-              { href: "/about/", text: "About" },
               // Where readers (and search engines) look for how the
               // publication decides what to publish and keeps it right.
               { href: "/editorial-standards/", text: "Editorial standards" },
+            ]}
+          />
+
+          <FooterColumn
+            title="Watch & learn"
+            links={[
+              { href: "/courses/", text: "Courses" },
+              { href: "/films/", text: "Films" },
+            ]}
+          />
+
+          <FooterColumn
+            title="Company"
+            links={[
+              { href: "/about/", text: "About" },
               { href: "mailto:zev@esy.com", text: "Contact" },
               { href: "/privacy/", text: "Privacy" },
               { href: "/terms/", text: "Terms" },

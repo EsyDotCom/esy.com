@@ -17,7 +17,7 @@ import NewsletterSignup from '@/components/NewsletterHome/NewsletterSignup';
 import WeeklyEmailBand from '@/components/NewsletterHome/WeeklyEmailBand';
 import { Masthead, Meta, SampleNote } from './NewsIndex';
 import {
-  SAMPLE_NEWS, SAMPLE_TRENDS, SAMPLE_UPDATES, agoFrom, postsFor, timeLabel, type NewsPost,
+  SAMPLE_NEWS, SAMPLE_TRENDS, SAMPLE_UPDATES, agoFrom, postsFor, timeLabel, type NewsPost, type NewsTrend,
 } from './sample-news';
 
 const posts = SAMPLE_NEWS;
@@ -26,7 +26,7 @@ const NOW = posts[0].publishedAt;
 /* eslint-disable @next/next/no-img-element -- generated samples and site stills, fixed sizes */
 
 /** A post's image, contained on cream for cut-outs, covering otherwise. */
-function Art({ post, className = 'nw-art' }: { post: NewsPost; className?: string }) {
+export function Art({ post, className = 'nw-art' }: { post: NewsPost; className?: string }) {
   if (!post.image) return null;
   const cutout = post.image.includes('/home-clipart/');
   return (
@@ -117,7 +117,39 @@ export function NewsLiveFront() {
 }
 
 /* ── E · Trend desk ── */
-export function NewsTrendDesk() {
+/** E's own layout for the other trends: the next four, one column each. */
+function TrendColumns({ trends }: DesksProps) {
+  return (
+    <div className="nw-desks">
+      {trends.slice(0, 4).map((t) => {
+        const list = postsFor(t.name, posts);
+        return (
+          <section key={t.name} className="nw-desk" aria-label={t.name}>
+            <div className="nw-desk-head">
+              <h2>{t.name}</h2>
+              <span className="nw-heat" style={{ ['--heat' as string]: `${t.heat}%` }} aria-label={`Heat ${t.heat} of 100`} />
+            </div>
+            <p className="nw-desk-line">{t.line}</p>
+            <Art post={list.find((p) => p.image) ?? list[0]} className="nw-desk-art" />
+            <ol>
+              {list.map((p) => (
+                <li key={p.slug}>
+                  <h3 className="nw-brief-headline">{p.headline}</h3>
+                  <Meta post={p} />
+                </li>
+              ))}
+            </ol>
+          </section>
+        );
+      })}
+    </div>
+  );
+}
+
+/** The trends below E's lead, as round 3 lays them out (TrendSections.tsx). */
+export type DesksProps = { trends: NewsTrend[] };
+
+export function NewsTrendDesk({ Desks = TrendColumns }: { Desks?: React.ComponentType<DesksProps> }) {
   const [top, ...others] = SAMPLE_TRENDS.filter((t) => postsFor(t.name, posts).length > 0);
   const [topLead, ...topMore] = postsFor(top.name, posts);
   return (
@@ -157,30 +189,7 @@ export function NewsTrendDesk() {
             </div>
           </section>
 
-          {/* The other desks: the next four trends, hottest first, one column each. */}
-          <div className="nw-desks">
-            {others.slice(0, 4).map((t) => {
-              const list = postsFor(t.name, posts);
-              return (
-                <section key={t.name} className="nw-desk" aria-label={t.name}>
-                  <div className="nw-desk-head">
-                    <h2>{t.name}</h2>
-                    <span className="nw-heat" style={{ ['--heat' as string]: `${t.heat}%` }} aria-label={`Heat ${t.heat} of 100`} />
-                  </div>
-                  <p className="nw-desk-line">{t.line}</p>
-                  <Art post={list.find((p) => p.image) ?? list[0]} className="nw-desk-art" />
-                  <ol>
-                    {list.map((p) => (
-                      <li key={p.slug}>
-                        <h3 className="nw-brief-headline">{p.headline}</h3>
-                        <Meta post={p} />
-                      </li>
-                    ))}
-                  </ol>
-                </section>
-              );
-            })}
-          </div>
+          <Desks trends={others} />
         </div>
       </section>
       <WeeklyEmailBand />

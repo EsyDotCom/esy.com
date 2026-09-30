@@ -1277,6 +1277,12 @@ export const PROTOTYPES: Prototype[] = [
         summary:
           'Zev picked B: news has to feed and jump on trends. D adds a trending bar and a live feed beside the lead, E groups the front by trend with the hottest one leading, F makes the lead a developing story with timestamped updates.',
       },
+      {
+        n: 3,
+        title: 'E, three ways to show the other trends',
+        summary:
+          'Zev picked E. Its masthead and lead trend stay; the trends under it change. G sets each trend as a row of post cards, H as a board of tiles sized by heat, I as the week drawn in lanes with a dot per post.',
+      },
     ],
     variants: [
       {
@@ -1335,6 +1341,36 @@ export const PROTOTYPES: Prototype[] = [
         title: 'AI News',
         blurb: 'The lead is a running story with timestamped updates on a timeline, like a live blog, over B\u2019s two stories and the briefs.',
         poster: ['#F8F9FA', '#E5484D'],
+      },
+      {
+        slug: 'desk-rows',
+        key: 'G',
+        name: 'Trend desk \u00b7 Rows',
+        round: 3,
+        mergeOf: ['E'],
+        title: 'AI News',
+        blurb: 'Under E\u2019s lead, each trend is a full-width row: its rank, heat and line on the left, its posts as image cards on the right.',
+        poster: ['#FFFFFF', '#0A2540'],
+      },
+      {
+        slug: 'desk-board',
+        key: 'H',
+        name: 'Trend desk \u00b7 Board',
+        round: 3,
+        mergeOf: ['E'],
+        title: 'AI News',
+        blurb: 'Under E\u2019s lead, one tile per trend, sized by heat with its image behind it. Pick a tile and its posts open under the board.',
+        poster: ['#0A2540', '#F6DDA3'],
+      },
+      {
+        slug: 'desk-lanes',
+        key: 'I',
+        name: 'Trend desk \u00b7 Lanes',
+        round: 3,
+        mergeOf: ['E'],
+        title: 'AI News',
+        blurb: 'Under E\u2019s lead, the week as a chart: a lane per trend, a column per day, a dot per post coloured by its label.',
+        poster: ['#0A2540', '#00D4AA'],
       },
     ],
   },

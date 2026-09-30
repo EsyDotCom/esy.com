@@ -5,6 +5,7 @@ import PrototypeBar from '@/components/prototypes/PrototypeBar';
 import { findPrototype } from '@/components/prototypes/registry';
 import { NewsBriefing, NewsFrontPage, NewsWire } from '@/components/NewsIndex/NewsIndex';
 import { NewsDeveloping, NewsLiveFront, NewsTrendDesk } from '@/components/NewsIndex/NewsFronts';
+import { TrendBoard, TrendLanes, TrendRows } from '@/components/NewsIndex/TrendSections';
 import { toNavArticles } from '@/lib/nav-articles';
 import { getAllAgenticArticles } from '@/lib/published-articles';
 import '@/components/NewsletterHome/NewsletterHome.css';
@@ -22,6 +23,10 @@ const LAYOUTS: Record<string, React.ComponentType> = {
   'live-front': NewsLiveFront,
   'trend-desk': NewsTrendDesk,
   developing: NewsDeveloping,
+  // Round 3: E with three takes on the section under its hero.
+  'desk-rows': () => <NewsTrendDesk Desks={TrendRows} />,
+  'desk-board': () => <NewsTrendDesk Desks={TrendBoard} />,
+  'desk-lanes': () => <NewsTrendDesk Desks={TrendLanes} />,
 };
 
 const prototype = findPrototype('news')!;

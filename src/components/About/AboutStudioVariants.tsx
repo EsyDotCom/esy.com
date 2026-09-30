@@ -21,10 +21,10 @@ import CountUp from './CountUp';
 import { CREATIVE, WORK } from './content';
 import '@/components/NewsletterHome/RunReplays.css';
 
-/* The path: where the work came from. No dates, only the order. */
+/* The path: where the work came from, in order (Vroom 2016, fuboTV 2019). */
 const PATH = [
-  { at: 'fuboTV', what: 'Streaming apps', line: 'Shipping production web products: the streaming apps.' },
   { at: 'Vroom', what: 'Online car storefront', line: 'Shipping the storefront where people bought cars online.' },
+  { at: 'fuboTV', what: 'Streaming apps', line: 'Shipping production web products: the streaming apps.' },
   { at: 'Esy', what: 'The platform', line: 'Workflows that make marketing work, with every run recorded.' },
   { at: 'clip.art & SEOPage', what: 'Two businesses on Esy', line: 'Real properties with real traffic, run by the systems.' },
   { at: 'The Marketing Engineer', what: 'Teaching it', line: 'One email a week on building the AI systems that run marketing.' },

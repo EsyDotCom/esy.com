@@ -7,6 +7,7 @@ import AboutLetter from '@/components/About/AboutLetter';
 import AboutStudio from '@/components/About/AboutStudio';
 import AboutPressKit from '@/components/About/AboutPressKit';
 import { AboutCompact, AboutLive, AboutStory } from '@/components/About/AboutStudioVariants';
+import { AboutChapters, AboutDated, AboutProof } from '@/components/About/AboutCareer';
 import { toNavArticles } from '@/lib/nav-articles';
 import { getAllAgenticArticles } from '@/lib/published-articles';
 import '@/components/NewsletterHome/NewsletterHome.css';
@@ -23,6 +24,10 @@ const LAYOUTS: Record<string, React.ComponentType> = {
   story: AboutStory,
   live: AboutLive,
   compact: AboutCompact,
+  // Round 3: three takes on D, with the whole career.
+  dated: AboutDated,
+  chapters: AboutChapters,
+  proof: AboutProof,
 };
 
 const prototype = findPrototype('about')!;

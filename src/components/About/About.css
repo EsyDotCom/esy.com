@@ -165,3 +165,60 @@
   .ab-path li { padding: 0 0 26px 34px; }
   .ab-live-grid, .ab-live-grid--flip { grid-template-columns: minmax(0, 1fr); gap: 32px; }
 }
+
+/* ══ Round 3: D with the whole career ══════════════════════════════════ */
+/* G, I: the dated path. */
+.ab-path-year { margin: 0 0 2px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 1.05rem; color: var(--nl-ink-soft); font-variant-numeric: lining-nums; }
+.ab-path--dated .ab-path-at { margin-top: 0; }
+.ab-path--dated .ab-path-what { margin-bottom: 6px; }
+.ab-path li.is-gold .ab-path-dot { background: #E3B660; border-color: #B8862F; }
+.ab-path li.is-gold .ab-path-what { color: #A77A22; }
+
+/* H: chapters. */
+.ab-chapters-head { padding-bottom: 24px; }
+.ab-chapter { padding: 48px 0; border-top: 1px solid var(--nl-seam); }
+.ab-chapter--alt { background: var(--nl-bg-alt); }
+.ab-chapter-grid { display: grid; grid-template-columns: 220px minmax(0, 1fr) 220px; gap: 40px; align-items: start; }
+.ab-chapter-years { margin: 0; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 2.6rem; line-height: 1; color: var(--nl-navy); font-variant-numeric: lining-nums; }
+.ab-chapter-place { margin: 6px 0 0; font-size: 0.85rem; color: var(--nl-ink-soft); }
+.ab-chapter-role { margin: 0; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-jade); }
+.ab-chapter-at { margin: 4px 0 12px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 2rem; line-height: 1.1; color: var(--nl-navy); }
+.ab-chapter-proof { margin: 0; padding-left: 20px; list-style: disc; display: grid; gap: 8px; }
+.ab-chapter-proof li { font-size: 1.02rem; line-height: 1.65; color: var(--nl-ink); }
+.ab-chapter-proof li::marker { color: var(--nl-jade); }
+.ab-chapter-stat { margin: 0; display: grid; gap: 4px; padding: 18px 20px; border-radius: 16px; background: #fff; border: 1px solid var(--nl-seam); font-size: 0.88rem; line-height: 1.4; color: var(--nl-ink-soft); }
+.ab-chapter-stat b { font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-size: 2rem; line-height: 1; color: var(--nl-navy); font-variant-numeric: lining-nums; }
+/* The digital-assets years: the film band's night and gold. */
+.ab-chapter--gold { background: radial-gradient(60% 90% at 85% 0%, rgba(227, 182, 96, 0.16), transparent 70%), #07091A; border-top-color: rgba(227, 182, 96, 0.35); }
+.ab-chapter--gold .ab-chapter-years, .ab-chapter--gold .ab-chapter-at { color: #F6DDA3; }
+.ab-chapter--gold .ab-chapter-place, .ab-chapter--gold .ab-chapter-proof li { color: rgba(255, 255, 255, 0.8); }
+.ab-chapter--gold .ab-chapter-role { color: #E3B660; }
+.ab-chapter--gold .ab-chapter-proof li::marker { color: #E3B660; }
+.ab-chapter--gold .ab-chapter-stat { background: rgba(255, 255, 255, 0.04); border-color: rgba(227, 182, 96, 0.35); color: rgba(255, 255, 255, 0.7); }
+.ab-chapter--gold .ab-chapter-stat b { color: #F6DDA3; }
+/* Esy: the house navy and jade. */
+.ab-chapter--jade { background: linear-gradient(150deg, #061527 0%, var(--nl-navy) 60%, #0F3460 100%); border-top-color: rgba(0, 212, 170, 0.3); }
+.ab-chapter--jade .ab-chapter-years, .ab-chapter--jade .ab-chapter-at { color: #fff; }
+.ab-chapter--jade .ab-chapter-place, .ab-chapter--jade .ab-chapter-proof li { color: rgba(255, 255, 255, 0.8); }
+.ab-chapter--jade .ab-chapter-role { color: var(--nl-jade-bright); }
+.ab-chapter--jade .ab-chapter-stat { background: rgba(255, 255, 255, 0.05); border-color: rgba(0, 212, 170, 0.35); color: rgba(255, 255, 255, 0.7); }
+.ab-chapter--jade .ab-chapter-stat b { color: var(--nl-jade-bright); }
+
+/* I: the proof grid. */
+.ab-proof { list-style: none; margin: 28px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 2px solid var(--nl-navy); }
+.ab-proof li { display: grid; gap: 6px; align-content: start; padding: 26px 24px 28px 0; border-bottom: 1px solid var(--nl-seam); }
+.ab-proof li:not(:nth-child(3n + 1)) { padding-left: 24px; border-left: 1px solid var(--nl-seam); }
+.ab-proof b { font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 3rem; line-height: 1; color: var(--nl-navy); font-variant-numeric: lining-nums; }
+.ab-proof span { font-size: 1rem; line-height: 1.5; color: var(--nl-ink); }
+.ab-proof small { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-jade); }
+.ab-proof li.is-gold b { color: #B8862F; }
+.ab-proof li.is-gold small { color: #A77A22; }
+
+@media (max-width: 960px) {
+  .ab-chapter-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .ab-chapter-stat { justify-self: start; }
+  .ab-proof { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ab-proof li, .ab-proof li:not(:nth-child(3n + 1)) { padding: 22px 16px 22px 0; border-left: 0; }
+  .ab-proof li:nth-child(2n) { padding-left: 16px; border-left: 1px solid var(--nl-seam); }
+  .ab-facts-row { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}

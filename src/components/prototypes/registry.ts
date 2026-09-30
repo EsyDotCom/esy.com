@@ -1277,6 +1277,12 @@ export const PROTOTYPES: Prototype[] = [
         summary:
           'Zev picked B. D adds the signup to the hero and a timeline of the path, E makes the proof move (counting numbers, the run replay, the explainer, the film strip), and F tightens it to about two screens.',
       },
+      {
+        n: 3,
+        title: 'D, with the whole career',
+        summary:
+          'Zev picked D and added his r\u00e9sum\u00e9, crypto years included. G dates the path, H tells it as five chapters, I leads with six numbers from the r\u00e9sum\u00e9.',
+      },
     ],
     variants: [
       {
@@ -1335,6 +1341,36 @@ export const PROTOTYPES: Prototype[] = [
         title: 'Hi, I\u2019m Zev.',
         blurb: 'B in about two screens: the numbers and signup in the hero, the work as a slim row, the story beside the contact.',
         poster: ['#0A2540', '#F8F9FA'],
+      },
+      {
+        slug: 'dated',
+        key: 'G',
+        name: 'Story · Dated path',
+        round: 3,
+        mergeOf: ['D'],
+        title: 'Hi, I\u2019m Zev.',
+        blurb: 'D\u2019s path with years: Vroom 2016, fuboTV 2019, digital assets 2021, Esy 2024, now The Marketing Engineer. The numbers become #1 for \u201cAI clipart\u201d, 20,000+ pages, a seven-figure exit and 100+ tested pages.',
+        poster: ['#0A2540', '#E3B660'],
+      },
+      {
+        slug: 'chapters',
+        key: 'H',
+        name: 'Story · Chapters',
+        round: 3,
+        mergeOf: ['D'],
+        title: 'Hi, I\u2019m Zev.',
+        blurb: 'Five chapters with the years large, two proof points and a stat each. The digital-assets years sit in a night-and-gold band, Esy in navy and jade.',
+        poster: ['#07091A', '#E3B660'],
+      },
+      {
+        slug: 'proof',
+        key: 'I',
+        name: 'Story · Proof first',
+        round: 3,
+        mergeOf: ['D'],
+        title: 'Hi, I\u2019m Zev.',
+        blurb: 'Six numbers from the r\u00e9sum\u00e9, each tied to its chapter, then a compact dated path, the work and the story.',
+        poster: ['#FFFFFF', '#0A2540'],
       },
     ],
   },

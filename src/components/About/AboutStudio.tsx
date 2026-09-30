@@ -63,11 +63,11 @@ export function StudioHero({ signup = false, facts = false }: { signup?: boolean
 }
 
 /** The numbers, as a strip under the hero. */
-export function FactsStrip() {
+export function FactsStrip({ facts = STRONG_FACTS }: { facts?: { value: string; label: string }[] }) {
   return (
     <section className="ab-facts" aria-label="By the numbers">
-      <div className="nl-container ab-facts-row">
-        {STRONG_FACTS.map((f) => (
+      <div className="nl-container ab-facts-row" style={{ gridTemplateColumns: `repeat(${facts.length}, minmax(0, 1fr))` }}>
+        {facts.map((f) => (
           <p key={f.label}>
             <b>{f.value}</b>
             {f.label}
@@ -132,14 +132,14 @@ export function WorkCards({ slim = false }: { slim?: boolean }) {
 }
 
 /** The longer story beside the ways to get in touch. */
-export function StoryContact() {
+export function StoryContact({ story = STORY }: { story?: string[] }) {
   return (
     <section className="nl-section nl-section--alt" aria-labelledby="ab-story">
       <div className="nl-container ab-story">
         <div>
           <p className="nl-eyebrow">The longer story</p>
           <h2 className="nl-title" id="ab-story">From streaming apps to marketing systems.</h2>
-          {STORY.map((p) => (
+          {story.map((p) => (
             <p key={p.slice(0, 24)} className="nl-lede">{p}</p>
           ))}
         </div>

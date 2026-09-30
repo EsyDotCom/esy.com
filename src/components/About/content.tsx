@@ -36,6 +36,115 @@ export const STORY = [
   'I write The Marketing Engineer to teach what those systems taught me, and make the films and creatives to prove they work.',
 ];
 
+/** The career, in order, from Zev's résumé (2026-09-29). */
+export interface Chapter {
+  id: string;
+  years: string;
+  start: string;
+  at: string;
+  role: string;
+  place: string;
+  /** One line for the compact path. */
+  line: string;
+  /** Two proof points for the full chapter. */
+  proof: string[];
+  stat: { value: string; label: string };
+  /** The crypto years get their own band. */
+  tone?: 'gold' | 'jade';
+}
+
+export const CAREER: Chapter[] = [
+  {
+    id: 'vroom',
+    years: '2016–2018',
+    start: '2016',
+    at: 'Vroom',
+    role: 'Software engineer',
+    place: 'New York',
+    line: 'Built the vroom.com storefront and led SellUsYourCar.com.',
+    proof: [
+      'Built and maintained the main vroom.com storefront in React and Next.js.',
+      'Lead developer on SellUsYourCar.com: a standalone app that walked people through quoting and selling their car to Vroom.',
+    ],
+    stat: { value: 'Lead dev', label: 'SellUsYourCar.com' },
+  },
+  {
+    id: 'fubo',
+    years: '2019–2021',
+    start: '2019',
+    at: 'fuboTV',
+    role: 'Software engineer',
+    place: 'New York',
+    line: 'Built the landing-page system behind 100+ tested sign-up pages.',
+    proof: [
+      'Built a reusable component system that made landing pages repeatable, then launched 100+ of them, each tested for subscriber sign-ups.',
+      'Launched fubosportsnetwork.com and fubo.tv/news, and led the launch of ir.fubo.tv.',
+    ],
+    stat: { value: '100+', label: 'landing pages, each tested for sign-ups' },
+  },
+  {
+    id: 'digital-assets',
+    years: '2021–2024',
+    start: '2021',
+    at: 'Digital assets',
+    role: 'Research & trading, self-employed',
+    place: 'Miami',
+    line: 'Researched and traded digital assets full time, to a seven-figure exit.',
+    proof: [
+      'Systematic market research and on-chain data analysis, turned into thesis-driven capital allocation.',
+      'Ended in a seven-figure exit, and a habit of deciding from data, not from narrative.',
+    ],
+    stat: { value: '7 figures', label: 'exit, from on-chain research' },
+    tone: 'gold',
+  },
+  {
+    id: 'esy',
+    years: '2024–now',
+    start: '2024',
+    at: 'Esy',
+    role: 'Founder & marketing engineer',
+    place: 'NYC & Miami',
+    line: 'Built the engine; grew clip.art to #1 on Google for “AI clipart”.',
+    proof: [
+      'Built a workflow engine with a public API: every run versioned, checked, reviewable, and costed.',
+      'Grew clip.art with programmatic SEO: 20,000+ pages published, 6,000+ ranking, #1 on Google for “AI clipart”, 800+ users and paid sales within 5 months.',
+    ],
+    stat: { value: '#1', label: 'on Google for “AI clipart”' },
+    tone: 'jade',
+  },
+  {
+    id: 'now',
+    years: 'Now',
+    start: 'Now',
+    at: 'The Marketing Engineer',
+    role: 'Writer & teacher',
+    place: 'esy.com',
+    line: 'Teaching how to build the AI systems that run marketing.',
+    proof: [
+      'One email a week on building the AI systems that run marketing, and courses that take one tool from setup to a result.',
+      'Every piece starts from something I built or tested.',
+    ],
+    stat: { value: 'Weekly', label: 'The Marketing Engineer' },
+  },
+];
+
+/** The résumé's headline numbers, each with the chapter it comes from. */
+export const PROOF = [
+  { value: '7+', label: 'years shipping production software', chapter: 'Vroom · fuboTV · Esy' },
+  { value: '100+', label: 'tested landing pages at fuboTV', chapter: 'fuboTV' },
+  { value: '7 figures', label: 'exit from digital-assets research', chapter: 'Digital assets' },
+  { value: '20,000+', label: 'pages published by Esy', chapter: 'Esy · clip.art' },
+  { value: '#1', label: 'on Google for “AI clipart”', chapter: 'Esy · clip.art' },
+  { value: '53% → <1%', label: 'color defects, after a 470-prompt benchmark', chapter: 'Esy' },
+];
+
+/** The longer story, first person, with the crypto years in it. */
+export const STORY_FULL = [
+  'I’ve shipped production software for over seven years. At Vroom I built the vroom.com storefront and led SellUsYourCar.com. At fuboTV I built the component system behind 100+ landing pages, each tested for sign-ups.',
+  'From 2021 to 2024 I researched and traded digital assets full time in Miami: market research, on-chain data, thesis-driven allocation. It ended in a seven-figure exit, and it taught me to decide from data.',
+  'Since 2024 I’ve built Esy, an engine that runs AI workflows end to end and records every run. It grew clip.art to #1 on Google for “AI clipart”, with 20,000+ pages published and 6,000+ ranking. I write The Marketing Engineer to teach what those systems taught me.',
+];
+
 /** Real numbers only. */
 export const FACTS = [
   { value: CLIPART_RUN.totalRuns.toLocaleString('en-US'), label: 'workflow runs recorded' },

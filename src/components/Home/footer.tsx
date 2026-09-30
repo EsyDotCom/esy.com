@@ -280,13 +280,13 @@ export default function Footer () {
             </div>
           </div>
           
-          {/* Four columns (2026-09-30): the product, what to read, what to
+          {/* Four columns (2026-09-30): the products, what to read, what to
               watch and learn from, and the company. */}
           <FooterColumn
-            title="Product"
+            title="Products"
             links={[
               { href: "https://os.esy.com", text: "OS" },
-              { href: "/docs", text: "Docs" },
+              { href: "https://compose.esy.com", text: "Compose" },
               // Managed and Pricing rejoin when their pages ship (parked
               // 2026-09-02 — a footer link to an unready page is a promise
               // the site can't keep).
@@ -303,6 +303,8 @@ export default function Footer () {
               // Where readers (and search engines) look for how the
               // publication decides what to publish and keeps it right.
               { href: "/editorial-standards/", text: "Editorial standards" },
+              // Docs sit with the reading (2026-09-30); Products is the apps.
+              { href: "/docs", text: "Docs" },
             ]}
           />
 

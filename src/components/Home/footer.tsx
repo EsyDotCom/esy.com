@@ -298,6 +298,7 @@ export default function Footer () {
               { href: "/engineer/", text: "The Marketing Engineer" },
               { href: "/topics/", text: "Topics" },
               { href: "/courses/", text: "Courses" },
+              { href: "/films/", text: "Films" },
               { href: "/docs", text: "Docs" },
             ]}
           />

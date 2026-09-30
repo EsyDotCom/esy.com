@@ -81,3 +81,14 @@ export function articleJsonLd(post: PostPage) {
     articleSection: 'AI News',
   };
 }
+
+/* Round 2 · F: the story so far, for readers arriving from search. Each line
+ * restates one of the story's posts, oldest first, so it stays true. */
+export const STORY_SO_FAR: { date: string; text: string }[] = [
+  { date: 'Sep 8', text: 'Meta launches Muse, a private personal agent that works toward goals you set.' },
+  { date: 'Sep 28', text: 'Meta puts Muse, its business agent and its APIs into a new unit selling to companies, Meta Enterprise Platform.' },
+  { date: 'Sep 29', text: 'Muse opens to small businesses in the US and Canada, connected to their store, email and design tools.' },
+];
+
+/** What this post adds to the story, in one line. */
+export const NEW_TODAY = 'Muse now works for small businesses, across 15 tools they already use, and it’s free for most of what they need.';

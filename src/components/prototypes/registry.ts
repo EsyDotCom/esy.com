@@ -1271,6 +1271,12 @@ export const PROTOTYPES: Prototype[] = [
         summary:
           'A reads like a news brief with the story in a rail. B puts the post inside its story with a timeline of the story\u2019s posts. C leads with a key-facts box and ends with short questions and answers.',
       },
+      {
+        n: 2,
+        title: 'B, three ways',
+        summary:
+          'Zev picked B. D adds C\u2019s key facts and questions under B\u2019s story bar, E moves the story into a rail that stays beside the post, F opens with the story so far for readers who land from search.',
+      },
     ],
     variants: [
       {
@@ -1299,6 +1305,36 @@ export const PROTOTYPES: Prototype[] = [
         title: 'Meta\u2019s Muse agent comes to small businesses',
         blurb: 'A key-facts box under the headline (what, for whom, where, price, control), then the post, then short questions and answers.',
         poster: ['#F8F9FA', '#0A2540'],
+      },
+      {
+        slug: 'story-glance',
+        key: 'D',
+        name: 'Story + glance',
+        round: 2,
+        mergeOf: ['B', 'C'],
+        title: 'Meta\u2019s Muse agent comes to small businesses',
+        blurb: 'B\u2019s story bar on top, C\u2019s key facts under the headline, the post, then C\u2019s questions.',
+        poster: ['#0A2540', '#FFFFFF'],
+      },
+      {
+        slug: 'story-rail',
+        key: 'E',
+        name: 'Story rail',
+        round: 2,
+        mergeOf: ['B'],
+        title: 'Meta\u2019s Muse agent comes to small businesses',
+        blurb: 'The story in a navy rail that stays beside the post: every post top to bottom with its summary, this one lit.',
+        poster: ['#0A2540', '#00D4AA'],
+      },
+      {
+        slug: 'story-so-far',
+        key: 'F',
+        name: 'Story so far',
+        round: 2,
+        mergeOf: ['B'],
+        title: 'Meta\u2019s Muse agent comes to small businesses',
+        blurb: 'Opens with the story in three dated lines and what\u2019s new today, then the post, then the story line to follow.',
+        poster: ['#FFFFFF', '#00A896'],
       },
     ],
   },

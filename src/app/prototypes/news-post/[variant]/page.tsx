@@ -4,6 +4,7 @@ import { nlSerif } from '@/components/NewsletterHome/serif';
 import PrototypeBar from '@/components/prototypes/PrototypeBar';
 import { findPrototype } from '@/components/prototypes/registry';
 import { PostAtAGlance, PostBrief, PostInStory } from '@/components/NewsPost/NewsPost';
+import { PostStoryGlance, PostStoryRail, PostStorySoFar } from '@/components/NewsPost/NewsPostStory';
 import { toNavArticles } from '@/lib/nav-articles';
 import { getAllAgenticArticles } from '@/lib/published-articles';
 import '@/components/NewsletterHome/NewsletterHome.css';
@@ -18,6 +19,10 @@ const LAYOUTS: Record<string, React.ComponentType> = {
   brief: PostBrief,
   'in-story': PostInStory,
   'at-a-glance': PostAtAGlance,
+  // Round 2: three takes on B.
+  'story-glance': PostStoryGlance,
+  'story-rail': PostStoryRail,
+  'story-so-far': PostStorySoFar,
 };
 
 const prototype = findPrototype('news-post')!;

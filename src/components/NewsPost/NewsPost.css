@@ -84,3 +84,37 @@
 .np-check ul { list-style: none; padding-left: 0; }
 .np-check li { position: relative; padding-left: 28px; }
 .np-check li::before { content: ''; position: absolute; left: 0; top: 5px; width: 16px; height: 16px; border: 2px solid var(--nl-navy); border-radius: 4px; }
+
+/* ── Round 2: three takes on B (NewsPostStory.tsx) ── */
+/* E · the story rail */
+.np-railgrid { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 56px; align-items: start; }
+.np-storyrail { position: sticky; top: 96px; padding: 20px; border-radius: 16px; background: var(--nl-navy); color: #fff; }
+.np-storyrail .np-storybar-kicker { margin: 0; }
+.np-storyrail-name { margin: 2px 0 0; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 1.7rem; }
+.np-storyrail-meta { margin: 0 0 14px; font-size: 0.82rem; color: rgba(255, 255, 255, 0.6); }
+.np-storyrail ol { list-style: none; margin: 0; padding: 0 0 0 16px; border-left: 2px solid rgba(255, 255, 255, 0.18); }
+.np-storyrail li { position: relative; display: flex; flex-direction: column; gap: 4px; padding: 0 0 18px 6px; }
+.np-storyrail li::before { content: ''; position: absolute; left: -23px; top: 3px; width: 10px; height: 10px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 3px var(--nl-navy); }
+.np-storyrail li.is-on::before { background: var(--nl-jade-bright); }
+.np-storyrail-date { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--nl-jade-bright); }
+.np-storyrail-title { font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 1.1rem; line-height: 1.25; }
+.np-storyrail li:not(.is-on) .np-storyrail-title { color: rgba(255, 255, 255, 0.85); }
+.np-storyrail-dek { font-size: 0.84rem; line-height: 1.45; color: rgba(255, 255, 255, 0.65); }
+.np-storyrail-here { font-size: 0.78rem; font-weight: 600; color: var(--nl-jade-bright); }
+.np-storyrail .np-rail-link { color: var(--nl-jade-bright); }
+
+/* F · the story so far */
+.np-sofar { margin: 24px 0; padding: 20px 22px; border-radius: 14px; background: var(--nl-navy); color: #fff; }
+.np-sofar h2 { color: var(--nl-jade-bright) !important; }
+.np-sofar ol { list-style: none; margin: 0; padding: 0; }
+.np-sofar li { display: grid; grid-template-columns: 64px 1fr; gap: 12px; padding: 10px 0; border-top: 1px solid rgba(255, 255, 255, 0.12); font-size: 1rem; line-height: 1.5; color: rgba(255, 255, 255, 0.8); }
+.np-sofar li b { font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255, 255, 255, 0.55); padding-top: 3px; }
+.np-sofar li.is-on { color: #fff; }
+.np-sofar li.is-on b { color: var(--nl-jade-bright); }
+.np-new { margin: 12px 0 0; padding: 12px 14px; border-radius: 10px; background: rgba(0, 212, 170, 0.14); font-size: 1rem; line-height: 1.5; }
+.np-new b { margin-right: 8px; font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--nl-jade-bright); }
+
+@media (max-width: 960px) {
+  .np-railgrid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .np-storyrail { position: static; order: 2; }
+}

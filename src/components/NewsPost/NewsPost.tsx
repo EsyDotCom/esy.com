@@ -25,12 +25,12 @@ const post = POST;
 
 /* ── Shared pieces ── */
 
-function JsonLd() {
+export function JsonLd() {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd(post)) }} />;
 }
 
 /** "AI News › Meta Muse", the way back up. */
-function Crumbs() {
+export function Crumbs() {
   return (
     <p className="np-crumbs">
       <span>AI News</span> <span aria-hidden="true">›</span> <span>{post.trend}</span>
@@ -39,7 +39,7 @@ function Crumbs() {
 }
 
 /** Label, story, date and time, source. */
-function Byline({ onDark = false }: { onDark?: boolean }) {
+export function Byline({ onDark = false }: { onDark?: boolean }) {
   return (
     <div className={`np-byline ${onDark ? 'np-byline--onDark' : ''}`}>
       <span className={`nw-label nw-label--${post.label.toLowerCase()}`}>{post.label}</span>
@@ -50,7 +50,7 @@ function Byline({ onDark = false }: { onDark?: boolean }) {
   );
 }
 
-function Source() {
+export function Source() {
   return (
     <p className="np-source">
       Source: <a href={post.source.url} target="_blank" rel="noopener noreferrer">{post.source.name} <ArrowUpRight size={13} aria-hidden="true" /></a>
@@ -58,7 +58,7 @@ function Source() {
   );
 }
 
-function Figure({ className = '' }: { className?: string }) {
+export function Figure({ className = '' }: { className?: string }) {
   if (!post.image) return null;
   return (
     <figure className={`np-figure ${className}`}>
@@ -68,7 +68,7 @@ function Figure({ className = '' }: { className?: string }) {
   );
 }
 
-function Why() {
+export function Why() {
   return (
     <section className="np-why" aria-labelledby="np-why">
       <h2 id="np-why">Why it matters</h2>
@@ -77,7 +77,7 @@ function Why() {
   );
 }
 
-function Check() {
+export function Check() {
   return (
     <section className="np-check" aria-labelledby="np-check">
       <h2 id="np-check">What to check</h2>
@@ -86,12 +86,12 @@ function Check() {
   );
 }
 
-function Body() {
+export function Body() {
   return <div className="np-body">{post.body.map((p) => <p key={p.slice(0, 32)}>{p}</p>)}</div>;
 }
 
 /** A small post link: label, date, headline. Shown, not linked, until post pages exist. */
-function PostLine({ p }: { p: NewsPost }) {
+export function PostLine({ p }: { p: NewsPost }) {
   return (
     <li className="np-postline">
       <p className="nw-meta">
@@ -103,13 +103,38 @@ function PostLine({ p }: { p: NewsPost }) {
   );
 }
 
-function MoreNews() {
+export function MoreNews() {
   return (
     <section className="nl-section nl-section--alt" aria-labelledby="np-more">
       <div className="nl-container">
         <h2 className="nt-title" id="np-more">More AI News</h2>
         <ol className="np-more">
           {MORE.map((p) => <PostLine key={p.slug} p={p} />)}
+        </ol>
+      </div>
+    </section>
+  );
+}
+
+/** B's story bar: every post on this story on one line, this one lit. */
+export function StoryBar() {
+  const oldestFirst = [...STORY].reverse();
+  return (
+    <section className="np-storybar" aria-label={`The ${post.trend} story`}>
+      <div className="nl-container">
+        <p className="np-storybar-head">
+          <span className="np-storybar-kicker">The story</span>
+          <b>{post.trend}</b>
+          <span>{STORY.length} posts · {dayLabel(oldestFirst[0].publishedAt)} to {dayLabel(STORY[0].publishedAt)}</span>
+        </p>
+        <ol className="np-storyline">
+          {oldestFirst.map((p) => (
+            <li key={p.slug} className={p.slug === post.slug ? 'is-on' : ''}>
+              <span className="np-storyline-dot" aria-hidden="true" />
+              <span className="np-storyline-date">{dayLabel(p.publishedAt)}</span>
+              <span className="np-storyline-title">{p.headline}</span>
+            </li>
+          ))}
         </ol>
       </div>
     </section>
@@ -160,29 +185,10 @@ export function PostBrief() {
 
 /* ── B · In the story ── */
 export function PostInStory() {
-  const oldestFirst = [...STORY].reverse();
   return (
     <>
       <JsonLd />
-      {/* The story bar: every post on this story on one line, this one lit. */}
-      <section className="np-storybar" aria-label={`The ${post.trend} story`}>
-        <div className="nl-container">
-          <p className="np-storybar-head">
-            <span className="np-storybar-kicker">The story</span>
-            <b>{post.trend}</b>
-            <span>{STORY.length} posts · {dayLabel(oldestFirst[0].publishedAt)} to {dayLabel(STORY[0].publishedAt)}</span>
-          </p>
-          <ol className="np-storyline">
-            {oldestFirst.map((p) => (
-              <li key={p.slug} className={p.slug === post.slug ? 'is-on' : ''}>
-                <span className="np-storyline-dot" aria-hidden="true" />
-                <span className="np-storyline-date">{dayLabel(p.publishedAt)}</span>
-                <span className="np-storyline-title">{p.headline}</span>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
+      <StoryBar />
 
       <article className="np np--story">
         <div className="nl-container np-narrow">

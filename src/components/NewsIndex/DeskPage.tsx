@@ -53,7 +53,7 @@ function Wire() {
 export function DeskRowsWire({ trends }: DesksProps) {
   return (
     <>
-      <StoryRows trends={trends} title="More stories" />
+      <StoryRows trends={trends} title="More stories" strip={false} />
       <Wire />
     </>
   );

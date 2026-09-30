@@ -116,7 +116,8 @@ export function AlsoInTheNews() {
 }
 
 /** Story rows (G, with the round-4 rules): the other stories and their cards. */
-export function StoryRows({ trends, title = 'Stories to follow' }: { trends: NewsTrend[]; title?: string }) {
+/** `strip` adds the 30-day dot strip (the chart rounds); P goes without. */
+export function StoryRows({ trends, title = 'Stories to follow', strip = true }: { trends: NewsTrend[]; title?: string; strip?: boolean }) {
   const rows = storyTrends(trends, posts);
   if (!rows.length) return null;
   return (
@@ -129,7 +130,7 @@ export function StoryRows({ trends, title = 'Stories to follow' }: { trends: New
               <h3>{t.name}</h3>
               <p>{t.line}</p>
               <span className="nt-row-stats">{postsFor(t.name, posts).length} posts · latest {dayLabel(postsFor(t.name, posts)[0].publishedAt)}</span>
-              <DotStrip trend={t.name} />
+              {strip && <DotStrip trend={t.name} />}
             </div>
             <StoryCards trend={t.name} />
           </li>

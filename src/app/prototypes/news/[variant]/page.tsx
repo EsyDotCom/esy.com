@@ -4,6 +4,7 @@ import { nlSerif } from '@/components/NewsletterHome/serif';
 import PrototypeBar from '@/components/prototypes/PrototypeBar';
 import { findPrototype } from '@/components/prototypes/registry';
 import { NewsBriefing, NewsFrontPage, NewsWire } from '@/components/NewsIndex/NewsIndex';
+import { NewsDeveloping, NewsLiveFront, NewsTrendDesk } from '@/components/NewsIndex/NewsFronts';
 import { toNavArticles } from '@/lib/nav-articles';
 import { getAllAgenticArticles } from '@/lib/published-articles';
 import '@/components/NewsletterHome/NewsletterHome.css';
@@ -17,6 +18,10 @@ const LAYOUTS: Record<string, React.ComponentType> = {
   wire: NewsWire,
   'front-page': NewsFrontPage,
   briefing: NewsBriefing,
+  // Round 2: three takes on B, for a steady feed and jumping on trends.
+  'live-front': NewsLiveFront,
+  'trend-desk': NewsTrendDesk,
+  developing: NewsDeveloping,
 };
 
 const prototype = findPrototype('news')!;

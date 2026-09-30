@@ -20,7 +20,7 @@ import { NEWS_TOPICS, SAMPLE_NEWS, byDay, dayLabel, timeLabel, type NewsPost, ty
 const posts = SAMPLE_NEWS;
 
 /** Said plainly on every direction: these aren't real posts. */
-function SampleNote({ onDark = false }: { onDark?: boolean }) {
+export function SampleNote({ onDark = false }: { onDark?: boolean }) {
   return (
     <p className={`nw-sample ${onDark ? 'nw-sample--onDark' : ''}`}>
       Sample posts: /news hasn&apos;t published yet, so these show how the page reads when it&apos;s full.
@@ -28,7 +28,7 @@ function SampleNote({ onDark = false }: { onDark?: boolean }) {
   );
 }
 
-function Meta({ post, time = false }: { post: NewsPost; time?: boolean }) {
+export function Meta({ post, time = false }: { post: NewsPost; time?: boolean }) {
   return (
     <p className="nw-meta">
       <span className="nw-topic">{post.topic}</span>
@@ -97,34 +97,40 @@ export function NewsWire() {
   );
 }
 
+/** B's masthead: the name between two rules, the date and count under it. */
+export function Masthead({ middle = 'AI tools for marketing, as they change' }: { middle?: React.ReactNode }) {
+  const today = new Date(posts[0].publishedAt).toLocaleDateString('en-US', {
+    weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', timeZone: 'America/New_York',
+  });
+  return (
+    <div className="nw-masthead">
+      <p className="nw-masthead-over">The Marketing Engineer</p>
+      <h1 className="nw-masthead-name">News</h1>
+      <p className="nw-masthead-line">
+        <span>{today}</span>
+        <span>{middle}</span>
+        <span>{posts.length} stories this week</span>
+      </p>
+    </div>
+  );
+}
+
 /* ── B · Front page ── */
 export function NewsFrontPage() {
   const [lead, ...rest] = posts;
   const second = rest.slice(0, 2);
   const briefs = rest.slice(2);
-  const today = new Date(lead.publishedAt).toLocaleDateString('en-US', {
-    weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', timeZone: 'America/New_York',
-  });
   return (
     <>
       <section className="nw-front">
         <div className="nl-container">
-          {/* The masthead: the name between two rules, the date under it. */}
-          <div className="nw-masthead">
-            <p className="nw-masthead-over">The Marketing Engineer</p>
-            <h1 className="nw-masthead-name">News</h1>
-            <p className="nw-masthead-line">
-              <span>{today}</span>
-              <span>AI tools for marketing, as they change</span>
-              <span>{posts.length} stories this week</span>
-            </p>
-          </div>
+          <Masthead />
           <SampleNote />
 
           <div className="nw-front-grid">
             <article className="nw-lead">
               {lead.image && (
-                <span className="nw-lead-art">
+                <span className="nw-lead-art is-cutout">
                   {/* eslint-disable-next-line @next/next/no-img-element -- a generated sample, fixed size */}
                   <img src={lead.image} alt="" />
                 </span>

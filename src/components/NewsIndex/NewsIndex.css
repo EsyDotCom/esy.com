@@ -81,3 +81,71 @@
   .nw-briefing-item { grid-template-columns: minmax(0, 1fr); gap: 8px; }
   .nw-briefing-split { grid-template-columns: minmax(0, 1fr); gap: 12px; }
 }
+
+/* ── Round 2: three takes on B (NewsFronts.tsx) ── */
+/* A pulsing dot for anything live: the trending bar, the feed, a developing story. */
+.nw-trendbar-label i, .nw-live-head i, .nw-developing i, .nw-desk-kicker i { display: inline-block; width: 8px; height: 8px; margin-right: 8px; border-radius: 50%; background: #E5484D; vertical-align: 1px; animation: nw-pulse 1.6s ease-in-out infinite; }
+@keyframes nw-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(229, 72, 77, 0.5); } 50% { box-shadow: 0 0 0 6px rgba(229, 72, 77, 0); } }
+@media (prefers-reduced-motion: reduce) { .nw-trendbar-label i, .nw-live-head i, .nw-developing i, .nw-desk-kicker i { animation: none; } }
+
+.nw-art, .nw-second-art, .nw-desk-art { position: relative; display: block; overflow: hidden; background: var(--nl-navy); border-radius: 4px; }
+.nw-art img, .nw-second-art img, .nw-desk-art img, .nw-lead-art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; padding: 0; }
+.nw-lead-art.is-cutout, .nw-second-art.is-cutout, .nw-desk-art.is-cutout { background: #F4F1EA; }
+.is-cutout img { object-fit: contain !important; padding: 5% !important; }
+.nw-second-art { aspect-ratio: 16 / 9; margin-bottom: 12px; }
+.nw-desk-art { aspect-ratio: 16 / 10; margin: 12px 0 14px; }
+
+/* The trending bar under the masthead. */
+.nw-trendbar { display: flex; align-items: center; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--nl-seam); overflow-x: auto; }
+.nw-trendbar { scrollbar-width: none; }
+.nw-trendbar::-webkit-scrollbar { display: none; }
+.nw-trendbar-label { flex: none; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #C8373C; }
+.nw-trendbar ol { display: flex; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.nw-trendbar li > * { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--nl-seam); background: #fff; font: inherit; font-size: 0.88rem; font-weight: 600; color: var(--nl-ink); white-space: nowrap; }
+.nw-trendbar button { cursor: pointer; }
+.nw-trendbar button:hover { border-color: var(--nl-navy); }
+.nw-trendbar button.is-on { background: var(--nl-navy); border-color: var(--nl-navy); color: #fff; }
+.nw-trendbar-n { font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; color: var(--nl-jade); }
+.nw-trendbar-count { font-weight: 500; color: var(--nl-ink-soft); font-variant-numeric: tabular-nums; }
+.nw-trendbar button.is-on .nw-trendbar-count { color: rgba(255, 255, 255, 0.7); }
+.nw-front .nw-trendbar + .nw-sample { margin-top: 14px; }
+
+/* D · the live feed beside the lead. */
+.nw-live { padding-left: 40px; border-left: 1px solid var(--nl-seam); }
+.nw-live-head { margin: 0 0 8px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-navy); }
+.nw-live-list { list-style: none; margin: 0 0 20px; padding: 0; }
+.nw-live-list li { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--nl-seam); }
+.nw-live-list time { font-size: 0.8rem; font-weight: 600; color: #C8373C; font-variant-numeric: tabular-nums; padding-top: 1px; }
+.nw-live-list .nw-topic { margin-bottom: 4px; }
+.nw-live-headline { margin: 0; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 1.15rem; line-height: 1.2; color: var(--nl-navy); }
+
+/* E · the trend desk. */
+.nw-desk-top { margin-top: 32px; }
+.nw-desk-kicker { margin: 0 0 6px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #C8373C; }
+.nw-desk-name { margin: 0; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: clamp(2.6rem, 5vw, 3.8rem); line-height: 1; letter-spacing: -0.03em; color: var(--nl-navy); }
+.nw-desk-line { margin: 8px 0 0; font-size: 1rem; color: var(--nl-ink-soft); }
+.nw-front-grid--flat { margin-top: 24px; }
+.nw-desk-sub { margin: 0; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-navy); }
+.nw-desks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; margin-top: 40px; }
+.nw-desk { padding-top: 14px; border-top: 3px solid var(--nl-navy); }
+.nw-desk-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.nw-desk-head h2 { margin: 0; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 1.5rem; line-height: 1.1; color: var(--nl-navy); }
+.nw-heat { flex: none; width: 56px; height: 6px; border-radius: 999px; background: linear-gradient(90deg, #E3B660, #E5484D) 0 0 / var(--heat) 100% no-repeat, var(--nl-seam); }
+.nw-desk ol { list-style: none; margin: 0; padding: 0; }
+.nw-desk li { padding: 12px 0; border-top: 1px solid var(--nl-seam); }
+.nw-desk li .nw-meta { margin: 6px 0 0; }
+.nw-desk li .nw-meta span:last-child { display: none; }
+
+/* F · the developing story's timeline. */
+.nw-developing { margin: 0 0 12px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #C8373C; }
+.nw-updates { list-style: none; margin: 20px 0 8px; padding: 0 0 0 18px; border-left: 2px solid rgba(229, 72, 77, 0.35); }
+.nw-updates li { position: relative; padding: 0 0 16px 8px; }
+.nw-updates li::before { content: ''; position: absolute; left: -25px; top: 5px; width: 10px; height: 10px; border-radius: 50%; background: #fff; border: 2px solid #E5484D; }
+.nw-updates li:first-child::before { background: #E5484D; }
+.nw-updates time { font-size: 0.8rem; font-weight: 700; color: #C8373C; font-variant-numeric: tabular-nums; }
+.nw-updates p { margin: 2px 0 0; font-size: 0.98rem; line-height: 1.55; color: var(--nl-ink); }
+
+@media (max-width: 960px) {
+  .nw-live { padding-left: 0; border-left: 0; }
+  .nw-desks { grid-template-columns: minmax(0, 1fr); }
+}

@@ -1271,6 +1271,12 @@ export const PROTOTYPES: Prototype[] = [
         summary:
           'A is a newswire grouped by day, with the time and a \u201cwhy it matters\u201d line on every post. B is a newspaper front: one lead story, two beside it, the rest in brief. C is the week as a numbered briefing you can filter by topic.',
       },
+      {
+        n: 2,
+        title: 'B, built to jump on trends',
+        summary:
+          'Zev picked B: news has to feed and jump on trends. D adds a trending bar and a live feed beside the lead, E groups the front by trend with the hottest one leading, F makes the lead a developing story with timestamped updates.',
+      },
     ],
     variants: [
       {
@@ -1299,6 +1305,36 @@ export const PROTOTYPES: Prototype[] = [
         title: 'This week, briefly.',
         blurb: 'A navy hero with the week\u2019s dates and the signup, then each post numbered and split into what happened and why it matters, with topic filters.',
         poster: ['#0A2540', '#00D4AA'],
+      },
+      {
+        slug: 'live-front',
+        key: 'D',
+        name: 'Front page \u00b7 Live',
+        round: 2,
+        mergeOf: ['B'],
+        title: 'News',
+        blurb: 'B with a trending bar under the masthead and a live feed beside the lead: times first, newest on top. Pick a trend and the feed follows it.',
+        poster: ['#FFFFFF', '#E5484D'],
+      },
+      {
+        slug: 'trend-desk',
+        key: 'E',
+        name: 'Front page \u00b7 Trend desk',
+        round: 2,
+        mergeOf: ['B'],
+        title: 'News',
+        blurb: 'The front grouped by trend: the hottest trend leads with its posts and follow-ups, the rest sit in desks of their own, hottest first.',
+        poster: ['#0A2540', '#E3B660'],
+      },
+      {
+        slug: 'developing',
+        key: 'F',
+        name: 'Front page \u00b7 Developing',
+        round: 2,
+        mergeOf: ['B'],
+        title: 'News',
+        blurb: 'The lead is a running story with timestamped updates on a timeline, like a live blog, over B\u2019s two stories and the briefs.',
+        poster: ['#F8F9FA', '#E5484D'],
       },
     ],
   },

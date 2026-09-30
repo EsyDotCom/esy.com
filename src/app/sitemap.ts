@@ -4,6 +4,7 @@ import path from 'path'
 import { getClipArtSlugs } from '@/data/clip-art-artifacts'
 import { getAllTemplates } from '@/lib/templates'
 import { courses } from '@/lib/learn/mockData'
+import { liveStories, postsInStory, publishedPosts } from '@/data/news'
 import {
   getAllAgenticArticles,
 } from '@/lib/published-articles'
@@ -172,6 +173,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${baseUrl}${articlePath(video.slug)}`,
       lastModified: new Date(video.publishedAt),
       changeFrequency: 'monthly',
+      priority: 0.7,
+    })
+  })
+
+  // AI News: every published post and every story page (/news/<slug>/).
+  // The /news index is auto-discovered above. Posts use their publish day.
+  publishedPosts().forEach(post => {
+    sitemap.push({
+      url: `${baseUrl}/news/${post.slug}/`,
+      lastModified: new Date(post.publishedAt),
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    })
+  })
+  liveStories().forEach(story => {
+    sitemap.push({
+      url: `${baseUrl}/news/${story.slug}/`,
+      lastModified: new Date(postsInStory(story.slug)[0].publishedAt),
+      changeFrequency: 'daily',
       priority: 0.7,
     })
   })

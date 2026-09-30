@@ -1365,6 +1365,8 @@ export const PROTOTYPES: Prototype[] = [
       {
         slug: 'spec-sheet',
         key: 'I',
+        live: true,
+        liveHref: '/news/meta-muse-for-small-business/',
         name: 'D \u00b7 Spec sheet',
         round: 3,
         mergeOf: ['D'],
@@ -1565,6 +1567,8 @@ export const PROTOTYPES: Prototype[] = [
       {
         slug: 'desk-rows-wire',
         key: 'P',
+        live: true,
+        liveHref: '/news/',
         name: 'Trend desk \u00b7 Rows \u00b7 Wire',
         round: 5,
         mergeOf: ['E', 'G', 'A'],

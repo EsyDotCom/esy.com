@@ -5,7 +5,7 @@ import { EMAIL_REGEX, clientIp, detectBot } from '@/lib/botCheck';
 // Only these are forwarded to Beehiiv as referring_site, so a spoofed `source`
 // in the request body cannot write arbitrary text into subscriber records.
 const KNOWN_SOURCES = new Set([
-  '/', '/engineer', '/agentic', '/school', '/research', '/courses', '/about', '/waitlist',
+  '/', '/engineer', '/agentic', '/school', '/research', '/courses', '/about', '/waitlist', '/news',
 ]);
 
 // Bots learn from error messages, so a rejection returns the same shape a real
@@ -60,7 +60,9 @@ export async function POST(request) {
 
     // Real attribution: this used to hardcode /engineer, which mislabelled every
     // signup from every other page. Unknown paths fall back to the bare domain.
-    const path = KNOWN_SOURCES.has(source) ? source : '';
+    // Every AI News page (/news/, a post, a story) counts as /news.
+    const normalized = typeof source === 'string' && source.startsWith('/news') ? '/news' : source;
+    const path = KNOWN_SOURCES.has(normalized) ? normalized : '';
     const referringSite = `https://esy.com${path === '/' ? '' : path}`;
 
     const res = await fetch(

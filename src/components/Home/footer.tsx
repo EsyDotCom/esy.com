@@ -296,6 +296,7 @@ export default function Footer () {
               // The newsletter had no way in from the footer; it sits above
               // the reference links because it's the thing to subscribe to.
               { href: "/engineer/", text: "The Marketing Engineer" },
+              { href: "/news/", text: "AI News" },
               { href: "/topics/", text: "Topics" },
               { href: "/courses/", text: "Courses" },
               { href: "/films/", text: "Films" },

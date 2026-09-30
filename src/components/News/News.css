@@ -1,0 +1,48 @@
+/* AI News pages (News.tsx). The shared look comes from the prototypes' own
+ * stylesheets (NewsIndex.css, NewsPost.css), which these pages import; this
+ * file holds what's new in the shipped pages: real links and images. */
+
+.nw-desk-name a, .nt-row-head h3 a, .nw-second-headline a, .nw-wire-headline a, .nx-story-list h2 a, .npg-story-name a { color: inherit; text-decoration: none; }
+.nw-desk-name a:hover, .nt-row-head h3 a:hover, .nw-second-headline a:hover, .nw-wire-headline a:hover, .nx-story-list h2 a:hover, .npg-story-name a:hover { color: var(--nl-jade); }
+.nx-lead-link { display: block; color: inherit; text-decoration: none; }
+.nx-lead-link:hover .nw-lead-headline { color: var(--nl-jade); }
+.nw-lead-art img, .nt-card-art img { object-fit: cover; }
+.nx-card { display: block; color: inherit; text-decoration: none; }
+.nx-card:hover h4 { color: var(--nl-jade); }
+.nx-card .nw-meta span:last-child { display: inline; }
+.nm-more { text-decoration: none; }
+.nx-wire { margin-top: 8px; border-top: 2px solid var(--nl-navy); }
+.nx-wire .nw-wire-item { grid-template-columns: 90px minmax(0, 1fr); }
+
+/* The story line, as links. */
+.npg-story .nx-chapter { display: grid; grid-template-columns: auto auto; grid-template-rows: auto auto; column-gap: 8px; align-items: center; padding: 6px 10px; border: 1px solid transparent; border-radius: 10px; color: var(--nl-ink-soft); text-decoration: none; }
+.npg-story a.nx-chapter:hover { border-color: var(--nl-seam); background: var(--nl-bg-alt); }
+.npg-story .nx-chapter b { grid-row: span 2; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--nl-seam); font-size: 0.72rem; font-weight: 700; color: var(--nl-ink-soft); }
+.npg-story .nx-chapter.is-on { border-color: var(--nl-navy); background: #fff; }
+.npg-story .nx-chapter.is-on b { background: var(--nl-navy); border-color: var(--nl-navy); color: #fff; }
+.npg-story .nx-chapter.is-here .npg-ch-date { color: var(--nl-jade); font-weight: 600; }
+.np-byline a { color: inherit; }
+.nx-figure img { display: block; width: 100%; height: auto; }
+
+/* More AI News */
+.nx-more { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; margin-top: 16px; }
+
+/* Story page */
+.nx-story .np-crumbs a { color: inherit; text-decoration: none; }
+.nx-story-count { margin: 0 0 8px; font-size: 0.9rem; color: var(--nl-ink-soft); }
+.nx-story-list { list-style: none; margin: 8px 0 0; padding: 0; border-top: 2px solid var(--nl-navy); }
+.nx-story-list li { display: grid; grid-template-columns: 90px minmax(0, 1fr); gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--nl-seam); }
+.nx-story-list time { font-size: 0.85rem; font-weight: 600; color: var(--nl-ink-soft); padding-top: 4px; }
+.nx-story-list h2 { margin: 0 0 6px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 1.6rem; line-height: 1.15; letter-spacing: 0; text-transform: none; color: var(--nl-navy); }
+.nx-story-list p { margin: 0; font-size: 1rem; line-height: 1.6; color: var(--nl-ink-soft); }
+
+@media (max-width: 960px) {
+  .nx-more { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .nx-story-list li, .nx-wire .nw-wire-item { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+}
+
+/* Story rows: the cover once, on the row; the cards are text. */
+.nx-row-cover { position: relative; display: block; aspect-ratio: 16 / 10; margin-bottom: 10px; border-radius: 8px; overflow: hidden; background: var(--nl-navy); }
+.nx-row-cover img { object-fit: cover; }
+.nx-card--text { padding: 16px 18px; border-radius: 12px; border: 1px solid var(--nl-seam); background: #fff; }
+.nx-card--text:hover { border-color: var(--nl-navy); }

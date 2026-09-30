@@ -56,4 +56,18 @@ const ytFile = path.join(OUT_DIR, 'youtube-desk.jpg');
 await yt.locator('#banner').screenshot({ path: ytFile, type: 'jpeg', quality: 92 });
 console.log(`  youtube → ${path.relative(ROOT, ytFile)}`);
 
+// GitHub (1280×320) and X (1500×500) at 2x, so they stay sharp on retina screens.
+for (const [kind, w, h] of [['github', 1280, 320], ['x', 1500, 500]]) {
+  const page2 = await browser.newPage({ viewport: { width: w, height: h }, deviceScaleFactor: 2 });
+  await page2.goto(`${BASE}/prototypes/social-banner/${kind}/raw/`, { waitUntil: 'networkidle', timeout: 180000 });
+  await page2.addStyleTag({ content: 'nextjs-portal { display: none !important; }' });
+  await page2.evaluate(async () => {
+    await document.fonts.ready;
+    await Promise.all([...document.images].map((img) => (img.complete ? null : img.decode().catch(() => null))));
+  });
+  const file = path.join(OUT_DIR, `${kind}-desk.png`);
+  await page2.locator('#banner').screenshot({ path: file });
+  console.log(`  ${kind} → ${path.relative(ROOT, file)}`);
+}
+
 await browser.close();

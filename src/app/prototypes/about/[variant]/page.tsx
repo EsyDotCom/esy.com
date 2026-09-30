@@ -8,6 +8,7 @@ import AboutStudio from '@/components/About/AboutStudio';
 import AboutPressKit from '@/components/About/AboutPressKit';
 import { AboutCompact, AboutLive, AboutStory } from '@/components/About/AboutStudioVariants';
 import { AboutChapters, AboutDated, AboutProof } from '@/components/About/AboutCareer';
+import { WorkFour, WorkLedger, WorkPreview, WorkShowcase } from '@/components/About/AboutWork';
 import { toNavArticles } from '@/lib/nav-articles';
 import { getAllAgenticArticles } from '@/lib/published-articles';
 import '@/components/NewsletterHome/NewsletterHome.css';
@@ -28,6 +29,15 @@ const LAYOUTS: Record<string, React.ComponentType> = {
   dated: AboutDated,
   chapters: AboutChapters,
   proof: AboutProof,
+  // Round 4: H with three takes on "What I make".
+  'work-four': () => <AboutChapters work={<WorkFour />} />,
+  'work-ledger': () => <AboutChapters work={<WorkLedger />} />,
+  'work-showcase': () => <AboutChapters work={<WorkShowcase />} />,
+  // Round 5: four styles of K.
+  'ledger-night': () => <AboutChapters work={<WorkLedger look="night" />} />,
+  'ledger-magazine': () => <AboutChapters work={<WorkLedger look="magazine" />} />,
+  'ledger-preview': () => <AboutChapters work={<WorkPreview />} />,
+  'ledger-bands': () => <AboutChapters work={<WorkLedger look="bands" />} />,
 };
 
 const prototype = findPrototype('about')!;

@@ -60,7 +60,7 @@ export const CAREER: Chapter[] = [
     start: '2016',
     at: 'Vroom',
     role: 'Software engineer',
-    place: 'New York',
+    place: 'New York City',
     line: 'Built the vroom.com storefront and led SellUsYourCar.com.',
     proof: [
       'Built and maintained the main vroom.com storefront in React and Next.js.',
@@ -74,7 +74,7 @@ export const CAREER: Chapter[] = [
     start: '2019',
     at: 'fuboTV',
     role: 'Software engineer',
-    place: 'New York',
+    place: 'New York City',
     line: 'Built the landing-page system behind 100+ tested sign-up pages.',
     proof: [
       'Built a reusable component system that made landing pages repeatable, then launched 100+ of them, each tested for subscriber sign-ups.',
@@ -88,7 +88,7 @@ export const CAREER: Chapter[] = [
     start: '2021',
     at: 'Digital assets',
     role: 'Research & trading, self-employed',
-    place: 'Miami',
+    place: 'NYC & Miami',
     line: 'Researched and traded digital assets full time, to a seven-figure exit.',
     proof: [
       'Systematic market research and on-chain data analysis, turned into thesis-driven capital allocation.',
@@ -118,7 +118,7 @@ export const CAREER: Chapter[] = [
     start: 'Now',
     at: 'The Marketing Engineer',
     role: 'Writer & teacher',
-    place: 'esy.com',
+    place: 'NYC & Miami',
     line: 'Teaching how to build the AI systems that run marketing.',
     proof: [
       'One email a week on building the AI systems that run marketing, and courses that take one tool from setup to a result.',

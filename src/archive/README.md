@@ -53,3 +53,10 @@ page and the clay-cast candidate (`/homepage-v2`, deleted).
 Not imported anywhere. To revive: point `src/app/page.js` back at
 `IntelligenceCircuitryPage` and restore the navy nav/footer defaults in
 `ConditionalNavigation.js` and `Home/footer.tsx`.
+
+## about-agentic-engineer (retired 2026-09-30)
+
+The "Agentic Engineer" /about: Esy as a personal research project, the
+immersive profile hero, the numbered letter sections and the booking button.
+Replaced by H · Chapters with N · Magazine from `/prototypes/about/`
+(`src/app/about/page.tsx`, `src/components/About/`). Not routed.

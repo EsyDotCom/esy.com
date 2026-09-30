@@ -58,8 +58,8 @@ export function AboutDated() {
   );
 }
 
-/* ── H · Chapters ── */
-export function AboutChapters() {
+/* ── H · Chapters ── `work` swaps the "What I make" section (round 4, AboutWork.tsx). */
+export function AboutChapters({ work = <WorkCards /> }: { work?: React.ReactNode }) {
   return (
     <>
       <StudioHero signup />
@@ -90,7 +90,7 @@ export function AboutChapters() {
           </div>
         </section>
       ))}
-      <WorkCards />
+      {work}
       <StoryContact story={STORY_FULL} />
       <WeeklyEmailBand />
     </>

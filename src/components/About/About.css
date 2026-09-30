@@ -222,3 +222,116 @@
   .ab-proof li:nth-child(2n) { padding-left: 16px; border-left: 1px solid var(--nl-seam); }
   .ab-facts-row { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
 }
+
+/* ── Round 4: "What I make", three ways (AboutWork.tsx) ── */
+/* The six-style range as a 3×2 grid inside a card's art. */
+.aw-styles { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 4%; padding: 5%; }
+.ab-card-art.aw-styles img, .aw-styles img { position: static; width: 100%; height: 100%; object-fit: contain; padding: 0; }
+
+/* J · Four up: a 2×2 grid with taller art. */
+.aw-four { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 28px; }
+.aw-four .ab-card-art { aspect-ratio: 16 / 9; }
+
+/* K · Ledger: number, text, four frames. */
+.aw-ledger { list-style: none; margin: 28px 0 0; padding: 0; border-top: 1px solid var(--nl-seam); }
+.aw-ledger li { border-bottom: 1px solid var(--nl-seam); }
+.aw-ledger-row { display: grid; grid-template-columns: 72px minmax(0, 1fr) minmax(0, 1.25fr); gap: 32px; align-items: center; padding: 28px 0; text-decoration: none; color: inherit; }
+.aw-ledger-row:hover .aw-ledger-frames span { transform: translateY(-3px); }
+.aw-ledger-n { font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 3rem; line-height: 1; color: var(--nl-jade); align-self: start; }
+.aw-ledger-text { display: flex; flex-direction: column; gap: 8px; }
+.aw-ledger-text > span { padding: 0; }
+.aw-ledger-marks { display: inline-flex; align-items: center; gap: 18px; }
+.aw-ledger-frames { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.aw-ledger-frames span { position: relative; aspect-ratio: 1; border-radius: 10px; overflow: hidden; background: var(--nl-navy); transition: transform 0.2s ease; }
+.aw-ledger-frames span.is-check { background: #F4F1EA; }
+.aw-ledger-frames img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.aw-ledger-frames span.is-check img { object-fit: contain; padding: 8%; }
+
+/* L · Showcase: tabs over one navy stage. */
+.aw-tabs { display: inline-flex; gap: 4px; margin-top: 28px; padding: 4px; border-radius: 999px; background: var(--nl-bg-alt); border: 1px solid var(--nl-seam); }
+.aw-tabs button { border: 0; background: transparent; padding: 9px 20px; border-radius: 999px; font: inherit; font-weight: 600; font-size: 0.95rem; color: var(--nl-ink-soft); cursor: pointer; }
+.aw-tabs button.is-on { background: var(--nl-navy); color: #fff; }
+.aw-stage { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 36px; align-items: center; margin-top: 20px; padding: 24px; border-radius: 24px; background: var(--nl-navy); color: #fff; }
+.aw-stage-art { position: relative; aspect-ratio: 16 / 10; border-radius: 14px; overflow: hidden; background: #071323; }
+.aw-stage-art--check { background: #F4F1EA; }
+.aw-stage-art img.ab-cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.aw-stage-copy { display: flex; flex-direction: column; gap: 12px; padding-right: 12px; }
+.aw-stage-copy .ab-card-kind { padding: 0; margin: 0; color: var(--nl-jade-bright); }
+.aw-stage-copy .ab-card-line { padding: 0; margin: 0; flex: none; color: rgba(255, 255, 255, 0.78); }
+.aw-stage-copy .ab-card-go { padding: 0; color: var(--nl-jade-bright); text-decoration: none; }
+.aw-stage-title { font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 2rem; line-height: 1.1; margin: 0; color: #fff; }
+.aw-stage-app { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 14px 16px; border-radius: 12px; background: rgba(255, 255, 255, 0.06); color: #fff; text-decoration: none; }
+.aw-stage-app .ab-card-seopage { font-size: 22px; top: 0; }
+.aw-stage-app:hover { background: rgba(255, 255, 255, 0.1); }
+.aw-stage-app span { font-size: 0.92rem; line-height: 1.5; color: rgba(255, 255, 255, 0.78); }
+.aw-stage-note { margin: 0; font-size: 0.85rem; color: rgba(255, 255, 255, 0.6); }
+.aw-credits { display: grid; gap: 8px; margin: 4px 0; }
+.aw-credits div { display: grid; grid-template-columns: 96px 1fr; gap: 12px; font-size: 0.9rem; }
+.aw-credits dt { color: rgba(255, 255, 255, 0.55); }
+.aw-credits dd { margin: 0; color: #fff; }
+
+@media (max-width: 960px) {
+  .aw-four { grid-template-columns: minmax(0, 1fr); }
+  .aw-ledger-row { grid-template-columns: 48px minmax(0, 1fr); gap: 16px; }
+  .aw-ledger-n { font-size: 2rem; }
+  .aw-ledger-frames { grid-column: 1 / -1; }
+  .aw-stage { grid-template-columns: minmax(0, 1fr); padding: 16px; gap: 20px; }
+  .aw-tabs { display: flex; overflow-x: auto; }
+}
+
+/* ── Round 5: four styles of K (WorkLedger look=…, WorkPreview) ── */
+/* M · Night: the whole section on navy. */
+.aw-look--night { background: linear-gradient(160deg, #061527 0%, var(--nl-navy) 65%, #0F3460 100%); }
+.aw-look--night .aw-ledger, .aw-look--night .aw-ledger li { border-color: rgba(255, 255, 255, 0.12); }
+.aw-look--night .aw-ledger-n, .aw-look--night .ab-card-kind, .aw-look--night .ab-card-go { color: var(--nl-jade-bright); }
+.aw-look--night .ab-card-title, .aw-look--night .aw-ledger-marks { color: #fff; }
+.aw-look--night .ab-card-line { color: rgba(255, 255, 255, 0.72); }
+.aw-look--night .aw-ledger-frames span { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 18px 36px -20px rgba(0, 212, 170, 0.45); }
+
+/* N · Magazine: huge numbers, no boxes, frames as one wide strip under the text. */
+.aw-look--magazine .aw-ledger { border-top: 2px solid var(--nl-navy); }
+.aw-look--magazine .aw-ledger-row { grid-template-columns: 150px minmax(0, 1fr); row-gap: 20px; padding: 36px 0 40px; }
+.aw-look--magazine .aw-ledger-n { font-size: 7rem; letter-spacing: -0.05em; color: var(--nl-navy); opacity: 0.3; line-height: 0.85; }
+.aw-look--magazine .ab-card-title { font-size: 2.2rem; }
+.aw-look--magazine .aw-ledger-text { max-width: 62ch; }
+.aw-look--magazine .aw-ledger-frames { grid-column: 2; gap: 4px; }
+.aw-look--magazine .aw-ledger-frames span { aspect-ratio: 16 / 9; border-radius: 2px; }
+
+/* O · Preview: a list on the left, one big stage on the right. */
+.aw-preview { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 40px; align-items: start; margin-top: 28px; }
+.aw-preview-list { margin-top: 0; }
+.aw-preview-list .aw-ledger-row { grid-template-columns: 64px minmax(0, 1fr); padding: 22px 12px 22px 0; transition: opacity 0.2s ease; }
+.aw-preview-list li:not(.is-on) .aw-ledger-row { opacity: 0.5; }
+.aw-preview-list li.is-on .aw-ledger-n { color: var(--nl-navy); }
+.aw-preview-stage { position: sticky; top: 96px; display: grid; gap: 8px; }
+.aw-preview-main { position: relative; aspect-ratio: 16 / 10; border-radius: 16px; overflow: hidden; background: var(--nl-navy); animation: aw-fade 0.35s ease; }
+.aw-preview-main.is-check, .aw-preview-thumbs span.is-check { background: #F4F1EA; }
+.aw-preview-main img, .aw-preview-thumbs img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.aw-preview-main.is-check img, .aw-preview-thumbs .is-check img { object-fit: contain; padding: 6%; }
+.aw-preview-thumbs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.aw-preview-thumbs span { position: relative; aspect-ratio: 16 / 10; border-radius: 10px; overflow: hidden; background: var(--nl-navy); }
+@keyframes aw-fade { from { opacity: 0; transform: scale(0.985); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .aw-preview-main { animation: none; } }
+
+/* P · Bands: each row in its own rounded band. */
+.aw-look--bands .aw-ledger { border: 0; display: grid; gap: 16px; }
+.aw-look--bands .aw-ledger li { border: 0; border-radius: 20px; }
+.aw-look--bands .aw-ledger-row { padding: 32px 36px; }
+.aw-band--cream { background: #F4F1EA; }
+.aw-band--navy { background: linear-gradient(150deg, #061527 0%, var(--nl-navy) 60%, #0F3460 100%); }
+.aw-band--gold { background: radial-gradient(60% 90% at 85% 0%, rgba(227, 182, 96, 0.16), transparent 70%), #07091A; }
+.aw-band--navy .ab-card-title, .aw-band--gold .ab-card-title { color: #fff; }
+.aw-band--navy .ab-card-line, .aw-band--gold .ab-card-line { color: rgba(255, 255, 255, 0.75); }
+.aw-band--navy .aw-ledger-n, .aw-band--navy .ab-card-kind, .aw-band--navy .ab-card-go { color: var(--nl-jade-bright); }
+.aw-band--gold .aw-ledger-n, .aw-band--gold .ab-card-kind, .aw-band--gold .ab-card-go { color: #E3B660; }
+.aw-band--gold .ab-card-title { color: #F6DDA3; }
+.aw-band--cream .aw-ledger-frames span.is-check { background: #fff; }
+
+@media (max-width: 960px) {
+  .aw-look--magazine .aw-ledger-row { grid-template-columns: minmax(0, 1fr); }
+  .aw-look--magazine .aw-ledger-n { font-size: 4rem; }
+  .aw-look--magazine .aw-ledger-frames { grid-column: 1; }
+  .aw-preview { grid-template-columns: minmax(0, 1fr); }
+  .aw-preview-stage { position: static; order: -1; }
+  .aw-look--bands .aw-ledger-row { padding: 24px 20px; }
+}

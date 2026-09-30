@@ -1256,6 +1256,52 @@ export const PROTOTYPES: Prototype[] = [
       },
     ],
   },
+  {
+    slug: 'about',
+    name: 'The about page',
+    date: '2026-09-29',
+    headline: 'Three about pages for The Marketing Engineer.',
+    intro:
+      'The old /about introduced an \u201cAgentic Engineer\u201d and a research project. These tell the current story: who writes The Marketing Engineer, what runs on Esy, and how to reach him. Same facts, three designs.',
+    summary: 'Three directions for /about: a letter, a studio page with the work, and a press kit.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Letter, studio, or press kit',
+        summary:
+          'A tells the story as a numbered letter under /engineer\u2019s masthead. B leads with the homepage\u2019s portrait hero, real numbers and the work as cards. C is practical: facts, a Now list, copyable bios and a headshot.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'letter',
+        key: 'A',
+        name: 'Letter',
+        round: 1,
+        title: 'About',
+        blurb: '/engineer\u2019s masthead, then a first-person letter in five numbered parts: what this is, who writes it, what runs on it, how it\u2019s made, get in touch.',
+        poster: ['#FFFFFF', '#0A2540'],
+      },
+      {
+        slug: 'studio',
+        key: 'B',
+        name: 'Studio',
+        round: 1,
+        title: 'Hi, I\u2019m Zev.',
+        blurb: 'The homepage\u2019s navy portrait hero, a strip of real numbers, apps, creatives and films as cards with real visuals, then the longer story and contact.',
+        poster: ['#0A2540', '#00D4AA'],
+      },
+      {
+        slug: 'press-kit',
+        key: 'C',
+        name: 'Press kit',
+        round: 1,
+        title: 'Zev Uhuru',
+        blurb: 'For people who want to feature him: quick facts, a dated Now list, short and long bios with copy buttons, a headshot download and every link.',
+        poster: ['#F8F9FA', '#0A2540'],
+      },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

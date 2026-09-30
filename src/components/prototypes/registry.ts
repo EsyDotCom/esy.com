@@ -467,6 +467,116 @@ export const PROTOTYPES: Prototype[] = [
     ],
   },
   {
+    slug: 'linkedin-banner',
+    name: 'The LinkedIn banner',
+    date: '2026-09-28',
+    headline: 'LinkedIn banners for The Marketing Engineer.',
+    intro:
+      'The banner is the first thing people see on Zev\u2019s profile. Each one says what he does and where to read it, and keeps clear of the profile photo. Open one to see it on a desktop profile and in the phone app, and download the PNG.',
+    summary:
+      'Three 1584\u00d7396 LinkedIn profile banners. Each preview is the same canvas the downloadable PNG is exported from (scripts/export-linkedin-banners.mjs).',
+    rounds: [
+      {
+        n: 1,
+        title: 'Three ways to say what he does',
+        summary:
+          'A carries the homepage promise onto paper, B lists what he runs on navy, and C puts one short line over a generated scene.',
+      },
+      {
+        n: 2,
+        title: 'The name leads',
+        summary:
+          'Zev asked for no product names and for the banner to say The Marketing Engineer. Two of them are our navy. D sets the name as a newspaper nameplate on paper, E adds the four desks on navy, and F screens C\u2019s scene onto navy.',
+      },
+      {
+        n: 3,
+        title: 'His desk, with the name',
+        summary:
+          'Zev\u2019s current banner is a photo of his setup: real, but it says nothing. G keeps the photo under a navy wash and puts the name on it.',
+      },
+    ],
+    // Each card image is the exported PNG (src/components/LinkedInBanner/).
+    variants: [
+      {
+        slug: 'masthead',
+        key: 'A',
+        name: 'Masthead',
+        round: 1,
+        title: 'I build the AI systems that run marketing, and show you how.',
+        blurb:
+          'Light paper with a navy rule on top: the homepage promise in the serif, and clip.art and SEOPage as the proof under it.',
+        image: '/prototypes/linkedin-banner/masthead.png',
+        imageFit: 'contain',
+      },
+      {
+        slug: 'proof',
+        key: 'B',
+        name: 'Proof',
+        round: 1,
+        title: 'Marketing engineer.',
+        blurb:
+          'Navy. The title and where to read him on the left, and a ledger on the right of what he runs: clip.art, SEOPage, and Esy underneath both.',
+        image: '/prototypes/linkedin-banner/proof.png',
+        imageFit: 'contain',
+      },
+      {
+        slug: 'scene',
+        key: 'C',
+        name: 'Scene',
+        round: 1,
+        title: 'Marketing, engineered.',
+        blurb:
+          'The education hero\u2019s generated backdrop, glowing paths over a dark valley, with one short line and the newsletter on its dark side.',
+        image: '/prototypes/linkedin-banner/scene.png',
+        imageFit: 'contain',
+      },
+      {
+        slug: 'nameplate',
+        key: 'D',
+        name: 'Nameplate',
+        round: 2,
+        title: 'The Marketing Engineer',
+        blurb:
+          'The name set like a newspaper nameplate on paper, with a double rule under it and the promise and esy.com beneath.',
+        image: '/prototypes/linkedin-banner/nameplate.png',
+        imageFit: 'contain',
+      },
+      {
+        slug: 'desks',
+        key: 'E',
+        name: 'Desks',
+        round: 2,
+        title: 'The Marketing Engineer',
+        blurb:
+          'Navy. The name, one line on what the email is, and the four desks every issue files under: Build, Grow, Operate, Learn.',
+        image: '/prototypes/linkedin-banner/desks.png',
+        imageFit: 'contain',
+      },
+      {
+        slug: 'night',
+        key: 'F',
+        name: 'Night',
+        round: 2,
+        title: 'The Marketing Engineer',
+        blurb: 'Our navy, with C\u2019s generated scene screened onto it so only the glowing paths show, the name as the headline, and the promise and esy.com under it.',
+        image: '/prototypes/linkedin-banner/night.png',
+        imageFit: 'contain',
+      },
+      {
+        slug: 'desk',
+        key: 'G',
+        name: 'Desk',
+        round: 3,
+        mergeOf: ['D'],
+        title: 'The Marketing Engineer',
+        blurb:
+          'Zev\u2019s own desk photo, the banner he uses now, under a navy wash that deepens to the right, with the name, the promise and esy.com on it.',
+        image: '/prototypes/linkedin-banner/desk.png',
+        imageFit: 'contain',
+      },
+    ],
+  },
+  {
     slug: 'films',
     name: 'The films pages',
     date: '2026-09-28',

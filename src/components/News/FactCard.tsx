@@ -20,6 +20,7 @@ export function FactCard({ post, size = 'lg' }: { post: NewsPost; size?: 'lg' | 
   const story = findStory(post.story)!;
   return (
     <span className={`nfc nfc--${size}`} role="img" aria-label={`${story.company.name}: ${post.card.title}. ${post.card.facts.join(', ')}.`}>
+      <span className="nfc-in">
       <span className="nfc-top">
         <CompanyMark story={story} />
         <span className="nfc-brand">AI News</span>
@@ -33,6 +34,7 @@ export function FactCard({ post, size = 'lg' }: { post: NewsPost; size?: 'lg' | 
         <span>{eventLabel(post.eventDate)}{post.eventDate.length > 7 ? ', ' : ' '}{post.eventDate.slice(0, 4)}</span>
         <span>esy.com/news</span>
       </span>
+      </span>
     </span>
   );
 }
@@ -41,6 +43,7 @@ export function FactCard({ post, size = 'lg' }: { post: NewsPost; size?: 'lg' | 
 export function StoryCard({ story, count, latest }: { story: NewsStory; count: number; latest: string }) {
   return (
     <span className="nfc nfc--lg" role="img" aria-label={`${story.company.name}: ${story.name}, ${count} posts.`}>
+      <span className="nfc-in">
       <span className="nfc-top">
         <CompanyMark story={story} />
         <span className="nfc-brand">AI News</span>
@@ -49,6 +52,7 @@ export function StoryCard({ story, count, latest }: { story: NewsStory; count: n
       <span className="nfc-title">{story.name}</span>
       <span className="nfc-facts"><span>{count} {count === 1 ? 'post' : 'posts'}</span><span>Latest news {latest}</span></span>
       <span className="nfc-foot"><span>{story.line}</span><span>esy.com/news</span></span>
+      </span>
     </span>
   );
 }

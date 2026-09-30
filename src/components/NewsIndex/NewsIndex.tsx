@@ -31,6 +31,7 @@ export function SampleNote({ onDark = false }: { onDark?: boolean }) {
 export function Meta({ post, time = false }: { post: NewsPost; time?: boolean }) {
   return (
     <p className="nw-meta">
+      <span className={`nw-label nw-label--${post.label.toLowerCase()}`}>{post.label}</span>
       <span className="nw-topic">{post.topic}</span>
       <span>{time ? timeLabel(post.publishedAt) : dayLabel(post.publishedAt)}</span>
       <span>{post.readMinutes} min read</span>

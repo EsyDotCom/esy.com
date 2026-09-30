@@ -151,3 +151,11 @@
   .nw-live { padding-left: 0; border-left: 0; }
   .nw-desks { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Post labels (round 2): Breaking is the only loud one. */
+.nw-label { display: inline-flex; align-items: center; padding: 1px 7px; border-radius: 4px; border: 1px solid var(--nl-seam); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--nl-navy); background: #fff; }
+.nw-label--breaking { background: #E5484D; border-color: #E5484D; color: #fff; }
+.nw-label--tested { background: var(--nl-navy); border-color: var(--nl-navy); color: #fff; }
+.nw-label--follow-up { border-color: rgba(229, 72, 77, 0.45); color: #C8373C; }
+.nw-meta { align-items: center; }
+.nw-second .nw-meta span:last-child, .nw-live .nw-meta span:last-child { display: none; }

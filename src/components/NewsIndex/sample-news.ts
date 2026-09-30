@@ -8,6 +8,12 @@
 
 export type NewsTopic = 'AI Models' | 'AI Image Generation' | 'AI Coding Tools' | 'Agentic Workflows' | 'SEO';
 
+/* What kind of post it is (round 2), so a post about last week's news never
+ * reads as breaking: Breaking (same day), Tested (I ran it), Follow-up (what
+ * changed since), How-to (use it in your system), Explainer (evergreen), Take
+ * (my read on where it's going). */
+export type NewsLabel = 'Breaking' | 'Tested' | 'Follow-up' | 'How-to' | 'Explainer' | 'Take';
+
 export interface NewsPost {
   slug: string;
   /** ISO date-time, so the wire can group by day and show the time. */
@@ -23,11 +29,13 @@ export interface NewsPost {
   image?: string;
   /** The trend it belongs to (round 2): posts on one trend are grouped. */
   trend: string;
+  label: NewsLabel;
 }
 
 export const SAMPLE_NEWS: NewsPost[] = [
   {
     slug: 'sample-image-model-transparent-backgrounds',
+    label: 'Breaking',
     trend: 'Transparent renders',
     publishedAt: '2026-09-30T14:10:00Z',
     topic: 'AI Image Generation',
@@ -39,6 +47,7 @@ export const SAMPLE_NEWS: NewsPost[] = [
   },
   {
     slug: 'sample-transparent-hard-cases',
+    label: 'Tested',
     trend: 'Transparent renders',
     publishedAt: '2026-09-30T12:30:00Z',
     topic: 'AI Image Generation',
@@ -50,6 +59,7 @@ export const SAMPLE_NEWS: NewsPost[] = [
   },
   {
     slug: 'sample-transparent-cost',
+    label: 'Follow-up',
     trend: 'Transparent renders',
     publishedAt: '2026-09-30T10:05:00Z',
     topic: 'AI Image Generation',
@@ -60,6 +70,7 @@ export const SAMPLE_NEWS: NewsPost[] = [
   },
   {
     slug: 'sample-coding-agent-long-runs',
+    label: 'Explainer',
     trend: 'Long-running agents',
     image: '/images/articles/how-we-made-our-explainer-video-in-code/builder-score.jpg',
     publishedAt: '2026-09-30T09:30:00Z',
@@ -71,6 +82,7 @@ export const SAMPLE_NEWS: NewsPost[] = [
   },
   {
     slug: 'sample-ai-answers-cite-local-pages',
+    label: 'Take',
     trend: 'Cited by AI',
     image: '/images/seopage/nora-proud.webp',
     publishedAt: '2026-09-29T16:45:00Z',
@@ -82,6 +94,7 @@ export const SAMPLE_NEWS: NewsPost[] = [
   },
   {
     slug: 'sample-model-pinning',
+    label: 'How-to',
     trend: 'Model pinning',
     image: '/prototypes/home-clipart/flat.webp',
     publishedAt: '2026-09-29T11:00:00Z',
@@ -93,6 +106,7 @@ export const SAMPLE_NEWS: NewsPost[] = [
   },
   {
     slug: 'sample-agent-review-step',
+    label: 'Take',
     trend: 'Long-running agents',
     publishedAt: '2026-09-28T15:20:00Z',
     topic: 'Agentic Workflows',
@@ -103,6 +117,7 @@ export const SAMPLE_NEWS: NewsPost[] = [
   },
   {
     slug: 'sample-video-in-code',
+    label: 'Tested',
     trend: 'Video in code',
     image: '/images/articles/how-we-made-our-explainer-video-in-code/hook.jpg',
     publishedAt: '2026-09-27T13:00:00Z',
@@ -114,6 +129,7 @@ export const SAMPLE_NEWS: NewsPost[] = [
   },
   {
     slug: 'sample-style-references',
+    label: 'How-to',
     trend: 'On-brand images',
     image: '/prototypes/home-clipart/watercolor.webp',
     publishedAt: '2026-09-26T10:15:00Z',
@@ -125,6 +141,7 @@ export const SAMPLE_NEWS: NewsPost[] = [
   },
   {
     slug: 'sample-programmatic-seo-quality',
+    label: 'Explainer',
     trend: 'Cited by AI',
     image: '/images/seopage/svc-leak.webp',
     publishedAt: '2026-09-25T17:40:00Z',
@@ -136,6 +153,7 @@ export const SAMPLE_NEWS: NewsPost[] = [
   },
   {
     slug: 'sample-cost-per-asset',
+    label: 'Explainer',
     trend: 'Long-running agents',
     publishedAt: '2026-09-24T12:00:00Z',
     topic: 'Agentic Workflows',

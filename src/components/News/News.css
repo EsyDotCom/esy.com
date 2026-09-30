@@ -46,3 +46,35 @@
 .nx-row-cover img { object-fit: cover; }
 .nx-card--text { padding: 16px 18px; border-radius: 12px; border: 1px solid var(--nl-seam); background: #fff; }
 .nx-card--text:hover { border-color: var(--nl-navy); }
+
+/* Sources, under each post. */
+.nx-sources { margin: 36px 0 0; padding-top: 18px; border-top: 2px solid var(--nl-navy); }
+.nx-sources ol { list-style: none; margin: 0; padding: 0; counter-reset: src; }
+.nx-sources li { position: relative; padding: 14px 0 14px 34px; border-bottom: 1px solid var(--nl-seam); counter-increment: src; }
+.nx-sources li::before { content: counter(src); position: absolute; left: 0; top: 15px; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--nl-bg-alt); font-size: 0.72rem; font-weight: 700; color: var(--nl-navy); }
+.nx-source-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 0 0 4px; font-size: 0.85rem; color: var(--nl-ink-soft); }
+.nx-source-head b { color: var(--nl-navy); }
+.nx-source-tag { padding: 1px 7px; border-radius: 4px; border: 1px solid var(--nl-seam); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.nx-source-title { display: inline-flex; align-items: center; gap: 4px; font-weight: 600; color: var(--nl-jade); text-decoration: none; }
+.nx-source-title:hover { text-decoration: underline; }
+.nx-source-supports, .nx-source-note { margin: 4px 0 0; font-size: 0.9rem; line-height: 1.5; color: var(--nl-ink); }
+.nx-source-note { color: var(--nl-ink-soft); font-style: italic; }
+.nx-sources-foot { margin: 14px 0 0; font-size: 0.88rem; color: var(--nl-ink-soft); }
+.nx-sources-foot a { color: inherit; }
+
+/* ── The fact card (FactCard.tsx): every post's cover ── */
+.nfc { position: relative; display: flex; flex-direction: column; width: 100%; aspect-ratio: 1200 / 630; container-type: inline-size; padding: 5.5cqw 6cqw; border-radius: 10px; overflow: hidden; background: radial-gradient(90% 120% at 100% 0%, rgba(0, 212, 170, 0.16), transparent 60%), linear-gradient(150deg, #061527 0%, var(--nl-navy) 60%, #0F3460 100%); color: #fff; text-align: left; box-sizing: border-box; }
+.nfc-top { display: flex; align-items: center; justify-content: space-between; gap: 4cqw; }
+.nfc-logo { height: 4.2cqw; width: auto; max-width: 42cqw; display: block; }
+.nfc-company { font-weight: 700; font-size: 4.4cqw; letter-spacing: -0.01em; line-height: 1; }
+.nfc-brand { padding: 0.9cqw 2cqw; border-radius: 999px; border: 1px solid rgba(0, 212, 170, 0.5); font-size: 2.1cqw; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-jade-bright); white-space: nowrap; }
+.nfc-story { margin-top: auto; font-size: 2.3cqw; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-jade-bright); }
+.nfc-title { margin: 1.2cqw 0 3cqw; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 7.4cqw; line-height: 1.02; letter-spacing: -0.02em; }
+.nfc-facts { display: flex; flex-wrap: wrap; gap: 1.4cqw; }
+.nfc-facts span { padding: 1.1cqw 2.2cqw; border-radius: 1.2cqw; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.14); font-size: 2.5cqw; line-height: 1.2; white-space: nowrap; }
+.nfc-foot { display: flex; justify-content: space-between; gap: 4cqw; margin-top: 4cqw; padding-top: 2.2cqw; border-top: 1px solid rgba(255, 255, 255, 0.16); font-size: 2.2cqw; color: rgba(255, 255, 255, 0.7); }
+.nfc-foot span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nfc--sm { border-radius: 8px; }
+.nx-lead-cover, .nx-card-cover { display: block; margin-bottom: 14px; }
+.nx-row-cover { aspect-ratio: auto; background: none; }
+.nx-figure { margin: 24px 0; }

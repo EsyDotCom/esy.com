@@ -26,14 +26,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const post = findPost(slug);
   if (post) {
-    const story = findStory(post.story);
     const title = `${post.headline} — AI News`;
     return {
       title,
       description: post.dek,
       openGraph: {
         title, description: post.dek, type: 'article', url: `https://esy.com${postPath(post.slug)}`, siteName: 'Esy',
-        publishedTime: post.publishedAt, authors: ['Zev Uhuru'], images: story ? [story.cover] : undefined,
+        publishedTime: post.publishedAt, authors: ['Zev Uhuru'],
       },
       twitter: { card: 'summary_large_image', title, description: post.dek, site: '@EsyDotCom' },
       alternates: { canonical: postPath(post.slug) },
@@ -45,7 +44,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {
       title,
       description: story.line,
-      openGraph: { title, description: story.line, type: 'website', url: `https://esy.com/news/${story.slug}/`, siteName: 'Esy', images: [story.cover] },
+      openGraph: { title, description: story.line, type: 'website', url: `https://esy.com/news/${story.slug}/`, siteName: 'Esy' },
       alternates: { canonical: `/news/${story.slug}/` },
     };
   }

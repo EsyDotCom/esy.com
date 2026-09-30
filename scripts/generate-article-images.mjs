@@ -114,23 +114,6 @@ const IMAGES = [
     aspect: '2:3',
     scene: `Isometric editorial illustration, tall portrait composition: a small friendly robot assistant standing on top of a glowing terminal window that floats above a tidy desk, file cards rising from the desk into the window like a staircase, a soft night sky above. Calm and cinematic, ${PALETTE}. The top quarter and bottom quarter of the frame are dark and quiet`,
   },
-  // AI News story covers (2026-09-30): one per story, shared by its posts at
-  // /news/<post>/ and /news/<story>/. Generic scenes, never a company's logo
-  // or product UI, so a cover illustrates the news without borrowing a brand.
-  ...[
-    ['meta-muse', 'a small friendly AI assistant figure at a tidy shop counter, glowing threads running from it to a laptop, an open storefront window, a stack of email envelopes and a palette of colour swatches, all connected like a small network'],
-    ['claude-5-5', 'a sleek, fast printing press on a clean desk producing neat stacks of polished documents, slide cards and spreadsheet sheets, with soft motion lines showing speed'],
-    ['elevenlabs-v4', 'a studio microphone on a stand emitting soft sound rings that turn into many small speech bubbles in different colours drifting out across a globe'],
-    ['google-search', 'a large magnifying glass hovering over a landscape of floating web page cards, with a smartphone camera lens scanning a product photo in the foreground'],
-    ['google-ai-max', 'a search result card on a workbench being rearranged by two small robotic arms: headline tiles swapping places, and glowing arrows pointing to three different landing page cards'],
-    ['hubspot-unbound', 'three small friendly robot agents around a marketing planning table: one arranging a campaign calendar, one drafting a page, one sorting email envelopes into personalised stacks'],
-    ['chatgpt-ads', 'a large chat window floating above a tidy desk, with small shopping bags, price tags and product cards drifting out of its speech bubbles'],
-  ].map(([name, scene]) => ({
-    id: `news-${name}`,
-    outDir: 'public/images/news',
-    name,
-    scene: `Isometric editorial illustration: ${scene}. Clean and calm, ${PALETTE}`,
-  })),
 ];
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));

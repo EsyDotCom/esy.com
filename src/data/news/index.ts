@@ -6,8 +6,8 @@
  *   - written in our own words, no quotes; a company's claim is said as theirs;
  *   - `publishedAt` is the day the post went up on esy.com, never backdated;
  *     `eventDate` is when the news happened, shown separately;
- *   - covers are ours, generated through Esy (scripts/generate-article-images.mjs),
- *     never a company's logo or product art.
+ *   - covers are fact cards drawn from the post (components/News/FactCard.tsx),
+ *     with the company's official logo only where its terms allow editorial use.
  *
  * Only `status: 'published'` posts render. A story needs two published posts
  * for its own row on /news; its page at /news/<story>/ lists every post.
@@ -15,13 +15,41 @@
 
 export type NewsTopic = 'Ads' | 'SEO' | 'Social' | 'Creative' | 'Marketing Tools' | 'AI Models';
 
+export interface NewsCompany {
+  name: string;
+  /** Their official logo, only where their brand terms clearly allow editorial use. */
+  logo?: {
+    /** For dark backgrounds (the fact cards are navy). */
+    onDark: string;
+    onLight: string;
+    /** Where the file came from, and the terms that allow it. */
+    from: string;
+    terms: string;
+  };
+}
+
 export interface NewsStory {
   slug: string;
   name: string;
   /** One line on what the story is. */
   line: string;
-  /** Our cover, shared by the story's posts. */
-  cover: string;
+  company: NewsCompany;
+}
+
+export interface NewsSource {
+  /** Who published it: "Meta Newsroom". */
+  publisher: string;
+  /** Their page's title. */
+  title: string;
+  url: string;
+  /** Their publish date, as they give it: "September 29, 2026". */
+  date: string;
+  /** What in our post it backs up. */
+  supports: string;
+  /** Reporting by someone other than the company the news is about. */
+  secondary?: boolean;
+  /** Anything a reader should know about it. */
+  note?: string;
 }
 
 export interface NewsPost {
@@ -38,7 +66,10 @@ export interface NewsPost {
   check: string[];
   facts: [string, string][];
   faq: [string, string][];
-  source: { name: string; url: string };
+  /** Where every fact comes from, the company's own page first. */
+  sources: NewsSource[];
+  /** The post's cover and share image: a fact card drawn from these. */
+  card: { title: string; /** Three short facts. */ facts: string[] };
   /** When the news happened: YYYY-MM-DD, or YYYY-MM when only the month is known. */
   eventDate: string;
   /** When the post went up on esy.com (YYYY-MM-DD). */
@@ -48,15 +79,40 @@ export interface NewsPost {
   held?: string;
 }
 
+/* Companies we cover. Logos are the companies' own files, unchanged, and only
+ * where their brand terms clearly allow editorial use (checked 2026-09-30):
+ *   ElevenLabs — press kit and brand page for media coverage (elevenlabs.io/press).
+ *   Anthropic  — media resources kit (anthropic.com/press-kit); editorial use is
+ *                generally permitted, press@anthropic.com confirms in writing.
+ * Names only, no logo, until cleared:
+ *   Meta       — its brand pages disagree on whether editorial use needs review.
+ *   Google     — its terms cover logo use only after Google approves a request.
+ *   HubSpot    — logos need written permission; names are fine.
+ *   OpenAI     — its brand page couldn't be read to check. */
+const COMPANY: Record<string, NewsCompany> = {
+  meta: { name: 'Meta' },
+  google: { name: 'Google' },
+  anthropic: {
+    name: 'Anthropic',
+    logo: { onDark: '/images/news/logos/anthropic-ivory.svg', onLight: '/images/news/logos/anthropic-slate.svg', from: 'https://www.anthropic.com/press-kit', terms: 'Anthropic media resources; editorial use in news coverage' },
+  },
+  elevenlabs: {
+    name: 'ElevenLabs',
+    logo: { onDark: '/images/news/logos/elevenlabs-white.svg', onLight: '/images/news/logos/elevenlabs-black.svg', from: 'https://elevenlabs.io/brand', terms: 'ElevenLabs brand and press materials for media coverage' },
+  },
+  hubspot: { name: 'HubSpot' },
+  openai: { name: 'OpenAI' },
+};
+
 export const NEWS_STORIES: NewsStory[] = [
-  { slug: 'meta-muse', name: 'Meta Muse', line: 'Meta’s AI agent, and the business tools built on it.', cover: '/images/news/meta-muse.webp' },
-  { slug: 'google-search', name: 'Google Search', line: 'Ranking updates and new Search Console data.', cover: '/images/news/google-search.webp' },
-  { slug: 'google-ai-max', name: 'Google AI Max', line: 'Search campaigns moving to Google’s AI matching and ad text.', cover: '/images/news/google-ai-max.webp' },
-  { slug: 'claude-5-5', name: 'Claude 5.5', line: 'Anthropic’s new models for everyday work.', cover: '/images/news/claude-5-5.webp' },
-  { slug: 'elevenlabs-v4', name: 'ElevenLabs v4', line: 'Voice models for voiceover and voice agents.', cover: '/images/news/elevenlabs-v4.webp' },
-  { slug: 'hubspot-marketing-studio', name: 'HubSpot Marketing Studio', line: 'Agents for campaigns, content and nurture in HubSpot.', cover: '/images/news/hubspot-unbound.webp' },
-  { slug: 'chatgpt-ads', name: 'ChatGPT Ads', line: 'Advertising inside ChatGPT.', cover: '/images/news/chatgpt-ads.webp' },
-  { slug: 'openai-devday', name: 'OpenAI DevDay', line: 'OpenAI’s developer conference.', cover: '/images/news/chatgpt-ads.webp' },
+  { slug: 'meta-muse', name: 'Meta Muse', line: 'Meta’s AI agent, and the business tools built on it.', company: COMPANY.meta },
+  { slug: 'google-search', name: 'Google Search', line: 'Ranking updates and new Search Console data.', company: COMPANY.google },
+  { slug: 'google-ai-max', name: 'Google AI Max', line: 'Search campaigns moving to Google’s AI matching and ad text.', company: COMPANY.google },
+  { slug: 'claude-5-5', name: 'Claude 5.5', line: 'Anthropic’s new models for everyday work.', company: COMPANY.anthropic },
+  { slug: 'elevenlabs-v4', name: 'ElevenLabs v4', line: 'Voice models for voiceover and voice agents.', company: COMPANY.elevenlabs },
+  { slug: 'hubspot-marketing-studio', name: 'HubSpot Marketing Studio', line: 'Agents for campaigns, content and nurture in HubSpot.', company: COMPANY.hubspot },
+  { slug: 'chatgpt-ads', name: 'ChatGPT Ads', line: 'Advertising inside ChatGPT.', company: COMPANY.openai },
+  { slug: 'openai-devday', name: 'OpenAI DevDay', line: 'OpenAI’s developer conference.', company: COMPANY.openai },
 ];
 
 const PUBLISHED = '2026-09-30';
@@ -98,7 +154,8 @@ export const NEWS_POSTS: NewsPost[] = [
       ['Can Muse post, email or spend without asking?', 'Meta says no: nothing publishes, sends or spends without your approval.'],
       ['Where is it available?', 'In the US and Canada, in the Muse app.'],
     ],
-    source: { name: 'Meta Newsroom', url: 'https://about.fb.com/news/2026/09/introducing-muse-small-business/' },
+    sources: [{ publisher: 'Meta Newsroom', title: 'The Future Is for Everyone: Muse for Small Business', url: 'https://about.fb.com/news/2026/09/introducing-muse-small-business/', date: 'September 29, 2026', supports: 'What Muse does, the 15 tools it connects to, approvals, price and availability' }],
+    card: { title: 'Muse for Small Business', facts: ['15 tools connected', 'US & Canada', 'Free for most'] },
     eventDate: '2026-09-29',
     publishedAt: PUBLISHED,
     readMinutes: 3,
@@ -128,7 +185,8 @@ export const NEWS_POSTS: NewsPost[] = [
       ['What is Meta Enterprise Platform?', 'A new Meta business unit that sells its AI models, agents and developer tools to companies and developers.'],
       ['What does it include?', 'At launch, the Muse agent, Meta Business Agent, the Muse API and Muse Code.'],
     ],
-    source: { name: 'Meta Newsroom', url: 'https://about.fb.com/news/2026/09/launching-meta-enterprise-platform/' },
+    sources: [{ publisher: 'Meta Newsroom', title: 'Launching Meta Enterprise Platform', url: 'https://about.fb.com/news/2026/09/launching-meta-enterprise-platform/', date: 'September 28, 2026', supports: 'What the unit sells, who it’s for and who leads it' }],
+    card: { title: 'Meta Enterprise Platform', facts: ['Muse API & Muse Code', 'For businesses & devs', 'Led by CJ Desai'] },
     eventDate: '2026-09-28',
     publishedAt: PUBLISHED,
     readMinutes: 2,
@@ -158,7 +216,8 @@ export const NEWS_POSTS: NewsPost[] = [
       ['What is Meta Muse?', 'A personal AI agent from Meta that works on goals you set and takes actions in apps you connect, with your permission.'],
       ['Where can I use Muse?', 'In the US, on iOS, Android and the muse.ai website.'],
     ],
-    source: { name: 'Meta Newsroom', url: 'https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/' },
+    sources: [{ publisher: 'Meta Newsroom', title: 'Introducing Muse: The World’s First Personal AI Agent Built for Everyone', url: 'https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/', date: 'September 8, 2026', supports: 'What Muse does, where it’s available, the apps and the price' }, { publisher: 'Meta Newsroom', title: 'Introducing Muse Image: Image Generation Built for Your World', url: 'https://about.fb.com/news/2026/07/introducing-muse-image-meta-ai/', date: 'July 7, 2026', supports: 'Muse Image coming to advertisers through Advantage+ creative' }],
+    card: { title: 'Muse, a personal AI agent', facts: ['Does tasks, not just answers', 'US first', 'iOS, Android, web'] },
     eventDate: '2026-09-08',
     publishedAt: PUBLISHED,
     readMinutes: 2,
@@ -190,7 +249,8 @@ export const NEWS_POSTS: NewsPost[] = [
       ['What counts as a multimodal search in Search Console?', 'A search that uses an image: Google Lens, Circle to Search on Android, image uploads to Google Search, and Chrome’s “Search this image”.'],
       ['Why is there no query data?', 'These searches mostly start from a picture, not typed words, so there’s no query text to report.'],
     ],
-    source: { name: 'Google Search Central Blog', url: 'https://developers.google.com/search/blog/2026/09/web-multimodal-in-sc' },
+    sources: [{ publisher: 'Google Search Central Blog', title: 'Announcing web multimodal Search performance reporting in Search Console', url: 'https://developers.google.com/search/blog/2026/09/web-multimodal-in-sc', date: 'September 24, 2026', supports: 'What counts as multimodal, which reports show it, and the rollout' }, { publisher: 'Search Engine Journal', title: 'Google Spam Update, Image Search Data In GSC – SEO Pulse', url: 'https://www.searchenginejournal.com/seo-pulse-google-spam-update-image-search-data/590882/', date: 'September 26, 2026', supports: 'No query data for multimodal searches', secondary: true }],
+    card: { title: 'Multimodal search in Search Console', facts: ['Lens & Circle to Search', 'Image uploads', 'Worldwide'] },
     eventDate: '2026-09-24',
     publishedAt: PUBLISHED,
     readMinutes: 2,
@@ -220,7 +280,8 @@ export const NEWS_POSTS: NewsPost[] = [
       ['When did Google’s September 2026 spam update start?', 'On September 24, 2026, according to Google’s Search Status Dashboard.'],
       ['How long do spam updates take?', 'This year’s earlier ones finished in under three days. The September update was still rolling out six days in.'],
     ],
-    source: { name: 'Google Search Status Dashboard', url: 'https://status.search.google.com/products/rGHU1u87FJnkP6W2GwMi/history' },
+    sources: [{ publisher: 'Google Search Status Dashboard', title: 'Ranking incident history', url: 'https://status.search.google.com/products/rGHU1u87FJnkP6W2GwMi/history', date: 'Read September 30, 2026', supports: 'The start date, the status, and how long this year’s earlier updates took' }],
+    card: { title: 'September 2026 spam update', facts: ['Started Sep 24', 'Still rolling out Sep 30', '4th this year'] },
     eventDate: '2026-09-24',
     publishedAt: PUBLISHED,
     readMinutes: 2,
@@ -251,7 +312,8 @@ export const NEWS_POSTS: NewsPost[] = [
       ['Which Google Ads campaigns upgrade to AI Max in September 2026?', 'Search campaigns using automatically created assets or the campaign-level broad match setting.'],
       ['When do Dynamic Search Ads move to AI Max?', 'Google moved it to February 2027.'],
     ],
-    source: { name: 'Google Ads & Commerce Blog', url: 'https://blog.google/products/ads-commerce/dsa-upgrade-to-ai-max-2026/' },
+    sources: [{ publisher: 'Google Ads & Commerce Blog', title: 'We’re upgrading Dynamic Search Ads to AI Max', url: 'https://blog.google/products/ads-commerce/dsa-upgrade-to-ai-max-2026/', date: 'April 15, 2026, updated June 11, 2026', supports: 'Which campaigns upgrade, when, and the Dynamic Search Ads delay' }],
+    card: { title: 'Search campaigns move to AI Max', facts: ['Auto-created assets', 'Campaign-level broad match', 'DSA: Feb 2027'] },
     eventDate: '2026-09',
     publishedAt: PUBLISHED,
     readMinutes: 2,
@@ -278,7 +340,8 @@ export const NEWS_POSTS: NewsPost[] = [
     faq: [
       ['What does AI Max for Search campaigns change?', 'Which searches you match, the text of your headlines and descriptions, and which landing page is used.'],
     ],
-    source: { name: 'Google Ads Help', url: 'https://support.google.com/google-ads/answer/15910366' },
+    sources: [{ publisher: 'Google Ads Help', title: 'About AI Max for Search campaigns', url: 'https://support.google.com/google-ads/answer/15910366', date: 'Read September 30, 2026', supports: 'The three features and what each does' }],
+    card: { title: 'AI Max\u2019s three features', facts: ['Search term matching', 'Text customization', 'Final URL expansion'] },
     eventDate: '2026-09',
     publishedAt: PUBLISHED,
     readMinutes: 2,
@@ -311,7 +374,8 @@ export const NEWS_POSTS: NewsPost[] = [
       ['How much does Claude Sonnet 5.5 cost?', '$2 per million input tokens and $10 per million output tokens.'],
       ['What is Claude Sonnet 5.5 best at?', 'Anthropic says well-scoped everyday tasks, bug fixes, and documents, slides and spreadsheets.'],
     ],
-    source: { name: 'Anthropic', url: 'https://www.anthropic.com/claude-sonnet-5-5' },
+    sources: [{ publisher: 'Anthropic', title: 'Introducing Claude Sonnet 5.5', url: 'https://www.anthropic.com/claude-sonnet-5-5', date: 'September 28, 2026', supports: 'Prices, speed, what it’s best at and where it’s available' }],
+    card: { title: 'Claude Sonnet 5.5', facts: ['$2 / $10 per M tokens', '30%+ faster', 'Docs, slides, sheets'] },
     eventDate: '2026-09-28',
     publishedAt: PUBLISHED,
     readMinutes: 2,
@@ -343,7 +407,8 @@ export const NEWS_POSTS: NewsPost[] = [
       ['How many languages does ElevenLabs v4 support?', 'More than 90, in both Eleven v4 and Eleven v4 Turbo.'],
       ['How much audio does a voice clone need?', 'ElevenLabs says Instant Voice Clones need 10 seconds of audio.'],
     ],
-    source: { name: 'ElevenLabs', url: 'https://elevenlabs.io/blog/eleven-v4' },
+    sources: [{ publisher: 'ElevenLabs', title: 'Eleven v4: Our most expressive text-to-speech AI model yet', url: 'https://elevenlabs.io/blog/eleven-v4', date: 'September 28, 2026', supports: 'Languages, voice cloning, inline tags, latency and where it’s available' }],
+    card: { title: 'Eleven v4 and v4 Turbo', facts: ['90+ languages', 'Clone from 10 seconds', '~150 ms to speech'] },
     eventDate: '2026-09-28',
     publishedAt: PUBLISHED,
     readMinutes: 2,
@@ -372,7 +437,8 @@ export const NEWS_POSTS: NewsPost[] = [
       ['What are HubSpot’s new marketing agents?', 'Campaign Agent for campaign plans, Content Agent for posts and landing pages, and Nurture Agent for personalized nurture emails.'],
       ['How is Marketing Studio priced?', 'In credits, which vary by HubSpot plan.'],
     ],
-    source: { name: 'HubSpot', url: 'https://www.hubspot.com/spotlight' },
+    sources: [{ publisher: 'HubSpot', title: 'Fall 2026 Spotlight', url: 'https://www.hubspot.com/spotlight', date: 'September 16–18, 2026', supports: 'Marketing Studio, the three agents, credit pricing and the event dates' }],
+    card: { title: 'Marketing Studio agents', facts: ['Campaign', 'Content', 'Nurture'] },
     eventDate: '2026-09-16',
     publishedAt: PUBLISHED,
     readMinutes: 2,
@@ -400,7 +466,8 @@ export const NEWS_POSTS: NewsPost[] = [
     faq: [
       ['How much do ChatGPT ads cost per click?', 'Advertisers report anywhere from under $3 to $13 per click, according to MediaPost, citing Search Engine Journal. There are no published benchmarks.'],
     ],
-    source: { name: 'MediaPost', url: 'https://www.mediapost.com/publications/article/417746/chatgpt-ad-results-are-not-yet-clear.html' },
+    sources: [{ publisher: 'MediaPost', title: 'ChatGPT Ad Results Are Not Yet Clear', url: 'https://www.mediapost.com/publications/article/417746/chatgpt-ad-results-are-not-yet-clear.html', date: 'September 8, 2026', supports: 'The cost range and the lack of benchmarks', secondary: true, note: 'MediaPost cites a Search Engine Journal report, which we haven’t read directly.' }],
+    card: { title: 'What ChatGPT ad clicks cost', facts: ['Under $3 to $13', 'No benchmarks yet', 'Reported Sep 8'] },
     eventDate: '2026-09-08',
     publishedAt: PUBLISHED,
     readMinutes: 2,
@@ -420,7 +487,8 @@ export const NEWS_POSTS: NewsPost[] = [
     check: [],
     facts: [],
     faq: [],
-    source: { name: 'Common Thread Collective', url: 'https://commonthreadco.com/blogs/coachs-corner/every-chatgpt-ads-update-in-2026-updated-weekly' },
+    card: { title: '', facts: ['', '', ''] },
+    sources: [{ publisher: 'Common Thread Collective', title: '', url: 'https://commonthreadco.com/blogs/coachs-corner/every-chatgpt-ads-update-in-2026-updated-weekly', date: '', supports: '', secondary: true }],
     eventDate: '2026-09',
     publishedAt: PUBLISHED,
     readMinutes: 2,
@@ -439,7 +507,8 @@ export const NEWS_POSTS: NewsPost[] = [
     check: [],
     facts: [],
     faq: [],
-    source: { name: 'OpenAI', url: 'https://openai.com/index/devday-2026/' },
+    card: { title: '', facts: ['', '', ''] },
+    sources: [{ publisher: 'OpenAI', title: '', url: 'https://openai.com/index/devday-2026/', date: '', supports: '', secondary: true }],
     eventDate: '2026-09-29',
     publishedAt: PUBLISHED,
     readMinutes: 3,
@@ -458,7 +527,8 @@ export const NEWS_POSTS: NewsPost[] = [
     check: [],
     facts: [],
     faq: [],
-    source: { name: 'Search Engine Roundtable', url: 'https://www.seroundtable.com/google-al-contribution-pilot-42076.html' },
+    card: { title: '', facts: ['', '', ''] },
+    sources: [{ publisher: 'Search Engine Roundtable', title: '', url: 'https://www.seroundtable.com/google-al-contribution-pilot-42076.html', date: '', supports: '', secondary: true }],
     eventDate: '2026-09-14',
     publishedAt: PUBLISHED,
     readMinutes: 3,

@@ -12,7 +12,6 @@
  * Data and rules: src/data/news/index.ts. No labels ("Breaking" etc.): the
  * dates say when things happened.
  */
-import Image from 'next/image';
 import Link from 'next/link';
 import {
   ArrowRight, ArrowUpRight, CalendarDays, Download, Info, MapPin, Plug, ShieldCheck, Sparkles, Store, Tag, Users,
@@ -20,6 +19,7 @@ import {
 } from 'lucide-react';
 import NewsletterSignup from '@/components/NewsletterHome/NewsletterSignup';
 import WeeklyEmailBand from '@/components/NewsletterHome/WeeklyEmailBand';
+import { FactCard, StoryCard } from './FactCard';
 import {
   eventLabel, findStory, liveStories, longDate, postPath, postsInStory, publishedPosts,
   type NewsPost, type NewsStory,
@@ -38,21 +38,16 @@ function PostMeta({ post, source = true }: { post: NewsPost; source?: boolean })
     <p className="nw-meta">
       <span className="nw-topic">{findStory(post.story)?.name}</span>
       <span>{eventLabel(post.eventDate)}</span>
-      {source && <span>via {post.source.name}</span>}
+      {source && <span>via {post.sources[0]?.publisher}</span>}
     </p>
   );
 }
 
-/** A post as a card: the story's cover (unless the row already shows it), date, headline. */
+/** A post as a card: its fact card (unless the row already shows one), date, headline. */
 function PostCard({ post, cover = true }: { post: NewsPost; cover?: boolean }) {
-  const story = findStory(post.story);
   return (
     <Link href={postPath(post.slug)} className={`nt-card nx-card ${cover ? '' : 'nx-card--text'}`}>
-      {cover && story && (
-        <span className="nt-card-art">
-          <Image src={story.cover} alt="" fill sizes="(max-width: 960px) 100vw, 300px" />
-        </span>
-      )}
+      {cover && <span className="nx-card-cover"><FactCard post={post} size="sm" /></span>}
       <PostMeta post={post} source={false} />
       <h4>{post.headline}</h4>
     </Link>
@@ -101,9 +96,7 @@ export function NewsIndexPage() {
               <div className="nw-front-grid nw-front-grid--flat">
                 <article className="nw-lead">
                   <Link href={postPath(leadPost.slug)} className="nx-lead-link">
-                    <span className="nw-lead-art">
-                      <Image src={lead.cover} alt="" fill priority sizes="(max-width: 960px) 100vw, 720px" />
-                    </span>
+                    <span className="nx-lead-cover"><FactCard post={leadPost} /></span>
                     <PostMeta post={leadPost} />
                     <h3 className="nw-lead-headline">{leadPost.headline}</h3>
                   </Link>
@@ -141,8 +134,8 @@ export function NewsIndexPage() {
                   return (
                     <li key={s.slug} className="nt-row">
                       <div className="nt-row-head">
-                        <Link href={`/news/${s.slug}/`} className="nx-row-cover" tabIndex={-1} aria-hidden="true">
-                          <Image src={s.cover} alt="" fill sizes="(max-width: 960px) 100vw, 280px" />
+                        <Link href={postPath(list[0].slug)} className="nx-row-cover" tabIndex={-1} aria-hidden="true">
+                          <FactCard post={list[0]} size="sm" />
                         </Link>
                         <h3><Link href={`/news/${s.slug}/`}>{s.name}</Link></h3>
                         <p>{s.line}</p>
@@ -272,10 +265,7 @@ export function NewsPostPage({ post }: { post: NewsPost }) {
             <p>{post.why}</p>
           </section>
 
-          <figure className="np-figure nx-figure">
-            <Image src={story.cover} alt="" width={1600} height={900} sizes="(max-width: 960px) 100vw, 880px" />
-            <figcaption>Illustration: Esy</figcaption>
-          </figure>
+          <figure className="nx-figure"><FactCard post={post} /></figure>
 
           <div className="np-body">{post.body.map((para) => <p key={para.slice(0, 40)}>{para}</p>)}</div>
 
@@ -298,9 +288,29 @@ export function NewsPostPage({ post }: { post: NewsPost }) {
             </section>
           )}
 
-          <p className="np-source">
-            Source: <a href={post.source.url} target="_blank" rel="noopener noreferrer">{post.source.name} <ArrowUpRight size={13} aria-hidden="true" /></a>
-          </p>
+          {/* Sources: every fact's origin, the company's own page first. */}
+          <section className="nx-sources" aria-labelledby="np-sources">
+            <h2 id="np-sources">Sources</h2>
+            <ol>
+              {post.sources.map((src) => (
+                <li key={src.url}>
+                  <p className="nx-source-head">
+                    <b>{src.publisher}</b>
+                    {src.secondary && <span className="nx-source-tag">Reporting</span>}
+                    <span>{src.date}</span>
+                  </p>
+                  <a href={src.url} target="_blank" rel="noopener noreferrer" className="nx-source-title">
+                    {src.title} <ArrowUpRight size={13} aria-hidden="true" />
+                  </a>
+                  <p className="nx-source-supports">Backs up: {src.supports}</p>
+                  {src.note && <p className="nx-source-note">{src.note}</p>}
+                </li>
+              ))}
+            </ol>
+            <p className="nx-sources-foot">
+              Written in our own words from these sources. AI News is independent: the companies we cover don’t sponsor, review or endorse it. Spotted a mistake? See our <Link href="/editorial-standards/">editorial standards</Link> or email <a href="mailto:zev@esy.com">zev@esy.com</a>.
+            </p>
+          </section>
           <Signup title={`Follow ${story.name} by email`} />
         </div></div>
       </article>
@@ -329,10 +339,7 @@ export function NewsStoryPage({ story }: { story: NewsStory }) {
           <h1 className="np-title">{story.name}</h1>
           <p className="np-dek">{story.line}</p>
           <p className="nx-story-count">{list.length} {list.length === 1 ? 'post' : 'posts'} · latest news {eventLabel(list[0].eventDate)}</p>
-          <figure className="np-figure nx-figure">
-            <Image src={story.cover} alt="" width={1600} height={900} priority sizes="(max-width: 960px) 100vw, 880px" />
-            <figcaption>Illustration: Esy</figcaption>
-          </figure>
+          <figure className="nx-figure"><StoryCard story={story} count={list.length} latest={eventLabel(list[0].eventDate)} /></figure>
           <ol className="nx-story-list">
             {list.map((p) => (
               <li key={p.slug}>
@@ -364,11 +371,13 @@ export function postJsonLd(post: NewsPost) {
       description: post.dek,
       datePublished: post.publishedAt,
       dateModified: post.publishedAt,
-      image: story ? [`${SITE}${story.cover}`] : undefined,
+      // The fact card, as the share image (app/news/[slug]/opengraph-image.tsx).
+      image: [`${SITE}${postPath(post.slug)}opengraph-image/`],
       author: [{ '@type': 'Person', name: 'Zev Uhuru', url: `${SITE}/about/` }],
       publisher: { '@type': 'Organization', name: 'Esy', url: SITE },
       mainEntityOfPage: `${SITE}${postPath(post.slug)}`,
-      isBasedOn: post.source.url,
+      isBasedOn: post.sources.map((src) => src.url),
+      citation: post.sources.map((src) => ({ '@type': 'CreativeWork', name: src.title, url: src.url, publisher: src.publisher })),
       about: story?.name,
       articleSection: 'AI News',
     },

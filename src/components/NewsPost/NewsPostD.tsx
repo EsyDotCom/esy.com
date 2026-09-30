@@ -4,8 +4,8 @@
  * key facts a more considered design. All three add FAQ data for the
  * questions, which search and AI answers read as Q&A.
  *
- *   G · Editorial   — the story as one line of numbered chapters between
- *                     hairlines; key facts as a small-caps list, no box.
+ *   G · Editorial   — the story as one line of named, clickable chapters
+ *                     between hairlines; key facts as a small-caps list, no box.
  *   H · Chapters    — the story as segments ("Part 3 of 3"); key facts as
  *                     tiles, the price and availability larger.
  *   I · Spec sheet  — the story as a small timeline beside the headline;
@@ -18,6 +18,7 @@ import WeeklyEmailBand from '@/components/NewsletterHome/WeeklyEmailBand';
 import { dayLabel } from '@/components/NewsIndex/news-examples';
 import { Body, Byline, Check, Figure, JsonLd, MoreNews, Source, Why } from './NewsPost';
 import { Faq, Signup } from './NewsPostStory';
+import StoryLine from './StoryLine';
 import { POST, STORY, faqJsonLd } from './post';
 
 const post = POST;
@@ -51,17 +52,8 @@ export function PostEditorial() {
       <FaqJsonLd />
       <article className="np np--editorial">
         <div className="nl-container np-narrow">
-          {/* The story: one line of numbered chapters, this one set in ink. */}
-          <nav className="npg-story" aria-label={`The ${post.trend} story`}>
-            <p className="npg-story-name"><span>The story</span> {post.trend}</p>
-            <ol>
-              {CHAPTERS.map((p, i) => (
-                <li key={p.slug} className={i === HERE ? 'is-on' : ''} title={p.headline}>
-                  <b>{i + 1}</b> {dayLabel(p.publishedAt)}{i === HERE && <em> · this post</em>}
-                </li>
-              ))}
-            </ol>
-          </nav>
+          {/* The story: named chapters, each one clickable. */}
+          <StoryLine />
           <h1 className="np-title">{post.headline}</h1>
           <p className="np-dek">{post.dek}</p>
           <Byline />

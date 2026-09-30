@@ -101,3 +101,10 @@ export function faqJsonLd(post: PostPage) {
     mainEntity: post.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
   };
 }
+
+/** A few words per chapter of the story, for the story line (by post slug). */
+export const CHAPTER_NAMES: Record<string, string> = {
+  'meta-muse-launch': 'Muse launches',
+  'meta-enterprise-platform': 'Enterprise Platform',
+  'meta-muse-for-small-business': 'Small businesses',
+};

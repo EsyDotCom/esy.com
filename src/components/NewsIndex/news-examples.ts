@@ -329,3 +329,38 @@ export function agoFrom(iso: string, now: string) {
   if (mins < 60 * 24) return `${Math.round(mins / 60)}h ago`;
   return `${Math.round(mins / 60 / 24)}d ago`;
 }
+
+/* Round 4 rules, for a realistic pace (a few posts a week):
+ *   - a story earns a row or lane only with two or more posts;
+ *   - at most three story rows, newest activity first;
+ *   - one-post stories go to "Also in the news";
+ *   - charts cover the 30 days up to now. */
+export const MIN_POSTS = 2;
+export const MAX_ROWS = 3;
+export const WINDOW_DAYS = 30;
+
+/** Stories with 2+ posts, newest activity first, capped. */
+export function storyTrends(trends: NewsTrend[], posts: NewsPost[], max = MAX_ROWS) {
+  return trends
+    .filter((t) => postsFor(t.name, posts).length >= MIN_POSTS)
+    .sort((a, b) => Date.parse(postsFor(b.name, posts)[0].publishedAt) - Date.parse(postsFor(a.name, posts)[0].publishedAt))
+    .slice(0, max);
+}
+
+/** The posts of one-post stories, newest first. */
+export function oneOffPosts(posts: NewsPost[]) {
+  return posts.filter((p) => postsFor(p.trend, posts).length < MIN_POSTS);
+}
+
+/** The window's days, oldest first, as YYYY-MM-DD in New York time. */
+export function windowDays(now = NOW, days = WINDOW_DAYS) {
+  const end = Date.parse(now);
+  return Array.from({ length: days }, (_, i) =>
+    new Date(end - (days - 1 - i) * 86_400_000).toLocaleDateString('en-CA', { timeZone: 'America/New_York' }),
+  );
+}
+
+/** A post's day as YYYY-MM-DD in New York time. */
+export function dayKey(iso: string) {
+  return new Date(iso).toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+}

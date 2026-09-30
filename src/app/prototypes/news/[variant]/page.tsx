@@ -6,6 +6,7 @@ import { findPrototype } from '@/components/prototypes/registry';
 import { NewsBriefing, NewsFrontPage, NewsWire } from '@/components/NewsIndex/NewsIndex';
 import { NewsDeveloping, NewsLiveFront, NewsTrendDesk } from '@/components/NewsIndex/NewsFronts';
 import { TrendBoard, TrendLanes, TrendRows } from '@/components/NewsIndex/TrendSections';
+import { MonitorBoard, MonitorChanges, MonitorCosts, MonitorCoverage, MonitorLanes, MonitorRollout } from '@/components/NewsIndex/Monitors';
 import { toNavArticles } from '@/lib/nav-articles';
 import { getAllAgenticArticles } from '@/lib/published-articles';
 import '@/components/NewsletterHome/NewsletterHome.css';
@@ -27,6 +28,13 @@ const LAYOUTS: Record<string, React.ComponentType> = {
   'desk-rows': () => <NewsTrendDesk Desks={TrendRows} />,
   'desk-board': () => <NewsTrendDesk Desks={TrendBoard} />,
   'desk-lanes': () => <NewsTrendDesk Desks={TrendLanes} />,
+  // Round 4: things to monitor under E's hero, with the round-4 story rules.
+  'board-charts': () => <NewsTrendDesk Desks={MonitorBoard} />,
+  'lanes-cards': () => <NewsTrendDesk Desks={MonitorLanes} />,
+  rollout: () => <NewsTrendDesk Desks={MonitorRollout} />,
+  changes: () => <NewsTrendDesk Desks={MonitorChanges} />,
+  costs: () => <NewsTrendDesk Desks={MonitorCosts} />,
+  coverage: () => <NewsTrendDesk Desks={MonitorCoverage} />,
 };
 
 const prototype = findPrototype('news')!;

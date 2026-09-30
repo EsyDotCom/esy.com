@@ -44,7 +44,7 @@ export function NewsWire() {
     <>
       <section className="nw-hero">
         <div className="nl-container">
-          <p className="nl-eyebrow">The Marketing Engineer</p>
+          <p className="nl-eyebrow">From The Marketing Engineer</p>
           <h1 className="nw-title">AI News</h1>
           <p className="nw-sub">For people who build marketing systems.</p>
           <p className="nw-desc">What changed this week in the AI tools behind marketing, and what it means for the systems you run.</p>
@@ -105,7 +105,7 @@ export function Masthead({ middle = 'AI tools for marketing, as they change' }: 
   });
   return (
     <div className="nw-masthead">
-      <p className="nw-masthead-over">The Marketing Engineer</p>
+      <p className="nw-masthead-over">From The Marketing Engineer</p>
       <h1 className="nw-masthead-name">AI News</h1>
       <p className="nw-masthead-sub">For people who build marketing systems</p>
       <p className="nw-masthead-line">
@@ -185,7 +185,7 @@ export function NewsBriefing() {
     <>
       <section className="nw-brief-hero">
         <div className="nl-container">
-          <p className="nl-eyebrow nl-eyebrow--onDark">The Marketing Engineer · AI News</p>
+          <p className="nl-eyebrow nl-eyebrow--onDark">AI News · From The Marketing Engineer</p>
           <h1 className="nw-title nw-title--onDark">This week, briefly.</h1>
           <p className="nw-desc nw-desc--onDark">
             {first} – {last}: {posts.length} changes in the AI tools behind marketing. Each one is what happened, then why

@@ -30,7 +30,7 @@ function Facts() {
 }
 
 /** C's questions and answers. */
-function Faq() {
+export function Faq() {
   return (
     <section className="np-faq" aria-labelledby="np-faq">
       <h2 id="np-faq">Questions</h2>
@@ -44,7 +44,7 @@ function Faq() {
   );
 }
 
-function Signup({ title = `Follow ${post.trend} by email` }: { title?: string }) {
+export function Signup({ title = `Follow ${post.trend} by email` }: { title?: string }) {
   return (
     <div className="np-inline-signup">
       <p className="np-rail-title">{title}</p>

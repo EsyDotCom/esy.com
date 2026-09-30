@@ -1277,6 +1277,12 @@ export const PROTOTYPES: Prototype[] = [
         summary:
           'Zev picked B. D adds C\u2019s key facts and questions under B\u2019s story bar, E moves the story into a rail that stays beside the post, F opens with the story so far for readers who land from search.',
       },
+      {
+        n: 3,
+        title: 'D, more considered',
+        summary:
+          'Zev picked D for its questions, which AI answers read. G, H and I keep D\u2019s page and redesign the story and the key facts: an editorial line and a quiet list (G), story segments and fact tiles (H), a timeline beside the headline and a spec sheet with icons (I). All three add FAQ data.',
+      },
     ],
     variants: [
       {
@@ -1334,6 +1340,36 @@ export const PROTOTYPES: Prototype[] = [
         mergeOf: ['B'],
         title: 'Meta\u2019s Muse agent comes to small businesses',
         blurb: 'Opens with the story in three dated lines and what\u2019s new today, then the post, then the story line to follow.',
+        poster: ['#FFFFFF', '#00A896'],
+      },
+      {
+        slug: 'editorial',
+        key: 'G',
+        name: 'D \u00b7 Editorial',
+        round: 3,
+        mergeOf: ['D'],
+        title: 'Meta\u2019s Muse agent comes to small businesses',
+        blurb: 'The story as one line of numbered chapters between hairlines; the key facts as a quiet small-caps list with a jade edge.',
+        poster: ['#FFFFFF', '#0A2540'],
+      },
+      {
+        slug: 'chapters',
+        key: 'H',
+        name: 'D \u00b7 Chapters',
+        round: 3,
+        mergeOf: ['D'],
+        title: 'Meta\u2019s Muse agent comes to small businesses',
+        blurb: 'The story as segments, \u201cPart 3 of 3\u201d; the key facts as tiles on a warm ground, with price and availability in navy.',
+        poster: ['#F6F3EC', '#0A2540'],
+      },
+      {
+        slug: 'spec-sheet',
+        key: 'I',
+        name: 'D \u00b7 Spec sheet',
+        round: 3,
+        mergeOf: ['D'],
+        title: 'Meta\u2019s Muse agent comes to small businesses',
+        blurb: 'The story as a small dated timeline beside the headline; the key facts as a two-column spec sheet with an icon each.',
         poster: ['#FFFFFF', '#00A896'],
       },
     ],

@@ -92,3 +92,12 @@ export const STORY_SO_FAR: { date: string; text: string }[] = [
 
 /** What this post adds to the story, in one line. */
 export const NEW_TODAY = 'Muse now works for small businesses, across 15 tools they already use, and it’s free for most of what they need.';
+
+/** The questions as FAQ data, so search and AI answers can read them as Q&A. */
+export function faqJsonLd(post: PostPage) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: post.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+  };
+}

@@ -5,6 +5,7 @@ import PrototypeBar from '@/components/prototypes/PrototypeBar';
 import { findPrototype } from '@/components/prototypes/registry';
 import { PostAtAGlance, PostBrief, PostInStory } from '@/components/NewsPost/NewsPost';
 import { PostStoryGlance, PostStoryRail, PostStorySoFar } from '@/components/NewsPost/NewsPostStory';
+import { PostChapters, PostEditorial, PostSpecSheet } from '@/components/NewsPost/NewsPostD';
 import { toNavArticles } from '@/lib/nav-articles';
 import { getAllAgenticArticles } from '@/lib/published-articles';
 import '@/components/NewsletterHome/NewsletterHome.css';
@@ -23,6 +24,10 @@ const LAYOUTS: Record<string, React.ComponentType> = {
   'story-glance': PostStoryGlance,
   'story-rail': PostStoryRail,
   'story-so-far': PostStorySoFar,
+  // Round 3: three takes on D, with a more considered story and key facts.
+  editorial: PostEditorial,
+  chapters: PostChapters,
+  'spec-sheet': PostSpecSheet,
 };
 
 const prototype = findPrototype('news-post')!;

@@ -87,10 +87,12 @@ export default function LightHeader({
             size={60}
             priority
           />
-          {/* Product lockup, matching os.esy.com's side rail: wordmark ·
-              hairline · tag. */}
+          {/* Lockup: wordmark · hairline · what this site is. esy.com is the
+              publication (2026-09-30), so it reads "esy | The Marketing
+              Engineer", as os.esy.com reads "esy | OS" and compose.esy.com
+              "esy | Compose". Phones show the wordmark alone. */}
           <span className="lh-lockup-rule" aria-hidden="true" />
-          <span className="lh-lockup-tag">OS</span>
+          <span className="lh-lockup-tag">The Marketing Engineer</span>
         </Link>
         <nav className="lh-nav" aria-label="Primary">
           {/* Pre-launch the header carries exactly one action. Restore Sign in

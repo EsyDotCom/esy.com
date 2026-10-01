@@ -166,7 +166,7 @@ function EditorPicture({ beat, frac }: { beat: BeatId; frac: number }) {
   );
 }
 
-function Replay() {
+export function ComposeReplay() {
   const box = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(0.5);
   const r = useReplay(box);
@@ -218,7 +218,7 @@ function BandReplay({ mark }: { mark: ComposeMarkStyle }) {
             </div>
             <div><Cta /></div>
           </div>
-          <Replay />
+          <ComposeReplay />
         </div>
       </div>
     </section>

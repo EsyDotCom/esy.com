@@ -7,6 +7,7 @@
  * along the top, and a timeline drawn to the run's real proportions along the
  * bottom (the render really is most of it).
  */
+import { Pause, Play } from 'lucide-react';
 import { CLIPART_RUN as RUN } from './clipartRun';
 import { clock, money, useRunReplay, type Phase } from './useRunReplay';
 
@@ -29,12 +30,16 @@ export default function ReplayControlRoom() {
   const typed = phase === 'name' ? RUN.title.slice(0, Math.round(RUN.title.length * p)) : r.past('name') ? RUN.title : '';
 
   return (
-    <div className="rc" {...r.hover} aria-label={`A real clip.art run replayed: ${RUN.subject}, $${RUN.totalUsd} in ${RUN.seconds}s`}>
+    <div className="rc" aria-label={`A real clip.art run replayed: ${RUN.subject}, $${RUN.totalUsd} in ${RUN.seconds}s`}>
       <header className="rc-top">
         <span className="rc-live"><i /> {phase === 'done' ? 'Complete' : phase === 'order' ? 'Queued' : 'Running'}</span>
         <span className="rc-id">{RUN.id}</span>
         <span className="rc-counter"><small>Run time</small>{clock(r.runSeconds)}</span>
         <span className="rc-counter"><small>Cost</small>{money(r.usd)}</span>
+        {/* Play/pause, like the SEOPage and Compose replays. */}
+        <button type="button" className="rc-play" onClick={r.toggle} aria-label={r.playing ? 'Pause the replay' : 'Play the replay'}>
+          {r.playing ? <Pause size={13} aria-hidden="true" /> : <Play size={13} aria-hidden="true" />}
+        </button>
       </header>
 
       <p className={`rc-prompt ${phase === 'order' ? 'is-typing' : ''}`}>

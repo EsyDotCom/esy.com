@@ -29,8 +29,12 @@
 .lh-lockup-tag {
   font-family: var(--font-sans, system-ui), sans-serif;
   font-size: 11px; font-weight: 500; line-height: 1;
-  letter-spacing: 0.22em; text-transform: uppercase;
+  letter-spacing: 0.18em; white-space: nowrap; text-transform: uppercase;
   color: #6B7C93;
+}
+/* The publication's name is too long beside a phone's nav: wordmark alone. */
+@media (max-width: 640px) {
+  .lh-lockup-rule, .lh-lockup-tag { display: none; }
 }
 .lh-nav { display: flex; align-items: center; gap: 12px; }
 .lh-signin {

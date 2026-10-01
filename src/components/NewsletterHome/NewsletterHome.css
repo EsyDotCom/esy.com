@@ -607,3 +607,30 @@
 .nl-ledger-compose { color: var(--nl-navy); font-size: 2.1rem; }
 .nl-ledger-compose.cw--stencil { font-size: 1.72rem; }
 .nl-ledger-compose.cw--pen { font-size: 1.9rem; }
+
+/* ── Latest with AI News beside it (NewsColumn) ──
+   Articles keep the wide column; the daily headlines take a slim one. */
+.nl-latest-grid { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 3.6fr); gap: 56px; align-items: start; }
+.nl-latest-grid .nl-featured { grid-template-columns: 1fr 1fr; gap: 28px; }
+.nl-news { position: sticky; top: 88px; padding-left: 28px; border-left: 1px solid var(--nl-seam); }
+.nl-news-head { display: flex; align-items: baseline; justify-content: space-between; padding-bottom: 12px; border-bottom: 2px solid var(--nl-navy); }
+.nl-news-title { margin: 0; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 1.6rem; letter-spacing: -0.01em; }
+.nl-news-title a { color: var(--nl-navy); text-decoration: none; }
+.nl-news-pace {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--nl-jade);
+}
+.nl-news-list { list-style: none; margin: 0; padding: 0; }
+.nl-news-list li { border-bottom: 1px solid var(--nl-seam); }
+.nl-news-row { display: flex; flex-direction: column; gap: 4px; padding: 14px 0; text-decoration: none; }
+.nl-news-meta { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--nl-jade); }
+.nl-news-headline { font-size: 0.95rem; font-weight: 600; line-height: 1.4; color: var(--nl-navy); transition: color 0.18s ease; }
+.nl-news-row:hover .nl-news-headline { color: var(--nl-jade); }
+.nl-news-row:focus-visible { outline: 2px solid var(--nl-jade); outline-offset: 2px; border-radius: 4px; }
+.nl-news-all { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; font-size: 0.9rem; font-weight: 600; color: var(--nl-jade); text-decoration: none; }
+.nl-news-note { margin: 14px 0 0; font-size: 0.78rem; line-height: 1.55; color: var(--nl-ink-soft); }
+.nl-news-note a { color: var(--nl-navy); font-weight: 600; }
+@media (max-width: 1023px) {
+  .nl-latest-grid { grid-template-columns: 1fr; gap: 40px; }
+  .nl-news { position: static; padding-left: 0; border-left: 0; }
+}

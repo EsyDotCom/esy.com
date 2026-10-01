@@ -1860,6 +1860,51 @@ export const PROTOTYPES: Prototype[] = [
       },
     ],
   },
+  {
+    slug: 'home-trim',
+    name: 'A shorter homepage: one apps band and AI News',
+    date: '2026-09-30',
+    headline: 'Twelve screens down to about eight.',
+    intro:
+      'The homepage ran three app bands back to back. These merge them into one band that shows one app at a time, and add AI News\u2019s daily headlines beside Latest. Try Tabs, Rail and Tour.',
+    summary: 'The real homepage with 01 Apps merged into one band (tabs, a rail, or a self-running tour) and an AI News column beside Latest.',
+    rounds: [
+      {
+        n: 1,
+        title: 'One band, three ways to pick',
+        summary: 'All three keep every app\u2019s story and replay and mount only the one you\u2019re looking at. They differ in how you choose: tabs, a stacked rail, or a tour that runs itself.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'tabs',
+        key: 'A',
+        name: 'Tabs',
+        round: 1,
+        title: 'Real properties, real traffic.',
+        blurb: 'The three wordmarks as tabs across the band. The chosen app\u2019s story and replay sit below in the case-study layout, and the band\u2019s colour follows the app.',
+        poster: ['#0A2540', '#00D4AA'],
+      },
+      {
+        slug: 'rail',
+        key: 'B',
+        name: 'Rail',
+        round: 1,
+        title: 'Real properties, real traffic.',
+        blurb: 'The old ledger becomes the picker: the apps stacked on the left, the chosen one opened to its story, its replay on the right.',
+        poster: ['#060A16', '#8FA9FF'],
+      },
+      {
+        slug: 'tour',
+        key: 'C',
+        name: 'Tour',
+        round: 1,
+        title: 'Real properties, real traffic.',
+        blurb: 'Tabs that advance on their own every 22 seconds with a filling bar, pause while you hover, and stop once you pick an app.',
+        poster: ['#061527', '#00D4AA'],
+      },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

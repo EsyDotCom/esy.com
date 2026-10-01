@@ -50,16 +50,16 @@ export const LETTER = {
   voices: 6,
   ages: "3–7",
   stageIndex: FILM_STAGES.indexOf("Animatic"),
-  version: 15,
+  version: 16,
   logline:
-    "A letter arrives at the Cloud Post Office with no address, only a child's crayon drawing of a star, a moon and a pair of tiny booties. Lullo follows the drawing from the Sleepy Stars to the Moon to a quiet lane, until a window lights up.",
+    "A letter arrives at the Cloud Post Office with no address, only a child's crayon drawing of a star, a moon and a pair of tiny booties. Lullo follows the drawing from the Lantern Stars to the Moon to a quiet lane, until a window lights up.",
   tagline: "A letter with no address, a crayon drawing for a clue, and one very determined postman.",
   animaticUrl: "https://claude.ai/artifact/LqbXkKbumDwiqZK8BL2e2B",
   // The animatic's own media (48 MB of frames, clips and recorded lines) lives in
   // esy.com's R2 bucket, one folder per cut (upload with
   // scripts/r2-upload-film-media.mjs). Files are cached for a year, so a new cut
   // goes up under a new folder and this line moves to it.
-  animaticMedia: "films/the-letter-with-no-address/animatic/v15",
+  animaticMedia: "films/the-letter-with-no-address/animatic/v16",
   storybookUrl: "https://clip.art/stories/milo/",
   packsUrl: "https://clip.art/packs/",
   chapters: [
@@ -75,12 +75,12 @@ export const LETTER = {
     },
     {
       label: "Chapter two",
-      title: "The Sleepy Stars",
+      title: "The Lantern Stars",
       tc: "01:10",
-      text: "In starlight, the first line of the letter appears.",
+      text: "In the Lantern Stars' light, the first line of the letter appears.",
       image: "stars-bounce",
-      alt: "The three Sleepy Stars bouncing on a cloud as the balloon arrives",
-      speaker: "Tiny Star",
+      alt: "The three Lantern Stars on a cloud as the balloon arrives",
+      speaker: "Flicker",
       line: "For us?",
     },
     {
@@ -106,11 +106,11 @@ export const LETTER = {
     { name: "Lullo the Moon Bear", role: "The night postman. Gentle, a little shy.", image: "milo-smile", position: "50% 30%", zoom: "220%" },
     { name: "Ottoline", role: "The owl postmistress. Rules are rules.", image: "ottoline-perch", position: "27% 24%", zoom: "300%" },
     { name: "The Moon", role: "Slow and velvety. Sees every window.", image: "moon-tender", position: "20% 46%", zoom: "230%" },
-    { name: "The Sleepy Stars", role: "Tall, Round and Tiny.", image: "stars-still", position: "62% 62%", zoom: "260%" },
+    { name: "The Lantern Stars", role: "Wick, Ember and Flicker. They light the way.", image: "stars-still", position: "62% 62%", zoom: "260%" },
   ] satisfies CastMember[],
   credits: [
     { label: "Story", title: "Screenplay draft B", note: "Written after research on children's screenwriting, and checked against ten rules" },
-    { label: "Voices", title: "Six designed voices", note: "Lullo, Ottoline, the Moon and three Sleepy Stars, on ElevenLabs" },
+    { label: "Voices", title: "Six designed voices", note: "Lullo, Ottoline, the Moon and the three Lantern Stars, on ElevenLabs" },
     { label: "Frames", title: "Esy", note: "32 stills from the Lullo the Moon Bear pack, on gpt-image-2" },
     { label: "Motion", title: "Next", note: "Seedance 2.5, Kling O3 and OmniHuman 1.5, once the timing is locked" },
     { label: "Sound", title: "Temp score", note: "From the Lullo storybook, mixed to broadcast loudness standards" },
@@ -119,7 +119,7 @@ export const LETTER = {
   reel: [
     { image: "milo-stamp", alt: "Lullo at the sorting desk" },
     { image: "launch", alt: "Lift-off from the post office roof" },
-    { image: "stars-bounce", alt: "The Sleepy Stars" },
+    { image: "stars-bounce", alt: "The Lantern Stars" },
     { image: "moon-rise", alt: "The balloon rising to the Moon" },
     { image: "lane-search", alt: "Over Honeysuckle Lane" },
     { image: "drawer-glow", alt: "The Lost Letters drawer glowing" },

@@ -56,7 +56,7 @@ export const FILMS: FilmCard[] = [
     ).map(([n, scene]) => ({ src: `/films/${LETTER.slug}/${n}.webp`, scene })),
     facts: `${LETTER.shots} shots · ${LETTER.voices} voices · 1 clip.art pack`,
     credits: [
-      ["Starring", "Lullo the Moon Bear, Ottoline, the Moon, the Sleepy Stars"],
+      ["Starring", "Lullo the Moon Bear, Ottoline, the Moon, the Lantern Stars"],
       ["Story", "Screenplay draft B"],
       ["Frames", "Esy, from one clip.art pack"],
       ["Voices", "Six designed voices"],

@@ -259,7 +259,7 @@ export default function Footer () {
             <p className="footer-desc" style={{ color: theme.muted }}>
               <strong style={{ color: isLightMode || isNavyDark ? theme.text : 'inherit' }}>Build the AI systems that run marketing.</strong>
               <br />
-              One email a week, and AI News every day.
+              One email a week, and AI Marketing News every day.
             </p>
             <div className="footer-socials">
               <a href="https://www.youtube.com/@EsyDotCom" target="_blank" className="social-link" aria-label="YouTube">
@@ -300,7 +300,7 @@ export default function Footer () {
             links={[
               // The newsletter first: it's the thing to subscribe to.
               { href: "/engineer/", text: "The Marketing Engineer" },
-              { href: "/news/", text: "AI News" },
+              { href: "/news/", text: "AI Marketing News" },
               { href: "/topics/", text: "Topics" },
               // Where readers (and search engines) look for how the
               // publication decides what to publish and keeps it right.

@@ -1,4 +1,4 @@
-/* Round 2 of the AI News post: three takes on B · In the story (2026-09-30).
+/* Round 2 of the AI Marketing News post: three takes on B · In the story (2026-09-30).
  *
  *   D · Story + glance — B's story bar, C's key facts under the headline and
  *                        C's questions at the end.

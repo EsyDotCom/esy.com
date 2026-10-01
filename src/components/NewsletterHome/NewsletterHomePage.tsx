@@ -83,14 +83,14 @@ const PROPERTIES: {
 ];
 
 // The third app, shown when the page passes `compose` (the homepage does):
-// Compose, the agent newsroom that writes AI News at esy.com/news.
+// Compose, the agent newsroom that writes AI Marketing News at esy.com/news.
 const COMPOSE_PROPERTY: (typeof PROPERTIES)[number] = {
   name: 'Esy Compose',
   wordmark: 'compose',
   href: 'https://compose.esy.com',
   domain: 'compose.esy.com',
   role: 'The newsroom',
-  body: 'A team of agents for each publication: a Researcher, a Writer and a Fact-checker, with you at the end. It writes AI News on this site, every post dated and sourced, and nothing goes live until it\u2019s approved.',
+  body: 'A team of agents for each publication: a Researcher, a Writer and a Fact-checker, with you at the end. It writes AI Marketing News on this site, every post dated and sourced, and nothing goes live until it\u2019s approved.',
 };
 
 // SEOPage's steps and clip.art's styles live in ./apps, shared with the merged apps band.
@@ -163,7 +163,7 @@ export default async function NewsletterHomePage({
    *  merged into one band that shows one app at a time (/prototypes/home-trim/).
    *  The merged layouts always include Compose. */
   appsLayout?: 'bands' | AppsLayout;
-  /** AI News's newest headlines in a slim column beside Latest (/prototypes/home-trim/). */
+  /** AI Marketing News's newest headlines in a slim column beside Latest (/prototypes/home-trim/). */
   newsColumn?: boolean;
   /** Compose as the third app: its mark in the 01 Apps ledger and its own case
    *  study band after SEOPage's. The homepage passes the stencil mark and the
@@ -214,7 +214,7 @@ export default async function NewsletterHomePage({
               </nav>
             </div>
 
-            {/* With the AI News column, articles keep the wide column and the
+            {/* With the AI Marketing News column, articles keep the wide column and the
                 list shortens to six, so the section doesn't grow. */}
             <div className={newsColumn ? 'nl-latest-grid' : undefined}>
             <div>

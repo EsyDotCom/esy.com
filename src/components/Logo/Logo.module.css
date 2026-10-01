@@ -115,9 +115,13 @@
    The hover trigger lives in globals.css (CSS Modules rewrites keyframe
    names, which would break the global esy-syn-* animations). */
 .logoWordmark .logoE {
-  width: 0.6em;
-  height: 0.55em;
+  /* Black Ops One's own "e", measured (2026-10-01): ink 0.563em wide and
+     0.519em tall, the same height as "s". The old 0.6 × 0.55em box drew it
+     about 6% larger than the letters beside it. The right margin is the
+     glyph's right side-bearing plus the wordmark's 0.03em tracking. */
+  width: 0.563em;
+  height: 0.519em;
   color: #00A896;
   vertical-align: baseline;
-  margin-right: 0.055em;
+  margin-right: 0.073em;
 }

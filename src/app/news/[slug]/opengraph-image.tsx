@@ -3,13 +3,13 @@ import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { eventLabel, findPost, findStory, liveStories, postsInStory, publishedPosts } from '@/data/news';
 
-// The share image for every AI News post and story: the same fact card as
+// The share image for every AI Marketing News post and story: the same fact card as
 // the page's cover (components/News/FactCard.tsx), at 1200×630. Logos are the
 // companies' official SVGs, embedded unchanged.
 
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
-export const alt = 'AI News fact card';
+export const alt = 'AI Marketing News fact card';
 
 export function generateStaticParams() {
   return [...publishedPosts().map((p) => ({ slug: p.slug })), ...liveStories().map((s) => ({ slug: s.slug }))];

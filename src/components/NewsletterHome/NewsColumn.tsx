@@ -1,6 +1,6 @@
 /**
- * NewsColumn — AI News beside the homepage's Latest (2026-09-30,
- * /prototypes/home-trim/). Articles are weekly; AI News is daily, so a slim
+ * NewsColumn — AI Marketing News beside the homepage's Latest (2026-09-30,
+ * /prototypes/home-trim/). Articles are weekly; AI Marketing News is daily, so a slim
  * column of its newest headlines keeps the front page current between
  * articles without a section of its own. Text only: story, headline, when it
  * happened. Reads the same posts /news does (src/data/news).
@@ -19,7 +19,7 @@ export default function NewsColumn() {
   return (
     <aside className="nl-news" aria-labelledby="nl-news-title">
       <div className="nl-news-head">
-        <h3 className="nl-news-title" id="nl-news-title"><Link href="/news/">AI News</Link></h3>
+        <h3 className="nl-news-title" id="nl-news-title"><Link href="/news/">AI Marketing News</Link></h3>
         <span className="nl-news-pace">Daily</span>
       </div>
       <ul className="nl-news-list">
@@ -32,7 +32,7 @@ export default function NewsColumn() {
           </li>
         ))}
       </ul>
-      <Link href="/news/" className="nl-news-all">All AI News <ArrowRight size={14} aria-hidden="true" /></Link>
+      <Link href="/news/" className="nl-news-all">All AI Marketing News <ArrowRight size={14} aria-hidden="true" /></Link>
       <p className="nl-news-note">
         Researched, written and checked against each company&apos;s own page by a team of agents in{' '}
         <a href="https://compose.esy.com" target="_blank" rel="noopener noreferrer">Compose</a>, then approved by hand.

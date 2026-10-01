@@ -9,10 +9,10 @@ import '@/components/NewsIndex/NewsIndex.css';
 import '@/components/NewsPost/NewsPost.css';
 import '@/components/News/News.css';
 
-// AI News (2026-09-30): P · Trend desk · Rows · Wire from /prototypes/news/.
+// AI Marketing News (2026-09-30): P · Trend desk · Rows · Wire from /prototypes/news/.
 // Posts and stories: src/data/news/index.ts.
 
-const TITLE = 'AI News for Marketers — The Marketing Engineer';
+const TITLE = 'AI Marketing News — The Marketing Engineer';
 const DESCRIPTION =
   'What changed in the AI tools behind marketing, and why it matters: ads, SEO, social and creative. Each post links its source. From The Marketing Engineer.';
 

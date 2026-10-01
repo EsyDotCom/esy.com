@@ -60,7 +60,7 @@ export async function POST(request) {
 
     // Real attribution: this used to hardcode /engineer, which mislabelled every
     // signup from every other page. Unknown paths fall back to the bare domain.
-    // Every AI News page (/news/, a post, a story) counts as /news.
+    // Every AI Marketing News page (/news/, a post, a story) counts as /news.
     const normalized = typeof source === 'string' && source.startsWith('/news') ? '/news' : source;
     const path = KNOWN_SOURCES.has(normalized) ? normalized : '';
     const referringSite = `https://esy.com${path === '/' ? '' : path}`;

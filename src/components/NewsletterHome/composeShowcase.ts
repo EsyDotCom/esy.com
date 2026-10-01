@@ -1,6 +1,6 @@
 /* What the homepage's Compose band shows (2026-09-30, /prototypes/home-compose/).
  *
- * Real: the AI News posts (live at esy.com/news, written in Compose), and the
+ * Real: the AI Marketing News posts (live at esy.com/news, written in Compose), and the
  * piece the band walks through, Google's September 2026 spam update, with its
  * one source. Copied from compose.esy.com's sample data (EDITOR_DOC and the
  * live posts in src/components/prototypes/dashboard/sample-data.ts).
@@ -21,7 +21,7 @@ export const TEAM: { role: string; job: string; did: string }[] = [
 
 /** The piece, as it stands in the editor. */
 export const DOC = {
-  publication: 'AI News',
+  publication: 'AI Marketing News',
   story: 'Google Search',
   slug: 'google-september-2026-spam-update',
   headline: 'Google’s September 2026 spam update is rolling out',
@@ -48,7 +48,7 @@ export const DOC = {
 
 export const docUrl = `${NEWS_URL}/${DOC.slug}/`;
 
-/** Live AI News posts, newest first, each written in Compose. */
+/** Live AI Marketing News posts, newest first, each written in Compose. */
 export const POSTS: { slug: string; story: string; title: string }[] = [
   { slug: 'meta-muse-for-small-business', story: 'Meta Muse', title: 'Meta’s Muse agent comes to small businesses, with Shopify, Klaviyo and Canva plugged in' },
   { slug: 'search-console-multimodal-report', story: 'Google Search', title: 'Search Console now shows traffic from Google Lens and Circle to Search' },

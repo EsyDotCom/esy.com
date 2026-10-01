@@ -1,4 +1,4 @@
-/* AI News (esy.com/news), shipped 2026-09-30 from /prototypes/news/ and
+/* AI Marketing News (esy.com/news), shipped 2026-09-30 from /prototypes/news/ and
  * /prototypes/news-post/:
  *
  *   NewsIndexPage — P · Trend desk · Rows · Wire: the lead story, the other
@@ -78,12 +78,10 @@ export function NewsIndexPage() {
       <section className="nw-front">
         <div className="nl-container">
           <div className="nw-masthead">
-            <p className="nw-masthead-over">From The Marketing Engineer</p>
-            <h1 className="nw-masthead-name">AI News</h1>
-            <p className="nw-masthead-sub">For people who build marketing systems</p>
+            <h1 className="nw-masthead-name">AI Marketing News</h1>
+            <p className="nw-masthead-sub">For people who build <em>marketing systems</em></p>
             <p className="nw-masthead-line">
               <span>Updated {longDate(posts[0].publishedAt)}</span>
-              <span>AI in ads, SEO, social and creative</span>
               <span>{posts.length} posts</span>
             </p>
           </div>
@@ -308,7 +306,7 @@ export function NewsPostPage({ post }: { post: NewsPost }) {
               ))}
             </ol>
             <p className="nx-sources-foot">
-              Written in our own words from these sources. AI News is independent: the companies we cover don’t sponsor, review or endorse it. Spotted a mistake? See our <Link href="/editorial-standards/">editorial standards</Link> or email <a href="mailto:zev@esy.com">zev@esy.com</a>.
+              Written in our own words from these sources. AI Marketing News is independent: the companies we cover don’t sponsor, review or endorse it. Spotted a mistake? See our <Link href="/editorial-standards/">editorial standards</Link> or email <a href="mailto:zev@esy.com">zev@esy.com</a>.
             </p>
           </section>
           <Signup title={`Follow ${story.name} by email`} />
@@ -318,7 +316,7 @@ export function NewsPostPage({ post }: { post: NewsPost }) {
       {more.length > 0 && (
         <section className="nl-section nl-section--alt" aria-labelledby="np-more">
           <div className="nl-container">
-            <h2 className="nt-title" id="np-more">More AI News</h2>
+            <h2 className="nt-title" id="np-more">More AI Marketing News</h2>
             <div className="nx-more">{more.map((p) => <PostCard key={p.slug} post={p} />)}</div>
           </div>
         </section>
@@ -335,7 +333,7 @@ export function NewsStoryPage({ story }: { story: NewsStory }) {
     <>
       <section className="np nx-story">
         <div className="nl-container"><div className="npi-col nx-col">
-          <p className="np-crumbs"><Link href="/news/">AI News</Link> <span aria-hidden="true">›</span> <span>The story</span></p>
+          <p className="np-crumbs"><Link href="/news/">AI Marketing News</Link> <span aria-hidden="true">›</span> <span>The story</span></p>
           <h1 className="np-title">{story.name}</h1>
           <p className="np-dek">{story.line}</p>
           <p className="nx-story-count">{list.length} {list.length === 1 ? 'post' : 'posts'} · latest news {eventLabel(list[0].eventDate)}</p>
@@ -379,7 +377,7 @@ export function postJsonLd(post: NewsPost) {
       isBasedOn: post.sources.map((src) => src.url),
       citation: post.sources.map((src) => ({ '@type': 'CreativeWork', name: src.title, url: src.url, publisher: src.publisher })),
       about: story?.name,
-      articleSection: 'AI News',
+      articleSection: 'AI Marketing News',
     },
     post.faq.length > 0 && {
       '@context': 'https://schema.org',

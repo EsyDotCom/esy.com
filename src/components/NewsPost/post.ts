@@ -61,7 +61,7 @@ export const POST: PostPage = {
 export const STORY = postsFor(POST.trend, NEWS_POSTS);
 export const STORY_OTHERS = STORY.filter((p) => p.slug !== POST.slug);
 
-/** Other recent posts, for "More AI News". */
+/** Other recent posts, for "More AI Marketing News". */
 export const MORE = NEWS_POSTS.filter((p) => p.trend !== POST.trend).slice(0, 4);
 
 /** News article structured data, so search and AI answers read the post right. */
@@ -78,7 +78,7 @@ export function articleJsonLd(post: PostPage) {
     publisher: { '@type': 'Organization', name: 'Esy', url: 'https://esy.com' },
     isBasedOn: post.source.url,
     about: post.trend,
-    articleSection: 'AI News',
+    articleSection: 'AI Marketing News',
   };
 }
 

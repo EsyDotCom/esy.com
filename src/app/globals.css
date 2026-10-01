@@ -2206,6 +2206,7 @@ html {
 .footer--navy-dark .footer-mark { color: #fff; }
 .footer-mark-clipart { display: block; height: 22px; width: auto; }
 .footer-mark--seopage { font-size: 19.5px; position: relative; top: -0.13em; }
+.footer-mark--compose { font-size: 18px; }
 .footer-mark .seopage-wordmark { display: inline-flex; align-items: flex-start; font-weight: 600; line-height: 1; letter-spacing: -0.04em; }
 .footer-mark .seopage-wordmark-badge {
   display: flex; align-items: center; justify-content: center; margin-left: 0.29em; margin-top: 0.07em;

@@ -63,6 +63,8 @@
 .ab-card-marks { display: flex; align-items: center; gap: 18px; color: var(--nl-navy); min-height: 1.9rem; }
 .ab-card-clipart { height: 24px; width: auto; display: block; }
 .ab-card-seopage { font-size: 21px; position: relative; top: -0.13em; }
+.ab-card-compose { font-size: 21px; }
+.aw-look--night .ab-card-compose { --cw-accent: #00D4AA; }
 .ab-card-line { flex: 1; font-size: 0.95rem; line-height: 1.55; color: var(--nl-ink-soft); }
 .ab-card-go { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; color: var(--nl-jade); }
 .ab-story { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 56px; align-items: start; }

@@ -25,14 +25,14 @@ export const BIO_SHORT =
 
 export const BIO_LONG = [
   'Zev Uhuru is a marketing engineer based in New York and Miami. He spent a decade shipping production web products, from fuboTV’s streaming apps to Vroom’s online car storefront.',
-  'Now he builds Esy, a workflow platform that makes marketing work (images, pages, video) and records how every piece was made. Two businesses run on it: clip.art, which produces 250 to 1,000 clip art assets, coloring pages and worksheets a day, and SEOPage, which builds landing pages that get cited by AI and rank on Google.',
+  'Now he builds Esy, a workflow platform that makes marketing work (images, pages, video) and records how every piece was made. Three apps run on it: clip.art, which produces 250 to 1,000 clip art assets, coloring pages and worksheets a day; SEOPage, which builds landing pages that get cited by AI and rank on Google; and Compose, a team of agents that researches, writes and fact-checks AI News on esy.com, with every post approved by hand.',
   'He writes The Marketing Engineer, a weekly email and a set of courses on building the AI systems that run marketing, and makes the films and creatives to prove the systems work.',
 ];
 
 /** The long bio, in Zev's own voice, for the pages he speaks on. */
 export const STORY = [
   'I spent a decade shipping production web products, from fuboTV’s streaming apps to Vroom’s online car storefront. That’s where I learned how software gets built, tested and shipped at scale.',
-  'Now I build Esy, a workflow platform that makes marketing work (images, pages, video) and records how every piece was made. Two businesses run on it: clip.art, which makes 250 to 1,000 clip art assets, coloring pages and worksheets a day, and SEOPage, which builds landing pages that get cited by AI and rank on Google.',
+  'Now I build Esy, a workflow platform that makes marketing work (images, pages, video) and records how every piece was made. Three apps run on it: clip.art, which makes 250 to 1,000 clip art assets, coloring pages and worksheets a day; SEOPage, which builds landing pages that get cited by AI and rank on Google; and Compose, a team of agents that researches, writes and fact-checks AI News on esy.com, with every post approved by me.',
   'I write The Marketing Engineer to teach what those systems taught me, and make the films and creatives to prove they work.',
 ];
 
@@ -142,14 +142,14 @@ export const PROOF = [
 export const STORY_FULL = [
   'I’ve shipped production software for over seven years. At Vroom I built the vroom.com storefront and led SellUsYourCar.com. At fuboTV I built the component system behind 100+ landing pages, each tested for sign-ups.',
   'From 2021 to 2024 I researched and traded digital assets full time in Miami: market research, on-chain data, thesis-driven allocation. It ended in a seven-figure exit, and it taught me to decide from data.',
-  'Since 2024 I’ve built Esy, an engine that runs AI workflows end to end and records every run. It grew clip.art to #1 on Google for “AI clipart”, with 20,000+ pages published and 6,000+ ranking. I write The Marketing Engineer to teach what those systems taught me.',
+  'Since 2024 I’ve built Esy, an engine that runs AI workflows end to end and records every run. It grew clip.art to #1 on Google for “AI clipart”, with 20,000+ pages published and 6,000+ ranking. Three apps run on it now: clip.art, SEOPage, and Compose, a team of agents that writes AI News here, with every post approved by me. I write The Marketing Engineer to teach what those systems taught me.',
 ];
 
 /** Real numbers only. */
 export const FACTS = [
   { value: CLIPART_RUN.totalRuns.toLocaleString('en-US'), label: 'workflow runs recorded' },
   { value: '250–1,000', label: 'clip.art assets made a day' },
-  { value: '2', label: 'businesses running on Esy' },
+  { value: '3', label: 'apps running on Esy' },
   { value: String(courses.length), label: courses.length === 1 ? 'course' : 'courses' },
   { value: String(FILMS.length), label: FILMS.length === 1 ? 'film' : 'films' },
 ];
@@ -158,7 +158,8 @@ export const FACTS = [
 export const WORK = {
   clipart: { name: 'clip.art', href: 'https://clip.art', line: 'AI clip art, coloring pages and worksheets, 250 to 1,000 a day. My daughter uses it every day.' },
   seopage: { name: 'SEOPage', href: 'https://seopage.com', line: 'Landing pages that get cited by AI and rank on Google, researched and built on Esy.' },
-  os: { name: 'Esy OS', href: 'https://os.esy.com', line: 'The platform both run on: every run recorded on prompt, model, checks and cost.' },
+  compose: { name: 'Compose', href: 'https://compose.esy.com', line: 'A team of agents that writes AI News: a Researcher, a Writer and a Fact-checker, with me approving every post.' },
+  os: { name: 'Esy OS', href: 'https://os.esy.com', line: 'The platform all three run on: every run recorded on prompt, model, checks and cost.' },
 };
 
 export const CREATIVE = CREATIVES[0];
@@ -167,7 +168,7 @@ export const FILM = FILMS[0];
 /** What he's on right now (C's "Now"). Dated so it can go stale honestly. */
 export const NOW_DATE = 'September 2026';
 export const NOW = [
-  'Writing The Marketing Engineer every week, with news posts starting at esy.com/news.',
+  'Writing The Marketing Engineer every week, and publishing AI News at esy.com/news with Compose.',
   'Recording the lessons for How to Use Claude Code for the AI Solopreneur.',
   'Finishing the animation for The Letter With No Address, now an animatic.',
   'Building the next SEOPage and clip.art workflows on Esy.',

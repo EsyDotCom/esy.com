@@ -24,6 +24,7 @@ import Link from 'next/link';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import ClipArtWordmark from '@/components/NewsletterHome/ClipArtWordmark';
 import SeoPageWordmark from '@/components/NewsletterHome/SeoPageWordmark';
+import ComposeWordmark from '@/components/NewsletterHome/ComposeWordmark';
 import { CLIPART_RUN } from '@/components/NewsletterHome/clipartRun';
 import { articlePath } from '@/lib/article-path';
 import { filmHref } from '@/data/films';
@@ -109,8 +110,8 @@ function ledgerRows(): LedgerRow[] {
   return [
     {
       n: '01', kind: 'Apps', href: WORK.clipart.href, external: true, go: 'See clip.art', band: 'cream' as const,
-      title: <span className="aw-ledger-marks"><ClipArtWordmark className="ab-card-clipart" /><SeoPageWordmark weight="light" className="ab-card-seopage" /></span>,
-      line: `Two businesses on one engine. ${RUNS} runs so far, each recorded on prompt, model, checks and cost.`,
+      title: <span className="aw-ledger-marks"><ClipArtWordmark className="ab-card-clipart" /><SeoPageWordmark weight="light" className="ab-card-seopage" /><ComposeWordmark mark="stencil" className="ab-card-compose" /></span>,
+      line: `Three apps on one engine. ${RUNS} runs so far, each recorded on prompt, model, checks and cost.`,
       frames: [STYLES[0], STYLES[4], SEOPAGE_FRAMES[0], SEOPAGE_FRAMES[1]],
       checker: [true, true, false, false],
     },

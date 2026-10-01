@@ -7,6 +7,7 @@ import FooterColumn from "@/components/Home/footerColumn";
 import Logo from "@/components/Logo";
 import ClipArtWordmark from "@/components/NewsletterHome/ClipArtWordmark";
 import SeoPageWordmark from "@/components/NewsletterHome/SeoPageWordmark";
+import ComposeWordmark from "@/components/NewsletterHome/ComposeWordmark";
 import { getPageSuffix } from "./navigation";
 import { elevatedDarkTheme } from '@/lib/theme';
 
@@ -238,26 +239,27 @@ export default function Footer () {
           <div className="footer-brand">
             <div className="footer-logo">
               <Logo href="" wordmarkOnly wordmarkFont="blackops" theme={logoTheme} />
-              {/* "esy | OS" lockup, matching the header and os.esy.com's side
-                  rail; colours follow the footer's own theme. */}
+              {/* "esy | The Marketing Engineer", matching the header (esy.com is
+                  the publication); colours follow the footer's own theme. */}
               <span aria-hidden="true" style={{ width: 1, height: 16, background: theme.faint }} />
               <span
                 style={{
                   fontSize: 11,
                   fontWeight: 500,
                   lineHeight: 1,
-                  letterSpacing: '0.22em',
+                  letterSpacing: '0.18em',
                   textTransform: 'uppercase',
+                  whiteSpace: 'nowrap',
                   color: theme.subtle,
                 }}
               >
-                OS
+                The Marketing Engineer
               </span>
             </div>
             <p className="footer-desc" style={{ color: theme.muted }}>
-              <strong style={{ color: isLightMode || isNavyDark ? theme.text : 'inherit' }}>Put marketing production on autopilot.</strong>
+              <strong style={{ color: isLightMode || isNavyDark ? theme.text : 'inherit' }}>Build the AI systems that run marketing.</strong>
               <br />
-              Build, review and scale marketing with AI.
+              One email a week, and AI News every day.
             </p>
             <div className="footer-socials">
               <a href="https://www.youtube.com/@EsyDotCom" target="_blank" className="social-link" aria-label="YouTube">
@@ -331,14 +333,17 @@ export default function Footer () {
             then the showcase catalogs its engine produced. */}
         <div className="footer-extended">
           <h4>From Esy</h4>
-          {/* The businesses as their own wordmarks, not text (clip.art's SVG and
-              SEOPage's lettering), sized to read as one row. */}
+          {/* The apps as their own wordmarks, not text (clip.art's SVG,
+              SEOPage's lettering, Compose's stencil), sized to read as one row. */}
           <div className="footer-extended-links footer-marks">
             <a href="https://clip.art" target="_blank" rel="noopener noreferrer" className="footer-mark" aria-label="clip.art">
               <ClipArtWordmark className="footer-mark-clipart" />
             </a>
             <a href="https://seo.page" target="_blank" rel="noopener noreferrer" className="footer-mark footer-mark--seopage" aria-label="SEOPage">
               <SeoPageWordmark weight="light" />
+            </a>
+            <a href="https://compose.esy.com" target="_blank" rel="noopener noreferrer" className="footer-mark footer-mark--compose" aria-label="Esy Compose">
+              <ComposeWordmark mark="stencil" />
             </a>
           </div>
         </div>

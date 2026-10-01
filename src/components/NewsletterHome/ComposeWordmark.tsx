@@ -15,6 +15,7 @@
  * letters take currentColor; the first letter takes --cw-accent (jade).
  */
 import { Cormorant_Garamond } from 'next/font/google';
+import './ComposeWordmark.css';
 
 // Compose's italic display cut, loaded only where the pen mark renders.
 const composeItalic = Cormorant_Garamond({ weight: '600', style: 'italic', subsets: ['latin'], display: 'swap' });

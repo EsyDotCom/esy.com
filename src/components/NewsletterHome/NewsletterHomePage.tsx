@@ -38,8 +38,12 @@ import { nlSerif } from './serif';
 import ClipArtWordmark from './ClipArtWordmark';
 import SeoPageWordmark from './SeoPageWordmark';
 import SeoPageReplay from './SeoPageReplay';
+import { CLIPART_STYLES, SEOPAGE_STEPS, SEOPAGE_STEP_COUNT } from './apps';
 import ComposeWordmark, { type ComposeMarkStyle } from './ComposeWordmark';
 import ComposeBand, { type ComposeBandStyle } from './ComposeBand';
+import AppsShowcase, { type AppsLayout } from './AppsShowcase';
+import NewsColumn from './NewsColumn';
+import { APP_STORIES } from './apps';
 import './NewsletterHome.css';
 
 const YOUTUBE_URL = 'https://www.youtube.com/@EsyDotCom';
@@ -89,30 +93,7 @@ const COMPOSE_PROPERTY: (typeof PROPERTIES)[number] = {
   body: 'A team of agents for each publication: a Researcher, a Writer and a Fact-checker, with you at the end. It writes AI News on this site, every post dated and sourced, and nothing goes live until it\u2019s approved.',
 };
 
-// SEOPage's case study: the 19 steps of one production page build, in order,
-// as a live generate-seo-landing-page-v3 run on api.esy.com recorded them
-// (2026-09-22). Names are the run's own, shortened; repeats are counted.
-const SEOPAGE_STEPS: [string, number][] = [
-  ['SEO research', 1], ['Live Google results', 1], ['Competitor pages', 2],
-  ["The business's own site", 1], ['Market evidence', 1], ['Design research', 1],
-  ['Design critique', 1], ['Imagery direction', 1], ['Photography', 3],
-  ['Clip art pack', 4], ['Build the page', 1], ['Slop audit', 1], ['Slop fix', 1],
-];
-const SEOPAGE_STEP_COUNT = SEOPAGE_STEPS.reduce((n, [, times]) => n + times, 0);
-
-// The clip.art case study, restored from the Intelligence Circuitry homepage
-// (src/archive/homepage-intelligence-circuitry): the same style vocabulary,
-// with the grid filled from our Clay Office pack on clip.art
-// (clip.art/packs/25-boutique-consulting-clipart-pngs-clay-office) — the
-// office scenes fit a publication about marketing work better than the old
-// seasonal mix. Scenes, poses and props only; the pack's seamless patterns,
-// borders and frames read as wallpaper in a tile, so they're left out.
-const CLIPART_STYLES = [
-  'Flat', 'Minimal', 'Line Art', 'Black & White', 'Cartoon',
-  'Mascot', 'Sticker', 'Emoji', 'Vintage', 'Watercolor',
-  'Storybook', 'Isometric', 'Clay', 'Chibi', 'Pixel',
-  'Kawaii', '3D', 'Doodle',
-];
+// SEOPage's steps and clip.art's styles live in ./apps, shared with the merged apps band.
 
 // Newest first, by publish date — the same merged publication list the article
 // pages resolve against, so the homepage and the articles can never disagree.
@@ -175,7 +156,15 @@ export default async function NewsletterHomePage({
   filmBand = 'strip',
   clipartVisual = 'control',
   compose,
+  appsLayout = 'bands',
+  newsColumn = false,
 }: {
+  /** 01 Apps as a ledger plus one case-study band per app ('bands', live), or
+   *  merged into one band that shows one app at a time (/prototypes/home-trim/).
+   *  The merged layouts always include Compose. */
+  appsLayout?: 'bands' | AppsLayout;
+  /** AI News's newest headlines in a slim column beside Latest (/prototypes/home-trim/). */
+  newsColumn?: boolean;
   /** Compose as the third app: its mark in the 01 Apps ledger and its own case
    *  study band after SEOPage's. The homepage passes the stencil mark and the
    *  replay band (2026-09-30); /engineer leaves it off. The other marks and
@@ -225,6 +214,10 @@ export default async function NewsletterHomePage({
               </nav>
             </div>
 
+            {/* With the AI News column, articles keep the wide column and the
+                list shortens to six, so the section doesn't grow. */}
+            <div className={newsColumn ? 'nl-latest-grid' : undefined}>
+            <div>
             <Link href={articlePath(featured.slug)} className="nl-featured">
               {featuredThumb && (
                 <span className="nl-featured-media">
@@ -254,7 +247,7 @@ export default async function NewsletterHomePage({
 
             {more.length > 0 && (
               <ul className="nl-list">
-                {more.map((article) => (
+                {more.slice(0, newsColumn ? 6 : more.length).map((article) => (
                   <li key={article.slug}>
                     <Link href={articlePath(article.slug)} className="nl-row">
                       <span className="nl-row-date">{formatDate(article.publishedAt)}</span>
@@ -265,10 +258,37 @@ export default async function NewsletterHomePage({
                 ))}
               </ul>
             )}
+            </div>
+            {newsColumn && <NewsColumn />}
+            </div>
           </div>
         </section>
       )}
 
+      {/* ══ The work, 01 · Apps, merged ══
+          One band for every app instead of a ledger plus a band each: the
+          head on white like 02 and 03, then the chosen app's story and replay. */}
+      {appsLayout !== 'bands' ? (
+        <AppsShowcase
+          layout={appsLayout}
+          head={
+            <>
+              <div className="nl-work-head">
+                <span className="nl-work-n" aria-hidden="true">01</span>
+                <p className="nl-eyebrow">Apps that run on Esy OS</p>
+                <h2 className="nl-title nl-work-title" id="nl-where-title">Real properties, real traffic.</h2>
+              </div>
+              <div>
+                <p className="nl-lede">
+                  Three apps built on Esy and run every day. Nothing here is a sandbox demo, so the results in each article are the results they actually got.
+                </p>
+                <WorkIndex current="apps" apps={APP_STORIES.length} />
+              </div>
+            </>
+          }
+        />
+      ) : (
+        <>
       {/* ══ The work, 01 · Apps ══
           The work is grouped by kind, each group opening with a numbered head
           on the left and a ledger on the right: 01 Apps (the businesses that
@@ -435,6 +455,8 @@ export default async function NewsletterHomePage({
 
       {/* ══ Compose's proof, on its own ground ══ */}
       {compose && <ComposeBand band={compose.band} mark={compose.mark} />}
+        </>
+      )}
 
       {/* ══ The work, 02 · Creatives ══
           Ads and explainers: marketing work that runs in feeds, as opposed to

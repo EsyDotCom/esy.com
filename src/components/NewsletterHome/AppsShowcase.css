@@ -1,0 +1,112 @@
+/* The merged 01 Apps band (AppsShowcase). The head stays on white like 02 and
+   03; the band under it changes ground and accent with the chosen app. Story
+   and replay reuse the .nl-case rules the separate bands use. */
+
+.as { scroll-margin-top: 64px; }
+/* `.as >` outranks .nl-container's `padding: 0 24px`, which otherwise zeroes
+   the head's vertical padding and lets the band clip the title. */
+.as > .as-head {
+  display: grid; grid-template-columns: 5fr 7fr; gap: 56px; align-items: end;
+  padding-top: 88px; padding-bottom: 40px;
+}
+.as-head .nl-work-n { margin-bottom: 18px; }
+.as-head .nl-work-title { margin-bottom: 0; }
+.as-head .nl-lede { margin-bottom: 14px; }
+
+/* ── The band: ground and accent per app ── */
+.as-band {
+  --as-accent: #00D4AA; --as-accent-soft: rgba(0, 212, 170, 0.12); --as-cta: #00A896; --as-cta-hover: #00D4AA;
+  background: #0A2540; padding: 40px 0 88px;
+  transition: background-color 0.5s ease;
+}
+.as-band--seopage {
+  --as-accent: #8FA9FF; --as-accent-soft: rgba(61, 107, 255, 0.14); --as-cta: #3D6BFF; --as-cta-hover: #5A82FF;
+  background-color: #060A16;
+}
+.as-band--compose { background-color: #061527; }
+.as-band .nl-case-live { color: var(--as-accent); background: var(--as-accent-soft); border-color: color-mix(in srgb, var(--as-accent) 40%, transparent); }
+.as-band .nl-case-live-dot { background: var(--as-accent); }
+.as-band .nl-case-pill:hover { border-color: color-mix(in srgb, var(--as-accent) 55%, transparent); }
+.as-band .as-cta { background: var(--as-cta); box-shadow: 0 6px 18px color-mix(in srgb, var(--as-cta) 30%, transparent); }
+.as-band .as-cta:hover { background: var(--as-cta-hover); }
+.as-band .nl-case-title-mark, .as-title-mark { color: #FFFFFF; }
+.as-panel { animation: as-in 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+@keyframes as-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.as-visual { min-width: 0; }
+.as-hint { margin: 18px 0 0; font-size: 0.78rem; color: rgba(255, 255, 255, 0.45); }
+
+/* The wordmarks, in white on the band; each sized to read as the same weight. */
+.as-mark-clipart { display: block; height: 1em; width: auto; }
+.as-mark-seopage { font-size: 0.86em; }
+.as-mark-compose { --cw-accent: #00D4AA; font-size: 0.78em; }
+.as-title { display: flex; flex-direction: column; gap: 0.1em; }
+.as-title-mark { display: inline-flex; font-size: 1.15em; line-height: 1; }
+.as-title-mark .as-mark-clipart { height: 0.8em; }
+
+/* ── Tabs (tabs and tour) ── */
+.as-tabs {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin-bottom: 48px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+.as-tab {
+  position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+  padding: 20px 20px 18px; border: 0; background: none; cursor: pointer; text-align: left; font: inherit;
+  color: rgba(255, 255, 255, 0.5); transition: color 0.2s ease, background 0.2s ease;
+}
+.as-tab::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: transparent; transition: background 0.2s ease; }
+.as-tab:hover { color: rgba(255, 255, 255, 0.85); background: rgba(255, 255, 255, 0.03); }
+.as-tab.is-on { color: #FFFFFF; }
+.as--tabs .as-tab.is-on::after { background: var(--as-accent); }
+.as-tab:focus-visible { outline: 2px solid var(--as-accent); outline-offset: -2px; }
+.as-tab-mark { display: flex; align-items: center; height: 34px; font-size: 1.9rem; line-height: 1; }
+.as-tab small {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+}
+.as-tab.is-on small { color: var(--as-accent); }
+/* Tour: each tab's bar fills while it's showing. */
+.as-tab-bar { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: transparent; }
+.as-tab-bar span { display: block; height: 100%; background: var(--as-accent); transition: width 0.1s linear; }
+
+/* ── Rail ── */
+.as-rail { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 48px; align-items: start; padding-top: 8px; }
+.as-rail-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(255, 255, 255, 0.14); }
+.as-rail-row { border-bottom: 1px solid rgba(255, 255, 255, 0.14); }
+.as-rail-head {
+  position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 6px 16px;
+  width: 100%; padding: 22px 0 22px 18px; border: 0; background: none; cursor: pointer; text-align: left; font: inherit;
+  color: rgba(255, 255, 255, 0.6); transition: color 0.2s ease;
+}
+.as-rail-head::before { content: ''; position: absolute; left: 0; top: 22px; bottom: 22px; width: 2px; background: transparent; transition: background 0.2s ease; }
+.as-rail-head:hover { color: #FFFFFF; }
+.as-rail-row.is-on .as-rail-head { color: #FFFFFF; padding-bottom: 10px; }
+.as-rail-row.is-on .as-rail-head::before { background: var(--as-accent); bottom: 10px; }
+.as-rail-head:focus-visible { outline: 2px solid var(--as-accent); outline-offset: 2px; }
+.as-rail-mark { display: flex; align-items: center; height: 36px; font-size: 2rem; line-height: 1; }
+.as-rail-role {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255, 255, 255, 0.5);
+}
+.as-rail-row.is-on .as-rail-role { color: var(--as-accent); }
+.as-rail-line { grid-column: 1 / -1; font-size: 0.9rem; line-height: 1.5; color: rgba(255, 255, 255, 0.55); }
+.as-rail-body { padding: 4px 0 26px 18px; animation: as-in 0.4s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.as-rail-body .nl-case-story { gap: 16px; }
+.as-rail-body .nl-case-meta { display: none; }
+.as-rail-visual { position: sticky; top: 96px; animation: as-in 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+@media (max-width: 1023px) {
+  .as > .as-head { grid-template-columns: 1fr; gap: 20px; padding-top: 64px; padding-bottom: 28px; }
+  .as-rail { grid-template-columns: 1fr; gap: 28px; }
+  .as-rail-visual { position: static; order: -1; }
+}
+@media (max-width: 640px) {
+  .as-band { padding: 28px 0 64px; }
+  .as-tabs { margin-bottom: 32px; }
+  .as-tab { padding: 14px 10px 12px; }
+  .as-tab-mark { height: 24px; font-size: 1.25rem; }
+  .as-tab small { font-size: 0.56rem; letter-spacing: 0.06em; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .as-panel, .as-rail-body, .as-rail-visual { animation: none; }
+  .as-band { transition: none; }
+}

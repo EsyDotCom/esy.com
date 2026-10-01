@@ -384,6 +384,10 @@
    vs 1.55rem) and the same baseline (lifted 0.075em), so the two wordmarks read
    as one row. A text wordmark and an SVG one don't line up by box. */
 .eh-studio-seopage { font-size: 1.42rem; position: relative; top: -0.075em; }
+/* Compose's mark beside them on navy: the bright jade first letter. */
+.eh-studio-compose { --cw-accent: #00D4AA; font-size: 1.45rem; }
+.eh-studio-compose.cw--stencil { font-size: 1.3rem; }
+.eh-studio-compose.cw--pen { font-size: 1.35rem; }
 .eh-studio-latest {
   display: inline-flex; align-items: center; gap: 8px; margin-top: 20px;
   font-size: 0.9rem; color: rgba(255, 255, 255, 0.78); text-decoration: none;

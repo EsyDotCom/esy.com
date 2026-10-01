@@ -92,7 +92,7 @@ const ConditionalNavigation = () => {
   // editorial standards, and every course page (the index, each course, each
   // lesson), which render LightHeader themselves.
   const isEditorialPage = normalizedPath === '/editorial-standards';
-  // AI News (2026-09-30): the index, every post and every story page render
+  // AI Marketing News (2026-09-30): the index, every post and every story page render
   // LightHeader themselves.
   const isNewsPage = normalizedPath === '/news' || normalizedPath?.startsWith('/news/');
 

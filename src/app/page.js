@@ -76,7 +76,7 @@ export default async function HomePage() {
   // "The systems run" row and the 01 Apps ledger, and its replay band after
   // SEOPage's (B · Stencil + D · Replay at /prototypes/home-compose/).
   // 01 Apps is one band that tours clip.art, SEOPage and Compose (C · Tour),
-  // and AI News's newest headlines sit beside Latest (2026-09-30,
+  // and AI Marketing News's newest headlines sit beside Latest (2026-09-30,
   // /prototypes/home-trim/). About 8 screens instead of 10.5.
   return (
     <NewsletterHomePage

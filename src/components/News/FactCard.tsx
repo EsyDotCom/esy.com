@@ -1,7 +1,7 @@
-/* The AI News fact card (2026-09-30): every post's cover, drawn from the
+/* The AI Marketing News fact card (2026-09-30): every post's cover, drawn from the
  * post itself, so it's always about the story. The company (its official
  * logo where its terms allow, its name otherwise), the card title, three key
- * facts, the news date, and AI News in the corner. The share image
+ * facts, the news date, and AI Marketing News in the corner. The share image
  * (app/news/[slug]/opengraph-image.tsx) draws the same card at 1200×630.
  */
 /* eslint-disable @next/next/no-img-element -- small official SVG logos, unchanged */
@@ -23,7 +23,7 @@ export function FactCard({ post, size = 'lg' }: { post: NewsPost; size?: 'lg' | 
       <span className="nfc-in">
       <span className="nfc-top">
         <CompanyMark story={story} />
-        <span className="nfc-brand">AI News</span>
+        <span className="nfc-brand">AI Marketing News</span>
       </span>
       <span className="nfc-story">{story.name}</span>
       <span className="nfc-title">{post.card.title}</span>
@@ -46,7 +46,7 @@ export function StoryCard({ story, count, latest }: { story: NewsStory; count: n
       <span className="nfc-in">
       <span className="nfc-top">
         <CompanyMark story={story} />
-        <span className="nfc-brand">AI News</span>
+        <span className="nfc-brand">AI Marketing News</span>
       </span>
       <span className="nfc-story">The story</span>
       <span className="nfc-title">{story.name}</span>

@@ -177,7 +177,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })
   })
 
-  // AI News: every published post and every story page (/news/<slug>/).
+  // AI Marketing News: every published post and every story page (/news/<slug>/).
   // The /news index is auto-discovered above. Posts use their publish day.
   publishedPosts().forEach(post => {
     sitemap.push({

@@ -34,10 +34,12 @@
 
 /* B · Front page */
 .nw-front { padding: 48px 0 72px; }
-.nw-masthead { text-align: center; border-top: 3px solid var(--nl-navy); border-bottom: 1px solid var(--nl-navy); padding: 18px 0 12px; }
+.nw-masthead { text-align: center; border-top: 3px solid var(--nl-navy); border-bottom: 1px solid var(--nl-navy); padding: 26px 0 12px; }
 .nw-masthead-over { margin: 0; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--nl-jade); }
-.nw-masthead-name { margin: 4px 0 10px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: clamp(4rem, 11vw, 8rem); line-height: 0.9; letter-spacing: -0.04em; color: var(--nl-navy); }
-.nw-masthead-sub { margin: -2px 0 12px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-style: italic; font-size: 1.25rem; color: var(--nl-ink-soft); }
+.nw-masthead-name { margin: 4px 0 0.24em; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: clamp(4rem, 11vw, 8rem); line-height: 0.9; letter-spacing: -0.04em; color: var(--nl-navy); }
+.nw-masthead-sub { margin: 0 0 12px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-style: italic; font-size: 1.25rem; color: var(--nl-ink-soft); }
+/* The subtitle's last words in the house teal, like the homepage's "run marketing". */
+.nw-masthead-sub em { font-style: italic; font-weight: 600; color: var(--nl-jade); }
 .nw-masthead-line { display: flex; justify-content: space-between; gap: 16px; margin: 0; padding-top: 10px; border-top: 1px solid var(--nl-seam); font-size: 0.82rem; color: var(--nl-ink-soft); }
 .nw-front .nw-sample { display: table; margin: 16px auto 0; }
 .nw-front-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 40px; margin-top: 32px; padding-bottom: 36px; border-bottom: 1px solid var(--nl-navy); }

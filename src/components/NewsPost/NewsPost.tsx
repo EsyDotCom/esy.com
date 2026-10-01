@@ -1,4 +1,4 @@
-/* The AI News post page, three directions (2026-09-30, /prototypes/news-post/):
+/* The AI Marketing News post page, three directions (2026-09-30, /prototypes/news-post/):
  *
  *   A · Brief        — a classic news post: what happened, why it matters,
  *                      what to check, with the story and the signup in a rail.
@@ -29,11 +29,11 @@ export function JsonLd() {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd(post)) }} />;
 }
 
-/** "AI News › Meta Muse", the way back up. */
+/** "AI Marketing News › Meta Muse", the way back up. */
 export function Crumbs() {
   return (
     <p className="np-crumbs">
-      <span>AI News</span> <span aria-hidden="true">›</span> <span>{post.trend}</span>
+      <span>AI Marketing News</span> <span aria-hidden="true">›</span> <span>{post.trend}</span>
     </p>
   );
 }
@@ -107,7 +107,7 @@ export function MoreNews() {
   return (
     <section className="nl-section nl-section--alt" aria-labelledby="np-more">
       <div className="nl-container">
-        <h2 className="nt-title" id="np-more">More AI News</h2>
+        <h2 className="nt-title" id="np-more">More AI Marketing News</h2>
         <ol className="np-more">
           {MORE.map((p) => <PostLine key={p.slug} p={p} />)}
         </ol>
@@ -171,7 +171,7 @@ export function PostBrief() {
               <p className="np-rail-link">The {post.trend} story <ArrowRight size={14} aria-hidden="true" /></p>
             </div>
             <div className="np-rail-card">
-              <p className="np-rail-title">AI News, in your inbox</p>
+              <p className="np-rail-title">AI Marketing News, in your inbox</p>
               <NewsletterSignup note="The week’s AI news in The Marketing Engineer" />
             </div>
           </aside>

@@ -2,7 +2,7 @@
 /**
  * ComposeBand — Compose's case study, the homepage's third app band
  * (2026-09-30, /prototypes/home-compose/). Three directions, one piece:
- * the AI News post on Google's September 2026 spam update, walked from its
+ * the AI Marketing News post on Google's September 2026 spam update, walked from its
  * team to live.
  *
  *   replay — night, Compose's own landing colour. The story beside a replay of
@@ -10,7 +10,7 @@
  *            The same shape as clip.art's and SEOPage's bands.
  *   team   — paper. The team as the picture: a path of agents across the
  *            band, each station saying what it did on this piece, ending at
- *            you. Real AI News posts under it.
+ *            you. Real AI Marketing News posts under it.
  *   page   — paper. The page as the picture: the piece as it reads in the
  *            editor, every checked claim underlined; tap one to see the
  *            Fact-checker's note and the source.
@@ -26,7 +26,7 @@ import './ComposeBand.css';
 export type ComposeBandStyle = 'replay' | 'team' | 'page';
 
 const DESC =
-  'A newsroom of agents for your publications. For each piece a Researcher finds the primary source, a Writer drafts in the publication’s voice, and a Fact-checker reads every claim against that source. Then it waits for you. AI News at esy.com/news is written this way, every post dated and sourced.';
+  'A newsroom of agents for your publications. For each piece a Researcher finds the primary source, a Writer drafts in the publication’s voice, and a Fact-checker reads every claim against that source. Then it waits for you. AI Marketing News at esy.com/news is written this way, every post dated and sourced.';
 
 const PROMISES: [string, string][] = [
   ['Nothing goes live without you.', 'Every piece ends in your review.'],
@@ -142,7 +142,7 @@ function EditorPicture({ beat, frac }: { beat: BeatId; frac: number }) {
           {live && <div className="cbr-toast"><Check size={16} aria-hidden="true" /> Live at esy.com/news/{DOC.slug}</div>}
         </article>
         <aside className={`cbr-rail ${at >= 3 ? "has-notes" : ""}`}>
-          <p className="cbr-rail-h">AI News team</p>
+          <p className="cbr-rail-h">AI Marketing News team</p>
           <ol className="cbr-path">
             {TEAM.map((m, k) => {
               const state = live || k < at ? 'done' : m.role === holder ? 'on' : 'next';
@@ -198,7 +198,7 @@ export function ComposeReplay() {
           </button>
         ))}
       </div>
-      <p className="cb-sample">A replay of a real AI News post. The agents’ notes are samples.</p>
+      <p className="cb-sample">A replay of a real AI Marketing News post. The agents’ notes are samples.</p>
     </div>
   );
 }
@@ -271,14 +271,14 @@ function BandTeam({ mark }: { mark: ComposeMarkStyle }) {
 
         <div className="cb-team-foot">
           <div>
-            <span className="nl-case-styles-label">Live on AI News</span>
+            <span className="nl-case-styles-label">Live on AI Marketing News</span>
             <ul className="cb-posts">
               {POSTS.map((p) => (
                 <li key={p.slug}><a href={`https://esy.com/news/${p.slug}/`} target="_blank" rel="noopener noreferrer"><span>{p.story}</span>{p.title}</a></li>
               ))}
             </ul>
           </div>
-          <div className="cb-team-cta"><Cta /><a href="https://esy.com/news/" className="cb-link">Read AI News</a></div>
+          <div className="cb-team-cta"><Cta /><a href="https://esy.com/news/" className="cb-link">Read AI Marketing News</a></div>
         </div>
       </div>
     </section>
@@ -339,7 +339,7 @@ function BandPage({ mark }: { mark: ComposeMarkStyle }) {
                 <a href={docUrl} target="_blank" rel="noopener noreferrer">Read it live <ArrowUpRight size={13} aria-hidden="true" /></a>
               </div>
             </article>
-            <p className="cb-sample">A real AI News post. The Fact-checker’s notes are samples.</p>
+            <p className="cb-sample">A real AI Marketing News post. The Fact-checker’s notes are samples.</p>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-/* Round 3 of the AI News post: three takes on D · Story + glance
+/* Round 3 of the AI Marketing News post: three takes on D · Story + glance
  * (2026-09-30). Same page as D (story, headline, key facts, why it matters,
  * the post, what to check, questions); each gives the story header and the
  * key facts a more considered design. All three add FAQ data for the

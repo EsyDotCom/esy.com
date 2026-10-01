@@ -1,4 +1,4 @@
-/* AI News (esy.com/news): the posts and the stories they belong to.
+/* AI Marketing News (esy.com/news): the posts and the stories they belong to.
  *
  * Rules for every post here (2026-09-30):
  *   - every fact is checked against the company's own announcement, which the
@@ -541,7 +541,7 @@ export const NEWS_POSTS: NewsPost[] = [
 {
   const storySlugs = new Set(NEWS_STORIES.map((s) => s.slug));
   const clash = NEWS_POSTS.find((p) => storySlugs.has(p.slug));
-  if (clash) throw new Error(`AI News: "${clash.slug}" is both a post and a story; rename the post.`);
+  if (clash) throw new Error(`AI Marketing News: "${clash.slug}" is both a post and a story; rename the post.`);
 }
 
 /* ── Reads ── */

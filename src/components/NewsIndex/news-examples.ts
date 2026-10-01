@@ -1,4 +1,4 @@
-/* Example posts for the /news (AI News) prototypes, rebuilt 2026-09-30 from
+/* Example posts for the /news (AI Marketing News) prototypes, rebuilt 2026-09-30 from
  * real stories: AI as it hits marketing in September 2026 (ads, SEO, social,
  * ad creative, the tools marketers use, and models where they change the
  * work). Each is rewritten in our own words from its source, which it links.

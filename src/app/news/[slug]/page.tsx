@@ -11,7 +11,7 @@ import '@/components/NewsIndex/NewsIndex.css';
 import '@/components/NewsPost/NewsPost.css';
 import '@/components/News/News.css';
 
-// One address space for AI News: /news/<post>/ is a post (I · D · Spec sheet
+// One address space for AI Marketing News: /news/<post>/ is a post (I · D · Spec sheet
 // from /prototypes/news-post/), /news/<story>/ is a story's page. Post and
 // story slugs never collide (src/data/news/index.ts). Drafts 404.
 
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const post = findPost(slug);
   if (post) {
-    const title = `${post.headline} — AI News`;
+    const title = `${post.headline} — AI Marketing News`;
     return {
       title,
       description: post.dek,
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
   const story = findStory(slug);
   if (story) {
-    const title = `${story.name}: every post — AI News`;
+    const title = `${story.name}: every post — AI Marketing News`;
     return {
       title,
       description: story.line,

@@ -38,6 +38,8 @@ import { nlSerif } from './serif';
 import ClipArtWordmark from './ClipArtWordmark';
 import SeoPageWordmark from './SeoPageWordmark';
 import SeoPageReplay from './SeoPageReplay';
+import ComposeWordmark, { type ComposeMarkStyle } from './ComposeWordmark';
+import ComposeBand, { type ComposeBandStyle } from './ComposeBand';
 import './NewsletterHome.css';
 
 const YOUTUBE_URL = 'https://www.youtube.com/@EsyDotCom';
@@ -52,7 +54,7 @@ const LATEST_COUNT = 12;
 // its own wordmark, and SEOPage in its own (seopage¹).
 const PROPERTIES: {
   name: string;
-  wordmark: 'clipart' | 'seopage';
+  wordmark: 'clipart' | 'seopage' | 'compose';
   href: string;
   domain: string;
   role: string;
@@ -75,6 +77,17 @@ const PROPERTIES: {
     body: 'A self-serve builder for local SEO landing pages that get cited by AI and rank on Google. Each page is researched from live search data, then written, designed, and scored on Esy OS.',
   },
 ];
+
+// The third app, shown when the page passes `compose` (the homepage does):
+// Compose, the agent newsroom that writes AI News at esy.com/news.
+const COMPOSE_PROPERTY: (typeof PROPERTIES)[number] = {
+  name: 'Esy Compose',
+  wordmark: 'compose',
+  href: 'https://compose.esy.com',
+  domain: 'compose.esy.com',
+  role: 'The newsroom',
+  body: 'A team of agents for each publication: a Researcher, a Writer and a Fact-checker, with you at the end. It writes AI News on this site, every post dated and sourced, and nothing goes live until it\u2019s approved.',
+};
 
 // SEOPage's case study: the 19 steps of one production page build, in order,
 // as a live generate-seo-landing-page-v3 run on api.esy.com recorded them
@@ -111,9 +124,9 @@ async function latestArticles(): Promise<AgenticVideo[]> {
 }
 
 // The groups' index: jump between the kinds of work, each with its count.
-function WorkIndex({ current }: { current: 'apps' | 'creatives' | 'films' }) {
+function WorkIndex({ current, apps = PROPERTIES.length }: { current: 'apps' | 'creatives' | 'films'; apps?: number }) {
   const groups = [
-    { key: 'apps', n: '01', label: 'Apps', count: PROPERTIES.length },
+    { key: 'apps', n: '01', label: 'Apps', count: apps },
     { key: 'creatives', n: '02', label: 'Creatives', count: CREATIVES.length },
     { key: 'films', n: '03', label: 'Films', count: FILMS.length },
   ] as const;
@@ -161,7 +174,13 @@ export default async function NewsletterHomePage({
   hero,
   filmBand = 'strip',
   clipartVisual = 'control',
+  compose,
 }: {
+  /** Compose as the third app: its mark in the 01 Apps ledger and its own case
+   *  study band after SEOPage's. The homepage passes the stencil mark and the
+   *  replay band (2026-09-30); /engineer leaves it off. The other marks and
+   *  bands stay at /prototypes/home-compose/. */
+  compose?: { mark: ComposeMarkStyle; band: ComposeBandStyle };
   /** What sits beside the clip.art case study: D · Control room since 2026-09-29 (/prototypes/home-clipart/). */
   clipartVisual?: ClipArtVisual;
   /** How 03 Films presents the films: the running strip since 2026-09-29, or the poster band (/prototypes/home-films/). */
@@ -173,6 +192,7 @@ export default async function NewsletterHomePage({
   const articles = await latestArticles();
   const [featured, ...more] = articles;
   const featuredThumb = featured ? thumbnailFor(featured) : null;
+  const properties = compose ? [...PROPERTIES, COMPOSE_PROPERTY] : PROPERTIES;
 
   return (
     <div className={`nl ${nlSerif.variable}`}>
@@ -261,18 +281,20 @@ export default async function NewsletterHomePage({
             <p className="nl-eyebrow">Apps that run on Esy OS</p>
             <h2 className="nl-title nl-work-title" id="nl-where-title">Real properties, real traffic.</h2>
             <p className="nl-lede">
-              Two businesses built on Esy and run every day. Nothing here is a
+              {compose ? 'Three apps' : 'Two businesses'} built on Esy and run every day. Nothing here is a
               sandbox demo, so the results in each article are the results
               they actually got.
             </p>
-            <WorkIndex current="apps" />
+            <WorkIndex current="apps" apps={properties.length} />
           </div>
           <ul className="nl-ledger">
-            {PROPERTIES.map(({ name, wordmark, href, domain, role, body }) => (
+            {properties.map(({ name, wordmark, href, domain, role, body }) => (
               <li key={name} className="nl-ledger-row">
                 <span className="nl-ledger-name">
                   {wordmark === 'clipart' ? (
                     <ClipArtWordmark className="nl-ledger-wordmark" />
+                  ) : wordmark === 'compose' ? (
+                    <ComposeWordmark mark={compose?.mark} className="nl-ledger-compose" />
                   ) : (
                     <SeoPageWordmark className="nl-ledger-seopage" />
                   )}
@@ -411,6 +433,9 @@ export default async function NewsletterHomePage({
         </div>
       </section>
 
+      {/* ══ Compose's proof, on its own ground ══ */}
+      {compose && <ComposeBand band={compose.band} mark={compose.mark} />}
+
       {/* ══ The work, 02 · Creatives ══
           Ads and explainers: marketing work that runs in feeds, as opposed to
           films, which are stories. The same head and ledger as 01; the newest
@@ -426,7 +451,7 @@ export default async function NewsletterHomePage({
               and cut for every feed. Each one comes with how it was made and
               what broke on the way.
             </p>
-            <WorkIndex current="creatives" />
+            <WorkIndex current="creatives" apps={properties.length} />
           </div>
           <ul className="nl-ledger">
             {CREATIVES.map((c) => (
@@ -468,7 +493,7 @@ export default async function NewsletterHomePage({
               to the final sound mix. Every stage is recorded, so each film
               shows how it was made.
             </p>
-            <WorkIndex current="films" />
+            <WorkIndex current="films" apps={properties.length} />
           </div>
           <div>
             <ul className="nl-ledger">

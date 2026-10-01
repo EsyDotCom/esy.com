@@ -64,15 +64,21 @@ export const metadata = {
 // posture as /engineer: webhook purges for instant updates, hourly backstop.
 export const revalidate = 3600;
 
+const COMPOSE = { mark: "stencil", band: "replay" };
+
 export default async function HomePage() {
   // The hero's "latest" line reads the same article list as the Latest section,
   // so the two can never disagree.
   const articles = await getAllAgenticArticles();
   // phone="profile": on phones the face sits in a profile row beside the
   // greeting (H), so the signup stays on the first screen; desktop is F.
+  // Compose is the third app (2026-09-30): its stencil mark in the hero's
+  // "The systems run" row and the 01 Apps ledger, and its replay band after
+  // SEOPage's (B · Stencil + D · Replay at /prototypes/home-compose/).
   return (
     <NewsletterHomePage
-      hero={<EduStudio desks={resolveDesks(articles)} latest={latestLesson(articles)} phone="profile" />}
+      compose={COMPOSE}
+      hero={<EduStudio desks={resolveDesks(articles)} latest={latestLesson(articles)} phone="profile" composeMark={COMPOSE.mark} />}
     />
   );
 }

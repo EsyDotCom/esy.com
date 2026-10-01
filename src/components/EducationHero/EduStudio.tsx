@@ -16,14 +16,19 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import ClipArtWordmark from '@/components/NewsletterHome/ClipArtWordmark';
 import SeoPageWordmark from '@/components/NewsletterHome/SeoPageWordmark';
+import ComposeWordmark, { type ComposeMarkStyle } from '@/components/NewsletterHome/ComposeWordmark';
 import type { Lesson, ResolvedDesk } from './desks';
 import { EduSignup } from './shared';
 
 export type StudioPhoneLayout = 'photo' | 'avatar' | 'profile' | 'after';
 
-type StudioProps = { desks: ResolvedDesk[]; latest?: Lesson | null; phone?: StudioPhoneLayout };
+type StudioProps = {
+  desks: ResolvedDesk[]; latest?: Lesson | null; phone?: StudioPhoneLayout;
+  /** Compose's mark as a third app in "The systems run" (/prototypes/home-compose/). */
+  composeMark?: ComposeMarkStyle;
+};
 
-export default function EduStudio({ latest, phone = 'photo' }: StudioProps) {
+export default function EduStudio({ latest, phone = 'photo', composeMark }: StudioProps) {
   return (
     <section className={`eh eh-studio eh-studio--phone-${phone}`} id="subscribe">
       <div className="nl-container eh-studio-inner">
@@ -70,6 +75,11 @@ export default function EduStudio({ latest, phone = 'photo' }: StudioProps) {
             <a href="https://seopage.com" target="_blank" rel="noopener noreferrer" aria-label="SEOPage" className="eh-studio-seopage">
               <SeoPageWordmark weight="light" />
             </a>
+            {composeMark && (
+              <a href="https://compose.esy.com" target="_blank" rel="noopener noreferrer" aria-label="Esy Compose">
+                <ComposeWordmark mark={composeMark} className="eh-studio-compose" />
+              </a>
+            )}
           </div>
           {latest?.href && (
             <Link href={latest.href} className="eh-studio-latest">

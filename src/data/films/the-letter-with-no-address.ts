@@ -44,13 +44,13 @@ export const LETTER = {
   slug: "the-letter-with-no-address",
   title: "The Letter With No Address",
   series: "Lullo the Moon Bear",
-  runtime: "4:06",
+  runtime: "4:13",
   shots: 39,
   lines: 33,
   voices: 6,
   ages: "3–7",
   stageIndex: FILM_STAGES.indexOf("Animatic"),
-  version: 13,
+  version: 14,
   logline:
     "A letter arrives at the Cloud Post Office with no address, only a child's crayon drawing of a star, a moon and a pair of tiny booties. Lullo follows the drawing from the Sleepy Stars to the Moon to a quiet lane, until a window lights up.",
   tagline: "A letter with no address, a crayon drawing for a clue, and one very determined postman.",
@@ -59,7 +59,7 @@ export const LETTER = {
   // esy.com's R2 bucket, one folder per cut (upload with
   // scripts/r2-upload-film-media.mjs). Files are cached for a year, so a new cut
   // goes up under a new folder and this line moves to it.
-  animaticMedia: "films/the-letter-with-no-address/animatic/v13",
+  animaticMedia: "films/the-letter-with-no-address/animatic/v14",
   storybookUrl: "https://clip.art/stories/milo/",
   packsUrl: "https://clip.art/packs/",
   chapters: [
@@ -86,7 +86,7 @@ export const LETTER = {
     {
       label: "Chapter three",
       title: "The Moon",
-      tc: "01:46",
+      tc: "01:50",
       text: "Moonlight shows the second line, and the Moon lays a silver path down to the rooftops.",
       image: "d1-moon",
       alt: "Lullo's balloon beside the Moon",
@@ -96,7 +96,7 @@ export const LETTER = {
     {
       label: "Chapter four",
       title: "Morning",
-      tc: "03:27",
+      tc: "03:35",
       text: "Home by sunrise, with the Lost Letters drawer glowing. What happens at the window, you'll have to watch.",
       image: "dawn-home",
       alt: "Dawn over the Cloud Post Office as the balloon comes home",

@@ -1902,6 +1902,8 @@ export const PROTOTYPES: Prototype[] = [
         title: 'Real properties, real traffic.',
         blurb: 'Tabs that advance on their own every 22 seconds with a filling bar, pause while you hover, and stop once you pick an app.',
         poster: ['#061527', '#00D4AA'],
+        live: true,
+        liveHref: '/#work-apps',
       },
     ],
   },

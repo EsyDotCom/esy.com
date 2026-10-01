@@ -24,7 +24,7 @@ export default function ReplaySpotlight() {
   const done = phase === 'done';
 
   return (
-    <div className="rs" {...r.hover} aria-label={`A real clip.art run: ${RUN.subject}, $${RUN.totalUsd} in ${RUN.seconds}s`}>
+    <div className="rs" aria-label={`A real clip.art run: ${RUN.subject}, $${RUN.totalUsd} in ${RUN.seconds}s`}>
       <p className="rs-order">
         <small>One prompt</small>&ldquo;{RUN.subject}&rdquo;
       </p>

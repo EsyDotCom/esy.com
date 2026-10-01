@@ -38,7 +38,7 @@ export default function ReplayAssemblyLine() {
         : centre(at - 1) + (centre(at) - centre(at - 1)) * Math.min(1, p / 0.4);
 
   return (
-    <div className="ra" {...r.hover} aria-label={`A real clip.art run on the assembly line: ${RUN.subject}, $${RUN.totalUsd} in ${RUN.seconds}s`}>
+    <div className="ra" aria-label={`A real clip.art run on the assembly line: ${RUN.subject}, $${RUN.totalUsd} in ${RUN.seconds}s`}>
       <header className="ra-head">
         <p className="ra-order">
           <small>Order</small>

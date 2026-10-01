@@ -6,8 +6,10 @@
  * moment, so the counters on screen always read true: the 31.6-second render
  * plays in about three seconds, and the clock fast-forwards to match.
  *
- * Hover pauses (pass the handlers to the root). People who ask for reduced
- * motion get the finished frame, still.
+ * It plays until someone presses pause (`playing` / `toggle`, for a play/pause
+ * button). It used to pause on hover, but nothing showed it was paused, and a
+ * cursor resting on it while scrolling froze it (2026-09-30). People who ask
+ * for reduced motion get the finished frame, still.
  */
 import { useEffect, useRef, useState } from 'react';
 import { CLIPART_RUN } from './clipartRun';
@@ -41,7 +43,10 @@ function realAt(index: number, p: number) {
 
 export function useRunReplay() {
   const [state, setState] = useState({ index: 0, p: 0 });
+  const [playing, setPlaying] = useState(true);
+  // The animation loop reads this, so pausing doesn't restart the loop.
   const paused = useRef(false);
+  useEffect(() => { paused.current = !playing; }, [playing]);
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -82,10 +87,8 @@ export function useRunReplay() {
     },
     runSeconds: real.runSeconds,
     usd: real.usd,
-    hover: {
-      onMouseEnter: () => (paused.current = true),
-      onMouseLeave: () => (paused.current = false),
-    },
+    playing,
+    toggle: () => setPlaying((on) => !on),
   };
 }
 

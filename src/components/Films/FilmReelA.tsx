@@ -30,7 +30,7 @@ const CREDITS: [string, string][] = [
   ["Starring", LETTER.series],
   ["", "Ottoline"],
   ["", "The Moon"],
-  ["", "The Sleepy Stars"],
+  ["", "The Lantern Stars"],
   ["Voices", "Six designed voices"],
   ["Frames", "Esy, from the clip.art pack"],
   ["Motion", "Seedance 2.5 · Kling O3 · OmniHuman 1.5"],

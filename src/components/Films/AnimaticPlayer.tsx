@@ -19,7 +19,7 @@ type Sfx = { at: number; file: string; gain: number; loop?: boolean; end?: numbe
 type Shot = { id: string; scene: string; what: string; frame: string; card?: boolean; clip?: string | null; start: number; dur: number; tx?: { type: string; dur: number }; pan?: string | null; lines: Line[]; sfx: Sfx[] };
 type Timeline = { runtime: number; shots: Shot[]; music: { file: string; start: number; end: number }[]; mix?: { master: number } };
 
-const WHO: Record<string, string> = { MILO: "Lullo", OTTO: "Ottoline", MOON: "The Moon", TALL: "Tall Star", ROUND: "Round Star", TINY: "Tiny Star" };
+const WHO: Record<string, string> = { MILO: "Lullo", OTTO: "Ottoline", MOON: "The Moon", TALL: "Wick", ROUND: "Ember", TINY: "Flicker" };
 const COLORS = ["#e9a64a", "#c9924a", "#f08a4b", "#e8c46a", "#9fb3df", "#5a6aa8", "#ffcf73", "#f3e4cc", "#d98f7c", "#b7a5d8", "#7fb5a8", "#e3b660"];
 const mediaRoot = (media: string) =>
   /^(https?:)?\//.test(media) ? media : `${window.location.hostname === "esy.com" ? "https://images.esy.com" : "/cdn-proxy"}/${media}`;

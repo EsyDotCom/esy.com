@@ -94,10 +94,10 @@ export const LETTER = {
           { title: "Profile · Lullo with the letter", file: "lullo-profile-1-with-the-letter.jpg", preview: "lullo-profile-1-with-the-letter.jpg", meta: "JPG · 800 × 800", shape: "square" },
           { title: "Profile · in his balloon", file: "lullo-profile-2-balloon.jpg", preview: "lullo-profile-2-balloon.jpg", meta: "JPG · 800 × 800", shape: "square" },
           { title: "Profile · asleep", file: "lullo-profile-3-asleep.jpg", preview: "lullo-profile-3-asleep.jpg", meta: "JPG · 800 × 800", shape: "square" },
-          { title: "Banner · the cast", file: "lullo-banner-1-the-cast.jpg", preview: "lullo-banner-1-the-cast.jpg", meta: "JPG · 2560 × 1440", shape: "wide" },
+          { title: "Banner · the cast", file: "lullo-banner-1-the-cast-with-ottoline.jpg", preview: "lullo-banner-1-the-cast-with-ottoline.jpg", meta: "JPG · 2560 × 1440", shape: "wide" },
           { title: "Banner · Starlight Town", file: "lullo-banner-2-starlight-town.jpg", preview: "lullo-banner-2-starlight-town.jpg", meta: "JPG · 2560 × 1440", shape: "wide" },
           { title: "Banner · the Moon", file: "lullo-banner-3-the-moon.jpg", preview: "lullo-banner-3-the-moon.jpg", meta: "JPG · 2560 × 1440", shape: "wide" },
-          { title: "All channel art", file: "lullo-channel-art.zip", preview: "", meta: "ZIP · 6 images · 1.4 MB", shape: "file", zip: true },
+          { title: "All channel art", file: "lullo-channel-art-v2.zip", preview: "", meta: "ZIP · 6 images · 1.4 MB", shape: "file", zip: true },
         ],
       },
       {
@@ -114,7 +114,7 @@ export const LETTER = {
       },
     ] satisfies SocialGroup[],
   },
-  storybookUrl: "https://clip.art/stories/milo/",
+  storybookUrl: "https://clip.art/stories/lullo/",
   packsUrl: "https://clip.art/packs/",
   chapters: [
     {

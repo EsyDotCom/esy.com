@@ -12,7 +12,7 @@ import { useEffect, useRef, useState } from "react";
 import Logo from "@/components/Logo";
 import { LETTER } from "@/data/films/the-letter-with-no-address";
 
-import AnimaticPlayer from "./AnimaticPlayer";
+import FilmPlayer from "./FilmPlayer";
 
 const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
 const IMG = (n: string) => `/films/${LETTER.slug}/${n}.webp`;
@@ -31,9 +31,9 @@ const CREDITS: [string, string][] = [
   ["", "Ottoline"],
   ["", "The Moon"],
   ["", "The Lantern Stars"],
-  ["Voices", "Six designed voices"],
+  ["Voices", "Six designed voices · ElevenLabs"],
   ["Frames", "Esy, from the clip.art pack"],
-  ["Motion", "Seedance 2.5 · Kling O3 · OmniHuman 1.5"],
+  ["Motion", "Seedance 2.5 · Kling O3 · OmniHuman 1.5 · Wan 2.7"],
   ["Music", "Temp score from the storybook"],
   ["Mix", "−16 LUFS, checked line by line"],
   ["Made by", "Zev, with Claude and Esy"],
@@ -69,9 +69,9 @@ export default function FilmReelA() {
 
       <div className="fa-wrap">
         <section className="fr-sec" id="fr-now" aria-labelledby="fr-now-h">
-          <h2 className="fr-h" id="fr-now-h"><small>Scene 01 · Now showing</small>The animatic</h2>
-          <AnimaticPlayer media={LETTER.animaticMedia} title={LETTER.title} poster={IMG("look-world")} cardLine={`${LETTER.series} · a film made with Esy`} />
-          <div className="fr-tc"><span>00:00:00:00</span><span>version {LETTER.version} · {LETTER.shots} shots · every line recorded · <a href={LETTER.animaticUrl} {...ext}>open full screen ↗</a></span><span>00:0{LETTER.runtime}:00</span></div>
+          <h2 className="fr-h" id="fr-now-h"><small>Scene 01 · Now showing</small>The film</h2>
+          <FilmPlayer media={LETTER.film.media} title={LETTER.title} poster={LETTER.film.poster} />
+          <div className="fr-tc"><span>00:00:00:00</span><span>{LETTER.runtime} · English captions · <a href={LETTER.film.download} download>download in 4K ↓</a> · <a href={LETTER.animaticUrl} {...ext}>the animatic ↗</a></span><span>00:0{LETTER.runtime}:00</span></div>
         </section>
 
         <section className="fr-sec" id="fr-story" aria-labelledby="fr-story-h">

@@ -10,7 +10,6 @@ import { useEffect, useRef, useState } from "react";
 import { LETTER } from "@/data/films/the-letter-with-no-address";
 
 const BASE = `/films/${LETTER.slug}`;
-const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
 
 export default function FilmHeroA() {
   const video = useRef<HTMLVideoElement>(null);
@@ -63,11 +62,11 @@ export default function FilmHeroA() {
           <span>{LETTER.runtime}</span>
           <span>{LETTER.shots} shots</span>
           <span>{LETTER.voices} voices</span>
-          <span>animatic stage</span>
+          <span>now streaming</span>
           <span>made with Esy</span>
         </div>
         <div className="fa-btns">
-          <a className="fa-btn fa-btn--go" href={LETTER.animaticUrl} {...ext}>▶ Watch the animatic</a>
+          <a className="fa-btn fa-btn--go" href="#fr-now">▶ Watch the film</a>
           <a className="fa-btn" href="#package">The package · {LETTER.package.length} files</a>
           {!still ? (
             <button type="button" className="fa-btn fa-imm-replay" onClick={replay} disabled={!landed} aria-label="Replay the opening shot">

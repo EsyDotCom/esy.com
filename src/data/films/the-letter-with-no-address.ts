@@ -44,13 +44,13 @@ export const LETTER = {
   slug: "the-letter-with-no-address",
   title: "The Letter With No Address",
   series: "Lullo the Moon Bear",
-  runtime: "4:21",
+  runtime: "4:22",
   shots: 39,
   lines: 33,
   voices: 6,
   ages: "3–7",
-  stageIndex: FILM_STAGES.indexOf("Animatic"),
-  version: 24,
+  stageIndex: FILM_STAGES.indexOf("Sound"),
+  version: 25,
   logline:
     "A letter arrives at the Cloud Post Office with no address, only a child's crayon drawing of a star, a moon and a pair of tiny booties. Lullo follows the drawing from the Lantern Stars to the Moon to a quiet lane, until a window lights up.",
   tagline: "A letter with no address, a crayon drawing for a clue, and one very determined postman.",
@@ -59,7 +59,7 @@ export const LETTER = {
   // esy.com's R2 bucket, one folder per cut (upload with
   // scripts/r2-upload-film-media.mjs). Files are cached for a year, so a new cut
   // goes up under a new folder and this line moves to it.
-  animaticMedia: "films/the-letter-with-no-address/animatic/v24",
+  animaticMedia: "films/the-letter-with-no-address/animatic/v25",
   storybookUrl: "https://clip.art/stories/milo/",
   packsUrl: "https://clip.art/packs/",
   chapters: [
@@ -112,7 +112,7 @@ export const LETTER = {
     { label: "Story", title: "Screenplay draft B", note: "Written after research on children's screenwriting, and checked against ten rules" },
     { label: "Voices", title: "Six designed voices", note: "Lullo, Ottoline, the Moon and the three Lantern Stars, on ElevenLabs" },
     { label: "Frames", title: "Esy", note: "32 stills from the Lullo the Moon Bear pack, on gpt-image-2" },
-    { label: "Motion", title: "Next", note: "Seedance 2.5, Kling O3 and OmniHuman 1.5, once the timing is locked" },
+    { label: "Motion", title: "Every shot", note: "Seedance 2.5, Kling O3, OmniHuman 1.5 and Wan 2.7, lip-synced to the recorded voices" },
     { label: "Sound", title: "Temp score", note: "From the Lullo storybook, mixed to broadcast loudness standards" },
     { label: "Made by", title: "Zev, with Claude and Esy", note: "ESY LLC" },
   ],

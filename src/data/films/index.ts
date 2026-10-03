@@ -59,7 +59,7 @@ export const FILMS: FilmCard[] = [
       ["Starring", "Lullo the Moon Bear, Ottoline, the Moon, the Lantern Stars"],
       ["Story", "Screenplay draft B"],
       ["Frames", "Esy, from one clip.art pack"],
-      ["Voices", "Six designed voices"],
+      ["Voices", "Six designed voices · ElevenLabs"],
       ["Sound", "Temp score, mixed to broadcast loudness"],
       ["Made by", "Zev, with Claude and Esy"],
     ],

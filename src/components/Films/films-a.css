@@ -235,6 +235,13 @@ a.fr-can:hover { border-color: var(--fa-gold); }
 .fp-card { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; background: radial-gradient(ellipse at center, #141a4a, #05060f 70%); }
 .fp-card h3 { margin: 0 0 10px; font-family: var(--nl-serif), Georgia, serif; font-weight: 700; font-size: clamp(1.8rem, 5vw, 3.6rem); line-height: 1.05; color: var(--fa-gold2); }
 .fp-card p { margin: 0; font: 600 0.78rem/1.4 var(--font-inter), sans-serif; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fa-mute); }
+.fp-roll { position: absolute; inset: 0; overflow: hidden; background: radial-gradient(ellipse at center, #141a4a, #05060f 70%); -webkit-mask: linear-gradient(180deg, transparent, #000 14%, #000 86%, transparent); mask: linear-gradient(180deg, transparent, #000 14%, #000 86%, transparent); }
+.fp-roll-in { position: absolute; left: 0; right: 0; top: 0; will-change: transform; }
+.fp-roll dl { margin: 0 auto; max-width: 78%; display: grid; gap: 0.45em; font-size: clamp(0.8rem, 1.9vw, 1.15rem); }
+.fp-roll dl div { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4em; align-items: baseline; }
+.fp-roll dt { text-align: right; font: 500 0.66em/1.9 var(--font-geist-mono), monospace; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fa-gold); }
+.fp-roll dd { margin: 0; text-align: left; font-family: var(--nl-serif), Georgia, serif; font-weight: 600; font-size: 1em; line-height: 1.5; color: var(--fa-cream); }
+.fp-roll-end { margin: 2.2em 0 0; text-align: center; font-family: var(--nl-serif), Georgia, serif; font-style: italic; font-weight: 600; font-size: clamp(1.8rem, 5vw, 3.4rem); line-height: 1; color: var(--fa-gold2); }
 .fp-badge { position: absolute; left: 12px; top: 12px; z-index: 2; font: 500 0.74rem/1 var(--font-geist-mono), monospace; color: var(--fa-gold2); background: rgba(7, 9, 26, 0.62); padding: 7px 9px; border-radius: 4px; }
 .fp-sub { position: absolute; left: 50%; bottom: 6%; z-index: 2; transform: translateX(-50%); max-width: 84%; text-align: center; font: 500 clamp(0.92rem, 2vw, 1.3rem)/1.35 var(--font-inter), sans-serif; color: #fff; background: rgba(7, 9, 26, 0.68); padding: 8px 14px; border-radius: 9px; opacity: 0; transition: opacity 0.2s; }
 .fp-sub.on { opacity: 1; }

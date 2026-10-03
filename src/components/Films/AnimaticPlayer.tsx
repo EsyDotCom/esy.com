@@ -17,7 +17,7 @@ import { useEffect, useRef, useState } from "react";
 
 type Line = { at: number; dur: number; file: string; v: string; sub: string; gain?: number; duck?: number; hold?: number };
 type Sfx = { at: number; file: string; gain: number; loop?: boolean; end?: number };
-type Shot = { id: string; scene: string; what: string; frame: string; card?: boolean; clip?: string | null; start: number; dur: number; tx?: { type: string; dur: number }; pan?: string | null; lines: Line[]; sfx: Sfx[] };
+type Shot = { id: string; scene: string; what: string; frame: string; card?: boolean; title?: string; line?: string; credits?: [string, string][]; closing?: string; clip?: string | null; start: number; dur: number; tx?: { type: string; dur: number }; pan?: string | null; lines: Line[]; sfx: Sfx[] };
 type Timeline = { runtime: number; shots: Shot[]; music: { file: string; start: number; end: number }[]; mix?: { master: number } };
 
 const WHO: Record<string, string> = { MILO: "Lullo", OTTO: "Ottoline", MOON: "The Moon", TALL: "Wick", ROUND: "Ember", TINY: "Flicker" };
@@ -36,7 +36,6 @@ export default function AnimaticPlayer({ media, title, poster, cardLine }: { med
   const [state, setState] = useState<"idle" | "loading" | "playing" | "paused">("idle");
   const [loadMsg, setLoadMsg] = useState("");
   const [time, setTime] = useState(0);
-  const [badge, setBadge] = useState("");
   const api = useRef<{ play: () => void; pause: () => void; seek: (t: number) => void; toggle: () => void } | null>(null);
 
   useEffect(() => {
@@ -136,16 +135,26 @@ export default function AnimaticPlayer({ media, title, poster, cardLine }: { med
     let showSeq = 0;
     function show(i: number, instant?: boolean) {
       const s = TL.shots[i], prev = cur; cur = i;
-      setBadge(`${s.id} · ${s.scene}`);
       preload(i);
       if (prev >= 0 && runOf(i)[0] <= prev && prev < i) return;
       front ^= 1;
       const L = layers[front], O = layers[front ^ 1];
       L.replaceChildren();
       let ready: Promise<void> = Promise.resolve();
-      if (s.card) {
+      if (s.card && s.credits) {
+        // The end credits, rolled by frame() from the film clock.
+        const roll = document.createElement("div"); roll.className = "fp-roll";
+        const inner = document.createElement("div"); inner.className = "fp-roll-in";
+        const dl = document.createElement("dl");
+        for (const [role, name] of s.credits) {
+          const row = document.createElement("div"); const dt = document.createElement("dt"); dt.textContent = role; const dd = document.createElement("dd"); dd.textContent = name;
+          row.append(dt, dd); dl.append(row);
+        }
+        const end = document.createElement("p"); end.className = "fp-roll-end"; end.textContent = s.closing ?? "The End";
+        inner.append(dl, end); roll.append(inner); L.append(roll);
+      } else if (s.card) {
         const c = document.createElement("div"); c.className = "fp-card";
-        const h = document.createElement("h3"); h.textContent = s.frame; const p = document.createElement("p"); p.textContent = cardLine;
+        const h = document.createElement("h3"); h.textContent = s.title ?? s.frame; const p = document.createElement("p"); p.textContent = s.line ?? cardLine;
         const wrap = document.createElement("div"); wrap.append(h, p); c.append(wrap); L.append(c);
       } else if (s.clip) {
         const v = clipEl(s.clip, s.frame); L.append(v);
@@ -191,6 +200,14 @@ export default function AnimaticPlayer({ media, title, poster, cardLine }: { med
       if (el instanceof HTMLImageElement) {
         const pan = TL.shots[ra].pan, dir = pan === "right" ? -1 : pan === "left" ? 1 : ra % 2 ? 1 : -1;
         el.style.transform = pan === "up" ? `scale(${1.04 + 0.05 * p}) translateY(${(p - 0.5) * 2.4}%)` : `scale(${1.02 + 0.06 * p}) translateX(${dir * (p - 0.5) * 1.6}%)`;
+      }
+      if (el?.classList.contains("fp-roll")) {
+        // Rise from just inside the bottom edge after the dissolve; settle with the closing
+        // line centred for the last 1.6 s.
+        const inner = el.firstElementChild as HTMLElement, end = inner.querySelector(".fp-roll-end") as HTMLElement, H = el.clientHeight;
+        const q = Math.min(1, Math.max(0, (t - s.start - 0.6) / (s.dur - 2.2)));
+        const y0 = H * 0.84, y1 = H / 2 - (end.offsetTop + end.offsetHeight / 2);
+        inner.style.transform = `translateY(${y0 + (y1 - y0) * q}px)`;
       }
       const line = s.lines.find((l) => t >= l.at && t < l.at + l.dur + 0.25);
       const sub = subEl.current;
@@ -242,7 +259,6 @@ export default function AnimaticPlayer({ media, title, poster, cardLine }: { med
       <div className="fp-stage" ref={stage}>
         <div className="fp-layer" ref={l0} />
         <div className="fp-layer" ref={l1} />
-        {badge ? <span className="fp-badge">{badge}</span> : null}
         <div className="fp-sub" ref={subEl} aria-live="polite" />
         {state === "idle" || state === "loading" ? (
           <button type="button" className="fp-cover" onClick={() => api.current?.play()} disabled={!tl || state === "loading"} aria-label={`Play ${title} with sound`}>

@@ -116,33 +116,64 @@ export default function AnimaticPlayer({ media, title, poster, cardLine }: { med
       const same = (x: number, y: number) => !TL.shots[x].clip && !TL.shots[x].card && TL.shots[x].frame === TL.shots[y].frame;
       let a = i, b = i; while (a > 0 && same(a - 1, i)) a--; while (b < TL.shots.length - 1 && same(b + 1, i)) b++; return [a, b];
     };
+    // Upcoming clips load while the current shot plays, so a cut never waits on the
+    // network. Each clip is used once, then dropped from the pool.
+    const pool = new Map<string, HTMLVideoElement>();
+    const clipEl = (clip: string, frame: string) => {
+      let v = pool.get(clip);
+      if (v) pool.delete(clip);
+      else { v = document.createElement("video"); v.src = `${root}/v/${clip}.mp4`; v.preload = "auto"; }
+      v.muted = true; v.playsInline = true; v.poster = `${root}/f/${frame}.webp`;
+      return v;
+    };
+    function preload(i: number) {
+      for (const s of TL.shots.slice(i + 1, i + 3)) {
+        if (s.clip && !pool.has(s.clip)) { const v = document.createElement("video"); v.src = `${root}/v/${s.clip}.mp4`; v.preload = "auto"; v.muted = true; v.load(); pool.set(s.clip, v); }
+        else if (!s.clip && !s.card) { const im = new Image(); im.src = `${root}/f/${s.frame}.webp`; }
+      }
+      while (pool.size > 4) pool.delete(pool.keys().next().value as string);
+    }
+    let showSeq = 0;
     function show(i: number, instant?: boolean) {
       const s = TL.shots[i], prev = cur; cur = i;
       setBadge(`${s.id} · ${s.scene}`);
+      preload(i);
       if (prev >= 0 && runOf(i)[0] <= prev && prev < i) return;
       front ^= 1;
       const L = layers[front], O = layers[front ^ 1];
       L.replaceChildren();
+      let ready: Promise<void> = Promise.resolve();
       if (s.card) {
         const c = document.createElement("div"); c.className = "fp-card";
         const h = document.createElement("h3"); h.textContent = s.frame; const p = document.createElement("p"); p.textContent = cardLine;
         const wrap = document.createElement("div"); wrap.append(h, p); c.append(wrap); L.append(c);
       } else if (s.clip) {
-        const v = document.createElement("video"); v.src = `${root}/v/${s.clip}.mp4`; v.muted = true; v.playsInline = true; v.preload = "auto"; v.poster = `${root}/f/${s.frame}.webp`; L.append(v);
+        const v = clipEl(s.clip, s.frame); L.append(v);
         const fit = () => {
           const r = v.duration / s.dur; v.playbackRate = r < 1 && r >= 0.8 ? r : 1; v.dataset.rate = String(v.playbackRate);
           v.currentTime = Math.min(Math.max(0, (now() - s.start + (playing ? 0.12 : 0)) * v.playbackRate), v.duration - 0.05);
           if (playing) v.play().catch(() => {});
         };
         if (v.readyState >= 1) fit(); else v.addEventListener("loadedmetadata", fit, { once: true });
+        // Placing the clip (fit) can drop it back to metadata-only, so any of these can be
+        // the moment it has a frame again.
+        ready = new Promise((ok) => { const go = () => { if (v.readyState >= 2) ok(); }; ["loadeddata", "canplay", "seeked"].forEach((e) => v.addEventListener(e, go)); go(); });
       } else {
         const img = document.createElement("img"); img.src = `${root}/f/${s.frame}.webp`; img.alt = s.what; L.append(img);
+        if (!img.complete) ready = new Promise((ok) => { img.onload = () => ok(); img.onerror = () => ok(); });
       }
-      const tx = instant ? { type: "cut", dur: 0 } : s.tx || { type: "dissolve", dur: 0.25 };
-      if (tx.type === "fade") { O.style.transition = "opacity 1s ease"; L.style.transition = "opacity 1s ease 1.4s"; }
-      else if (tx.type === "cut") { O.style.transition = L.style.transition = "none"; }
-      else { O.style.transition = L.style.transition = `opacity ${tx.dur}s ease`; }
-      L.classList.add("on"); O.classList.remove("on");
+      // The old picture stays up until the new one has a frame to show (or 0.7 s has
+      // passed), so a cut never flashes the empty layer underneath.
+      const seq = ++showSeq;
+      const reveal = () => {
+        if (seq !== showSeq) return;
+        const tx = instant ? { type: "cut", dur: 0 } : s.tx || { type: "dissolve", dur: 0.25 };
+        if (tx.type === "fade") { O.style.transition = "opacity 1s ease"; L.style.transition = "opacity 1s ease 1.4s"; }
+        else if (tx.type === "cut") { O.style.transition = L.style.transition = "none"; }
+        else { O.style.transition = L.style.transition = `opacity ${tx.dur}s ease`; }
+        L.classList.add("on"); O.classList.remove("on");
+      };
+      Promise.race([ready, new Promise((ok) => setTimeout(ok, 700))]).then(reveal);
     }
     function frame() {
       const t = Math.min(now(), TL.runtime);

@@ -1,11 +1,13 @@
 #!/usr/bin/env node
 /**
  * Upload a finished film release (HLS ladder, captions, 4K master) to R2 under
- * films/<slug>/film/<release>/, served at https://images.esy.com/. Files are
+ * films/<slug>/<folder>/<release>/ (folder "film" by default; "social" for the
+ * social kit), served at https://images.esy.com/. Files are
  * cached for a year, so every release gets its own folder; point the film's
  * `film.media` at the new one after uploading. Files over 64 MB go up in parts.
- * The .mp4 master is served as a download (Content-Disposition: attachment).
- * Usage: node scripts/r2-upload-film-release.mjs --slug=the-letter-with-no-address --release=v1 --dir=<release dir> [--dry]
+ * The .mp4 master is served as a download (Content-Disposition: attachment);
+ * --attach=all serves every file outside hls/ that way (images still show in <img>).
+ * Usage: node scripts/r2-upload-film-release.mjs --slug=the-letter-with-no-address --release=v1 --dir=<release dir> [--folder=social] [--attach=all] [--dry]
  */
 
 import { readFileSync, existsSync, readdirSync, statSync, openSync, readSync, closeSync } from "fs";
@@ -24,13 +26,14 @@ if (existsSync(envPath)) {
 
 const args = Object.fromEntries(process.argv.slice(2).map((a) => a.split("=")).map(([k, v]) => [k.replace(/^--/, ""), v ?? true]));
 const slug = String(args.slug || ""), release = String(args.release || ""), dir = path.resolve(String(args.dir || ""));
+const folder = String(args.folder || "film"), attachAll = args.attach === "all";
 const dry = args.dry === true || args.dry === "true";
-if (!slug || !/^v\d+$/.test(release) || !existsSync(dir)) {
+if (!slug || !/^v\d+$/.test(release) || !/^[a-z]+$/.test(folder) || !existsSync(dir)) {
   console.error("Usage: node scripts/r2-upload-film-release.mjs --slug=<film> --release=v<N> --dir=<release dir>");
   process.exit(1);
 }
 
-const TYPES = { ".m3u8": "application/vnd.apple.mpegurl", ".m4s": "video/iso.segment", ".mp4": "video/mp4", ".vtt": "text/vtt; charset=utf-8", ".srt": "application/x-subrip; charset=utf-8" };
+const TYPES = { ".m3u8": "application/vnd.apple.mpegurl", ".m4s": "video/iso.segment", ".mp4": "video/mp4", ".vtt": "text/vtt; charset=utf-8", ".srt": "application/x-subrip; charset=utf-8", ".jpg": "image/jpeg", ".png": "image/png", ".webp": "image/webp", ".zip": "application/zip" };
 const walk = (d) => readdirSync(d).flatMap((n) => { const p = path.join(d, n); return statSync(p).isDirectory() ? walk(p) : [p]; });
 const files = walk(dir).filter((f) => !path.basename(f).startsWith("."));
 const s3 = new S3Client({ region: "auto", endpoint: process.env.R2_ENDPOINT, credentials: { accessKeyId: process.env.R2_ACCESS_KEY_ID, secretAccessKey: process.env.R2_SECRET_ACCESS_KEY } });
@@ -52,11 +55,11 @@ async function putLarge(file, Key, extra) {
 let bytes = 0;
 for (const f of files) {
   const rel = path.relative(dir, f).split(path.sep).join("/");
-  const Key = `films/${slug}/film/${release}/${rel}`, size = statSync(f).size; bytes += size;
+  const Key = `films/${slug}/${folder}/${release}/${rel}`, size = statSync(f).size; bytes += size;
   const extra = { ContentType: TYPES[path.extname(f)] || "application/octet-stream" };
-  if (path.extname(f) === ".mp4" && !rel.startsWith("hls/")) extra.ContentDisposition = `attachment; filename="${path.basename(f)}"`;
+  if (!rel.startsWith("hls/") && (attachAll || path.extname(f) === ".mp4")) extra.ContentDisposition = `attachment; filename="${path.basename(f)}"`;
   if (dry) { console.log("dry", Key, extra.ContentType, size); continue; }
   if (size > PART) await putLarge(f, Key, extra);
   else await s3.send(new PutObjectCommand({ Bucket, Key, Body: readFileSync(f), ...extra }));
 }
-console.log(`${dry ? "Would upload" : "Uploaded"} ${files.length} files, ${(bytes / 1e6).toFixed(1)} MB → https://images.esy.com/films/${slug}/film/${release}/`);
+console.log(`${dry ? "Would upload" : "Uploaded"} ${files.length} files, ${(bytes / 1e6).toFixed(1)} MB → https://images.esy.com/films/${slug}/${folder}/${release}/`);

@@ -4,7 +4,7 @@ import { FilmDetailA } from "@/components/Films/FilmsA";
 // (both kept at /prototypes/films/).
 const TITLE = "The Letter With No Address";
 const DESCRIPTION =
-  "A four-minute animated short made with Esy from the Lullo the Moon Bear clip.art pack: the finished film, the story, the cast, how it was made and every file behind it.";
+  "A four-minute animated short made with Esy from the Lullo the Post Bear clip.art pack: the finished film, the story, the cast, how it was made and every file behind it.";
 
 export const metadata = {
   title: `${TITLE} · Esy Films`,

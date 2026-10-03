@@ -1,5 +1,5 @@
 /* Films, direction B · "Night Post". The index is the publication's light page
- * with a night-sky shelf for the Lullo the Moon Bear series. The film page lives in
+ * with a night-sky shelf for the Lullo the Post Bear series. The film page lives in
  * Starlight Town: the story in chapters (stopping before the ending), the cast,
  * how it was made, and every file kept in the Lost Letters drawer. */
 

@@ -16,12 +16,14 @@ import FilmPlayer from "./FilmPlayer";
 
 const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
 const IMG = (n: string) => `/films/${LETTER.slug}/${n}.webp`;
+const SOCIAL = (f: string) => (/^https?:/.test(f) ? f : `${LETTER.social.base}/${f}`);
 const SCENES = [
   { id: "fr-now", code: "SC 01", name: "NOW SHOWING" },
   { id: "fr-story", code: "SC 02", name: "THE STORY" },
   { id: "fr-cast", code: "SC 03", name: "THE CAST" },
   { id: "fr-making", code: "SC 04", name: "THE MAKING" },
-  { id: "fr-kit", code: "SC 05", name: "THE PRESS KIT" },
+  { id: "fr-social", code: "SC 05", name: "SOCIAL" },
+  { id: "fr-kit", code: "SC 06", name: "THE PRESS KIT" },
   { id: "fr-end", code: "END", name: "CREDITS" },
 ];
 const CREDITS: [string, string][] = [
@@ -116,8 +118,38 @@ export default function FilmReelA() {
           </ol>
         </section>
 
+        <section className="fr-sec" id="fr-social" aria-labelledby="fr-social-h">
+          <h2 className="fr-h" id="fr-social-h"><small>Scene 05 · Social</small>Lullo on YouTube, and everything to post</h2>
+          <a className="fr-yt" href={LETTER.social.youtube.url} {...ext} style={{ backgroundImage: `url(${LETTER.film.poster})` }}>
+            <img src={SOCIAL("lullo-profile-1-with-the-letter.jpg")} alt="" width={96} height={96} />
+            <span><small>YouTube channel</small><b>{LETTER.social.youtube.name}</b><span>{LETTER.social.youtube.handle} · bedtime films from Starlight Town</span></span>
+            <span className="fr-yt-go">Watch on YouTube ↗</span>
+          </a>
+          {LETTER.social.groups.map((g) => (
+            <div key={g.title} className="fr-dl-group">
+              <h3 className="fr-dl-h">{g.title}</h3>
+              <p className="fr-dl-note">{g.note}</p>
+              <ul className="fr-dl">
+                {g.assets.map((a) => (
+                  <li key={a.file} className={`fr-dl-item fr-dl-item--${a.shape}`}>
+                    {a.preview ? (
+                      <a className="fr-dl-prev" href={SOCIAL(a.preview)} {...ext} aria-label={`Open ${a.title} full size`}>
+                        <img src={SOCIAL(a.preview)} alt="" loading="lazy" />
+                      </a>
+                    ) : (
+                      <span className="fr-dl-prev fr-dl-prev--file" aria-hidden="true">{a.zip ? "ZIP" : a.file.split(".").pop()?.toUpperCase()}</span>
+                    )}
+                    <span className="fr-dl-text"><b>{a.title}</b><small>{a.meta}</small></span>
+                    <a className="fr-dl-btn" href={SOCIAL(a.file)} download>Download ↓</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </section>
+
         <section className="fr-sec" id="fr-kit" aria-labelledby="fr-kit-h">
-          <h2 className="fr-h" id="fr-kit-h"><small>Scene 05 · The press kit</small>Every file behind the film</h2>
+          <h2 className="fr-h" id="fr-kit-h"><small>Scene 06 · The press kit</small>Every file behind the film</h2>
           <div className="fr-kit">
             {LETTER.package.map((p) => {
               const body = (

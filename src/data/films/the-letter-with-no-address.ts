@@ -47,7 +47,7 @@ export const img = (name: string) => `${IMG}/${name}.webp`;
 export const LETTER = {
   slug: "the-letter-with-no-address",
   title: "The Letter With No Address",
-  series: "Lullo the Moon Bear",
+  series: "Lullo the Post Bear",
   runtime: "4:41",
   shots: 39,
   lines: 33,
@@ -68,21 +68,21 @@ export const LETTER = {
   // a year), and the 4K master as a download. Built by the film workspace (render-film.py,
   // package-film.py) and uploaded with scripts/r2-upload-film-release.mjs.
   film: {
-    media: "films/the-letter-with-no-address/film/v1",
-    download: "https://images.esy.com/films/the-letter-with-no-address/film/v1/the-letter-with-no-address-4k.mp4",
-    poster: "https://images.esy.com/films/the-letter-with-no-address/film/v1/poster.webp",
+    media: "films/the-letter-with-no-address/film/v2",
+    download: "https://images.esy.com/films/the-letter-with-no-address/film/v2/the-letter-with-no-address-4k.mp4",
+    poster: "https://images.esy.com/films/the-letter-with-no-address/film/v2/poster.webp",
   },
   // The series on social, and every file to post with: R2 films/<slug>/social/<vN>/, each served
   // as a download (uploaded with scripts/r2-upload-film-release.mjs --folder=social --attach=all).
   social: {
-    youtube: { handle: "@LulloMoonBear", url: "https://www.youtube.com/@LulloMoonBear", name: "Lullo Moon Bear" },
-    base: "https://images.esy.com/films/the-letter-with-no-address/social/v1",
+    youtube: { handle: "@LulloPostBear", url: "https://www.youtube.com/@LulloPostBear", name: "Lullo Post Bear" },
+    base: "https://images.esy.com/films/the-letter-with-no-address/social/v2",
     groups: [
       {
         title: "The film",
         note: "The full film for YouTube, a vertical cut for TikTok, Reels and Shorts, and the captions.",
         assets: [
-          { title: "The film in 4K", file: "https://images.esy.com/films/the-letter-with-no-address/film/v1/the-letter-with-no-address-4k.mp4", preview: "https://images.esy.com/films/the-letter-with-no-address/film/v1/poster.webp", meta: "MP4 · 3840 × 2160 · 4:41 · 1.5 GB", shape: "wide" },
+          { title: "The film in 4K", file: "https://images.esy.com/films/the-letter-with-no-address/film/v2/the-letter-with-no-address-4k.mp4", preview: "https://images.esy.com/films/the-letter-with-no-address/film/v2/poster.webp", meta: "MP4 · 3840 × 2160 · 4:41 · 1.5 GB", shape: "wide" },
           { title: "The short, vertical", file: "lullo-short-1080x1920.mp4", preview: "lullo-short-poster.jpg", meta: "MP4 · 1080 × 1920 · 0:44 · 56 MB", shape: "tall" },
           { title: "English captions", file: "the-letter-with-no-address.en.srt", preview: "", meta: "SRT · for YouTube's Subtitles upload", shape: "file" },
         ],
@@ -94,10 +94,10 @@ export const LETTER = {
           { title: "Profile · Lullo with the letter", file: "lullo-profile-1-with-the-letter.jpg", preview: "lullo-profile-1-with-the-letter.jpg", meta: "JPG · 800 × 800", shape: "square" },
           { title: "Profile · in his balloon", file: "lullo-profile-2-balloon.jpg", preview: "lullo-profile-2-balloon.jpg", meta: "JPG · 800 × 800", shape: "square" },
           { title: "Profile · asleep", file: "lullo-profile-3-asleep.jpg", preview: "lullo-profile-3-asleep.jpg", meta: "JPG · 800 × 800", shape: "square" },
-          { title: "Banner · the cast", file: "lullo-banner-1-the-cast-with-ottoline.jpg", preview: "lullo-banner-1-the-cast-with-ottoline.jpg", meta: "JPG · 2560 × 1440", shape: "wide" },
+          { title: "Banner · the cast", file: "lullo-banner-1-the-cast.jpg", preview: "lullo-banner-1-the-cast.jpg", meta: "JPG · 2560 × 1440", shape: "wide" },
           { title: "Banner · Starlight Town", file: "lullo-banner-2-starlight-town.jpg", preview: "lullo-banner-2-starlight-town.jpg", meta: "JPG · 2560 × 1440", shape: "wide" },
           { title: "Banner · the Moon", file: "lullo-banner-3-the-moon.jpg", preview: "lullo-banner-3-the-moon.jpg", meta: "JPG · 2560 × 1440", shape: "wide" },
-          { title: "All channel art", file: "lullo-channel-art-v2.zip", preview: "", meta: "ZIP · 6 images · 1.4 MB", shape: "file", zip: true },
+          { title: "All channel art", file: "lullo-channel-art.zip", preview: "", meta: "ZIP · 6 images · 1.4 MB", shape: "file", zip: true },
         ],
       },
       {
@@ -107,7 +107,7 @@ export const LETTER = {
           { title: "Who is it for?", file: "lullo-thumbnail-1-who-is-it-for.jpg", preview: "lullo-thumbnail-1-who-is-it-for.jpg", meta: "JPG · 1280 × 720", shape: "wide" },
           { title: "No address.", file: "lullo-thumbnail-2-no-address.jpg", preview: "lullo-thumbnail-2-no-address.jpg", meta: "JPG · 1280 × 720", shape: "wide" },
           { title: "For us?!", file: "lullo-thumbnail-3-for-us.jpg", preview: "lullo-thumbnail-3-for-us.jpg", meta: "JPG · 1280 × 720", shape: "wide" },
-          { title: "Lullo the Moon Bear", file: "lullo-thumbnail-4-lullo-the-moon-bear.jpg", preview: "lullo-thumbnail-4-lullo-the-moon-bear.jpg", meta: "JPG · 1280 × 720", shape: "wide" },
+          { title: "Lullo the Post Bear", file: "lullo-thumbnail-4-lullo-the-post-bear.jpg", preview: "lullo-thumbnail-4-lullo-the-post-bear.jpg", meta: "JPG · 1280 × 720", shape: "wide" },
           { title: "Goodnight, letter.", file: "lullo-thumbnail-5-goodnight-letter.jpg", preview: "lullo-thumbnail-5-goodnight-letter.jpg", meta: "JPG · 1280 × 720", shape: "wide" },
           { title: "All thumbnails", file: "lullo-youtube-thumbnails.zip", preview: "", meta: "ZIP · 5 images · 0.9 MB", shape: "file", zip: true },
         ],
@@ -157,7 +157,7 @@ export const LETTER = {
     },
   ] satisfies Chapter[],
   cast: [
-    { name: "Lullo the Moon Bear", role: "The night postman. Gentle, a little shy.", image: "milo-smile", position: "50% 30%", zoom: "220%" },
+    { name: "Lullo the Post Bear", role: "The night postman. Gentle, a little shy.", image: "milo-smile", position: "50% 30%", zoom: "220%" },
     { name: "Ottoline", role: "The owl postmistress. Rules are rules.", image: "ottoline-perch", position: "27% 24%", zoom: "300%" },
     { name: "The Moon", role: "Slow and velvety. Sees every window.", image: "moon-tender", position: "20% 46%", zoom: "230%" },
     { name: "The Lantern Stars", role: "Wick, Ember and Flicker. They light the way.", image: "stars-still", position: "62% 62%", zoom: "260%" },
@@ -165,7 +165,7 @@ export const LETTER = {
   credits: [
     { label: "Story", title: "Screenplay draft B", note: "Written after research on children's screenwriting, and checked against ten rules" },
     { label: "Voices", title: "Six designed voices", note: "Lullo, Ottoline, the Moon and the three Lantern Stars, on ElevenLabs" },
-    { label: "Frames", title: "Esy", note: "32 stills from the Lullo the Moon Bear pack, on gpt-image-2" },
+    { label: "Frames", title: "Esy", note: "32 stills from the Lullo the Post Bear pack, on gpt-image-2" },
     { label: "Motion", title: "Every shot", note: "Seedance 2.5, Kling O3, OmniHuman 1.5 and Wan 2.7, lip-synced to the recorded voices" },
     { label: "Sound", title: "Temp score", note: "From the Lullo storybook, mixed to broadcast loudness standards" },
     { label: "Made by", title: "Zev, with Claude and Esy", note: "ESY LLC" },

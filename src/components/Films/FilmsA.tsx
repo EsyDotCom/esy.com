@@ -45,7 +45,7 @@ export function FilmsIndexA() {
             <h1 className="fa-title">
               The Letter With <i>No Address</i>
             </h1>
-            <p className="fa-log">A four-minute bedtime film made from a clip.art pack. Lullo the Moon Bear, the night postman, follows a letter with no address across the sky.</p>
+            <p className="fa-log">A four-minute bedtime film made from a clip.art pack. Lullo the Post Bear, the night postman, follows a letter with no address across the sky.</p>
             <div className="fa-btns">
               <a className="fa-btn fa-btn--go" href={LETTER.animaticUrl} {...ext}>▶ Watch the animatic</a>
               <Link className="fa-btn" href={FILM_HREF}>How it was made</Link>

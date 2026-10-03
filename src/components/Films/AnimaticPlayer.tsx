@@ -5,7 +5,8 @@
  * by the level the mix check set), the sound effects and the beds; two picture
  * layers cross with the transition the timeline chose; stills drift slowly; clips
  * are kept locked to the soundtrack. Media lives under MEDIA (timeline.json, f/,
- * v/, a/). The opening plays with the town music only (no cricket bed).
+ * v/, a/). Every sound, the opening's included, is the timeline's: the player
+ * never picks its own.
  *
  * `media` is either a URL or path (a local copy) or a key in esy.com's R2 bucket.
  * A key loads straight from images.esy.com on esy.com, the one site the bucket
@@ -59,14 +60,13 @@ export default function AnimaticPlayer({ media, title, poster, cardLine }: { med
     const buffers: Record<string, AudioBuffer> = {};
     let playing = false, startCtx = 0, offset = 0, raf = 0, cur = -1, front = 0;
     let sources: AudioBufferSourceNode[] = [];
-    const sfxOf = (s: Shot) => (s.id === "1.1" ? [] : s.sfx); // the opening: town music only
     const now = () => (playing && ctx ? ctx.currentTime - startCtx : offset);
 
     async function load() {
       ctx = new (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
       MASTER = ctx.createGain(); MASTER.gain.value = TL.mix?.master ?? 1; MASTER.connect(ctx.destination);
       const files = new Set<string>();
-      TL.shots.forEach((s) => { s.lines.forEach((l) => files.add(l.file)); sfxOf(s).forEach((x) => files.add(x.file)); });
+      TL.shots.forEach((s) => { s.lines.forEach((l) => files.add(l.file)); s.sfx.forEach((x) => files.add(x.file)); });
       TL.music.forEach((m) => files.add(m.file));
       let n = 0;
       await Promise.all([...files].map(async (f) => {
@@ -104,7 +104,7 @@ export default function AnimaticPlayer({ media, title, poster, cardLine }: { med
       }
       for (const s of TL.shots) {
         for (const l of s.lines) if (l.at + l.dur > pos) src(l.file, base + Math.max(l.at, pos), Math.max(0, pos - l.at), l.gain ?? 1.0);
-        for (const x of sfxOf(s)) {
+        for (const x of s.sfx) {
           if (x.loop ? (x.end ?? 0) <= pos : x.at + 4 <= pos) continue;
           const r = src(x.file, base + Math.max(x.at, pos), Math.max(0, pos - x.at), x.gain, x.loop, x.loop ? base + (x.end ?? 0) + 0.3 : null);
           if (r && x.loop) r.g.gain.setTargetAtTime(0.0001, base + (x.end ?? 0) - 1.6, 0.4);

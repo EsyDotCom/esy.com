@@ -60,6 +60,14 @@ export const LETTER = {
   // scripts/r2-upload-film-media.mjs). Files are cached for a year, so a new cut
   // goes up under a new folder and this line moves to it.
   animaticMedia: "films/the-letter-with-no-address/animatic/v30",
+  // The finished film: an HLS ladder + captions in R2 (one folder per release, files cached for
+  // a year), and the 4K master as a download. Built by the film workspace (render-film.py,
+  // package-film.py) and uploaded with scripts/r2-upload-film-release.mjs.
+  film: {
+    media: "films/the-letter-with-no-address/film/v1",
+    download: "https://images.esy.com/films/the-letter-with-no-address/film/v1/the-letter-with-no-address-4k.mp4",
+    poster: "https://images.esy.com/films/the-letter-with-no-address/film/v1/poster.webp",
+  },
   storybookUrl: "https://clip.art/stories/milo/",
   packsUrl: "https://clip.art/packs/",
   chapters: [

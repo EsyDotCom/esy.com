@@ -50,3 +50,5 @@ orchestration/runs/**/logs/
 
 # The Milo animatic media (49 MB, includes family likenesses): local preview only until it is hosted on R2 and cleared
 /public/films/the-letter-with-no-address/animatic/
+# Local copies of film releases (the real ones live in R2)
+/public/films/the-letter-with-no-address/film-test/

@@ -1,6 +1,7 @@
-/* Copied verbatim from os.esy.com (src/components/folio/agency/builder2.css, the page builder prototype, PR #319, 2026-10-04) so the
-   esy.com prototype shows the real styling. Re-copy rather than edit;
-   prototype-only tweaks live in preview.css. */
+/* Started as a copy of the page builder prototype's stylesheet in os.esy.com
+   (src/components/folio/agency/, PR #319, 2026-10-04). The builder's
+   prototypes live here now, so this copy is the one to edit. folio.css,
+   agency.css and app.css are product CSS: re-copy those, never edit them. */
 
 /* B1 redone inside the real /agency shell (/_agency/builder/r1…r4). No
    side rails except S2 while swapping; controls sit in a bar fixed to the top
@@ -575,3 +576,16 @@
 .folio .ed-chip { padding: 2px 8px; border-radius: var(--fo-r-pill); background: var(--fo-tint); font: 600 0.72rem var(--fo-sans); color: var(--fo-ink-soft); }
 .folio .ed-crumbbar .fo-bar-end { align-items: center; gap: 8px; }
 .folio .ed-body .rb-rail2 { align-content: start; justify-content: flex-start; }
+
+/* ── The rail, Oct 4 (Zev): "the right rail header is all clumped" and "remove
+   the border radius on the rail items". Four even tabs, each a name over what
+   it holds; everything inside the rail is square. The rail itself keeps its
+   rounded edge, like the page frame beside it. ───────────────────────── */
+.folio .rb-navysel .vz-rail .vz-tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.folio .rb-navysel .vz-rail .vz-tabs button { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; padding: 12px 14px 11px; min-width: 0; }
+.folio .rb-navysel .vz-rail .vz-tabs button + button { box-shadow: inset 1px 0 0 var(--fo-hair); }
+.folio .rb-navysel .vz-rail .vz-tabs button span { font: 600 0.86rem var(--fo-sans); }
+.folio .rb-navysel .vz-rail .vz-tabs button small { font: 500 0.72rem var(--fo-sans); color: var(--fo-ink-faint); white-space: nowrap; }
+.folio .rb-navysel .vz-rail .vz-tabs button.is-on small { color: var(--fo-ink-soft); }
+.folio .rb-navysel .vz-rail .vz-tabs button:hover span { color: var(--fo-navy); }
+.folio .rb-navysel .vz-rail :is(.vz-card, .vz-thumb, .rr-head, .rr-group, .rr-issue, .rr-field input, .rr-field textarea, .rr-chips button, .vz-tree li.is-on, .vz-keep, .rb-act, .rr-primary, .rr-ghost, .rr-link, .vz-livetag, .bd-rank, .vz-empty) { border-radius: 0; }

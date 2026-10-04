@@ -23,7 +23,13 @@ export function PageBuilder({ demark = '', bar, shell }: { demark?: string; bar?
   const other = !!bar && sel !== 'hero';
   const hero = other ? CURRENT : tab === 'history' ? fromTree(hist) : swapping ? [CURRENT, ...ALTS].find((h) => h.id === preview) ?? CURRENT : CURRENT;
   const previewing = other ? false : tab === 'history' ? hist !== 'v2' : swapping;
-  const tabs = [['versions', swapping ? 'Versions · 3' : 'Versions'], ['edit', 'Edit'], ['checks', 'Checks · 3/4'], ['history', 'History · 6']] as const;
+  // Each tab: its name, and what's in it underneath.
+  const tabs = [
+    ['versions', 'Versions', swapping && !other ? '3 new' : 'none yet'],
+    ['edit', 'Edit', 'words'],
+    ['checks', 'Checks', '3 of 4'],
+    ['history', 'History', '6 kept'],
+  ] as const;
   const onTry = () => { setSwapping(true); setTab('versions'); };
   // The picked section drives the bar, the canvas and the rail together.
   const pick = (id: string) => {
@@ -52,7 +58,7 @@ export function PageBuilder({ demark = '', bar, shell }: { demark?: string; bar?
         />
         <aside className="rb-rail2 rr--cards vz-rail" aria-label={secName(bar ? sel : 'hero')}>
           <div className="vz-tabs" role="tablist">
-            {tabs.map(([k, l]) => <button key={k} role="tab" aria-selected={tab === k} className={tab === k ? 'is-on' : ''} onClick={() => setTab(k)}>{l}</button>)}
+            {tabs.map(([k, l, n]) => <button key={k} role="tab" aria-selected={tab === k} className={tab === k ? 'is-on' : ''} onClick={() => setTab(k)}><span>{l}</span><small>{n}</small></button>)}
           </div>
           {tab === 'versions' && other && <p className="vz-empty">Try 3 more on {secName(sel)} to see three versions of it here.</p>}
           {tab === 'versions' && !other && (swapping ? <VersionCards preview={preview} setPreview={setPreview} onClose={() => setSwapping(false)} /> : <p className="vz-empty">Use Try 3 more above the page to see three versions here.</p>)}

@@ -1,6 +1,7 @@
-/* Copied verbatim from os.esy.com (src/components/folio/agency/builder.css, the page builder prototype, PR #319, 2026-10-04) so the
-   esy.com prototype shows the real styling. Re-copy rather than edit;
-   prototype-only tweaks live in preview.css. */
+/* Started as a copy of the page builder prototype's stylesheet in os.esy.com
+   (src/components/folio/agency/, PR #319, 2026-10-04). The builder's
+   prototypes live here now, so this copy is the one to edit. folio.css,
+   agency.css and app.css are product CSS: re-copy those, never edit them. */
 
 /* Page builder prototypes (/_agency/builder). Folio chrome (.bd-) around a
    client's own page (.np-), which keeps its own look. */

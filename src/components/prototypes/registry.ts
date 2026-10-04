@@ -1907,6 +1907,98 @@ export const PROTOTYPES: Prototype[] = [
       },
     ],
   },
+  {
+    slug: 'page-builder',
+    name: 'The Esy page builder',
+    date: '2026-10-04',
+    headline: 'A page builder where every section has versions.',
+    intro:
+      'Pick a section of the page, ask for three more versions, and keep the one you like. Each version is ranked and checked, and every one you tried stays in the history. Click around: the tabs, the versions and the history all work.',
+    summary:
+      'The page builder in os.esy.com, working, on a sample roofing company\u2019s page. Three rounds: the builder we picked, three bars above the page, and three headers that make the builder its own mode.',
+    rounds: [
+      {
+        n: 1,
+        title: 'The picked builder',
+        summary: 'One page, one rail: Versions, Edit, Checks and History. Picked from seventeen earlier directions built in os.esy.com.',
+      },
+      {
+        n: 2,
+        title: 'The bar above the page',
+        summary: 'The section tabs wrapped at a laptop width, so three bars that never do: one row, two rows, or the tools on the section itself.',
+      },
+      {
+        n: 3,
+        title: 'Its own mode',
+        summary: 'The builder gets its own header with one way back, and the page and rail fill the window.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'r12',
+        key: 'R12',
+        name: 'Picked',
+        round: 1,
+        title: 'Three more versions of any section, ranked.',
+        blurb: 'Section tabs and Try 3 more above the page; one rail with Versions, Edit, Checks and History.',
+        image: '/prototypes/page-builder/r12.webp',
+      },
+      {
+        slug: 'r18',
+        key: 'R18',
+        name: 'One row',
+        round: 2,
+        title: 'The section is a picker.',
+        blurb: 'A section picker with ‹ › replaces the tabs, so the whole bar fits on one row.',
+        image: '/prototypes/page-builder/r18.webp',
+      },
+      {
+        slug: 'r19',
+        key: 'R19',
+        name: 'Two rows',
+        round: 2,
+        title: 'Tabs that never wrap.',
+        blurb: 'The tabs sit alone on top and scroll instead of wrapping; the row under them names the open section and holds its actions.',
+        image: '/prototypes/page-builder/r19.webp',
+      },
+      {
+        slug: 'r20',
+        key: 'R20',
+        name: 'On the section',
+        round: 2,
+        title: 'The tools sit on the section.',
+        blurb: 'One slim row of tabs; the open section\u2019s tools ride on its top edge and move when you pick another.',
+        image: '/prototypes/page-builder/r20.webp',
+      },
+      {
+        slug: 'r21',
+        key: 'R21',
+        name: 'Editor, light',
+        round: 3,
+        title: 'Its own header, in white.',
+        blurb: '\u2190 Work, the page, Preview and Send. The page and rail fill the window.',
+        image: '/prototypes/page-builder/r21.webp',
+      },
+      {
+        slug: 'r22',
+        key: 'R22',
+        name: 'Editor, navy',
+        round: 3,
+        title: 'A dark header for a clear change of mode.',
+        blurb: 'Exit, the page, undo and the device in the middle, then Preview and Send.',
+        image: '/prototypes/page-builder/r22.webp',
+      },
+      {
+        slug: 'r23',
+        key: 'R23',
+        name: 'Editor, path',
+        round: 3,
+        title: 'The path back, always in view.',
+        blurb: 'The esy · agency lockup stays; the nav becomes Work \u203a client \u203a page, with Done to go back.',
+        image: '/prototypes/page-builder/r23.webp',
+      },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

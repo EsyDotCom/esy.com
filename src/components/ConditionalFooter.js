@@ -13,6 +13,12 @@ const ConditionalFooter = () => {
     ? pathname.slice(0, -1) 
     : pathname;
   
+  // A prototype's raw canvas (/prototypes/<prototype>/<variant>/raw/) is the
+  // thing itself, shown full screen or inside a window on the variant page.
+  if (/^\/prototypes\/[^/]+\/[^/]+\/raw$/.test(normalizedPath ?? '')) {
+    return null;
+  }
+
   // Check if we're on an essay view page (individual essay page)
   // Only hide on individual essay pages, not the essays index page
   const isEssayViewPage = normalizedPath?.startsWith('/essays/') && normalizedPath !== '/essays';

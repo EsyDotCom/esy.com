@@ -1,0 +1,196 @@
+/* Copied verbatim from os.esy.com (src/components/folio/app/app.css, main, 2026-10-03) so the
+   esy.com prototype shows the real styling. Re-copy rather than edit;
+   prototype-only tweaks live in preview.css. */
+
+/* /agency (os.esy.com/agency): what the live pages add to the prototypes' styles. Scoped under .folio. */
+.folio .ap-center { display: grid; place-items: center; min-height: 100dvh; padding: 24px; }
+.folio .ap-notice { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; max-width: 520px; text-align: left; }
+.folio .ap-main { padding-top: 20px; }
+.folio .ap-spark-gap { display: block; height: 24px; }
+.folio .ap-note { margin-top: 10px; font-size: 0.74rem; color: var(--fo-ink-faint); }
+.folio .ap-pad { padding: 24px 0; }
+.folio .ap-doing { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--fo-ink-soft); }
+.folio .gl-feed-text { color: var(--fo-ink); text-decoration: none; }
+.folio a.gl-feed-text:hover { color: var(--fo-jade-deep); }
+.folio .gl-feed-text.is-ask { color: var(--fo-jade-deep); font-weight: 600; }
+.folio .gl-feed-text.is-alert { color: var(--fo-gold); font-weight: 600; }
+.folio .s6-foot-reel a { display: block; width: 100%; height: 100%; }
+/* A report's own blocks, through the office renderer: in place, light, on Folio's page. */
+.folio .office.ap-office { position: static; inset: auto; background: transparent; color: var(--fo-ink); font-family: var(--fo-sans); font-size: 1rem; }
+.folio .ap-tech { margin-top: 24px; font-size: 0.82rem; color: var(--fo-ink-faint); }
+.folio .ap-tech pre { margin-top: 8px; padding: 12px; overflow-x: auto; border-radius: 8px; background: rgba(10, 37, 64, 0.04); font-size: 0.76rem; white-space: pre-wrap; }
+
+/* ── The daily brief (brief.tsx), prefix bf- ── */
+.folio .bf-pane { flex: 1; min-height: 0; overflow-y: auto; margin: 12px; border-radius: var(--fo-r-pane, 14px); background: #fff; }
+.folio .bf { max-width: 1040px; margin: 0 auto; padding: 44px 48px 120px; }
+.folio .bf-mast { padding-bottom: 22px; border-bottom: 3px double var(--fo-navy); }
+.folio .bf-date { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fo-jade-deep); }
+.folio .bf-head { margin-top: 12px; max-width: 24ch; font-family: var(--fo-serif); font-size: clamp(2.2rem, 4.2vw, 3.4rem); font-weight: 700; line-height: 1.04; letter-spacing: -0.02em; color: var(--fo-navy); }
+.folio .bf-by { display: flex; align-items: center; gap: 10px; margin-top: 16px; font-size: 0.86rem; color: var(--fo-ink-faint); }
+.folio .bf-lead { margin-top: 22px; max-width: 64ch; }
+.folio .bf-lead p { font-family: var(--fo-serif); font-size: 1.32rem; line-height: 1.5; color: var(--fo-navy); }
+.folio .bf-lead p + p { margin-top: 8px; }
+.folio .bf-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 26px; border-top: 1px solid var(--fo-hair-strong); border-bottom: 1px solid var(--fo-hair-strong); }
+.folio .bf-facts div { padding: 16px 18px 14px 0; }
+.folio .bf-facts div + div { padding-left: 18px; border-left: 1px solid var(--fo-hair); }
+.folio .bf-facts dd { font-size: 2rem; font-weight: 700; letter-spacing: -0.03em; color: var(--fo-navy); font-variant-numeric: tabular-nums; }
+.folio .bf-facts dt { margin-top: 2px; font-size: 0.8rem; color: var(--fo-ink-faint); }
+.folio .bf-facts .is-good dd { color: var(--fo-jade-deep); }
+.folio .bf-facts .is-warn dd { color: var(--fo-gold); }
+.folio .bf-sec { margin-top: 38px; }
+.folio .bf-sec-h { display: flex; align-items: baseline; gap: 12px; padding-bottom: 10px; margin-bottom: 14px; border-bottom: 1px solid var(--fo-hair-strong); font-family: var(--fo-serif); font-size: 1.55rem; font-weight: 700; color: var(--fo-navy); }
+.folio .bf-sec-h small { font-family: var(--fo-sans); font-size: 0.8rem; font-weight: 500; color: var(--fo-ink-faint); }
+.folio .bf-sec-h small a { color: var(--fo-jade-deep); text-decoration: none; font-weight: 600; }
+.folio .bf-asks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.folio .bf-ask { display: flex; flex-direction: column; gap: 10px; padding: 18px; border: 1px solid var(--fo-hair); border-radius: 14px; box-shadow: inset 3px 0 0 var(--fo-jade); background: #fff; }
+.folio .bf-ask.is-alert { box-shadow: inset 3px 0 0 var(--fo-gold); }
+.folio .bf-ask-top { display: flex; align-items: center; gap: 10px; font-size: 0.82rem; }
+.folio .bf-ask-top b { color: var(--fo-navy); }
+.folio .bf-ago { margin-left: auto; color: var(--fo-ink-faint); }
+.folio .bf-ask h3 { font-family: var(--fo-serif); font-size: 1.3rem; font-weight: 700; line-height: 1.2; }
+.folio .bf-ask h3 a { color: var(--fo-navy); text-decoration: none; }
+.folio .bf-ask h3 a:hover { color: var(--fo-jade-deep); }
+.folio .bf-gist { font-size: 0.9rem; line-height: 1.5; color: var(--fo-ink-soft); }
+.folio .bf-ask .fo-btn { align-self: flex-start; text-decoration: none; }
+.folio .bf-askcards { display: flex; flex-direction: column; gap: 8px; }
+.folio .bf-clients { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.folio .bf-clients > li { padding: 14px 16px; border: 1px solid var(--fo-hair); border-radius: 12px; }
+.folio .bf-client-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.folio .bf-client-top small { font-size: 0.76rem; color: var(--fo-ink-faint); }
+.folio .bf-clients ul li { display: flex; flex-direction: column; gap: 1px; padding: 7px 0; border-top: 1px solid var(--fo-hair); font-size: 0.88rem; }
+.folio .bf-clients ul a { color: var(--fo-navy); text-decoration: none; font-weight: 500; }
+.folio .bf-clients ul a:hover, .folio .bf-lines a:hover { color: var(--fo-jade-deep); }
+.folio .bf-clients ul span { font-size: 0.74rem; color: var(--fo-ink-faint); }
+.folio .bf-two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px; }
+.folio .bf-lines li { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--fo-hair); font-size: 0.92rem; }
+.folio .bf-lines a { color: var(--fo-navy); text-decoration: none; font-weight: 500; }
+.folio .bf-lines span { flex: none; font-size: 0.78rem; color: var(--fo-ink-faint); }
+.folio .bf-quiet { font-size: 0.9rem; color: var(--fo-ink-faint); }
+.folio .bf-made { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.folio .bf-made li { aspect-ratio: 1; border-radius: 10px; background: #F4F1EA; overflow: hidden; }
+.folio .bf-made a, .folio .bf-made img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.folio .bf-foot { margin-top: 40px; padding-top: 14px; border-top: 1px solid var(--fo-hair); font-size: 0.8rem; color: var(--fo-ink-faint); }
+.folio .bf-foot a { color: var(--fo-jade-deep); text-decoration: none; font-weight: 600; }
+.folio .bf-letter { margin-top: 22px; }
+/* The written brief in the edition's layout (EditionBody). */
+.folio .bf-reading { padding: 40px 0; font-family: var(--fo-serif); font-size: 1.4rem; color: var(--fo-ink-faint); }
+.folio .bf-lead p a, .folio .bf-lines a, .folio .bf-clients ul a { color: var(--fo-navy); text-decoration: underline; text-decoration-color: var(--fo-hair-strong); text-underline-offset: 3px; }
+.folio .bf-line-text { min-width: 0; }
+.folio .bf-line-total { font-weight: 700; color: var(--fo-navy); }
+.folio .bf-sec .bf-facts { margin-top: 0; }
+.folio .bf-sec .bf-askcards { margin-top: 4px; }
+
+/* History: every brief is a fold. Open = the edition; folded = one row. */
+.folio .bf-stack { max-width: 1040px; margin: 0 auto; padding: 44px 48px 120px; }
+.folio .bf-stack .bf { max-width: none; margin: 0; padding: 0; }
+.folio .bf-date { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.folio .bf-toggle { flex: none; padding: 4px 10px; border: 1px solid var(--fo-hair-strong); border-radius: 999px; background: #fff; font: inherit; font-size: 0.7rem; letter-spacing: 0.12em; color: var(--fo-ink-soft); cursor: pointer; }
+.folio .bf-toggle:hover { border-color: var(--fo-jade); color: var(--fo-jade-deep); }
+.folio .bf-row { display: grid; grid-template-columns: 210px minmax(0, 1fr) auto 18px; align-items: baseline; gap: 18px; width: 100%; padding: 16px 4px; border: 0; border-bottom: 1px solid var(--fo-hair); background: none; font: inherit; text-align: left; cursor: pointer; }
+.folio .bf-row:hover { background: #FAF8F3; }
+.folio .bf-row:focus-visible, .folio .bf-toggle:focus-visible { outline: 2px solid var(--fo-jade); outline-offset: 2px; }
+.folio .bf-row-date { display: flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fo-jade-deep); }
+.folio .bf-row-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--fo-jade); }
+.folio .bf-row-head { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--fo-serif); font-size: 1.22rem; font-weight: 700; color: var(--fo-navy); }
+.folio .bf-row-facts { font-size: 0.8rem; color: var(--fo-ink-faint); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.folio .bf-row-chev { color: var(--fo-ink-faint); }
+/* Unfold vertically: the body's row grows from 0 to its height. */
+.folio .bf-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 260ms ease; }
+.folio .bf-body[data-open="true"] { grid-template-rows: 1fr; }
+.folio .bf-body-in { min-height: 0; overflow: hidden; }
+@media (prefers-reduced-motion: reduce) { .folio .bf-body { transition: none; } }
+.folio .bf-history { margin-top: 56px; }
+.folio .bf-history-h { display: flex; align-items: baseline; gap: 12px; padding-bottom: 10px; border-bottom: 3px double var(--fo-navy); font-family: var(--fo-serif); font-size: 1.55rem; font-weight: 700; color: var(--fo-navy); }
+.folio .bf-history-h small { font-family: var(--fo-sans); font-size: 0.8rem; font-weight: 500; color: var(--fo-ink-faint); }
+.folio .bf-history .bf-fold.is-open { padding: 28px 0 8px; border-bottom: 1px solid var(--fo-hair-strong); }
+.folio .bf-history .bf-fold.is-open .bf-head { font-size: clamp(1.8rem, 3vw, 2.4rem); }
+.folio .bf-history .bf-foot { margin-top: 24px; }
+.folio .bf-more { margin-top: 16px; }
+.folio .bf-history-empty { margin-top: 40px; font-size: 0.86rem; color: var(--fo-ink-faint); }
+/* The brief is square (2026-10-01): no rounded corners and no coloured left
+   edges, on its own boxes and on the letter blocks it embeds. The unread dot
+   and the agents' faces stay round; they are marks, not boxes. */
+.folio .bf-pane,
+.folio .bf-pane *:not(.bf-row-dot):not(.rp-face):not(.rp-face *) { border-radius: 0; }
+.folio .bf-pane .bf-ask,
+.folio .bf-pane .bf-ask.is-alert,
+.folio .bf-pane .ofc-lb-checks.has-fail,
+.folio .bf-pane .ofc-lb-callout.is-bad,
+.folio .bf-pane .ofc-lb-callout.is-warn { box-shadow: none; }
+/* Home: the brief, one click from the top. */
+.folio .ap-brieflink { display: flex; align-items: baseline; gap: 14px; padding: 12px 18px; border: 1px solid var(--fo-hair); border-radius: 12px; background: #fff; text-decoration: none; }
+.folio .ap-brieflink b { font-family: var(--fo-serif); font-size: 1.15rem; color: var(--fo-navy); }
+.folio .ap-brieflink span { font-size: 0.86rem; color: var(--fo-ink-faint); }
+.folio .ap-brieflink em { margin-left: auto; font-style: normal; color: var(--fo-jade-deep); font-weight: 700; }
+.folio .ap-brieflink:hover { border-color: var(--fo-jade); }
+@media (max-width: 760px) {
+  .folio .bf-pane { margin: 0; border-radius: 0; padding-bottom: 64px; }
+  .folio .bf { padding: 24px 18px 110px; }
+  .folio .bf-stack { padding: 24px 16px 110px; }
+  .folio .bf-row { grid-template-columns: minmax(0, 1fr) 18px; gap: 4px 12px; }
+  .folio .bf-row-date { grid-column: 1; }
+  .folio .bf-row-head { grid-column: 1; white-space: normal; font-size: 1.08rem; }
+  .folio .bf-row-facts { grid-column: 1; white-space: normal; }
+  .folio .bf-row-chev { grid-column: 2; grid-row: 1 / span 3; align-self: center; }
+  .folio .bf-history-h { flex-direction: column; gap: 2px; font-size: 1.3rem; }
+  .folio .bf-lead p { font-size: 1.12rem; }
+  .folio .bf-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .folio .bf-facts div:nth-child(3) { padding-left: 0; border-left: 0; }
+  .folio .bf-asks, .folio .bf-clients, .folio .bf-two { grid-template-columns: minmax(0, 1fr); }
+  .folio .bf-made { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .folio .ap-brieflink span { display: none; }
+}
+/* Jobs (jobs.tsx): Work's Jobs | Pieces, the live job, + New job. Prototype styles (nj-) live in _agency/agency.css. */
+.folio .nj-worktabs { display: inline-flex; padding: 3px; border: 1px solid var(--fo-hair); border-radius: 999px; background: #fff; }
+.folio .nj-worktabs a { padding: 6px 16px; border-radius: 999px; font-size: 0.86rem; font-weight: 600; color: var(--fo-ink-soft); text-decoration: none; }
+.folio .nj-worktabs a.is-on { background: var(--fo-navy); color: #fff; }
+.folio .nj-workmast { align-items: center; }
+.folio .nj-workmast-end, .folio .nj-workmast--pieces { display: flex; align-items: center; gap: 10px; }
+.folio .nj-workmast--pieces { justify-content: space-between; margin-bottom: 12px; }
+.folio .nj-workmast--pieces .fo-btn, .folio .nj-workmast-end .fo-btn { text-decoration: none; }
+.folio .fo-bar-end .nj-newbtn { text-decoration: none; }
+.folio .nj-error { margin-top: 6px; font-size: 0.82rem; color: var(--fo-danger); }
+.folio .nj-input--num { max-width: 180px; }
+.folio .nj-label small { font-weight: 500; letter-spacing: 0; text-transform: none; }
+.folio .nj-jobfilter { margin-top: 20px; }
+.folio .nj-jobfilter small { margin-left: 4px; opacity: 0.7; }
+.folio .nj-worklist li a { display: flex; flex-direction: column; min-width: 0; color: inherit; text-decoration: none; }
+.folio .nj-worklist li a small { font-size: 0.76rem; color: var(--fo-ink-faint); }
+.folio .nj-worklist li.is-picked { background: var(--fo-jade-wash); }
+.folio .nj-worklist .is-held span { color: var(--fo-danger); }
+.folio .nj-grid--live li a { display: block; width: 100%; height: 100%; }
+.folio .nj-grid--live img { width: 100%; height: 100%; object-fit: cover; }
+.folio .nj-grid--live span { display: grid; place-items: center; height: 100%; padding: 4px; font-size: 0.62rem; text-align: center; color: var(--fo-ink-soft); }
+.folio .nj-running li a { color: inherit; text-decoration: none; }
+.folio .nj-running li a:hover b { color: var(--fo-jade-bright); }
+.folio .nj-client b { color: var(--fo-navy); }
+@media (max-width: 760px) { .folio .nj-workmast-end .fo-btn { display: none; } }
+
+/* ── Clients (live, 2026-10-03): the pieces the C9/C6 prototypes didn't need ── */
+.folio .cl-page .cx-mast-act { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.folio .cl-addform { display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: flex-end; margin: 4px 0 22px; padding: 16px 18px; border: 1px solid var(--fo-hair-strong); background: #fff; }
+.folio .cl-addform label { display: grid; gap: 4px; font-size: 0.74rem; color: var(--fo-ink-faint); letter-spacing: 0.02em; }
+.folio .cl-addform input, .folio .cl-addform select, .folio .cl-inline input, .folio .cl-inline select, .folio .cl-facts select {
+  font: inherit; font-size: 0.9rem; color: var(--fo-ink); padding: 7px 9px; border: 1px solid var(--fo-hair-strong); background: #fff; min-width: 0;
+}
+.folio .cl-addform input:first-child { min-width: 220px; }
+.folio .cl-addform-act { display: flex; gap: 12px; align-items: center; }
+.folio .cl-err { color: var(--fo-danger); font-size: 0.84rem; }
+.folio .cl-empty { margin: 8px 0 24px; padding: 22px 24px; border: 1px dashed var(--fo-hair-strong); max-width: 620px; }
+.folio .cl-empty p { color: var(--fo-ink-soft); margin: 6px 0 14px; }
+.folio .cl-hint { margin: -6px 0 18px; font-size: 0.86rem; color: var(--fo-ink-soft); }
+.folio .cl-facts { display: grid; gap: 10px; margin: 0; }
+.folio .cl-facts div { display: grid; grid-template-columns: 96px 1fr; gap: 12px; align-items: center; }
+.folio .cl-facts dt { font-size: 0.76rem; color: var(--fo-ink-faint); }
+.folio .cl-facts dd { margin: 0; color: var(--fo-ink); }
+.folio .cl-projects, .folio .cl-people { list-style: none; margin: 0 0 12px; padding: 0; }
+.folio .cl-projects li, .folio .cl-people li { display: flex; gap: 12px; align-items: center; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--fo-hair); }
+.folio .cl-people li span { flex: 1; min-width: 0; }
+.folio .cl-people small { color: var(--fo-ink-faint); }
+.folio .cl-approves { margin-left: 8px; font-style: normal; font-size: 0.72rem; color: var(--fo-jade-deep); }
+.folio .cl-inline { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 6px; }
+.folio .cl-check { display: inline-flex; gap: 6px; align-items: center; font-size: 0.84rem; color: var(--fo-ink-soft); }
+@media (max-width: 720px) {
+  .folio .cl-addform input:first-child { min-width: 0; width: 100%; }
+  .folio .cl-page .cl-table { display: block; overflow-x: auto; }
+}

@@ -29,6 +29,8 @@ Clickable directions we compare by using them, not by looking at mockups. They l
 
 **A shorter homepage (2026-09-30)** is at `/prototypes/home-trim/`: 01 Apps merged into one band that shows one app at a time (A · Tabs, B · Rail, C · Tour, in `src/components/NewsletterHome/AppsShowcase.tsx`), with AI News's newest headlines beside Latest (`NewsColumn.tsx`). **C · Tour with the AI News column shipped (2026-09-30)**: the homepage passes `appsLayout="tour"` and `newsColumn` to `NewsletterHomePage`.
 
+**The os.esy.com page builder (2026-10-04)** is at `/prototypes/page-builder/`: the builder in os.esy.com where you pick a section of a page, ask for three more versions, and keep one. It was explored in os.esy.com first (R1–R17, PR #319 there); this prototype carries the picked builder (R12) and the two rounds after it: the bar above the page (R18 · One row, R19 · Two rows, R20 · On the section) and the builder as its own mode with its own header (R21 · Light, R22 · Navy, R23 · Path). It's the first prototype of a **full-window app**, so it adds a second way to show one (below, under Full-window apps).
+
 ## The pattern
 
 1. **Show the real product, not a picture of it.** Don't screenshot the app and don't draw a mockup. Rebuild the page from the product's own source: same markup, same class names, and the product's stylesheets **copied verbatim** (with a provenance header saying where they came from and when). Keep any tweaks for the new setting in a separate file. The result looks like the product because it *is* the product's UI.
@@ -42,6 +44,18 @@ Clickable directions we compare by using them, not by looking at mockups. They l
    - **Expect a merge round.** The pick is often "this part of A with that part of C". Keep each direction's moving parts as shared pieces (the Tour's questions, timer and step list live in `tour.tsx`) so a merge is a new small component, not a copy. `HeroSplitTour.tsx` and `HeroStageTour.tsx` are the merges.
 6. **Copy says what the product does, in the customer's words.** No riddles, and no engine vocabulary (workflow, run, gate, provider). Each hero answers: what is it, what does it show you, what do I click.
 7. **Show each direction in the real site chrome**, with the real header and footer, at `/prototypes/<prototype>/<variant>/`. A floating switcher moves between variants.
+
+### Full-window apps: a raw page in an iframe
+
+The scaled-window recipe in step 3 forces the desktop layout with CSS overrides. That works for one screen of an app (the Books). An editor like the page builder has dozens of breakpoints and `100vh` layouts, so it gets its own page instead:
+
+- `/prototypes/<slug>/<variant>/raw/` renders the app alone, full screen, with the product's stylesheets (`src/components/PageBuilder/BuilderFrame.tsx`). The footer is hidden on every `/raw` route, and the cookie notice never opens inside an iframe.
+- The variant page shows that route in an iframe 1440 wide, scaled to fit (`BuilderWindow.tsx`), with an **Open full screen** link. Because the iframe really is 1440 wide, the app's own breakpoints and `100vh` behave as on a laptop, at any screen size.
+- Anything that scrolls must scroll only inside the app: `scrollIntoView` also scrolls the page around the iframe, so scroll the app's own container instead.
+
+### The switcher
+
+`PrototypeBar` is a selector: ‹ and › step through the variants, and one dropdown lists them all, grouped by round, with a count (3/7). It stays one small bar however many variants a prototype has.
 
 ## Adding a prototype
 
@@ -65,4 +79,5 @@ Clickable directions we compare by using them, not by looking at mockups. They l
 | `src/components/OfficePreview/` | The working Books window: copied office CSS, sample data, the scaled frame. Reusable for any os.esy.com surface. |
 | `src/components/HomeHero/` | The five Esy OS hero directions. Stage Tour (E) was the homepage until 2026-09-25; it now lives on os.esy.com. |
 | `src/components/EducationHero/` | The education heroes and their desks. Studio (F) is live on `/`, with `phone="profile"` (H) on phones. |
+| `src/components/PageBuilder/` | The os.esy.com page builder: its stylesheets copied from os.esy.com, the builder's components, sample data, the raw page's frame and the scaled iframe window. |
 | `src/components/prototypes/PhoneFrame.tsx` | A prototype in a 390×844 phone frame that measures where its Subscribe button lands. Used by `/prototypes/education/phones/`. |

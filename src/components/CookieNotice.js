@@ -55,6 +55,9 @@ const EsyCookieNotice = () => {
   ];
 
   useEffect(() => {
+    // A page embedded in another (a prototype's window) never asks: the page
+    // around it does.
+    if (window.self !== window.top) return;
     const hasConsent = localStorage.getItem('esy-cookie-consent');
     if (!hasConsent) {
       setTimeout(() => setIsVisible(true), 1500);

@@ -2004,14 +2004,13 @@ export const PROTOTYPES: Prototype[] = [
   },
   {
     slug: 'skills',
-    base: '/skills',
     name: 'The skills hub',
     date: '2026-10-06',
     headline: 'Three ways to teach and find AI marketing skills.',
     intro:
       'esy.com/skills will hold every skill we publish, mostly for marketing work. Each version teaches what a skill is and helps you find the right one, in a different order: a guided path, a shelf you search, or one skill opened up.',
     summary:
-      'Three versions of esy.com/skills, built in place so the pick becomes the section. One real skill (prototyping) and labelled sample skills that show how each layout grows.',
+      'Ten versions of esy.com/skills over four rounds. H (a chat simulator beside the course signup) shipped as /skills. One real skill (prototyping) and skills marked coming soon show how each layout grows.',
     rounds: [
       { n: 1, title: 'Three directions', summary: 'Learn first (a numbered path), find first (a searchable shelf), or show first (one skill opened, file by file).' },
       { n: 2, title: 'In Folio, with the docs’ top', summary: 'Round one read too much like a blog. Round two moves to Folio (os.esy.com’s brand) and opens like docs.esy.com: a navy hero, a jade-italic second line, a replay in a device. Zev appears small.' },
@@ -2092,6 +2091,8 @@ export const PROTOTYPES: Prototype[] = [
         title: 'AI marketing skills, your agent can run.',
         blurb: 'E with a chat window: you ask, a “Using /skill” chip appears, and the actual work builds beside the chat.',
         poster: ['#061527', '#00D4AA'],
+        live: true,
+        liveHref: '/skills/',
       },
       {
         slug: 'i',

@@ -2631,6 +2631,115 @@ export const PROTOTYPES: Prototype[] = [
       },
     ],
   },
+  {
+    slug: 'runway-combined',
+    name: 'Combined runway',
+    date: '2026-10-05',
+    headline: 'Runway for a one-person agency: the business and you, together and apart.',
+    intro:
+      'Three takes on os.esy.com’s Runway page for a freelancer whose personal money and business money are the same worry. Switch between views, read the two sides next to each other, or drag your own pay.',
+    summary:
+      'Three working versions of Esy OS’s Runway page that show a one-person agency’s business and personal money together and apart, with the owner’s pay as the line that connects them.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Three directions',
+        summary: 'All three keep the live page’s rule that money moved between your own accounts isn’t spending. They differ in what they do with your pay: a switch that recounts it, a bridge that shows it, or a slider that sets it.',
+      },
+      {
+        n: 2,
+        title: 'One page, three stages',
+        summary: 'D merges A, B and C into one page, plus the personal paycheck and safety net. Switch the sample founder from paying themselves to funding the business to just started, and the page changes shape with the money. D shipped: it is live on os.esy.com/agency/runway.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'switch',
+        key: 'A',
+        name: 'Switch',
+        round: 1,
+        title: 'One Runway page, three ways to count it.',
+        blurb: 'The live page with Combined · Esy LLC · Personal on top. Every number recounts. Your pay drops out of Combined, is money out for Esy LLC, and is income for you. A per-agency setting turns your personal accounts off, which is how a bigger agency would see Runway.',
+        image: '/prototypes/runway-combined/switch.webp',
+      },
+      {
+        slug: 'split',
+        key: 'B',
+        name: 'Split',
+        round: 1,
+        title: 'Both sides of your money, side by side.',
+        blurb: 'The combined number on top, then Esy LLC and you in two columns, each with its own cash, burn and runway. Between them, a bridge: what the business paid you each month for the last six.',
+        image: '/prototypes/runway-combined/split.webp',
+      },
+      {
+        slug: 'pay-yourself',
+        key: 'C',
+        name: 'Pay yourself',
+        round: 1,
+        title: 'How much should I pay myself?',
+        blurb: 'The page as a decision. Drag your monthly pay: the business’s runway and yours move against each other while the combined number stays put, and the slider shades the range that covers your life and keeps the business above six months.',
+        image: '/prototypes/runway-combined/pay-yourself.webp',
+      },
+      {
+        slug: 'd-merged',
+        key: 'D',
+        name: 'Merged',
+        round: 2,
+        mergeOf: ['A', 'B', 'C'],
+        title: 'One Runway page that changes shape with the money.',
+        blurb: 'A’s switch and its one setting. Combined puts B’s two columns and bridge over C’s pay slider; Personal leads with Personal B’s paycheck question and Personal C’s six-month savings target. When the business doesn’t pay you yet, the bridge flips to what you put in, the slider becomes a “not yet” goal, and Personal leads with your safety net.',
+        image: '/prototypes/runway-combined/d-merged.webp',
+        live: true,
+        liveHref: 'https://os.esy.com/agency/runway',
+      },
+    ],
+  },
+  {
+    slug: 'runway-personal',
+    name: 'Personal runway',
+    date: '2026-10-05',
+    headline: 'Runway for your own money, when the business is how you get paid.',
+    intro:
+      'Three takes on Runway with only your personal accounts in it. The business appears once, as the pay that comes in. Open the household view, check whether your pay covers your life, or see how big your safety net is.',
+    summary:
+      'Three working versions of Esy OS’s Runway page for the owner’s personal accounts only, where the business is just the source of your pay.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Three directions',
+        summary: 'Same accounts and the same pay as the combined runway, so the numbers agree. A is the live page on your money; B asks whether your pay covers your life; C treats savings as a safety net.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'household',
+        key: 'A',
+        name: 'Household',
+        round: 1,
+        title: 'The Runway page, on your own accounts.',
+        blurb: 'The live layout scoped to you: free cash, spending, pay from Esy LLC as the money in, and how long it lasts if that pay stopped. Your bills that come back every month sit under the insights, with the Sapphire bill set aside.',
+        image: '/prototypes/runway-personal/household.webp',
+      },
+      {
+        slug: 'paycheck',
+        key: 'B',
+        name: 'Paycheck',
+        round: 1,
+        title: 'Does what the business pays you cover your life?',
+        blurb: 'Twelve months of pay against spending, with the surplus or gap under each month and the months the business skipped or cut your pay in gold. Then the fallback: how long your money lasts if pay stopped today.',
+        image: '/prototypes/runway-personal/paycheck.webp',
+      },
+      {
+        slug: 'safety-net',
+        key: 'C',
+        name: 'Safety net',
+        round: 1,
+        title: 'How many months your savings cover.',
+        blurb: 'Savings as an emergency fund against a six-month goal, what’s already promised in the next 30 days, and a slider for the month the business pays you less, showing your side and the business’s.',
+        image: '/prototypes/runway-personal/safety-net.webp',
+      },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

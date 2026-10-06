@@ -1,0 +1,252 @@
+/* Prototype-only styles over the copied /agency stylesheets (folio.css,
+ * runway.css). Three jobs:
+ *   1. the window: browser chrome and a scaled desktop render (as OfficePreview);
+ *   2. desktop layout always, since the copied sheets' phone breakpoints would
+ *      otherwise stack panes inside a wide picture;
+ *   3. the new pieces the six directions add (prefix rvp-), in Folio's tokens.
+ * And the page around the window (rvp-stage). */
+
+/* ── 1 · The window ──────────────────────────────────────────────────── */
+.rvp-frame {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #edf1f5;
+  border: 1px solid rgba(10, 37, 64, 0.1);
+  box-shadow: 0 1px 2px rgba(10, 37, 64, 0.06), 0 24px 60px -24px rgba(10, 37, 64, 0.35), 0 60px 120px -60px rgba(10, 37, 64, 0.25);
+}
+.rvp-chrome { height: 32px; display: flex; align-items: center; gap: 14px; padding: 0 14px; background: #f3f5f7; border-bottom: 1px solid #e6eaee; }
+.rvp-dots { display: flex; gap: 6px; }
+.rvp-dots i { width: 10px; height: 10px; border-radius: 50%; background: #d5dce3; }
+.rvp-url { flex: 1; max-width: 300px; margin: 0 auto; height: 20px; border-radius: 7px; background: #fff; border: 1px solid #e6eaee; font: 500 11px/18px ui-monospace, 'SF Mono', Menlo, monospace; color: #5f7185; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rvp-url b { color: #102033; font-weight: 500; }
+.rvp-chrome-spacer { width: 46px; }
+.rvp-viewport { position: relative; overflow: hidden; }
+.rvp-scaler { position: absolute; top: 0; left: 0; transform-origin: 0 0; }
+.rvp-win { position: relative; height: 100%; }
+
+/* ── 2 · Desktop layout, always ──────────────────────────────────────── */
+.rvp-win .fo-app { height: 100%; min-height: 0; overflow: hidden; }
+.rvp-win .fo-bar-in { gap: 40px; padding: 0 24px; }
+.rvp-win .fo-nav { gap: 28px; }
+.rvp-win .fo-body.has-right { grid-template-columns: minmax(0, 1fr) 320px; }
+.rvp-win .fo-pane { overflow-y: auto; }
+.rvp-win.folio .rv-body { display: grid; overflow: hidden; padding: 12px; }
+.rvp-win.folio .rv-body > .fo-pane { overflow-y: auto; border-radius: var(--fo-r-pane); }
+.rvp-win.folio .rv-body > .rv-rail { margin-top: 0; }
+.rvp-win.folio .rv-rsec-h { position: sticky; }
+.rvp-win.folio .rv-pad { padding: 28px 36px 120px; }
+.rvp-win.folio .rv-mast { flex-direction: row; align-items: flex-end; }
+.rvp-win.folio .rx-keys { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.rvp-win.folio .rx-keys > div:nth-child(3) { padding-left: 16px; border-left: 1px solid var(--fo-hair); }
+.rvp-win.folio .rx-multi li { grid-template-columns: 150px 170px 90px 60px; }
+.rvp-win.folio .rx-multi li em { display: inline; }
+.rvp-win.folio .rx-multi .rx-spark { width: 160px; }
+.rvp-win.folio .rx-flow-cols { gap: 6px; }
+.rvp-win.folio .rx-stack-cols { gap: 8px; }
+.rvp-win.folio .rx-col small, .rvp-win.folio .rx-scol small { font-size: 0.68rem; }
+.rvp-win.folio .ri-hero { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); }
+.rvp-win.folio .ri-split-key { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.rvp-win.folio .ri-brief { padding: 20px 22px 16px; }
+.rvp-win.folio .ri-notes--spark li { grid-template-columns: 90px minmax(0, 1fr) 110px; gap: 12px; }
+.rvp-win.folio .ri-notes--spark .rx-spark { display: block; }
+.rvp-win.folio .rv-audit thead { display: table-header-group; }
+.rvp-win.folio .rv-audit tr { display: table-row; padding: 0; border: 0; }
+.rvp-win.folio .rv-audit td { display: table-cell; padding: 12px 12px 12px 0; border-bottom: 1px solid var(--fo-hair); }
+
+/* Buttons that stand in for links leave the page alone. */
+.rvp-win .rvp-lockup { padding: 0; border: 0; background: none; cursor: pointer; }
+.rvp-win .rvp-navbtn { padding: 0; border: 0; background: none; font: inherit; cursor: pointer; }
+.rvp-win .fo-nav .rvp-navbtn { display: flex; align-items: center; margin-bottom: -1px; border-bottom: 2px solid transparent; font-size: 0.92rem; color: var(--fo-ink-soft); }
+.rvp-win .fo-nav .rvp-navbtn:hover { color: var(--fo-navy); }
+.rvp-win button.fo-btn, .rvp-win button.fo-textbtn { cursor: pointer; }
+.rvp-win .rv-mast button.fo-btn { font-family: var(--fo-sans); }
+
+/* A part of Esy OS outside the preview says so, briefly. */
+.rvp-toast { position: absolute; left: 50%; bottom: 22px; z-index: 40; transform: translateX(-50%); padding: 10px 16px; border-radius: 10px; background: var(--fo-navy); color: #fff; font-size: 0.86rem; font-weight: 500; box-shadow: var(--fo-float); white-space: nowrap; }
+
+/* ── 3 · The new pieces ──────────────────────────────────────────────── */
+.folio .rvp-chip { padding: 2px 8px; border: 1px solid var(--fo-jade); border-radius: 999px; font-size: 0.66rem; letter-spacing: 0.08em; color: var(--fo-jade-deep); }
+.folio .is-low { color: var(--fo-gold) !important; }
+
+/* A · the scope switch and the per-agency setting */
+.folio .rvp-scopebar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px; margin-top: 18px; padding: 12px 14px; background: var(--fo-tint); }
+.folio .rvp-seg { margin-top: 0; }
+.folio .rvp-seg button { padding: 7px 18px; font-size: 0.88rem; }
+.folio .rvp-scope-only { font-size: 0.9rem; color: var(--fo-ink-soft); }
+.folio .rvp-scope-only b { color: var(--fo-navy); }
+.folio .rvp-toggle { display: flex; align-items: center; gap: 10px; max-width: 380px; cursor: pointer; }
+.folio .rvp-toggle input { position: absolute; opacity: 0; pointer-events: none; }
+.folio .rvp-toggle-track { flex: none; position: relative; width: 36px; height: 20px; border-radius: 999px; background: var(--fo-hair-strong); transition: background var(--fo-ease); }
+.folio .rvp-toggle-track i { position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(10, 37, 64, 0.3); transition: transform var(--fo-ease); }
+.folio .rvp-toggle input:checked + .rvp-toggle-track { background: var(--fo-jade); }
+.folio .rvp-toggle input:checked + .rvp-toggle-track i { transform: translateX(16px); }
+.folio .rvp-toggle input:focus-visible + .rvp-toggle-track { outline: 2px solid var(--fo-jade); outline-offset: 2px; }
+.folio .rvp-toggle-text b { display: block; font-size: 0.86rem; color: var(--fo-navy); }
+.folio .rvp-toggle-text small { display: block; font-size: 0.76rem; line-height: 1.35; color: var(--fo-ink-faint); }
+
+/* What moved between the business and you */
+.folio .rvp-moved { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 12px; margin-top: 22px; padding: 12px 14px; border-left: 3px solid var(--fo-jade); background: var(--fo-jade-wash); font-size: 0.9rem; line-height: 1.5; color: var(--fo-ink-soft); }
+.folio .rvp-moved b { color: var(--fo-navy); }
+.folio .rvp-moved-k { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fo-ink-faint); padding-top: 2px; }
+.folio .rvp-moved-k.is-out { color: var(--fo-danger); }
+.folio .rvp-moved-k.is-in { color: var(--fo-jade-deep); }
+
+/* B · the split: two sides and the bridge between them */
+.folio .rvp-split { display: grid; grid-template-columns: minmax(0, 1fr) 210px minmax(0, 1fr); gap: 16px; margin-top: 28px; }
+.folio .rvp-side { padding: 18px 18px 14px; border: 1px solid var(--fo-hair); border-top: 3px solid var(--fo-navy); background: #fff; animation: rx-fadein 0.45s ease both; }
+.folio .rvp-side.is-personal { border-top-color: var(--fo-jade); animation-delay: 80ms; }
+.folio .rvp-side-k { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fo-ink-faint); }
+.folio .rvp-side-num { margin-top: 4px; font-size: 2.2rem; font-weight: 800; letter-spacing: -0.03em; color: var(--fo-navy); font-variant-numeric: tabular-nums; }
+.folio .rvp-side-num small { margin-left: 8px; font-size: 0.8rem; font-weight: 500; letter-spacing: 0; color: var(--fo-ink-faint); }
+.folio .rvp-side-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 12px; border-top: 1px solid var(--fo-hair); }
+.folio .rvp-side-facts > div { padding: 10px 8px 8px 0; }
+.folio .rvp-side-facts > div + div { padding-left: 10px; border-left: 1px solid var(--fo-hair); }
+.folio .rvp-side-facts dt { font-size: 0.64rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fo-ink-faint); }
+.folio .rvp-side-facts dd { margin-top: 2px; font-size: 1.2rem; font-weight: 700; color: var(--fo-navy); font-variant-numeric: tabular-nums; }
+.folio .rvp-side-facts dd small { font-size: 0.72rem; font-weight: 500; color: var(--fo-ink-faint); }
+.folio .rvp-side-note { margin-top: 8px; font-size: 0.82rem; line-height: 1.45; color: var(--fo-ink-soft); }
+.folio .rvp-side-spark { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--fo-hair); font-size: 0.72rem; color: var(--fo-ink-faint); }
+.folio .rvp-side-lines { margin-top: 8px; }
+.folio .rvp-side-lines li { display: flex; justify-content: space-between; padding: 6px 0; border-top: 1px solid var(--fo-hair); font-size: 0.84rem; color: var(--fo-ink-soft); }
+.folio .rvp-side-lines b { color: var(--fo-navy); font-variant-numeric: tabular-nums; }
+.folio .rvp-side-lines b small { font-weight: 500; color: var(--fo-ink-faint); }
+
+/* The runway bar with the floor marked */
+.folio .rvp-runbar { position: relative; height: 10px; margin: 14px 0 28px; background: rgba(10, 37, 64, 0.07); }
+.folio .rvp-runbar > i { position: absolute; inset: 0 auto 0 0; background: var(--fo-navy); transition: width 0.25s ease; }
+.folio .rvp-runbar > i.is-low { background: var(--fo-gold-dot); }
+.folio .rvp-runbar-floor { position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--fo-danger); }
+.folio .rvp-runbar-floor em { position: absolute; top: 18px; left: 50%; transform: translateX(-50%); font-style: normal; font-size: 0.66rem; font-weight: 700; white-space: nowrap; color: var(--fo-danger); }
+
+.folio .rvp-bridge { display: flex; flex-direction: column; align-items: stretch; padding: 18px 14px 14px; background: var(--fo-navy-surface); color: #fff; animation: rx-fadein 0.45s ease 40ms both; }
+.folio .rvp-bridge-k { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fo-jade-bright); }
+.folio .rvp-bridge-num { margin-top: 4px; font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.folio .rvp-bridge-num small { display: block; font-size: 0.72rem; font-weight: 500; letter-spacing: 0; color: var(--fo-on-navy-faint); }
+.folio .rvp-bridge-arrow { margin: 6px 0 2px; font-size: 1.6rem; line-height: 1; color: var(--fo-jade-bright); }
+.folio .rvp-paybars { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 4px; margin-top: 8px; }
+.folio .rvp-paybars li { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.folio .rvp-paybars span { display: flex; align-items: flex-end; width: 100%; height: 70px; border-bottom: 1px solid var(--fo-on-navy-hair); }
+.folio .rvp-paybars span i { display: block; width: 100%; background: var(--fo-jade-bright); animation: ri-rise 0.6s cubic-bezier(.3,.7,.2,1) both; transform-origin: bottom; }
+.folio .rvp-paybars li.is-cut span i { background: var(--fo-gold-on-navy); }
+.folio .rvp-paybars b { font-size: 0.62rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.folio .rvp-paybars small { font-size: 0.6rem; color: var(--fo-on-navy-faint); }
+.folio .rvp-bridge-note { margin-top: 10px; font-size: 0.74rem; line-height: 1.4; color: var(--fo-on-navy-soft); }
+
+.folio .rvp-flows { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; margin-top: 18px; }
+.folio .rvp-flow-k { margin-bottom: 6px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fo-ink-faint); }
+
+/* C · the pay question, and the shared question heading */
+.folio .rvp-ask { margin-top: 24px; }
+.folio .rvp-ask-h { margin-top: 4px; font-family: var(--fo-serif); font-size: 2.5rem; font-weight: 700; line-height: 1.05; letter-spacing: -0.01em; color: var(--fo-navy); }
+.folio .rvp-ask-h .is-low { color: var(--fo-gold); }
+.folio .rvp-answer { margin-top: 12px; max-width: 70ch; font-size: 1.02rem; line-height: 1.55; color: var(--fo-ink-soft); }
+.folio .rvp-answer b { color: var(--fo-navy); }
+.folio .rvp-pay { display: block; margin-top: 22px; padding: 18px 18px 30px; background: var(--fo-tint); }
+.folio .rvp-pay-read { display: block; font-size: 1rem; color: var(--fo-ink-soft); }
+.folio .rvp-pay-read b { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.02em; color: var(--fo-navy); font-variant-numeric: tabular-nums; }
+.folio .rvp-pay-read small { font-size: 0.82rem; color: var(--fo-ink-faint); }
+.folio .rvp-pay-track { position: relative; display: block; margin-top: 12px; height: 22px; }
+.folio .rvp-pay-track::before { content: ''; position: absolute; left: 0; right: 0; top: 9px; height: 4px; background: rgba(10, 37, 64, 0.12); }
+.folio .rvp-pay-band { position: absolute; top: 1px; height: 20px; background: rgba(0, 168, 150, 0.28); border-left: 2px solid var(--fo-jade); border-right: 2px solid var(--fo-jade); }
+.folio .rvp-pay-track input { position: relative; z-index: 1; width: 100%; margin: 0; background: transparent; accent-color: var(--fo-navy); }
+.folio .rvp-pay-scale { position: relative; display: block; height: 14px; margin-top: 6px; font-size: 0.72rem; color: var(--fo-ink-faint); }
+.folio .rvp-pay-scale span { position: absolute; top: 0; transform: translateX(-50%); white-space: nowrap; }
+.folio .rvp-pay-scale span:first-child { left: 0; transform: none; }
+.folio .rvp-pay-scale span:last-child { right: 0; transform: none; }
+.folio .rvp-pay-scale span:nth-child(2), .folio .rvp-pay-scale span:nth-child(3) { top: 14px; font-weight: 700; color: var(--fo-jade-deep); }
+.folio .rvp-gauges { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
+.folio .rvp-gauge { padding: 14px 16px 10px; border: 1px solid var(--fo-hair); border-top: 3px solid var(--fo-navy); }
+.folio .rvp-gauge.is-low { border-top-color: var(--fo-gold-dot); }
+.folio .rvp-gauge.is-flat { border-top-color: var(--fo-hair-strong); background: var(--fo-tint); }
+.folio .rvp-gauge-k { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fo-ink-faint); }
+.folio .rvp-gauge-num { margin-top: 4px; font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; color: var(--fo-navy); font-variant-numeric: tabular-nums; }
+.folio .rvp-gauge.is-low .rvp-gauge-num { color: var(--fo-gold); }
+.folio .rvp-gauge-num small { font-size: 0.9rem; font-weight: 600; letter-spacing: 0; color: var(--fo-ink-faint); }
+.folio .rvp-gauge-note { font-size: 0.82rem; line-height: 1.45; color: var(--fo-ink-soft); }
+.folio .rvp-verdict { margin-top: 14px; padding: 12px 14px; border-left: 3px solid var(--fo-navy); font-size: 0.98rem; line-height: 1.5; color: var(--fo-ink); }
+.folio .rvp-verdict b { color: var(--fo-navy); }
+
+/* Personal · A · bills that come back */
+.folio .rvp-bills li { display: grid; grid-template-columns: minmax(0, 1fr) 90px 90px; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--fo-hair); font-size: 0.92rem; color: var(--fo-ink); }
+.folio .rvp-bills small { display: block; font-size: 0.74rem; color: var(--fo-ink-faint); }
+.folio .rvp-bills b { text-align: right; color: var(--fo-navy); font-variant-numeric: tabular-nums; }
+.folio .rvp-bills-day { font-size: 0.8rem; color: var(--fo-ink-faint); }
+.folio .rvp-bills li.is-card { border-top: 1px solid var(--fo-hair-strong); background: rgba(201, 180, 138, 0.12); }
+
+/* Personal · B · pay against spending */
+.folio .rvp-keys4 { margin-top: 24px; }
+.folio .rvp-per { font-size: 0.8rem; font-weight: 500; color: var(--fo-ink-faint); }
+.folio .rvp-key-note { font-size: 0.74rem; color: var(--fo-ink-faint); }
+.folio .rvp-keys4 dd.is-up { color: var(--fo-jade-deep); }
+.folio .rvp-paycheck { margin-top: 16px; }
+.folio .rvp-pc-cols { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 8px; height: 220px; margin-top: 10px; }
+.folio .rvp-pc-cols li { display: flex; flex-direction: column; gap: 5px; min-width: 0; padding: 4px 2px 0; cursor: default; }
+.folio .rvp-pc-cols li.is-cut { background: rgba(217, 164, 65, 0.14); }
+.folio .rvp-pc-cols li.is-open { opacity: 0.6; }
+.folio .rvp-pc-cols li.is-on { box-shadow: inset 0 0 0 1px var(--fo-hair-strong); }
+.folio .rvp-pc-bars { flex: 1; display: flex; align-items: flex-end; justify-content: center; gap: 3px; border-bottom: 1px solid var(--fo-hair-strong); }
+.folio .rvp-pc-bars i { display: block; width: 36%; max-width: 18px; animation: ri-rise 0.6s cubic-bezier(.3,.7,.2,1) both; transform-origin: bottom; }
+.folio .rvp-pc-pay { background: var(--fo-jade); }
+.folio .rvp-pc-spend { background: var(--fo-navy); }
+.folio .rvp-pc-cut { background: rgba(217, 164, 65, 0.4); }
+.folio .rvp-pc-cols b { text-align: center; font-size: 0.7rem; font-variant-numeric: tabular-nums; }
+.folio .rvp-pc-cols small { text-align: center; font-size: 0.68rem; color: var(--fo-ink-faint); }
+.folio .rvp-pc-key { display: flex; align-items: center; gap: 6px 14px; margin-top: 8px; font-size: 0.76rem; color: var(--fo-ink-faint); }
+.folio .rvp-pc-key i { display: inline-block; width: 10px; height: 10px; margin-right: -8px; }
+.folio .rvp-stopped { margin-top: 16px; padding: 18px 18px 6px; background: var(--fo-tint); }
+.folio .rvp-stopped-num { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.03em; color: var(--fo-gold); font-variant-numeric: tabular-nums; }
+.folio .rvp-stopped-num small { font-size: 1rem; font-weight: 600; letter-spacing: 0; color: var(--fo-ink-faint); }
+.folio .rvp-stopped-note { padding-bottom: 12px; font-size: 0.9rem; line-height: 1.5; color: var(--fo-ink-soft); }
+.folio .rvp-months tr.is-cut td { background: rgba(217, 164, 65, 0.1); }
+
+/* Personal · C · the safety net */
+.folio .rvp-goal { margin-top: 18px; }
+.folio .rvp-goal-bar { position: relative; height: 26px; background: rgba(10, 37, 64, 0.07); }
+.folio .rvp-goal-bar > i { position: absolute; inset: 0 auto 0 0; background: linear-gradient(90deg, var(--fo-jade-deep), var(--fo-jade)); animation: ri-grow 0.9s cubic-bezier(.3,.7,.2,1) both; transform-origin: left; }
+.folio .rvp-goal-bar > span { position: absolute; top: 0; bottom: 0; width: 1px; background: rgba(255, 255, 255, 0.8); }
+.folio .rvp-goal-scale { display: flex; justify-content: space-between; margin-top: 4px; font-size: 0.72rem; color: var(--fo-ink-faint); }
+.folio .rvp-due-light { margin-top: 12px; }
+.folio .rvp-due-light li { grid-template-columns: 70px minmax(0, 1fr) auto; font-size: 0.92rem; }
+.folio .rvp-whatif { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 12px; border-bottom: 1px solid var(--fo-hair-strong); }
+.folio .rvp-whatif > div { padding: 12px 16px 12px 0; }
+.folio .rvp-whatif > div + div { padding-left: 16px; border-left: 1px solid var(--fo-hair); }
+.folio .rvp-whatif dt { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fo-ink-faint); }
+.folio .rvp-whatif dd { margin-top: 4px; font-size: 1.5rem; font-weight: 700; color: var(--fo-navy); font-variant-numeric: tabular-nums; }
+
+/* ── Round 2 · D · Merged (2026-10-06) ───────────────────────────────── */
+/* Nothing has moved between you and the business: no bridge, two columns. */
+.folio .rvp-split.is-two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* The bridge when money flows the other way: you into the business. */
+.folio .rvp-bridge.is-in .rvp-bridge-k, .folio .rvp-bridge.is-in .rvp-bridge-arrow { color: var(--fo-gold-on-navy); }
+.folio .rvp-bridge.is-in .rvp-paybars span i { background: var(--fo-gold-on-navy); }
+.folio .rvp-keys5 { grid-template-columns: repeat(5, minmax(0, 1fr)); margin-top: 24px; }
+.rvp-win.folio .rvp-keys5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.folio .rvp-keys5 dd.is-up { color: var(--fo-jade-deep); }
+.folio .rvp-goalfacts { margin-top: 16px; border-top: 1px solid var(--fo-hair-strong); }
+.folio .rvp-runbar > i.is-ok { background: var(--fo-jade); }
+.folio .rvp-goal-bar > i.is-low { background: linear-gradient(90deg, #b7801f, var(--fo-gold-dot)); }
+
+/* The sample-founder picker: a prototype control on the esy.com page, not part of the product. */
+.rvp-stagepick { margin-top: 24px; padding: 14px 16px; border: 1px dashed rgba(10, 37, 64, 0.3); border-radius: 12px; background: rgba(255, 255, 255, 0.7); }
+.rvp-stagepick-k { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #8a97a6; }
+.rvp-stagepick-k b { color: #0a2540; }
+.rvp-stagepick-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.rvp-stagepick-row button { padding: 8px 16px; border: 1px solid rgba(10, 37, 64, 0.2); border-radius: 999px; background: #fff; font: 600 0.9rem/1.2 var(--font-inter), system-ui, sans-serif; color: #4a5f75; cursor: pointer; }
+.rvp-stagepick-row button:hover { border-color: #0a2540; color: #0a2540; }
+.rvp-stagepick-row button.is-on { border-color: #0a2540; background: #0a2540; color: #fff; }
+.rvp-stagepick-note { margin-top: 10px; font-size: 0.88rem; line-height: 1.5; color: #4a5f75; }
+
+/* ── The page around the window ──────────────────────────────────────── */
+.rvp-stage { padding: 48px 24px 120px; background: linear-gradient(180deg, #f6f9fa 0%, #edf1f5 100%); }
+.rvp-stage-in { max-width: 1240px; margin: 0 auto; }
+.rvp-stage-kicker { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #007f72; }
+.rvp-stage h1 { margin-top: 10px; max-width: 26ch; font-family: var(--font-newsreader), Georgia, serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 600; line-height: 1.08; letter-spacing: -0.01em; color: #0a2540; }
+.rvp-stage-lede { margin-top: 12px; max-width: 70ch; font-size: 1.05rem; line-height: 1.6; color: #4a5f75; }
+.rvp-stage-note { margin-top: 10px; font-size: 0.86rem; color: #8a97a6; }
+.rvp-stage .rvp-frame { margin-top: 28px; }
+.rvp-stage-cta { margin-top: 28px; font-size: 0.95rem; color: #4a5f75; }
+.rvp-stage-cta a { color: #007f72; font-weight: 600; }
+@media (max-width: 700px) {
+  .rvp-stage { padding: 28px 16px 120px; }
+}

@@ -95,10 +95,12 @@ export default function LightHeader({
           <span className="lh-lockup-tag">The Marketing Engineer</span>
         </Link>
         <nav className="lh-nav" aria-label="Primary">
-          {/* Pre-launch the header carries exactly one action. Restore Sign in
-              when the studio opens.
-          <Link href="https://app.esy.com/signin" className="lh-signin">Sign in</Link>
-          */}
+          {/* The way back in for clients and the team (2026-10-04). os.esy.com
+              sends a signed-out visitor to its sign-in page and a signed-in one
+              to their start app, so one address serves both. The subtle outline
+              button (.lh-cta), never a filled one: the page's own signup stays
+              the one ask. When the studio opens, app.esy.com gets its own link. */}
+          <a href="https://os.esy.com" className="lh-cta">Client sign in</a>
           {/* Pre-launch: Make isn't open, so the dominant CTA is the waitlist.
               Restore the line below the day the studio opens.
           <Link href="https://app.esy.com" className="lh-cta">Start producing</Link>
@@ -208,7 +210,7 @@ export default function LightHeader({
           </div>
           )}
 
-          {/* No header action since 2026-09-27: esy.com teaches Marketing
+          {/* No header CTA since 2026-09-27: esy.com teaches Marketing
               Engineering, and the page's own signup is the one ask. The waitlist
               link it carried from 2026-09-18, and the newsletter link before
               that, for reverting:

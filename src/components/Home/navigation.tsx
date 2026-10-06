@@ -9,7 +9,6 @@ import HeaderSearch from "@/components/HeaderSearch/HeaderSearch";
 import NewsletterModal from "@/components/NewsletterModal/NewsletterModal";
 import { getAllTemplates } from "@/lib/templates";
 import { agenticVideos } from "@/data/agentic-videos";
-import { ARTIFACT_NAV_KINDS, ARTIFACT_NAV_TOTAL } from "@/lib/nav/artifactNav";
 import { getCTAConfig, getResponsiveCTAText } from "@/lib/ctaMapping";
 import { lightTheme } from "@/lib/lightTheme";
 
@@ -683,44 +682,37 @@ export default function Navigation({
           <nav className="mnav-body">
 
 
+            {/* The archived catalog (Artifacts, Essays, Infographics, Clip Art)
+                left the menu on 2026-10-06; the publication's sections from
+                the footer took their place. */}
             <Link
-              href="/artifacts/"
-              className={`mnav-item ${normalizedPathForNav.startsWith('/artifacts') ? 'mnav-item--active' : ''}`}
+              href="/news/"
+              className={`mnav-item ${normalizedPathForNav.startsWith('/news') ? 'mnav-item--active' : ''}`}
               onClick={() => setIsMobileMenuOpen(false)}
               style={{ animationDelay: '0.04s' }}
             >
-              <span className="mnav-item__label">Artifacts</span>
-              <span className="mnav-item__desc">Essays, infographics, clip art</span>
-            </Link>
-
-            <Link 
-              href="/essays/" 
-              className={`mnav-item ${normalizedPathForNav.startsWith('/essays') ? 'mnav-item--active' : ''}`}
-              onClick={() => setIsMobileMenuOpen(false)}
-              style={{ animationDelay: '0.06s' }}
-            >
-              <span className="mnav-item__label">Essays</span>
-              <span className="mnav-item__desc">Visual research narratives</span>
-            </Link>
-
-            <Link 
-              href="/infographics/" 
-              className={`mnav-item ${normalizedPathForNav.startsWith('/infographics') ? 'mnav-item--active' : ''}`}
-              onClick={() => setIsMobileMenuOpen(false)}
-              style={{ animationDelay: '0.08s' }}
-            >
-              <span className="mnav-item__label">Infographics</span>
-              <span className="mnav-item__desc">Citation-verified visual data</span>
+              <span className="mnav-item__label">AI Marketing News</span>
+              <span className="mnav-item__desc">What shipped, checked at the source</span>
             </Link>
 
             <Link
-              href="/clip-art/"
-              className={`mnav-item ${normalizedPathForNav.startsWith('/clip-art') ? 'mnav-item--active' : ''}`}
+              href="/topics/"
+              className={`mnav-item ${normalizedPathForNav.startsWith('/topics') ? 'mnav-item--active' : ''}`}
               onClick={() => setIsMobileMenuOpen(false)}
-              style={{ animationDelay: '0.10s' }}
+              style={{ animationDelay: '0.06s' }}
             >
-              <span className="mnav-item__label">Clip Art</span>
-              <span className="mnav-item__desc">Isolated visual assets, generated &amp; reviewed</span>
+              <span className="mnav-item__label">Topics</span>
+              <span className="mnav-item__desc">Every article, by subject</span>
+            </Link>
+
+            <Link
+              href="/courses/"
+              className={`mnav-item ${normalizedPathForNav.startsWith('/courses') ? 'mnav-item--active' : ''}`}
+              onClick={() => setIsMobileMenuOpen(false)}
+              style={{ animationDelay: '0.08s' }}
+            >
+              <span className="mnav-item__label">Courses</span>
+              <span className="mnav-item__desc">Build the systems step by step</span>
             </Link>
 
             <Link 

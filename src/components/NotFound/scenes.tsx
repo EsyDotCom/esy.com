@@ -20,22 +20,22 @@ import { octagon, pts } from '@/components/BrandShapes/symbols';
 import '@/components/BrandShapes/reef.css';
 import './not-found.css';
 
-const SURFACE = 92;
+export const SURFACE = 92;
 
-/** A slab with "404" set on it in the stencil face. */
-function Slab404({ w = 120, h = 46, fill = C.ivory }: { w?: number; h?: number; fill?: string }) {
+/** A slab with a status code ("404" by default; the 410 takes set "410") in the stencil face. */
+export function Slab404({ w = 120, h = 46, fill = C.ivory, code = '404' }: { w?: number; h?: number; fill?: string; code?: string }) {
   return (
     <g>
       <Box x={-w / 2} y={-h / 2} w={w} h={h} c={[10, 10, 10, 10]} fill={fill} stroke={C.navy} strokeWidth={2} />
       <text className="nf-404" x={0} y={h * 0.2} textAnchor="middle" fontSize={h * 0.62}>
-        404
+        {code}
       </text>
     </g>
   );
 }
 
 /** One side of an octagon ring (centre, outer and inner size), pulled back at both ends for a stencil gap. */
-function ringSide(cx: number, cy: number, outer: number, inner: number, k: number): string {
+export function ringSide(cx: number, cy: number, outer: number, inner: number, k: number): string {
   const o = octagon(cx, cy, outer);
   const n = octagon(cx, cy, inner);
   const j = (k + 1) % 8;
@@ -44,10 +44,10 @@ function ringSide(cx: number, cy: number, outer: number, inner: number, k: numbe
 }
 
 // ── B · Missing piece ──────────────────────────────────────────────────────
-const GATE: [number, number] = [860, 268];
-const RING = { outer: 240, inner: 180 };
+export const GATE: [number, number] = [860, 268];
+export const RING = { outer: 240, inner: 180 };
 const MID = octagon(...GATE, 210);
-const TOP: [number, number] = [(MID[0][0] + MID[1][0]) / 2, (MID[0][1] + MID[1][1]) / 2];
+export const TOP: [number, number] =[(MID[0][0] + MID[1][0]) / 2, (MID[0][1] + MID[1][1]) / 2];
 
 const TRY: SimItem[] = [{ home: [330, 365], slot: [TOP[0], TOP[1] + 6], rot: 22, shape: <Slab404 w={92} h={30} fill="#E2DCCB" /> }];
 const TRYING: Job[] = [

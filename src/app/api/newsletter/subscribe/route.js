@@ -5,7 +5,7 @@ import { EMAIL_REGEX, clientIp, detectBot } from '@/lib/botCheck';
 // Only these are forwarded to Beehiiv as referring_site, so a spoofed `source`
 // in the request body cannot write arbitrary text into subscriber records.
 const KNOWN_SOURCES = new Set([
-  '/', '/engineer', '/agentic', '/school', '/research', '/courses', '/about', '/waitlist', '/news',
+  '/', '/engineer', '/agentic', '/school', '/research', '/courses', '/about', '/waitlist', '/news', '/skills',
 ]);
 
 // Bots learn from error messages, so a rejection returns the same shape a real
@@ -17,7 +17,7 @@ function silentlyAccept(reason, meta) {
 
 export async function POST(request) {
   try {
-    const { email, hp, elapsedMs, source } = await request.json();
+    const { email, hp, elapsedMs, source, name } = await request.json();
 
     if (!email || !EMAIL_REGEX.test(String(email).trim())) {
       return NextResponse.json(
@@ -61,11 +61,46 @@ export async function POST(request) {
     // Real attribution: this used to hardcode /engineer, which mislabelled every
     // signup from every other page. Unknown paths fall back to the bare domain.
     // Every AI Marketing News page (/news/, a post, a story) counts as /news.
-    const normalized = typeof source === 'string' && source.startsWith('/news') ? '/news' : source;
+    // Every skills page (/skills/, a take, later a skill's own page) counts as
+    // /skills (2026-10-06), so the skills hub's course signups are attributable.
+    const normalized =
+      typeof source === 'string' && source.startsWith('/news') ? '/news'
+      : typeof source === 'string' && source.startsWith('/skills') ? '/skills'
+      : source;
     const path = KNOWN_SOURCES.has(normalized) ? normalized : '';
     const referringSite = `https://esy.com${path === '/' ? '' : path}`;
 
-    const res = await fetch(
+    // Skills signups also carry a campaign, so Beehiiv can segment them (and the
+    // course can be sent to them) without parsing referring_site. utm_content is
+    // the page's slug under /skills (a take like "h", later a skill), letters,
+    // digits and hyphens only, so a spoofed source can't write arbitrary text.
+    const skillsSlug = path === '/skills' ? (String(source).split('/')[2] || 'index').replace(/[^a-z0-9-]/gi, '').slice(0, 40) || 'index' : null;
+    const campaign = skillsSlug ? { utm_campaign: 'skills', utm_content: skillsSlug } : {};
+
+    // Custom fields, using the publication's existing ones (the waitlist fills
+    // the same two): "Name" when the form asked for it, and "Signup Source" =
+    // "skills" for the skills hub, so those subscribers segment on a real field.
+    // The name is trimmed, single-spaced, stripped of angle brackets and control
+    // characters, and capped, so a form can't write markup or a novel into it.
+    const cleanName = typeof name === 'string'
+      ? name.replace(/[\u0000-\u001f\u007f<>]/g, '').replace(/\s+/g, ' ').trim().slice(0, 80)
+      : '';
+    const customFields = [
+      { name: 'Name', value: cleanName },
+      { name: 'Signup Source', value: skillsSlug ? 'skills' : '' },
+    ].filter((f) => f.value);
+
+    const base = {
+      email: address,
+      reactivate_existing: true,
+      send_welcome_email: true,
+      referring_site: referringSite,
+      utm_source: 'esy_website',
+      utm_medium: 'organic',
+      ...campaign,
+    };
+
+    const send = (body) => fetch(
       `https://api.beehiiv.com/v2/publications/${publicationId}/subscriptions`,
       {
         method: 'POST',
@@ -73,16 +108,19 @@ export async function POST(request) {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${apiKey}`,
         },
-        body: JSON.stringify({
-          email: address,
-          reactivate_existing: true,
-          send_welcome_email: true,
-          referring_site: referringSite,
-          utm_source: 'esy_website',
-          utm_medium: 'organic',
-        }),
+        body: JSON.stringify(body),
       }
     );
+
+    let res = await send(customFields.length ? { ...base, custom_fields: customFields } : base);
+
+    // Beehiiv 400s when a custom field doesn't exist in the publication. The
+    // subscriber matters more than the metadata, so retry without the fields
+    // (the waitlist route does the same); the skills mark survives in the UTMs.
+    if (res.status === 400 && customFields.length) {
+      console.warn('[newsletter] Beehiiv rejected custom_fields; retrying without them.');
+      res = await send(base);
+    }
 
     if (!res.ok) {
       const errorData = await res.json().catch(() => ({}));

@@ -72,7 +72,7 @@ export default function AboutPressKit() {
                 {BIO_LONG.map((p) => <p key={p.slice(0, 24)}>{p}</p>)}
               </div>
               <p className="ab-kit-note">
-                On the name: {ETYMOLOGY.text} <Link href={ETYMOLOGY.href}>Where it comes from</Link>.
+                On the name: {ETYMOLOGY.text}
               </p>
             </div>
             <aside className="ab-kit-side">

@@ -1,7 +1,6 @@
 import { MetadataRoute } from 'next'
 import fs from 'fs'
 import path from 'path'
-import { getClipArtSlugs } from '@/data/clip-art-artifacts'
 import { getAllTemplates } from '@/lib/templates'
 import { courses } from '@/lib/learn/mockData'
 import { liveStories, postsInStory, publishedPosts } from '@/data/news'
@@ -45,9 +44,6 @@ function findPageFiles(dir: string, baseDir: string = dir): string[] {
         // Skip dynamic routes (containing [])
         if (route.includes('[')) continue
         
-        // Skip variant build directories (/v/ under essays)
-        if (route.includes('/v/')) continue
-        
         results.push(route || '/')
       }
     }
@@ -63,7 +59,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   
   // Routes to exclude from sitemap (disabled pages)
   const excludedRoutes = [
-    '/essays/visual',
     '/blog',
     '/prototypes', // noindex clickable directions, not public pages
   ]
@@ -79,17 +74,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       return a.localeCompare(b)
     })
 
-  // Get infographic slugs from data registry
-  let infographicSlugs: string[] = []
-  try {
-    const infographicsModule = require('@/data/infographics')
-    infographicSlugs = infographicsModule.getInfographicSlugs?.() || []
-  } catch {
-    // Infographics module may not be available during build
-  }
-
   // Get dynamic routes from content directories
-  const essaysDir = path.join(process.cwd(), 'src/content/essays')
   const glossaryDir = path.join(process.cwd(), 'src/content/glossary')
 
   // Helper function to get markdown files from directory
@@ -107,8 +92,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Get dynamic content. School articles are intentionally absent: the
   // /learn/articles/[slug] route is retired (only .old/.backup files remain),
-  // so emitting them produced 404s in the sitemap.
-  const essays = getMarkdownFiles(essaysDir)
+  // so emitting them produced 404s in the sitemap. The old visual essays
+  // (and their markdown essays) were archived 2026-10-06 and answer 410.
   const glossaryTerms = getMarkdownFiles(glossaryDir)
 
   // Build sitemap entries
@@ -129,16 +114,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })
   })
 
-  // Add essay routes (all with trailing slashes)
-  essays.forEach(essay => {
-    sitemap.push({
-      url: `${baseUrl}/essays/${essay}/`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    })
-  })
-
   // Add glossary routes (all with trailing slashes)
   glossaryTerms.forEach(term => {
     sitemap.push({
@@ -146,16 +121,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.6,
-    })
-  })
-
-  // Add infographic routes (all with trailing slashes)
-  infographicSlugs.forEach(slug => {
-    sitemap.push({
-      url: `${baseUrl}/infographics/${slug}/`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
     })
   })
 
@@ -218,17 +183,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })
   })
 
-  // Clip art artifact pages
-  const clipArtSlugs = getClipArtSlugs()
-  clipArtSlugs.forEach(slug => {
-    sitemap.push({
-      url: `${baseUrl}/clip-art/${slug}/`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    })
-  })
-
   // Course detail + lesson pages
   let courseRouteCount = 0
   courses.forEach(course => {
@@ -267,30 +221,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })
   })
 
-  // Model pages — mirrors the hardcoded list in models/[...slug]/page.tsx;
-  // keep in sync until those pages get a data registry.
-  const modelSlugs = ['claude-opus', 'gpt', 'gpt/5-2']
-  modelSlugs.forEach(slug => {
-    sitemap.push({
-      url: `${baseUrl}/models/${slug}/`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    })
-  })
-
   // Log discovered routes for debugging
   console.log(`Sitemap generated with ${sitemap.length} total routes:`)
   console.log(`- ${discoveredRoutes.length} static routes (auto-discovered)`)
-  console.log(`- ${essays.length} essay routes`)
   console.log(`- ${glossaryTerms.length} glossary routes`)
-  console.log(`- ${infographicSlugs.length} infographic routes`)
   console.log(`- ${agenticVideos.length} agentic video routes`)
   console.log(`- ${workflowTemplates.length} workflow template routes`)
-  console.log(`- ${clipArtSlugs.length} clip art routes`)
   console.log(`- ${courseRouteCount} course routes`)
   console.log(`- ${agentRoutes.length} agents reference routes`)
-  console.log(`- ${modelSlugs.length} model routes`)
 
   return sitemap
 }

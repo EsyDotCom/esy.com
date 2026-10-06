@@ -39,31 +39,10 @@
 # Docs live at docs.esy.com as their own site (EsyDotCom/docs, since 2026-09-13).
 # esy.com/docs/* forwards there path-for-path via public/_redirects.
 
-# Redirect /essays/visual/* to /essays/* (canonical URLs)
-[[redirects]]
-  from = "/essays/visual/*"
-  to = "/essays/:splat"
-  status = 301
-  force = true
-
 # Redirect spam traffic from /cities/* to root
 [[redirects]]
   from = "/cities/*"
   to = "/"
-  status = 301
-  force = true
-
-# ─── Essay Path Redirects ──────────────────────────────────────
-# Moved /essays/inside-a-black-hole → /essays/science/inside-a-black-hole (Feb 2026)
-[[redirects]]
-  from = "/essays/inside-a-black-hole/*"
-  to = "/essays/science/inside-a-black-hole/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/essays/inside-a-black-hole"
-  to = "/essays/science/inside-a-black-hole/"
   status = 301
   force = true
 

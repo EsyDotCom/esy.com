@@ -1,0 +1,1476 @@
+/* Brand shapes (2026-10-06): five animated takes on animals cut in the esy
+ * e's 45° stencil. Prefix bs-. Palette and type follow the homepage
+ * (NewsletterHome.css): navy, jade, Cormorant headlines, Inter body. The e's
+ * own motion (assemble, verify-pulse) comes from .esy-loader in globals.css. */
+
+.bs-root {
+  --bs-navy: #0A2540;
+  --bs-ink: #102033;
+  --bs-ink-soft: #41566D;
+  --bs-teal: #00A896;
+  --bs-bright: #00D4AA;
+  --bs-mint: #2BD8BB;
+  --bs-paper: #F8F9FA;
+  --bs-seam: rgba(10, 37, 64, 0.1);
+  --bs-cut: polygon(22px 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%, 0 22px);
+  background: #fff;
+  color: var(--bs-ink);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  overflow-x: clip;
+}
+.bs-wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+/* ══ Hero ══ */
+.bs-hero { padding: 72px 0 88px; border-bottom: 1px solid var(--bs-seam); }
+.bs-hero--paper { background: var(--bs-paper); }
+.bs-hero--mint { background: #EAF6F3; }
+.bs-hero--grid {
+  background-color: var(--bs-paper);
+  background-image:
+    linear-gradient(rgba(10, 37, 64, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10, 37, 64, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.bs-hero-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 56px; align-items: center; }
+.bs-kicker {
+  margin: 0 0 18px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--bs-teal);
+}
+.bs-kicker span { font-family: var(--font-black-ops-one), sans-serif; letter-spacing: 0.04em; color: var(--bs-navy); }
+.bs-title {
+  margin: 0 0 18px; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 700;
+  font-size: clamp(2.3rem, 4.4vw, 3.5rem); line-height: 1.02; letter-spacing: -0.025em;
+  color: var(--bs-navy); text-wrap: balance;
+}
+.bs-lede { margin: 0 0 24px; font-size: 1.04rem; line-height: 1.7; color: var(--bs-ink-soft); max-width: 46ch; }
+.bs-says {
+  margin: 0; padding: 12px 0 12px 16px; border-left: 3px solid var(--bs-teal);
+  font-size: 0.95rem; line-height: 1.55; color: var(--bs-ink); max-width: 46ch;
+}
+.bs-says b {
+  display: block; margin-bottom: 4px; font-size: 0.7rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--bs-teal);
+}
+
+/* The frame borrows the e's spine: top-left and bottom-right cut at 45°. */
+.bs-frame { position: relative; padding: clamp(16px, 3vw, 28px); background: #fff; clip-path: var(--bs-cut); }
+.bs-caption {
+  margin: 12px 0 0; text-align: center; font-size: 0.78rem; letter-spacing: 0.06em;
+  color: var(--bs-ink-soft); font-variant-numeric: tabular-nums;
+}
+.bs-replay, .bs-chips button {
+  border: 0; cursor: pointer; font: 600 0.8rem/1 var(--font-inter), system-ui, sans-serif;
+  padding: 9px 14px; clip-path: polygon(7px 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%, 0 7px);
+}
+.bs-replay { position: absolute; top: 16px; right: 16px; background: var(--bs-navy); color: #fff; }
+.bs-replay:hover { background: var(--bs-teal); }
+.bs-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 14px; }
+.bs-chips button { background: var(--bs-paper); color: var(--bs-navy); }
+.bs-chips button:hover { background: #E3F4F0; }
+.bs-chips button.is-on { background: var(--bs-navy); color: #fff; }
+.bs-chips .bs-chip-play { background: var(--bs-teal); color: #fff; }
+
+/* ══ The stage: a figure's pieces as clip-pathed boxes ══ */
+.bs-stage { position: relative; width: 100%; aspect-ratio: 480 / 360; }
+.bs-p { position: absolute; display: block; background-color: var(--c); }
+
+/* ── A · Stencil ──
+   Assemble: pieces converge from outside with the loader's expo settle, then
+   a teal verify-pulse runs through them in paint order. Idle motion follows. */
+.bs-stencil .bs-p {
+  --bs-in:
+    bs-assemble 0.95s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--i) * 55ms) backwards,
+    bs-pulse 0.5s ease-in-out calc(1.2s + var(--i) * 45ms) backwards;
+  animation: var(--bs-in);
+}
+.bs-stencil .bs-ear { animation: var(--bs-in), bs-ear 5.5s ease-in-out 2.4s infinite; }
+.bs-stencil .bs-trunk { animation: var(--bs-in), bs-trunk 6s ease-in-out 2s infinite; }
+.bs-stencil .bs-tail { animation: var(--bs-in), bs-tail 3.2s ease-in-out 2s infinite; }
+.bs-stencil .bs-body { animation: var(--bs-in), bs-breathe 4.5s ease-in-out 2s infinite; }
+@keyframes bs-assemble {
+  from { translate: var(--dx, 0) var(--dy, 0); scale: 0.86; opacity: 0.15; }
+  to { translate: 0 0; scale: 1; opacity: 1; }
+}
+@keyframes bs-pulse { 50% { background-color: color-mix(in srgb, var(--c) 50%, var(--bs-mint)); } }
+@keyframes bs-ear {
+  0%, 70%, 100% { transform: none; }
+  77% { transform: scaleX(0.78); }
+  84% { transform: none; }
+  90% { transform: scaleX(0.86); }
+}
+@keyframes bs-trunk { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(6deg); } }
+@keyframes bs-tail { 0%, 100% { transform: rotate(10deg); } 50% { transform: rotate(-10deg); } }
+@keyframes bs-breathe { 0%, 100% { transform: none; } 50% { transform: scale(1, 1.014); } }
+
+/* Mark loop: the loader's hover motion. Starts and ends whole, parts drift out
+   at mid-cycle, then lock back with a pulse. */
+.bs-stencil--loop .bs-p,
+.bs-stencil--loop .bs-ear, .bs-stencil--loop .bs-trunk, .bs-stencil--loop .bs-tail, .bs-stencil--loop .bs-body {
+  animation: bs-syn 3.4s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--i) * 30ms) infinite;
+}
+@keyframes bs-syn {
+  0%, 14%, 100% { translate: 0 0; scale: 1; opacity: 1; background-color: var(--c); }
+  38% { translate: var(--dx) var(--dy); scale: 0.86; opacity: 0.22; }
+  62% { translate: 0 0; scale: 1; opacity: 1; background-color: var(--c); }
+  70% { background-color: color-mix(in srgb, var(--c) 50%, var(--bs-mint)); }
+  80% { background-color: var(--c); }
+}
+
+/* Divider: stencil segments, a pulse travelling along them. */
+.bs-rule-stencil { display: flex; gap: 6px; }
+.bs-rule-stencil span {
+  flex: 1; height: 10px; background: #D5EAE6;
+  clip-path: polygon(5px 0, 100% 0, calc(100% - 5px) 100%, 0 100%);
+  animation: bs-rule-pulse 3s ease-in-out calc(var(--i) * 55ms) infinite;
+}
+@keyframes bs-rule-pulse { 0%, 26%, 100% { background: #D5EAE6; } 8% { background: var(--bs-teal); } }
+
+/* ── B · Tangram ──
+   Every piece transitions to its slot in the next figure, staggered by slot. */
+.bs-tangram .bs-p {
+  transition-property: left, top, width, height, clip-path, rotate, background-color, opacity;
+  transition-duration: 0.95s;
+  transition-timing-function: cubic-bezier(0.65, 0, 0.2, 1);
+  transition-delay: calc(var(--i) * 32ms);
+}
+.bs-tangram--small .bs-p { transition-duration: 0.8s; transition-delay: calc(var(--i) * 20ms); }
+.bs-rule-tangram { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; align-items: center; max-width: 640px; margin: 0 auto; }
+
+/* ── C · Blueprint ──
+   Outline each polygon (pathLength = 1, so a dash of 1 is the whole edge),
+   then fill it. Callouts and ledger rows land just after their piece. */
+.bs-frame--sheet {
+  background-color: #FBFCFD;
+  background-image:
+    linear-gradient(rgba(0, 168, 150, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 168, 150, 0.09) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+.bs-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.bs-bp-piece {
+  stroke: var(--bs-navy); stroke-width: 1.4; stroke-linejoin: round;
+  stroke-dasharray: 1; stroke-dashoffset: 1; fill-opacity: 0;
+  animation: bs-draw 0.55s ease-out var(--d) forwards, bs-fill 0.5s ease-out calc(var(--d) + 0.45s) forwards;
+}
+@keyframes bs-draw { to { stroke-dashoffset: 0; } }
+@keyframes bs-fill { to { fill-opacity: 1; } }
+.bs-bp-callout { opacity: 0; animation: bs-fade 0.4s ease-out var(--d) forwards; }
+.bs-bp-callout line { stroke: var(--bs-teal); stroke-width: 1; stroke-dasharray: 3 3; }
+.bs-bp-callout circle { fill: var(--bs-teal); }
+.bs-bp-callout text { font: 600 11px ui-monospace, 'SF Mono', Menlo, monospace; fill: var(--bs-navy); letter-spacing: 0.02em; }
+@keyframes bs-fade { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
+.bs-ledger {
+  list-style: none; margin: 14px 0 0; padding: 12px 0 0; border-top: 1px dashed rgba(10, 37, 64, 0.2);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3px 20px;
+  font: 500 0.72rem/1.5 ui-monospace, 'SF Mono', Menlo, monospace; color: var(--bs-ink-soft);
+}
+.bs-ledger li { display: flex; gap: 10px; opacity: 0; animation: bs-fade 0.35s ease-out var(--d) forwards; }
+.bs-ledger time { color: var(--bs-teal); min-width: 3.4em; }
+.bs-ledger span { color: var(--bs-navy); }
+.bs-ledger em { margin-left: auto; font-style: normal; }
+.bs-bp-total { opacity: 0; animation: bs-fade 0.4s ease-out var(--d) forwards; color: var(--bs-navy); font-weight: 600; }
+
+/* Mark loop: draw, fill, hold, erase. Thicker line so it survives small sizes. */
+.bs-bp--loop .bs-bp-piece { stroke-width: 5; animation: bs-draw-loop 4.4s ease-in-out var(--d) infinite both; }
+@keyframes bs-draw-loop {
+  0% { stroke-dashoffset: 1; fill-opacity: 0; }
+  24% { stroke-dashoffset: 0; fill-opacity: 0; }
+  36%, 84% { stroke-dashoffset: 0; fill-opacity: 1; }
+  100% { stroke-dashoffset: 1; fill-opacity: 0; }
+}
+
+/* Divider: a ruler, a teal marker measuring along it. */
+.bs-rule-ruler {
+  position: relative; display: flex; justify-content: space-between; height: 30px; padding-top: 16px;
+  border-bottom: 2px solid var(--bs-navy);
+  background: repeating-linear-gradient(90deg, rgba(10, 37, 64, 0.35) 0 1px, transparent 1px 12px) bottom / 100% 7px no-repeat;
+  font: 600 0.66rem ui-monospace, 'SF Mono', Menlo, monospace; color: var(--bs-ink-soft);
+}
+.bs-rule-ruler b { font-weight: 600; transform: translateY(-14px); }
+.bs-ruler-marker {
+  position: absolute; bottom: -6px; left: 0; width: 18px; height: 10px; background: var(--bs-teal);
+  clip-path: polygon(0 0, 100% 0, 100% 40%, 50% 100%, 0 40%);
+  animation: bs-measure 5s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
+}
+@keyframes bs-measure { from { left: 0; } to { left: calc(100% - 18px); } }
+
+/* ── D · Parade ──
+   The herd crosses the frame; legs step in pairs about the hip, the body bobs. */
+.bs-parade { padding: 0; aspect-ratio: 16 / 11; overflow: hidden; background: linear-gradient(#F3FBF9, #fff 70%); }
+.bs-parade::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 14%; background: #D9EFEB;
+}
+.bs-sun {
+  position: absolute; top: 9%; right: 11%; width: 15%; aspect-ratio: 1; background: var(--bs-bright); opacity: 0.4;
+  clip-path: polygon(29% 0, 71% 0, 100% 29%, 100% 71%, 71% 100%, 29% 100%, 0 71%, 0 29%);
+  animation: bs-spin 40s linear infinite;
+}
+@keyframes bs-spin { to { rotate: 360deg; } }
+.bs-cloud {
+  position: absolute; height: 5%; background: #D3ECE7; border: 0;
+  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+  animation: bs-drift 60s linear infinite;
+}
+.bs-cloud--a { top: 14%; width: 22%; left: 8%; }
+.bs-cloud--b { top: 24%; width: 14%; left: 46%; animation-duration: 80s; animation-delay: -30s; }
+@keyframes bs-drift { from { translate: -40cqw 0; } to { translate: 110cqw 0; } }
+.bs-parade { container-type: inline-size; }
+.bs-ground {
+  position: absolute; left: 0; right: 0; bottom: 14%; height: 4px; z-index: 1;
+  background: repeating-linear-gradient(90deg, var(--bs-teal) 0 18px, transparent 18px 26px);
+}
+.bs-herd {
+  position: absolute; left: 0; bottom: 14%; width: 100%; z-index: 2;
+  display: flex; align-items: flex-end; gap: 4%;
+  animation: bs-cross 24s linear infinite;
+}
+@keyframes bs-cross { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+/* Feet sit 40 of 360 units above the stage's foot; pull them onto the ground. */
+.bs-walker { flex: none; margin-bottom: -2.8%; }
+.bs-walker:last-child { margin-bottom: -5%; }
+.bs-walk { animation: bs-bob 0.45s ease-in-out infinite alternate; }
+.bs-walk .bs-leg-a { animation: bs-step 0.9s ease-in-out infinite; }
+.bs-walk .bs-leg-b { animation: bs-step 0.9s ease-in-out -0.45s infinite; }
+.bs-walk .bs-trunk { animation: bs-trunk 1.8s ease-in-out infinite; }
+.bs-walk .bs-tail { animation: bs-tail 0.9s ease-in-out infinite; }
+.bs-walk .bs-ear { animation: bs-ear-walk 1.8s ease-in-out infinite; }
+.bs-calf .bs-walk { animation-duration: 0.3s; }
+.bs-calf .bs-leg-a { animation-duration: 0.6s; }
+.bs-calf .bs-leg-b { animation-duration: 0.6s; animation-delay: -0.3s; }
+@keyframes bs-bob { to { translate: 0 -1.4%; } }
+@keyframes bs-step { 0%, 100% { transform: rotate(9deg); } 50% { transform: rotate(-9deg); } }
+@keyframes bs-ear-walk { 0%, 100% { transform: none; } 50% { transform: scaleX(0.88); } }
+
+/* Divider: a small herd crossing a thin band. */
+.bs-rule-parade { position: relative; height: 64px; overflow: hidden; container-type: inline-size; }
+.bs-rule-parade .bs-ground { bottom: 6px; height: 3px; }
+.bs-herd--mini { width: auto; bottom: 6px; gap: 14px; animation: bs-cross-mini 26s linear infinite; }
+.bs-herd--mini .bs-walker { margin-bottom: -5px; }
+@keyframes bs-cross-mini { from { transform: translateX(-200px); } to { transform: translateX(100cqw); } }
+
+/* ── E · Mosaic ──
+   Each tile is a cell with a chamfered square inside; the scan and the cursor
+   lift are layered on with ::after and per-tile distance maths. */
+.bs-mosaic {
+  position: relative; width: 100%; aspect-ratio: 480 / 360;
+  background-image: radial-gradient(circle, rgba(10, 37, 64, 0.12) 1px, transparent 1.5px);
+  background-size: calc(100% / var(--cols)) calc(100% / var(--rows));
+}
+.bs-mosaic span {
+  position: absolute; width: calc(100% / var(--cols)); height: calc(100% / var(--rows));
+  animation: bs-tile-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) calc((var(--x) + var(--y)) * 16ms) backwards;
+}
+.bs-mosaic span::before, .bs-mosaic span::after {
+  content: ''; position: absolute; inset: 7%;
+  clip-path: polygon(26% 0, 100% 0, 100% 74%, 74% 100%, 0 100%, 0 26%);
+}
+.bs-mosaic span::before { background: var(--c); }
+.bs-mosaic span::after {
+  background: var(--bs-mint); opacity: 0;
+  animation: bs-scan 6s linear calc(1.6s + (var(--x) + var(--y)) * 20ms) infinite;
+}
+@keyframes bs-tile-in { from { scale: 0; opacity: 0; } }
+@keyframes bs-scan { 0% { opacity: 0; } 3% { opacity: 0.85; } 10%, 100% { opacity: 0; } }
+/* Cursor lift: closeness 0–1 from the tile's distance (in cells) to the pointer. */
+.bs-mosaic--live span {
+  --near: max(0, 1 - hypot(calc(var(--x) + 0.5 - var(--mx)), calc(var(--y) + 0.5 - var(--my))) / 4.5);
+  translate: 0 calc(var(--near) * -35%);
+  scale: calc(1 + var(--near) * 0.3);
+  z-index: 1;
+  transition: translate 0.18s ease-out, scale 0.18s ease-out;
+}
+.bs-mosaic--live span::before { background: color-mix(in srgb, var(--c), var(--bs-mint) calc(var(--near) * 75%)); }
+
+/* Divider: a row of tiles with a wave rolling through. */
+.bs-rule-mosaic { display: flex; gap: 3px; height: 14px; align-items: flex-end; }
+.bs-rule-mosaic span {
+  flex: 1; height: 10px; background: var(--c); opacity: 0.85;
+  clip-path: polygon(26% 0, 100% 0, 100% 74%, 74% 100%, 0 100%, 0 26%);
+  animation: bs-wave 2.6s ease-in-out calc(var(--x) * 40ms) infinite;
+}
+@keyframes bs-wave { 0%, 40%, 100% { translate: 0 0; } 20% { translate: 0 -5px; background: var(--bs-mint); } }
+
+/* ══ On the site ══ */
+.bs-use { padding: 72px 0 128px; }
+.bs-eyebrow { margin: 0 0 12px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bs-teal); }
+.bs-h2 {
+  margin: 0 0 32px; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 700;
+  font-size: clamp(1.8rem, 3vw, 2.4rem); letter-spacing: -0.02em; color: var(--bs-navy);
+}
+.bs-use-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.bs-card {
+  position: relative; margin: 0; min-height: 260px; padding: 44px 20px 24px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+  background: var(--bs-paper); clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+}
+.bs-card figcaption {
+  position: absolute; top: 16px; left: 20px; font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--bs-ink-soft);
+}
+.bs-loader-row { display: flex; align-items: center; gap: 12px; font-size: 0.92rem; color: var(--bs-ink-soft); }
+.bs-avatar {
+  width: 168px; height: 168px; border-radius: 50%; background: #E3F4F0;
+  display: grid; place-items: center; overflow: hidden;
+}
+.bs-avatar > * { width: 78%; }
+.bs-empty-title { margin: 4px 0 0; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 700; font-size: 1.3rem; color: var(--bs-navy); }
+.bs-empty-link { font-size: 0.86rem; font-weight: 600; color: var(--bs-teal); text-decoration: none; }
+.bs-empty-link:hover { color: var(--bs-navy); }
+.bs-article { width: 100%; }
+.bs-article-cover {
+  position: relative; aspect-ratio: 16 / 10; background: linear-gradient(135deg, #0A2540, #10385E);
+  clip-path: polygon(12px 0, 100% 0, 100% 100%, 0 100%, 0 12px);
+}
+.bs-stamp {
+  position: absolute; right: 10px; bottom: 10px; width: 62px; padding: 6px 7px; background: #fff;
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+}
+.bs-stamp > * { width: 100%; }
+.bs-article-kicker { margin: 12px 0 4px; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bs-teal); }
+.bs-article-title { margin: 0; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 700; font-size: 1.12rem; line-height: 1.2; color: var(--bs-navy); }
+
+.bs-divider-demo { margin-top: 64px; }
+.bs-demo-head { margin: 0; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 700; font-size: 1.6rem; color: var(--bs-navy); }
+.bs-demo-head span { margin-right: 8px; font-family: var(--font-black-ops-one), sans-serif; font-size: 1rem; color: var(--bs-teal); }
+.bs-divider { margin: 24px 0 28px; }
+.bs-note { margin: 48px 0 0; font-size: 0.85rem; color: var(--bs-ink-soft); }
+
+@media (max-width: 960px) {
+  .bs-hero-grid { grid-template-columns: 1fr; gap: 36px; }
+  .bs-hero-stage { max-width: 600px; }
+  .bs-use-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .bs-hero { padding: 48px 0 56px; }
+  .bs-use-grid { grid-template-columns: 1fr; }
+  .bs-ledger { grid-template-columns: 1fr; }
+  .bs-replay { top: 10px; right: 10px; }
+}
+
+/* Reduced motion: every figure rests whole and still. */
+@media (prefers-reduced-motion: reduce) {
+  .bs-root *, .bs-root *::before, .bs-root *::after { animation: none !important; transition: none !important; }
+  .bs-bp-piece { stroke-dashoffset: 0; fill-opacity: 1; }
+  .bs-bp-callout, .bs-ledger li, .bs-bp-total { opacity: 1; }
+  .bs-herd { transform: translateX(0); }
+  .bs-herd--mini { transform: translateX(24px); }
+}
+
+/* ══ Round two (2026-10-06): symbols, no animals ══
+   Seal, Folio, Graph, Loom, Keystone. All SVG, all pure CSS loops; each
+   element carries its own --d delay so a cycle builds in order. */
+
+.bs-hero--night { background: #061527; border-bottom-color: transparent; }
+.bs-hero--night .bs-title, .bs-hero--night .bs-says, .bs-hero--night .bs-kicker span { color: #fff; }
+.bs-hero--night .bs-lede { color: rgba(255, 255, 255, 0.72); }
+.bs-hero--night .bs-kicker, .bs-hero--night .bs-says b { color: var(--bs-bright); }
+.bs-frame--night { background: var(--bs-navy); }
+.bs-frame--night .bs-caption { color: rgba(255, 255, 255, 0.6); }
+.bs-octagon { clip-path: polygon(29% 0, 71% 0, 100% 29%, 100% 71%, 71% 100%, 29% 100%, 0 71%, 0 29%); }
+
+/* ── F · Seal ── sides light in order, the seal presses, "Verified" shows. */
+.bs-seal-face { fill: var(--bs-navy); }
+.bs-seal-side { stroke: #D5E1E8; stroke-width: 14; animation: bs-seal-side 8s ease-out var(--d) infinite both; }
+@keyframes bs-seal-side { 0% { stroke: #D5E1E8; } 4%, 80% { stroke: var(--bs-teal); } 86%, 100% { stroke: #D5E1E8; } }
+.bs-seal-step { font: 600 12px var(--font-inter), system-ui, sans-serif; fill: #9AAAB8; animation: bs-seal-step 8s ease-out var(--d) infinite both; }
+@keyframes bs-seal-step { 0% { fill: #9AAAB8; } 4%, 80% { fill: var(--bs-navy); } 86%, 100% { fill: #9AAAB8; } }
+.bs-seal-press, .bs-seal-flash { transform-box: view-box; transform-origin: 240px 180px; }
+.bs-seal-press { animation: bs-seal-press 8s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
+@keyframes bs-seal-press { 0%, 44% { scale: 1; } 48% { scale: 1.07; } 53% { scale: 0.97; } 58%, 100% { scale: 1; } }
+.bs-seal-flash { fill: none; stroke: var(--bs-mint); stroke-width: 3; opacity: 0; animation: bs-seal-flash 8s ease-out infinite; }
+@keyframes bs-seal-flash { 0%, 47% { opacity: 0; scale: 1; } 50% { opacity: 0.9; scale: 1; } 62%, 100% { opacity: 0; scale: 1.25; } }
+.bs-seal-word { font: 700 13px var(--font-inter), system-ui, sans-serif; letter-spacing: 0.3em; fill: var(--bs-mint); opacity: 0; animation: bs-seal-word 8s ease infinite; }
+@keyframes bs-seal-word { 0%, 48% { opacity: 0; } 54%, 82% { opacity: 1; } 88%, 100% { opacity: 0; } }
+.bs-seal--small .bs-seal-side { stroke-width: 24; }
+.bs-seal--small .bs-seal-word { display: none; }
+
+/* Divider: the eight steps as octagons on a line, lighting in the seal's time. */
+.bs-rule-steps { list-style: none; margin: 0; padding: 0; display: flex; }
+.bs-rule-steps li {
+  position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px;
+  font-size: 0.72rem; color: var(--bs-ink-soft);
+}
+.bs-rule-steps li::before { content: ''; position: absolute; top: 8px; right: 50%; width: 100%; height: 2px; background: #D5E1E8; z-index: 0; }
+.bs-rule-steps li:first-child::before { display: none; }
+.bs-rule-steps li span {
+  position: relative; z-index: 1; width: 18px; height: 18px; background: #D5E1E8;
+  clip-path: polygon(29% 0, 71% 0, 100% 29%, 100% 71%, 71% 100%, 29% 100%, 0 71%, 0 29%);
+  animation: bs-step-dot 8s ease-out var(--d) infinite both;
+}
+@keyframes bs-step-dot { 0% { background: #D5E1E8; } 4%, 80% { background: var(--bs-teal); } 86%, 100% { background: #D5E1E8; } }
+@media (max-width: 560px) { .bs-rule-steps li { font-size: 0; gap: 0; } }
+
+/* ── G · Folio ── pages turn about the gap beside the spine (x 218). The face
+   swaps to navy exactly when the page is edge-on, so its back shows. */
+.bs-folio-page, .bs-folio-leaf { transform-box: view-box; transform-origin: 218px 180px; }
+.bs-folio-page { animation: bs-turn 7s cubic-bezier(0.65, 0, 0.35, 1) var(--d) infinite both; }
+@keyframes bs-turn { 0%, 8% { transform: scaleX(1); } 18%, 62% { transform: scaleX(-1); } 72%, 100% { transform: scaleX(1); } }
+.bs-folio-face { animation: bs-turn-face 7s linear var(--d) infinite both; }
+@keyframes bs-turn-face { 0%, 12.9% { fill: var(--bs-teal); } 13%, 66.9% { fill: var(--bs-navy); } 67%, 100% { fill: var(--bs-teal); } }
+.bs-folio-leaf { opacity: 0; animation: bs-leaf 7s cubic-bezier(0.45, 0, 0.55, 1) var(--d) infinite both; }
+.bs-folio-leaf polygon, .bs-folio-under polygon { stroke: rgba(0, 168, 150, 0.45); stroke-width: 1.5; }
+@keyframes bs-leaf {
+  0% { transform: scaleX(1); opacity: 0; }
+  1% { opacity: 1; }
+  9% { transform: scaleX(-1); opacity: 1; }
+  11%, 100% { transform: scaleX(-1); opacity: 0; }
+}
+/* Divider: a flipboard of small e's, a turn rolling along it. */
+.bs-rule-pages { display: flex; justify-content: space-between; gap: 6px; perspective: 400px; }
+.bs-rule-pages span { flex: 1 1 0; min-width: 0; max-width: 24px; animation: bs-flip 4.5s ease-in-out calc(var(--i) * 60ms) infinite; }
+.bs-rule-pages svg { display: block; width: 100%; height: auto; }
+@keyframes bs-flip { 0%, 30%, 100% { transform: rotateY(0); } 15% { transform: rotateY(180deg); } }
+
+/* ── H · Graph ── nodes settle from their scatter, links draw, the e fills,
+   signals run, then it lets go. Colours switch on the night frame. */
+.bs-graph { --g-navy: var(--bs-navy); --g-teal: var(--bs-teal); --g-pale: #9FB3C2; --g-edge: var(--bs-navy); }
+.bs-frame--night .bs-graph { --g-navy: #F4F1EA; --g-teal: var(--bs-bright); --g-pale: #8FA9C0; --g-edge: var(--bs-mint); }
+.bs-graph-node { animation: bs-node 9s cubic-bezier(0.16, 1, 0.3, 1) var(--d) infinite both; }
+.bs-graph-node--navy { fill: var(--g-navy); }
+.bs-graph-node--teal { fill: var(--g-teal); }
+.bs-graph-node--ivory { fill: var(--g-pale); }
+@keyframes bs-node {
+  0%, 100% { transform: translate(var(--sx), var(--sy)); opacity: 0.55; }
+  30%, 84% { transform: translate(0, 0); opacity: 1; }
+}
+.bs-graph-edge {
+  stroke: var(--g-edge); stroke-width: 2; stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0;
+  animation: bs-edge 9s ease-out var(--d) infinite both;
+}
+@keyframes bs-edge {
+  0%, 30% { stroke-dashoffset: 1; opacity: 0; }
+  31% { opacity: 1; }
+  44%, 84% { stroke-dashoffset: 0; opacity: 1; }
+  88%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+.bs-graph-fill { opacity: 0; animation: bs-gfill 9s ease infinite; }
+@keyframes bs-gfill { 0%, 44% { opacity: 0; } 54%, 82% { opacity: 1; } 88%, 100% { opacity: 0; } }
+.bs-graph-signal {
+  stroke: var(--bs-mint); stroke-width: 4; stroke-linecap: round; stroke-dasharray: 0.12 0.88; opacity: 0;
+  animation: bs-signal 1.2s linear var(--d) infinite, bs-signal-show 9s ease 0s infinite;
+}
+.bs-frame--night .bs-graph-signal { stroke: #fff; }
+@keyframes bs-signal { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes bs-signal-show { 0%, 54% { opacity: 0; } 58%, 80% { opacity: 1; } 84%, 100% { opacity: 0; } }
+.bs-graph--small .bs-graph-edge { stroke-width: 7; }
+
+/* Divider: a chain of nodes, a signal running along it lighting each one. */
+.bs-rule-chain { position: relative; display: flex; justify-content: space-between; align-items: center; height: 26px; overflow: hidden; }
+.bs-rule-chain::before { content: ''; position: absolute; left: 0; right: 0; top: calc(50% - 1px); height: 2px; background: #D5E1E8; }
+.bs-chain-signal {
+  position: absolute; top: calc(50% - 2px); left: 0; width: 80px; height: 4px;
+  background: linear-gradient(90deg, transparent, var(--bs-bright)); animation: bs-chain-run 3.3s linear infinite;
+}
+@keyframes bs-chain-run { from { left: -80px; } to { left: 100%; } }
+.bs-rule-chain b {
+  position: relative; width: 14px; height: 14px; background: var(--bs-navy);
+  clip-path: polygon(29% 0, 71% 0, 100% 29%, 100% 71%, 71% 100%, 29% 100%, 0 71%, 0 29%);
+  animation: bs-chain-node 3.3s linear calc(var(--i) * 3s / 11) infinite;
+}
+@keyframes bs-chain-node { 0%, 10%, 100% { background: var(--bs-navy); scale: 1; } 4% { background: var(--bs-bright); scale: 1.3; } }
+
+/* ── I · Loom ── each cell weaves in at its turn in the shuttle's path. */
+.bs-loom-warp { stroke: #D3DEE6; }
+.bs-loom-cell { fill: var(--bs-navy); opacity: 0; animation: bs-weave 9s ease-out var(--d) infinite both; }
+.bs-loom-cell.is-under { fill: #1B3F63; }
+.bs-loom-cell.is-e { fill: var(--bs-teal); }
+.bs-loom-cell.is-e.is-under { fill: #00907F; }
+@keyframes bs-weave {
+  0% { opacity: 0; transform: translateX(-3px); }
+  3%, 68% { opacity: 1; transform: none; }
+  74%, 100% { opacity: 0; transform: none; }
+}
+/* Divider: a woven strip, two rows, teal stripes every twelve threads. */
+.bs-rule-weave { display: grid; grid-template-columns: repeat(72, 1fr); gap: 1px; }
+.bs-rule-weave span {
+  height: 7px; background: var(--c); opacity: 0;
+  animation: bs-weave-strip 6s ease-out calc((var(--r) * 72 + var(--i)) * 18ms) infinite both;
+}
+.bs-rule-weave span.is-under { transform: scaleX(0.55); }
+@keyframes bs-weave-strip { 0% { opacity: 0; } 4%, 80% { opacity: 1; } 90%, 100% { opacity: 0; } }
+
+/* ── J · Keystone ── piers rise, stones drop in pairs, the keystone lands
+   with a pulse, the frame drops away, then it all lifts off and rebuilds. */
+.bs-arch-ground { stroke: var(--bs-teal); stroke-width: 4; stroke-dasharray: 18 8; }
+.bs-arch-stone { fill: var(--bs-navy); opacity: 0; animation: bs-stone 8s cubic-bezier(0.16, 1, 0.3, 1) var(--d) infinite both; }
+.bs-arch-pier { animation-name: bs-pier; }
+@keyframes bs-stone {
+  0% { opacity: 0; transform: translateY(-50px); }
+  7%, 86% { opacity: 1; transform: none; }
+  93%, 100% { opacity: 0; transform: translateY(-20px); }
+}
+@keyframes bs-pier {
+  0% { opacity: 0; transform: translateY(24px); }
+  7%, 86% { opacity: 1; transform: none; }
+  93%, 100% { opacity: 0; transform: none; }
+}
+.bs-arch-key { opacity: 0; animation: bs-key 8s cubic-bezier(0.34, 1.4, 0.64, 1) var(--d) infinite both; }
+@keyframes bs-key {
+  0% { opacity: 0; transform: translateY(-110px); }
+  8%, 62% { opacity: 1; transform: none; }
+  70%, 100% { opacity: 0; transform: translateY(-30px); }
+}
+.bs-arch-keystone { fill: var(--bs-teal); animation: bs-key-pulse 8s ease var(--d) infinite both; }
+@keyframes bs-key-pulse { 0%, 9% { fill: var(--bs-teal); } 12% { fill: var(--bs-mint); } 18%, 100% { fill: var(--bs-teal); } }
+.bs-arch-frame { fill: none; stroke: #9FB3C2; stroke-width: 3; stroke-dasharray: 6 5; opacity: 0; animation: bs-frame 8s ease-in 0.2s infinite both; }
+@keyframes bs-frame {
+  0% { opacity: 0; transform: none; }
+  6%, 40% { opacity: 1; transform: none; }
+  48%, 100% { opacity: 0; transform: translateY(40px); }
+}
+/* Divider: a course of stones; the keystone drops into its gap. */
+.bs-rule-course { display: flex; align-items: flex-end; gap: 5px; height: 34px; }
+.bs-rule-course span {
+  flex: 1; height: 18px; background: var(--bs-navy);
+  clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+}
+.bs-rule-course .bs-course-key {
+  height: 26px; display: grid; place-items: center; background: var(--bs-teal);
+  animation: bs-course-drop 4s cubic-bezier(0.34, 1.4, 0.64, 1) infinite;
+}
+.bs-course-key svg { width: 46%; height: auto; }
+@keyframes bs-course-drop {
+  0% { opacity: 0; transform: translateY(-30px); }
+  14%, 84% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+
+/* Reduced motion: every round-two symbol rests finished. */
+@media (prefers-reduced-motion: reduce) {
+  .bs-arch-stone, .bs-arch-key, .bs-loom-cell, .bs-graph-edge, .bs-graph-fill, .bs-seal-word, .bs-rule-weave span { opacity: 1; }
+  .bs-graph-edge { stroke-dashoffset: 0; }
+  .bs-arch-frame, .bs-graph-signal, .bs-folio-leaf, .bs-seal-flash { opacity: 0; }
+  .bs-seal-side { stroke: var(--bs-teal); }
+  .bs-seal-step { fill: var(--bs-navy); }
+  .bs-rule-steps li span { background: var(--bs-teal); }
+}
+
+/* ══ Round three (2026-10-06): mascots ══
+   Octopus, Raven, Bee, Beaver, Lighthouse. SVG rigs drawn with the e's 45°
+   cut; groups pivot about points given in drawing units (see draw.tsx). */
+.bs-oct g, .bs-rav g, .bs-hive g, .bs-bvr g, .bs-bvr rect, .bs-bvr polygon, .bs-lh polygon { transform-box: view-box; }
+.bs-frame--flush { padding: 0; }
+
+/* ── K · Octopus ── a curl wave runs down each arm, the body bobs, it blinks. */
+.bs-oct-seg { animation: bs-curl 3.4s ease-in-out calc(var(--a) * -0.42s + var(--k) * -0.28s) infinite; }
+@keyframes bs-curl { 0%, 100% { rotate: calc(var(--amp) * -1); } 50% { rotate: var(--amp); } }
+.bs-oct-body { animation: bs-oct-bob 3.4s ease-in-out infinite; }
+@keyframes bs-oct-bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -7px; } }
+.bs-oct-eyes { animation: bs-blink 5s ease-in-out infinite; }
+@keyframes bs-blink { 0%, 92%, 100% { scale: 1 1; } 95% { scale: 1 0.1; } }
+.bs-oct-bubble { opacity: 0; animation: bs-bubble 4.5s ease-out calc(var(--n) * 1.1s) infinite; }
+@keyframes bs-bubble { 0% { opacity: 0; translate: 0 0; } 15% { opacity: 1; } 100% { opacity: 0; translate: 6px -140px; } }
+/* Divider: a tentacle of segments with a wave rolling along it. */
+.bs-rule-tentacle { display: flex; align-items: center; gap: 4px; height: 30px; }
+.bs-rule-tentacle span {
+  flex: 1; height: 12px; background: var(--bs-navy);
+  clip-path: polygon(0 0, 100% 0, 100% 64%, 64% 100%, 0 100%);
+  animation: bs-tentacle 2.8s ease-in-out calc(var(--i) * -90ms) infinite;
+}
+.bs-rule-tentacle span:nth-child(even) { background: var(--bs-deep, #00796C); }
+@keyframes bs-tentacle { 0%, 100% { translate: 0 -7px; } 50% { translate: 0 7px; } }
+
+/* ── L · Raven ── a 10-second round trip: perch, fly out, return carrying a
+   piece, drop it on the pile, fly back to the post facing the other way. */
+.bs-rav { overflow: hidden; }
+.bs-rav-path { animation: bs-rav-path 10s cubic-bezier(0.45, 0, 0.35, 1) infinite; }
+.bs-rav--small .bs-rav-path { animation: none; }
+@keyframes bs-rav-path {
+  0%, 14% { translate: 0 0; scale: 1 1; opacity: 1; }
+  18% { translate: -60px -40px; }
+  26% { translate: -440px -260px; opacity: 1; }
+  27%, 55% { translate: 220px -260px; opacity: 0; }
+  56% { translate: 220px -260px; opacity: 1; }
+  66%, 70% { translate: -102px -70px; scale: 1 1; }
+  70.5% { scale: -1 1; }
+  78% { translate: 0 0; scale: -1 1; }
+  79%, 100% { translate: 0 0; scale: 1 1; opacity: 1; }
+}
+.bs-rav-flap { opacity: 0; animation: bs-rav-flap 0.32s ease-in-out infinite alternate; }
+@keyframes bs-rav-flap { from { rotate: -38deg; } to { rotate: 34deg; } }
+.bs-rav-bird--cycle .bs-rav-flap { animation: bs-rav-flap 0.32s ease-in-out infinite alternate, bs-rav-inflight 10s step-end infinite; }
+.bs-rav-bird--cycle .bs-rav-fold { animation: bs-rav-perched 10s step-end infinite; }
+@keyframes bs-rav-inflight { 0% { opacity: 0; } 15% { opacity: 1; } 79% { opacity: 0; } }
+@keyframes bs-rav-perched { 0% { opacity: 1; } 15% { opacity: 0; } 79% { opacity: 1; } }
+.bs-rav-bird--always .bs-rav-flap { opacity: 1; }
+.bs-rav-bird--always .bs-rav-fold { opacity: 0; }
+.bs-rav-carry { opacity: 0; }
+.bs-rav-bird--cycle .bs-rav-carry { animation: bs-rav-carry 10s step-end infinite; }
+.bs-rav-bird--always .bs-rav-carry { opacity: 1; }
+@keyframes bs-rav-carry { 0% { opacity: 0; } 56% { opacity: 1; } 70% { opacity: 0; } }
+.bs-rav-head { animation: bs-rav-tilt 3.2s ease-in-out infinite; }
+@keyframes bs-rav-tilt { 0%, 40%, 100% { rotate: 0deg; } 48%, 70% { rotate: -12deg; } 76% { rotate: 6deg; } }
+.bs-rav-drop { opacity: 0; animation: bs-rav-drop 10s cubic-bezier(0.34, 1.4, 0.64, 1) infinite; }
+@keyframes bs-rav-drop {
+  0%, 69.9% { opacity: 0; translate: 0 -130px; }
+  70% { opacity: 1; translate: 0 -130px; }
+  75%, 95% { opacity: 1; translate: 0 0; }
+  100% { opacity: 0; translate: 0 0; }
+}
+/* Divider: the raven flying across with its piece. */
+.bs-rule-flight { position: relative; height: 72px; overflow: hidden; container-type: inline-size; }
+.bs-rule-flight > span { position: absolute; left: 0; right: 0; bottom: 4px; height: 3px; background: repeating-linear-gradient(90deg, var(--bs-teal) 0 18px, transparent 18px 26px); }
+.bs-rule-flight-bird { position: absolute; top: 0; left: 0; width: 84px; animation: bs-fly-across 10s linear infinite; }
+@keyframes bs-fly-across { from { translate: 100cqw 6px; } 50% { translate: 45cqw -2px; } to { translate: -110px 8px; } }
+
+/* ── M · Bee ── bees fly loops; cells fill with teal in shuffled order, get
+   capped in ivory, then the comb empties and they start again. */
+.bs-hive-honey { scale: 0; animation: bs-honey 12s cubic-bezier(0.16, 1, 0.3, 1) var(--d) infinite both; }
+@keyframes bs-honey { 0% { scale: 0; } 4%, 86% { scale: 1; } 92%, 100% { scale: 0; } }
+.bs-hive-cap { scale: 0; animation: bs-cap 12s ease-out calc(7.4s + var(--d)) infinite both; }
+@keyframes bs-cap { 0% { scale: 0; } 3%, 30% { scale: 1; } 34%, 100% { scale: 0; } }
+.bs-bee { animation: 9s ease-in-out infinite; }
+.bs-bee--0 { animation-name: bs-bee-0; }
+.bs-bee--1 { animation-name: bs-bee-1; animation-duration: 11s; }
+.bs-bee--2 { animation-name: bs-bee-2; animation-duration: 7.5s; }
+@keyframes bs-bee-0 {
+  0%, 100% { translate: 60px 70px; scale: 1 1; }
+  25% { translate: 200px 120px; }
+  45% { translate: 380px 60px; scale: 1 1; }
+  46% { scale: -1 1; }
+  70% { translate: 300px 230px; }
+  98% { translate: 70px 90px; scale: -1 1; }
+}
+@keyframes bs-bee-1 {
+  0%, 100% { translate: 430px 300px; scale: -1 1; }
+  30% { translate: 250px 190px; }
+  55% { translate: 90px 260px; scale: -1 1; }
+  56% { scale: 1 1; }
+  80% { translate: 260px 300px; }
+  99% { translate: 420px 290px; scale: 1 1; }
+}
+@keyframes bs-bee-2 {
+  0%, 100% { translate: 150px 160px; scale: 1 1; }
+  40% { translate: 330px 140px; scale: 1 1; }
+  41% { scale: -1 1; }
+  80% { translate: 170px 220px; scale: -1 1; }
+  81% { scale: 1 1; }
+}
+.bs-hive--small .bs-bee--0 { animation-name: bs-bee-small; animation-duration: 4s; }
+@keyframes bs-bee-small { 0%, 100% { translate: 150px 170px; scale: 1.8; } 50% { translate: 330px 170px; scale: 1.8; } }
+.bs-bee-wings { transform-origin: 2px -6px; animation: bs-buzz 0.1s linear infinite alternate; }
+@keyframes bs-buzz { from { scale: 1 1; } to { scale: 1 0.35; } }
+.bs-bee-bob { animation: bs-bee-bob 0.8s ease-in-out infinite alternate; }
+@keyframes bs-bee-bob { to { translate: 0 -5px; } }
+/* Divider: a strip of comb cells filling one by one. */
+.bs-rule-comb { display: flex; gap: 5px; }
+.bs-rule-comb span { flex: 1; aspect-ratio: 1; max-height: 24px; background: var(--bs-navy); animation: bs-comb 6s ease-out calc(var(--i) * 0.16s) infinite both; }
+@keyframes bs-comb { 0% { background: var(--bs-navy); } 6%, 80% { background: var(--bs-teal); } 90%, 100% { background: var(--bs-navy); } }
+
+/* ── N · Beaver ── nods, lifts the log onto the dam (leaning in), the pond
+   rises a touch, a tail slap and a splash, then the log resets. */
+.bs-bvr-log { animation: bs-bvr-log 8s cubic-bezier(0.45, 0, 0.35, 1) infinite; }
+@keyframes bs-bvr-log {
+  0% { translate: 154px 2px; rotate: 0deg; opacity: 0; }
+  4%, 30% { translate: 154px 2px; rotate: 0deg; opacity: 1; }
+  40% { translate: 80px -70px; rotate: -12deg; }
+  48%, 92% { translate: 0 0; rotate: 0deg; opacity: 1; }
+  98%, 100% { translate: 0 0; opacity: 0; }
+}
+.bs-bvr .bs-bvr-log { transform-box: fill-box; transform-origin: 50% 50%; }
+.bs-bvr-beaver { animation: bs-bvr-lean 8s ease-in-out infinite; }
+@keyframes bs-bvr-lean { 0%, 32%, 52%, 100% { rotate: 0deg; } 42% { rotate: -7deg; } }
+.bs-bvr-head { animation: bs-bvr-nod 1.6s ease-in-out infinite; }
+@keyframes bs-bvr-nod { 0%, 100% { rotate: 0deg; } 50% { rotate: -5deg; } }
+.bs-bvr-pond { animation: bs-bvr-pond 8s ease-in-out infinite; }
+@keyframes bs-bvr-pond { 0%, 50% { scale: 1 1; } 62%, 92% { scale: 1 1.12; } 100% { scale: 1 1; } }
+.bs-bvr-ripple { animation: bs-ripple 3s ease-in-out calc(var(--n) * -1s) infinite alternate; }
+@keyframes bs-ripple { to { translate: 14px 0; } }
+.bs-bvr-tail { animation: bs-bvr-tail 8s ease-in infinite; }
+@keyframes bs-bvr-tail { 0%, 66%, 76%, 100% { rotate: 0deg; } 70% { rotate: -32deg; } 72% { rotate: 4deg; } }
+.bs-bvr-splash { scale: 0 1; opacity: 0; animation: bs-bvr-splash 8s ease-out infinite; }
+@keyframes bs-bvr-splash { 0%, 72% { scale: 0 1; opacity: 0; } 73% { opacity: 1; } 82%, 100% { scale: 1.6 1; opacity: 0; } }
+.bs-rule-logs span { height: 14px; clip-path: polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%); }
+.bs-rule-logs .bs-course-key { height: 14px; }
+
+/* ── O · Lighthouse ── the beam sweeps through edge-on, the lamp flares as
+   it faces us, boats cross on the swell, stars blink. */
+.bs-lh-beam { animation: bs-lh-sweep 6s ease-in-out infinite; }
+@keyframes bs-lh-sweep { 0%, 100% { scale: 1 1; opacity: 1; } 25%, 75% { opacity: 0.25; } 50% { scale: -1 1; opacity: 1; } }
+.bs-lh-lamp { animation: bs-lh-lamp 3s ease-in-out infinite; }
+@keyframes bs-lh-lamp { 0%, 100% { fill: var(--bs-mint); } 25%, 75% { fill: #F4F1EA; } }
+.bs-lh-star { animation: bs-twinkle 3.6s ease-in-out calc(var(--n) * -0.37s) infinite; }
+@keyframes bs-twinkle { 0%, 100% { opacity: 0.9; } 50% { opacity: 0.2; } }
+.bs-lh-swell { animation: bs-swell calc(9s + var(--n) * 3s) linear infinite; }
+@keyframes bs-swell { from { translate: 0 0; } to { translate: -160px 0; } }
+.bs-lh-boat { animation: bs-lh-sail 24s linear infinite; }
+.bs-lh-boat--0 { --y: 322px; }
+.bs-lh-boat--1 { --y: 336px; animation-duration: 32s; animation-delay: -14s; }
+.bs-lh-boat--2 { --y: 348px; animation-duration: 28s; animation-delay: -22s; }
+@keyframes bs-lh-sail { from { translate: -60px var(--y); } to { translate: 540px var(--y); } }
+.bs-lh-bob { animation: bs-lh-bob 2.4s ease-in-out infinite alternate; }
+@keyframes bs-lh-bob { from { rotate: -4deg; translate: 0 0; } to { rotate: 4deg; translate: 0 -3px; } }
+/* Divider: a strip of night sea with the beam sweeping along it. */
+.bs-rule-sea {
+  position: relative; height: 26px; overflow: hidden; background: #061527;
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+.bs-rule-sea::after { content: ''; position: absolute; left: 0; right: 0; bottom: 6px; height: 3px; background: repeating-linear-gradient(90deg, var(--bs-teal) 0 22px, transparent 22px 34px); }
+.bs-rule-sea-beam { position: absolute; top: 0; bottom: 0; width: 30%; background: linear-gradient(90deg, transparent, rgba(43, 216, 187, 0.55), transparent); animation: bs-sea-beam 6s ease-in-out infinite alternate; }
+@keyframes bs-sea-beam { from { left: -30%; } to { left: 100%; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .bs-hive-honey { scale: 1; }
+  .bs-rav-drop, .bs-rav-flap, .bs-rav-carry, .bs-hive-cap, .bs-bvr-splash, .bs-oct-bubble { opacity: 0; }
+  .bs-rav-fold { opacity: 1; }
+  .bs-bvr-log { translate: 0 0; }
+  .bs-bee--0 { translate: 200px 120px; } .bs-bee--1 { translate: 300px 230px; } .bs-bee--2 { translate: 150px 160px; }
+  .bs-lh-boat--0 { translate: 340px 322px; } .bs-lh-boat--1 { translate: 90px 336px; } .bs-lh-boat--2 { display: none; }
+}
+
+/* ══ Round four (2026-10-06): octopus and bee variations, two new organisms,
+   and a footer world per take ══ */
+
+/* Animatable values: --on drives the hub's signal mix; the --o-* colours let
+   the octopus cross-fade between looks. */
+@property --on { syntax: '<number>'; inherits: true; initial-value: 0; }
+@property --o-skin { syntax: '<color>'; inherits: true; initial-value: #0A2540; }
+@property --o-back { syntax: '<color>'; inherits: true; initial-value: #00796C; }
+@property --o-tip { syntax: '<color>'; inherits: true; initial-value: #00D4AA; }
+@property --o-spot { syntax: '<color>'; inherits: true; initial-value: #F4F1EA; }
+
+/* The footer renders outside .bs-root, so it carries the same tokens. */
+.bs-fw {
+  --bs-navy: #0A2540; --bs-ink-soft: #41566D; --bs-teal: #00A896; --bs-bright: #00D4AA; --bs-mint: #2BD8BB;
+}
+.bs-hub g, .bs-chroma g, .bs-bench g, .bs-bench polygon, .bs-swarm g, .bs-hivescene g, .bs-myc g, .bs-myc polygon, .bs-mow g, .bs-fs g { transform-box: view-box; }
+
+/* ── P · Octopus Hub ── a signal runs out each arm in turn and lights its vertical. */
+.bs-hub-seg {
+  --amp: 6deg;
+  animation:
+    bs-curl 3.4s ease-in-out calc(var(--a) * -0.42s + var(--k) * -0.28s) infinite,
+    bs-hub-on 8s linear calc(var(--a) * 1s + var(--k) * 0.08s) infinite;
+}
+@keyframes bs-hub-on { 0%, 100% { --on: 0; } 2% { --on: 1; } 8% { --on: 0; } }
+.bs-hub-eyes { transform-origin: 240px 176px; animation: bs-blink 5s ease-in-out infinite; }
+.bs-hub-card polygon { fill: #EEF3F6; animation: bs-hub-card 8s linear calc(var(--a) * 1s + 0.3s) infinite; }
+.bs-hub-card text { font: 600 11px var(--font-inter), system-ui, sans-serif; fill: var(--bs-navy); animation: bs-hub-card-text 8s linear calc(var(--a) * 1s + 0.3s) infinite; }
+@keyframes bs-hub-card { 0%, 14%, 100% { fill: #EEF3F6; } 2%, 10% { fill: var(--bs-navy); } }
+@keyframes bs-hub-card-text { 0%, 14%, 100% { fill: var(--bs-navy); } 2%, 10% { fill: #fff; } }
+/* Divider: the verticals as chips, lit in the hub's order. */
+.bs-rule-verticals { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.bs-rule-verticals li {
+  flex: 1 1 0; min-width: 72px; padding: 8px 6px; text-align: center; font-size: 0.78rem; font-weight: 600;
+  color: var(--bs-navy); background: #EEF3F6;
+  clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+  animation: bs-vert 8s linear calc(var(--a) * 1s) infinite;
+}
+@keyframes bs-vert { 0%, 14%, 100% { background: #EEF3F6; color: var(--bs-navy); } 2%, 10% { background: var(--bs-navy); color: #fff; } }
+.bs-rule-verticals--busy li { animation: bs-vert-busy calc(1.6s + var(--a) * 0.35s) ease-in-out infinite; }
+@keyframes bs-vert-busy { 0%, 100% { background: #EEF3F6; color: var(--bs-navy); } 50% { background: var(--bs-teal); color: #fff; } }
+
+/* ── Q · Octopus Colors ── the looks cross-fade through the registered colours. */
+.bs-chroma { transition: --o-skin 0.8s, --o-back 0.8s, --o-tip 0.8s, --o-spot 0.8s; }
+.bs-chroma-pat { opacity: 0; transition: opacity 0.6s; }
+.bs-chroma-pat.is-on { opacity: 1; }
+.bs-chroma-frame { transition: background-color 0.8s; }
+.bs-rule-swatches { display: grid; grid-template-columns: repeat(16, 1fr); gap: 4px; }
+.bs-rule-swatches span {
+  height: 14px; background: var(--c); box-shadow: inset 0 0 0 1px rgba(10, 37, 64, 0.15);
+  clip-path: polygon(4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%, 0 4px);
+  animation: bs-swatch 4s ease-in-out calc(var(--i) * 0.1s) infinite;
+}
+@keyframes bs-swatch { 0%, 100% { translate: 0 0; } 50% { translate: 0 -4px; } }
+
+/* ── R · Octopus Workbench ── each station keeps its own rhythm. */
+.bs-bench-oct { animation: bs-oct-bob 3.4s ease-in-out infinite; }
+.bs-bench-arm { animation: bs-bench-sway calc(2.6s + var(--a) * 0.3s) ease-in-out infinite alternate; }
+@keyframes bs-bench-sway { from { rotate: -2.5deg; } to { rotate: 2.5deg; } }
+.bs-bench-type { animation: bs-type 3s steps(6) calc(var(--n) * 0.5s) infinite; }
+@keyframes bs-type { 0% { scale: 0 1; } 60%, 100% { scale: 1 1; } }
+.bs-bench-draw { stroke-dasharray: 1; animation: bs-draw-again 3.6s ease-in-out infinite; }
+@keyframes bs-draw-again { 0% { stroke-dashoffset: 1; } 60%, 85% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -1; } }
+.bs-bench-clap { animation: bs-clap 2s ease-in infinite; }
+@keyframes bs-clap { 0%, 50% { rotate: -24deg; } 62% { rotate: 0deg; } 68% { rotate: -5deg; } 74%, 86% { rotate: 0deg; } 100% { rotate: -24deg; } }
+.bs-bench-stamp { animation: bs-stamp 2.8s ease-in-out infinite; }
+@keyframes bs-stamp { 0%, 30%, 70%, 100% { translate: 0 0; } 45%, 55% { translate: 0 24px; } }
+.bs-bench-check { stroke-dasharray: 1; stroke-dashoffset: 1; animation: bs-check 2.8s ease-out infinite; }
+@keyframes bs-check { 0%, 52% { stroke-dashoffset: 1; } 64%, 92% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 1; } }
+.bs-bench-send { animation: bs-send 3.2s ease-in infinite; }
+@keyframes bs-send {
+  0%, 40% { translate: 0 0; opacity: 1; }
+  70% { translate: 70px -40px; opacity: 0; }
+  71% { translate: -12px 0; opacity: 0; }
+  85%, 100% { translate: 0 0; opacity: 1; }
+}
+.bs-bench-bar { animation: bs-bar 2.4s ease-in-out calc(var(--n) * 0.2s) infinite alternate; }
+@keyframes bs-bar { from { scale: 1 0.3; } to { scale: 1 1; } }
+.bs-bench-label { font: 600 12px var(--font-inter), system-ui, sans-serif; fill: var(--bs-ink-soft); }
+
+/* ── S · Bee Swarm ── bees move by script; the task cards fade with the phase. */
+.bs-swarm-task { opacity: 0; transition: opacity 0.6s; }
+.bs-swarm-task.is-on { opacity: 1; }
+.bs-swarm-task text { font: 600 12px var(--font-inter), system-ui, sans-serif; fill: var(--bs-navy); }
+.bs-swarm-caption { font: 500 12px var(--font-inter), system-ui, sans-serif; fill: var(--bs-ink-soft); }
+
+/* ── T · Bee Hive ── out to its flower, a hover, then home with teal. */
+.bs-trip { opacity: 0; animation: bs-trip 6s ease-in-out calc(var(--n) * 1s) infinite both; }
+@keyframes bs-trip {
+  0% { translate: var(--hx) var(--hy); scale: var(--dir) 1; opacity: 0; }
+  6% { opacity: 1; }
+  38%, 52% { translate: var(--fx) var(--fy); scale: var(--dir) 1; }
+  53% { scale: calc(var(--dir) * -1) 1; }
+  90% { translate: var(--hx) var(--hy); scale: calc(var(--dir) * -1) 1; opacity: 1; }
+  96%, 100% { translate: var(--hx) var(--hy); scale: calc(var(--dir) * -1) 1; opacity: 0; }
+}
+.bs-trip-pollen { opacity: 0; animation: bs-pollen 6s step-end calc(var(--n) * 1s) infinite; }
+@keyframes bs-pollen { 0% { opacity: 0; } 50% { opacity: 1; } 92% { opacity: 0; } }
+.bs-flower { animation: bs-flower 6s ease-in-out calc(var(--n) * 1s) infinite; }
+@keyframes bs-flower { 0%, 36%, 60%, 100% { scale: 1; } 44% { scale: 1.18; } }
+.bs-flower-label { font: 600 11px var(--font-inter), system-ui, sans-serif; fill: var(--bs-navy); }
+.bs-rule-trip { position: relative; display: flex; align-items: center; height: 40px; }
+.bs-rule-trip > span { flex: none; width: 22px; height: 22px; background: var(--bs-navy); }
+.bs-rule-trip > i { flex: 1; height: 2px; background: repeating-linear-gradient(90deg, var(--bs-teal) 0 10px, transparent 10px 16px); }
+.bs-rule-trip > svg { position: absolute; top: 4px; width: 40px; animation: bs-trip-line 6s ease-in-out infinite; }
+@keyframes bs-trip-line {
+  0% { left: 24px; scale: 1 1; }
+  48% { left: calc(100% - 64px); scale: 1 1; }
+  50% { left: calc(100% - 64px); scale: -1 1; }
+  98% { left: 24px; scale: -1 1; }
+  100% { left: 24px; scale: 1 1; }
+}
+
+/* ── U · Mycelium ── the network grows once, mushrooms sprout as it surfaces,
+   then food pulses out along every run for good. */
+.bs-myc-run { fill: none; stroke: var(--bs-mint); stroke-width: 4; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: bs-run 1.4s ease-out var(--d) forwards; }
+@keyframes bs-run { to { stroke-dashoffset: 0; } }
+.bs-myc-food { fill: none; stroke: #fff; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 0.05 0.95; opacity: 0; animation: bs-food 2.6s linear calc(2s + var(--d)) infinite; }
+@keyframes bs-food { 0% { stroke-dashoffset: 1; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 1; } }
+.bs-myc-shroom { scale: 1 0; animation: bs-sprout 0.8s cubic-bezier(0.34, 1.4, 0.64, 1) var(--d) forwards, bs-sway 3.6s ease-in-out calc(var(--n) * -0.5s) infinite alternate; }
+@keyframes bs-sprout { from { scale: 1 0; } to { scale: 1 1; } }
+@keyframes bs-sway { from { rotate: -2deg; } to { rotate: 2deg; } }
+.bs-myc-label { font: 600 12px var(--font-inter), system-ui, sans-serif; fill: var(--bs-navy); opacity: 0; animation: bs-fade 0.4s ease-out var(--d) forwards; }
+.bs-myc-knot { animation: bs-knot 2.6s ease-in-out infinite; }
+@keyframes bs-knot { 0%, 100% { scale: 1; } 50% { scale: 1.18; } }
+.bs-rule-myc { position: relative; height: 40px; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 12px 4px; }
+.bs-rule-myc > span {
+  width: 20px; height: 22px; background: var(--bs-teal); transform-origin: 50% 100%;
+  clip-path: polygon(25% 0, 75% 0, 100% 40%, 100% 55%, 62% 55%, 62% 100%, 38% 100%, 38% 55%, 0 55%, 0 40%);
+  animation: bs-sprout-loop 4.5s ease-out calc(var(--i) * 0.3s) infinite;
+}
+@keyframes bs-sprout-loop { 0% { scale: 1 0; } 18%, 86% { scale: 1 1; } 100% { scale: 1 0; } }
+.bs-rule-myc > i {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 5px; background-color: var(--bs-navy);
+  background-image: linear-gradient(90deg, transparent, var(--bs-mint), transparent); background-size: 120px 100%; background-repeat: no-repeat;
+  animation: bs-myc-pulse 2.6s linear infinite;
+}
+@keyframes bs-myc-pulse { from { background-position: -120px 0; } to { background-position: calc(100% + 120px) 0; } }
+
+/* ── V · Man o' War ── the float breathes, the colony bobs, each tentacle sways at its own pace. */
+.bs-mow-seg { animation: bs-curl calc(3.8s + var(--a) * 0.25s) ease-in-out calc(var(--a) * -0.5s + var(--k) * -0.22s) infinite; }
+.bs-mow-body { animation: bs-mow-bob 4.4s ease-in-out infinite; }
+@keyframes bs-mow-bob { 0%, 100% { translate: 0 0; rotate: -1deg; } 50% { translate: 0 6px; rotate: 1deg; } }
+.bs-mow-float { animation: bs-mow-pulse 2.2s ease-in-out infinite; }
+@keyframes bs-mow-pulse { 0%, 100% { scale: 1 1; } 50% { scale: 1.04 0.95; } }
+.bs-mow-swell { animation: bs-swell 7s linear calc(var(--n) * -2s) infinite; }
+
+/* ── The footer world ── same wrapper and card overlap as FooterWorld. */
+.bs-fw .bs-fs { width: min(1500px, 104vw); height: auto; display: block; flex: none; overflow: visible; }
+@media (max-width: 900px) { .bs-fw .bs-fs { width: 190vw; } }
+.bs-fs-label { font: 700 13px var(--font-inter), system-ui, sans-serif; letter-spacing: 0.1em; text-transform: uppercase; fill: #00A896; }
+.bs-fs .bs-svg, .bs-fs svg { overflow: hidden; }
+.bs-fs-track { fill: none; stroke: #9FB3C2; stroke-width: 3; stroke-dasharray: 8 6; }
+.bs-fs-window { clip-path: polygon(24px 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%, 0 24px); }
+.bs-fs-brief { opacity: 0; animation: bs-fs-brief 6s linear calc(var(--n) * -2s) infinite; }
+@keyframes bs-fs-brief {
+  0% { translate: 56px 304px; opacity: 0; }
+  8%, 80% { opacity: 1; }
+  80% { translate: 296px 304px; }
+  92%, 100% { translate: 350px 304px; opacity: 0; }
+}
+.bs-fs-packet { opacity: 0; animation: bs-fs-packet 6s ease-in-out calc(var(--r) * 2s) infinite; }
+@keyframes bs-fs-packet {
+  0% { translate: var(--x0) var(--y0); opacity: 0; }
+  3% { opacity: 1; }
+  12% { translate: var(--x1) var(--y1); }
+  20% { translate: var(--x2) var(--y2); }
+  28% { translate: var(--x3) var(--y3); opacity: 1; }
+  30%, 100% { translate: var(--x3) var(--y3); opacity: 0; }
+}
+.bs-fs-new { scale: 0; animation: bs-fs-new 6s ease-out calc(var(--r) * 2s) infinite; }
+@keyframes bs-fs-new { 0%, 28% { scale: 0; } 31% { scale: 1.15; } 34%, 96% { scale: 1; } 100% { scale: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .bs-fw *, .bs-fw *::before, .bs-fw *::after { animation: none !important; transition: none !important; }
+  .bs-fs-new, .bs-myc-shroom { scale: 1; }
+  .bs-myc-run { stroke-dashoffset: 0; }
+  .bs-myc-label, .bs-trip { opacity: 1; }
+  .bs-trip { translate: var(--fx) var(--fy); }
+  .bs-fs-brief { opacity: 1; translate: 200px 304px; }
+}
+
+/* ══ Round five (2026-10-06): seven worlds ══
+   Reef, River, North Star, Banyan, Clockwork, Orbit, Library. Each is one wide
+   scene: the footer shows all of it, the hero a crop. */
+.bs-reef *, .bs-river *, .bs-sky *, .bs-banyan *, .bs-clock *, .bs-orbit *, .bs-lib *, .bs-gear { transform-box: view-box; }
+.bs-sky .bs-sky-glint, .bs-banyan-fall, .bs-banyan-bird { transform-box: fill-box; transform-origin: 50% 50%; }
+@keyframes bs-swing { from { rotate: -6deg; } to { rotate: 6deg; } }
+
+/* ── W · Octopus Reef ── */
+.bs-reef-ray { opacity: 0.06; animation: bs-ray 7s ease-in-out calc(var(--n) * -1.4s) infinite alternate; }
+@keyframes bs-ray { to { opacity: 0.16; } }
+.bs-reef-surface { opacity: 0.25; animation: bs-surface 3s ease-in-out infinite alternate; }
+@keyframes bs-surface { to { opacity: 0.5; } }
+.bs-reef-kelp { animation: bs-curl calc(4s + var(--a) * 0.4s) ease-in-out calc(var(--a) * -0.7s + var(--k) * -0.3s) infinite; }
+.bs-reef-sway { animation: bs-sway 4s ease-in-out infinite alternate; }
+.bs-reef-sway--slow { animation-duration: 6s; }
+.bs-reef-lid { animation: bs-lid 6s ease-in-out infinite; }
+@keyframes bs-lid { 0%, 20%, 90%, 100% { rotate: 0deg; } 35%, 75% { rotate: -32deg; } }
+.bs-reef-glow { opacity: 0; animation: bs-glow 6s ease-in-out infinite; }
+@keyframes bs-glow { 0%, 25%, 90%, 100% { opacity: 0; } 40%, 70% { opacity: 0.25; } }
+.bs-reef-card { translate: 0 14px; animation: bs-card-rise 6s ease-in-out calc(var(--n) * 0.15s) infinite; }
+@keyframes bs-card-rise { 0%, 28%, 88%, 100% { translate: 0 14px; } 45%, 70% { translate: 0 -6px; } }
+.bs-reef-school--a { animation: bs-school-a 28s linear infinite; }
+@keyframes bs-school-a { from { translate: -200px 150px; } to { translate: 1450px 110px; } }
+.bs-reef-school--b { scale: -1 1; animation: bs-school-b 36s linear -12s infinite; }
+@keyframes bs-school-b { from { translate: 1450px 240px; } to { translate: -250px 220px; } }
+.bs-reef-fish { animation: bs-fish 0.8s ease-in-out calc(var(--n) * -0.13s) infinite alternate; }
+@keyframes bs-fish { to { translate: 0 -4px; } }
+.bs-reef-bubble { opacity: 0; animation: bs-reef-bubble 5s ease-out calc(var(--n) * 0.6s) infinite; }
+@keyframes bs-reef-bubble { 0% { opacity: 0; translate: 0 0; } 10% { opacity: 0.9; } 100% { opacity: 0; translate: 8px -300px; } }
+.bs-rule-kelp { display: flex; align-items: flex-end; gap: 6px; height: 40px; }
+.bs-rule-kelp span {
+  flex: 1; background: #00796C; transform-origin: 50% 100%;
+  clip-path: polygon(30% 0, 70% 0, 100% 20%, 100% 100%, 0 100%, 0 20%);
+  animation: bs-kelp-blade 3s ease-in-out calc(var(--i) * -0.2s) infinite alternate;
+}
+.bs-rule-kelp span:nth-child(3n) { background: var(--bs-teal); }
+@keyframes bs-kelp-blade { from { rotate: -6deg; } to { rotate: 6deg; } }
+
+/* ── X · Beaver River ── */
+.bs-river-sun { animation: bs-spin 60s linear infinite; }
+.bs-river-cloud { animation: bs-cloud-drift calc(70s + var(--n) * 20s) linear calc(var(--n) * -25s) infinite; }
+@keyframes bs-cloud-drift { from { translate: -500px 0; } to { translate: 1400px 0; } }
+.bs-river-pine { animation: bs-sway 5s ease-in-out infinite alternate; }
+.bs-river-ripple { animation: bs-ripple 3s ease-in-out calc(var(--n) * -1s) infinite alternate; }
+.bs-river-flow { animation: bs-flow-right 4s linear calc(var(--n) * -1s) infinite; }
+@keyframes bs-flow-right { 0% { translate: 0 0; opacity: 0; } 20%, 70% { opacity: 1; } 100% { translate: 120px 0; opacity: 0; } }
+.bs-river-pad { animation: bs-pad 3s ease-in-out calc(var(--n) * -1s) infinite alternate; }
+@keyframes bs-pad { to { translate: 0 3px; } }
+.bs-river-spill { animation: bs-spill 0.9s linear calc(var(--n) * -0.3s) infinite; }
+@keyframes bs-spill { 0% { translate: 0 -10px; opacity: 0; } 30% { opacity: 1; } 100% { translate: 0 20px; opacity: 0; } }
+.bs-river-swim { opacity: 0; animation: bs-swim 16s ease-in-out infinite; }
+@keyframes bs-swim {
+  0% { translate: -120px 318px; opacity: 0; }
+  5% { opacity: 1; }
+  45% { translate: 320px 308px; opacity: 1; }
+  50%, 100% { translate: 330px 312px; opacity: 0; }
+}
+
+/* ── Y · North Star ── */
+.bs-sky-twinkle { animation: bs-twinkle 3.6s ease-in-out calc(var(--n) * -0.29s) infinite; }
+.bs-star-rays { animation: bs-spin 80s linear infinite; }
+.bs-star-ring { opacity: 0; animation: bs-star-ring 4s ease-out calc(var(--n) * 2s) infinite; }
+@keyframes bs-star-ring { 0% { scale: 0.6; opacity: 0.8; } 100% { scale: 2.2; opacity: 0; } }
+.bs-star-core { animation: bs-star-pulse 3s ease-in-out infinite; }
+@keyframes bs-star-pulse { 0%, 100% { scale: 1; } 50% { scale: 1.08; } }
+.bs-sky-const polyline { stroke-dasharray: 1; stroke-dashoffset: 1; animation: bs-const 12s ease-in-out calc(var(--n) * 3s) infinite; }
+@keyframes bs-const { 0% { stroke-dashoffset: 1; opacity: 1; } 15%, 70% { stroke-dashoffset: 0; opacity: 1; } 80%, 100% { stroke-dashoffset: 0; opacity: 0; } }
+.bs-sky-const polygon { opacity: 0.35; animation: bs-const-star 12s ease-in-out calc(var(--n) * 3s) infinite; }
+@keyframes bs-const-star { 0%, 80%, 100% { opacity: 0.35; } 10%, 70% { opacity: 1; } }
+.bs-sky-shoot { opacity: 0; rotate: 20deg; animation: bs-shoot 9s ease-in 2s infinite; }
+@keyframes bs-shoot { 0% { translate: 200px 40px; opacity: 0; } 2% { opacity: 1; } 10%, 100% { translate: 560px 170px; opacity: 0; } }
+.bs-sky-glint { animation: bs-glint 2.4s ease-in-out calc(var(--n) * -0.4s) infinite alternate; }
+@keyframes bs-glint { from { opacity: 0.3; scale: 0.7 1; } to { opacity: 0.9; scale: 1.1 1; } }
+.bs-sky-boat { animation: bs-sail-by 34s linear infinite; }
+@keyframes bs-sail-by { from { translate: -100px 354px; } to { translate: 1300px 354px; } }
+.bs-rule-stars { display: flex; justify-content: space-between; align-items: center; height: 28px; }
+.bs-rule-stars span {
+  width: 8px; height: 8px; background: var(--bs-navy);
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  animation: bs-twinkle 2.8s ease-in-out calc(var(--i) * -0.2s) infinite;
+}
+.bs-rule-stars span:nth-child(7n + 4) { width: 18px; height: 18px; background: var(--bs-teal); }
+
+/* ── Z · Banyan ── roots drop once and thicken; the icon loops it. */
+.bs-banyan-root { scale: 1 0; animation: bs-root 1.6s ease-in calc(0.4s + var(--n) * 0.5s) forwards; }
+@keyframes bs-root { to { scale: 1 1; } }
+.bs-banyan-trunk { scale: 0.2 1; opacity: 0; animation: bs-trunk 1.2s ease-out calc(2s + var(--n) * 0.5s) forwards; }
+@keyframes bs-trunk { to { scale: 1 1; opacity: 1; } }
+.bs-banyan--cycle .bs-banyan-root { animation: bs-root-loop 8s ease-in-out calc(var(--n) * 0.4s) infinite; }
+@keyframes bs-root-loop { 0% { scale: 1 0; } 20%, 90% { scale: 1 1; } 100% { scale: 1 0; } }
+.bs-banyan--cycle .bs-banyan-trunk { animation: bs-trunk-loop 8s ease-out calc(var(--n) * 0.4s) infinite; }
+@keyframes bs-trunk-loop { 0%, 20% { scale: 0.2 1; opacity: 0; } 32%, 90% { scale: 1 1; opacity: 1; } 100% { scale: 0.2 1; opacity: 0; } }
+.bs-banyan-leaf { animation: bs-leaf-stir calc(3s + var(--n) * 0.3s) ease-in-out calc(var(--n) * -0.5s) infinite alternate; }
+@keyframes bs-leaf-stir { to { translate: 3px -2px; } }
+.bs-banyan-lantern { animation: bs-swing 2.6s ease-in-out calc(var(--n) * -0.6s) infinite alternate; }
+.bs-banyan-fall { opacity: 0; animation: bs-fall 7s linear calc(var(--n) * 1.7s) infinite; }
+@keyframes bs-fall { 0% { translate: 0 0; rotate: 0deg; opacity: 0; } 10% { opacity: 1; } 100% { translate: -40px 170px; rotate: 180deg; opacity: 0; } }
+.bs-banyan-birds { animation: bs-birds 22s linear infinite; }
+@keyframes bs-birds { from { translate: -120px 70px; } to { translate: 1350px 40px; } }
+.bs-banyan-bird { animation: bs-flap 0.5s ease-in-out calc(var(--n) * -0.1s) infinite alternate; }
+@keyframes bs-flap { to { scale: 1 0.4; } }
+.bs-rule-roots { display: flex; justify-content: space-around; height: 42px; border-top: 8px solid #00796C; }
+.bs-rule-roots span { width: 4px; background: var(--bs-navy); transform-origin: 50% 0; animation: bs-root-div 5s ease-in-out calc(var(--i) * 0.25s) infinite; }
+@keyframes bs-root-div { 0% { scale: 1 0; } 30%, 80% { scale: 1 1; } 100% { scale: 1 0; } }
+
+/* ── AA · Clockwork ── each gear's period is set from its teeth in the markup. */
+.bs-gear { animation: bs-gear var(--period) linear infinite; }
+@keyframes bs-gear { to { rotate: calc(var(--dir) * 360deg); } }
+.bs-clock-pendulum { animation: bs-pendulum 2s ease-in-out infinite alternate; }
+@keyframes bs-pendulum { from { rotate: -9deg; } to { rotate: 9deg; } }
+.bs-clock-anchor { animation: bs-anchor 2s ease-in-out infinite alternate; }
+@keyframes bs-anchor { from { rotate: 8deg; } to { rotate: -8deg; } }
+.bs-rule-gears { display: flex; justify-content: space-between; gap: 4px; overflow: hidden; }
+.bs-rule-gears svg { flex: none; width: 28px; height: 28px; }
+
+/* ── AB · Orbit ── */
+.bs-orbit-path { animation: bs-orbit var(--period) linear var(--delay) infinite; }
+@keyframes bs-orbit { from { rotate: -44deg; } to { rotate: 44deg; } }
+.bs-orbit-blink { animation: bs-blink-light 1.2s steps(2) infinite; }
+@keyframes bs-blink-light { 50% { opacity: 0.2; } }
+.bs-orbit-comet { opacity: 0; rotate: 18deg; animation: bs-comet 11s ease-in 3s infinite; }
+@keyframes bs-comet { 0% { translate: -200px 40px; opacity: 0; } 3% { opacity: 1; } 14% { translate: 500px 270px; opacity: 0; } 100% { translate: 500px 270px; opacity: 0; } }
+.bs-orbit-land { animation: bs-land 80s linear infinite; }
+@keyframes bs-land { to { translate: -1400px 0; } }
+.bs-orbit-ring { opacity: 0; animation: bs-star-ring 3.6s ease-out calc(var(--n) * 1.2s) infinite; }
+.bs-orbit-dish { animation: bs-dish 6s ease-in-out infinite alternate; }
+@keyframes bs-dish { from { rotate: -24deg; } to { rotate: 24deg; } }
+.bs-orbit-spin { animation: bs-spin 9s linear infinite; }
+.bs-rule-orbit { position: relative; height: 44px; overflow: hidden; container-type: inline-size; }
+.bs-rule-orbit::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 2px; background: repeating-linear-gradient(90deg, #9FB3C2 0 8px, transparent 8px 14px); }
+.bs-rule-orbit svg { position: absolute; top: 4px; left: 0; width: 66px; animation: bs-orbit-across 12s linear infinite; }
+@keyframes bs-orbit-across { from { translate: -80px 0; } to { translate: 100cqw 0; } }
+
+/* ── AC · Library ── */
+.bs-lib-return { animation: bs-return 9s cubic-bezier(0.34, 1.4, 0.64, 1) calc(var(--n) * 1.5s) infinite; }
+@keyframes bs-return { 0% { translate: 0 -70px; opacity: 0; } 6% { opacity: 1; } 12%, 88% { translate: 0 0; opacity: 1; } 96%, 100% { translate: 0 -70px; opacity: 0; } }
+.bs-lib-ladder { animation: bs-ladder 16s ease-in-out infinite alternate; }
+@keyframes bs-ladder { to { translate: 250px 0; } }
+.bs-lib-card { translate: 0 18px; }
+.bs-lib-drawer { animation: bs-drawer 7s ease-in-out calc(var(--n) * 3.5s) infinite; }
+@keyframes bs-drawer { 0%, 15%, 80%, 100% { translate: 0 0; } 25%, 65% { translate: 0 5px; } }
+.bs-lib-drawer .bs-lib-card { animation: bs-catalog-card 7s ease-in-out calc(var(--n) * 3.5s) infinite; }
+@keyframes bs-catalog-card { 0%, 20%, 80%, 100% { translate: 0 18px; } 35%, 65% { translate: 0 -16px; } }
+.bs-lib-light { opacity: 0.18; animation: bs-lamp-glow 4s ease-in-out infinite alternate; }
+@keyframes bs-lamp-glow { to { opacity: 0.3; } }
+.bs-lib-mote { animation: bs-mote 6s ease-in-out calc(var(--n) * -1.5s) infinite alternate; }
+@keyframes bs-mote { to { translate: 6px -14px; opacity: 0.3; } }
+.bs-rule-books { display: flex; align-items: flex-end; gap: 2px; height: 40px; }
+.bs-rule-books span {
+  flex: 1; background: var(--c); box-shadow: inset 0 0 0 1px rgba(10, 37, 64, 0.18);
+  clip-path: polygon(0 0, 70% 0, 100% 20%, 100% 100%, 0 100%);
+}
+.bs-rule-books span.is-return { animation: bs-return-div 6s cubic-bezier(0.34, 1.4, 0.64, 1) calc(var(--n) * 3s) infinite; }
+@keyframes bs-return-div { 0% { translate: 0 -40px; opacity: 0; } 10%, 85% { translate: 0 0; opacity: 1; } 100% { translate: 0 -40px; opacity: 0; } }
+
+/* The worlds in the footer slot. */
+.bs-fw--world { background: #FFFFFF; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bs-banyan-root, .bs-banyan-trunk { scale: 1 1; opacity: 1; }
+  .bs-reef-school--a { translate: 220px 140px; } .bs-reef-school--b { translate: 1000px 230px; }
+  .bs-sky-const polyline { stroke-dashoffset: 0; }
+  .bs-sky-boat { translate: 420px 354px; }
+  .bs-banyan-birds { translate: 900px 60px; }
+  .bs-river-swim, .bs-banyan-fall, .bs-orbit-comet, .bs-sky-shoot, .bs-reef-bubble { opacity: 0; }
+  .bs-orbit-path { rotate: -12deg; }
+}
+
+/* ══ Round six (2026-10-06): five octopus worlds and a friendlier octopus ══ */
+.bs-nur *, .bs-sta *, .bs-map *, .bs-con *, .bs-keep *, .bs-octo2 g { transform-box: view-box; }
+.bs-frame .bs-look { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); margin: 0; flex-wrap: nowrap; }
+/* The conductor's arms keep one time. */
+.bs-octo2-sync { animation: bs-curl 2s ease-in-out calc(var(--k) * -0.15s) infinite; }
+
+/* ── AD · Coral Nursery ── fragments grow under their tags; one is carried home. */
+.bs-nur-grow { scale: 0.45; animation: bs-nur-grow 14s ease-in-out calc(var(--n) * -0.8s) infinite; }
+@keyframes bs-nur-grow { 0% { scale: 0.4; opacity: 0; } 6% { opacity: 1; } 80%, 90% { scale: 1; opacity: 1; } 96%, 100% { scale: 1; opacity: 0; } }
+.bs-nur-tag { animation: bs-tag 2.4s ease-in-out calc(var(--n) * -0.3s) infinite alternate; }
+@keyframes bs-tag { from { rotate: -8deg; } to { rotate: 8deg; } }
+.bs-nur-carry { opacity: 0; animation: bs-nur-carry 9s ease-in-out infinite; }
+@keyframes bs-nur-carry {
+  0% { translate: 500px 210px; opacity: 0; }
+  8% { opacity: 1; }
+  40% { translate: 720px 90px; }
+  75%, 85% { translate: 1170px 330px; opacity: 1; }
+  92%, 100% { translate: 1170px 330px; opacity: 0; }
+}
+.bs-nur-plant { opacity: 0; animation: bs-plant 9s ease-out infinite; }
+@keyframes bs-plant { 0%, 74% { opacity: 0; scale: 0.5; } 76% { opacity: 0.9; } 90%, 100% { opacity: 0; scale: 2; } }
+.bs-nur-octo { animation: bs-mow-bob 5s ease-in-out infinite; }
+.bs-nur-mote { animation: bs-mote 6s ease-in-out calc(var(--n) * -1.5s) infinite alternate; }
+.bs-rule-nursery { display: flex; justify-content: space-between; align-items: flex-end; height: 34px; border-bottom: 4px solid #1E4A72; padding: 0 8px; }
+.bs-rule-nursery span {
+  width: 10px; height: 26px; background: var(--bs-bright); transform-origin: 50% 100%;
+  clip-path: polygon(30% 0, 70% 0, 70% 40%, 100% 20%, 100% 50%, 70% 70%, 70% 100%, 30% 100%, 30% 60%, 0 40%, 0 10%, 30% 30%);
+  animation: bs-sprout-loop 7s ease-out calc(var(--i) * -0.6s) infinite;
+}
+.bs-rule-nursery span:nth-child(3n) { background: var(--bs-mint); }
+
+/* ── AE · Research Station ── ticks land in order, then the capsule goes up. */
+.bs-sta-light { animation: bs-blink-light 2.4s steps(2) calc(var(--n) * 0.6s) infinite; }
+.bs-sta-capsule { opacity: 0; animation: bs-capsule 6s ease-in infinite; }
+@keyframes bs-capsule { 0%, 55% { translate: 0 0; opacity: 0; } 58% { opacity: 1; } 95% { translate: 0 -190px; opacity: 1; } 100% { translate: 0 -200px; opacity: 0; } }
+.bs-sta-scan { animation: bs-scan-y 2s ease-in-out infinite alternate; }
+@keyframes bs-scan-y { to { translate: 0 30px; } }
+.bs-sta-tick { stroke-dasharray: 1; stroke-dashoffset: 1; animation: bs-tick 6s ease-out calc(var(--n) * 0.5s) infinite; }
+@keyframes bs-tick { 0%, 5% { stroke-dashoffset: 1; } 12%, 88% { stroke-dashoffset: 0; } 96%, 100% { stroke-dashoffset: 1; } }
+.bs-sta-label { font: 600 11px var(--font-inter), system-ui, sans-serif; fill: var(--bs-navy, #0A2540); }
+.bs-rule-checks { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.bs-rule-checks li {
+  display: flex; align-items: center; gap: 8px; padding: 7px 12px; font-size: 0.8rem; font-weight: 600; color: var(--bs-navy); background: #EEF3F6;
+  clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+}
+.bs-rule-checks li span {
+  width: 14px; height: 14px; background: #D5E1E8;
+  clip-path: polygon(29% 0, 71% 0, 100% 29%, 100% 71%, 71% 100%, 29% 100%, 0 71%, 0 29%);
+  animation: bs-check-dot 6s ease-out calc(var(--i) * 0.5s) infinite both;
+}
+@keyframes bs-check-dot { 0%, 5% { background: #D5E1E8; } 12%, 88% { background: var(--bs-teal); } 96%, 100% { background: #D5E1E8; } }
+
+/* ── AF · Cartographer ── the sub surveys, the trace and the chart draw together. */
+.bs-map-sub { animation: bs-survey 16s ease-in-out infinite alternate; }
+@keyframes bs-survey { from { translate: -60px 0; } to { translate: 160px 0; } }
+.bs-map-sweep { opacity: 0.12; animation: bs-sweep 3s ease-in-out infinite alternate; }
+@keyframes bs-sweep { from { rotate: -30deg; } to { rotate: 30deg; } }
+.bs-map-ping { opacity: 0; animation: bs-star-ring 3s ease-out calc(var(--n) * 1s) infinite; }
+.bs-map-prop { animation: bs-prop 0.3s linear infinite alternate; }
+@keyframes bs-prop { to { scale: 1 0.3; } }
+.bs-map-trace, .bs-map-contour { stroke-dasharray: 1; stroke-dashoffset: 1; animation: bs-trace 16s linear calc(var(--n, 0) * 0.6s) infinite; }
+@keyframes bs-trace { 0% { stroke-dashoffset: 1; opacity: 1; } 80%, 94% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+.bs-map-pin { opacity: 0; animation: bs-pin 16s ease-out calc(4s + var(--n) * 3.5s) infinite; }
+@keyframes bs-pin { 0% { opacity: 0; translate: 0 -14px; } 4%, 70% { opacity: 1; translate: 0 0; } 76%, 100% { opacity: 0; translate: 0 0; } }
+.bs-rule-sonar { position: relative; height: 44px; overflow: hidden; }
+.bs-rule-sonar i { position: absolute; left: 0; right: 0; top: 50%; height: 2px; background: #D5E1E8; }
+.bs-rule-sonar span {
+  position: absolute; left: 50%; top: 50%; width: 30px; height: 30px; margin: -15px 0 0 -15px; border: 2px solid var(--bs-teal);
+  rotate: 45deg; opacity: 0; animation: bs-sonar-ring 3s ease-out calc(var(--n) * 1s) infinite;
+}
+@keyframes bs-sonar-ring { 0% { scale: 0.3; opacity: 0.9; } 100% { scale: 6; opacity: 0; } }
+
+/* ── AG · Conductor ── every fish moves through the same three formations. */
+.bs-con-fish { animation: bs-formation 12s ease-in-out calc(var(--i) * 0.03s) infinite; }
+@keyframes bs-formation {
+  0%, 22% { translate: var(--ax) var(--ay); }
+  33%, 55% { translate: var(--bx) var(--by); }
+  66%, 88% { translate: var(--cx) var(--cy); }
+  100% { translate: var(--ax) var(--ay); }
+}
+.bs-con-kelp { animation: bs-sway 4s ease-in-out calc(var(--n) * -1s) infinite alternate; }
+.bs-rule-stave {
+  display: flex; justify-content: space-around; height: 44px;
+  background: repeating-linear-gradient(180deg, transparent 0 7px, rgba(10, 37, 64, 0.18) 7px 8px);
+}
+.bs-rule-stave span {
+  width: 13px; height: 9px; margin-top: calc(var(--row) * 8px + 3px); background: var(--bs-navy);
+  clip-path: polygon(29% 0, 71% 0, 100% 29%, 100% 71%, 71% 100%, 29% 100%, 0 71%, 0 29%);
+  animation: bs-note 2.4s ease-in-out calc(var(--i) * 0.15s) infinite;
+}
+@keyframes bs-note { 0%, 100% { background: var(--bs-navy); translate: 0 0; } 50% { background: var(--bs-teal); translate: 0 -4px; } }
+
+/* ── AH · Lighthouse Keeper ── */
+.bs-keep-boat { animation: bs-keep-sail 30s linear infinite; }
+.bs-keep-boat--1 { animation-duration: 38s; animation-delay: -14s; }
+.bs-keep-boat--2 { animation-duration: 34s; animation-delay: -24s; }
+@keyframes bs-keep-sail { from { translate: -80px 238px; } to { translate: 1300px 238px; } }
+.bs-keep-school { animation: bs-keep-school 24s linear infinite; }
+@keyframes bs-keep-school { from { translate: -150px 330px; } to { translate: 1350px 300px; } }
+.bs-keep-log { animation: bs-pad 3s ease-in-out calc(var(--n) * -1s) infinite alternate; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bs-nur-grow { scale: 1; opacity: 1; }
+  .bs-sta-tick, .bs-map-trace, .bs-map-contour { stroke-dashoffset: 0; }
+  .bs-map-pin { opacity: 1; }
+  .bs-con-fish { translate: var(--bx) var(--by); }
+  .bs-keep-boat--0 { translate: 300px 238px; } .bs-keep-boat--1 { translate: 900px 238px; } .bs-keep-boat--2 { display: none; }
+  .bs-keep-school { translate: 300px 320px; }
+}
+.bs-frame--night .bs-chips button.is-on { background: var(--bs-teal); color: #fff; }
+
+/* ══ Round seven (2026-10-06): the lighthouse and the octopus, four neutral octopuses ══ */
+.bs-build *, .bs-harbor *, .bs-storm *, .bs-vault *, .bs-coast *, .bs-octo3 g, .bs-octo3 polygon { transform-box: view-box; }
+.bs-octo3-lamp { animation: bs-star-pulse 2.4s ease-in-out infinite; }
+
+/* ── AI · The Builder ── one build when the scene is in view, then it stands lit. */
+.bs-build-piece { opacity: 0; animation: bs-build 1.1s cubic-bezier(0.34, 1.3, 0.64, 1) var(--d) both paused; }
+@keyframes bs-build {
+  0% { translate: var(--sx) var(--sy); opacity: 0; scale: 0.7; }
+  12% { opacity: 1; }
+  65% { translate: 0 -16px; scale: 1; }
+  100% { translate: 0 0; opacity: 1; scale: 1; }
+}
+.bs-build-lamp { fill: #2D5677; animation: bs-light-on 0.8s ease-out var(--d) both paused; }
+@keyframes bs-light-on { to { fill: #2BD8BB; } }
+.bs-build-after { opacity: 0; animation: bs-appear 1s ease-out var(--d) both paused; }
+@keyframes bs-appear { to { opacity: 1; } }
+.is-in .bs-build-piece, .is-in .bs-build-lamp, .is-in .bs-build-after { animation-play-state: running; }
+.bs-build-boat { animation-name: bs-build-sail; }
+@keyframes bs-build-sail { from { translate: -80px 300px; } to { translate: 1300px 300px; } }
+
+/* ── AJ · Harbor Master ── */
+.bs-harbor-arm { animation: bs-arm-flow 2s linear calc(var(--k) * -0.5s) infinite; }
+@keyframes bs-arm-flow { to { stroke-dashoffset: -22; } }
+.bs-harbor-boat { opacity: 0; animation: bs-harbor-boat 16s ease-in-out calc(var(--k) * 4s) infinite; }
+@keyframes bs-harbor-boat {
+  0% { translate: 380px 262px; opacity: 0; }
+  5% { opacity: 1; }
+  50%, 85% { translate: var(--bx) 262px; opacity: 1; }
+  92%, 100% { translate: var(--bx) 262px; opacity: 0; }
+}
+.bs-harbor-buoy { opacity: 0.35; animation: bs-buoy 16s ease-in-out calc(var(--k) * 4s) infinite; }
+@keyframes bs-buoy { 0%, 45%, 92%, 100% { opacity: 0.35; scale: 1; } 50% { opacity: 1; scale: 1.4; } 55%, 85% { opacity: 1; scale: 1; } }
+.bs-harbor-sign { font: 700 10px var(--font-inter), system-ui, sans-serif; fill: #0A2540; }
+.bs-rule-buoys { display: flex; justify-content: space-around; align-items: center; height: 30px; background: linear-gradient(transparent 46%, #D5E1E8 46% 54%, transparent 54%); }
+.bs-rule-buoys span {
+  width: 16px; height: 16px; background: var(--bs-bright);
+  clip-path: polygon(29% 0, 71% 0, 100% 29%, 100% 71%, 71% 100%, 29% 100%, 0 71%, 0 29%);
+  animation: bs-buoy-div 4s ease-in-out calc(var(--k) * 1s) infinite;
+}
+@keyframes bs-buoy-div { 0%, 100% { opacity: 0.3; scale: 1; } 10% { opacity: 1; scale: 1.3; } 40% { opacity: 1; scale: 1; } }
+
+/* ── AK · Sentinel ── */
+.bs-storm-flash { opacity: 0; animation: bs-flash 7s linear infinite; }
+@keyframes bs-flash { 0%, 60% { opacity: 0; } 61% { opacity: 0.35; } 62% { opacity: 0; } 63.5% { opacity: 0.25; } 65%, 100% { opacity: 0; } }
+.bs-storm-bolt { opacity: 0; animation: bs-bolt 7s linear infinite; }
+@keyframes bs-bolt { 0%, 60% { opacity: 0; } 61%, 62.5% { opacity: 1; } 63%, 100% { opacity: 0; } }
+.bs-storm-cloud { animation: bs-cloud-drift calc(50s + var(--n) * 10s) linear calc(var(--n) * -14s) infinite; }
+.bs-storm-waves { animation: bs-storm-wave calc(5s + var(--n) * 1.5s) linear infinite; }
+@keyframes bs-storm-wave { 0% { translate: 0 0; } 50% { translate: -75px -6px; } 100% { translate: -150px 0; } }
+.bs-storm-boat { opacity: 0; animation: bs-storm-boat 18s ease-in-out infinite; }
+@keyframes bs-storm-boat { 0% { translate: -80px 292px; opacity: 0; } 5% { opacity: 1; } 85% { translate: 830px 292px; opacity: 1; } 92%, 100% { translate: 860px 292px; opacity: 0; } }
+.bs-storm-rock { animation: bs-storm-rock 1.6s ease-in-out infinite alternate; }
+@keyframes bs-storm-rock { from { rotate: -10deg; translate: 0 4px; } to { rotate: 10deg; translate: 0 -6px; } }
+.bs-storm-spray { opacity: 0; animation: bs-spray 2.2s ease-out calc(var(--n) * 0.15s) infinite; }
+@keyframes bs-spray { 0% { translate: 0 0; opacity: 0; } 10% { opacity: 1; } 100% { translate: var(--sx) -60px; opacity: 0; } }
+.bs-storm-rain { animation: bs-rain 1.2s linear infinite; }
+@keyframes bs-rain { to { translate: 0 560px; } }
+.bs-rule-storm .bs-rule-sea-beam { animation-duration: 3s; }
+
+/* ── AL · The Vault ── open, file, close, turn, bolt, hold, unbolt, open. */
+.bs-vault-door { animation: bs-vault-door 12s ease-in-out infinite; }
+@keyframes bs-vault-door { 0%, 30% { scale: 0.12 1; } 40%, 88% { scale: 1 1; } 96%, 100% { scale: 0.12 1; } }
+.bs-vault-file { opacity: 0; animation: bs-vault-file 12s ease-in-out infinite; }
+@keyframes bs-vault-file { 0%, 6% { translate: 170px -40px; opacity: 0; } 10% { opacity: 1; } 26%, 88% { translate: 0 0; opacity: 1; } 96%, 100% { translate: 0 0; opacity: 0; } }
+.bs-vault-wheel { animation: bs-vault-wheel 12s ease-in-out infinite; }
+@keyframes bs-vault-wheel { 0%, 40% { rotate: 0deg; } 50%, 86% { rotate: 180deg; } 92%, 100% { rotate: 0deg; } }
+.bs-vault-bolt { animation: bs-vault-bolt 12s ease-out calc(var(--n) * 0.12s) infinite; }
+@keyframes bs-vault-bolt { 0%, 50% { fill: #2D5677; } 54%, 86% { fill: #00D4AA; } 90%, 100% { fill: #2D5677; } }
+.bs-vault-boat { animation-name: bs-vault-sail; }
+@keyframes bs-vault-sail { from { translate: -80px 222px; } to { translate: 1300px 222px; } }
+.bs-rule-bolts { display: flex; justify-content: center; align-items: center; gap: 14px; height: 28px; }
+.bs-rule-bolts span { width: 18px; height: 18px; background: #D5E1E8; animation: bs-bolt-div 6s ease-out calc(var(--n) * 0.15s) infinite; }
+@keyframes bs-bolt-div { 0%, 10%, 90%, 100% { background: #D5E1E8; } 18%, 80% { background: var(--bs-teal); } }
+
+/* ── AM · Coast of Lights ── the pulse runs out; each light flares as it arrives. */
+.bs-coast-pulse { stroke-dasharray: 0.08 0.92; animation: bs-coast-pulse 4.4s linear infinite; }
+@keyframes bs-coast-pulse { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.bs-coast-glow { opacity: 0; animation: bs-coast-glow 4.4s ease-out calc(var(--d) * 2.7) infinite; }
+@keyframes bs-coast-glow { 0% { opacity: 0.5; scale: 0.6; } 60%, 100% { opacity: 0; scale: 1.7; } }
+.bs-coast-boat { animation: bs-coast-boat 40s linear infinite; }
+@keyframes bs-coast-boat { from { translate: -80px 286px; } to { translate: 1300px 286px; } }
+.bs-rule-lights { display: flex; justify-content: space-between; align-items: center; height: 28px; background: linear-gradient(transparent 46%, #1E4A72 46% 54%, transparent 54%); }
+.bs-rule-lights span { width: 16px; height: 16px; background: #2D5677; animation: bs-coast-div 4.4s ease-out var(--d) infinite; }
+@keyframes bs-coast-div { 0% { background: #2BD8BB; scale: 1.3; } 40%, 100% { background: #2D5677; scale: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .bs-build-piece, .bs-build-after { opacity: 1; translate: 0 0; scale: 1; }
+  .bs-build-lamp { fill: #2BD8BB; }
+  .bs-harbor-boat { opacity: 1; translate: var(--bx) 262px; }
+  .bs-harbor-buoy { opacity: 1; }
+  .bs-storm-boat { opacity: 1; translate: 600px 292px; }
+  .bs-vault-door { scale: 1 1; }
+  .bs-vault-bolt { fill: #00D4AA; }
+  .bs-vault-file { opacity: 1; }
+  .bs-storm-rain, .bs-storm-flash, .bs-storm-bolt { display: none; }
+}
+
+/* ══ Round eight (2026-10-06): the octopus alone, one job per world, all abstract ══ */
+.bs-asm *, .bs-insp *, .bs-kp *, .bs-guide *, .bs-cn * { transform-box: view-box; }
+
+/* ── AN · Assemble ── eight sides fly in, the octagon fills, a far light answers. */
+.bs-asm-side { opacity: 0; animation: bs-asm-side 16s cubic-bezier(0.34, 1.2, 0.64, 1) calc(var(--k) * 0.9s) infinite both; }
+@keyframes bs-asm-side {
+  0% { translate: var(--sx) var(--sy); rotate: -40deg; scale: 0.6; opacity: 0; }
+  2% { opacity: 1; }
+  7%, 90% { translate: 0 0; rotate: 0deg; scale: 1; opacity: 1; }
+  96%, 100% { translate: 0 0; opacity: 0; }
+}
+.bs-asm-fill { opacity: 0; animation: bs-asm-fill 16s ease infinite; }
+@keyframes bs-asm-fill { 0%, 46% { opacity: 0; } 50% { opacity: 0.55; } 58%, 86% { opacity: 0.22; } 92%, 100% { opacity: 0; } }
+.bs-asm-ripple { opacity: 0; animation: bs-asm-ripple 16s ease-out infinite; }
+@keyframes bs-asm-ripple { 0%, 47% { opacity: 0; scale: 1; } 48% { opacity: 0.9; } 60%, 100% { opacity: 0; scale: 1.5; } }
+.bs-asm-far { opacity: 0; animation: bs-asm-far 16s ease infinite; }
+@keyframes bs-asm-far { 0%, 50% { opacity: 0; } 54%, 88% { opacity: 1; } 94%, 100% { opacity: 0; } }
+
+/* ── AO · Inspect ── in on the current, squared in the gauge, marked, set in a row. */
+.bs-insp-flow { animation: bs-flow-x calc(6s + var(--n) * 2s) linear infinite; }
+@keyframes bs-flow-x { to { translate: 170px 0; } }
+.bs-insp-scan { animation: bs-insp-scan 1.6s ease-in-out infinite alternate; }
+@keyframes bs-insp-scan { to { translate: 0 78px; } }
+.bs-insp-piece { opacity: 0; animation: bs-insp 15s ease-in-out calc(var(--i) * 3s) infinite both; }
+@keyframes bs-insp {
+  0% { translate: -80px var(--gy); rotate: var(--rot); opacity: 0; }
+  4% { opacity: 1; }
+  30% { translate: calc(var(--gx) - 60px) var(--gy); rotate: var(--rot); }
+  36% { translate: var(--gx) var(--gy); rotate: var(--rot); }
+  44%, 50% { translate: var(--gx) var(--gy); rotate: 0deg; }
+  66%, 92% { translate: var(--tx) 330px; rotate: 0deg; opacity: 1; }
+  98%, 100% { translate: var(--tx) 330px; rotate: 0deg; opacity: 0; }
+}
+.bs-insp-mark { opacity: 0; transform-origin: 16px -16px; animation: bs-insp-mark 15s ease-out calc(var(--i) * 3s) infinite both; }
+@keyframes bs-insp-mark { 0%, 46% { opacity: 0; scale: 0.4; } 50% { opacity: 1; scale: 1.2; } 54%, 92% { opacity: 1; scale: 1; } 98%, 100% { opacity: 0; } }
+
+/* ── AP · Keep ── piece in, cell glows, lid closes, thread links it to the last. */
+.bs-kp-shard { opacity: 0; animation: bs-kp-shard 24s ease-in-out calc(var(--k) * 2.2s) infinite both; }
+@keyframes bs-kp-shard { 0% { translate: var(--fx) var(--fy); scale: 0.6; opacity: 0; } 2% { opacity: 1; } 6% { translate: 0 0; scale: 1; opacity: 1; } 7%, 100% { translate: 0 0; opacity: 0; } }
+.bs-kp-glow { opacity: 0; animation: bs-kp-glow 24s ease-out calc(var(--k) * 2.2s) infinite both; }
+@keyframes bs-kp-glow { 0%, 5.5% { opacity: 0; } 7% { opacity: 0.9; } 11%, 90% { opacity: 0.6; } 95%, 100% { opacity: 0; } }
+.bs-kp-lid { opacity: 0; animation: bs-kp-lid 24s ease-out calc(var(--k) * 2.2s) infinite both; }
+@keyframes bs-kp-lid { 0%, 6.5% { opacity: 0; scale: 1.4; } 9%, 90% { opacity: 1; scale: 1; } 95%, 100% { opacity: 0; scale: 1; } }
+.bs-kp-thread { stroke-dasharray: 1; stroke-dashoffset: 1; animation: bs-kp-thread 24s ease-in-out calc(var(--k) * 2.2s) infinite both; }
+@keyframes bs-kp-thread { 0%, 7% { stroke-dashoffset: 1; opacity: 1; } 11%, 90% { stroke-dashoffset: 0; opacity: 1; } 95%, 100% { stroke-dashoffset: 0; opacity: 0; } }
+
+/* ── AQ · Guide ── points move by script; the far light brightens while they run to it. */
+.bs-guide-far { opacity: 0.25; transition: opacity 1.2s, scale 1.2s; }
+.bs-guide.is-flowing .bs-guide-far { opacity: 0.9; scale: 1.6; }
+.bs-guide-dot { animation: bs-twinkle 3s ease-in-out calc(var(--n) * -0.19s) infinite; }
+
+/* ── AR · Connect ── hub to inner arc, inner to outer, across, then pulses. */
+.bs-cn-e1, .bs-cn-e2, .bs-cn-e3 { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.bs-cn-e1 { animation: bs-cn-e1 14s ease-out calc(var(--k) * 0.06s) infinite; }
+.bs-cn-e2 { animation: bs-cn-e2 14s ease-out calc(var(--k) * 0.05s) infinite; }
+.bs-cn-e3 { animation: bs-cn-e3 14s ease-out calc(var(--k) * 0.05s) infinite; }
+@keyframes bs-cn-e1 { 0%, 2% { stroke-dashoffset: 1; opacity: 1; } 12%, 88% { stroke-dashoffset: 0; opacity: 1; } 94%, 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes bs-cn-e2 { 0%, 16% { stroke-dashoffset: 1; opacity: 1; } 28%, 88% { stroke-dashoffset: 0; opacity: 1; } 94%, 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes bs-cn-e3 { 0%, 32% { stroke-dashoffset: 1; opacity: 1; } 44%, 88% { stroke-dashoffset: 0; opacity: 1; } 94%, 100% { stroke-dashoffset: 0; opacity: 0; } }
+.bs-cn .bs-cn-n1, .bs-cn .bs-cn-n2 { transform-box: fill-box; transform-origin: 50% 50%; fill: #1E4A72; stroke: #2BD8BB; stroke-width: 2; }
+.bs-cn-n1 { animation: bs-cn-n1 14s ease-out calc(var(--k) * 0.06s) infinite; }
+.bs-cn-n2 { animation: bs-cn-n2 14s ease-out calc(var(--k) * 0.05s) infinite; }
+@keyframes bs-cn-n1 { 0%, 10% { fill: #1E4A72; scale: 1; } 13% { fill: #2BD8BB; scale: 1.25; } 16%, 88% { fill: #00A896; scale: 1; } 94%, 100% { fill: #1E4A72; } }
+@keyframes bs-cn-n2 { 0%, 26% { fill: #1E4A72; scale: 1; } 29% { fill: #2BD8BB; scale: 1.25; } 32%, 88% { fill: #00796C; scale: 1; } 94%, 100% { fill: #1E4A72; } }
+.bs-cn-pulse { stroke-dasharray: 0.1 0.9; stroke-dashoffset: 1; opacity: 0; animation: bs-cn-move 1.6s linear calc(var(--k) * 0.2s) infinite, bs-cn-show 14s linear infinite; }
+.bs-cn-pulse--late { animation-delay: calc(var(--k) * 0.13s + 0.8s), 0s; }
+@keyframes bs-cn-move { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes bs-cn-show { 0%, 46% { opacity: 0; } 50%, 86% { opacity: 1; } 90%, 100% { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .bs-asm-side, .bs-asm-far, .bs-insp-piece, .bs-kp-glow, .bs-kp-lid { opacity: 1; }
+  .bs-asm-fill { opacity: 0.22; }
+  .bs-insp-piece { translate: var(--tx) 330px; }
+  .bs-insp-mark { opacity: 1; }
+  .bs-kp-thread, .bs-cn-e1, .bs-cn-e2, .bs-cn-e3 { stroke-dashoffset: 0; }
+  .bs-cn .bs-cn-n1, .bs-cn .bs-cn-n2 { fill: #00A896; }
+}
+
+/* ══ Round nine (2026-10-06): several of the original octopuses, one shared thing ══ */
+.bs-opo *, .bs-relay *, .bs-onereef * { transform-box: view-box; }
+
+/* ── AS · Octopolis ── pieces arrive from different neighbours; the core answers each; one is borrowed and returned. */
+.bs-opo-core { opacity: 0.14; animation: bs-opo-core 4s ease-in-out infinite alternate; }
+@keyframes bs-opo-core { to { opacity: 0.26; scale: 1.05; } }
+.bs-opo-peek { animation: bs-blink 4s ease-in-out calc(var(--n) * -1.3s) infinite; }
+.bs-opo-add { opacity: 0; animation: bs-opo-add 16s ease-in-out var(--t) infinite both; }
+@keyframes bs-opo-add {
+  0% { translate: var(--fx) var(--fy); opacity: 0; }
+  2% { opacity: 1; }
+  8%, 88% { translate: 0 0; opacity: 1; }
+  94%, 100% { translate: 0 0; opacity: 0; }
+}
+.bs-opo-ring { opacity: 0; animation: bs-opo-ring 16s ease-out calc(var(--t) + 1.3s) infinite both; }
+@keyframes bs-opo-ring { 0% { opacity: 0.8; scale: 1; } 12%, 100% { opacity: 0; scale: 2; } }
+.bs-opo-borrow { animation: bs-opo-borrow 16s ease-in-out infinite; }
+@keyframes bs-opo-borrow { 0%, 55% { translate: 0 0; } 63%, 80% { translate: var(--bx) var(--by); } 90%, 100% { translate: 0 0; } }
+
+/* ── AT · The Relay ── the piece follows the route; its layers switch on at each handoff. */
+.bs-relay-piece { opacity: 0; animation: bs-relay 15s ease-in-out infinite; }
+@keyframes bs-relay {
+  0% { translate: var(--x0) var(--y0); opacity: 0; }
+  3% { opacity: 1; }
+  7% { translate: var(--x1) var(--y1); }
+  14%, 18% { translate: var(--x2) var(--y2); }
+  25% { translate: var(--x3) var(--y3); }
+  32%, 36% { translate: var(--x4) var(--y4); }
+  43% { translate: var(--x5) var(--y5); }
+  50%, 54% { translate: var(--x6) var(--y6); }
+  61% { translate: var(--x7) var(--y7); }
+  68%, 72% { translate: var(--x8) var(--y8); }
+  79% { translate: var(--x9) var(--y9); }
+  86%, 94% { translate: var(--x10) var(--y10); opacity: 1; }
+  100% { translate: var(--x10) var(--y10); opacity: 0; }
+}
+.bs-relay-l0 { animation: bs-relay-l0 15s step-end infinite; }
+.bs-relay-l1 { opacity: 0; animation: bs-relay-l1 15s step-end infinite; }
+.bs-relay-l2 { opacity: 0; animation: bs-relay-l2 15s step-end infinite; }
+.bs-relay-l3 { opacity: 0; animation: bs-relay-l3 15s step-end infinite; }
+.bs-relay-l4 { opacity: 0; animation: bs-relay-l4 15s step-end infinite; }
+@keyframes bs-relay-l0 { 0% { opacity: 1; } 16%, 100% { opacity: 0; } }
+@keyframes bs-relay-l1 { 0% { opacity: 0; } 16%, 100% { opacity: 1; } }
+@keyframes bs-relay-l2 { 0% { opacity: 0; } 34%, 100% { opacity: 1; } }
+@keyframes bs-relay-l3 { 0% { opacity: 0; } 52%, 100% { opacity: 1; } }
+@keyframes bs-relay-l4 { 0% { opacity: 0; } 70%, 100% { opacity: 1; } }
+.bs-relay-thread { stroke-dashoffset: 1; animation: bs-relay-thread 15s ease-in-out infinite; }
+@keyframes bs-relay-thread { 0% { stroke-dashoffset: 1; opacity: 1; } 86%, 94% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+
+/* ── AU · One Reef ── branches grow in turns; the one heart beats with every step. */
+.bs-or-seg { stroke-dasharray: 1; stroke-dashoffset: 1; animation: bs-or-seg 20s ease-out var(--t) infinite both; }
+@keyframes bs-or-seg { 0% { stroke-dashoffset: 1; opacity: 1; } 3%, 90% { stroke-dashoffset: 0; opacity: 1; } 96%, 100% { stroke-dashoffset: 0; opacity: 0; } }
+.bs-or-node { scale: 0; animation: bs-or-node 20s ease-out var(--t) infinite both; }
+@keyframes bs-or-node { 0%, 2% { scale: 0; opacity: 1; } 4% { scale: 1.25; } 5.5%, 90% { scale: 1; opacity: 1; } 96%, 100% { scale: 1; opacity: 0; } }
+.bs-or-pulse { animation: bs-or-pulse 0.8s ease-out infinite; }
+@keyframes bs-or-pulse { 0% { opacity: 0.9; scale: 1; } 100% { opacity: 0; scale: 1.8; } }
+.bs-or-heart { animation: bs-or-heart 0.8s ease-in-out infinite; }
+@keyframes bs-or-heart { 0%, 100% { scale: 1; } 30% { scale: 1.18; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .bs-opo-add, .bs-relay-piece { opacity: 1; translate: 0 0; }
+  .bs-relay-piece { translate: var(--x10) var(--y10); }
+  .bs-relay-l1, .bs-relay-l2, .bs-relay-l3, .bs-relay-l4 { opacity: 1; }
+  .bs-relay-l0 { opacity: 0; }
+  .bs-relay-thread, .bs-or-seg { stroke-dashoffset: 0; }
+  .bs-or-node { scale: 1; }
+}
+
+/* Logo proposal (2026-10-06): the e stays teal, "sy" moves from ink to the
+   brand navy. Shown in the footer card of the octopus pages from round nine
+   on (BrandFooter adds .bs-fw--logo; the footer is its next sibling). */
+.bs-fw--logo ~ footer .esy-wordmark > span:last-child,
+.bs-logo-navy .esy-wordmark > span:last-child { color: #0A2540 !important; }
+
+/* ══ Round ten (2026-10-06): the octopus alone, living its life (sim.tsx) ══
+   The script moves the octopus and the pieces; these rules add the small life
+   on top, keyed off the classes it sets. */
+.bs-sim * { transform-box: view-box; }
+.bs-sim-octo-inner { transition: scale 0.35s ease-out; }
+.bs-sim-octo.is-crouch .bs-sim-octo-inner { scale: 1.06 0.88; }
+.bs-sim-octo.is-walking .bs-oct-seg { animation-duration: 1.1s; }
+.bs-sim-puff rect { opacity: 0; }
+.bs-sim-item.is-placed .bs-sim-puff rect { animation: bs-sim-puff 0.9s ease-out calc(var(--k) * 0.04s) 1 both; }
+@keyframes bs-sim-puff { from { opacity: 0.9; translate: 0 0; } to { opacity: 0; translate: calc((var(--k) - 1.5) * 12px) -16px; } }
+
+/* ── AV · Mason ── the gate lights and a school swims through it when it's whole. */
+.bs-mason-glow { opacity: 0; transition: opacity 1.2s; }
+.bs-mason.is-done .bs-mason-glow { opacity: 0.3; }
+.bs-mason-school { opacity: 0; }
+.bs-mason.is-done .bs-mason-school { animation: bs-mason-school 6s ease-in-out 0.6s 1 both; }
+@keyframes bs-mason-school { 0% { translate: 640px 270px; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { translate: 1120px 260px; opacity: 0; } }
+
+/* ── AW · Den ── sand while it digs, the dark inside once walled, asleep inside. */
+.bs-den-dig rect { opacity: 0; }
+.bs-den.is-digging .bs-den-dig rect { animation: bs-dig 0.6s ease-out calc(var(--k) * 0.1s) infinite; }
+@keyframes bs-dig { from { opacity: 0.9; translate: 0 0; } to { opacity: 0; translate: calc((var(--k) - 2) * 8px) -26px; } }
+.bs-den-inside { opacity: 0; transition: opacity 0.8s; }
+.bs-den.has-walls .bs-den-inside { opacity: 1; }
+.bs-den.is-home .bs-sim-octo-inner { scale: 0.42; translate: 0 -4px; transition: scale 0.8s, translate 0.8s; }
+.bs-den-zzz polygon { opacity: 0; }
+.bs-den.is-home .bs-den-zzz polygon { animation: bs-zzz 2.4s ease-out calc(var(--n) * 0.6s) infinite; }
+@keyframes bs-zzz { 0% { opacity: 0; translate: 0 0; } 20% { opacity: 0.9; } 100% { opacity: 0; translate: 16px -40px; } }
+
+/* ── AX · Gardener ── each planted sprout grows its kelp; a school moves in at the end. */
+.bs-gard-kelp { scale: 1 0; transition: scale 3s cubic-bezier(0.16, 1, 0.3, 1); }
+.bs-gard.grow-0 .bs-gard-kelp--0, .bs-gard.grow-1 .bs-gard-kelp--1, .bs-gard.grow-2 .bs-gard-kelp--2,
+.bs-gard.grow-3 .bs-gard-kelp--3, .bs-gard.grow-4 .bs-gard-kelp--4, .bs-gard.grow-5 .bs-gard-kelp--5 { scale: 1 1; }
+.bs-gard-school { opacity: 0; }
+.bs-gard.is-done .bs-gard-school { animation: bs-gard-school 9s ease-in-out 0.4s 1 both; }
+@keyframes bs-gard-school { 0% { translate: 1300px 250px; scale: -1 1; opacity: 0; } 12% { opacity: 1; } 60% { translate: 820px 280px; scale: -1 1; } 100% { translate: 560px 240px; scale: -1 1; opacity: 0.9; } }
+
+/* The wave line where the reef begins, drifting slowly: the edge between the
+   page and Mason's world (the gap the factory's open sky used to give). */
+.bs-reef-crests { animation: bs-crests 14s linear infinite; }
+.bs-reef-crests--back { animation-duration: 9s; animation-direction: reverse; }
+@keyframes bs-crests { to { translate: -80px 0; } }
+
+/* Under a wave line, bubbles fade out before they reach the surface. */
+.bs-reef-bubble--under { animation-name: bs-reef-bubble-under; }
+@keyframes bs-reef-bubble-under { 0% { opacity: 0; translate: 0 0; } 10% { opacity: 0.9; } 70% { opacity: 0.6; } 100% { opacity: 0; translate: 6px -170px; } }

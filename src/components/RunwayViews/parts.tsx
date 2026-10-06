@@ -29,6 +29,13 @@ export const payMode = (biz: ScopeBook): PayMode => (biz.avgPay > 0 ? 'paying' :
 
 const monthName = (period: string) => new Date(`${period}-15T12:00:00`).toLocaleDateString('en-US', { month: 'long' });
 
+/**
+ * What drains your own money each month when no pay comes in: what you spend,
+ * plus what you put into the business, less savings interest. A paycheck that
+ * has stopped isn't counted. The You column and the Personal tab both use it.
+ */
+export const personalDrain = (you: ScopeBook) => Math.round(you.avgSpend + you.avgFromYou - you.avgInterest);
+
 // ── The side cards and the bridge (B · Split) ───────────────────────────────
 
 const SCALE_MONTHS = 24; // the runway bars run to two years
@@ -38,12 +45,16 @@ export function SideCard({ side, b }: { side: Side; b: ScopeBook }) {
   const propped = side === 'business' && b.avgFromYou > 0;
   // What the business burns without the money you put in.
   const onOwnBurn = Math.round(b.avgOut - b.avgIncome);
-  const covered = b.burnMeasured && b.runwayMonths == null && !propped;
+  // A paycheck from somewhere else that has stopped: the three-month average
+  // still holds its last weeks, so measure by what drains your money now
+  // instead (the same clock as the Personal tab).
+  const lastClosed = b.months[b.months.length - 2]?.period ?? '';
+  const lastPaycheck = side === 'personal' && b.salary?.lastPeriod && b.salary.lastPeriod < lastClosed ? b.salary : null;
+  const burn = lastPaycheck ? personalDrain(b) : b.burnCents;
+  const covered = b.burnMeasured && burn <= 0 && !propped;
   // A side whose money in covers money out still has a number worth knowing: how long without that money in.
   const ifStopped = covered && side === 'personal' ? runwayAt(b.freeCents, Math.round(b.avgOut - b.avgInterest - b.avgIncome)) : null;
-  const months = !b.burnMeasured ? null : propped ? runwayAt(b.freeCents, onOwnBurn) : covered ? ifStopped : b.runwayMonths;
-  const lastPaycheck = side === 'personal' && b.salary?.lastPeriod ? b.salary : null;
-  const spendOnly = lastPaycheck ? runwayAt(b.freeCents, Math.round(b.avgSpend - b.avgInterest)) : null;
+  const months = !b.burnMeasured ? null : propped ? runwayAt(b.freeCents, onOwnBurn) : covered ? ifStopped : runwayAt(b.freeCents, burn);
   const top = b.cats.filter((c) => c.key !== 'OTHER' && c.key !== 'OWNER_PAY').slice(0, 3)
     .map((c) => ({ name: c.name, cents: b.catSeries.slice(-4, -1).reduce((n, m) => n + (m.byCat[c.key] ?? 0), 0) / Math.min(3, Math.max(1, b.catSeries.length - 1)) }));
   const low = months != null && months < FLOOR_MONTHS;
@@ -53,7 +64,7 @@ export function SideCard({ side, b }: { side: Side; b: ScopeBook }) {
   else if (propped) facts.push(['Burn on its own', <>{usdK(onOwnBurn)}<small>/mo</small></>], ['On its own', <>{mo(months)}<small> mo</small></>, low ? 'is-low' : '']);
   else if (covered && side === 'business') facts.push(['Left over', <>{usdK(-b.burnCents)}<small>/mo</small></>, 'is-up'], ['Runway', 'Covered']);
   else if (covered) facts.push(['Left over', <>{usdK(-b.burnCents)}<small>/mo</small></>, 'is-up'], ['If pay stopped', <>{mo(months)}<small> mo</small></>, low ? 'is-low' : '']);
-  else facts.push(['Burn', <>{usdK(b.burnCents)}<small>/mo</small></>], ['Runway', <>{mo(months)}<small> mo</small></>, low ? 'is-low' : '']);
+  else facts.push(['Burn', <>{usdK(burn)}<small>/mo</small></>], ['Runway', <>{mo(months)}<small> mo</small></>, low ? 'is-low' : '']);
 
   const note = !b.burnMeasured
     ? <>Not enough history yet, {b.observedDays} days in. A month of activity gives a usable rate.</>
@@ -68,7 +79,7 @@ export function SideCard({ side, b }: { side: Side; b: ScopeBook }) {
             : b.avgFromYou > 0
               ? <>Lasts to {lastsTo(months ?? 0)}, the {usd(b.avgFromYou)} a month into {AGENCY} included.</>
               : lastPaycheck
-                ? <>Your last paycheck from {lastPaycheck.label.replace(/ payroll$/, '')} came in {monthName(lastPaycheck.lastPeriod!)}. On spending alone, {mo(spendOnly)} months.</>
+                ? <>No paycheck coming in: your last one from {lastPaycheck.label.replace(/ payroll$/, '')} came in {monthName(lastPaycheck.lastPeriod!)}. At what you spend, it lasts to {lastsTo(months ?? 0)}.</>
                 : <>Lasts to {lastsTo(months ?? 0)} at this burn.</>;
 
   const firstLine = side === 'business'

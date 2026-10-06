@@ -2134,7 +2134,7 @@ export const PROTOTYPES: Prototype[] = [
       {
         n: 2,
         title: 'One page, three stages',
-        summary: 'D merges A, B and C into one page, plus the personal paycheck and safety net. Switch the sample founder from paying themselves to funding the business to just started, and the page changes shape with the money.',
+        summary: 'D merges A, B and C into one page, plus the personal paycheck and safety net. Switch the sample founder from paying themselves to funding the business to just started, and the page changes shape with the money. D is the pick: it is going live on os.esy.com/agency/runway.',
       },
     ],
     variants: [

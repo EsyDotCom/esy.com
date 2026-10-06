@@ -42,6 +42,8 @@ Clickable directions we compare by using them, not by looking at mockups. They l
 
 `sample.ts` now holds three datasets built from the same shapes, and short history is handled the API's way: rates divided by observed days, and no rate under 30 days. The shared pieces moved into `parts.tsx` (side cards, bridge, pay planner, not-yet goal, paycheck chart), and B, C and Personal B use them with the same output. Screenshots: `runway-combined-d-paying.png`, `runway-combined-d-funding.png`, `runway-combined-d-starting.png`.
 
+**D is the pick (2026-10-06).** It is going live on os.esy.com/agency/runway through a companion os.esy.com PR. The prototypes stay here. D's registry entry leaves `live` unset until that PR merges, so the index doesn't call it live before it is. Then set `live: true` and `liveHref`.
+
 ## The pattern
 
 1. **Show the real product, not a picture of it.** Don't screenshot the app and don't draw a mockup. Rebuild the page from the product's own source: same markup, same class names, and the product's stylesheets **copied verbatim** (with a provenance header saying where they came from and when). Keep any tweaks for the new setting in a separate file. The result looks like the product because it *is* the product's UI.

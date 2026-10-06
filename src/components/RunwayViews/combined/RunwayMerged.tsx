@@ -19,7 +19,7 @@ import { useState } from 'react';
 import { FlowBars } from '../charts';
 import { mo, shortDate, usd, usdK } from '../format';
 import MovedNote from '../MovedNote';
-import { Bridge, NotYetGoal, PayPlanner, PaycheckChart, SideCard, paycheckAnswer, payMode } from '../parts';
+import { Bridge, NotYetGoal, PayPlanner, PaycheckChart, SideCard, paycheckAnswer, payMode, personalDrain } from '../parts';
 import { AGENCY, FLOOR_MONTHS, bookFor, lastsTo, runwayAt, upcoming, type Scope, type ScopeBook, type Stage } from '../sample';
 import { Chapters, FreeCashHero, Insights, Keys, Mast, Rail, RunwayBody, SampleFoot, liveKeys, type Key } from '../shared';
 
@@ -82,11 +82,6 @@ function PaycheckLead({ stage, you }: { stage: Stage; you: ScopeBook }) {
     </>
   );
 }
-
-// What drains your money now when no pay comes in: what you spend, plus what
-// you put into the business, less savings interest. A paycheck that has
-// stopped isn't counted.
-const personalDrain = (you: ScopeBook) => Math.round(you.avgSpend + you.avgFromYou - you.avgInterest);
 
 /** Personal's free-cash line: how long your money lasts, by the same clock as the section under it. */
 function personalLine(you: ScopeBook, paying: boolean) {

@@ -2649,7 +2649,7 @@ export const PROTOTYPES: Prototype[] = [
       {
         n: 2,
         title: 'One page, three stages',
-        summary: 'D merges A, B and C into one page, plus the personal paycheck and safety net. Switch the sample founder from paying themselves to funding the business to just started, and the page changes shape with the money. D is the pick: it is going live on os.esy.com/agency/runway.',
+        summary: 'D merges A, B and C into one page, plus the personal paycheck and safety net. Switch the sample founder from paying themselves to funding the business to just started, and the page changes shape with the money. D shipped: it is live on os.esy.com/agency/runway.',
       },
     ],
     variants: [
@@ -2689,6 +2689,8 @@ export const PROTOTYPES: Prototype[] = [
         title: 'One Runway page that changes shape with the money.',
         blurb: 'A’s switch and its one setting. Combined puts B’s two columns and bridge over C’s pay slider; Personal leads with Personal B’s paycheck question and Personal C’s six-month savings target. When the business doesn’t pay you yet, the bridge flips to what you put in, the slider becomes a “not yet” goal, and Personal leads with your safety net.',
         image: '/prototypes/runway-combined/d-merged.webp',
+        live: true,
+        liveHref: 'https://os.esy.com/agency/runway',
       },
     ],
   },

@@ -198,7 +198,7 @@ export function Shelf({ q, setQ, shelfRef }: { q: string; setQ: (s: string) => v
         <ul className="sf-lines">
           {shown.map((x) => (
             <li key={x.slug}>
-              <span className={`fo-kind ${x.status === 'live' ? 'is-you' : ''}`}>{x.status === 'live' ? 'Live' : 'Sample'}</span>
+              <span className={`fo-kind ${x.status === 'live' ? 'is-you' : ''}`}>{x.status === 'live' ? 'Live' : 'Coming soon'}</span>
               <span className="sf-line-main"><code className="fo-code sf-cmd">{x.command}</code><span>{x.makes}</span></span>
               <span className="fo-stage">{jobLabel(x.job)}</span>
               <button type="button" className="fo-btn" onClick={() => setOpen(x.slug)}>Open</button>
@@ -210,7 +210,7 @@ export function Shelf({ q, setQ, shelfRef }: { q: string; setQ: (s: string) => v
       {s && <>
         <div className="fo-scrim" onClick={() => setOpen(null)} />
         <aside className="fo-drawer sf-drawer" role="dialog" aria-label={s.name}>
-          <div className="fo-drawer-bar"><span className={`fo-kind ${s.status === 'live' ? 'is-you' : ''}`}>{s.status === 'live' ? 'Live' : 'Sample'} · {jobLabel(s.job)}</span><button type="button" className="fo-iconbtn" onClick={() => setOpen(null)} aria-label="Close">×</button></div>
+          <div className="fo-drawer-bar"><span className={`fo-kind ${s.status === 'live' ? 'is-you' : ''}`}>{s.status === 'live' ? 'Live' : 'Coming soon'} · {jobLabel(s.job)}</span><button type="button" className="fo-iconbtn" onClick={() => setOpen(null)} aria-label="Close">×</button></div>
           <div className="sf-drawer-in">
             <code className="sf-cmd sf-cmd--big">{s.command}</code>
             <p className="fo-lede">{s.makes}</p>
@@ -222,7 +222,7 @@ export function Shelf({ q, setQ, shelfRef }: { q: string; setQ: (s: string) => v
             <p className="sf-p">{s.result}</p>
             <p className="fo-section">Files</p>
             <dl className="fo-dl">{s.files.map((f) => <div key={f.path}><dt className="fo-code">{f.path}</dt><dd>{f.what} · {f.lines} lines</dd></div>)}</dl>
-            <Cmd command={`cp -r ${s.slug} ~/.claude/skills/`} note={s.status === 'live' ? 'Your skills folder works in every project' : 'Sample skill: not published yet'} />
+            <Cmd command={`cp -r ${s.slug} ~/.claude/skills/`} note={s.status === 'live' ? 'Your skills folder works in every project' : 'Coming soon: not published yet'} />
           </div>
         </aside>
       </>}

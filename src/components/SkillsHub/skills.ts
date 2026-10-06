@@ -204,4 +204,4 @@ export const HEADLINE = {
 export const skill = (slug: string) => SKILLS.find((s) => s.slug === slug)!;
 export const liveCount = SKILLS.filter((s) => s.status === 'live').length;
 export const jobLabel = (j: Job) => JOBS.find((x) => x.key === j)!.label;
-export const SAMPLE_NOTE = 'Prototyping is a real skill (it built this page); every other skill here is a sample showing how the hub grows. The course is being written; signing up joins The Marketing Engineer now.';
+export const SAMPLE_NOTE = '/prototyping is live (it built this page). The other skills here are coming soon. The course is being written; signing up joins The Marketing Engineer now.';

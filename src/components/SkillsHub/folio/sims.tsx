@@ -114,7 +114,7 @@ function JobTabs({ i, f, held, pick, replay }: { i: number; f: number; held: boo
 
 function SampleChip({ slug }: { slug: string }) {
   const s = skill(slug);
-  return <span className={`sm-chip ${s.status === 'live' ? 'is-live' : ''}`}>{s.status === 'live' ? 'Live skill' : 'Sample skill'}</span>;
+  return <span className={`sm-chip ${s.status === 'live' ? 'is-live' : ''}`}>{s.status === 'live' ? 'Live skill' : 'Coming soon'}</span>;
 }
 
 // ── The work itself, one per job ───────────────────────────────────────────

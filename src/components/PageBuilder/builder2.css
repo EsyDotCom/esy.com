@@ -1,0 +1,591 @@
+/* Started as a copy of the page builder prototype's stylesheet in os.esy.com
+   (src/components/folio/agency/, PR #319, 2026-10-04). The builder's
+   prototypes live here now, so this copy is the one to edit. folio.css,
+   agency.css and app.css are product CSS: re-copy those, never edit them. */
+
+/* B1 redone inside the real /agency shell (/_agency/builder/r1…r4). No
+   side rails except S2 while swapping; controls sit in a bar fixed to the top
+   of the page's frame; tabs and toggles are square. */
+.folio .rb-app { min-height: 100vh; display: flex; flex-direction: column; background: var(--fo-canvas); color: var(--fo-ink); font-family: var(--fo-sans); }
+.folio .rb-app > .fo-bar { position: sticky; top: 0; z-index: 20; }
+.folio .rb-body { padding: 22px 24px 90px; display: grid; gap: 16px; }
+.folio .rb-mast { background: transparent; }
+.folio .rb-mast .cx-facts { margin: 6px 0 0; display: flex; flex-wrap: wrap; gap: 14px; font-size: 0.84rem; color: var(--fo-ink-soft); }
+.folio .rb-mast .cx-mast-act { display: flex; gap: 8px; }
+.folio .rb-k { margin: 0; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fo-jade-deep); }
+
+.folio .rb-work { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; align-items: start; }
+.folio .rb-work.is-swapping { grid-template-columns: minmax(0, 1fr) 340px; }
+.folio .rb-frame { position: relative; background: var(--fo-paper); box-shadow: var(--fo-ring), 0 24px 50px -40px rgba(10,37,64,.5); }
+.folio .rb-framebar { position: sticky; top: 60px; z-index: 6; background: var(--fo-paper); border-bottom: 1px solid var(--fo-hair-strong); }
+.folio .rb-framefoot { position: sticky; bottom: 0; z-index: 6; background: var(--fo-navy); color: #fff; }
+.folio .rb-canvas { padding: 22px; background: var(--fo-tint); }
+.folio .rb-canvas .np-site { border-radius: 0; }
+.folio .rb-canvas .np-cta { border-radius: 0; }
+
+.folio .rb-row { display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 14px; }
+.folio .rb-row--ctx { min-height: 46px; border-top: 1px solid var(--fo-hair); background: var(--fo-jade-wash); }
+.folio .rb-framefoot .rb-row--ctx { border-top: 0; background: transparent; }
+.folio .rb-ctx-sp { flex: 1; }
+.folio .rb-ctx-what { font-size: 0.84rem; color: var(--fo-ink-soft); white-space: nowrap; }
+.folio .rb-ctx-what b { color: var(--fo-navy); margin-right: 6px; }
+.folio .rb-ctx-warn { font-size: 0.8rem; color: var(--fo-gold); white-space: nowrap; }
+.folio .rb-framefoot .rb-ctx-what, .folio .rb-framefoot .rb-ctx-what b { color: #fff; }
+.folio .rb-framefoot .rb-ctx-warn { color: var(--fo-gold-on-navy); }
+.folio .rb-act { all: unset; cursor: pointer; padding: 0 12px; height: 32px; display: inline-flex; align-items: center; font: 600 0.82rem var(--fo-sans); color: var(--fo-navy); border: 1px solid var(--fo-hair-strong); border-radius: 0; background: var(--fo-paper); }
+.folio .rb-act:hover { border-color: var(--fo-navy); }
+.folio .rb-framefoot .rb-act { background: transparent; color: #fff; border-color: rgba(255,255,255,.35); }
+.folio .rb-trybtn { border-radius: 0; height: 32px; padding: 0 14px; }
+.folio .rb-framefoot .rb-trybtn { background: var(--fo-jade); border-color: var(--fo-jade); }
+
+/* square tabs: an underline, no pill */
+.folio .rb-tabs { display: flex; align-items: stretch; align-self: stretch; }
+.folio .rb-tabs button { all: unset; cursor: pointer; display: inline-flex; align-items: center; padding: 0 14px; font: 600 0.86rem var(--fo-sans); color: var(--fo-ink-soft); border-bottom: 3px solid transparent; margin-bottom: -1px; }
+.folio .rb-tabs button small { font-weight: 500; color: var(--fo-ink-faint); margin-left: 4px; }
+.folio .rb-tabs button.is-on { color: var(--fo-navy); border-bottom-color: var(--fo-jade); }
+.folio .rb-tabs button:focus-visible { outline: 2px solid rgba(0,168,150,.45); outline-offset: -2px; }
+.folio .rb-tab-add { color: var(--fo-jade-deep) !important; }
+.folio .rb-seg { display: inline-flex; border: 1px solid var(--fo-hair-strong); }
+.folio .rb-seg button { all: unset; cursor: pointer; padding: 0 12px; height: 30px; display: inline-flex; align-items: center; font: 600 0.8rem var(--fo-sans); color: var(--fo-ink-soft); }
+.folio .rb-seg button + button { border-left: 1px solid var(--fo-hair-strong); }
+.folio .rb-seg button.is-on { background: var(--fo-navy); color: #fff; }
+.folio .rb-score { font-size: 0.82rem; color: var(--fo-ink-soft); white-space: nowrap; }
+.folio .rb-score b { font-family: var(--fo-serif); font-size: 1.25rem; color: var(--fo-navy); }
+.folio .rb-div { width: 1px; height: 24px; background: var(--fo-hair-strong); }
+
+/* R2 browser frame */
+.folio .rb-row--browser { background: var(--fo-canvas); }
+.folio .rb-dots { display: inline-flex; gap: 6px; }
+.folio .rb-dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--fo-hair-strong); }
+.folio .rb-url { padding: 6px 12px; background: var(--fo-paper); border: 1px solid var(--fo-hair); font: 0.82rem var(--fo-mono); color: var(--fo-ink-soft); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* R3 section strip */
+.folio .rb-strip { display: flex; align-items: flex-end; gap: 4px; padding: 10px 14px 0; }
+.folio .rb-strip > button { all: unset; cursor: pointer; display: grid; gap: 3px; width: 128px; padding: 6px 8px 8px; border-bottom: 3px solid transparent; }
+.folio .rb-strip-block { display: block; background: var(--fo-canvas); border: 1px solid var(--fo-hair-strong); }
+.folio .rb-strip > button.is-on .rb-strip-block { background: var(--fo-jade-wash); border-color: var(--fo-jade); }
+.folio .rb-strip > button.is-on { border-bottom-color: var(--fo-jade); }
+.folio .rb-strip-name { font: 600 0.82rem var(--fo-sans); color: var(--fo-navy); }
+.folio .rb-strip small { font-size: 0.72rem; color: var(--fo-ink-faint); }
+.folio .rb-strip-end { margin-left: auto; align-self: center; display: flex; align-items: center; gap: 10px; }
+
+/* R4 one bar */
+.folio .rb-row--one { min-height: 54px; }
+.folio .rb-picked { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px; background: var(--fo-navy); color: #fff; font-size: 0.86rem; cursor: pointer; }
+.folio .rb-picked-k { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.6); }
+
+/* S2 panel, square */
+.folio .rb-swap { position: sticky; top: 76px; display: grid; gap: 10px; padding: 16px; background: var(--fo-paper); box-shadow: var(--fo-ring); }
+.folio .rb-swap-head { display: flex; align-items: center; justify-content: space-between; }
+.folio .rb-swap-sub { margin: 0; font-size: 0.82rem; color: var(--fo-ink-soft); }
+.folio .rb-card { display: grid; gap: 6px; padding: 12px; border: 1px solid var(--fo-hair-strong); border-radius: 0; cursor: pointer; }
+.folio .rb-card.is-on { border-color: var(--fo-jade); box-shadow: inset 3px 0 0 var(--fo-jade); background: var(--fo-jade-wash); }
+.folio .rb-card.is-cur { gap: 2px; font-size: 0.82rem; color: var(--fo-ink-faint); }
+.folio .rb-card-top { margin: 0; display: flex; gap: 8px; align-items: center; font-size: 0.86rem; color: var(--fo-navy); }
+.folio .rb-card-h { font-weight: 600; font-size: 0.92rem; color: var(--fo-ink); }
+.folio .rb-card-why { font-size: 0.8rem; line-height: 1.4; color: var(--fo-ink-soft); }
+.folio .rb-card .fo-btn { justify-self: start; padding: 6px 12px; font-size: 0.8rem; border-radius: 0; }
+.folio .rb-fail { font-size: 0.78rem; color: var(--fo-gold); }
+.folio .rb-fail::before { content: '! '; font-weight: 700; }
+.folio .rb-pass { font-size: 0.78rem; color: var(--fo-jade-deep); }
+.folio .rb-pass::before { content: '✓ '; font-weight: 700; }
+.folio .rb-try { display: grid; gap: 8px; }
+.folio .rb-try .fo-input, .folio .rb-try .fo-btn { border-radius: 0; }
+.folio .rb-swap .bd-rank, .folio .rb-card .bd-rank { border-radius: 0; }
+
+@media (max-width: 1100px) {
+  .folio .rb-work.is-swapping { grid-template-columns: minmax(0, 1fr); }
+  .folio .rb-swap { position: static; }
+  .folio .rb-row { flex-wrap: wrap; padding-block: 8px; }
+  .folio .rb-strip { overflow-x: auto; }
+  .folio .rb-body { padding-inline: 12px; }
+  .folio .rb-canvas { padding: 10px; }
+}
+/* Phones: like the live shell, the bar keeps the switcher and + New job;
+   sections move to the tab bar. The builder itself is a desktop tool. */
+@media (max-width: 760px) {
+  .folio .rb-app .fo-nav, .folio .rb-app .fo-bar-end .fo-bar-link, .folio .rb-app .nj-newbtn { display: none; }
+  .folio .rb-mast .cx-mast-act { flex-wrap: wrap; }
+  .folio .rb-tabs { overflow-x: auto; max-width: 100%; }
+  .folio .rb-ctx-what, .folio .rb-ctx-warn { white-space: normal; }
+}
+
+/* R5: one rail, the picked section; it becomes S2 while swapping */
+.folio .rb-k2 { margin-top: 8px; }
+.folio .rb-field { display: grid; gap: 5px; font: 600 0.78rem var(--fo-sans); color: var(--fo-navy); }
+.folio .rb-field .fo-input { border-radius: 0; }
+.folio .rb-field textarea { resize: vertical; font-family: var(--fo-sans); }
+.folio .rb-checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 5px; font-size: 0.82rem; }
+.folio .rb-checks li { display: flex; gap: 8px; color: var(--fo-ink-soft); }
+.folio .rb-checks li::before { content: '✓'; color: var(--fo-jade-deep); font-weight: 700; }
+.folio .rb-checks li.is-bad { color: var(--fo-gold); }
+.folio .rb-checks li.is-bad::before { content: '!'; color: var(--fo-gold); }
+
+/* R5's rail, dressed: a navy head, grouped sections, filled fields with a
+   jade underline on focus (no browser outline), one strong primary. */
+.folio .rb-rail2 { position: sticky; top: 76px; max-height: calc(100vh - 92px); overflow: auto; background: var(--fo-paper); box-shadow: 0 0 0 1px var(--fo-hair), 0 24px 48px -24px rgba(10, 37, 64, 0.45); }
+.folio .rr-head { padding: 18px 18px 16px; background: var(--fo-navy-surface), var(--fo-navy); color: #fff; }
+.folio .rr-kicker { margin: 0; font-size: 10.5px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fo-jade-bright); }
+.folio .rr-titlerow { display: flex; align-items: baseline; gap: 10px; margin-top: 6px; }
+.folio .rr-titlerow h2 { margin: 0; font-family: var(--fo-serif); font-weight: 700; font-size: 2.1rem; line-height: 1; letter-spacing: -0.01em; color: #fff; }
+.folio .rr-ver { padding: 2px 7px; font: 600 11px/1.3 var(--fo-sans); color: var(--fo-navy); background: var(--fo-jade-bright); }
+.folio .rr-ghost { all: unset; cursor: pointer; margin-left: auto; padding: 5px 10px; font: 600 0.78rem var(--fo-sans); color: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.35); }
+.folio .rr-ghost:hover { box-shadow: inset 0 0 0 1px #fff; }
+.folio .rr-meta { margin: 8px 0 0; font-size: 0.8rem; color: var(--fo-on-navy-soft); }
+
+.folio .rr-group { display: grid; gap: 12px; padding: 18px; border-top: 1px solid var(--fo-hair); }
+.folio .rr-head + .rr-group { border-top: 0; }
+.folio .rr-group h3 { margin: 0; display: flex; align-items: baseline; gap: 8px; font: 600 0.72rem var(--fo-sans); letter-spacing: 0.14em; text-transform: uppercase; color: var(--fo-ink-faint); }
+.folio .rr-group h3 em { font-style: normal; letter-spacing: 0; text-transform: none; font-size: 0.8rem; color: var(--fo-gold); font-weight: 600; }
+
+.folio .rr-field { display: grid; gap: 6px; }
+.folio .rr-label { display: flex; justify-content: space-between; font: 600 0.8rem var(--fo-sans); color: var(--fo-navy); }
+.folio .rr-label em { font-style: normal; font-weight: 500; font-size: 0.74rem; color: var(--fo-ink-faint); font-variant-numeric: tabular-nums; }
+.folio .rr-field input, .folio .rr-field textarea { width: 100%; box-sizing: border-box; padding: 11px 12px 9px; border: 0; border-bottom: 2px solid var(--fo-hair-strong); border-radius: 0; background: var(--fo-tint); font: 500 0.95rem/1.45 var(--fo-sans); color: var(--fo-ink); outline: none; transition: border-color var(--fo-ease), background var(--fo-ease), box-shadow var(--fo-ease); resize: vertical; }
+.folio .rr-field input::placeholder, .folio .rr-field textarea::placeholder { color: var(--fo-ink-faint); font-weight: 400; }
+.folio .rr-field input:hover, .folio .rr-field textarea:hover { border-bottom-color: var(--fo-ink-faint); }
+.folio .rr-field input:focus, .folio .rr-field textarea:focus { background: #fff; border-bottom-color: var(--fo-jade); box-shadow: 0 6px 18px -12px rgba(0, 168, 150, 0.6); }
+.folio .rr-field input:focus-visible, .folio .rr-field textarea:focus-visible { outline: none; }
+
+.folio .rr-issue { display: grid; gap: 4px; padding: 12px 14px; background: rgba(217, 164, 65, 0.1); box-shadow: inset 3px 0 0 var(--fo-gold-dot); }
+.folio .rr-issue b { font-size: 0.88rem; color: var(--fo-ink); }
+.folio .rr-issue span { font-size: 0.8rem; color: var(--fo-ink-soft); }
+.folio .rr-link { all: unset; cursor: pointer; justify-self: start; margin-top: 4px; font: 600 0.82rem var(--fo-sans); color: var(--fo-jade-deep); border-bottom: 1px solid currentColor; }
+.folio .rr-passes { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 0.8rem; color: var(--fo-ink-soft); }
+.folio .rr-passes li::before { content: '✓ '; color: var(--fo-jade-deep); font-weight: 700; }
+
+.folio .rr-try { background: var(--fo-jade-wash); }
+.folio .rr-try .rr-field input { background: #fff; }
+.folio .rr-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.folio .rr-chips button { all: unset; cursor: pointer; padding: 6px 10px; font: 600 0.8rem var(--fo-sans); color: var(--fo-navy); background: #fff; box-shadow: inset 0 0 0 1px var(--fo-hair-strong); }
+.folio .rr-chips button:hover { box-shadow: inset 0 0 0 1px var(--fo-navy); }
+.folio .rr-chips button:focus-visible, .folio .rr-ghost:focus-visible, .folio .rr-link:focus-visible, .folio .rr-primary:focus-visible { box-shadow: 0 0 0 3px rgba(0, 168, 150, 0.35); }
+.folio .rr-primary { all: unset; cursor: pointer; display: flex; justify-content: center; padding: 13px 16px; background: var(--fo-navy); color: #fff; font: 700 0.95rem var(--fo-sans); letter-spacing: 0.01em; }
+.folio .rr-primary:hover { background: var(--fo-navy-2, #12305a); }
+.folio .rr-hint { margin: 0; font-size: 0.76rem; color: var(--fo-ink-soft); }
+
+.folio .rr-hist { list-style: none; margin: 0; padding: 0 0 0 12px; display: grid; gap: 10px; border-left: 2px solid var(--fo-hair); font-size: 0.82rem; color: var(--fo-ink-soft); }
+.folio .rr-hist li { position: relative; display: flex; gap: 6px; }
+.folio .rr-hist li::before { content: ''; position: absolute; left: -17px; top: 5px; width: 8px; height: 8px; background: var(--fo-jade); }
+.folio .rr-hist li.is-old::before { background: var(--fo-hair-strong); }
+.folio .rr-hist b { color: var(--fo-navy); }
+.folio .rr-hist span { margin-left: auto; color: var(--fo-ink-faint); }
+
+/* S2 while swapping, in the same dress: a navy head */
+.folio .rb-swap .rb-swap-head { margin: -16px -16px 0; padding: 16px; background: var(--fo-navy-surface), var(--fo-navy); }
+.folio .rb-swap .rb-swap-head .rb-k { color: var(--fo-jade-bright); }
+.folio .rb-swap .rb-swap-head .fo-textbtn { color: #fff; }
+.folio .rb-swap { box-shadow: 0 0 0 1px var(--fo-hair), 0 24px 48px -24px rgba(10, 37, 64, 0.45); }
+.folio .rb-swap .rb-try .fo-input { border: 0; border-bottom: 2px solid var(--fo-hair-strong); background: var(--fo-tint); outline: none; }
+.folio .rb-swap .rb-try .fo-input:focus { background: #fff; border-bottom-color: var(--fo-jade); }
+
+@media (max-width: 1100px) { .folio .rb-rail2 { position: static; max-height: none; } }
+
+/* The picked section on the page: a quiet jade frame with a jade edge and a
+   square label, instead of a thick box outline. */
+.folio .rb-canvas .np-sec { outline: none; }
+.folio .rb-canvas .np-sec::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; transition: box-shadow var(--fo-ease); }
+.folio .rb-canvas .np-sec:hover::after { box-shadow: inset 0 0 0 1px rgba(0, 168, 150, 0.45); }
+.folio .rb-canvas .np-sec.is-sel::after { box-shadow: inset 0 0 0 1px var(--fo-jade), inset 4px 0 0 var(--fo-jade); }
+.folio .rb-canvas .np-tag { top: 0; left: 0; border-radius: 0; padding: 4px 9px; letter-spacing: 0.02em; }
+.folio .rb-canvas .np-sec.is-sel .np-tag { background: var(--fo-jade); }
+
+/* ── R6–R8: the one rail, three ways. No green focus anywhere. ────────────── */
+/* The picked section: a navy edge and a square navy label, no frame. */
+.folio .rb-navysel .rb-canvas .np-sec:hover::after { box-shadow: inset 4px 0 0 rgba(10, 37, 64, 0.25); }
+.folio .rb-navysel .rb-canvas .np-sec.is-sel::after { box-shadow: inset 4px 0 0 var(--fo-navy); }
+.folio .rb-navysel .rb-canvas .np-sec.is-sel .np-tag { background: var(--fo-navy); }
+/* Kill the browser and Folio focus outlines inside the rails and S2. */
+.folio .rr--doc input, .folio .rr--doc textarea, .folio .rr--cards input, .folio .rr--cards textarea, .folio .rr--dark input, .folio .rr--dark textarea { outline: none !important; }
+.folio .rr--doc button:focus-visible, .folio .rr--cards button:focus-visible { box-shadow: 0 0 0 2px var(--fo-navy) !important; }
+.folio .rr--dark button:focus-visible { box-shadow: 0 0 0 2px #fff !important; }
+.folio .rb-swapwrap .fo-input:focus { outline: none; border-bottom-color: var(--fo-navy); box-shadow: none; }
+.folio .rb-swapwrap .rb-card.is-on { border-color: var(--fo-navy); box-shadow: inset 3px 0 0 var(--fo-navy); background: var(--fo-tint); }
+
+/* R6 · Document: fields read as text until you edit them. */
+.folio .rr--doc { box-shadow: 0 0 0 1px var(--fo-hair); }
+.folio .rr--doc .rr-head { background: var(--fo-paper); color: var(--fo-ink); border-bottom: 3px double var(--fo-navy); }
+.folio .rr--doc .rr-kicker { color: var(--fo-ink-faint); }
+.folio .rr--doc .rr-titlerow h2 { color: var(--fo-navy); font-size: 2.4rem; }
+.folio .rr--doc .rr-ver { background: var(--fo-navy); color: #fff; }
+.folio .rr--doc .rr-ghost { color: var(--fo-navy); box-shadow: inset 0 0 0 1px var(--fo-hair-strong); }
+.folio .rr--doc .rr-meta { color: var(--fo-ink-soft); }
+.folio .rr--doc .rr-group { border-top: 0; padding-top: 6px; }
+.folio .rr--doc .rr-group h3 { font-family: var(--fo-serif); font-size: 1.15rem; letter-spacing: 0; text-transform: none; color: var(--fo-navy); font-weight: 700; }
+.folio .rr--doc .rr-field input, .folio .rr--doc .rr-field textarea { padding: 6px 0 6px 12px; background: transparent; border-bottom: 0; box-shadow: inset 2px 0 0 transparent; font-size: 1rem; }
+.folio .rr--doc .rr-field input:hover, .folio .rr--doc .rr-field textarea:hover { background: var(--fo-tint); }
+.folio .rr--doc .rr-field input:focus, .folio .rr--doc .rr-field textarea:focus { background: var(--fo-tint); box-shadow: inset 2px 0 0 var(--fo-navy); }
+.folio .rr--doc .rr-issue { background: transparent; box-shadow: inset 2px 0 0 var(--fo-gold-dot); }
+.folio .rr--doc .rr-try { background: transparent; border-top: 1px solid var(--fo-hair); padding-top: 18px; }
+.folio .rr--doc .rr-try .rr-field input { background: var(--fo-tint); }
+
+/* R7 · Cards: each group a card on the canvas; hairline boxes, navy focus. */
+.folio .rr--cards { background: var(--fo-canvas); box-shadow: none; display: grid; gap: 10px; }
+.folio .rr--cards .rr-head { box-shadow: 0 18px 30px -24px rgba(10, 37, 64, 0.6); }
+.folio .rr--cards .rr-group { background: var(--fo-paper); border-top: 0; box-shadow: 0 0 0 1px var(--fo-hair); }
+.folio .rr--cards .rr-group h3 { color: var(--fo-navy); }
+.folio .rr--cards .rr-field input, .folio .rr--cards .rr-field textarea { background: #fff; border: 1px solid var(--fo-hair-strong); padding: 10px 12px; }
+.folio .rr--cards .rr-field input:hover, .folio .rr--cards .rr-field textarea:hover { border-color: var(--fo-ink-faint); }
+.folio .rr--cards .rr-field input:focus, .folio .rr--cards .rr-field textarea:focus { border-color: var(--fo-navy); box-shadow: inset 0 0 0 1px var(--fo-navy); background: #fff; }
+.folio .rr--cards .rr-try { background: var(--fo-paper); box-shadow: inset 0 3px 0 var(--fo-navy), 0 0 0 1px var(--fo-hair); }
+
+/* R8 · Dark: a navy rail against the light page. */
+.folio .rr--dark { background: var(--fo-navy-surface), var(--fo-navy); color: #fff; box-shadow: 0 24px 48px -24px rgba(6, 21, 39, 0.8); }
+.folio .rr--dark .rr-head { background: transparent; border-bottom: 1px solid var(--fo-on-navy-hair); }
+.folio .rr--dark .rr-group { border-top: 1px solid var(--fo-on-navy-hair); }
+.folio .rr--dark .rr-group h3 { color: var(--fo-on-navy-faint); }
+.folio .rr--dark .rr-label { color: #fff; }
+.folio .rr--dark .rr-label em, .folio .rr--dark .rr-hint, .folio .rr--dark .rr-passes, .folio .rr--dark .rr-hist { color: var(--fo-on-navy-soft); }
+.folio .rr--dark .rr-field input, .folio .rr--dark .rr-field textarea { background: rgba(255, 255, 255, 0.06); color: #fff; border-bottom: 2px solid rgba(255, 255, 255, 0.2); }
+.folio .rr--dark .rr-field input::placeholder { color: var(--fo-on-navy-faint); }
+.folio .rr--dark .rr-field input:focus, .folio .rr--dark .rr-field textarea:focus { background: rgba(255, 255, 255, 0.1); border-bottom-color: #fff; box-shadow: none; }
+.folio .rr--dark .rr-issue { background: rgba(227, 182, 96, 0.12); box-shadow: inset 3px 0 0 var(--fo-gold-on-navy); }
+.folio .rr--dark .rr-issue b { color: #fff; }
+.folio .rr--dark .rr-issue span { color: var(--fo-on-navy-soft); }
+.folio .rr--dark .rr-link { color: var(--fo-jade-bright); }
+.folio .rr--dark .rr-try { background: rgba(255, 255, 255, 0.04); }
+.folio .rr--dark .rr-try .rr-field input { background: rgba(255, 255, 255, 0.08); }
+.folio .rr--dark .rr-chips button { background: transparent; color: #fff; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3); }
+.folio .rr--dark .rr-chips button:hover { box-shadow: inset 0 0 0 1px #fff; }
+.folio .rr--dark .rr-primary { background: #fff; color: var(--fo-navy); }
+.folio .rr--dark .rr-primary:hover { background: var(--fo-jade-bright); }
+.folio .rr--dark .rr-hist { border-left-color: var(--fo-on-navy-hair); }
+.folio .rr--dark .rr-hist b { color: #fff; }
+.folio .rr--doc .rr-group h3 em { font-family: var(--fo-sans); font-size: 0.8rem; font-weight: 600; }
+/* R8's S2 panel matches the dark rail */
+.folio .rb-swapwrap.rr--dark .rb-swap { background: var(--fo-navy-surface), var(--fo-navy); color: #fff; }
+.folio .rb-swapwrap.rr--dark .rb-swap-head { background: transparent; border-bottom: 1px solid var(--fo-on-navy-hair); }
+.folio .rb-swapwrap.rr--dark .rb-swap-sub, .folio .rb-swapwrap.rr--dark .rb-card-why, .folio .rb-swapwrap.rr--dark .rb-card.is-cur { color: var(--fo-on-navy-soft); }
+.folio .rb-swapwrap.rr--dark .rb-card { border-color: var(--fo-on-navy-hair); }
+.folio .rb-swapwrap.rr--dark .rb-card-top, .folio .rb-swapwrap.rr--dark .rb-card-h { color: #fff; }
+.folio .rb-swapwrap.rr--dark .rb-card.is-on { background: rgba(255,255,255,.07); border-color: #fff; box-shadow: inset 3px 0 0 #fff; }
+.folio .rb-swapwrap.rr--dark .rb-card .fo-btn--primary { background: #fff; border-color: #fff; color: var(--fo-navy); }
+.folio .rb-swapwrap.rr--dark .rb-pass { color: var(--fo-jade-bright); }
+.folio .rb-swapwrap.rr--dark .rb-fail { color: var(--fo-gold-on-navy); }
+.folio .rb-swapwrap.rr--dark .rb-try .fo-input { background: rgba(255,255,255,.08); color: #fff; border-bottom-color: rgba(255,255,255,.25); }
+.folio .rb-swapwrap.rr--dark .rb-try .fo-btn { background: transparent; color: #fff; border-color: rgba(255,255,255,.35); }
+
+/* ── R9–R11: SEOPage's versioning in R7 ─────────────────────────────────── */
+.folio .vz-vary { background: var(--fo-paper); gap: 6px; flex-wrap: wrap; }
+.folio .vz-thumb { all: unset; cursor: pointer; display: block; position: relative; width: 100%; aspect-ratio: 16 / 7.6; overflow: hidden; background: var(--fo-tint); box-shadow: 0 0 0 1px var(--fo-hair-strong); }
+.folio .vz-thumb.is-on { box-shadow: 0 0 0 2px var(--fo-navy); }
+.folio .vz-thumb-in { position: absolute; top: 0; left: 0; width: 1040px; transform: scale(var(--vz-s, 0.27)); transform-origin: top left; pointer-events: none; }
+.folio .vz-thumb-in .np-site { box-shadow: none; }
+.folio .vz-thumb-in .np-tag { display: none; }
+.folio .vz-rail { padding: 0; gap: 0; }
+.folio .vz-tabs { display: flex; background: var(--fo-paper); border-bottom: 1px solid var(--fo-hair-strong); position: sticky; top: 0; z-index: 2; }
+.folio .vz-tabs button { all: unset; cursor: pointer; padding: 13px 14px; font: 600 0.84rem var(--fo-sans); color: var(--fo-ink-soft); border-bottom: 3px solid transparent; margin-bottom: -1px; }
+.folio .vz-tabs button.is-on { color: var(--fo-navy); border-bottom-color: var(--fo-navy); }
+.folio .vz-list { display: grid; gap: 10px; padding: 14px; }
+.folio .vz-list-head { display: flex; align-items: center; justify-content: space-between; }
+.folio .vz-card { display: grid; gap: 6px; padding: 10px; background: var(--fo-paper); box-shadow: 0 0 0 1px var(--fo-hair); }
+.folio .vz-card.is-on { box-shadow: 0 0 0 1px var(--fo-navy), inset 4px 0 0 var(--fo-navy); }
+.folio .vz-card-top { margin: 0; display: flex; align-items: center; gap: 8px; font-size: 0.86rem; color: var(--fo-navy); }
+.folio .vz-why { margin: 0; font-size: 0.8rem; line-height: 1.4; color: var(--fo-ink-soft); }
+.folio .vz-acts { display: flex; gap: 6px; flex-wrap: wrap; }
+.folio .vz-acts .rb-act { height: 30px; padding: 0 10px; font-size: 0.78rem; }
+.folio .vz-keep { all: unset; cursor: pointer; height: 30px; padding: 0 12px; display: inline-flex; align-items: center; background: var(--fo-navy); color: #fff; font: 700 0.8rem var(--fo-sans); }
+.folio .vz-keep:hover { background: var(--fo-navy-2, #12305a); }
+.folio .vz-empty { margin: 0; padding: 18px; font-size: 0.86rem; color: var(--fo-ink-soft); }
+.folio .vz-editwrap .rb-rail2 { position: static; max-height: none; box-shadow: none; }
+.folio .vz-rail .rr-group { background: var(--fo-paper); }
+
+/* R10: the footer */
+.folio .vz-frame { display: flex; flex-direction: column; }
+.folio .vz-foot { position: sticky; bottom: 0; z-index: 6; background: var(--fo-navy-surface), var(--fo-navy); color: #fff; padding: 0 16px 14px; }
+.folio .vz-foot-head { display: flex; align-items: baseline; gap: 12px; padding: 12px 0 10px; }
+.folio .vz-foot-head b { font-family: var(--fo-serif); font-size: 1.35rem; font-weight: 700; }
+.folio .vz-foot-head span { font-size: 0.78rem; color: var(--fo-on-navy-soft); }
+.folio .vz-foot-head button { all: unset; cursor: pointer; margin-left: auto; font: 600 0.82rem var(--fo-sans); color: rgba(255,255,255,.8); }
+.folio .vz-foot-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) 220px; gap: 12px; }
+.folio .vz-fitem { display: grid; gap: 6px; min-width: 0; --vz-s: 0.22; }
+.folio .vz-fitem .vz-card-top { color: #fff; }
+.folio .vz-fitem .vz-thumb { box-shadow: 0 0 0 1px rgba(255,255,255,.2); }
+.folio .vz-fitem .vz-thumb.is-on { box-shadow: 0 0 0 2px #fff; }
+.folio .vz-fitem .vz-keep { background: #fff; color: var(--fo-navy); }
+.folio .vz-mini { all: unset; cursor: pointer; height: 30px; padding: 0 10px; display: inline-flex; align-items: center; font: 600 0.78rem var(--fo-sans); color: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.35); }
+.folio .vz-fwhy { display: grid; gap: 4px; align-content: start; padding: 10px 12px; background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 1px var(--fo-on-navy-hair); font-size: 0.84rem; }
+.folio .vz-fwhy p { margin: 0; color: var(--fo-on-navy-soft); font-size: 0.8rem; line-height: 1.4; }
+.folio .vz-fwhy .rb-fail { color: var(--fo-gold-on-navy); }
+.folio .vz-fwhy .rb-pass { color: var(--fo-jade-bright); }
+
+/* R11: the tree */
+.folio .vz-tree { list-style: none; margin: 0; padding: 8px 0; background: var(--fo-paper); }
+.folio .vz-tree li { position: relative; display: grid; gap: 8px; padding: 8px 14px 8px; border-left: 0; }
+.folio .vz-tree li::before { content: ''; position: absolute; left: calc(var(--d, 0) * 18px + 14px); top: 14px; width: 8px; height: 8px; background: var(--fo-hair-strong); }
+.folio .vz-tree li > button { all: unset; cursor: pointer; display: grid; gap: 2px; }
+.folio .vz-tree li b { font-size: 0.88rem; color: var(--fo-navy); }
+.folio .vz-tree li span { font-size: 0.76rem; color: var(--fo-ink-faint); }
+.folio .vz-tree li.is-live b::after { content: ' · live'; color: var(--fo-jade-deep); font-weight: 600; }
+.folio .vz-tree li.is-tried b { color: var(--fo-ink-soft); font-weight: 500; }
+.folio .vz-tree li.is-on { background: var(--fo-tint); box-shadow: inset 4px 0 0 var(--fo-navy); }
+.folio .vz-tree li.is-live::before { background: var(--fo-jade); }
+.folio .vz-tree li.is-was::before { background: var(--fo-navy); }
+.folio .vz-livetag { display: inline-flex; align-items: center; height: 30px; padding: 0 10px; font: 600 0.78rem var(--fo-sans); color: var(--fo-jade-deep); box-shadow: inset 0 0 0 1px var(--fo-jade); }
+@media (max-width: 1100px) { .folio .vz-foot-row { grid-template-columns: minmax(0, 1fr); } }
+/* R12: four tabs fit the rail; the history head sits on paper */
+.folio .vz-rail .vz-tabs button { padding: 13px 11px; }
+.folio .vz-histhead { background: var(--fo-paper); border-bottom: 1px solid var(--fo-hair); }
+
+/* ── R13–R15: setting the rail apart from the page (R12 inside) ─────────── */
+/* R13 · Docked: one joined workspace, a navy rule between, the rail on its own ground */
+.folio .dm-dock { gap: 0; box-shadow: var(--fo-ring), 0 24px 50px -40px rgba(10,37,64,.5); }
+.folio .dm-dock > .rb-frame { box-shadow: none; }
+.folio .dm-dock > .vz-rail { position: sticky; top: 60px; max-height: calc(100vh - 60px); background: #E3E9F0; box-shadow: inset 3px 0 0 var(--fo-navy); }
+.folio .dm-dock > .vz-rail .vz-tabs { background: #E3E9F0; border-bottom-color: rgba(10,37,64,.18); }
+.folio .dm-dock > .vz-rail .vz-tabs button { color: var(--fo-ink-soft); }
+.folio .dm-dock > .vz-rail .vz-tabs button.is-on { background: var(--fo-paper); color: var(--fo-navy); border-bottom-color: var(--fo-navy); }
+.folio .dm-dock > .vz-rail .vz-list, .folio .dm-dock > .vz-rail .vz-tree { background: transparent; }
+.folio .dm-dock > .vz-rail .vz-card { box-shadow: 0 0 0 1px rgba(10,37,64,.12); }
+
+/* R14 · Lifted: a real gap, the rail a raised sheet; the page sits flat on the canvas */
+.folio .dm-lift { gap: 28px; }
+.folio .dm-lift > .rb-frame { box-shadow: 0 0 0 1px var(--fo-hair); background: transparent; }
+.folio .dm-lift > .rb-frame .rb-canvas { background: transparent; }
+.folio .dm-lift > .vz-rail { box-shadow: 0 0 0 1px rgba(10,37,64,.14), 0 30px 60px -20px rgba(10,37,64,.45), 0 8px 18px -10px rgba(10,37,64,.3); }
+.folio .dm-lift > .vz-rail::before { content: ''; position: absolute; left: -15px; top: 0; bottom: 0; width: 1px; background: var(--fo-hair-strong); }
+.folio .dm-lift > .vz-rail { position: sticky; }
+
+/* R15 · Capped: a navy tab bar and a navy edge mark the rail as the tool panel */
+.folio .dm-cap > .vz-rail { box-shadow: 0 0 0 1px var(--fo-navy), 0 24px 48px -24px rgba(10,37,64,.45); background: var(--fo-tint); }
+.folio .dm-cap > .vz-rail .vz-tabs { background: var(--fo-navy-surface), var(--fo-navy); border-bottom: 0; }
+.folio .dm-cap > .vz-rail .vz-tabs button { color: rgba(255,255,255,.7); }
+.folio .dm-cap > .vz-rail .vz-tabs button.is-on { color: #fff; border-bottom-color: var(--fo-jade-bright); }
+.folio .dm-cap > .vz-rail .vz-list, .folio .dm-cap > .vz-rail .vz-tree { background: var(--fo-tint); }
+/* stronger, after the first look */
+.folio .dm-dock > .vz-rail { box-shadow: inset 4px 0 0 var(--fo-navy); background: #DCE3EB; }
+.folio .dm-dock > .vz-rail .vz-tabs { background: #DCE3EB; }
+.folio .dm-dock > .rb-frame { border-right: 0; }
+.folio .dm-lift { gap: 36px; background: transparent; }
+.folio .dm-lift > .rb-frame { box-shadow: none; }
+.folio .dm-lift > .rb-frame .rb-framebar { background: transparent; border-bottom-color: var(--fo-hair-strong); }
+.folio .dm-lift > .vz-rail { transform: translateY(-8px); border-top: 4px solid var(--fo-navy); box-shadow: 0 0 0 1px rgba(10,37,64,.16), 0 40px 70px -24px rgba(10,37,64,.55), 0 10px 22px -12px rgba(10,37,64,.35); }
+.folio .dm-lift > .vz-rail::before { left: -19px; background: rgba(10,37,64,.28); }
+.folio .dm-cap > .vz-rail { box-shadow: inset 4px 0 0 var(--fo-navy), 0 0 0 1px var(--fo-navy), 0 24px 48px -24px rgba(10,37,64,.45); }
+
+/* ── R16–R17: the builder in Runway's design (reuses rw-* from agency.css) ── */
+.folio .rwb-app { min-height: 100vh; display: flex; flex-direction: column; background: var(--fo-canvas); }
+.folio .rwb-app > .fo-bar { position: sticky; top: 0; z-index: 20; }
+.folio .rwb-app .rw-page { overflow: visible; }
+.folio .rwb-top { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+.folio .rwb-seg { display: inline-flex; flex-wrap: wrap; margin-top: 10px; border: 1px solid var(--fo-hair-strong); }
+.folio .rwb-seg button { padding: 7px 13px; border: 0; background: none; font: 600 0.82rem var(--fo-sans); color: var(--fo-ink-soft); cursor: pointer; }
+.folio .rwb-seg button + button { border-left: 1px solid var(--fo-hair); }
+.folio .rwb-seg button.is-on { background: var(--fo-navy); color: #fff; }
+.folio .rwb-device { display: inline-flex; border: 1px solid var(--fo-hair-strong); }
+.folio .rwb-device button { padding: 6px 12px; border: 0; background: none; font: 600 0.8rem var(--fo-sans); color: var(--fo-ink-soft); cursor: pointer; }
+.folio .rwb-device button.is-on { background: var(--fo-navy); color: #fff; }
+.folio .rwb-vary { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--fo-hair); }
+.folio .rwb-vary .rw-label { margin-right: 6px; }
+.folio .rwb-btn { padding: 6px 11px; border: 1px solid var(--fo-hair-strong); background: #fff; font: 600 0.8rem var(--fo-sans); color: var(--fo-navy); cursor: pointer; }
+.folio .rwb-btn:hover { border-color: var(--fo-navy); }
+.folio .rwb-sp { flex: 1; }
+.folio .rwb-page { margin-top: 14px; border: 1px solid var(--fo-hair); }
+.folio .rwb-page .np-site { border-radius: 0; box-shadow: none; }
+.folio .rwb-page .np-cta { border-radius: 0; }
+.folio .rwb-page .np-sec.is-sel { outline: none; box-shadow: inset 4px 0 0 var(--fo-navy); }
+.folio .rwb-page .np-sec.is-sel .np-tag { opacity: 1; background: var(--fo-navy); border-radius: 0; top: 0; left: 0; }
+.folio .rwb-rail { top: 72px; }
+.folio .rwb-ask { cursor: pointer; }
+.folio .rwb-ask h4 { font-size: 1.05rem !important; }
+.folio .rwb-check { margin-top: 6px; font-size: 0.78rem; font-weight: 600; color: var(--fo-jade-deep); }
+.folio .rwb-check.is-fail { color: var(--fo-gold); }
+.folio .rw-asks.on-navy .rwb-check { color: var(--fo-jade-bright); }
+.folio .rw-asks.on-navy .rwb-check.is-fail { color: var(--fo-gold-on-navy); }
+.folio .rwb-ask.is-on { box-shadow: inset 4px 0 0 var(--fo-navy); border-color: var(--fo-navy) !important; }
+.folio .rw-asks.on-navy .rwb-ask.is-on { box-shadow: inset 4px 0 0 var(--fo-jade-bright); border-color: var(--fo-jade-bright) !important; background: rgba(255,255,255,.08) !important; }
+.folio .rwb-more { list-style: none; }
+.folio .rwb-checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 5px; font-size: 0.84rem; }
+.folio .rwb-checks li::before { content: '✓ '; font-weight: 700; color: var(--fo-jade-bright); }
+.folio .rwb-checks li.is-fail::before { content: '! '; color: var(--fo-gold-on-navy); }
+.folio .rwb-hist { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; font-size: 0.82rem; }
+.folio .rwb-hist li { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; padding: 6px 10px; border-left: 2px solid rgba(255,255,255,.14); }
+.folio .rwb-hist li em { font-style: normal; font-weight: 700; font-size: 0.74rem; color: var(--fo-jade-bright); }
+.folio .rwb-hist li.is-live { border-left-color: var(--fo-jade-bright); }
+.folio .rwb-hist.on-navy .fo-textbtn { color: var(--fo-jade-bright); font-size: 0.78rem; }
+.folio .rwb-hist li span { color: var(--fo-on-navy-soft); } .folio .rwb-hist li b { color: #fff; }
+/* R16: Runway's rail shape, light */
+.folio .rwb-rail.is-light { background: #E8EEF5; background-image: none; color: var(--fo-ink); box-shadow: inset 0 0 0 1px rgba(10,37,64,.08); }
+.folio .rwb-rail.is-light .rw-rail-h { color: var(--fo-ink-faint); }
+.folio .rwb-rail.is-light .rwb-checks li::before { color: var(--fo-jade-deep); }
+.folio .rwb-rail.is-light .rwb-checks li.is-fail::before { color: var(--fo-gold); }
+.folio .rwb-rail.is-light .rwb-hist li { border-left-color: rgba(10,37,64,.14); }
+.folio .rwb-rail.is-light .rwb-hist li.is-live { border-left-color: var(--fo-jade); }
+.folio .rwb-rail.is-light .rwb-hist li em { color: var(--fo-jade-deep); }
+.folio .rwb-rail.is-light .rwb-hist li span { color: var(--fo-ink-soft); } .folio .rwb-rail.is-light .rwb-hist li b { color: var(--fo-navy); }
+@media (max-width: 1100px) { .folio .rwb-app .rw-cockpit { grid-template-columns: minmax(0, 1fr); } .folio .rwb-rail { position: static; } .folio .rwb-app .rw-page { padding: 20px 16px 90px; } }
+
+/* ── Rounded containers, like the rest of os.esy.com (Folio panes are 12px).
+   Selectable tabs and toggles stay square; everything that holds content
+   rounds. Scoped to the R12 family (rb-navysel). ───────────────────────── */
+.folio .rb-navysel > .rb-frame { border-radius: var(--fo-r-pane); overflow: clip; }
+.folio .rb-navysel > .rb-frame .rb-framebar { border-radius: var(--fo-r-pane) var(--fo-r-pane) 0 0; }
+.folio .rb-navysel > .rb-frame .rb-canvas .np-site { border-radius: 10px; overflow: hidden; }
+.folio .rb-navysel > .rb-frame .rb-canvas .np-cta { border-radius: 0 0 10px 10px; }
+.folio .rb-navysel > .vz-rail, .folio .rb-navysel > .rb-rail2, .folio .rb-navysel > .rb-swapwrap .rb-swap { border-radius: var(--fo-r-pane); overflow: hidden; }
+.folio .rb-navysel .rr--cards { gap: 10px; padding: 10px; }
+.folio .rb-navysel .rr--cards .rr-head, .folio .rb-navysel .rr--cards .rr-group { border-radius: 10px; }
+.folio .rb-navysel .vz-rail { padding: 0; }
+.folio .rb-navysel .vz-rail .vz-tabs { border-radius: 0; }
+.folio .rb-navysel .vz-list { gap: 10px; }
+.folio .rb-navysel .vz-card { border-radius: 10px; }
+.folio .rb-navysel .vz-thumb { border-radius: 8px; }
+.folio .rb-navysel .vz-thumb-in .np-site { border-radius: 0; }
+.folio .rb-navysel .rr-issue { border-radius: 8px; }
+.folio .rb-navysel .rr-field input, .folio .rb-navysel .rr-field textarea { border-radius: 8px; }
+.folio .rb-navysel .rr-chips button, .folio .rb-navysel .rb-act, .folio .rb-navysel .vz-keep, .folio .rb-navysel .rr-primary, .folio .rb-navysel .rr-ghost, .folio .rb-navysel .rb-trybtn, .folio .rb-navysel .vz-livetag { border-radius: var(--fo-r-control); }
+.folio .rb-navysel .vz-tree li.is-on { border-radius: 10px; margin: 0 8px; }
+.folio .rb-navysel .vz-foot { border-radius: 0 0 var(--fo-r-pane) var(--fo-r-pane); }
+/* R13–R15 keep their edge treatments, now on rounded panes */
+.folio .dm-dock { border-radius: var(--fo-r-pane); overflow: clip; }
+.folio .dm-dock > .rb-frame { border-radius: var(--fo-r-pane) 0 0 var(--fo-r-pane); }
+.folio .dm-dock > .vz-rail { border-radius: 0 var(--fo-r-pane) var(--fo-r-pane) 0; }
+.folio .dm-cap > .vz-rail .vz-tabs { border-radius: var(--fo-r-pane) var(--fo-r-pane) 0 0; }
+/* The section bar's one generate action */
+.folio .rb-act.rb-act--try { background: var(--fo-navy); border-color: var(--fo-navy); color: #fff; }
+.folio .rb-act.rb-act--try:hover { background: #12345a; }
+
+/* ── R18–R20 · the frame bar, three ways. Every row stays one line: labels
+   never wrap, the tabs scroll sideways, and the check warning gives way
+   first when space runs out. ─────────────────────────────────────────── */
+.folio .bx-row { display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 14px; white-space: nowrap; min-width: 0; }
+.folio .bx-row > * { flex: none; }
+.folio .bx-row + .bx-row { border-top: 1px solid var(--fo-hair); }
+.folio .bx-sp { flex: 1 1 0 !important; min-width: 4px; }
+.folio .bx-lock { width: 11px; height: 11px; flex: none; color: var(--fo-ink-faint); margin-left: 6px; }
+.folio .bx-warn { flex: 0 1 auto !important; min-width: 0; overflow: hidden; text-overflow: ellipsis; font: 600 0.8rem var(--fo-sans); color: var(--fo-gold); }
+.folio .bx-locked { display: inline-flex; align-items: center; gap: 2px; font: 600 0.82rem var(--fo-sans); color: var(--fo-ink-soft); }
+.folio .bx-locked .bx-lock { margin: 0 4px 0 0; }
+
+/* section tabs that never wrap */
+.folio .bx-tabwrap { display: flex; align-items: stretch; align-self: stretch; min-width: 0; flex: 0 1 auto !important; }
+.folio .bx-tabs { display: flex; align-items: stretch; overflow-x: auto; scrollbar-width: none; min-width: 0; mask-image: linear-gradient(90deg, #000 calc(100% - 24px), transparent); }
+.folio .bx-tabs::-webkit-scrollbar { display: none; }
+.folio .bx-tabs button { all: unset; cursor: pointer; flex: none; display: inline-flex; align-items: center; padding: 0 14px; font: 600 0.86rem var(--fo-sans); color: var(--fo-ink-soft); border-bottom: 3px solid transparent; white-space: nowrap; }
+.folio .bx-tabs button:hover { color: var(--fo-navy); }
+.folio .bx-tabs button.is-on { color: var(--fo-navy); border-bottom-color: var(--fo-jade); }
+.folio .bx-tabs button:focus-visible, .folio .bx-add:focus-visible, .folio .bx-pick:focus-visible, .folio .bx-step:focus-visible { outline: 2px solid var(--fo-navy); outline-offset: -2px; }
+.folio .bx-add { all: unset; cursor: pointer; flex: none; align-self: center; width: 30px; height: 30px; display: inline-grid; place-items: center; margin-left: 6px; border: 1px solid var(--fo-hair-strong); border-radius: var(--fo-r-control); font: 600 1rem var(--fo-sans); color: var(--fo-jade-deep); }
+.folio .bx-add:hover { border-color: var(--fo-navy); color: var(--fo-navy); }
+.folio .bx-row--tabs, .folio .bx-row--slim { align-items: stretch; }
+.folio .bx-row--tabs > :not(.bx-tabwrap), .folio .bx-row--slim > :not(.bx-tabwrap) { align-self: center; }
+.folio .bx-row--tabs { min-height: 48px; }
+.folio .bx-row--slim { min-height: 50px; }
+
+/* R18 · the section picker */
+.folio .bx-menu { position: relative; display: flex; align-items: center; gap: 4px; }
+.folio .bx-pick { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 12px; min-width: 190px; box-sizing: border-box; border: 1px solid var(--fo-hair-strong); border-radius: var(--fo-r-control); background: var(--fo-paper); font: 600 0.9rem var(--fo-sans); color: var(--fo-navy); }
+.folio .bx-pick:hover, .folio .bx-pick[aria-expanded="true"] { border-color: var(--fo-navy); }
+.folio .bx-pick .bx-lock { margin-left: 0; }
+.folio .bx-pick-n { font: 600 0.72rem var(--fo-mono); color: var(--fo-ink-faint); }
+.folio .bx-caret { margin-left: auto; width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid var(--fo-ink-soft); }
+.folio .bx-step { all: unset; cursor: pointer; width: 30px; height: 36px; display: inline-grid; place-items: center; border-radius: var(--fo-r-control); font: 500 1.2rem/1 var(--fo-sans); color: var(--fo-ink-soft); }
+.folio .bx-step:hover { background: var(--fo-hover); color: var(--fo-navy); }
+.folio .bx-list { position: absolute; top: calc(100% + 6px); left: 0; z-index: 20; width: 300px; margin: 0; padding: 6px; list-style: none; background: var(--fo-paper); border: 1px solid var(--fo-hair-strong); border-radius: var(--fo-r-pane); box-shadow: var(--fo-float); white-space: normal; }
+.folio .bx-list button { all: unset; cursor: pointer; box-sizing: border-box; width: 100%; display: flex; align-items: center; gap: 12px; padding: 9px 10px; border-radius: var(--fo-r-control); }
+.folio .bx-list button:hover { background: var(--fo-hover); }
+.folio .bx-list button.is-on { background: var(--fo-tint); box-shadow: inset 3px 0 0 var(--fo-navy); }
+.folio .bx-list-n { width: 22px; height: 22px; display: inline-grid; place-items: center; border-radius: 6px; background: var(--fo-canvas); font: 600 0.72rem var(--fo-mono); color: var(--fo-ink-soft); flex: none; }
+.folio .bx-list-t { display: grid; gap: 1px; }
+.folio .bx-list-t b { display: inline-flex; align-items: center; font: 600 0.88rem var(--fo-sans); color: var(--fo-navy); }
+.folio .bx-list-t span { font-size: 0.76rem; color: var(--fo-ink-faint); }
+.folio .bx-list .bx-list-add { margin-top: 4px; border-top: 1px solid var(--fo-hair); border-radius: 0 0 var(--fo-r-control) var(--fo-r-control); font: 600 0.84rem var(--fo-sans); color: var(--fo-jade-deep); }
+
+/* R19 · the open section's row */
+.folio .bx-what { display: inline-flex; align-items: baseline; gap: 8px; margin-right: 4px; }
+.folio .bx-what b { font: 600 0.92rem var(--fo-sans); color: var(--fo-navy); }
+.folio .bx-what span { font-size: 0.78rem; color: var(--fo-ink-faint); }
+
+/* R20 · the toolbar on the picked section */
+.folio .bx-float { position: absolute; top: 10px; right: 14px; z-index: 4; display: flex; align-items: center; gap: 6px; padding: 6px 6px 6px 14px; white-space: nowrap; background: var(--fo-navy); color: #fff; border-radius: var(--fo-r-pane); box-shadow: var(--fo-float); cursor: default; font-family: var(--fo-sans); }
+.folio .bx-float b { font-size: 0.86rem; font-weight: 600; }
+.folio .bx-float-note { font-size: 0.76rem; color: var(--fo-on-navy-soft); }
+.folio .bx-float-div { width: 1px; height: 20px; margin: 0 4px; background: var(--fo-on-navy-hair); }
+.folio .bx-fbtn { all: unset; cursor: pointer; height: 30px; padding: 0 11px; display: inline-flex; align-items: center; border-radius: var(--fo-r-control); font: 600 0.8rem var(--fo-sans); color: #fff; }
+.folio .bx-fbtn:hover { background: rgba(255,255,255,.1); }
+.folio .bx-fbtn--try { background: var(--fo-jade); color: var(--fo-navy-deep); }
+.folio .bx-fbtn--try:hover { background: var(--fo-jade-bright); }
+.folio .bx-fbtn:focus-visible { outline: 2px solid #fff; outline-offset: 1px; }
+.folio .bx-float .bx-locked { color: var(--fo-on-navy-soft); }
+.folio .bx-float .bx-lock { color: var(--fo-on-navy-soft); }
+.folio .bx-float-warn { margin: 0 8px 0 4px; font: 600 0.78rem var(--fo-sans); color: var(--fo-gold-on-navy); }
+.folio .bx-tabs { padding-right: 20px; }
+/* picking a section scrolls it clear of the stuck shell bar and frame bar */
+.folio .rb-canvas .np-sec { scroll-margin-top: 200px; }
+.folio .bx-pick { min-width: 168px; }
+.folio .bx-row--one .bx-warn { flex: none !important; padding: 3px 8px; border-radius: var(--fo-r-pill); background: color-mix(in srgb, var(--fo-gold) 14%, transparent); font-size: 0.76rem; }
+.folio .rb-canvas .np-sec { scroll-margin-top: 190px; }
+
+/* ── R21–R23 · the builder as its own mode. One header, then the page and
+   the rail fill the window; each scrolls on its own. ─────────────────── */
+.folio .ed-app { height: 100vh; display: grid; grid-template-rows: auto minmax(0, 1fr); background: var(--fo-canvas); color: var(--fo-ink); font-family: var(--fo-sans); overflow: hidden; }
+.folio .ed-body { min-height: 0; padding: 12px 16px 16px; }
+.folio .ed-body > .rb-work { height: 100%; grid-template-rows: minmax(0, 1fr); align-items: stretch; }
+.folio .ed-body .rb-frame { display: flex; flex-direction: column; min-height: 0; }
+.folio .ed-body .rb-framebar { position: static; }
+.folio .ed-body .rb-canvas { flex: 1; min-height: 0; overflow: auto; }
+.folio .ed-body .rb-rail2 { position: static; max-height: none; height: 100%; overflow: auto; }
+.folio .ed-body .vz-rail .vz-tabs { position: sticky; top: 0; z-index: 2; }
+.folio .ed-body .rb-canvas .np-sec { scroll-margin-top: 16px; }
+
+.folio .ed-bar { display: flex; align-items: center; gap: 10px; height: 60px; padding: 0 16px; white-space: nowrap; }
+.folio .ed-bar > * { flex: none; }
+.folio .ed-bar--light { background: var(--fo-paper); border-bottom: 1px solid var(--fo-hair-strong); }
+.folio .ed-vsep { width: 1px; height: 26px; background: var(--fo-on-navy-hair); }
+.folio .ed-vsep--light { background: var(--fo-hair-strong); }
+.folio .ed-back, .folio .ed-done { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 12px 0 8px; border-radius: var(--fo-r-control); font: 600 0.88rem var(--fo-sans); color: var(--fo-navy); text-decoration: none; }
+.folio .ed-back:hover, .folio .ed-done:hover { background: var(--fo-hover); }
+.folio .ed-back span { font-size: 1.05rem; }
+.folio .ed-done { padding: 0 12px; }
+.folio .ed-page { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 14px; padding: 5px 12px; border-radius: var(--fo-r-control); }
+.folio .ed-page:hover { background: var(--fo-hover); }
+.folio .ed-page-t { display: grid; line-height: 1.2; }
+.folio .ed-page-t b { font: 600 1.15rem var(--fo-serif); color: var(--fo-navy); }
+.folio .ed-page-t span { font-size: 0.74rem; color: var(--fo-ink-faint); }
+.folio .ed-saved { font-size: 0.78rem; color: var(--fo-ink-faint); margin-right: 4px; }
+.folio .ed-saved::before { content: ''; display: inline-block; width: 6px; height: 6px; margin-right: 6px; border-radius: 50%; background: var(--fo-jade); vertical-align: 1px; }
+
+/* R22 · navy */
+.folio .ed-bar--navy { background: var(--fo-navy); color: #fff; }
+.folio .ed-exit { display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 12px; border-radius: var(--fo-r-control); font: 600 0.86rem var(--fo-sans); color: #fff; text-decoration: none; }
+.folio .ed-exit:hover, .folio .ed-page--dark:hover, .folio .ed-icon:hover, .folio .ed-ghost:hover { background: rgba(255,255,255,.1); }
+.folio .ed-page--dark .ed-page-t b { color: #fff; }
+.folio .ed-page--dark .ed-page-t span { color: var(--fo-on-navy-soft); }
+.folio .ed-page--dark .bx-caret { border-top-color: var(--fo-on-navy-soft); }
+.folio .ed-mid { display: flex; align-items: center; gap: 6px; }
+.folio .ed-icon { all: unset; cursor: pointer; width: 32px; height: 32px; display: inline-grid; place-items: center; border-radius: var(--fo-r-control); font-size: 1.05rem; color: #fff; }
+.folio .ed-seg { display: inline-flex; margin: 0 6px; border: 1px solid var(--fo-on-navy-hair); }
+.folio .ed-seg button { all: unset; cursor: pointer; height: 30px; padding: 0 12px; display: inline-flex; align-items: center; font: 600 0.8rem var(--fo-sans); color: var(--fo-on-navy-soft); }
+.folio .ed-seg button.is-on { background: #fff; color: var(--fo-navy); }
+.folio .ed-score { font-size: 0.8rem; color: var(--fo-on-navy-soft); }
+.folio .ed-score b { font: 600 1.2rem var(--fo-serif); color: #fff; }
+.folio .ed-saved--dark { color: var(--fo-on-navy-soft); }
+.folio .ed-ghost { all: unset; cursor: pointer; height: 36px; padding: 0 14px; display: inline-flex; align-items: center; border: 1px solid var(--fo-on-navy-hair); border-radius: var(--fo-r-control); font: 600 0.86rem var(--fo-sans); color: #fff; }
+.folio .ed-send { all: unset; cursor: pointer; height: 36px; padding: 0 16px; display: inline-flex; align-items: center; border-radius: var(--fo-r-control); background: var(--fo-jade); font: 700 0.86rem var(--fo-sans); color: var(--fo-navy-deep); }
+.folio .ed-send:hover { background: var(--fo-jade-bright); }
+.folio .ed-exit:focus-visible, .folio .ed-icon:focus-visible, .folio .ed-ghost:focus-visible, .folio .ed-send:focus-visible, .folio .ed-page--dark:focus-visible, .folio .ed-seg button:focus-visible { outline: 2px solid #fff; outline-offset: 1px; }
+.folio .ed-back:focus-visible, .folio .ed-done:focus-visible, .folio .ed-page:focus-visible, .folio .ed-crumb-cur:focus-visible { outline: 2px solid var(--fo-navy); outline-offset: 1px; }
+
+/* R23 · the path */
+.folio .ed-crumbbar { position: relative; }
+.folio .ed-crumbs { display: flex; align-items: center; gap: 8px; margin-left: 28px; white-space: nowrap; min-width: 0; font-size: 0.9rem; color: var(--fo-ink-faint); }
+.folio .ed-crumbs a { color: var(--fo-ink-soft); text-decoration: none; }
+.folio .ed-crumbs a:hover { color: var(--fo-navy); text-decoration: underline; }
+.folio .ed-crumb-cur { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; padding: 4px 8px; border-radius: var(--fo-r-control); font: 600 1.05rem var(--fo-serif); color: var(--fo-navy); }
+.folio .ed-crumb-cur:hover { background: var(--fo-hover); }
+.folio .ed-chip { padding: 2px 8px; border-radius: var(--fo-r-pill); background: var(--fo-tint); font: 600 0.72rem var(--fo-sans); color: var(--fo-ink-soft); }
+.folio .ed-crumbbar .fo-bar-end { align-items: center; gap: 8px; }
+.folio .ed-body .rb-rail2 { align-content: start; justify-content: flex-start; }
+
+/* ── The rail, Oct 4 (Zev): "the right rail header is all clumped" and "remove
+   the border radius on the rail items". Four even tabs, each a name over what
+   it holds; everything inside the rail is square. The rail itself keeps its
+   rounded edge, like the page frame beside it. ───────────────────────── */
+.folio .rb-navysel .vz-rail .vz-tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.folio .rb-navysel .vz-rail .vz-tabs button { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; padding: 12px 14px 11px; min-width: 0; }
+.folio .rb-navysel .vz-rail .vz-tabs button + button { box-shadow: inset 1px 0 0 var(--fo-hair); }
+.folio .rb-navysel .vz-rail .vz-tabs button span { font: 600 0.86rem var(--fo-sans); }
+.folio .rb-navysel .vz-rail .vz-tabs button small { font: 500 0.72rem var(--fo-sans); color: var(--fo-ink-faint); white-space: nowrap; }
+.folio .rb-navysel .vz-rail .vz-tabs button.is-on small { color: var(--fo-ink-soft); }
+.folio .rb-navysel .vz-rail .vz-tabs button:hover span { color: var(--fo-navy); }
+.folio .rb-navysel .vz-rail :is(.vz-card, .vz-thumb, .rr-head, .rr-group, .rr-issue, .rr-field input, .rr-field textarea, .rr-chips button, .vz-tree li.is-on, .vz-keep, .rb-act, .rr-primary, .rr-ghost, .rr-link, .vz-livetag, .bd-rank, .vz-empty) { border-radius: 0; }

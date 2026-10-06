@@ -1,68 +1,63 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
-import { prototypeBase, type Prototype } from './registry';
+import { useRouter } from 'next/navigation';
+import type { Prototype, PrototypeVariant } from './registry';
 import './prototypes.css';
 
-/** Floating switcher: jump between a prototype's variants, or back to all of them.
-    Past five variants (several rounds), the row scrolls sideways, keeps the
-    current one in view, and ends with "+", which lists every variant by round
-    with what it tries, as os.esy.com's ProtoSwitch does. */
+/**
+ * Floating switcher: step through a prototype's variants with ‹ ›, or pick any
+ * of them from one list grouped by round. A selector rather than a row of
+ * links, so it stays one small bar however many variants a prototype grows
+ * (the about page has 16; the page builder more).
+ */
 export default function PrototypeBar({ prototype, current }: { prototype: Prototype; current?: string }) {
-  const base = prototypeBase(prototype);
-  const many = prototype.variants.length > 5;
-  const [open, setOpen] = useState(false);
-  const row = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const base = `/prototypes/${prototype.slug}`;
+  const variants = prototype.variants;
+  const at = variants.findIndex((v) => v.slug === current);
+  const step = (d: number) => `${base}/${variants[(Math.max(at, 0) + d + variants.length) % variants.length].slug}/`;
 
-  // Bring the current variant into view in the scrolling row.
-  useEffect(() => {
-    row.current?.querySelector('[aria-current="page"]')?.scrollIntoView({ inline: 'center', block: 'nearest' });
-  }, [current]);
-  useEffect(() => {
-    if (!open) return;
-    const k = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
-    window.addEventListener('keydown', k);
-    return () => window.removeEventListener('keydown', k);
-  }, [open]);
+  const option = (v: PrototypeVariant) => (
+    <option key={v.slug} value={v.slug}>
+      {v.key} · {v.name}
+      {v.live ? ' (live)' : ''}
+    </option>
+  );
+  // Group by round when there's more than one; anything outside the listed
+  // rounds goes last, so no variant drops out of the list.
+  const listed = new Set(prototype.rounds.map((r) => r.n));
+  const groups =
+    prototype.rounds.length > 1
+      ? [
+          ...prototype.rounds.map((r) => ({ label: `Round ${r.n} · ${r.title}`, items: variants.filter((v) => v.round === r.n) })),
+          { label: 'More', items: variants.filter((v) => !listed.has(v.round)) },
+        ].filter((g) => g.items.length)
+      : null;
 
   return (
-    <>
-      <nav className={`proto-bar ${many ? 'is-many' : ''}`} aria-label={`${prototype.name}: versions`}>
-        <Link href="/prototypes/#versions">← All versions</Link>
-        <span>Try:</span>
-        <div className="proto-bar-row" ref={row}>
-          {prototype.variants.map((v) => (
-            <Link key={v.slug} href={`${base}/${v.slug}/`} aria-current={current === v.slug ? 'page' : undefined} title={v.blurb}>
-              {v.key} · {v.name}
-              {v.live ? ' (live)' : ''}
-            </Link>
-          ))}
-        </div>
-        {many && <button type="button" className="proto-bar-all" onClick={() => setOpen(true)} aria-haspopup="dialog" aria-label={`All ${prototype.variants.length} versions`}>+</button>}
-      </nav>
-      {open && (
-        <div className="proto-modal-scrim" onClick={() => setOpen(false)}>
-          <div className="proto-modal" role="dialog" aria-label={`${prototype.name}: every version`} onClick={(e) => e.stopPropagation()}>
-            <header><h2>{prototype.name} <small>{prototype.variants.length} versions</small></h2><button type="button" onClick={() => setOpen(false)} aria-label="Close">×</button></header>
-            {prototype.rounds.map((r) => (
-              <section key={r.n}>
-                <h3>Round {r.n} · {r.title}</h3>
-                <ol>
-                  {prototype.variants.filter((v) => v.round === r.n).map((v) => (
-                    <li key={v.slug}>
-                      <Link href={`${base}/${v.slug}/`} aria-current={current === v.slug ? 'page' : undefined} onClick={() => setOpen(false)}>
-                        <b>{v.key}</b>
-                        <span><strong>{v.name}{v.mergeOf ? ` (from ${v.mergeOf.join(' + ')})` : ''}</strong><small>{v.blurb}</small></span>
-                      </Link>
-                    </li>
-                  ))}
-                </ol>
-              </section>
-            ))}
-          </div>
-        </div>
-      )}
-    </>
+    <nav className="proto-bar" aria-label={`${prototype.name}: versions`}>
+      <Link href="/prototypes/#versions" className="proto-bar-all">
+        ← All
+      </Link>
+      <Link href={step(-1)} className="proto-bar-step" aria-label="Previous version">
+        ‹
+      </Link>
+      <select
+        className="proto-bar-pick"
+        aria-label="Version"
+        value={at >= 0 ? current : ''}
+        onChange={(e) => e.target.value && router.push(`${base}/${e.target.value}/`)}
+      >
+        {at < 0 && <option value="">Pick a version</option>}
+        {groups ? groups.map((g) => <optgroup key={g.label} label={g.label}>{g.items.map(option)}</optgroup>) : variants.map(option)}
+      </select>
+      <span className="proto-bar-count">
+        {at >= 0 ? at + 1 : '–'}/{variants.length}
+      </span>
+      <Link href={step(1)} className="proto-bar-step" aria-label="Next version">
+        ›
+      </Link>
+    </nav>
   );
 }

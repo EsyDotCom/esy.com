@@ -1,0 +1,20 @@
+/* Prototype-only tweaks over the copied os.esy.com stylesheets. */
+
+/* ── The window around the builder (on the variant page) ───────────────── */
+.pbw-frame { position: relative; border-radius: 14px; overflow: hidden; background: #fff; border: 1px solid rgba(10, 37, 64, 0.12); box-shadow: 0 1px 2px rgba(10, 37, 64, 0.06), 0 24px 60px -24px rgba(10, 37, 64, 0.35); }
+.pbw-chrome { height: 34px; display: flex; align-items: center; gap: 14px; padding: 0 14px; background: #f3f5f7; border-bottom: 1px solid #e6eaee; }
+.pbw-dots { display: flex; gap: 6px; flex: none; }
+.pbw-dots i { width: 10px; height: 10px; border-radius: 50%; background: #d5dce3; }
+.pbw-url { flex: 1 1 auto; min-width: 0; max-width: 420px; margin: 0 auto; height: 22px; display: flex; align-items: center; justify-content: center; padding: 0 10px; border-radius: 7px; background: #fff; font: 500 12px var(--font-inter), system-ui, sans-serif; color: #50607a; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.pbw-full { flex: none; font: 600 12px var(--font-inter), system-ui, sans-serif; color: #007f72; text-decoration: none; white-space: nowrap; }
+.pbw-full:hover { text-decoration: underline; }
+.pbw-viewport { position: relative; overflow: hidden; }
+.pbw-iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: 0 0; background: #eef1f5; }
+
+/* ── The builder's own page (the raw route, also inside the iframe) ─────── */
+.pbw-app { min-height: 100vh; }
+/* esy.com's globals give h1–h6 Literata (or the system face) and wide
+   tracking; here headings inherit, as in os.esy.com. Class rules in the
+   copied sheets still win. */
+.pbw-app :is(h1, h2, h3, h4, h5, h6) { font-family: inherit; letter-spacing: normal; }
+.pbw-note { position: fixed; left: 50%; top: 14px; z-index: 100; transform: translateX(-50%); margin: 0; padding: 9px 14px; border-radius: 10px; background: #0a2540; color: #fff; font: 500 13px var(--font-inter), system-ui, sans-serif; box-shadow: 0 12px 30px -10px rgba(10, 37, 64, 0.5); white-space: nowrap; }

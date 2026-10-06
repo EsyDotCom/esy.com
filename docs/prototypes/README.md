@@ -29,6 +29,8 @@ Clickable directions we compare by using them, not by looking at mockups. They l
 
 **A shorter homepage (2026-09-30)** is at `/prototypes/home-trim/`: 01 Apps merged into one band that shows one app at a time (A · Tabs, B · Rail, C · Tour, in `src/components/NewsletterHome/AppsShowcase.tsx`), with AI News's newest headlines beside Latest (`NewsColumn.tsx`). **C · Tour with the AI News column shipped (2026-09-30)**: the homepage passes `appsLayout="tour"` and `newsColumn` to `NewsletterHomePage`.
 
+**The os.esy.com page builder (2026-10-04)** is at `/prototypes/page-builder/`: the builder in os.esy.com where you pick a section of a page, ask for three more versions, and keep one. It was explored in os.esy.com first (R1–R17, PR #319 there); this prototype carries the picked builder (R12) and the two rounds after it: the bar above the page (R18 · One row, R19 · Two rows, R20 · On the section) and the builder as its own mode with its own header (R21 · Light, R22 · Navy, R23 · Path). It's the first prototype of a **full-window app**, so it adds a second way to show one (below, under Full-window apps).
+
 **The skills hub (2026-10-06)** is at `/prototypes/skills/` (ten takes, four rounds), for esy.com/skills: the home for every AI skill we publish, mostly for marketing work. Round 1 (A · Field guide, B · Shelf, C · Workbench) used the publication's look and read too much like a blog. Round 2 moved to Folio and docs.esy.com's top (navy hero, jade-italic second line, a replay in a device): D · Replay, E · Tour (the email course beside the headline), F · Anatomy. Round 3 merged E's top over D's replay (G). Round 4 kept E's page and tried three clearer simulators, because the replay confused people (a terminal and a card saying the same thing, a sentence about the result instead of the result): H · Chat, I · Without vs with, J · Three panels. **H · Chat shipped as `/skills` (2026-10-06)**: `src/app/skills/page.tsx` renders it with no picker. Components in `src/components/SkillsHub/` (Folio takes in `folio/`, simulators in `folio/sims.tsx`, data in `skills.ts`); Folio and the docs hero CSS are copied verbatim with provenance headers, tweaks in `skills-folio.css`. Only /prototyping is a real skill; the rest show as coming soon. The course card signs people up to The Marketing Engineer, marked as from skills (referring site esy.com/skills, utm_campaign skills, custom fields Name and Signup Source = skills); the three lessons aren't written yet and the fine print says so. The takes briefly lived at `/skills/a…j`; those URLs now redirect here. `PrototypeBar` scales past five variants: the row scrolls with the current one in view, and "+" opens every version grouped by round.
 
 ## The pattern
@@ -44,6 +46,18 @@ Clickable directions we compare by using them, not by looking at mockups. They l
    - **Expect a merge round.** The pick is often "this part of A with that part of C". Keep each direction's moving parts as shared pieces (the Tour's questions, timer and step list live in `tour.tsx`) so a merge is a new small component, not a copy. `HeroSplitTour.tsx` and `HeroStageTour.tsx` are the merges.
 6. **Copy says what the product does, in the customer's words.** No riddles, and no engine vocabulary (workflow, run, gate, provider). Each hero answers: what is it, what does it show you, what do I click.
 7. **Show each direction in the real site chrome**, with the real header and footer, at `/prototypes/<prototype>/<variant>/`. A floating switcher moves between variants.
+
+### Full-window apps: a raw page in an iframe
+
+The scaled-window recipe in step 3 forces the desktop layout with CSS overrides. That works for one screen of an app (the Books). An editor like the page builder has dozens of breakpoints and `100vh` layouts, so it gets its own page instead:
+
+- `/prototypes/<slug>/<variant>/raw/` renders the app alone, full screen, with the product's stylesheets (`src/components/PageBuilder/BuilderFrame.tsx`). The footer is hidden on every `/raw` route, and the cookie notice never opens inside an iframe.
+- The variant page shows that route in an iframe 1440 wide, scaled to fit (`BuilderWindow.tsx`), with an **Open full screen** link. Because the iframe really is 1440 wide, the app's own breakpoints and `100vh` behave as on a laptop, at any screen size.
+- Anything that scrolls must scroll only inside the app: `scrollIntoView` also scrolls the page around the iframe, so scroll the app's own container instead.
+
+### The switcher
+
+`PrototypeBar` is a selector: ‹ and › step through the variants, and one dropdown lists them all, grouped by round, with a count (3/7). It stays one small bar however many variants a prototype has.
 
 ## Adding a prototype
 
@@ -67,4 +81,5 @@ Clickable directions we compare by using them, not by looking at mockups. They l
 | `src/components/OfficePreview/` | The working Books window: copied office CSS, sample data, the scaled frame. Reusable for any os.esy.com surface. |
 | `src/components/HomeHero/` | The five Esy OS hero directions. Stage Tour (E) was the homepage until 2026-09-25; it now lives on os.esy.com. |
 | `src/components/EducationHero/` | The education heroes and their desks. Studio (F) is live on `/`, with `phone="profile"` (H) on phones. |
+| `src/components/PageBuilder/` | The os.esy.com page builder: its stylesheets copied from os.esy.com, the builder's components, sample data, the raw page's frame and the scaled iframe window. |
 | `src/components/prototypes/PhoneFrame.tsx` | A prototype in a 390×844 phone frame that measures where its Subscribe button lands. Used by `/prototypes/education/phones/`. |

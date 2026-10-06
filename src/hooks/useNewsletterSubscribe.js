@@ -57,7 +57,9 @@ export function useNewsletterSubscribe({ endpoint = '/api/newsletter/subscribe',
     setErrorMessage(null);
   }, []);
 
-  const subscribe = useCallback(async (email) => {
+  // `extra` carries optional fields a form collects beyond the address (today:
+  // `name`, from the skills course). Callers that pass only an email are unchanged.
+  const subscribe = useCallback(async (email, extra = {}) => {
     clearErrorTimer();
 
     if (!email || email.trim() === '') {
@@ -80,6 +82,7 @@ export function useNewsletterSubscribe({ endpoint = '/api/newsletter/subscribe',
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          ...extra,
           email: email.trim(),
           hp: honeypotRef.current?.value || '',
           elapsedMs: Date.now() - mountedAtRef.current,

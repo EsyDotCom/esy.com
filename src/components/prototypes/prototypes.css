@@ -265,6 +265,29 @@
 .proto-bar a { padding: 7px 12px; border-radius: 8px; color: rgba(255, 255, 255, 0.8); text-decoration: none; white-space: nowrap; }
 .proto-bar a:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
 .proto-bar a[aria-current='page'] { background: #fff; color: #0a2540; }
+/* The variants' row: on its own it lays out as before; with many variants it
+   scrolls sideways under a soft edge fade, and "+" opens every version. */
+.proto-bar-row { display: flex; gap: 4px; min-width: 0; }
+.proto-bar.is-many { overflow: visible; max-width: min(1100px, calc(100vw - 32px)); }
+.proto-bar.is-many .proto-bar-row { overflow-x: auto; scrollbar-width: none; mask-image: linear-gradient(90deg, transparent, #000 14px, #000 calc(100% - 14px), transparent); }
+.proto-bar-row::-webkit-scrollbar { display: none; }
+.proto-bar-all { flex: none; width: 32px; height: 32px; border: 0; border-radius: 8px; background: rgba(255, 255, 255, 0.14); color: #fff; font-size: 1.1rem; cursor: pointer; }
+.proto-bar-all:hover { background: rgba(255, 255, 255, 0.24); }
+.proto-modal-scrim { position: fixed; inset: 0; z-index: 1100; display: grid; place-items: center; padding: 16px; background: rgba(10, 37, 64, 0.35); }
+.proto-modal { width: min(720px, 100%); max-height: min(82vh, 780px); overflow-y: auto; border-radius: 16px; background: #fff; color: #0a2540; font-family: var(--font-inter), system-ui, sans-serif; box-shadow: 0 30px 70px -30px rgba(10, 37, 64, 0.6); }
+.proto-modal header { position: sticky; top: 0; display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid #e6eaee; background: #fff; }
+.proto-modal h2 { margin: 0; font-size: 1.1rem; font-weight: 700; }
+.proto-modal h2 small { margin-left: 8px; font-size: 0.85rem; font-weight: 500; color: #8a97a6; }
+.proto-modal header button { width: 32px; height: 32px; border: 1px solid #e6eaee; border-radius: 8px; background: #fff; font-size: 1.2rem; cursor: pointer; }
+.proto-modal section { padding: 12px 20px 4px; }
+.proto-modal h3 { margin: 6px 0 6px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #5f7185; }
+.proto-modal ol { margin: 0 0 8px; padding: 0; list-style: none; }
+.proto-modal li a { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 12px; padding: 10px; border-radius: 10px; color: inherit; text-decoration: none; }
+.proto-modal li a:hover { background: #f4f7f9; }
+.proto-modal li a[aria-current='page'] { background: #e3f4f1; }
+.proto-modal li b { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 8px; background: #0a2540; color: #fff; font-size: 0.9rem; }
+.proto-modal li strong { display: block; font-size: 0.95rem; }
+.proto-modal li small { display: block; margin-top: 2px; font-size: 0.84rem; line-height: 1.45; color: #5f7185; }
 
 /* Poster for a variant with no screenshot yet: its colours and its headline,
  * in the same 1200×750 slot a picture would fill. */

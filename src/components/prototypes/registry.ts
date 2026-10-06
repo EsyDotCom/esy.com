@@ -27,6 +27,9 @@ export interface PrototypeRound {
 
 export interface Prototype {
   slug: string;
+  /** Where the variants live when not under /prototypes/<slug>, e.g. '/skills'
+      for a new section built in place so the pick becomes the section itself. */
+  base?: string;
   name: string;
   date: string; // YYYY-MM-DD, when it was built
   headline: string; // the index opens with the newest prototype's headline
@@ -1907,6 +1910,122 @@ export const PROTOTYPES: Prototype[] = [
       },
     ],
   },
+  {
+    slug: 'skills',
+    base: '/skills',
+    name: 'The skills hub',
+    date: '2026-10-06',
+    headline: 'Three ways to teach and find AI marketing skills.',
+    intro:
+      'esy.com/skills will hold every skill we publish, mostly for marketing work. Each version teaches what a skill is and helps you find the right one, in a different order: a guided path, a shelf you search, or one skill opened up.',
+    summary:
+      'Three versions of esy.com/skills, built in place so the pick becomes the section. One real skill (prototyping) and labelled sample skills that show how each layout grows.',
+    rounds: [
+      { n: 1, title: 'Three directions', summary: 'Learn first (a numbered path), find first (a searchable shelf), or show first (one skill opened, file by file).' },
+      { n: 2, title: 'In Folio, with the docs’ top', summary: 'Round one read too much like a blog. Round two moves to Folio (os.esy.com’s brand) and opens like docs.esy.com: a navy hero, a jade-italic second line, a replay in a device. Zev appears small.' },
+      { n: 3, title: 'One merge', summary: 'G is E’s top (the course beside the headline) over D’s replay (the one real skill doing real work). The course is now three real lessons, and it leads into The Marketing Engineer.' },
+      { n: 4, title: 'E, with a clearer simulator', summary: 'E won the page; its replay confused people. Three simulators that show the actual work in plain words, one idea at a time: a chat, without-versus-with, and three panels.' },
+    ],
+    variants: [
+      {
+        slug: 'a',
+        key: 'A',
+        name: 'Field guide',
+        round: 1,
+        title: 'Skills that do marketing work.',
+        blurb: 'A numbered path down the left, one marketing job per chapter, each teaching an idea and handing you the skills for it. Install and the email course sit beside the promise.',
+        poster: ['#0A2540', '#00A896'],
+      },
+      {
+        slug: 'b',
+        key: 'B',
+        name: 'Shelf',
+        round: 1,
+        title: 'Find the skill for the job.',
+        blurb: 'Search and job filters over a shelf of skill cards. Open one to read its SKILL.md and what it made; the how-it-works lesson is a short band, not a course.',
+        poster: ['#F8F9FA', '#00A896'],
+      },
+      {
+        slug: 'c',
+        key: 'C',
+        name: 'Workbench',
+        round: 1,
+        title: 'Open a skill and see how it works.',
+        blurb: 'One real skill opened up: its files, its SKILL.md with every line explained, the moment it triggers, and what it built. The rest of the shelf and the course follow.',
+        poster: ['#061527', '#00D4AA'],
+      },
+      {
+        slug: 'd',
+        key: 'D',
+        name: 'Replay',
+        round: 2,
+        title: 'AI marketing skills, your agent can run.',
+        blurb: 'The docs’ own shape: search and “Try” chips beside the headline, then /prototyping replayed from the ask to the three takes it built.',
+        poster: ['#061527', '#00D4AA'],
+      },
+      {
+        slug: 'e',
+        key: 'E',
+        name: 'Tour',
+        round: 2,
+        title: 'AI marketing skills, your agent can run.',
+        blurb: 'The email course beside the headline, and a replay that tours four jobs: what you ask, the skill it picks, what comes back.',
+        poster: ['#0A2540', '#00A896'],
+      },
+      {
+        slug: 'f',
+        key: 'F',
+        name: 'Anatomy',
+        round: 2,
+        title: 'AI marketing skills, your agent can run.',
+        blurb: 'Zev narrates beside the headline; the replay walks the real SKILL.md part by part, with what each part does and how to write your own.',
+        poster: ['#0F3460', '#00D4AA'],
+      },
+      {
+        slug: 'g',
+        key: 'G',
+        name: 'Course + Replay',
+        round: 3,
+        mergeOf: ['E', 'D'],
+        title: 'AI marketing skills, your agent can run.',
+        blurb: 'E’s top (the three-lesson course beside the headline, Zev’s byline) over D’s replay of /prototyping; search joins the bar once the hero scrolls away.',
+        poster: ['#061527', '#00A896'],
+      },
+      {
+        slug: 'h',
+        key: 'H',
+        name: 'Chat',
+        round: 4,
+        mergeOf: ['E'],
+        title: 'AI marketing skills, your agent can run.',
+        blurb: 'E with a chat window: you ask, a “Using /skill” chip appears, and the actual work builds beside the chat.',
+        poster: ['#061527', '#00D4AA'],
+      },
+      {
+        slug: 'i',
+        key: 'I',
+        name: 'Without vs with',
+        round: 4,
+        mergeOf: ['E'],
+        title: 'AI marketing skills, your agent can run.',
+        blurb: 'E with the same ask answered twice: a generic answer with its problems flagged, then the work the skill makes.',
+        poster: ['#0A2540', '#00A896'],
+      },
+      {
+        slug: 'j',
+        key: 'J',
+        name: 'Three panels',
+        round: 4,
+        mergeOf: ['E'],
+        title: 'AI marketing skills, your agent can run.',
+        blurb: 'E with You ask → It picks a skill → You get the work, all three on screen at once while a highlight walks across.',
+        poster: ['#0F3460', '#00D4AA'],
+      },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);
+
+/** The URL a prototype's variants hang off: its own section, or /prototypes/<slug>. */
+export const prototypeBase = (p: Prototype) => p.base ?? `/prototypes/${p.slug}`;

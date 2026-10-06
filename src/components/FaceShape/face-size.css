@@ -1,0 +1,17 @@
+/* The portrait size (2026-10-06, /prototypes/face-size/).
+ *
+ * The homepage hero's portrait is min(440px, 36vw) today (.eh-studio-ring in
+ * EducationHero.css). These takes shrink it on desktop only, to see whether a
+ * smaller face gives the headline and signup more weight. Phones keep the
+ * profile row (H), so nothing under 960px changes. */
+
+@media (min-width: 961px) {
+  .fz--360 .eh-studio-ring { width: min(360px, 30vw); }
+  .fz--280 .eh-studio-ring { width: min(280px, 24vw); }
+  /* The ring stays 8px and the navy gap 5px at every size; at 280 the gap
+     between copy and portrait closes up a little so the two still read as one. */
+  .fz--280 .eh-studio .eh-studio-inner { gap: 48px; }
+  /* The pick (360): equal room above and below, so the portrait and the copy
+     both sit on the hero's middle (it was 96 over 104). */
+  .fz--360 .eh-studio .eh-studio-inner { padding-top: 100px; padding-bottom: 100px; }
+}

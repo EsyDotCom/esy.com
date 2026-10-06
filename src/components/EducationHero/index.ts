@@ -11,5 +11,8 @@ export { default as EduScene } from './EduScene';
 export { default as EduStudio } from './EduStudio';
 // Round 3 (2026-09-27): F's phone layouts; desktop is unchanged.
 export { EduStudioAfter, EduStudioAvatar, EduStudioProfile } from './EduStudio';
+// The promise round (2026-10-06): C is the homepage, B is esy.com/seo.
+export { CourseSignup, PROMISES, PromiseStudio } from './promises';
+export type { HeroPromise } from './promises';
 export { latestLesson, resolveDesks } from './desks';
 export type { Lesson, ResolvedDesk } from './desks';

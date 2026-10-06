@@ -98,6 +98,9 @@ const ConditionalNavigation = () => {
   // The skills hub (2026-10-06): /skills and every take or skill page under it
   // render LightHeader themselves.
   const isSkillsPage = normalizedPath === '/skills' || normalizedPath?.startsWith('/skills/');
+  // esy.com/seo (2026-10-06) is the homepage with the SEO hero, so it renders
+  // the homepage's LightHeader itself.
+  const isSeoPage = normalizedPath === '/seo';
 
   // Don't render navigation on:
   // - Essay view pages (focused reading)
@@ -107,7 +110,7 @@ const ConditionalNavigation = () => {
   // - Agents pages (own sidebar navigation)
   // - Scrollytelling story pages (own header via ScrollytellingHeader)
   // - Photo essays landing page (immersive experience with own header)
-  if (isEssayViewPage || isInfographicViewPage || isClipArtViewPage || isDocsPage || isAgentsPage || isScrollytellingStoryPage || isPhotoEssaysPage || isHomepage || isWaitlistPage || isTopicsPage || isArticlePage || isEngineerIndex || isPrototypesPage || isFilmPage || isEditorialPage || isCoursesPage || isNewsPage || isSkillsPage) {
+  if (isEssayViewPage || isInfographicViewPage || isClipArtViewPage || isDocsPage || isAgentsPage || isScrollytellingStoryPage || isPhotoEssaysPage || isHomepage || isWaitlistPage || isTopicsPage || isArticlePage || isEngineerIndex || isPrototypesPage || isFilmPage || isEditorialPage || isCoursesPage || isNewsPage || isSkillsPage || isSeoPage) {
     return null;
   }
 

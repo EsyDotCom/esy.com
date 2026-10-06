@@ -11,6 +11,7 @@
  *   profile — a profile row: 112px photo, name and role, then the copy (H)
  *   after   — copy and signup first, the big circle under the form (I) */
 
+import type { ReactNode } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
@@ -26,11 +27,45 @@ type StudioProps = {
   desks: ResolvedDesk[]; latest?: Lesson | null; phone?: StudioPhoneLayout;
   /** Compose's mark as a third app in "The systems run" (/prototypes/home-compose/). */
   composeMark?: ComposeMarkStyle;
+  /** The promise, swapped by /prototypes/home-promise/. Each defaults to the
+      live hero's: the headline, the line under it, and the weekly signup. */
+  headline?: ReactNode;
+  sub?: ReactNode;
+  signup?: ReactNode;
+  /** The third app in "The systems run": Compose (live) or OS, os.esy.com,
+      set in the same stencil with its teal first letter. */
+  thirdApp?: 'compose' | 'os';
+  /** "Hi, I'm Zev." above the headline (live). Off, the headline is the first
+      thing read: the name moves to a caption under the portrait on desktop,
+      and the phone's profile row drops under the headline as a byline. */
+  greeting?: boolean;
+  /** The desktop portrait: 440px (large, F as shipped) or 360px (medium,
+      picked at /prototypes/face-size/), so the face and the headline weigh
+      the same. Phones are unchanged. */
+  portrait?: 'large' | 'medium';
 };
 
-export default function EduStudio({ latest, phone = 'photo', composeMark }: StudioProps) {
+export default function EduStudio({ latest, phone = 'photo', composeMark, headline, sub, signup, thirdApp = 'compose', greeting = true, portrait = 'large' }: StudioProps) {
+  // Who's writing. The live hero names the businesses here; without the
+  // greeting the wordmarks under the signup are the only place they appear.
+  const role = greeting ? 'Marketing engineer · runs clip.art and SEOPage' : 'Marketing engineer';
+  // Phone-only identity row for the avatar and profile layouts: the face
+  // shrinks to sit beside the name, so the signup stays on the first screen.
+  // Hidden on desktop and in the other layouts.
+  const me = (
+    <div className="eh-studio-me">
+      <span className="eh-studio-me-photo">
+        <Image src="/images/zev-uhuru.png" alt="" width={224} height={224} />
+      </span>
+      <span className="eh-studio-me-text">
+        <span className="eh-studio-hello">{greeting ? <>Hi, I&apos;m Zev.</> : 'Zev Uhuru'}</span>
+        <span className="eh-studio-me-role">{role}</span>
+      </span>
+    </div>
+  );
+
   return (
-    <section className={`eh eh-studio eh-studio--phone-${phone}`} id="subscribe">
+    <section className={`eh eh-studio eh-studio--phone-${phone} eh-studio--portrait-${portrait}`} id="subscribe">
       <div className="nl-container eh-studio-inner">
         {/* The portrait: zev-uhuru.png, the headshot used across the site. It
             is cropped to a circle on a white ground, so it's shown in a circle. */}
@@ -40,31 +75,31 @@ export default function EduStudio({ latest, phone = 'photo', composeMark }: Stud
               <Image src="/images/zev-uhuru.png" alt="Zev Uhuru" fill priority sizes="(max-width: 960px) 60vw, 460px" />
             </div>
           </div>
+          {/* Without the greeting, the portrait is captioned with the name instead. */}
+          {!greeting && (
+            <p className="eh-studio-caption">
+              <b>Zev Uhuru</b>
+              <span>{role}</span>
+            </p>
+          )}
         </div>
 
         <div className="eh-studio-copy">
-          {/* Phone-only identity row for the avatar and profile layouts: the
-              face shrinks to sit beside the greeting, so the signup stays on
-              the first screen. Hidden on desktop and in the other layouts. */}
-          <div className="eh-studio-me">
-            <span className="eh-studio-me-photo">
-              <Image src="/images/zev-uhuru.png" alt="" width={224} height={224} />
-            </span>
-            <span className="eh-studio-me-text">
-              <span className="eh-studio-hello">Hi, I&apos;m Zev.</span>
-              <span className="eh-studio-me-role">Marketing engineer · runs clip.art and SEOPage</span>
-            </span>
-          </div>
-
-          <p className="eh-studio-hello eh-studio-hello--main">Hi, I&apos;m Zev.</p>
+          {greeting && me}
+          {greeting && <p className="eh-studio-hello eh-studio-hello--main">Hi, I&apos;m Zev.</p>}
           <h1 className="eh-h1 eh-h1--left eh-h1--onDark">
-            I build the AI systems that <em>run marketing</em>, and show you how.
+            {headline ?? <>I build the AI systems that <em>run marketing</em>, and show you how.</>}
           </h1>
+          {!greeting && me}
           <p className="eh-sub eh-sub--left eh-sub--onDark">
-            One email a week: the system I built, how it works, and what it did. SEO, agents, AI coding tools, and the
-            integrations between them.
+            {sub ?? (
+              <>
+                One email a week: the system I built, how it works, and what it did. SEO, agents, AI coding tools, and
+                the integrations between them.
+              </>
+            )}
           </p>
-          <EduSignup tone="dark" />
+          {signup ?? <EduSignup tone="dark" />}
 
           {/* The proof: where the systems run, and the newest issue. */}
           <div className="eh-studio-proof">
@@ -75,10 +110,20 @@ export default function EduStudio({ latest, phone = 'photo', composeMark }: Stud
             <a href="https://seopage.com" target="_blank" rel="noopener noreferrer" aria-label="SEOPage" className="eh-studio-seopage">
               <SeoPageWordmark weight="light" />
             </a>
-            {composeMark && (
-              <a href="https://compose.esy.com" target="_blank" rel="noopener noreferrer" aria-label="Esy Compose">
-                <ComposeWordmark mark={composeMark} className="eh-studio-compose" />
+            {thirdApp === 'os' ? (
+              // OS in the esy stencil, lowercase with its teal first letter,
+              // sized like the stencil Compose mark it replaces.
+              <a href="https://os.esy.com" target="_blank" rel="noopener noreferrer" aria-label="Esy OS">
+                <span className="cw cw--stencil eh-studio-compose" aria-hidden="true">
+                  <span className="cw-face">os</span>
+                </span>
               </a>
+            ) : (
+              composeMark && (
+                <a href="https://compose.esy.com" target="_blank" rel="noopener noreferrer" aria-label="Esy Compose">
+                  <ComposeWordmark mark={composeMark} className="eh-studio-compose" />
+                </a>
+              )
             )}
           </div>
           {latest?.href && (

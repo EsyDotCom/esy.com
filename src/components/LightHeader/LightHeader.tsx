@@ -18,7 +18,7 @@ import './LightHeader.css';
 
    Sticky on white with a hairline; the wordmark is the brand mark itself:
    Black Ops One at weight 400 (the only cut — faux bold fills the stencil
-   gaps), teal e, ink sy.
+   gaps), teal e, navy sy (#0A2540, since 2026-10-06).
 
    Articles carries the publication's preview dropdown: the navy "window into
    the publication" the old navy nav had on Agentic (removed in #108, restored

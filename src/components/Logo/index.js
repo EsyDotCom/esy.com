@@ -52,9 +52,11 @@ const Logo = ({
     wordmarkFont === 'blackops' ? styles.logoWordmark__blackops :
                                   styles.logoWordmark__zcool;
 
+  // The wordmark: teal e, and "sy" in the brand navy on light surfaces
+  // (2026-10-06, was a near-black ink). On dark surfaces sy stays white.
   const wordmarkColor = isDarkTheme
     ? 'rgba(255, 255, 255, 0.92)'
-    : 'rgba(15, 23, 42, 0.88)';
+    : '#0A2540';
 
   const logoContent = (
     <div className={`${styles.logo} ${wordmarkOnly ? styles.logoWordmarkOnly : ''} ${className}`}>

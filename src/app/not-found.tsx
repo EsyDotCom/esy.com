@@ -1,3 +1,4 @@
+import LightHeader from '@/components/LightHeader/LightHeader';
 import { NotFoundPiece } from '@/components/NotFound/NotFound';
 
 export const metadata = {
@@ -10,8 +11,14 @@ export const metadata = {
  * (picked on docs.esy.com/prototypes/not-found). Mason tries a piece marked
  * 404 in his gate and it doesn't fit; his reef takes the footer world's place.
  * Replaces the old pathways 404 (workflow templates, school), which pointed at
- * sections the site no longer leads with.
+ * sections the site no longer leads with. It carries the light header, like
+ * the rest of the publication; the navy site bar stands down (not-found.css).
  */
 export default function NotFound() {
-  return <NotFoundPiece />;
+  return (
+    <>
+      <LightHeader />
+      <NotFoundPiece />
+    </>
+  );
 }

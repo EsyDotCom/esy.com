@@ -1,10 +1,11 @@
-/* esy.com's 404 (2026-10-06), as on docs.esy.com (with room for esy.com's fixed
-   header above the message): the message on top, then a
-   reef that tells the 404 in place of the footer's usual gate. */
+/* esy.com's 404 (2026-10-06), as on docs.esy.com: the light header, the
+   message, then a reef that tells the 404 in place of the footer's usual gate. */
 
 /* On a page with a 404 world, the usual footer world steps aside; the card floats over this one. */
 body:has(.nf-world) .fw:not(.nf-world) { display: none; }
-.nf-msg { max-width: 760px; margin: 0 auto; padding: 120px 32px 4px; text-align: center; color: #102033; font-family: var(--font-inter), system-ui, sans-serif; }
+/* The 404 brings the light header; the navy site bar (ConditionalNavigation's default) stands down. */
+body:has(.nf-world) #nav, body:has(.nf-world) .mnav-overlay { display: none; }
+.nf-msg { max-width: 760px; margin: 0 auto; padding: 40px 32px 4px; text-align: center; color: #102033; font-family: var(--font-inter), system-ui, sans-serif; }
 .nf-kicker { margin: 0 0 14px; font: 400 0.95rem var(--font-black-ops-one), sans-serif; letter-spacing: 0.08em; color: #00A896; }
 .nf-msg h1 { margin: 0 0 16px; font-family: var(--font-literata), Georgia, serif; font-weight: 600; font-size: clamp(2rem, 4.2vw, 3rem); line-height: 1.1; letter-spacing: -0.02em; color: #0A2540; }
 .nf-msg p { margin: 0 auto 22px; max-width: 54ch; font-size: 1.05rem; line-height: 1.65; color: #41566D; }

@@ -32,10 +32,16 @@ const HONEYPOT_STYLE = {
  * @param {string} [opts.endpoint='/api/newsletter/subscribe'] - API endpoint to POST to
  * @param {number} [opts.errorResetMs=5000] - ms before auto-resetting error state
  *
- * Returns { subscribe, status, errorMessage, reset, honeypotProps }
+ * Returns { subscribe, status, errorMessage, reset, honeypotProps, canSaveName, saveName }
+ *
+ * After a signup, `saveName(name)` adds a first name to the new subscriber
+ * (/api/newsletter/name) with the one-time token the subscribe call returned;
+ * `canSaveName` says whether there's a token to use. It resolves to an error
+ * message, or null when the name was saved.
  */
 export function useNewsletterSubscribe({ endpoint = '/api/newsletter/subscribe', errorResetMs = 5000 } = {}) {
   const [status, setStatus] = useState('idle');
+  const [nameToken, setNameToken] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const errorTimerRef = useRef(null);
   const honeypotRef = useRef(null);
@@ -106,6 +112,7 @@ export function useNewsletterSubscribe({ endpoint = '/api/newsletter/subscribe',
         throw new Error(data.error || 'Subscription failed.');
       }
 
+      setNameToken(typeof data.nameToken === 'string' ? data.nameToken : null);
       setStatus('success');
     } catch (err) {
       setStatus('error');
@@ -140,5 +147,23 @@ export function useNewsletterSubscribe({ endpoint = '/api/newsletter/subscribe',
     style: HONEYPOT_STYLE,
   };
 
-  return { subscribe, status, errorMessage, reset, honeypotProps };
+  // The second step: a first name for the subscriber just created.
+  const saveName = useCallback(async (name) => {
+    if (!nameToken) return 'This step has expired. You’re still signed up.';
+    if (!name || !name.trim()) return 'Type your first name, or skip this.';
+    try {
+      const res = await fetch('/api/newsletter/name', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: nameToken, name: name.trim() }),
+      });
+      if (res.ok) return null;
+      const data = await res.json().catch(() => ({}));
+      return data.error || 'Couldn’t save your name just now. You’re still signed up.';
+    } catch {
+      return 'Couldn’t save your name just now. You’re still signed up.';
+    }
+  }, [nameToken]);
+
+  return { subscribe, status, errorMessage, reset, honeypotProps, canSaveName: !!nameToken, saveName };
 }

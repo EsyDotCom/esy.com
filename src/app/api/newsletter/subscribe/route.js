@@ -1,11 +1,12 @@
 import { NextResponse } from 'next/server';
 
 import { EMAIL_REGEX, clientIp, detectBot } from '@/lib/botCheck';
+import { signNameToken } from '@/lib/newsletterNameToken';
 
 // Only these are forwarded to Beehiiv as referring_site, so a spoofed `source`
 // in the request body cannot write arbitrary text into subscriber records.
 const KNOWN_SOURCES = new Set([
-  '/', '/engineer', '/agentic', '/school', '/research', '/courses', '/about', '/waitlist', '/news', '/skills',
+  '/', '/engineer', '/agentic', '/school', '/research', '/courses', '/about', '/waitlist', '/news', '/skills', '/seo',
 ]);
 
 // Bots learn from error messages, so a rejection returns the same shape a real
@@ -90,8 +91,13 @@ export async function POST(request) {
       { name: 'Signup Source', value: skillsSlug ? 'skills' : '' },
     ].filter((f) => f.value);
 
+    // Confirmed subscribers only (2026-10-06): every signup gets Beehiiv's
+    // confirmation email and stays "pending" until the link is clicked,
+    // whatever the publication's own setting is. Someone who wants the email
+    // will confirm it; an address nobody confirms isn't worth keeping.
     const base = {
       email: address,
+      double_opt_override: 'on',
       reactivate_existing: true,
       send_welcome_email: true,
       referring_site: referringSite,
@@ -127,7 +133,7 @@ export async function POST(request) {
       console.error('Beehiiv API error:', res.status, errorData);
 
       if (res.status === 409) {
-        return NextResponse.json({ success: true, alreadySubscribed: true });
+        return NextResponse.json({ success: true, alreadySubscribed: true, nameToken: signNameToken(address) });
       }
 
       return NextResponse.json(
@@ -136,7 +142,9 @@ export async function POST(request) {
       );
     }
 
-    return NextResponse.json({ success: true });
+    // The pass for the form's "what should I call you?" step
+    // (/api/newsletter/name). Bot rejections above never get one.
+    return NextResponse.json({ success: true, nameToken: signNameToken(address) });
   } catch (error) {
     console.error('Newsletter subscription error:', error);
     return NextResponse.json(

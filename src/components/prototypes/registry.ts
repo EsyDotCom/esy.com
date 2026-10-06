@@ -2131,6 +2131,11 @@ export const PROTOTYPES: Prototype[] = [
         title: 'Three directions',
         summary: 'All three keep the live page’s rule that money moved between your own accounts isn’t spending. They differ in what they do with your pay: a switch that recounts it, a bridge that shows it, or a slider that sets it.',
       },
+      {
+        n: 2,
+        title: 'One page, three stages',
+        summary: 'D merges A, B and C into one page, plus the personal paycheck and safety net. Switch the sample founder from paying themselves to funding the business to just started, and the page changes shape with the money.',
+      },
     ],
     variants: [
       {
@@ -2159,6 +2164,16 @@ export const PROTOTYPES: Prototype[] = [
         title: 'How much should I pay myself?',
         blurb: 'The page as a decision. Drag your monthly pay: the business’s runway and yours move against each other while the combined number stays put, and the slider shades the range that covers your life and keeps the business above six months.',
         image: '/prototypes/runway-combined/pay-yourself.webp',
+      },
+      {
+        slug: 'd-merged',
+        key: 'D',
+        name: 'Merged',
+        round: 2,
+        mergeOf: ['A', 'B', 'C'],
+        title: 'One Runway page that changes shape with the money.',
+        blurb: 'A’s switch and its one setting. Combined puts B’s two columns and bridge over C’s pay slider; Personal leads with Personal B’s paycheck question and Personal C’s six-month savings target. When the business doesn’t pay you yet, the bridge flips to what you put in, the slider becomes a “not yet” goal, and Personal leads with your safety net.',
+        image: '/prototypes/runway-combined/d-merged.webp',
       },
     ],
   },

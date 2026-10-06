@@ -15,6 +15,8 @@ import {
   AGENCY,
   FLOOR_MONTHS,
   NOW,
+  asksFor,
+  type Ask,
   lastsTo,
   upcoming,
   yesterdayLines,
@@ -66,18 +68,7 @@ export function Mast({ title = 'Runway', kicker, children }: { title?: string; k
 }
 
 // ── The finance desk's asks (from the live page, still samples there) ──────
-type Ask = { id: string; who: string; title: string; note: string; primary: string; second: string };
-export const BUSINESS_ASKS: Ask[] = [
-  { id: 'a1', who: 'Quill', title: 'Lakeview Realty is 14 days late on $2,800', note: 'Invoice #1039. A friendly second reminder is drafted.', primary: 'Send reminder', second: 'Edit draft' },
-  { id: 'a2', who: 'Scout', title: 'Two tools look unused', note: 'Adobe (no sign-in in 74 days) and Notion (overlaps the Library).', primary: 'Cancel both', second: 'Keep' },
-  { id: 'a3', who: 'Ledger', title: 'Bill Northside for $394 of Anthropic?', note: '41% of September’s Claude usage ran on Northside work.', primary: 'Add to invoice', second: 'Absorb it' },
-];
-// The same desk, on your own money. Every figure is the sample data's.
-export const PERSONAL_ASKS: Ask[] = [
-  { id: 'p1', who: 'Ledger', title: 'Pay the Sapphire bill in full?', note: '$1,690 is due Oct 14. Checking has $7,850 with October’s rent already paid.', primary: 'Schedule it', second: 'Remind me' },
-  { id: 'p2', who: 'Ledger', title: 'Move $1,000 to savings?', note: 'October’s pay is in. Savings covers 4.4 months of your spending; 6 is the goal.', primary: 'Move $1,000', second: 'Not this month' },
-];
-
+// The lists live with the sample data (asksFor), so each stage's asks quote its own figures.
 function Asks({ asks }: { asks: Ask[] }) {
   const [done, setDone] = useState<Record<string, string>>({});
   return (
@@ -105,13 +96,13 @@ const cardLine = (a: BankAccount) =>
 
 /** The navy rail: what needs you, what's due, and the banks behind the numbers, for this view's accounts. */
 export function Rail({ scope, b, extra }: { scope: Scope; b: ScopeBook; extra?: React.ReactNode }) {
-  const asks = scope === 'personal' ? PERSONAL_ASKS : BUSINESS_ASKS;
+  const asks = asksFor(scope, b.stage);
   // Needs you, from the record: a card bill due within a week, runway under the floor.
   const needs = [
-    ...upcoming(scope, 7).filter((u) => u.key.startsWith('a-')).map((u) => ({ key: u.key, title: `${u.label}: ${usd(u.amountCents)} due in ${u.daysAway} days`, note: 'Statement balance. Paying in full keeps it out of next month’s burn.', cta: 'See the card' })),
+    ...upcoming(scope, 7, b.stage).filter((u) => u.key.startsWith('a-')).map((u) => ({ key: u.key, title: `${u.label}: ${usd(u.amountCents)} due in ${u.daysAway} days`, note: 'Statement balance. Paying in full keeps it out of next month’s burn.', cta: 'See the card' })),
     ...(b.runwayMonths != null && b.runwayMonths < FLOOR_MONTHS ? [{ key: 'floor', title: `Runway is ${mo(b.runwayMonths)} months, under your ${FLOOR_MONTHS}-month floor`, note: `Net burn is ${usd(b.burnCents)} a month.`, cta: 'See what’s going out' }] : []),
   ];
-  const due = upcoming(scope, 14);
+  const due = upcoming(scope, 14, b.stage);
   return (
     <>
       {extra}
@@ -174,7 +165,9 @@ export function FreeCashHero({ b, label = 'Free cash', sub, line }: { b: ScopeBo
         <p className="ri-hero-sub">
           {line ?? (b.runwayMonths != null
             ? <><b>{mo(b.runwayMonths)} months</b> at {usdK(b.burnCents)} a month · lasts to {lastsTo(b.runwayMonths)}</>
-            : <>Money in covers money out, with <b>{usd(-b.burnCents)}</b> a month left over.</>)}
+            : !b.burnMeasured
+              ? <>Not enough history yet, {b.observedDays} {b.observedDays === 1 ? 'day' : 'days'} in. A month of activity gives a usable rate.</>
+              : <>Money in covers money out, with <b>{usd(-b.burnCents)}</b> a month left over{b.observedDays < 92 ? ` (${b.observedDays} days in)` : ''}.</>)}
         </p>
       </div>
       <div className="ri-split">
@@ -208,11 +201,14 @@ export function Keys({ keys, range, setRange }: { keys: Key[]; range: 6 | 12; se
 /** The live page's four keys, for a scope. */
 export function liveKeys(b: ScopeBook, range: 6 | 12): Key[] {
   const inRange = b.months.slice(-range);
+  // With less than the headline window of history, calendar-month averages
+  // count days before the first transaction; use the observed-days rate instead.
+  const short = b.observedDays < 92;
   return [
-    { label: 'Runway', value: b.runwayMonths == null ? 'Covered' : `${mo(b.runwayMonths)} mo`, spark: runwayHistory(b).slice(-range) },
+    { label: 'Runway', value: !b.burnMeasured ? '—' : b.runwayMonths == null ? 'Covered' : `${mo(b.runwayMonths)} mo`, spark: runwayHistory(b).slice(-range) },
     { label: b.burnCents > 0 ? 'Net burn' : 'Left over', value: usdK(Math.abs(b.burnCents)), spark: inRange.map((m) => m.cashOutCents - m.cashInCents) },
-    { label: 'Money in', value: usdK(avg(inRange.map((m) => m.cashInCents))), spark: inRange.map((m) => m.cashInCents) },
-    { label: 'Money out', value: usdK(avg(inRange.map((m) => m.cashOutCents))), spark: inRange.map((m) => m.cashOutCents) },
+    { label: 'Money in', value: usdK(short ? b.avgIn : avg(inRange.map((m) => m.cashInCents))), spark: inRange.map((m) => m.cashInCents) },
+    { label: 'Money out', value: usdK(short ? b.avgOut : avg(inRange.map((m) => m.cashOutCents))), spark: inRange.map((m) => m.cashOutCents) },
   ];
 }
 
@@ -226,11 +222,11 @@ export function watchLine(b: ScopeBook) {
 
 /** Esy insights: yesterday, line by line, with what each is worth in runway; then what to watch and what's set aside. */
 export function Insights({ scope, b }: { scope: Scope; b: ScopeBook }) {
-  const lines = yesterdayLines(scope);
+  const lines = yesterdayLines(scope, b.stage);
   const net = lines.reduce((n, l) => n + l.cents, 0);
   const worth = (c: number) => (b.burnCents > 0 ? `${c >= 0 ? '+' : '−'}${Math.abs(c / b.burnCents).toFixed(2)} mo` : '—');
   const watch = watchLine(b);
-  const setAside = upcoming(scope, 31).find((u) => u.key.startsWith('a-')) ?? null;
+  const setAside = upcoming(scope, 31, b.stage).find((u) => u.key.startsWith('a-')) ?? null;
   return (
     <section className="ri-brief ri-brief--overnight" aria-label="Esy insights">
       <header><p className="rx-ch-n">Esy insights · since yesterday</p><h2 className="rx-ch-h">What moved free cash, and what it&rsquo;s worth</h2></header>
@@ -262,11 +258,11 @@ export function Chapters({ b, range, inOutLede, start = 2, aheadBurn, aheadLede 
   const freePast = b.months.slice(-range, -1).map((m) => ({ label: monthLabel(m.period).slice(0, 3), v: (m.closingBalanceCents ?? 0) - b.taxReserveCents - b.cardBillsCents }));
   return (
     <>
-      <section className="rx-ch"><p className="rx-ch-n">{n(0)}</p><h2 className="rx-ch-h">In and out</h2><p className="rx-ch-lede">{inOutLede ?? 'The last year, month by month.'}</p><div className="rx-ch-body"><FlowBars key={`f${b.scope}${range}`} months={b.months.slice(-range)} /></div></section>
+      <section className="rx-ch"><p className="rx-ch-n">{n(0)}</p><h2 className="rx-ch-h">In and out</h2><p className="rx-ch-lede">{inOutLede ?? 'The last year, month by month.'}</p><div className="rx-ch-body"><FlowBars key={`f${b.stage}${b.scope}${range}`} months={b.months.slice(-range)} /></div></section>
       <section className="rx-ch"><p className="rx-ch-n">{n(1)}</p><h2 className="rx-ch-h">Every spending line, on its own</h2><p className="rx-ch-lede">Same months, one line each. The one that moved is obvious.</p><div className="rx-ch-body"><Multiples series={series} cats={b.cats} /></div></section>
-      <section className="rx-ch"><p className="rx-ch-n">{n(2)}</p><h2 className="rx-ch-h">The mix</h2><p className="rx-ch-lede">Stacked, with a category isolated on click.</p><div className="rx-ch-body"><StackBars key={`s${b.scope}${range}`} series={series} cats={b.cats} /></div></section>
+      <section className="rx-ch"><p className="rx-ch-n">{n(2)}</p><h2 className="rx-ch-h">The mix</h2><p className="rx-ch-lede">Stacked, with a category isolated on click.</p><div className="rx-ch-body"><StackBars key={`s${b.stage}${b.scope}${range}`} series={series} cats={b.cats} /></div></section>
       <section className="rx-ch"><p className="rx-ch-n">{n(3)}</p><h2 className="rx-ch-h">Ahead</h2><p className="rx-ch-lede">{aheadLede ?? 'Free cash for the next twelve months at this burn; drag to change it.'}</p><div className="rx-ch-body">
-        <Ahead key={b.scope} past={freePast.map((p) => p.v)} pastLabels={freePast.map((p) => p.label)} free={b.freeCents} burn={aheadBurn ?? b.burnCents} floorMonths={FLOOR_MONTHS} />
+        <Ahead key={`${b.stage}${b.scope}`} past={freePast.map((p) => p.v)} pastLabels={freePast.map((p) => p.label)} free={b.freeCents} burn={aheadBurn ?? b.burnCents} floorMonths={FLOOR_MONTHS} />
       </div></section>
     </>
   );

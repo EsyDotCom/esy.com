@@ -214,6 +214,29 @@
 .folio .rvp-whatif dt { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fo-ink-faint); }
 .folio .rvp-whatif dd { margin-top: 4px; font-size: 1.5rem; font-weight: 700; color: var(--fo-navy); font-variant-numeric: tabular-nums; }
 
+/* ── Round 2 · D · Merged (2026-10-06) ───────────────────────────────── */
+/* Nothing has moved between you and the business: no bridge, two columns. */
+.folio .rvp-split.is-two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* The bridge when money flows the other way: you into the business. */
+.folio .rvp-bridge.is-in .rvp-bridge-k, .folio .rvp-bridge.is-in .rvp-bridge-arrow { color: var(--fo-gold-on-navy); }
+.folio .rvp-bridge.is-in .rvp-paybars span i { background: var(--fo-gold-on-navy); }
+.folio .rvp-keys5 { grid-template-columns: repeat(5, minmax(0, 1fr)); margin-top: 24px; }
+.rvp-win.folio .rvp-keys5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.folio .rvp-keys5 dd.is-up { color: var(--fo-jade-deep); }
+.folio .rvp-goalfacts { margin-top: 16px; border-top: 1px solid var(--fo-hair-strong); }
+.folio .rvp-runbar > i.is-ok { background: var(--fo-jade); }
+.folio .rvp-goal-bar > i.is-low { background: linear-gradient(90deg, #b7801f, var(--fo-gold-dot)); }
+
+/* The sample-founder picker: a prototype control on the esy.com page, not part of the product. */
+.rvp-stagepick { margin-top: 24px; padding: 14px 16px; border: 1px dashed rgba(10, 37, 64, 0.3); border-radius: 12px; background: rgba(255, 255, 255, 0.7); }
+.rvp-stagepick-k { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #8a97a6; }
+.rvp-stagepick-k b { color: #0a2540; }
+.rvp-stagepick-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.rvp-stagepick-row button { padding: 8px 16px; border: 1px solid rgba(10, 37, 64, 0.2); border-radius: 999px; background: #fff; font: 600 0.9rem/1.2 var(--font-inter), system-ui, sans-serif; color: #4a5f75; cursor: pointer; }
+.rvp-stagepick-row button:hover { border-color: #0a2540; color: #0a2540; }
+.rvp-stagepick-row button.is-on { border-color: #0a2540; background: #0a2540; color: #fff; }
+.rvp-stagepick-note { margin-top: 10px; font-size: 0.88rem; line-height: 1.5; color: #4a5f75; }
+
 /* ── The page around the window ──────────────────────────────────────── */
 .rvp-stage { padding: 48px 24px 120px; background: linear-gradient(180deg, #f6f9fa 0%, #edf1f5 100%); }
 .rvp-stage-in { max-width: 1240px; margin: 0 auto; }

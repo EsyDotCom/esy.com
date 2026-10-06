@@ -6,8 +6,8 @@
  * months the business skipped or cut your pay picked out in gold. Then the
  * fallback: how long your own money lasts if pay stopped today. */
 
-import { useState } from 'react';
 import { mo, monthLabel, usd, usdK } from '../format';
+import { PaycheckChart } from '../parts';
 import { AGENCY, FLOOR_MONTHS, bookFor, lastsTo, paycheckMonths, runwayAt } from '../sample';
 import { Mast, Rail, RunwayBody, SampleFoot } from '../shared';
 
@@ -21,11 +21,8 @@ export default function RunwayPaycheck() {
   const paid = closed.reduce((n, r) => n + r.pay, 0);
   const spent = closed.reduce((n, r) => n + r.spend, 0);
   const sentBack = closed.reduce((n, r) => n + r.toBusiness, 0);
-  const max = Math.max(...rows.map((r) => Math.max(r.pay, r.spend)));
   const spendNoPay = Math.round(b.avgOut - b.avgInterest);
   const ifStopped = runwayAt(b.freeCents, spendNoPay);
-  const [hover, setHover] = useState<number | null>(null);
-  const h = hover != null ? rows[hover] : null;
 
   const why = (r: (typeof rows)[number]) =>
     r.open ? 'October so far'
@@ -57,29 +54,7 @@ export default function RunwayPaycheck() {
         <p className="rx-ch-n">01</p>
         <h2 className="rx-ch-h">Pay against spending, month by month</h2>
         <p className="rx-ch-lede">Jade is what {AGENCY} paid you; navy is what you spent. Gold months are the ones the business skipped or cut.</p>
-        <div className="rvp-paycheck" onMouseLeave={() => setHover(null)}>
-          <p className="rx-flow-read" aria-live="polite">
-            {h ? <><b>{monthLabel(h.period)}</b> pay {usd(h.pay)} · spent {usd(h.spend)} · <span className={h.pay - h.spend >= 0 ? 'is-up' : 'is-down'}>{h.pay - h.spend >= 0 ? 'left over' : 'short'} {usd(Math.abs(h.pay - h.spend))}</span> · {why(h)}</>
-              : <>Hover a month. Covered {covered} of {closed.length}; the gaps came from savings.</>}
-          </p>
-          <ol className="rvp-pc-cols">
-            {rows.map((r, i) => {
-              const flag = r.open ? 'is-open' : r.pay < TYPICAL_PAY ? 'is-cut' : '';
-              const gap = r.pay - r.spend;
-              return (
-                <li key={r.period} className={`${flag} ${hover === i ? 'is-on' : ''}`} onMouseEnter={() => setHover(i)}>
-                  <span className="rvp-pc-bars">
-                    <i className="rvp-pc-pay" style={{ height: `${(r.pay / max) * 100}%` }} />
-                    <i className="rvp-pc-spend" style={{ height: `${(r.spend / max) * 100}%` }} />
-                  </span>
-                  <b className={gap >= 0 ? 'is-up' : 'is-down'}>{r.open ? '…' : `${gap >= 0 ? '+' : '−'}${usdK(Math.abs(gap))}`}</b>
-                  <small>{monthLabel(r.period)}</small>
-                </li>
-              );
-            })}
-          </ol>
-          <p className="rvp-pc-key"><i className="rvp-pc-pay" /> Pay from {AGENCY} <i className="rvp-pc-spend" /> Your spending <i className="rvp-pc-cut" /> Skipped or cut</p>
-        </div>
+        <PaycheckChart />
       </section>
 
       <section className="rx-ch">

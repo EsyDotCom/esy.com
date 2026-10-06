@@ -9,12 +9,15 @@ export default function RunwayStage({
   variant,
   src,
   children,
+  framed = true,
 }: {
   prototype: Prototype;
   variant: PrototypeVariant;
   /** Waitlist source, so prototype clicks never count as real signups. */
   src: string;
   children: React.ReactNode;
+  /** False when the take brings its own window (and controls around it), as D does. */
+  framed?: boolean;
 }) {
   return (
     <main className="rvp-stage">
@@ -25,7 +28,7 @@ export default function RunwayStage({
         <p className="rvp-stage-note">
           A working copy of os.esy.com/agency/runway. Every number is a sample: a one-person agency, Esy LLC, and its owner&rsquo;s own accounts. Scroll inside the window; the sliders and switches work.
         </p>
-        <RunwayWindow>{children}</RunwayWindow>
+        {framed ? <RunwayWindow>{children}</RunwayWindow> : children}
         <p className="rvp-stage-cta">
           Runway is part of Esy OS. <Link href={`/waitlist/?src=${src}`}>Join the waitlist</Link>
         </p>

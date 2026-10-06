@@ -18,6 +18,8 @@ export const RETIRED_SECTIONS = [
   '/models',
   '/roadmap',
   '/agentic-workflows',
+  // The 410 page itself (src/app/gone), so a direct visit answers 410 too.
+  '/gone',
 ] as const;
 
 // /essays itself comes back as AI marketing and tech visual essays, so only

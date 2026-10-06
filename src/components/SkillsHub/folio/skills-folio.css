@@ -1,0 +1,131 @@
+/* esy.com/skills round 2 (D–F): what the copied Folio and docs CSS don't have.
+ * Folio tokens only; prefix sf-. The navy hero is the view's one navy moment,
+ * and the close band echoes it, as on docs.esy.com. */
+
+.folio.sf-app { background: var(--fo-paper); }
+.folio .sd-nav a.is-on { color: #fff; box-shadow: inset 0 -2px 0 var(--fo-jade-bright); padding-bottom: 4px; }
+.folio .sd-bar.is-solid .sd-nav a.is-on { color: var(--fo-navy); box-shadow: inset 0 -2px 0 var(--fo-jade); }
+.folio .sf-lockup.is-light .fo-wordmark { color: #fff; }
+.folio .sf-lockup.is-light .fo-wordmark::first-letter { color: var(--fo-jade-bright); }
+.folio .sf-lockup.is-light .fo-lockup-sep { background: rgba(255, 255, 255, 0.35); }
+.folio .sf-lockup.is-light .fo-lockup-name { color: rgba(255, 255, 255, 0.6); }
+
+/* Zev: small, jade-ringed. */
+.folio .sf-zev { display: flex; align-items: center; gap: 12px; margin-top: 22px; }
+.folio .sf-zev-photo { flex: none; overflow: hidden; border-radius: 50%; box-shadow: 0 0 0 2px var(--fo-navy-deep), 0 0 0 3px var(--fo-jade-bright); }
+.folio .sf-zev-photo img { width: 100%; height: 100%; object-fit: cover; }
+.folio .sf-zev figcaption { display: grid; gap: 1px; font-size: 0.84rem; line-height: 1.35; color: var(--fo-on-navy-soft); }
+.folio .sf-zev b { font-weight: 600; color: #fff; }
+.folio .sf-zev q { display: block; margin-bottom: 6px; font-family: var(--fo-serif); font-size: 1.35rem; font-style: italic; font-weight: 600; line-height: 1.2; color: #fff; quotes: '“' '”'; }
+.folio .sf-zev.has-quote { align-items: flex-start; margin-top: 0; }
+
+/* The terminal pane's lines. */
+.folio .sf-term-lines { flex: 1; min-height: 0; overflow: hidden; padding: 12px 16px; font-family: var(--fo-mono); font-size: 0.76rem; line-height: 1.6; color: var(--fo-on-navy-soft); }
+.folio .sf-term-lines p { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 6px; margin-bottom: 8px; }
+.folio .sf-term-lines p span { color: rgba(255, 255, 255, 0.35); }
+.folio .sf-term-lines .is-you { color: #fff; }
+.folio .sf-term-lines .is-you span { color: var(--fo-jade-bright); }
+.folio .sf-term-lines .is-agent { color: #DDE7EE; }
+.folio .sf-term-lines .is-agent span { color: var(--fo-jade-bright); }
+.folio .sf-term-lines .is-wait { display: flex; align-items: center; color: rgba(255, 255, 255, 0.45); }
+
+/* The paper half of the device. */
+.folio .sf-panel { gap: 0; }
+.folio .sf-labels { margin-top: 12px; }
+.folio .sf-labels li { display: grid; gap: 2px; padding: 9px 10px; border-top: 1px solid var(--fo-hair); transition: opacity 0.3s ease, background 0.3s ease; }
+.folio .sf-labels code { font-family: var(--fo-mono); font-size: 0.82rem; font-weight: 600; color: var(--fo-navy); }
+.folio .sf-labels small { font-size: 0.78rem; color: var(--fo-ink-faint); }
+.folio .sf-labels li.is-on { background: var(--fo-jade-wash); box-shadow: inset 2px 0 0 var(--fo-jade); }
+.folio .sf-labels li.is-dim { opacity: 0.35; }
+.folio .sf-labels mark { background: rgba(0, 168, 150, 0.18); color: var(--fo-jade-deep); font-weight: 600; }
+.folio .sf-made { margin-top: 14px; display: grid; gap: 8px; }
+.folio .sf-made li { display: grid; gap: 2px; padding: 12px 14px; border-radius: var(--fo-r-control); box-shadow: 0 0 0 1px var(--fo-hair); transition: opacity 0.3s ease; }
+.folio .sf-made b { font-family: var(--fo-serif); font-size: 1.15rem; color: var(--fo-navy); }
+.folio .sf-made span { font-size: 0.82rem; color: var(--fo-ink-soft); }
+.folio .sf-pill-demo { display: inline-flex; align-self: center; align-items: center; gap: 3px; margin-top: auto; padding: 4px; border-radius: var(--fo-r-pill); background: var(--fo-navy); font-size: 0.7rem; color: rgba(255, 255, 255, 0.85); }
+.folio .sf-pill-demo span { padding: 0 6px; color: rgba(255, 255, 255, 0.55); }
+.folio .sf-pill-demo i { padding: 4px 9px; border-radius: var(--fo-r-pill); font-style: normal; font-weight: 600; }
+.folio .sf-pill-demo i.is-on { background: #fff; color: var(--fo-navy); }
+.folio .sf-panel-makes { margin-top: 4px; font-size: 0.92rem; line-height: 1.55; color: var(--fo-ink); }
+.folio .sf-panel-result { margin-top: auto; padding: 14px 16px; border-left: 2px solid var(--fo-jade); background: rgba(0, 168, 150, 0.05); transition: opacity 0.3s ease; }
+.folio .sf-panel-result p { margin-top: 4px; font-size: 0.9rem; line-height: 1.5; color: var(--fo-ink); }
+.folio .sf-note-h { margin: 10px 0 4px; font-family: var(--fo-serif); font-size: 1.7rem; font-weight: 700; line-height: 1.1; color: var(--fo-navy); }
+
+/* F: the SKILL.md viewer on night. */
+.folio .sf-md { flex: 1; min-height: 0; overflow: hidden; padding: 10px 0; font-family: var(--fo-mono); font-size: 0.74rem; line-height: 1.55; color: rgba(255, 255, 255, 0.45); }
+.folio .sf-md p { display: grid; grid-template-columns: 36px minmax(0, 1fr); padding: 2px 16px 2px 0; transition: background 0.3s ease, color 0.3s ease; }
+.folio .sf-md p span { padding-right: 10px; text-align: right; color: rgba(255, 255, 255, 0.22); }
+.folio .sf-md p.is-on { background: rgba(0, 212, 170, 0.1); box-shadow: inset 2px 0 0 var(--fo-jade-bright); color: #fff; }
+.folio .sf-narrator { display: grid; gap: 10px; }
+.folio .sf-narrator .sf-zev { margin-bottom: 8px; }
+.folio .sf-browse { justify-self: start; margin-top: 4px; }
+
+/* The install command. */
+.folio .sf-cmdbox { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 4px 10px; padding: 8px 8px 8px 14px; border-radius: var(--fo-r-control); box-shadow: 0 0 0 1px var(--fo-hair-strong); background: var(--fo-tint); }
+.folio .sf-cmdbox code { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--fo-mono); font-size: 0.82rem; color: var(--fo-navy); }
+.folio .sf-cmdbox code span { margin-right: 4px; color: var(--fo-ink-faint); }
+.folio .sf-cmdbox button { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid var(--fo-hair-strong); border-radius: 6px; background: var(--fo-paper); color: var(--fo-navy); }
+.folio .sf-cmdbox small { grid-column: 1 / -1; font-size: 0.74rem; color: var(--fo-ink-faint); }
+.folio .sf-cmdbox.is-dark { background: rgba(255, 255, 255, 0.06); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2); }
+.folio .sf-cmdbox.is-dark code { color: #fff; }
+.folio .sf-cmdbox.is-dark code span, .folio .sf-cmdbox.is-dark small { color: var(--fo-on-navy-faint); }
+.folio .sf-cmdbox.is-dark button { border-color: rgba(255, 255, 255, 0.2); background: transparent; color: #fff; }
+
+/* The email course, glass on navy. */
+.folio .sf-course { padding: 22px; border-radius: var(--fo-r-pane); background: rgba(255, 255, 255, 0.05); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14); color: #fff; }
+.folio .sf-course h3 { font-family: var(--fo-serif); font-size: 1.8rem; font-weight: 700; line-height: 1.05; color: #fff; }
+.folio .sf-course ol { display: grid; gap: 6px; margin: 14px 0; }
+.folio .sf-course li { display: flex; gap: 10px; align-items: baseline; font-size: 0.9rem; color: var(--fo-on-navy-soft); }
+.folio .sf-course li span { display: inline-grid; place-items: center; flex: none; width: 20px; height: 20px; border-radius: 50%; background: rgba(0, 212, 170, 0.16); color: var(--fo-jade-bright); font-size: 0.72rem; font-weight: 700; }
+.folio .sf-course-how { margin: 12px 0 14px; font-size: 0.84rem; line-height: 1.55; color: var(--fo-on-navy-faint); }
+.folio .sf-course-form { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 8px; }
+.folio .sf-course-form .fo-input { padding: 11px 12px; border-color: rgba(255, 255, 255, 0.2); background: rgba(255, 255, 255, 0.06); color: #fff; }
+.folio .sf-course-form .fo-input::placeholder { color: rgba(255, 255, 255, 0.45); }
+.folio .sf-course-form .fo-input:focus { border-color: var(--fo-jade-bright); outline: none; }
+.folio .sf-course-form .fo-btn { grid-column: 1 / -1; }
+.folio .sf-course-done { display: flex; gap: 8px; align-items: center; padding: 12px 14px; border-radius: var(--fo-r-control); background: rgba(0, 212, 170, 0.12); font-size: 0.88rem; color: #fff; }
+.folio .sf-course-fine { display: block; margin-top: 10px; font-size: 0.74rem; color: var(--fo-on-navy-faint); }
+
+/* Under the fold: the shelf. */
+.folio .sf-band { padding: 80px 0 72px; }
+.folio .sf-band-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 20px; }
+.folio .sf-shelf-find { width: 260px; }
+.folio .sf-lines li { display: grid; grid-template-columns: 90px minmax(0, 1fr) 110px auto; align-items: center; gap: 18px; padding: 16px 0; border-bottom: 1px solid var(--fo-hair); }
+.folio .sf-line-main { display: grid; gap: 3px; }
+.folio .sf-line-main span { font-size: 0.94rem; color: var(--fo-ink-soft); }
+.folio .sf-cmd { font-family: var(--fo-mono); font-size: 0.92rem; font-weight: 600; color: var(--fo-navy); }
+.folio .sf-cmd--big { display: block; font-size: 1.35rem; }
+.folio .sf-lines .fo-empty { display: block; margin-top: 16px; }
+.folio .sf-drawer-in { padding: 20px 24px 40px; }
+.folio .sf-drawer .fo-section { margin-top: 28px; }
+.folio .sf-desc { font-family: var(--fo-mono); font-size: 0.78rem; line-height: 1.6; }
+.folio .sf-ask { font-family: var(--fo-serif); font-size: 1.35rem; font-style: italic; font-weight: 600; color: var(--fo-navy); }
+.folio .sf-p { font-size: 0.94rem; line-height: 1.6; }
+.folio .sf-drawer .sf-cmdbox { margin-top: 24px; }
+
+/* The close band. */
+.folio .sf-close { padding: 96px 0 40px; text-align: left; }
+.folio .sf-close-in { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+.folio .sf-close p { margin: 16px 0 0; max-width: 52ch; font-size: 1.05rem; color: var(--fo-on-navy-soft); }
+.folio .sf-sample { max-width: 1376px; margin: 64px auto 0; padding: 0 32px; font-size: 0.78rem; color: var(--fo-on-navy-faint); }
+
+@media (max-width: 1000px) {
+  .folio .sf-close-in { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 760px) {
+  .folio .sf-band-head { flex-direction: column; align-items: stretch; }
+  .folio .sf-shelf-find { width: 100%; }
+  .folio .sf-lines li { grid-template-columns: minmax(0, 1fr) auto; }
+  .folio .sf-lines li > .fo-kind, .folio .sf-lines li > .fo-stage { display: none; }
+  .folio .sf-course-form { grid-template-columns: minmax(0, 1fr); }
+  .folio .sf-sample { padding: 0 16px; }
+}
+
+/* A tall right column (the course in E, the narrator in F): centre the two columns instead of bottom-aligning them. */
+.folio .sf-hero--tall .rp-hero-in { align-items: center; padding-top: 28px; }
+.folio .sf-hero--tall .rp-eyebrow { margin-top: 0; }
+.folio .sf-hero--tall .sf-course ol { gap: 4px; margin: 10px 0; }
+.folio .sf-band-head .fo-h2 { max-width: none; }
+.folio .sf-drawer { scrollbar-width: thin; }
+.folio .sf-barfind { gap: 8px; color: var(--fo-ink-soft); }
+.folio .sf-course-fine.is-error { color: #FFB4A8; }

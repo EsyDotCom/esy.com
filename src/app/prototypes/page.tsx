@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, ArrowUpRight, MousePointerClick } from 'lucide-react';
 import LightHeader from '@/components/LightHeader/LightHeader';
-import { PROTOTYPES, type Prototype, type PrototypeVariant } from '@/components/prototypes/registry';
+import { PROTOTYPES, prototypeBase, type Prototype, type PrototypeVariant } from '@/components/prototypes/registry';
 import '@/components/prototypes/prototypes.css';
 
 const [featured] = PROTOTYPES;
@@ -38,7 +38,7 @@ function VariantShot({ v }: { v: PrototypeVariant }) {
   );
 }
 
-const hrefOf = (p: Prototype, v: PrototypeVariant) => `/prototypes/${p.slug}/${v.slug}/`;
+const hrefOf = (p: Prototype, v: PrototypeVariant) => `${prototypeBase(p)}/${v.slug}/`;
 
 // The index as a showcase: the first prototype's story up top (what we built,
 // how we narrowed it, what shipped), then every prototype in registry order,

@@ -1,0 +1,95 @@
+/* Round 4 simulators (H–J) on E's page. Folio tokens only; prefix sm-.
+ * Paper surfaces on the navy hero, so the work reads as the work. */
+
+.folio .sm-top .rp-play { white-space: nowrap; }
+.folio .sm-chip { display: inline-block; margin-left: 8px; padding: 1px 7px; border-radius: var(--fo-r-pill); background: var(--fo-hover); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fo-ink-faint); vertical-align: 1px; }
+.folio .sm-chip.is-live { background: rgba(0, 168, 150, 0.14); color: var(--fo-jade-deep); }
+.folio .sm-empty { display: grid; place-items: center; height: 100%; min-height: 200px; font-size: 0.9rem; color: var(--fo-ink-faint); }
+
+/* The work: small, real-looking outputs. Parts fade in (.is-in). */
+.folio .sm-work { display: grid; gap: 10px; color: var(--fo-ink); }
+.folio .sm-r { transition: opacity 0.4s ease, transform 0.4s ease; }
+.folio .sm-r:not(.is-in) { opacity: 0.12; transform: translateY(4px); }
+.folio .sm-work h4 { font-family: var(--fo-serif); font-size: 1.35rem; font-weight: 700; line-height: 1.15; color: var(--fo-navy); }
+.folio .sm-brief ol { display: grid; gap: 8px; }
+.folio .sm-brief li { padding: 10px 12px; border-left: 2px solid var(--fo-hair-strong); font-size: 0.88rem; line-height: 1.45; }
+.folio .sm-brief li b { color: var(--fo-navy); }
+.folio .sm-brief li i { font-style: normal; font-size: 0.74rem; font-weight: 700; color: var(--fo-jade-deep); }
+.folio .sm-flag { display: flex; gap: 6px; align-items: center; font-size: 0.78rem; color: var(--fo-gold); }
+.folio .sm-page { overflow: hidden; gap: 0; border-radius: var(--fo-r-control); box-shadow: 0 0 0 1px var(--fo-hair); }
+.folio .sm-page-bar { display: flex; align-items: center; gap: 5px; padding: 7px 10px; background: var(--fo-tint); border-bottom: 1px solid var(--fo-hair); font-family: var(--fo-mono); font-size: 0.68rem; color: var(--fo-ink-faint); }
+.folio .sm-page-bar i { width: 7px; height: 7px; border-radius: 50%; background: var(--fo-hair-strong); }
+.folio .sm-page-bar span { margin-left: 8px; }
+.folio .sm-page-hero { padding: 16px 16px 12px; background: linear-gradient(160deg, #F6F9FA, #EAF4F2); }
+.folio .sm-page-hero p:last-child { margin-top: 4px; font-size: 0.84rem; color: var(--fo-ink-soft); }
+.folio .sm-page-reviews { display: grid; gap: 6px; padding: 12px 16px; }
+.folio .sm-page-reviews q { font-family: var(--fo-serif); font-size: 0.98rem; font-style: italic; color: var(--fo-navy); }
+.folio .sm-page-reviews q::before { content: '★★★★★  '; font-family: var(--fo-sans); font-style: normal; font-size: 0.7rem; letter-spacing: 1px; color: var(--fo-gold-dot); }
+.folio .sm-page-services { display: flex; gap: 6px; padding: 0 16px 12px; }
+.folio .sm-page-services li { padding: 3px 9px; border-radius: var(--fo-r-pill); box-shadow: 0 0 0 1px var(--fo-hair-strong); font-size: 0.76rem; color: var(--fo-navy); }
+.folio .sm-page-cta { margin: 0 16px 16px; padding: 9px 12px; border-radius: var(--fo-r-control); background: var(--fo-navy); font-size: 0.84rem; font-weight: 600; text-align: center; color: #fff; }
+.folio .sm-person { display: grid; gap: 2px; padding: 12px 14px; border-radius: var(--fo-r-control); box-shadow: 0 0 0 1px var(--fo-hair); }
+.folio .sm-person b { font-family: var(--fo-serif); font-size: 1.15rem; color: var(--fo-navy); }
+.folio .sm-person span { font-size: 0.8rem; color: var(--fo-ink-soft); }
+.folio .sm-person em { display: inline-flex; gap: 5px; align-items: center; font-style: normal; font-family: var(--fo-mono); font-size: 0.72rem; color: var(--fo-jade-deep); }
+.folio .sm-why { padding: 10px 12px; border-left: 2px solid var(--fo-jade); background: rgba(0, 168, 150, 0.05); font-size: 0.86rem; }
+.folio .sm-why b { display: block; font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fo-jade-deep); }
+.folio .sm-take-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.folio .sm-take { display: grid; gap: 3px; padding: 8px; border-radius: var(--fo-r-control); box-shadow: 0 0 0 1px var(--fo-hair); }
+.folio .sm-take-thumb { display: grid; grid-template-columns: 1fr 2fr; grid-template-rows: 1fr 1fr; gap: 3px; height: 64px; padding: 4px; border-radius: 6px; background: var(--fo-canvas); }
+.folio .sm-take-thumb i { border-radius: 3px; background: #fff; }
+.folio .sm-take-thumb i:first-child { grid-row: span 2; }
+.folio .sm-take b { font-family: var(--fo-serif); font-size: 1rem; color: var(--fo-navy); }
+.folio .sm-take small { font-size: 0.74rem; color: var(--fo-ink-faint); }
+.folio .sm-pill { justify-self: center; margin-top: 6px; }
+
+/* H · Chat */
+.folio .sm-chat { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); min-height: 420px; background: var(--fo-paper); color: var(--fo-ink); }
+.folio .sm-chat-log { display: flex; flex-direction: column; gap: 12px; padding: 22px; border-right: 1px solid var(--fo-hair); background: var(--fo-tint); }
+.folio .sm-msg { max-width: 92%; padding: 11px 14px; border-radius: 14px 14px 14px 4px; background: #fff; box-shadow: 0 0 0 1px var(--fo-hair); font-size: 0.95rem; line-height: 1.45; }
+.folio .sm-msg.is-you { align-self: flex-end; border-radius: 14px 14px 4px 14px; background: var(--fo-navy); box-shadow: none; color: #fff; }
+.folio .sm-caret { display: inline-block; width: 2px; height: 1em; margin-left: 2px; background: currentColor; vertical-align: -2px; animation: fo-pulse 1s steps(2) infinite; }
+.folio .sm-using { display: flex; align-items: center; flex-wrap: wrap; gap: 2px; font-size: 0.84rem; color: var(--fo-ink-soft); }
+.folio .sm-using .fo-live { background: var(--fo-jade); }
+.folio .sm-using b { margin-left: 4px; font-family: var(--fo-mono); color: var(--fo-navy); }
+.folio .sm-chat-work { padding: 22px; }
+
+/* I · Without vs with */
+.folio .sm-ask-bar { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; margin: 16px 0 14px; font-family: var(--fo-serif); font-size: 1.5rem; font-style: italic; color: #fff; }
+.folio .sm-ask-bar span { font-family: var(--fo-sans); font-size: 0.7rem; font-style: normal; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fo-on-navy-faint); }
+.folio .sm-compare { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 14px; }
+.folio .sm-side { display: grid; align-content: start; gap: 12px; padding: 20px; border-radius: var(--fo-r-pane); background: var(--fo-paper); color: var(--fo-ink); }
+.folio .sm-side ul { display: grid; gap: 6px; }
+.folio .sm-side li { display: flex; gap: 8px; align-items: flex-start; font-size: 0.84rem; }
+.folio .sm-side li svg { flex: none; margin-top: 3px; }
+.folio .sm-side.is-without { background: #E7ECF1; }
+.folio .sm-side.is-without li { color: var(--fo-gold); }
+.folio .sm-generic { font-size: 0.95rem; line-height: 1.55; color: var(--fo-ink-soft); }
+.folio .sm-side.is-with { opacity: 0.3; transform: translateY(6px); transition: opacity 0.5s ease, transform 0.5s ease; box-shadow: 0 0 0 2px var(--fo-jade-bright); }
+.folio .sm-side.is-with.is-in { opacity: 1; transform: none; }
+.folio .sm-side.is-with li { color: var(--fo-jade-deep); }
+.folio .sm-side.is-with .fo-label b { font-family: var(--fo-mono); letter-spacing: 0; text-transform: none; color: var(--fo-navy); }
+
+/* J · Three panels */
+.folio .sm-panels { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 0.9fr) minmax(0, 1.3fr); gap: 14px; margin-top: 20px; }
+.folio .sm-panels > li { position: relative; display: grid; align-content: start; gap: 12px; min-height: 380px; padding: 20px; border-radius: var(--fo-r-pane); background: var(--fo-paper); color: var(--fo-ink); opacity: 0.55; transition: opacity 0.4s ease, box-shadow 0.4s ease; }
+.folio .sm-panels > li.is-on { opacity: 1; box-shadow: 0 0 0 2px var(--fo-jade-bright), 0 20px 50px -30px rgba(0, 212, 170, 0.6); }
+.folio .sm-panels > li.is-done { opacity: 1; }
+.folio .sm-panels > li + li::before { content: '→'; position: absolute; left: -12px; top: 22px; display: grid; place-items: center; width: 10px; font-size: 1rem; color: var(--fo-jade-bright); }
+.folio .sm-n { display: flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fo-navy); }
+.folio .sm-n span { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--fo-navy); font-size: 0.72rem; letter-spacing: 0; color: #fff; }
+.folio .sm-panels .sm-msg.is-you { align-self: start; max-width: 100%; }
+.folio .sm-hint { font-size: 0.82rem; line-height: 1.5; color: var(--fo-ink-faint); }
+.folio .sm-pick { display: grid; gap: 6px; }
+.folio .sm-pick li { display: grid; gap: 2px; padding: 9px 11px; border-radius: var(--fo-r-control); box-shadow: 0 0 0 1px var(--fo-hair); transition: opacity 0.3s ease, background 0.3s ease; }
+.folio .sm-pick code { font-family: var(--fo-mono); font-size: 0.82rem; font-weight: 600; color: var(--fo-navy); }
+.folio .sm-pick small { font-size: 0.74rem; color: var(--fo-jade-deep); }
+.folio .sm-pick li.is-chosen { background: var(--fo-jade-wash); box-shadow: 0 0 0 2px var(--fo-jade); }
+.folio .sm-pick li.is-dim { opacity: 0.35; }
+
+@media (max-width: 960px) {
+  .folio .sm-chat, .folio .sm-compare, .folio .sm-panels { grid-template-columns: minmax(0, 1fr); }
+  .folio .sm-chat-log { border-right: 0; border-bottom: 1px solid var(--fo-hair); }
+  .folio .sm-panels > li { min-height: 0; }
+  .folio .sm-panels > li + li::before { content: '↓'; left: 20px; top: -14px; }
+}

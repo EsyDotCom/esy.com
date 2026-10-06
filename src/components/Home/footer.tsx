@@ -298,15 +298,12 @@ export default function Footer () {
           <FooterColumn
             title="Read"
             links={[
-              // The newsletter first: it's the thing to subscribe to.
-              { href: "/engineer/", text: "The Marketing Engineer" },
-              { href: "/news/", text: "AI Marketing News" },
+              // Ordered by length, shortest first (2026-10-06), so the column
+              // reads as a clean stair. Skills joined the same day.
+              { href: "/skills/", text: "Skills" },
               { href: "/topics/", text: "Topics" },
-              // Where readers (and search engines) look for how the
-              // publication decides what to publish and keeps it right.
-              { href: "/editorial-standards/", text: "Editorial standards" },
-              // Docs sit with the reading (2026-09-30); Products is the apps.
-              { href: "/docs", text: "Docs" },
+              { href: "/news/", text: "AI Marketing News" },
+              { href: "/engineer/", text: "The Marketing Engineer" },
             ]}
           />
 
@@ -323,6 +320,11 @@ export default function Footer () {
             links={[
               { href: "/about/", text: "About" },
               { href: "mailto:zev@esy.com", text: "Contact" },
+              // Moved from Read (2026-10-06): how the company works, beside
+              // who it is. Editorial standards is still where readers and
+              // search engines look for how the publication keeps things right.
+              { href: "/docs", text: "Docs" },
+              { href: "/editorial-standards/", text: "Editorial standards" },
               { href: "/privacy/", text: "Privacy" },
               { href: "/terms/", text: "Terms" },
             ]}
@@ -341,6 +343,13 @@ export default function Footer () {
             </a>
             <a href="https://seo.page" target="_blank" rel="noopener noreferrer" className="footer-mark footer-mark--seopage" aria-label="SEOPage">
               <SeoPageWordmark weight="light" />
+            </a>
+            {/* OS (2026-10-06): "OS" alone in the esy stencil, its O in teal,
+                a sibling of Compose's stencil mark (same classes, same size). */}
+            <a href="https://os.esy.com" target="_blank" rel="noopener noreferrer" className="footer-mark footer-mark--compose" aria-label="Esy OS">
+              <span role="img" aria-label="Esy OS" className="cw cw--stencil">
+                <span className="cw-face" aria-hidden="true">OS</span>
+              </span>
             </a>
             <a href="https://compose.esy.com" target="_blank" rel="noopener noreferrer" className="footer-mark footer-mark--compose" aria-label="Esy Compose">
               <ComposeWordmark mark="stencil" />

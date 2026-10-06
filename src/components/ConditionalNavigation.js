@@ -95,6 +95,9 @@ const ConditionalNavigation = () => {
   // AI Marketing News (2026-09-30): the index, every post and every story page render
   // LightHeader themselves.
   const isNewsPage = normalizedPath === '/news' || normalizedPath?.startsWith('/news/');
+  // The skills hub (2026-10-06): /skills and every take or skill page under it
+  // render LightHeader themselves.
+  const isSkillsPage = normalizedPath === '/skills' || normalizedPath?.startsWith('/skills/');
 
   // Don't render navigation on:
   // - Essay view pages (focused reading)
@@ -104,7 +107,7 @@ const ConditionalNavigation = () => {
   // - Agents pages (own sidebar navigation)
   // - Scrollytelling story pages (own header via ScrollytellingHeader)
   // - Photo essays landing page (immersive experience with own header)
-  if (isEssayViewPage || isInfographicViewPage || isClipArtViewPage || isDocsPage || isAgentsPage || isScrollytellingStoryPage || isPhotoEssaysPage || isHomepage || isWaitlistPage || isTopicsPage || isArticlePage || isEngineerIndex || isPrototypesPage || isFilmPage || isEditorialPage || isCoursesPage || isNewsPage) {
+  if (isEssayViewPage || isInfographicViewPage || isClipArtViewPage || isDocsPage || isAgentsPage || isScrollytellingStoryPage || isPhotoEssaysPage || isHomepage || isWaitlistPage || isTopicsPage || isArticlePage || isEngineerIndex || isPrototypesPage || isFilmPage || isEditorialPage || isCoursesPage || isNewsPage || isSkillsPage) {
     return null;
   }
 

@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { ArrowRight, Play } from 'lucide-react';
 import type { Course } from '@/lib/learn/types';
 import WeeklyEmailBand from '@/components/NewsletterHome/WeeklyEmailBand';
+import { CourseCoverArt } from '@/components/CourseCovers/covers';
 import { COURSE_ART } from './covers';
 import {
   CourseCover,
@@ -44,12 +45,14 @@ export function NowShowingBand({
   const art = COURSE_ART[course.slug];
   const lessons = lessonsOf(course);
   const posterHref = onCoursePage && lessons[0] ? lessonHref(course, lessons[0]) : courseHref(course);
+  // A course with a drawn cover shows it here, unless a prototype passes its own.
+  const drawn = posterArt ?? (art?.drawn ? <CourseCoverArt cover={art.drawn} format="poster" lessons={lessons.length} /> : null);
   return (
     <section className="nl-lab ci-show" aria-label={`${course.title}: now showing`}>
       <div className="nl-container nl-film">
         <Link href={posterHref} className="nl-film-poster ci-show-poster">
-          {posterArt ? (
-            posterArt
+          {drawn ? (
+            drawn
           ) : art ? (
             // eslint-disable-next-line @next/next/no-img-element -- a fixed 2:3 poster
             <img src={art.poster} alt={art.alt} width={600} height={900} />
@@ -57,7 +60,7 @@ export function NowShowingBand({
             <CourseCover course={course} n={n} size="lg" />
           )}
           {/* A drawn cover carries the esy brand at its top centre instead (/prototypes/course-cover/). */}
-          {!posterArt && <span className="nl-film-poster-top">The Marketing Engineer presents</span>}
+          {!drawn && <span className="nl-film-poster-top">The Marketing Engineer presents</span>}
           <span className="nl-film-poster-foot">
             <span className="nl-film-poster-title">{course.tags[0] ?? course.title}</span>
             <span className="nl-film-poster-billing">{lessons.map((l) => l.title).join(' · ')}</span>

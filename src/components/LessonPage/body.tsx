@@ -16,6 +16,7 @@ import { splitSections, type ArticleSection } from '@/components/ArticleImage/ar
 import ArticleNav from '@/components/ArticleImage/ArticleNav';
 import { ArticleBody } from '@/components/ArticleImage/shared';
 import { COURSE_ART } from '@/components/CoursesIndex/covers';
+import { CourseCoverArt } from '@/components/CourseCovers/covers';
 import { courseHref, lessonHref, lessonsOf } from '@/components/CoursesIndex/shared';
 import { getAdjacentLessons } from '@/lib/learn/mockData';
 
@@ -215,9 +216,16 @@ export function BodyEndCard({ course, lesson }: { course: Course; lesson: Lesson
         <div className="lp-endcard">
           {next ? (
             <Link href={lessonHref(course, next)} className="lp-endcard-next">
-              {art && (
-                // eslint-disable-next-line @next/next/no-img-element -- the generated cover, fixed size
-                <img src={art.wide} alt="" width={640} height={360} className="lp-endcard-img" />
+              {/* The course's drawn cover when it has one (16:9), else its image. */}
+              {art?.drawn ? (
+                <span className="cc-frame lp-endcard-img">
+                  <CourseCoverArt cover={art.drawn} format="wide" lessons={all.length} />
+                </span>
+              ) : (
+                art && (
+                  // eslint-disable-next-line @next/next/no-img-element -- the generated cover, fixed size
+                  <img src={art.wide} alt="" width={640} height={360} className="lp-endcard-img" />
+                )
               )}
               <span className="lp-endcard-body">
                 <span className="lp-endcard-label">Up next · {position(course, next)}</span>

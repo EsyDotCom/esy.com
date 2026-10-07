@@ -2975,7 +2975,7 @@ export const PROTOTYPES: Prototype[] = [
       {
         n: 3,
         title: 'The merge',
-        summary: 'F’s studio, with J’s two screens: Mason from behind at his desk, an editor and the terminal side by side.',
+        summary: 'F’s studio, with J’s two screens: Mason from behind at his desk, an editor and the terminal side by side. K shipped as the Claude Code course’s cover.',
       },
     ],
     variants: [
@@ -2989,7 +2989,7 @@ export const PROTOTYPES: Prototype[] = [
       { slug: 'floating', key: 'H', name: 'Floating', round: 2, title: 'Feeding the terminal.', blurb: 'The original poster in our cut: a terminal over night hills, Mason on its title bar against the moon letting files drop in, the finished ones falling to the desk.', poster: ['#0A1C33', '#2BD8BB'] },
       { slug: 'flatlay', key: 'I', name: 'Flat-lay', round: 2, title: 'Mason at the keys.', blurb: 'The desk from above: the top of Mason’s head at the laptop, his tentacles pressing keys in turn as the terminal types.', poster: ['#0F2B45', '#2BD8BB'] },
       { slug: 'two-screens', key: 'J', name: 'Two screens', round: 2, title: 'Coding on both screens.', blurb: 'Mason from behind at a desk with an editor and a terminal, his tentacles on the keyboard between them.', poster: ['#0E2B45', '#00D4AA'] },
-      { slug: 'studio-two-screens', key: 'K', name: 'Studio, two screens', round: 3, mergeOf: ['F', 'J'], title: 'His desk, both screens.', blurb: 'F’s room (shelf, lamp, city window, plant) with J’s two screens: Mason from behind at his desk at night, tentacles pressing the keys between an editor and the terminal.', poster: ['#0E2B45', '#E3B660'] },
+      { slug: 'studio-two-screens', key: 'K', name: 'Studio, two screens', round: 3, mergeOf: ['F', 'J'], title: 'His desk, both screens.', blurb: 'F’s room (shelf, lamp, city window, plant) with J’s two screens: Mason from behind at his desk at night, tentacles pressing the keys between an editor and the terminal.', poster: ['#0E2B45', '#E3B660'], live: true, liveHref: '/courses/how-to-use-claude-code/' },
     ],
   },
 ];

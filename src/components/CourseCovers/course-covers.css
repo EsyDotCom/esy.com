@@ -1,0 +1,125 @@
+/* Course covers with Mason (2026-10-06, /prototypes/course-cover/).
+ * Each cover is a full-bleed SVG that fills its frame: the band's 2:3 poster
+ * link, or a 16:9 frame on the sheet and the lesson end card. Base styles
+ * are each cover's finished frame, so with reduced motion the still shows the
+ * whole idea; the animations below play it. */
+
+.cc-art { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+/* The poster link sized the old <img>; the art takes its place. */
+.nl-film-poster .cc-art { z-index: 0; }
+/* With a drawn cover there's no "presents" line to shade for, so the top stays
+   clear and the cover's own esy brand reads at full strength; the bottom
+   still darkens for the title. */
+.nl-film-poster:has(.cc-art)::after { background: linear-gradient(180deg, transparent 55%, rgba(7, 9, 26, 0.95)); }
+/* A 16:9 frame for the wide cover (the sheet, the end card). */
+.cc-frame { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 12px; background: #061527; }
+/* Lines writing themselves out (A's terminal, E's screen), growing from their
+   own left edge. Only these scale about their own box; the rotated slabs keep
+   the drawing's coordinates. */
+.cc-type { transform-box: fill-box; transform-origin: 0 50%; animation: cc-type 7s ease-out calc(var(--k) * 0.55s) infinite both; }
+@keyframes cc-type { 0% { scale: 0 1; } 12%, 86% { scale: 1 1; } 94%, 100% { scale: 0 1; } }
+.cc-cursor { animation: cc-blink 1.1s steps(1) infinite; }
+@keyframes cc-blink { 50% { opacity: 0; } }
+/* A's key caps on Mason's tips, glowing as he types. */
+.cc-key { animation: cc-key 1.4s ease-in-out calc(var(--k) * 0.35s) infinite alternate; }
+@keyframes cc-key { to { fill: #F4F1EA; } }
+
+/* B: the lesson tiles light one by one and stay lit, with the ring's eight sides. */
+.cc-tile-face { fill: #00D4AA; }
+.cc-tile--0 .cc-tile-face { animation: cc-tile-0 9s ease-in-out infinite both; }
+.cc-tile--1 .cc-tile-face { animation: cc-tile-1 9s ease-in-out infinite both; }
+.cc-tile--2 .cc-tile-face { animation: cc-tile-2 9s ease-in-out infinite both; }
+.cc-tile--3 .cc-tile-face { animation: cc-tile-3 9s ease-in-out infinite both; }
+.cc-tile--4 .cc-tile-face { animation: cc-tile-4 9s ease-in-out infinite both; }
+.cc-tile--5 .cc-tile-face { animation: cc-tile-5 9s ease-in-out infinite both; }
+.cc-tile--6 .cc-tile-face { animation: cc-tile-6 9s ease-in-out infinite both; }
+.cc-tile--7 .cc-tile-face { animation: cc-tile-7 9s ease-in-out infinite both; }
+@keyframes cc-tile-0 { 0%, 10% { fill: #F4F1EA; } 13%, 88% { fill: #00D4AA; } 94%, 100% { fill: #F4F1EA; } }
+@keyframes cc-tile-1 { 0%, 19% { fill: #F4F1EA; } 22%, 88% { fill: #00D4AA; } 94%, 100% { fill: #F4F1EA; } }
+@keyframes cc-tile-2 { 0%, 28% { fill: #F4F1EA; } 31%, 88% { fill: #00D4AA; } 94%, 100% { fill: #F4F1EA; } }
+@keyframes cc-tile-3 { 0%, 37% { fill: #F4F1EA; } 40%, 88% { fill: #00D4AA; } 94%, 100% { fill: #F4F1EA; } }
+@keyframes cc-tile-4 { 0%, 46% { fill: #F4F1EA; } 49%, 88% { fill: #00D4AA; } 94%, 100% { fill: #F4F1EA; } }
+@keyframes cc-tile-5 { 0%, 55% { fill: #F4F1EA; } 58%, 88% { fill: #00D4AA; } 94%, 100% { fill: #F4F1EA; } }
+@keyframes cc-tile-6 { 0%, 64% { fill: #F4F1EA; } 67%, 88% { fill: #00D4AA; } 94%, 100% { fill: #F4F1EA; } }
+@keyframes cc-tile-7 { 0%, 73% { fill: #F4F1EA; } 76%, 88% { fill: #00D4AA; } 94%, 100% { fill: #F4F1EA; } }
+.cc-side { opacity: 0.9; }
+.cc-side--0 { animation: cc-side-0 9s ease-in-out infinite both; }
+.cc-side--1 { animation: cc-side-1 9s ease-in-out infinite both; }
+.cc-side--2 { animation: cc-side-2 9s ease-in-out infinite both; }
+.cc-side--3 { animation: cc-side-3 9s ease-in-out infinite both; }
+.cc-side--4 { animation: cc-side-4 9s ease-in-out infinite both; }
+.cc-side--5 { animation: cc-side-5 9s ease-in-out infinite both; }
+.cc-side--6 { animation: cc-side-6 9s ease-in-out infinite both; }
+.cc-side--7 { animation: cc-side-7 9s ease-in-out infinite both; }
+@keyframes cc-side-0 { 0%, 6% { opacity: 0.12; } 10%, 90% { opacity: 0.9; } 97%, 100% { opacity: 0.12; } }
+@keyframes cc-side-1 { 0%, 16% { opacity: 0.12; } 20%, 90% { opacity: 0.9; } 97%, 100% { opacity: 0.12; } }
+@keyframes cc-side-2 { 0%, 26% { opacity: 0.12; } 30%, 90% { opacity: 0.9; } 97%, 100% { opacity: 0.12; } }
+@keyframes cc-side-3 { 0%, 36% { opacity: 0.12; } 40%, 90% { opacity: 0.9; } 97%, 100% { opacity: 0.12; } }
+@keyframes cc-side-4 { 0%, 46% { opacity: 0.12; } 50%, 90% { opacity: 0.9; } 97%, 100% { opacity: 0.12; } }
+@keyframes cc-side-5 { 0%, 56% { opacity: 0.12; } 60%, 90% { opacity: 0.9; } 97%, 100% { opacity: 0.12; } }
+@keyframes cc-side-6 { 0%, 66% { opacity: 0.12; } 70%, 90% { opacity: 0.9; } 97%, 100% { opacity: 0.12; } }
+@keyframes cc-side-7 { 0%, 76% { opacity: 0.12; } 80%, 90% { opacity: 0.9; } 97%, 100% { opacity: 0.12; } }
+
+/* C: the chevron's slabs drop in, Mason holds the cursor out, then it sets and blinks. */
+.cc-drop--0 { animation: cc-drop-0 9s cubic-bezier(0.2, 0.9, 0.3, 1.1) infinite both; }
+.cc-drop--1 { animation: cc-drop-1 9s cubic-bezier(0.2, 0.9, 0.3, 1.1) infinite both; }
+@keyframes cc-drop-0 { 0% { translate: 0 -90px; opacity: 0; } 10%, 92% { translate: 0 0; opacity: 1; } 100% { opacity: 0; } }
+@keyframes cc-drop-1 { 0%, 12% { translate: 0 -90px; opacity: 0; } 22%, 92% { translate: 0 0; opacity: 1; } 100% { opacity: 0; } }
+.cc-held { opacity: 0; animation: cc-held 9s ease-in-out infinite both; }
+@keyframes cc-held { 0%, 52% { opacity: 1; } 56%, 96% { opacity: 0; } 100% { opacity: 1; } }
+.cc-set { animation: cc-set 9s steps(1) infinite both; }
+@keyframes cc-set { 0%, 55% { opacity: 0; } 56%, 63% { opacity: 1; } 64% { opacity: 0.2; } 65%, 72% { opacity: 1; } 73% { opacity: 0.2; } 74%, 94% { opacity: 1; } 95%, 100% { opacity: 0; } }
+
+/* D: the beam breathes with the cursor; Mason rises and settles. */
+.cc-beam { animation: cc-beam 2.2s ease-in-out infinite alternate; }
+@keyframes cc-beam { from { opacity: 0.55; } to { opacity: 1; } }
+.cc-rise { animation: cc-rise 5s ease-in-out infinite alternate; }
+@keyframes cc-rise { from { translate: 0 18px; } to { translate: 0 -10px; } }
+
+/* Round 2: Mason holds still. The scene moves only where the work does: the
+   terminal types, files fall, keys light under his tips. */
+.cc-still .bs-oct-seg, .cc-still .bs-oct-body, .cc-still .bs-oct-eyes { animation: none; }
+/* Typing: his arms tap, each a beat apart, the one motion he makes. */
+.cc-still .cc-typing .bs-oct-seg { animation: cc-tap 0.5s ease-in-out calc(var(--a) * -0.17s + var(--k) * -0.04s) infinite alternate; }
+@keyframes cc-tap { from { rotate: -3deg; } to { rotate: 4deg; } }
+/* H: the file he's feeding in drops from his tip into the terminal. */
+.cc-feed { animation: cc-feed 2.6s ease-in infinite both; }
+@keyframes cc-feed { 0% { translate: 0 0; opacity: 0; } 15% { opacity: 1; } 70% { opacity: 1; } 100% { translate: 0 64px; opacity: 0; } }
+/* Typing from behind or above (mason-poses.tsx): each front arm dips onto its
+   key on the same beat the key lights (same duration, same --k delay). */
+.cc-poke { animation: cc-poke 2.4s ease-out calc(var(--k) * 0.4s) infinite both; }
+@keyframes cc-poke { 0% { translate: 0 3px; } 14%, 100% { translate: 0 0; } }
+/* The keys under his tips light one after another, as if typed. */
+.cc-press { animation: cc-press 2.4s steps(1) calc(var(--k) * 0.4s) infinite both; }
+@keyframes cc-press { 0% { fill: #2BD8BB; } 14%, 100% { fill: #163A5F; } }
+
+/* H: files fall from the floating terminal to the desk, one after another. */
+.cc-fall { animation: cc-fall 4.8s ease-in calc(var(--k) * -1.2s) infinite both; }
+@keyframes cc-fall { 0% { translate: 0 -60px; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { translate: 0 40px; opacity: 0; } }
+
+/* Hovering the poster quickens Mason's arms, as walking does in the footer. */
+.nl-film-poster:hover .cc-art:not(.cc-still) .bs-oct-seg { animation-duration: 1.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cc-art *, .cc-art *::before, .cc-art *::after { animation: none !important; }
+}
+
+/* ── The sheet under the band: the wide cover where it's used ─────────── */
+.cc-sheet { padding: 72px 0 80px; background: var(--nl-bg-alt, #F8F9FA); border-top: 1px solid var(--nl-seam); }
+.cc-sheet-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 32px; margin-bottom: 28px; }
+.cc-sheet-head .nl-lede { margin: 0; }
+.cc-sheet-grid { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 24px; align-items: start; }
+.cc-sheet .cc-label { margin: 0 0 10px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-jade); }
+.cc-sheet .lp-endcard-wrap { margin: 0; padding: 0; background: none; border: 0; }
+.cc-sheet .lp-endcard { max-width: none; }
+.cc-sheet .lp-endcard-next .cc-frame { border-radius: 12px; }
+.cc-toggle { display: inline-flex; gap: 6px; padding: 4px; border-radius: 999px; background: #FFFFFF; border: 1px solid var(--nl-seam); }
+.cc-toggle a {
+  padding: 8px 14px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; color: var(--nl-ink-soft); text-decoration: none;
+}
+.cc-toggle a[aria-current='page'] { background: var(--nl-navy); color: #FFFFFF; }
+.cc-sheet .cc-note { margin: 20px 0 0; font-size: 0.82rem; color: #6C757D; }
+@media (max-width: 860px) {
+  .cc-sheet-grid { grid-template-columns: minmax(0, 1fr); }
+  .cc-sheet { padding: 48px 0 56px; }
+}

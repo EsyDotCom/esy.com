@@ -8,10 +8,10 @@ import WeeklyEmailBand from '@/components/NewsletterHome/WeeklyEmailBand';
 import { NowShowingBand } from '@/components/CoursesIndex/CoursesNowShowing';
 import { LearnList, LessonLedger, ResourceList, TeacherBlock, courseNumber, realResources } from './shared';
 
-export default function CoursePoster({ course }: { course: Course }) {
+export default function CoursePoster({ course, posterArt }: { course: Course; /** Drawn poster art (/prototypes/course-cover/). */ posterArt?: React.ReactNode }) {
   return (
     <>
-      <NowShowingBand course={course} n={Number(courseNumber(course))} as="h1" onCoursePage />
+      <NowShowingBand course={course} n={Number(courseNumber(course))} as="h1" onCoursePage posterArt={posterArt} />
 
       {/* What you'll learn on the left, every lesson on the right. */}
       <section className="nl-section" aria-labelledby="cd-learn-title">

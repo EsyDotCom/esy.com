@@ -13,16 +13,19 @@ export default function CoursesMastheadShowing({
   courses,
   upcoming,
   hero,
+  posterArt,
 }: CoursesIndexProps & {
   /** Replaces the masthead (the intro-video heroes at /prototypes/courses-hero/). */
   hero?: React.ReactNode;
+  /** Drawn art for the lead course's poster (the Mason covers at /prototypes/course-cover/). */
+  posterArt?: React.ReactNode;
 }) {
   const [lead, ...rest] = newestFirst(courses);
 
   return (
     <>
       {hero ?? <CoursesMastheadHero courses={courses} />}
-      {lead && <NowShowingBand course={lead} n={courses.indexOf(lead) + 1} />}
+      {lead && <NowShowingBand course={lead} n={courses.indexOf(lead) + 1} posterArt={posterArt} />}
 
       {/* Older courses, once there are any: the homepage's quiet list under the spotlight. */}
       {rest.length > 0 && (

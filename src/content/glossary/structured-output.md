@@ -3,7 +3,7 @@ title: "Structured Output"
 category: "output"
 description: "AI-generated content delivered in a predefined, typed format — not free-form text — with consistent schema, metadata, and audit information."
 tldr: "Structured output means the AI doesn't just produce text — it produces a typed artifact with a defined schema: sections, metadata, citation chains, QA scores. The format is predictable, parseable, and auditable. This is what makes AI output usable in production systems."
-inEsy: "Every Esy artifact is structured output. Templates define the output schema — sections, metadata, citation format, QA requirements — before the workflow runs. The result is a consistent, typed artifact, not a chat response. [View Artifacts](/essays/)"
+inEsy: "Every Esy artifact is structured output. Templates define the output schema — sections, metadata, citation format, QA requirements — before the workflow runs. The result is a consistent, typed artifact, not a chat response."
 relatedTerms: ["agentic-workflow", "pipeline-orchestration", "citation-verification"]
 workflowStages:
   - id: "schema"

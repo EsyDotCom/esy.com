@@ -2902,6 +2902,54 @@ export const PROTOTYPES: Prototype[] = [
       },
     ],
   },
+  {
+    slug: 'gone',
+    name: 'The retired page (410)',
+    date: '2026-10-06',
+    headline: 'Some pages leave on purpose. Three ways to say so.',
+    intro:
+      'When we archived esy.com’s old essays and catalog pages, their addresses started answering “gone” instead of “not found”. Each version keeps our 404’s look, with Mason in his reef, and tells the story its own way.',
+    summary:
+      'Three versions of the page esy.com shows for a retired address (410 Gone), built on the 404: the light header, the message, and Mason’s reef.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Three directions',
+        summary: 'The same layout as the 404. A files the old page away, B buries it for good, C shows the site moving on to what it makes now. B shipped as the page every retired address shows.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'archive',
+        key: 'A',
+        name: 'Archive',
+        round: 1,
+        title: 'This page was retired.',
+        blurb: 'Mason lifts the slab marked 410 out of his gate, files it in a crate, and fits a fresh piece in its place. The copy says we kept it: retired, not lost.',
+        poster: ['#0A2540', '#00A896'],
+      },
+      {
+        slug: 'buried',
+        key: 'B',
+        name: 'Buried',
+        round: 1,
+        title: 'This page is gone for good.',
+        blurb: 'Mason sets the 410 slab on the seabed beside his finished gate and heaps sand over it. The plainest answer: it was removed on purpose and isn’t coming back.',
+        poster: ['#061527', '#2BD8BB'],
+        live: true,
+        liveHref: '/gone/',
+      },
+      {
+        slug: 'moved-on',
+        key: 'C',
+        name: 'Moved on',
+        round: 1,
+        title: 'We’ve moved on from this page.',
+        blurb: 'The old 410 slab lies overgrown on the seabed while Mason builds his gate. The ways back become cards that say what each section is, so the page points forward.',
+        poster: ['#0E4A5C', '#F4F1EA'],
+      },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

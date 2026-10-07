@@ -182,10 +182,10 @@ export const SOCIALS = [
   { label: 'GitHub', href: 'https://github.com/ZevUhuru', handle: 'ZevUhuru', Icon: Github },
 ];
 
-/** Where the name comes from (kept from the old /about). */
+/** Where the name comes from (kept from the old /about). Its link to the
+ *  essay on the word "essay" went when the old essays were archived. */
 export const ETYMOLOGY = {
   text: 'Esy comes from Synthesis Essay, reversed into the acronym ESY. It’s pronounced “Eh-see.”',
-  href: '/essays/etymology/the-word-essay/',
 };
 
 export const PORTRAIT = '/images/zev-uhuru.png';

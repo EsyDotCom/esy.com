@@ -81,7 +81,7 @@ export default function AboutLetter() {
             <Link href="/editorial-standards/">editorial standards</Link>.
           </p>
           <p>
-            And the name: Esy comes from <Link href={ETYMOLOGY.href}><em>Synthesis Essay</em></Link>, reversed into the
+            And the name: Esy comes from <em>Synthesis Essay</em>, reversed into the
             acronym ESY. It&apos;s pronounced &ldquo;Eh-see.&rdquo;
           </p>
         </section>

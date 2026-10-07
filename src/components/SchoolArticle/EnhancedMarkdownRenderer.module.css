@@ -587,6 +587,30 @@
   font-style: italic;
 }
 
+/* A markdown image with a caption (its title, as Compose exports it). Plain,
+ * not the boxed figure above: the image keeps its usual look and the caption
+ * sits under it in the article pages' caption style (.ai-figure figcaption,
+ * ArticleImage.css). Class + class beats `.markdownContainer figure`; the img
+ * rule needs !important to beat `.markdownContainerLight img`. */
+.markdownContainer .captionedFigure {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  margin: 1.5rem 0;
+  text-align: left;
+}
+.markdownContainer .captionedFigure img {
+  margin: 0 !important;
+}
+.markdownContainer .captionedFigure figcaption {
+  margin-top: 10px;
+  font-size: 0.82rem;
+  font-style: normal;
+  line-height: 1.5;
+  color: #6C757D;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .h1 {

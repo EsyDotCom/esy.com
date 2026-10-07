@@ -15,11 +15,14 @@ import Image from 'next/image';
 import { isRemote, type ImageArticle } from './article';
 import ArticleNav from './ArticleNav';
 import { AgenticNewsletterBar } from '@/components/Agentic/AgenticNewsletterBar';
+import { dekFor } from '@/lib/article-format';
 import { ArticleBody, ArticleEnd, Byline, SignupCard, TopicKicker } from './shared';
 
 type CoverGuideProps = ImageArticle & { signup?: 'rail' | 'bar' };
 
 export default function ArticleCoverGuide({ article, image, sections, minutes, topic, related, signup = 'rail' }: CoverGuideProps) {
+  // The dek Compose writes, else the summary (registry and older articles).
+  const dek = dekFor(article);
   return (
     <article className="ai ai-cover ai-cover-guide">
       {/* ── B: the cover ───────────────────────────────────────────────── */}
@@ -31,7 +34,7 @@ export default function ArticleCoverGuide({ article, image, sections, minutes, t
         <div className="ai-cover-head">
           <TopicKicker topic={topic} onDark />
           <h1 className="ai-title ai-title--onDark">{article.title}</h1>
-          {article.description && <p className="ai-dek ai-dek--onDark">{article.description}</p>}
+          {dek && <p className="ai-dek ai-dek--onDark">{dek}</p>}
           <Byline publishedAt={article.publishedAt} minutes={minutes} onDark />
         </div>
       </header>

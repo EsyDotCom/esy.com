@@ -5,12 +5,17 @@
 
 import type { AgenticVideo } from '@/data/agentic-videos';
 import { topicHref, topicsForArticle } from '@/data/topics';
+import { coverFor } from '@/lib/article-format';
 import { relatedFrom } from '@/lib/published-articles';
 import { readMinutes, splitSections, type ImageArticle, type LeadImage } from './article';
 
-/** The lead image an article carries on its own: its thumbnail (set in Compose).
- *  Null when it has none; the cover then shows the navy ground alone. */
+/** The lead image an article carries on its own: its cover image (set in
+ *  Compose, with its alt text), else its thumbnail, which was the cover before
+ *  Compose had a cover field. Null when it has neither; the cover then shows
+ *  the navy ground alone. */
 export function leadImageFor(article: AgenticVideo): LeadImage | null {
+  const cover = coverFor(article);
+  if (cover) return { ...cover, caption: '' };
   if (!article.thumbnailUrl) return null;
   return { src: article.thumbnailUrl, alt: '', caption: '' };
 }

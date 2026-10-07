@@ -1,7 +1,8 @@
 /* The article page for an article without a video (2026-09-27): E · Cover
  * Bar, the default for image-led articles: D · Cover Guide with the video
- * articles' email bar right under the cover. The article's thumbnail (set in
- * Compose) is the cover; with none, the cover is the navy ground alone. Video
+ * articles' email bar right under the cover. The article's cover image (set in
+ * Compose), else its thumbnail, is the cover; with neither, the cover is the
+ * navy ground alone. Video
  * articles keep their own page (src/app/engineer/[slug]/client.tsx).
  *
  * Rendered in the publication's `.nl` scope, with the same light header the

@@ -4,6 +4,7 @@ import { findAgenticArticle, getAllAgenticArticles } from "@/lib/published-artic
 import { loadTranscriptSegments } from "@/lib/transcript-loader";
 import { transcriptToPlainText, toIsoDuration } from "@/lib/transcripts";
 import { isArticleSlugShape, articlePath } from "@/lib/article-path";
+import { coverFor, searchTitleFor } from "@/lib/article-format";
 import ImageArticlePage from "@/components/ArticleImage/ImageArticlePage";
 import VideoArticlePage from "@/components/ArticleVideo/VideoArticlePage";
 import type { Metadata } from "next";
@@ -43,19 +44,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!video) return {};
 
   const url = `${BASE_URL}${articlePath(video.slug)}`;
-  // A video article shares its first frame; an image-led one shares its cover.
-  const ogImage = video.muxPlaybackId
-    ? `https://image.mux.com/${video.muxPlaybackId}/thumbnail.jpg?time=0`
-    : video.thumbnailUrl || undefined;
+  // Search results and link previews use the writer's search title (the
+  // on-page <h1> keeps the article title).
+  const shareTitle = searchTitleFor(video);
+  // The article's own cover wins when Compose set one. Otherwise a video
+  // article shares its first frame and an image-led one its thumbnail.
+  const ogImage =
+    coverFor(video)?.src ??
+    (video.muxPlaybackId
+      ? `https://image.mux.com/${video.muxPlaybackId}/thumbnail.jpg?time=0`
+      : video.thumbnailUrl || undefined);
 
   return {
-    title: `${video.title} — The Marketing Engineer`,
+    title: `${shareTitle} — The Marketing Engineer`,
     description: video.description.slice(0, 160),
     alternates: {
       canonical: url,
     },
     openGraph: {
-      title: video.title,
+      title: shareTitle,
       description: video.description.slice(0, 160),
       type: video.muxPlaybackId ? "video.other" : "article",
       url,
@@ -63,7 +70,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: ogImage ? "summary_large_image" : "summary",
-      title: video.title,
+      title: shareTitle,
       description: video.description.slice(0, 160),
       images: ogImage ? [ogImage] : [],
     },
@@ -88,7 +95,8 @@ export default async function AgenticVideoPage({ params }: Props) {
       "@type": "Article",
       headline: video.title,
       description: video.description,
-      image: video.thumbnailUrl || undefined,
+      // Same image the page leads with: the cover, else the thumbnail.
+      image: coverFor(video)?.src ?? (video.thumbnailUrl || undefined),
       datePublished: video.publishedAt,
       mainEntityOfPage: `${BASE_URL}${articlePath(video.slug)}`,
       author: { "@type": "Person", name: "Zev Uhuru", url: BASE_URL },

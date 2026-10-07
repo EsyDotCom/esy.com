@@ -23,6 +23,17 @@ export interface AgenticVideo {
   relatedSlugs: string[];
   templateSlug?: string;
   stages?: WorkflowStage[];
+  // Written by Compose and served by api.esy.com (#566). Optional because the
+  // static registry entries below don't carry them and older API responses
+  // predate them; every reader falls back when they're missing or empty
+  // (helpers in src/lib/article-format.ts).
+  /** The subtitle under the title; "" when the writer left it empty. */
+  dek?: string;
+  /** The article's own cover image, separate from the video thumbnail and the first body image. */
+  coverImageUrl?: string | null;
+  coverImageAlt?: string;
+  /** The title for search results and link previews (the API falls back to `title`). */
+  searchTitle?: string;
 }
 
 export const agenticVideos: AgenticVideo[] = [

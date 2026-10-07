@@ -2950,6 +2950,48 @@ export const PROTOTYPES: Prototype[] = [
       },
     ],
   },
+  {
+    slug: 'course-cover',
+    name: 'The course cover, with Mason',
+    date: '2026-10-06',
+    headline: 'Five covers for the Claude Code course, drawn with Mason.',
+    intro:
+      'The course’s cover was a generated room with a white robot. These redraw it in the site’s own look, with Mason, the octopus from the footer. Each one plays in the real poster; hover it, then see the wide version on a lesson’s end card.',
+    summary:
+      'The Claude Code course’s poster and wide cover, five ways, drawn in code from Mason’s real figure and the 45° stencil cut, on the live course page and /courses.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Five concepts',
+        summary:
+          'Mason is the hero every time, alone and calm, and what he works on stays abstract. They differ in what the cover says: the terminal, the lessons, the prompt, a film poster, or his reef.',
+      },
+      {
+        n: 2,
+        title: 'Mason at work',
+        summary:
+          'A real workspace in our cut, one warm lamp and the terminal’s glow, with Mason as the main character doing the work in it, no people. Each cover gives him a different job; he holds still except when typing, the work moves, and the esy brand sits at the top centre.',
+      },
+      {
+        n: 3,
+        title: 'The merge',
+        summary: 'F’s studio, with J’s two screens: Mason from behind at his desk, an editor and the terminal side by side. K shipped as the Claude Code course’s cover.',
+      },
+    ],
+    variants: [
+      { slug: 'terminal', key: 'A', name: 'Terminal', round: 1, title: 'He types; the terminal writes itself.', blurb: 'Mason in front of a stencil terminal, his tips glowing like keys while the lines type themselves out.', poster: ['#0A2540', '#00D4AA'] },
+      { slug: 'lessons', key: 'B', name: 'Lessons', round: 1, title: 'Every lesson in one of his arms.', blurb: 'The course’s lessons as numbered tiles in Mason’s arms, lighting in order as the octagon around him fills in.', poster: ['#0A2540', '#2BD8BB'] },
+      { slug: 'prompt', key: 'C', name: 'Prompt', round: 1, title: 'You’re the last piece.', blurb: 'Mason builds the prompt sign from stencil slabs, like the footer’s gate, and holds the cursor out before it sets and blinks.', poster: ['#061527', '#F4F1EA'] },
+      { slug: 'night', key: 'D', name: 'Night', round: 1, title: 'A premiere in deep water.', blurb: 'A film poster: one giant cursor blinking at the top and Mason rising through its beam, mostly dark so the gold title reads.', poster: ['#030B16', '#00D4AA'] },
+      { slug: 'reef', key: 'E', name: 'Reef', round: 1, title: 'At home in the reef.', blurb: 'Mason at a stone desk in the footer’s reef, with a slab screen typing beside him: the same world as the bottom of every page.', poster: ['#0E4A5C', '#2BD8BB'] },
+      { slug: 'studio', key: 'F', name: 'Studio', round: 2, title: 'At his desk.', blurb: 'Mason from behind at his desk at night, his tentacles pressing the keys as the terminal on his monitor types.', poster: ['#0E2B45', '#E3B660'] },
+      { slug: 'window', key: 'G', name: 'Window', round: 2, title: 'By the window.', blurb: 'Mason from behind at a window ledge over the night city, typing on a laptop whose terminal faces him.', poster: ['#0B2238', '#F6DDA3'] },
+      { slug: 'floating', key: 'H', name: 'Floating', round: 2, title: 'Feeding the terminal.', blurb: 'The original poster in our cut: a terminal over night hills, Mason on its title bar against the moon letting files drop in, the finished ones falling to the desk.', poster: ['#0A1C33', '#2BD8BB'] },
+      { slug: 'flatlay', key: 'I', name: 'Flat-lay', round: 2, title: 'Mason at the keys.', blurb: 'The desk from above: the top of Mason’s head at the laptop, his tentacles pressing keys in turn as the terminal types.', poster: ['#0F2B45', '#2BD8BB'] },
+      { slug: 'two-screens', key: 'J', name: 'Two screens', round: 2, title: 'Coding on both screens.', blurb: 'Mason from behind at a desk with an editor and a terminal, his tentacles on the keyboard between them.', poster: ['#0E2B45', '#00D4AA'] },
+      { slug: 'studio-two-screens', key: 'K', name: 'Studio, two screens', round: 3, mergeOf: ['F', 'J'], title: 'His desk, both screens.', blurb: 'F’s room (shelf, lamp, city window, plant) with J’s two screens: Mason from behind at his desk at night, tentacles pressing the keys between an editor and the terminal.', poster: ['#0E2B45', '#E3B660'], live: true, liveHref: '/courses/how-to-use-claude-code/' },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

@@ -1,0 +1,148 @@
+/* The face shape (2026-10-06, /prototypes/face-shape/).
+ *
+ * Every photo of Zev on the site is a circle today. These rules reframe each
+ * one as the take's shape with a CSS mask, so the real components stay
+ * untouched. A take applies to anything under `.fsh--<shape>` (the page, from
+ * the first render) and under `html[data-face-shape=<shape>]` (set by
+ * FaceShapeRoot after mount, so the site header's photo changes too).
+ *
+ * zev-uhuru.png is already cropped to a circle on white, so every shape must
+ * sit inside that circle or its corners show white. Each shape sets the zoom
+ * (`--zev-avatar-*`, see globals.css) it needs to stay inside. */
+
+/* ── The shapes, as square SVG masks (100 × 100) ──────────────────────── */
+
+/* A · Hexagon: points up, corners softened (an 8-unit round stroke). */
+:is(.fsh--hex, html[data-face-shape='hex']) {
+  --fsh-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,4.62 89.3,27.31 89.3,72.69 50,95.38 10.7,72.69 10.7,27.31' fill='black' stroke='black' stroke-width='8' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+/* B · Octagon: the e's own silhouette, every corner cut at 45° by about a
+   quarter (the loader's clip-paths cut 23–25%), and Mason's head. */
+:is(.fsh--oct, html[data-face-shape='oct']) {
+  --fsh-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='24,0 76,0 100,24 100,76 76,100 24,100 0,76 0,24' fill='black'/%3E%3C/svg%3E");
+}
+/* C · Tag: two opposite corners cut, like the site's chamfered tags. */
+:is(.fsh--tag, html[data-face-shape='tag']) {
+  --fsh-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='22,0 100,0 100,78 78,100 0,100 0,22' fill='black'/%3E%3C/svg%3E");
+}
+
+/* D · Square (round 2): a square with barely rounded corners (a 4-unit round
+   stroke), like a photo on an editorial page. */
+:is(.fsh--sq, html[data-face-shape='sq']) {
+  --fsh-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='2' y='2' width='96' height='96' fill='black' stroke='black' stroke-width='4' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+/* ── Every frame the face appears in, masked to the shape ─────────────── */
+/* The rings that were box-shadows can't survive a mask, so they come back as
+   ::after rings (below). `.fsh-keep` opts a frame out, for the "today" circle.
+   The catch-all takes frames the photo fills alone, never a row it sits in. */
+:is(.fsh, html[data-face-shape]) :is(
+  .eh-studio-ring, .eh-studio-circle, .eh-studio-me-photo, .eh-face-ring, .eh-face-photo,
+  .eh-scene-avatar, .eh-byline-photo, .nl-author-photo, .ai-byline-photo, .ai-author-photo,
+  .nav-agentic-avatar, .fsh-chip,
+  :has(> img[src*='zev-uhuru']:only-child)
+):not(.fsh-keep) {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  -webkit-mask: var(--fsh-mask) center / 100% 100% no-repeat;
+  mask: var(--fsh-mask) center / 100% 100% no-repeat;
+}
+/* Borders drawn as squares would poke out at the shape's flat sides. */
+:is(.fsh, html[data-face-shape]) :is(.eh-studio-circle, .eh-face-photo, .nav-agentic-avatar) { border: 0 !important; }
+
+/* ── Rings, drawn inside the edge ─────────────────────────────────────── */
+/* The shape twice, the second inset by the ring width, XORed: a band of
+   `--fsh-ring-w` around the inside of the edge in `--fsh-ring`. */
+:is(.fsh, html[data-face-shape]) :is(
+  .eh-studio-circle, .eh-studio-me-photo, .eh-face-photo, .eh-scene-avatar, .nl-author-photo,
+  .ai-author-photo, .ai-byline--onDark .ai-byline-photo, .fsh-chip--ring
+):not(.fsh-keep) { position: relative; }
+:is(.fsh, html[data-face-shape]) :is(
+  .eh-studio-circle, .eh-studio-me-photo, .eh-face-photo, .eh-scene-avatar, .nl-author-photo,
+  .ai-author-photo, .ai-byline--onDark .ai-byline-photo, .fsh-chip--ring
+):not(.fsh-keep)::after {
+  content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: var(--fsh-ring, var(--nl-jade, #00A896));
+  -webkit-mask:
+    var(--fsh-mask) center / 100% 100% no-repeat,
+    var(--fsh-mask) center / calc(100% - 2 * var(--fsh-ring-w, 2px)) calc(100% - 2 * var(--fsh-ring-w, 2px)) no-repeat;
+  -webkit-mask-composite: xor;
+  mask:
+    var(--fsh-mask) center / 100% 100% no-repeat,
+    var(--fsh-mask) center / calc(100% - 2 * var(--fsh-ring-w, 2px)) calc(100% - 2 * var(--fsh-ring-w, 2px)) no-repeat;
+  mask-composite: exclude;
+}
+/* The homepage hero: the jade ring stays the outer shape's padding; the navy
+   gap inside it was a 5px border, now an inner ring. */
+:is(.fsh, html[data-face-shape]) .eh-studio-circle { --fsh-ring: #0A1626; --fsh-ring-w: 5px; }
+:is(.fsh, html[data-face-shape]) .eh-face-photo { --fsh-ring: #FFFFFF; --fsh-ring-w: 6px; }
+:is(.fsh, html[data-face-shape]) .eh-studio-me-photo { --fsh-ring: var(--nl-jade-bright, #00D4AA); --fsh-ring-w: 3px; }
+:is(.fsh, html[data-face-shape]) .eh-studio--phone-profile .eh-studio-me-photo { --fsh-ring-w: 4px; }
+:is(.fsh, html[data-face-shape]) :is(.eh-scene-avatar, .ai-byline--onDark .ai-byline-photo) { --fsh-ring: rgba(0, 212, 170, 0.8); --fsh-ring-w: 2px; }
+/* The mask clips the hero ring's glow and drop shadow, so its parent casts
+   them instead, following the shape. */
+:is(.fsh, html[data-face-shape]) :is(.eh-studio-photo, .eh-face-figure) {
+  filter: drop-shadow(0 34px 44px rgba(0, 0, 0, 0.45)) drop-shadow(0 0 48px rgba(0, 212, 170, 0.16));
+}
+
+/* ── Zoom: keep each shape inside the photo's circle crop ─────────────── */
+/* The hero frames zoom 1.1 to keep the shoulders. A hexagon fits at that;
+   the octagon's corners need 1.22; the tag's square corners need 1.5 (the
+   small avatars' zoom), centred, so the hero crops closer. The square's
+   corners need the same as the tag's. */
+:is(.fsh--oct, html[data-face-shape='oct']) :is(.eh-studio-circle, .eh-studio-me-photo, .eh-face-photo) {
+  --zev-avatar-scale: 1.22;
+}
+:is(.fsh--tag, .fsh--sq, html[data-face-shape='tag'], html[data-face-shape='sq']) :is(
+  .eh-studio-circle, .eh-studio-me-photo, .eh-face-photo, .eh-scene-avatar, .eh-byline-photo,
+  .nl-author-photo, .ai-byline-photo, .ai-author-photo, .fsh-chip
+):not(.fsh-keep) {
+  --zev-avatar-scale: 1.5; --zev-avatar-x: 0%; --zev-avatar-y: 3%;
+}
+:is(.fsh--tag, .fsh--sq, html[data-face-shape='tag'], html[data-face-shape='sq']) .nav-agentic-avatar { --zev-avatar-x: 0%; --zev-avatar-y: 3%; }
+
+/* ── The sheet: the face at every size, under the hero ────────────────── */
+.fsh-sheet { padding: 72px 0 80px; background: var(--nl-bg-alt, #F8F9FA); border-bottom: 1px solid var(--nl-seam); }
+.fsh-sheet-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 40px; margin-bottom: 36px; }
+.fsh-sheet-head .nl-lede { margin: 0; }
+.fsh-sheet .fsh-note { margin: 20px 0 0; font-size: 0.82rem; color: #6C757D; }
+.fsh-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.fsh-card {
+  display: flex; flex-direction: column; gap: 18px; padding: 24px; border-radius: 14px;
+  background: #FFFFFF; border: 1px solid var(--nl-seam);
+}
+.fsh-card--dark { background: #0A1626; border-color: transparent; }
+/* The size ladders run the full width, so every size sits on one row. */
+.fsh-card--wide { grid-column: 1 / -1; }
+/* Scoped under .fsh-sheet: a site rule paints bare <p> white in this slot. */
+.fsh-sheet .fsh-card-label {
+  margin: 0; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-jade);
+}
+.fsh-sheet .fsh-card--dark .fsh-card-label { color: var(--nl-jade-bright); }
+/* The size ladder: every size the site uses, smallest to largest. */
+.fsh-ladder { display: flex; align-items: flex-end; flex-wrap: wrap; gap: 18px 22px; }
+.fsh-rung { display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 0.72rem; color: #6C757D; }
+.fsh-card--dark .fsh-rung { color: rgba(255, 255, 255, 0.6); }
+.fsh-chip { position: relative; flex: none; overflow: hidden; border-radius: 50%; background: var(--nl-bg-alt, #F8F9FA); }
+.fsh-chip img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.fsh-chip--ring { --fsh-ring: var(--nl-jade); --fsh-ring-w: 2px; }
+.fsh-card--dark .fsh-chip--ring { --fsh-ring: var(--nl-jade-bright); }
+/* Today vs the take, side by side at one size. */
+.fsh-versus { display: flex; align-items: center; gap: 28px; }
+.fsh-versus .fsh-rung { font-size: 0.8rem; }
+/* The header menu's byline sits on navy in the real header. */
+.fsh-card--dark .nav-agentic-byline { margin: 0; }
+.fsh-card .ai-end { margin: 0; padding: 0; border: 0; }
+@media (max-width: 860px) {
+  .fsh-grid { grid-template-columns: minmax(0, 1fr); }
+  .fsh-sheet { padding: 48px 0 56px; }
+}
+
+/* The header menu's photo is a bare <img> with no frame, so globals.css's zoom
+   scales the img itself and its mask with it. Shrink the mask by the same
+   zoom so the shape stays 34px and the photo zooms inside it. (!important:
+   the mask shorthand above is the more specific rule.) */
+:is(.fsh, html[data-face-shape]) .nav-agentic-avatar {
+  -webkit-mask-size: calc(100% / var(--zev-avatar-scale)) calc(100% / var(--zev-avatar-scale)) !important;
+  mask-size: calc(100% / var(--zev-avatar-scale)) calc(100% / var(--zev-avatar-scale)) !important;
+}

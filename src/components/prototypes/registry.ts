@@ -2741,6 +2741,168 @@ export const PROTOTYPES: Prototype[] = [
     ],
   },
   {
+    slug: 'face-shape',
+    name: 'The face shape',
+    date: '2026-10-06',
+    headline: 'Zev’s photo, in the brand’s shapes instead of a circle.',
+    intro:
+      'Every photo of Zev on the site is a circle today. These put it in three shapes the brand already uses, on the real homepage, with every size it appears at underneath. Flip between them and look at the header menu too.',
+    summary:
+      'The real homepage with Zev’s photo as a hexagon, an octagon cut like the e, or a tag with two corners cut, plus a sheet of every size and frame the photo appears in.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Three shapes from the brand',
+        summary:
+          'Each shape comes from something the site already draws: the hive, the e’s 45° cut (and Mason’s head), and the chamfered tags. Only the frame changes; the photo and every component are the real ones.',
+      },
+      {
+        n: 2,
+        title: 'A square',
+        summary:
+          'The question narrowed to keeping the circle or using the octagon. The octagon is the brand’s shape, so it can make a person read like a badge. D tries the plain square: editorial, like the site’s cards, and apart from Mason.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'hexagon',
+        key: 'A',
+        name: 'Hexagon',
+        round: 1,
+        title: 'The hive.',
+        blurb: 'Six sides with soft corners, pointing up. Fits the photo at the hero’s usual zoom, so it keeps the shoulders.',
+        poster: ['#0A1626', '#00D4AA'],
+      },
+      {
+        slug: 'octagon',
+        key: 'B',
+        name: 'Octagon',
+        round: 1,
+        title: 'The e’s own cut.',
+        blurb: 'Every corner cut at 45°, about a quarter in, the way the loader cuts the e. Mason’s head is the same shape. Zooms a little closer to stay inside the photo.',
+        poster: ['#0A2540', '#00A896'],
+      },
+      {
+        slug: 'tag',
+        key: 'C',
+        name: 'Tag',
+        round: 1,
+        title: 'Two corners cut.',
+        blurb: 'The top-left and bottom-right corners cut, like the site’s chamfered tags. The square corners crop closer, so the hero shows the face more than the shoulders.',
+        poster: ['#061527', '#8FA9FF'],
+      },
+      {
+        slug: 'square',
+        key: 'D',
+        name: 'Square',
+        round: 2,
+        title: 'A photo, not a badge.',
+        blurb: 'A plain square with barely rounded corners, like a magazine photo. It matches the site’s cards and covers and keeps the face apart from Mason’s octagon. Its corners crop as closely as the tag’s.',
+        poster: ['#0A2540', '#F4F1EA'],
+      },
+    ],
+  },
+  {
+    slug: 'face-size',
+    name: 'The portrait size',
+    date: '2026-10-06',
+    headline: 'A smaller face, so the words and the signup lead.',
+    intro:
+      'The homepage hero shows Zev’s photo at 440px, the strongest thing on the page. These try it at 360 and 280 on desktop, with everything else the same. Flip between them and watch where your eye goes first.',
+    summary:
+      'The real homepage with the hero portrait at 440px (today), 360px or 280px on desktop. Phones keep the profile row.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Three sizes',
+        summary:
+          'A face pulls the eye before anything else, so a smaller portrait should hand some of that attention to the headline and the email form. Only the desktop portrait changes.',
+      },
+    ],
+    variants: [
+      {
+        slug: '440',
+        key: 'A',
+        name: '440',
+        round: 1,
+        title: 'The face first.',
+        blurb: 'The hero as it was until 2026-10-06: a 440px portrait beside the copy, the first thing anyone sees.',
+        poster: ['#0A1626', '#00D4AA'],
+      },
+      {
+        slug: '360',
+        key: 'B',
+        name: '360',
+        round: 1,
+        title: 'The face and the headline, level.',
+        blurb: 'The portrait about a fifth smaller, so the headline gets as much weight as the face.',
+        poster: ['#0A1626', '#00A896'],
+        live: true,
+        liveHref: '/',
+      },
+      {
+        slug: '280',
+        key: 'C',
+        name: '280',
+        round: 1,
+        title: 'The words first.',
+        blurb: 'The portrait at a little under two thirds of today’s size: still a person writing to you, but the headline and the form lead.',
+        poster: ['#0A1626', '#8FA9FF'],
+      },
+    ],
+  },
+  {
+    slug: 'home-promise',
+    name: 'The homepage promise',
+    date: '2026-10-06',
+    headline: 'Three ways to open the homepage, each ending in a free email course.',
+    intro:
+      'Same hero, same 360px portrait, three first lines: who Zev is, a hook about SEO, and a blunt claim about AI marketing. Each subtitle says what the course gives you, and the button starts it.',
+    summary:
+      'The real homepage with three headlines and subtitles, and the weekly signup turned into “Start the free email course”, as on /skills.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Three openings',
+        summary:
+          'A says who’s writing, B argues with a claim people have heard, C makes a blunt one of its own. The course isn’t written yet, so its fine print says the lessons arrive as they’re published. C shipped as the homepage and B as esy.com/seo.',
+      },
+    ],
+    variants: [
+      {
+        slug: 'builder',
+        key: 'A',
+        name: 'Builder',
+        round: 1,
+        title: 'I build the AI systems that run marketing.',
+        blurb: 'Today’s headline, with a subtitle about what the course teaches: systems that do a marketing team’s work, with the code.',
+        poster: ['#0A1626', '#00D4AA'],
+      },
+      {
+        slug: 'seo',
+        key: 'B',
+        name: 'SEO isn’t dead',
+        round: 1,
+        title: 'SEO isn’t dead. It runs on AI now.',
+        blurb: 'Opens on SEO, the work clip.art and SEOPage grow on: people still search, and AI changed who does the work.',
+        poster: ['#0A2540', '#00A896'],
+        live: true,
+        liveHref: '/seo/',
+      },
+      {
+        slug: 'engineering',
+        key: 'C',
+        name: 'Engineering',
+        round: 1,
+        title: 'AI marketing is an engineering job now.',
+        blurb: 'A blunt claim that names the publication’s idea: the results come from systems, not prompts, and one person can build them.',
+        poster: ['#061527', '#8FA9FF'],
+        live: true,
+        liveHref: '/',
+      },
+    ],
+  },
+  {
     slug: 'gone',
     name: 'The retired page (410)',
     date: '2026-10-06',

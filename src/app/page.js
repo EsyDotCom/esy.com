@@ -1,17 +1,22 @@
 import NewsletterHomePage from "../components/NewsletterHome/NewsletterHomePage";
-import { EduStudio, latestLesson, resolveDesks } from "../components/EducationHero";
+import { PROMISES, PromiseStudio, latestLesson, resolveDesks } from "../components/EducationHero";
 import { getAllAgenticArticles } from "../lib/published-articles";
 
-// The homepage is a Marketing Engineering publication, fronted by Zev (2026-09-27):
-// hero F · Studio. Navy, "Hi, I'm Zev" and a first-person promise beside his
-// headshot in a jade ring, the weekly email signup, then the proof (clip.art and
-// SEOPage, where the systems run) and the newest real article. A newsletter is a
-// person writing to you, so the page leads with the person. On phones the
-// portrait becomes a profile row (H · Studio · Profile) so the signup stays on
-// the first screen; see /prototypes/education/phones/. The other education
-// directions stay clickable at /prototypes/education/.
+// The homepage is a Marketing Engineering publication, fronted by Zev. Hero
+// (2026-10-06): C · Engineering from /prototypes/home-promise/. The blunt claim
+// "AI marketing is an engineering job now." leads, with no greeting before it;
+// the subtitle says what the free email course gives you; one button, "Start
+// the free email course", opens the email box (no form on first sight), and the
+// first name is asked after signing up. Zev's photo is 360px (picked at
+// /prototypes/face-size/), captioned with his name, and the systems row reads
+// clip.art, SEOPage and OS. Phones keep the profile row, under the headline.
+// B · SEO isn't dead is the same page at /seo (src/app/seo/page.tsx).
 //
 // Earlier homepages:
+// - F · Studio with "Hi, I'm Zev." and "I build the AI systems that run
+//   marketing" (2026-09-27 → 10-06): EduStudio with its defaults, still at
+//   /prototypes/education/studio-profile/, with A · Builder (that headline on
+//   the new hero) at /prototypes/home-promise/builder/.
 // - Education hero A · Front Page (2026-09-25 → 09-27): the promise over the
 //   four desks. EduFrontPage, still at /prototypes/education/front-page/.
 // - The Esy OS hero, E · Stage Tour (2026-09-18 → 09-25), is HeroStageTour in
@@ -70,20 +75,17 @@ export default async function HomePage() {
   // The hero's "latest" line reads the same article list as the Latest section,
   // so the two can never disagree.
   const articles = await getAllAgenticArticles();
-  // phone="profile": on phones the face sits in a profile row beside the
-  // greeting (H), so the signup stays on the first screen; desktop is F.
-  // Compose is the third app (2026-09-30): its stencil mark in the hero's
-  // "The systems run" row and the 01 Apps ledger, and its replay band after
-  // SEOPage's (B · Stencil + D · Replay at /prototypes/home-compose/).
-  // 01 Apps is one band that tours clip.art, SEOPage and Compose (C · Tour),
-  // and AI Marketing News's newest headlines sit beside Latest (2026-09-30,
-  // /prototypes/home-trim/). About 8 screens instead of 10.5.
+  // Compose stays the third app below the hero (2026-09-30): its stencil mark
+  // in the 01 Apps ledger and its replay band after SEOPage's (B · Stencil +
+  // D · Replay at /prototypes/home-compose/). 01 Apps is one band that tours
+  // clip.art, SEOPage and Compose (C · Tour), and AI Marketing News's newest
+  // headlines sit beside Latest (2026-09-30, /prototypes/home-trim/).
   return (
     <NewsletterHomePage
       compose={COMPOSE}
       appsLayout="tour"
       newsColumn
-      hero={<EduStudio desks={resolveDesks(articles)} latest={latestLesson(articles)} phone="profile" composeMark={COMPOSE.mark} />}
+      hero={<PromiseStudio promise={PROMISES.engineering} desks={resolveDesks(articles)} latest={latestLesson(articles)} />}
     />
   );
 }

@@ -452,3 +452,31 @@
   /* I · Photo after: the copy and signup first, the big circle under the form. */
   .eh-studio--phone-after .eh-studio-photo { order: 2; }
 }
+
+/* ══ No greeting (2026-10-06, /prototypes/home-promise/) ═════════════════
+   The headline is the first thing read. On desktop the name captions the
+   portrait, placed absolutely under the ring so the ring alone stays on the
+   hero's middle; on phones the profile row sits under the headline instead. */
+.eh-studio-photo:has(.eh-studio-caption) { position: relative; }
+.eh-studio-caption {
+  position: absolute; top: calc(100% + 18px); left: 0; right: 0;
+  display: flex; flex-direction: column; align-items: center; gap: 2px; margin: 0;
+  text-align: center; font-size: 0.85rem; line-height: 1.4; color: rgba(255, 255, 255, 0.66);
+}
+.eh-studio-caption b {
+  font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif;
+  font-style: italic; font-weight: 600; font-size: 1.3rem; color: var(--nl-jade-bright);
+}
+@media (max-width: 960px) {
+  .eh-studio-caption { display: none; }
+  .eh-h1 + .eh-studio-me { margin-top: 18px; }
+}
+
+/* ══ Medium portrait (2026-10-06, picked at /prototypes/face-size/) ══════
+   360px instead of 440px on desktop, so the face and the headline weigh the
+   same, with equal room above and below (it was 96 over 104) so the portrait
+   and the copy share the hero's middle. Phones are unchanged. */
+@media (min-width: 961px) {
+  .eh-studio--portrait-medium .eh-studio-ring { width: min(360px, 30vw); }
+  .eh-studio.eh-studio--portrait-medium .eh-studio-inner { padding-top: 100px; padding-bottom: 100px; }
+}

@@ -140,6 +140,15 @@
 }
 .nl-signup--dark .nl-signup-done svg { color: var(--nl-jade-bright); }
 
+/* The name step under "Almost there" (`askName`, 2026-10-06): the question on
+   its own line, then the first-name box and Save on one row. */
+.nl-signup-form--name { margin-top: 16px; }
+.nl-signup-ask { flex: 1 1 100%; font-size: 0.92rem; font-weight: 600; }
+.nl-signup-form--name .nl-signup-btn { min-width: 0; }
+.nl-signup-form--name .nl-signup-note { flex: 1 1 100%; margin: 0; }
+.nl-signup--light .nl-signup-ask { color: var(--nl-navy); }
+.nl-signup--dark .nl-signup-ask { color: #FFFFFF; }
+
 /* ══ Sections ══ */
 .nl-section { padding: 88px 0; }
 .nl-section--alt { background: var(--nl-bg-alt); }

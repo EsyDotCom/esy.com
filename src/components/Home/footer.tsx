@@ -239,8 +239,8 @@ export default function Footer () {
           <div className="footer-brand">
             <div className="footer-logo">
               <Logo href="" wordmarkOnly wordmarkFont="blackops" theme={logoTheme} />
-              {/* "esy | The Marketing Engineer", matching the header (esy.com is
-                  the publication); colours follow the footer's own theme. */}
+              {/* "esy | AI Marketing", matching the header (2026-10-09);
+                  colours follow the footer's own theme. */}
               <span aria-hidden="true" style={{ width: 1, height: 16, background: theme.faint }} />
               <span
                 style={{
@@ -253,7 +253,7 @@ export default function Footer () {
                   color: theme.subtle,
                 }}
               >
-                The Marketing Engineer
+                AI Marketing
               </span>
             </div>
             <p className="footer-desc" style={{ color: theme.muted }}>

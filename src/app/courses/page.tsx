@@ -18,14 +18,17 @@ import '@/components/CoursesIndex/IntroVideo.css';
 // once there are real upcoming courses (the prototypes' two are samples, so
 // none are passed here). It replaces CoursesListClient.
 
+// Titles lead with "AI marketing" like /news and /skills, the umbrella term the
+// site targets (2026-10-09).
+const TITLE = 'AI Marketing Courses — The Marketing Engineer';
 const DESCRIPTION =
   'Short video courses from The Marketing Engineer on the AI tools behind modern marketing. Each one takes a single tool from setup to a finished result, one lesson at a time.';
 
 export const metadata: Metadata = {
-  title: 'Courses — The Marketing Engineer',
+  title: TITLE,
   description: DESCRIPTION,
   openGraph: {
-    title: 'Courses — The Marketing Engineer',
+    title: TITLE,
     description: DESCRIPTION,
     type: 'website',
     url: 'https://esy.com/courses/',
@@ -34,7 +37,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Courses — The Marketing Engineer',
+    title: TITLE,
     description: DESCRIPTION,
   },
   alternates: {

@@ -26,17 +26,23 @@ import { getAllAgenticArticles } from "../lib/published-articles";
 // - The marketing-production story (retired 2026-09-13) is archived with its
 //   metadata at src/archive/homepage-autopilot-story/route-page.js.
 
-const HOME_TITLE = "Esy — Marketing Engineering for the AI era";
+// The meta title leads with "AI marketing", the umbrella term the homepage
+// targets (2026-10-09); the hero keeps its own hook ("AI marketing is an
+// engineering job now."). "AI in marketing" is a different search (people
+// asking how it's used), so it sits in the description, not the title.
+const HOME_TITLE = "AI Marketing: Learn to Build the Systems That Run It | Esy";
 const HOME_META_DESCRIPTION =
-  "Learn to build the AI systems that run marketing: SEO, AI coding tools, marketing agents, and the integrations between them. Practical lessons from production, one email a week.";
+  "How to use AI in marketing from a founder who runs it: systems that research, write, check and publish on their own. A free email course, code included.";
 
 export const metadata = {
   title: HOME_TITLE,
   description: HOME_META_DESCRIPTION,
   keywords: [
-    "Marketing Engineering",
+    "AI marketing",
+    "AI in marketing",
     "AI for marketing",
     "AI marketing agents",
+    "Marketing Engineering",
     "AI SEO",
     "AI coding tools",
     "Claude Code",

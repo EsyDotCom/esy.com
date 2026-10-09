@@ -107,7 +107,7 @@ export const CAREER: Chapter[] = [
     line: 'Built the engine; grew clip.art to #1 on Google for “AI clipart”.',
     proof: [
       'Built a workflow engine with a public API: every run versioned, checked, reviewable, and costed.',
-      'Grew clip.art with programmatic SEO: 20,000+ pages published, 6,000+ ranking, #1 on Google for “AI clipart”, 800+ users and paid sales within 5 months.',
+      'Grew clip.art with programmatic SEO: 30,000+ pages published, 6,000+ ranking, #1 on Google for “AI clipart”, 800+ users and paid sales within 5 months.',
     ],
     stat: { value: '#1', label: 'on Google for “AI clipart”' },
     tone: 'jade',

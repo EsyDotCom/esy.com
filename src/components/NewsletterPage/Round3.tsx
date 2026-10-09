@@ -54,7 +54,7 @@ function PubCard() {
       <span className="nlp-mark" aria-hidden="true"><span>e</span></span>
       <p className="nlp-pubcard-name">The Marketing Engineer</p>
       <p className="nlp-pubcard-line">AI marketing, built in public.</p>
-      <PageSignup />
+      <PageSignup form="newsletter-rail" />
     </div>
   );
 }
@@ -190,7 +190,7 @@ export function TakeWideFeed() {
                       <p className="nlp-band-title">Get the next issue in your inbox.</p>
                       <p className="nlp-band-sub">{PROMISE}</p>
                     </div>
-                    <PageSignup tone="dark" />
+                    <PageSignup tone="dark" form="newsletter-feed" />
                   </div>
                 )}
               </div>

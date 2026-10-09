@@ -7,7 +7,7 @@ import { useNewsletterSubscribe } from '@/hooks/useNewsletterSubscribe';
 const NewsletterSection = () => {
   const [email, setEmail] = useState('');
   const [newsletterHovered, setNewsletterHovered] = useState(false);
-  const { subscribe, status, errorMessage, reset, honeypotProps } = useNewsletterSubscribe();
+  const { subscribe, status, errorMessage, reset, honeypotProps } = useNewsletterSubscribe({ form: 'article-section' });
 
   const isError = status === 'error';
   const isSuccess = status === 'success';

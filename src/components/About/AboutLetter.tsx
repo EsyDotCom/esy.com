@@ -109,7 +109,7 @@ export default function AboutLetter() {
 
         <aside className="ab-letter-signup">
           <p className="ab-letter-signup-title">Get the weekly email</p>
-          <NewsletterSignup note="One email a week · unsubscribe anytime" />
+          <NewsletterSignup form="about-letter" note="One email a week · unsubscribe anytime" />
         </aside>
       </article>
     </>

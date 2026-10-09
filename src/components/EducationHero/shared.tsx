@@ -20,7 +20,7 @@ export const LINKEDIN_URL = 'https://www.linkedin.com/in/zevuhuru/';
 /** The one action. Same Beehiiv-backed list as every other signup on the site;
  *  the hook sends the page path, so prototype signups are tagged by URL. */
 export function EduSignup({ tone = 'light' }: { tone?: 'light' | 'dark' }) {
-  return <NewsletterSignup tone={tone} note="Free · one email a week · unsubscribe anytime" />;
+  return <NewsletterSignup form="hero" tone={tone} note="Free · one email a week · unsubscribe anytime" />;
 }
 
 /** Who teaches it, and why they're worth listening to: they run what they write about. */

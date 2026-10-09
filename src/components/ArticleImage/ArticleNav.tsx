@@ -67,7 +67,7 @@ export default function ArticleNav({
           <aside className="ai-rail-signup" aria-label="Subscribe to The Marketing Engineer">
             <p className="ai-rail-signup-title">The Marketing Engineer</p>
             <p className="ai-rail-signup-body">One AI marketing system a week, built step by step.</p>
-            <NewsletterSignup note="Free · unsubscribe anytime" />
+            <NewsletterSignup form="article-rail" note="Free · unsubscribe anytime" />
           </aside>
         )}
 

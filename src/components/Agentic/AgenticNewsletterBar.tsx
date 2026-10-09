@@ -13,7 +13,7 @@ import { navyCalmLightTheme as theme } from "@/lib/theme";
 // every signup from here for a bot and silently dropped it.)
 export function AgenticNewsletterBar() {
   const [email, setEmail] = useState("");
-  const { subscribe, status, errorMessage, reset, honeypotProps } = useNewsletterSubscribe();
+  const { subscribe, status, errorMessage, reset, honeypotProps } = useNewsletterSubscribe({ form: 'article-bar' });
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 640);

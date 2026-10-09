@@ -106,7 +106,7 @@ export function NewsLiveFront() {
               </ol>
               <div className="nw-front-signup">
                 <p className="nw-rail-title">The week&apos;s news, in one email</p>
-                <NewsletterSignup note="One email a week · unsubscribe anytime" />
+                <NewsletterSignup form="news-front" note="One email a week · unsubscribe anytime" />
               </div>
             </aside>
           </div>
@@ -184,7 +184,7 @@ export function NewsTrendDesk({ Desks = TrendColumns }: { Desks?: React.Componen
                 ))}
                 <div className="nw-front-signup">
                   <p className="nw-rail-title">Get trends like this by email</p>
-                  <NewsletterSignup note="One email a week · unsubscribe anytime" />
+                  <NewsletterSignup form="news-front" note="One email a week · unsubscribe anytime" />
                 </div>
               </div>
             </div>
@@ -243,7 +243,7 @@ export function NewsDeveloping() {
               ))}
               <div className="nw-front-signup">
                 <p className="nw-rail-title">Follow this story by email</p>
-                <NewsletterSignup note="One email a week · unsubscribe anytime" />
+                <NewsletterSignup form="news-front" note="One email a week · unsubscribe anytime" />
               </div>
             </div>
           </div>

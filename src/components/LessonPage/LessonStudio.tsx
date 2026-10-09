@@ -66,7 +66,7 @@ export default function LessonStudio({
                 <div className="lp-rail-signup">
                   <p className="lp-rail-signup-title">Get the next lesson by email</p>
                   <p className="lp-rail-signup-body">New lessons and courses go out in the weekly email first.</p>
-                  <NewsletterSignup note="One email a week · unsubscribe anytime" />
+                  <NewsletterSignup form="lesson" note="One email a week · unsubscribe anytime" />
                 </div>
               )}
             </aside>

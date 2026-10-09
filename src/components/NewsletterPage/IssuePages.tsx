@@ -46,7 +46,7 @@ export function IssueLetter({ issue, link }: { issue: Issue; link: string }) {
         <div className="nlp-end">
           <p className="nlp-h">Get the next issue</p>
           <p className="nlp-aside-sub">{PROMISE}</p>
-          <PageSignup />
+          <PageSignup form="issue-end" />
         </div>
         <IssueNav older={older} newer={newer} href={href} />
         <SampleNote />
@@ -74,7 +74,7 @@ export function IssueGuide({ issue, link }: { issue: Issue; link: string }) {
           <div className="nlp-aside-box">
             <p className="nlp-h">Get it every week</p>
             <p className="nlp-aside-sub">{PROMISE}</p>
-            <PageSignup />
+            <PageSignup form="issue-rail" />
           </div>
         </aside>
         <article className="nlp-issue">
@@ -142,7 +142,7 @@ export function IssueCover({ issue, link }: { issue: Issue; link: string }) {
             <p className="nlp-band-title">Get the next issue in your inbox.</p>
             <p className="nlp-band-sub">{PROMISE}</p>
           </div>
-          <PageSignup tone="dark" />
+          <PageSignup tone="dark" form="issue-band" />
         </div>
       </section>
       <section className="nlp-wrap">

@@ -58,7 +58,7 @@ function Signup({ title }: { title: string }) {
   return (
     <div className="np-inline-signup">
       <p className="np-rail-title">{title}</p>
-      <NewsletterSignup note={SIGNUP_NOTE} />
+      <NewsletterSignup form="news-inline" note={SIGNUP_NOTE} />
     </div>
   );
 }
@@ -112,7 +112,7 @@ export function NewsIndexPage() {
                   ))}
                   <div className="nw-front-signup">
                     <p className="nw-rail-title">Get the week’s AI news by email</p>
-                    <NewsletterSignup note={SIGNUP_NOTE} />
+                    <NewsletterSignup form="news-front" note={SIGNUP_NOTE} />
                   </div>
                 </div>
               </div>

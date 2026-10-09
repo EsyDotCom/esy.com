@@ -48,7 +48,7 @@ export function Signup({ title = `Follow ${post.trend} by email` }: { title?: st
   return (
     <div className="np-inline-signup">
       <p className="np-rail-title">{title}</p>
-      <NewsletterSignup note="The week’s AI news in The Marketing Engineer" />
+      <NewsletterSignup form="news-story" note="The week’s AI news in The Marketing Engineer" />
     </div>
   );
 }

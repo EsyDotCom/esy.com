@@ -110,7 +110,7 @@ export function Band() {
           <p className="nlp-band-title">Get the next issue in your inbox.</p>
           <p className="nlp-band-sub">{PROMISE}</p>
         </div>
-        <PageSignup tone="dark" />
+        <PageSignup tone="dark" form="newsletter-band" />
       </div>
     </section>
   );
@@ -153,7 +153,7 @@ export function TakeWelcome() {
             <p className="nlp-lead-kicker">Free, every week · {ISSUE_COUNT} issues</p>
             <p className="nlp-welcome-title">AI marketing, <em>built</em> in public.</p>
             <p className="nlp-welcome-sub">{PROMISE}</p>
-            <PageSignup tone="dark" />
+            <PageSignup tone="dark" form="newsletter-welcome" />
           </div>
           <Link href={href(LATEST)} className="nlp-welcome-latest">
             <IssueArt issue={LATEST} size="lg" />

@@ -87,7 +87,7 @@ export function SignupCard({
       <p className="ai-signup-kicker">The Marketing Engineer · Free weekly email</p>
       <p className="ai-signup-title">{title}</p>
       <p className="ai-signup-body">{body}</p>
-      <NewsletterSignup tone={tone} note="Free · unsubscribe anytime" />
+      <NewsletterSignup form="article-end" tone={tone} note="Free · unsubscribe anytime" />
     </aside>
   );
 }

@@ -29,7 +29,7 @@ export default function CoursesSyllabus({ courses, upcoming }: CoursesIndexProps
           <StatsLine courses={courses} className="ci-stats--stack" />
           <div className="ci-syl-signup">
             <p className="ci-syl-signup-title">Get new courses by email</p>
-            <NewsletterSignup note="One email a week · unsubscribe anytime" />
+            <NewsletterSignup form="courses-hero" note="One email a week · unsubscribe anytime" />
           </div>
         </aside>
 

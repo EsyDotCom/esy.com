@@ -19,7 +19,7 @@ export default function NewsletterHero() {
         <p className="nl-promise">
           Turn your marketing data into action, with AI systems <span className="nl-promise-accent">you can build yourself</span>.
         </p>
-        <NewsletterSignup />
+        <NewsletterSignup form="engineer-hero" />
       </div>
     </section>
   );

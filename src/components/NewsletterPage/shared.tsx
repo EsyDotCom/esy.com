@@ -44,9 +44,9 @@ export function useDateLabel() {
 }
 
 /** The signup for these pages: the real one on the live site, the prototype one elsewhere. */
-export function PageSignup({ tone = 'light' }: { tone?: 'light' | 'dark' }) {
+export function PageSignup({ tone = 'light', form }: { tone?: 'light' | 'dark'; form: string }) {
   const { live } = useContext(ModeContext);
-  if (live) return <NewsletterSignup tone={tone} askName note="Free, every week. Unsubscribe in one click." />;
+  if (live) return <NewsletterSignup tone={tone} form={form} askName note="Free, every week. Unsubscribe in one click." />;
   return <ProtoSignup tone={tone} />;
 }
 

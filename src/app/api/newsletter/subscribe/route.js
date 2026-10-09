@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 import { EMAIL_REGEX, clientIp, detectBot } from '@/lib/botCheck';
-import { attribute } from '@/lib/newsletter/attribution';
+import { attribute, formLabel } from '@/lib/newsletter/attribution';
 import { confirmLink, confirmationEmail } from '@/lib/newsletter/confirmEmail';
 import { createContact, getContact, isConfigured, prop, sendEmail } from '@/lib/newsletter/resend';
 import { signToken } from '@/lib/newsletter/tokens';
@@ -11,7 +11,7 @@ import { signToken } from '@/lib/newsletter/tokens';
    esy.com runs its own double opt-in:
 
    1. The address becomes a Resend contact with confirmed = "false", plus the
-      page (and YouTube video) it came from.
+      page (and YouTube video) it came from, and which signup box (`form`).
    2. We send the confirmation email. Its link opens /newsletter/confirm, which
       marks the contact confirmed and adds it to the Newsletter segment.
 
@@ -28,7 +28,7 @@ function silentlyAccept(reason, meta) {
 
 export async function POST(request) {
   try {
-    const { email, hp, elapsedMs, source, video, name } = await request.json();
+    const { email, hp, elapsedMs, source, video, name, form } = await request.json();
 
     if (!email || !EMAIL_REGEX.test(String(email).trim())) {
       return NextResponse.json({ error: 'A valid email address is required.' }, { status: 400 });
@@ -79,6 +79,8 @@ export async function POST(request) {
         confirmed: 'false',
         source: where.path || '/',
         video: where.video,
+        // Which box on that page: the header, the hero, the band at the foot...
+        form: formLabel(form),
       });
     }
 

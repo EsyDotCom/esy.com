@@ -35,7 +35,7 @@ export function HeroSplit({ courses }: { courses: Course[] }) {
           <p className="nl-kicker">The Marketing Engineer</p>
           <h1 className="nl-masthead civ-split-title">Courses</h1>
           <CoursesPromise />
-          <NewsletterSignup note={SIGNUP_NOTE} />
+          <NewsletterSignup form="courses-hero" note={SIGNUP_NOTE} />
           <StatsLine courses={courses} className="civ-stats" />
         </div>
         <figure className="civ-split-video">
@@ -59,7 +59,7 @@ export function HeroScreening({ courses }: { courses: Course[] }) {
           <p className="nl-kicker">The Marketing Engineer</p>
           <h1 className="nl-masthead">Courses</h1>
           <CoursesPromise />
-          <NewsletterSignup note={SIGNUP_NOTE} />
+          <NewsletterSignup form="courses-hero" note={SIGNUP_NOTE} />
           <StatsLine courses={courses} className="ci-stats--center" />
         </div>
       </section>
@@ -83,7 +83,7 @@ export function HeroPill({ courses }: { courses: Course[] }) {
         <h1 className="nl-masthead">Courses</h1>
         <CoursesPromise />
         <IntroPill />
-        <NewsletterSignup note={SIGNUP_NOTE} />
+        <NewsletterSignup form="courses-hero" note={SIGNUP_NOTE} />
         <StatsLine courses={courses} className="ci-stats--center" />
       </div>
     </section>

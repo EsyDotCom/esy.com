@@ -31,7 +31,7 @@ export function CoursesMastheadHero({ courses }: { courses: CoursesIndexProps['c
         <p className="nl-promise">
           Learn to build the AI systems that run marketing, <span className="nl-promise-accent">one lesson at a time</span>.
         </p>
-        <NewsletterSignup note="New courses go out in the weekly email first" />
+        <NewsletterSignup form="courses-hero" note="New courses go out in the weekly email first" />
         <StatsLine courses={courses} className="ci-stats--center" />
       </div>
     </section>

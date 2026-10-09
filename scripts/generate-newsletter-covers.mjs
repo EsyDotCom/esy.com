@@ -58,8 +58,47 @@ function apiKey() {
 const STYLE =
   'Cinematic editorial image with a duotone palette: everything in deep navy (#0A2540) shadow and teal (#00A896) to jade (#00D4AA) light, no warm colours, no other hues, soft glow, gentle film grain, calm and quiet, no people, no characters';
 
+/** Topic covers for the /topics prototypes (2026-10-09), same series style.
+ *  Run with COVERS_SET=topics COVERS_OUT=public/prototypes/topics/covers. */
+const TOPIC_COVERS = [
+  {
+    id: 'agentic-workflows',
+    scene:
+      'A quiet production line at night on the right side of the frame: glowing panels moving along a track between three stations, each station checking a panel with a soft scan of light, the last station lit brighter jade under a single lamp',
+  },
+  {
+    id: 'ai-models',
+    scene:
+      'A row of tall glowing monoliths of different heights standing in a dark hall on the right side of the frame, the newest one at the end of the row taller, brighter and sharper than the rest, light reflecting on a polished floor',
+  },
+  {
+    id: 'ai-image-generation',
+    scene:
+      'A vast wall of floating picture frames on the right side of the frame, many already holding glowing landscapes and still lifes, one new frame in front filling with light as its picture appears',
+  },
+  {
+    id: 'ai-coding-tools',
+    scene:
+      'A dark workbench on the right side of the frame with an open laptop glowing on it, thin lines of light rising from the keyboard and assembling into a floating structure of panels and frames above it',
+  },
+];
+
+/** Art for the /tools prototypes (2026-10-09): a hero and one cover per job.
+ *  Run with COVERS_SET=tools COVERS_OUT=public/images/tools/art. */
+const TOOL_COVERS = [
+  { id: 'hero', scene: 'A vast dark workshop on the right side of the frame with rows of glowing workbenches stretching into the distance, each bench holding a different luminous instrument or machine, soft teal light pooling on each one, mist in the air' },
+  { id: 'writing-content', scene: 'On the right side of the frame, a single glowing quill-like stylus writing lines of light that become floating pages, the pages drifting upward and stacking' },
+  { id: 'images-video', scene: 'On the right side of the frame, a glowing camera lens made of light projecting a stack of luminous picture frames and film strips into the air' },
+  { id: 'seo-ai-search', scene: 'On the right side of the frame, a glowing compass rose hovering over a dark map of tiny lit points, beams of light linking a few points into a path' },
+  { id: 'email', scene: 'On the right side of the frame, a stream of glowing envelopes flying in a long arc toward a softly lit open doorway' },
+  { id: 'social-ads', scene: 'On the right side of the frame, many small glowing screens floating at different depths, ripples of light spreading out from one bright screen to the rest' },
+  { id: 'automation-agents', scene: 'On the right side of the frame, a quiet line of glowing geometric machines passing a single bright cube along a track from one to the next' },
+  { id: 'data-prospecting', scene: 'On the right side of the frame, a vast grid of tiny lit nodes with a few nodes glowing brighter and connected by fine threads of light into a cluster' },
+  { id: 'building-with-ai', scene: 'On the right side of the frame, a glowing laptop on a dark workbench with structures of light panels assembling themselves in the air above the keyboard' },
+];
+
 /** One cover per sample issue, by issue number (src/components/NewsletterPage/issues.ts). */
-const BACKDROPS = [
+const ISSUE_COVERS = [
   {
     id: '1',
     scene:
@@ -76,6 +115,9 @@ const BACKDROPS = [
       'On the right side of the frame, a tall stack of glowing blank web pages floating in deep navy space among soft clouds, one page lifting out of the stack toward a luminous teal speech bubble shape above it, thin light lines connecting them',
   },
 ];
+
+/** Which covers to render: the issues (default) or the topics. */
+const BACKDROPS = process.env.COVERS_SET === 'topics' ? TOPIC_COVERS : process.env.COVERS_SET === 'tools' ? TOOL_COVERS : ISSUE_COVERS;
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 

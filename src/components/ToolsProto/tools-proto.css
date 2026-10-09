@@ -1,0 +1,313 @@
+/* esy.com/tools prototypes (2026-10-09). Prefix tl-. The publication's
+   tokens (.nl variables), the serif for titles, the stencil for tool tiles. */
+
+.tl { background: var(--nl-bg); }
+.tl-wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px 96px; }
+.tl-label { margin: 0 0 12px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--nl-jade); }
+
+/* Head */
+.tl-head { max-width: 1180px; margin: 0 auto; padding: 64px 24px 36px; }
+.tl-kicker { margin: 0 0 12px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-jade); }
+.tl-title { margin: 0 0 14px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: clamp(2.8rem, 6vw, 4.6rem); line-height: 0.98; letter-spacing: -0.02em; color: var(--nl-navy); }
+.tl-sub { margin: 0; max-width: 640px; font-size: 1.12rem; line-height: 1.55; color: var(--nl-ink-soft); }
+.tl-search {
+  display: flex; align-items: center; gap: 10px; max-width: 560px; margin-top: 26px; padding: 0 16px; height: 52px;
+  border: 1px solid #c3c9d2; border-radius: 12px; background: #fff; color: var(--nl-ink-soft);
+}
+.tl-search:focus-within { border-color: var(--nl-jade); box-shadow: 0 0 0 3px rgba(0, 168, 150, 0.15); }
+.tl-search input { flex: 1; border: 0; outline: none; font: inherit; font-size: 1rem; color: var(--nl-navy); background: none; }
+
+/* Tool tile: the first letter in the brand stencil, navy with jade */
+.tl-tile {
+  display: inline-grid; place-items: center; flex: none; width: 44px; height: 44px; border-radius: 10px;
+  background: #0A2540; color: var(--nl-jade-bright); font-family: var(--font-black-ops-one), sans-serif; font-size: 1.35rem; line-height: 1;
+}
+.tl-tile--lg { width: 60px; height: 60px; font-size: 1.9rem; border-radius: 12px; }
+/* Company icons: filled-square icons fill the tile; other marks sit inset on white. */
+.tl-tile--logo { position: relative; overflow: hidden; background: #fff; box-shadow: inset 0 0 0 1px rgba(10, 37, 64, 0.1); }
+/* Pinned to the tile (not sized by the grid), so every tile size crops the same way. */
+.tl-tile--logo img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
+.tl-tile--inset img { inset: 18%; width: 64%; height: 64%; object-fit: contain; }
+/* A bare wordmark (Esy's) in place of a tile and name, sized to its container. */
+.tl-wordmark { display: block; flex: none; width: auto; height: 22px; align-self: center; }
+.tl-wordmark--name { height: 22px; margin: 4px 0 6px; }
+
+
+/* K1 · chips, toggles, grid */
+.tl-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.tl-chip { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--nl-seam); background: #fff; cursor: pointer; font: inherit; font-size: 0.9rem; font-weight: 600; color: var(--nl-ink-soft); }
+.tl-chip.is-on { background: var(--nl-navy); border-color: var(--nl-navy); color: #fff; }
+.tl-chip-n { font-size: 0.75rem; opacity: 0.7; }
+.tl-toggles { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; margin-bottom: 24px; font-size: 0.92rem; color: var(--nl-ink-soft); }
+.tl-toggles label { display: inline-flex; gap: 8px; align-items: center; cursor: pointer; }
+.tl-toggles input { accent-color: #00A896; }
+.tl-count { margin-left: auto; font-size: 0.85rem; }
+.tl-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.tl-card { display: flex; flex-direction: column; gap: 10px; padding: 20px; border-radius: 14px; border: 1px solid var(--nl-seam); background: #fff; }
+.tl-card-top { display: flex; gap: 12px; align-items: center; }
+.tl-name { margin: 0; font-size: 1.12rem; font-weight: 700; color: var(--nl-navy); }
+.tl-name--lg { font-size: 1.4rem; }
+.tl-maker { margin: 2px 0 0; font-size: 0.82rem; color: var(--nl-ink-soft); font-weight: 400; }
+.tl-does { margin: 0; line-height: 1.5; color: var(--nl-ink); }
+.tl-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+.tl-badge { padding: 3px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; color: var(--nl-ink-soft); background: var(--nl-bg-alt); border: 1px solid var(--nl-seam); }
+.tl-badge--use { color: #007A6D; background: rgba(0, 168, 150, 0.08); border-color: rgba(0, 168, 150, 0.35); }
+.tl-links { margin: 4px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.tl-links a { font-size: 0.9rem; color: var(--nl-navy); text-decoration: none; line-height: 1.4; }
+.tl-links a:hover { color: var(--nl-jade); }
+.tl-kind { display: inline-block; margin-right: 6px; padding: 1px 6px; border-radius: 4px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; background: #41566D; }
+.tl-kind--review { background: #0A2540; }
+.tl-kind--tutorial, .tl-kind--course { background: #00A896; }
+.tl-coming { margin: 4px 0 0; font-size: 0.85rem; color: var(--nl-ink-soft); font-style: italic; }
+.tl-empty { grid-column: 1 / -1; color: var(--nl-ink-soft); }
+
+/* K2 · My stack */
+.tl-job { padding: 40px 0; border-top: 1px solid var(--nl-seam); }
+.tl-job-title { margin: 0 0 20px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 2rem; color: var(--nl-navy); }
+.tl-job-row { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 40px; }
+.tl-pick { display: flex; flex-direction: column; gap: 12px; padding: 26px; border-radius: 16px; background: var(--nl-bg-alt); border: 1px solid var(--nl-seam); }
+.tl-take { margin: 0; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-style: italic; font-size: 1.25rem; line-height: 1.35; color: var(--nl-navy); }
+.tl-others { display: flex; flex-direction: column; gap: 18px; }
+.tl-other { display: flex; gap: 14px; }
+.tl-other-name { margin: 0; font-weight: 700; color: var(--nl-navy); }
+.tl-other-does { margin: 4px 0 6px; font-size: 0.92rem; line-height: 1.5; color: var(--nl-ink-soft); }
+.tl-other-link { display: inline-flex; align-items: center; gap: 4px; font-size: 0.85rem; font-weight: 600; color: var(--nl-jade); text-decoration: none; }
+
+/* K3 · Guide */
+.tl-guide { max-width: 900px; }
+.tl-jump { display: flex; flex-wrap: wrap; gap: 8px 16px; padding: 16px 0 8px; border-top: 1px solid var(--nl-seam); }
+.tl-jump a { font-size: 0.9rem; font-weight: 600; color: var(--nl-jade); text-decoration: none; }
+.tl-h2 { margin: 40px 0 16px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 1.9rem; color: var(--nl-navy); }
+.tl-table-wrap { overflow-x: auto; }
+.tl-table { width: 100%; border-collapse: collapse; font-size: 0.94rem; }
+.tl-table th { text-align: left; padding: 10px 12px; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--nl-ink-soft); border-bottom: 2px solid var(--nl-navy); }
+.tl-table td { padding: 12px; border-bottom: 1px solid var(--nl-seam); vertical-align: middle; color: var(--nl-ink); }
+.tl-table a { color: var(--nl-jade); font-weight: 600; text-decoration: none; }
+.tl-td-tool { display: inline-flex; gap: 10px; align-items: center; }
+.tl-td-tool .tl-tile { width: 34px; height: 34px; font-size: 1.05rem; border-radius: 8px; }
+.tl-gsec { scroll-margin-top: 96px; }
+.tl-gtool { display: flex; flex-direction: column; gap: 8px; padding: 18px 0; border-bottom: 1px solid var(--nl-seam); }
+.tl-gname { display: flex; gap: 10px; align-items: center; margin: 0; font-size: 1.2rem; color: var(--nl-navy); }
+.tl-gname .tl-tile { width: 34px; height: 34px; font-size: 1.05rem; border-radius: 8px; }
+.tl-faq details { padding: 14px 0; border-bottom: 1px solid var(--nl-seam); }
+.tl-faq summary { cursor: pointer; font-weight: 700; color: var(--nl-navy); }
+.tl-faq p { margin: 10px 0 0; line-height: 1.6; color: var(--nl-ink-soft); }
+
+@media (max-width: 1000px) {
+  .tl-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tl-job-row { grid-template-columns: 1fr; gap: 24px; }
+}
+@media (max-width: 640px) {
+  .tl-grid { grid-template-columns: 1fr; }
+  .tl-count { margin-left: 0; }
+}
+.tl-disclosure { margin: 0; padding-top: 24px; border-top: 1px solid var(--nl-seam); font-size: 0.82rem; line-height: 1.55; color: var(--nl-ink-soft); max-width: 760px; }
+
+/* ── Round 2 (2026-10-09): K4 Sidebar, K5 Jobs first, K6 Picks + directory ── */
+.tl-side { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 40px; align-items: start; }
+.tl-rail { position: sticky; top: 96px; display: flex; flex-direction: column; gap: 4px; }
+.tl-rail .tl-label { margin: 18px 0 8px; }
+.tl-rail .tl-label:first-child { margin-top: 0; }
+.tl-rail-jobs { margin: 0; padding: 0; list-style: none; }
+.tl-rail-job {
+  display: flex; justify-content: space-between; width: 100%; padding: 8px 10px; border: 0; border-radius: 8px;
+  background: none; cursor: pointer; font: inherit; font-size: 0.94rem; color: var(--nl-ink); text-align: left;
+}
+.tl-rail-job:hover { background: var(--nl-bg-alt); }
+.tl-rail-job.is-on { background: var(--nl-navy); color: #fff; font-weight: 600; }
+.tl-rail-checks { display: flex; flex-direction: column; gap: 10px; font-size: 0.92rem; color: var(--nl-ink-soft); }
+.tl-rail-checks label { display: inline-flex; gap: 8px; align-items: center; cursor: pointer; }
+.tl-rail-checks input { accent-color: #00A896; }
+.tl-clear { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; padding: 0; border: 0; background: none; cursor: pointer; font: inherit; font-size: 0.88rem; font-weight: 600; color: var(--nl-jade); }
+.tl-count--top { margin: 0 0 12px; }
+.tl-rows { border-top: 1px solid var(--nl-seam); }
+.tl-row { display: grid; grid-template-columns: 44px minmax(0, 1fr) minmax(0, 300px); gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--nl-seam); }
+.tl-row-main { display: flex; flex-direction: column; gap: 8px; }
+
+.tl-ask { margin: 8px 0 18px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 1.8rem; color: var(--nl-navy); }
+.tl-jobs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.tl-jobtile {
+  display: flex; flex-direction: column; gap: 10px; min-height: 170px; padding: 22px; text-align: left; cursor: pointer; font: inherit;
+  border: 0; background: #0A1626; color: #fff;
+  clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 14px, 100% calc(100% - 14px), calc(100% - 14px) 100%, 14px 100%, 0 calc(100% - 14px), 0 14px);
+  transition: background 0.15s ease;
+}
+.tl-jobtile:hover { background: #0E2A44; }
+.tl-jobtile-name { font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 1.5rem; line-height: 1.1; }
+.tl-jobtile-tools { flex: 1; font-size: 0.88rem; line-height: 1.45; color: rgba(255, 255, 255, 0.7); }
+.tl-jobtile-n { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--nl-jade-bright); }
+.tl-jobbar { display: flex; flex-direction: column; gap: 12px; padding-bottom: 8px; }
+.tl-back { align-self: flex-start; padding: 0; border: 0; background: none; cursor: pointer; font: inherit; font-weight: 600; color: var(--nl-jade); }
+
+.tl-picks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.tl-pickcard { display: flex; flex-direction: column; gap: 10px; padding: 20px; border-radius: 14px; background: var(--nl-bg-alt); border: 1px solid var(--nl-seam); }
+.tl-pick-take { margin: 0; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-style: italic; font-size: 1.08rem; line-height: 1.35; color: var(--nl-navy); }
+.tl-label--gap { margin-top: 48px; }
+
+@media (max-width: 1000px) {
+  .tl-side { grid-template-columns: 1fr; }
+  .tl-rail { position: static; }
+  .tl-row { grid-template-columns: 44px minmax(0, 1fr); }
+  .tl-row-links { grid-column: 2; }
+  .tl-jobs, .tl-picks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .tl-jobs, .tl-picks { grid-template-columns: 1fr; }
+}
+
+/* ── Round 3 (2026-10-09): three looks with a real hero and motion ── */
+.t3-kicker { margin: 0 0 14px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--nl-jade-bright); }
+.t3-kicker--jade { color: var(--nl-jade); }
+.t3-name { margin: 0; font-size: 1.1rem; font-weight: 700; color: var(--nl-navy); }
+.t3-maker { margin: 2px 0 0; font-size: 0.82rem; color: var(--nl-ink-soft); }
+.t3-does { margin: 0; line-height: 1.5; color: var(--nl-ink); }
+.t3-card {
+  display: flex; flex-direction: column; gap: 10px; height: 100%; padding: 20px; border-radius: 14px;
+  border: 1px solid var(--nl-seam); background: #fff; transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.t3-card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(10, 37, 64, 0.12); border-color: rgba(0, 168, 150, 0.4); }
+.t3-disclosure { margin-top: 56px; }
+
+/* Scroll reveal: fade up once; still for reduced motion */
+.t3-reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.t3-reveal.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .t3-reveal { opacity: 1; transform: none; transition: none; }
+  .t3o-row { animation: none !important; }
+}
+
+/* K7 · Night */
+.t3-night { background: #0A1626; }
+.t3n-hero { min-height: 640px; display: flex; align-items: center; background-size: cover; background-position: center right; }
+.t3n-hero-in { width: 100%; max-width: 1180px; margin: 0 auto; padding: 96px 24px 72px; animation: t3-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+@keyframes t3-rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+.t3n-title { margin: 0 0 18px; max-width: 760px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: clamp(3.2rem, 7.5vw, 6rem); line-height: 0.95; letter-spacing: -0.02em; color: #fff; }
+.t3n-title em { color: var(--nl-jade-bright); }
+.t3n-sub { margin: 0 0 30px; max-width: 560px; font-size: 1.15rem; line-height: 1.6; color: rgba(255, 255, 255, 0.78); }
+.t3n-search {
+  display: flex; align-items: center; gap: 10px; max-width: 560px; height: 56px; padding: 0 18px; border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px); transition: border-color 0.2s ease, background 0.2s ease;
+}
+.t3n-search:focus-within { border-color: var(--nl-jade-bright); background: rgba(255, 255, 255, 0.12); }
+.t3n-search input { flex: 1; border: 0; outline: none; background: none; font: inherit; font-size: 1.02rem; color: #fff; }
+.t3n-search input::placeholder { color: rgba(255, 255, 255, 0.5); }
+.t3n-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; max-width: 760px; }
+.t3n-pill {
+  padding: 8px 14px; border-radius: 999px; cursor: pointer; font: inherit; font-size: 0.88rem; font-weight: 600;
+  color: rgba(255, 255, 255, 0.82); background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.16);
+  transition: all 0.2s ease;
+}
+.t3n-pill:hover { border-color: rgba(0, 212, 170, 0.6); }
+.t3n-pill.is-on { color: #0A1626; background: var(--nl-jade-bright); border-color: var(--nl-jade-bright); }
+.t3n-body { padding: 56px 0 96px; }
+.t3n-count { margin: 0 0 18px; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255, 255, 255, 0.55); }
+.t3n-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.t3-card--dark { background: rgba(255, 255, 255, 0.04); border-color: rgba(255, 255, 255, 0.1); }
+.t3-card--dark:hover { box-shadow: 0 0 0 1px rgba(0, 212, 170, 0.5), 0 18px 48px rgba(0, 212, 170, 0.12); border-color: transparent; }
+.t3-card--dark .t3-name { color: #fff; }
+.t3-card--dark .t3-maker { color: rgba(255, 255, 255, 0.55); }
+.t3-card--dark .t3-does { color: rgba(255, 255, 255, 0.8); }
+.t3-card--dark .tl-links a { color: rgba(255, 255, 255, 0.85); }
+.t3-card--dark .tl-links a:hover { color: var(--nl-jade-bright); }
+.t3-card--dark .tl-badge { color: rgba(255, 255, 255, 0.7); background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.14); }
+.t3-card--dark .tl-badge--use { color: var(--nl-jade-bright); border-color: rgba(0, 212, 170, 0.4); }
+.t3-card--dark .tl-coming { color: rgba(255, 255, 255, 0.5); }
+.t3-card--dark .tl-tile { background: rgba(0, 212, 170, 0.12); }
+.t3-card--dark .tl-tile--logo { background: #fff; }
+.t3n-empty { color: rgba(255, 255, 255, 0.6); }
+.t3n-disclosure { margin-top: 56px; }
+.t3n-disclosure .tl-disclosure { color: rgba(255, 255, 255, 0.55); border-top-color: rgba(255, 255, 255, 0.12); }
+
+/* K8 · Orbit */
+.t3-orbit { background: var(--nl-bg); }
+.t3o-hero { position: relative; overflow: hidden; padding: 150px 24px 140px; text-align: center; background: linear-gradient(180deg, #F2F6F8 0%, #fff 100%); border-bottom: 1px solid var(--nl-seam); }
+.t3o-drift { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between; padding: 18px 0; opacity: 0.5; -webkit-mask-image: radial-gradient(ellipse 58% 62% at center, transparent 55%, #000 85%); mask-image: radial-gradient(ellipse 58% 62% at center, transparent 55%, #000 85%); pointer-events: none; }
+.t3o-row { display: flex; gap: 14px; width: max-content; animation: t3-drift 60s linear infinite; }
+.t3o-row--1 { animation-duration: 75s; animation-direction: reverse; }
+.t3o-row--2 { animation-duration: 90s; }
+@keyframes t3-drift { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.t3o-chip { display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px 8px 8px; border-radius: 14px; background: #fff; border: 1px solid var(--nl-seam); font-weight: 600; color: var(--nl-navy); white-space: nowrap; box-shadow: 0 4px 14px rgba(10, 37, 64, 0.06); }
+.t3o-chip .tl-tile { width: 32px; height: 32px; font-size: 1rem; border-radius: 8px; }
+/* A chip holding only Esy's wordmark: even padding, same height as the other
+   chips. The y's tail makes the box sit visually high, so it drops 2px to
+   centre the letters' body. */
+.t3o-chip.t3o-chip--mark { justify-content: center; padding: 8px 16px; min-height: 50px; box-sizing: border-box; }
+.t3o-chip .tl-wordmark { height: 20px; transform: translateY(2px); }
+.t3o-hero-in { position: relative; max-width: 720px; margin: 0 auto; animation: t3-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.t3o-title { margin: 0 0 16px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: clamp(3rem, 7vw, 5.4rem); line-height: 0.95; letter-spacing: -0.02em; color: var(--nl-navy); }
+.t3o-sub { margin: 0 auto 28px; max-width: 540px; font-size: 1.15rem; line-height: 1.55; color: var(--nl-ink-soft); }
+.t3o-search { margin: 0 auto; box-shadow: 0 12px 32px rgba(10, 37, 64, 0.1); }
+.t3o-results { padding-top: 48px; }
+.t3o-bento { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; padding-top: 56px; }
+.t3o-feature-wrap { grid-column: span 2; grid-row: span 2; }
+.t3o-feature {
+  display: flex; flex-direction: column; justify-content: flex-end; height: 100%; min-height: 380px; padding: 32px; border-radius: 18px;
+  background-size: cover; background-position: center; color: #fff;
+}
+.t3o-feature-name { margin: 0 0 10px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 2.6rem; line-height: 1; }
+.t3o-feature-take { margin: 0 0 16px; max-width: 420px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-style: italic; font-size: 1.3rem; line-height: 1.35; color: rgba(255, 255, 255, 0.85); }
+.t3o-feature-links .tl-links a { color: #fff; }
+.t3o-box-wrap.is-open { grid-column: 1 / -1; }
+.t3o-box { height: 100%; border-radius: 16px; border: 1px solid var(--nl-seam); background: #fff; overflow: hidden; transition: box-shadow 0.25s ease, border-color 0.25s ease; }
+.t3o-box:hover, .t3o-box.is-open { border-color: rgba(0, 168, 150, 0.45); box-shadow: 0 14px 34px rgba(10, 37, 64, 0.1); }
+.t3o-box-head { display: grid; grid-template-columns: 1fr; gap: 10px; width: 100%; padding: 0 0 18px; border: 0; background: none; cursor: pointer; font: inherit; text-align: left; }
+.t3o-box-art { display: block; height: 96px; background-size: cover; background-position: center; transition: height 0.35s ease; }
+.t3o-box.is-open .t3o-box-art { height: 150px; }
+.t3o-box-name { padding: 0 18px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 1.35rem; line-height: 1.1; color: var(--nl-navy); }
+.t3o-box-tiles { display: flex; gap: 6px; padding: 0 18px; }
+.t3o-box-tiles .tl-tile { width: 28px; height: 28px; font-size: 0.9rem; border-radius: 7px; }
+.t3o-box-tiles .tl-wordmark { height: 18px; transform: translateY(2px); }
+.t3o-box-n { padding: 0 18px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--nl-jade); }
+.t3o-box-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.45s ease; }
+.t3o-box.is-open .t3o-box-body { grid-template-rows: 1fr; }
+.t3o-box-grid { overflow: hidden; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; padding: 0 18px; }
+.t3o-box.is-open .t3o-box-grid { padding: 4px 18px 20px; }
+
+/* K9 · Magazine */
+.t3-mag { background: var(--nl-bg); }
+.t3m-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); min-height: 600px; max-width: 1320px; margin: 0 auto; }
+.t3m-hero-text { display: flex; flex-direction: column; justify-content: center; padding: 80px 48px 64px 24px; animation: t3-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.t3m-title { margin: 0 0 20px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: clamp(3rem, 6vw, 5rem); line-height: 0.95; letter-spacing: -0.02em; color: var(--nl-navy); }
+.t3m-title em { color: var(--nl-jade); }
+.t3m-sub { margin: 0 0 28px; max-width: 480px; font-size: 1.12rem; line-height: 1.6; color: var(--nl-ink-soft); }
+.t3m-stats { display: flex; gap: 32px; margin: 0 0 32px; }
+.t3m-stats div { display: flex; flex-direction: column; }
+.t3m-stats dt { font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 2.6rem; line-height: 1; color: var(--nl-jade); }
+.t3m-stats dd { margin: 4px 0 0; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--nl-ink-soft); }
+.t3m-cta { display: inline-flex; align-self: flex-start; align-items: center; gap: 8px; padding: 14px 22px; border-radius: 10px; background: var(--nl-navy); color: #fff; font-weight: 600; text-decoration: none; transition: background 0.2s ease; }
+.t3m-cta:hover { background: #00A896; }
+.t3m-hero-art {
+  background-size: cover; background-position: center right; min-height: 420px; margin: 24px 24px 24px 0;
+  clip-path: polygon(28px 0, calc(100% - 28px) 0, 100% 28px, 100% calc(100% - 28px), calc(100% - 28px) 100%, 28px 100%, 0 calc(100% - 28px), 0 28px);
+  animation: t3-zoom 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@keyframes t3-zoom { from { opacity: 0; transform: scale(1.04); } to { opacity: 1; transform: none; } }
+.t3m-nav { position: sticky; top: 66px; z-index: 20; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(10px); border-top: 1px solid var(--nl-seam); border-bottom: 1px solid var(--nl-seam); }
+.t3m-nav-in { display: flex; gap: 6px; max-width: 1180px; margin: 0 auto; padding: 10px 24px; overflow-x: auto; }
+.t3m-nav-link { flex: none; padding: 7px 14px; border-radius: 999px; font-size: 0.88rem; font-weight: 600; color: var(--nl-ink-soft); text-decoration: none; transition: all 0.25s ease; }
+.t3m-nav-link.is-on { background: var(--nl-navy); color: #fff; }
+.t3m-sec { padding-top: 56px; scroll-margin-top: 130px; }
+.t3m-banner { display: flex; justify-content: space-between; align-items: flex-end; min-height: 170px; padding: 26px 30px; border-radius: 16px; background-size: cover; background-position: center right; }
+.t3m-banner-title { margin: 0; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 2.1rem; line-height: 1.05; color: #fff; }
+.t3m-banner-n { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--nl-jade-bright); }
+.t3m-rail-wrap { position: relative; margin-top: 18px; }
+.t3m-rail { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(300px, 340px); gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; scrollbar-width: thin; }
+.t3m-slide { scroll-snap-align: start; }
+.t3m-arrows { display: flex; justify-content: flex-end; gap: 8px; margin-top: 10px; }
+.t3m-arrows button { display: inline-grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--nl-seam); background: #fff; cursor: pointer; color: var(--nl-navy); transition: all 0.2s ease; }
+.t3m-arrows button:hover { background: var(--nl-navy); color: #fff; }
+
+@media (max-width: 1000px) {
+  .t3n-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .t3o-bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .t3o-box-grid { grid-template-columns: 1fr; }
+  .t3m-hero { grid-template-columns: 1fr; }
+  .t3m-hero-art { margin: 0 24px 24px; min-height: 260px; }
+  .t3m-hero-text { padding: 56px 24px 24px; }
+}
+@media (max-width: 640px) {
+  .t3n-grid, .t3o-bento { grid-template-columns: 1fr; }
+  .t3o-feature-wrap { grid-column: span 1; }
+  .t3n-hero { min-height: 560px; }
+}

@@ -105,6 +105,8 @@ const ConditionalNavigation = () => {
   const isNewsletterPage = normalizedPath === '/newsletter' || normalizedPath?.startsWith('/newsletter/');
   // esy.com/invite (2026-10-09), the YouTube signup page, renders LightHeader itself.
   const isInvitePage = normalizedPath === '/invite';
+  // esy.com/tools (2026-10-09), AI Marketing Tools, renders LightHeader itself.
+  const isToolsPage = normalizedPath === '/tools';
 
   // Don't render navigation on:
   // - Essay view pages (focused reading)
@@ -114,7 +116,7 @@ const ConditionalNavigation = () => {
   // - Agents pages (own sidebar navigation)
   // - Scrollytelling story pages (own header via ScrollytellingHeader)
   // - Photo essays landing page (immersive experience with own header)
-  if (isEssayViewPage || isInfographicViewPage || isClipArtViewPage || isDocsPage || isAgentsPage || isScrollytellingStoryPage || isPhotoEssaysPage || isHomepage || isWaitlistPage || isTopicsPage || isArticlePage || isPrototypesPage || isFilmPage || isEditorialPage || isCoursesPage || isNewsPage || isSkillsPage || isSeoPage || isNewsletterPage || isInvitePage) {
+  if (isEssayViewPage || isInfographicViewPage || isClipArtViewPage || isDocsPage || isAgentsPage || isScrollytellingStoryPage || isPhotoEssaysPage || isHomepage || isWaitlistPage || isTopicsPage || isArticlePage || isPrototypesPage || isFilmPage || isEditorialPage || isCoursesPage || isNewsPage || isSkillsPage || isSeoPage || isNewsletterPage || isInvitePage || isToolsPage) {
     return null;
   }
 

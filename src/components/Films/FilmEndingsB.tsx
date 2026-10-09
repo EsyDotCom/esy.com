@@ -16,7 +16,7 @@ const IMG = (n: string) => `/films/${LETTER.slug}/${n}.webp`;
 const HERO = LETTER.series.split(" ")[0];
 const LINKS: { title: string; items: { label: string; href: string; external?: boolean }[] }[] = [
   { title: "Films", items: [{ label: "All films", href: "/prototypes/films/b-index/" }, { label: "Watch the animatic", href: LETTER.animaticUrl, external: true }, { label: "Read the storybook", href: LETTER.storybookUrl, external: true }] },
-  { title: "Read", items: [{ label: "The Marketing Engineer", href: "/engineer/" }, { label: "Topics", href: "/topics/" }, { label: "Docs", href: "/docs/" }] },
+  { title: "Read", items: [{ label: "The Marketing Engineer", href: "/newsletter/" }, { label: "Topics", href: "/topics/" }, { label: "Docs", href: "/docs/" }] },
   { title: "Esy", items: [{ label: "About", href: "/about/" }, { label: "Privacy", href: "/privacy/" }, { label: "Terms", href: "/terms/" }, { label: "clip.art", href: "https://clip.art", external: true }] },
 ];
 

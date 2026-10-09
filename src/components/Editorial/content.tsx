@@ -30,8 +30,8 @@ export const KINDS = {
   },
   article: {
     name: 'Articles',
-    href: '/engineer/',
-    url: 'esy.com/engineer',
+    href: '/newsletter/',
+    url: 'esy.com/newsletter',
     blurb: 'Tutorials, builds and walkthroughs that teach something lasting. They go out in the weekly email.',
   },
 } as const;

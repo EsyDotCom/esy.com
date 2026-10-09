@@ -27,7 +27,7 @@ import { lightTheme } from "@/lib/lightTheme";
 export const getPageSuffix = (pathname) => {
   if (pathname?.startsWith('/essays')) return 'Essays';
   // The Marketing Engineer's articles, back under their own namespace.
-  if (pathname === '/engineer' || pathname?.startsWith('/engineer/')) return 'Engineer';
+  if (pathname?.startsWith('/articles/')) return 'Engineer';
   if (pathname?.startsWith('/glossary')) return 'Glossary';
   if (pathname?.startsWith('/blog')) return 'Blog';
   return '';
@@ -566,7 +566,7 @@ export default function Navigation({
                    is the weekly email, matching the light header. (It pointed
                    at the waitlist pre-launch, /waitlist/?src=nav; when the
                    studio opens: href="https://app.esy.com", "Start producing".) */
-                href="/engineer/#subscribe"
+                href="/newsletter/"
                 className="nav-cta-start"
                 /* Back to the subtle bordered button this CTA originally wore.
                    Weight and text colour stay a step above Sign in so the
@@ -751,7 +751,7 @@ export default function Navigation({
             {/* Mobile twin of the desktop CTA: the weekly email, not the
                 waitlist (was /waitlist/?src=mobile_nav pre-launch). */}
             <Link
-              href="/engineer/#subscribe"
+              href="/newsletter/"
               className="mnav-cta"
               onClick={() => setIsMobileMenuOpen(false)}
             >

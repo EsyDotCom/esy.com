@@ -44,7 +44,7 @@ const CREDITS: [string, string][] = [
 const LINKS = [
   { label: "All films", href: "/films/" },
   { label: "Read the storybook", href: LETTER.storybookUrl, external: true },
-  { label: "The Marketing Engineer", href: "/engineer/" },
+  { label: "The Marketing Engineer", href: "/newsletter/" },
   { label: "Topics", href: "/topics/" },
   { label: "Docs", href: "/docs/" },
   { label: "About", href: "/about/" },

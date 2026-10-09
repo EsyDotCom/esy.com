@@ -9,7 +9,7 @@ import ImageArticlePage from "@/components/ArticleImage/ImageArticlePage";
 import VideoArticlePage from "@/components/ArticleVideo/VideoArticlePage";
 import type { Metadata } from "next";
 
-// One article of The Marketing Engineer, at esy.com/engineer/<slug>/. The
+// One article, at esy.com/articles/<slug>/ (it was /engineer/<slug>/ until 2026-10-09). The
 // homepage is the publication's front page; the namespace keeps articles out
 // of the site root. (Root URLs from the brief 2026-09-14 move 308 here via
 // src/app/[slug].)

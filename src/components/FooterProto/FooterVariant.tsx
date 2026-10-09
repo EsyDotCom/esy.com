@@ -78,7 +78,7 @@ function Brand({ line }: { line: React.ReactNode }) {
 
 // The columns every variant shares, as they are today.
 const LEARN: FooterLink[] = [
-  { href: '/engineer/', text: 'The Marketing Engineer' },
+  { href: '/newsletter/', text: 'The Marketing Engineer' },
   { href: '/topics/', text: 'Topics' },
   { href: '/courses/', text: 'Courses' },
   { href: '/docs', text: 'Docs' },

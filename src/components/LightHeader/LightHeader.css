@@ -58,12 +58,16 @@
   display: inline-flex; align-items: center; justify-content: center;
   min-width: 120px;
   font-size: 0.94rem; font-weight: 600; color: #41566D;
-  background: transparent; text-decoration: none;
+  text-decoration: none; cursor: pointer;
   padding: 9px 16px; border-radius: 8px;
-  border: 1px solid #e5e7eb;
+  /* The original colours, made to read as a button (2026-10-09): a darker
+     grey border and a faint shadow; the background stays white. */
+  background: #fff;
+  border: 1px solid #c3c9d2;
+  box-shadow: 0 1px 2px rgba(10, 37, 64, 0.08);
   transition: color 0.15s ease, border-color 0.15s ease;
 }
-.lh-cta:hover { color: #0A2540; border-color: #d1d5db; }
+.lh-cta:hover { color: #0A2540; border-color: #9aa3af; }
 
 /* The Articles dropdown. Its surface, motion, and content styles are the
    shared nav panel rules in globals.css (.nav-panel, .nav-agentic-*); this
@@ -74,3 +78,22 @@
   .lh-menu .nav-panel { display: none; }
 }
 
+
+/* The header's Subscribe (2026-10-09, HeaderSubscribe.tsx): the button turns
+   into a one-line email box in place, like the homepage hero's signup. */
+.lh-sub-form { position: relative; display: inline-flex; align-items: center; gap: 6px; }
+.lh-sub-input {
+  width: min(240px, 46vw); height: 38px; padding: 0 12px; font: inherit; font-size: 0.92rem;
+  color: #0A2540; background: #fff; border: 1px solid #d1d5db; border-radius: 8px;
+}
+.lh-sub-input:focus { outline: none; border-color: #00A896; box-shadow: 0 0 0 3px rgba(0, 168, 150, 0.15); }
+.lh-sub-btn {
+  display: inline-grid; place-items: center; min-width: 72px; height: 38px; padding: 0 16px; border: 0; border-radius: 8px;
+  background: #00A896; color: #fff; font: inherit; font-size: 0.94rem; font-weight: 600; cursor: pointer;
+}
+.lh-sub-btn:disabled { opacity: 0.7; cursor: default; }
+.lh-sub-error {
+  position: absolute; top: calc(100% + 6px); right: 0; margin: 0; padding: 6px 10px; border-radius: 6px;
+  width: max-content; max-width: 280px; font-size: 0.8rem; color: #b42318; background: #fff; border: 1px solid #f3c7c2;
+}
+.lh-sub-done { display: inline-flex; align-items: center; gap: 6px; margin: 0; font-size: 0.9rem; font-weight: 600; color: #0A2540; }

@@ -1,8 +1,19 @@
-import TopicsIndex from "@/components/Topics/TopicsIndex";
+import LightHeader from "@/components/LightHeader/LightHeader";
+import { nlSerif } from "@/components/NewsletterHome/serif";
+import WeeklyEmailBand from "@/components/NewsletterHome/WeeklyEmailBand";
+import { topicCards } from "@/components/Topics/topicCards";
+import { TakeExplorer } from "@/components/TopicsProto/TopicsTakes";
 import { getAllAgenticArticles } from "@/lib/published-articles";
+import "@/components/NewsletterHome/NewsletterHome.css";
+import "@/components/TopicsProto/topics-proto.css";
+
+// esy.com/topics (2026-10-09): T3 · Explorer from /prototypes/topics/. Where
+// every article is browsed now that articles live at /articles/<slug>/: the
+// topics as cut-corner tiles on navy, and the picked topic's cover, story and
+// newest articles in the panel beside them.
 
 const DESCRIPTION =
-  "Every subject The Marketing Engineer covers: agentic workflows, AI models, AI image generation, and AI coding tools, each with every article written on it.";
+  "Every article on AI marketing, by subject: agentic workflows, AI models, AI image generation and AI coding tools, newest first in each.";
 
 export const metadata = {
   title: "Topics — The Marketing Engineer",
@@ -22,6 +33,12 @@ export const metadata = {
 export const revalidate = 3600;
 
 export default async function Page() {
-  const articles = await getAllAgenticArticles();
-  return <TopicsIndex articles={articles} />;
+  const { topics, total } = topicCards(await getAllAgenticArticles());
+  return (
+    <div className={`nl ${nlSerif.variable}`}>
+      <LightHeader />
+      <TakeExplorer topics={topics} total={total} />
+      <WeeklyEmailBand />
+    </div>
+  );
 }

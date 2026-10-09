@@ -2897,6 +2897,42 @@ export const PROTOTYPES: Prototype[] = [
         summary:
           'B28 with Zev’s LinkedIn and GitHub one hover away: a pop card above the head, a profile card, or the photo growing into a close-up. Each opens on hover, keyboard focus or a tap.',
       },
+      {
+        n: 7,
+        title: 'Where the work happens',
+        summary:
+          'B32’s layout over four new shots: an empty open office after hours with its screens still working, the same floor as the lights go off, a data center at dusk, and a data center campus from above. The agents work after everyone leaves.',
+      },
+      {
+        n: 8,
+        title: 'People at work',
+        summary:
+          'B33 redone with analytics and search dashboards on its screens, then real people, shot like a documentary rather than a film: a dev from behind at a window desk, a dev whose finished work fills the second screen, a team still at work in the evening, and two colleagues reading a dashboard together.',
+      },
+      {
+        n: 9,
+        title: 'The one person is Zev',
+        summary:
+          'A dev from behind next to Zev’s signed photo read as Zev, and wasn’t. B37 redone as Zev himself: a photoreal reference sheet edited from his headshot, then the window desk from that sheet, with code on one screen and search performance climbing on the other.',
+      },
+      {
+        n: 10,
+        title: 'Smoother, and B38 too',
+        summary:
+          'Zev saw creases across the back of his neck, and the side of his face looked off. B37 re-shot from the sheet with his head turned to the screens and held still, and B38 made Zev too, its second screen a grid of finished clip-art pages: the 30,000 pages, visible.',
+      },
+      {
+        n: 11,
+        title: 'The data center, and Esy on the screen',
+        summary:
+          'Zev walking inside a data center, seen only from behind, the camera following at a steady distance so the loop never jumps: a cold aisle, a catwalk over the hall, a glass corridor. And B38 around the real product: a screenshot of os.esy.com/agency/search composited onto his monitor (models garble UI), close over the shoulder or at the desk.',
+      },
+      {
+        n: 12,
+        title: 'Other screens',
+        summary:
+          'B44 and B45’s screens made sharper (retina captures baked at 1080p) and B45’s chart animating from the live page. Other os.esy.com/agency screens (the morning brief, home, outreach, the full Search view) were tried on both monitors as local previews and left out: they show real operating numbers. B45 went live as HomeHeroAtWork.',
+      },
     ],
     variants: [
       { slug: 'desk', key: 'B1', name: 'Desk at dusk', round: 1, title: 'Where the work happens.', blurb: 'A clean desk by a tall window at blue hour, a laptop glowing softly, the light outside fading.', poster: ['#0A1626', '#5B7FA6'] },
@@ -2927,7 +2963,20 @@ export const PROTOTYPES: Prototype[] = [
       { slug: 'socials-pop', key: 'B29', name: 'Socials: pop card', round: 6, mergeOf: ['B28'], title: 'A card above the head.', blurb: 'B28 with a small card that pops above the photo on hover or tap: a close-up, the name, LinkedIn and GitHub.', poster: ['#0A1626', '#00D4AA'] },
       { slug: 'socials-profile', key: 'B30', name: 'Socials: profile card', round: 6, mergeOf: ['B28'], title: 'A profile hover card.', blurb: 'B28 with a wider hover card: the close-up beside the name, a proof line, and LinkedIn and GitHub buttons.', poster: ['#0A1626', '#00D4AA'] },
       { slug: 'socials-zoom', key: 'B31', name: 'Socials: zoom', round: 6, mergeOf: ['B28'], title: 'The photo grows.', blurb: 'B28 where the photo itself grows into a big close-up on hover or tap, with LinkedIn and GitHub icons under it.', poster: ['#0A1626', '#00D4AA'] },
-      { slug: 'highrise-profile', key: 'B32', name: 'High floor, signed, profile card', round: 6, mergeOf: ['B23', 'B28', 'B30'], title: 'B23 with what B28 and B30 settled.', blurb: 'B23’s high floor signed at the foot, with Zev’s original photo, the near-solid copy side (B27) and the profile card on hover (B30).', poster: ['#0E1C2E', '#00D4AA'], live: true, liveHref: '/' },
+      { slug: 'highrise-profile', key: 'B32', name: 'High floor, signed, profile card', round: 6, mergeOf: ['B23', 'B28', 'B30'], title: 'B23 with what B28 and B30 settled.', blurb: 'B23’s high floor signed at the foot, with Zev’s original photo, the near-solid copy side (B27) and the profile card on hover (B30).', poster: ['#0E1C2E', '#00D4AA'] },
+      { slug: 'b32-office-night', key: 'B33', name: 'Open office, after hours', round: 7, mergeOf: ['B32'], title: 'The floor empties; the work goes on.', blurb: 'B32 over an empty open office at night, the nearest screens showing traffic and search dashboards whose lines keep moving (redone in round 8; the first cut had blank, blurred screens).', poster: ['#0A1626', '#7FA3C8'] },
+      { slug: 'b32-office-lights', key: 'B34', name: 'Open office, last light', round: 7, mergeOf: ['B32'], title: 'The lights go off; the screens stay on.', blurb: 'B32 over an open office at dusk, the overhead lights switching off row by row while the monitors stay on.', poster: ['#101B2A', '#C9B98A'] },
+      { slug: 'b32-datacenter-dusk', key: 'B35', name: 'Data center at dusk', round: 7, mergeOf: ['B32'], title: 'Where the agents run.', blurb: 'B32 over a quiet data center in open country at dusk, vapor drifting from the roof, lights on wet concrete.', poster: ['#0B1A2E', '#7FD6C8'] },
+      { slug: 'b32-datacenter-aerial', key: 'B36', name: 'Data center from above', round: 7, mergeOf: ['B32'], title: 'The campus at night.', blurb: 'B32 over a slow aerial drift across a data center campus in dark forest, rooftop fans turning.', poster: ['#071019', '#5FA8A0'] },
+      { slug: 'b32-dev-window', key: 'B37', name: 'Zev at the window desk', round: 8, mergeOf: ['B32'], title: 'The one person, at work.', blurb: 'B32 over Zev seen from behind at a window desk on a high floor at dusk: code on the left screen, search performance climbing on the right (redone in rounds 9–10 from his reference sheet, head turned to the screens; the first cut was a stranger, with code on both screens).', poster: ['#0E1C2E', '#7FA3C8'] },
+      { slug: 'b32-dev-output', key: 'B38', name: 'Zev, the pages appear', round: 8, mergeOf: ['B32'], title: 'Type, and the work arrives.', blurb: 'B32 over Zev from behind: code on the left screen, and on the right one, finished clip-art pages fill a grid as he types (redone in round 10; the first cut was a stranger with product photos).', poster: ['#1A2533', '#C8CED6'] },
+      { slug: 'b32-team-floor', key: 'B39', name: 'The floor at work', round: 8, mergeOf: ['B32'], title: 'A team still at it.', blurb: 'B32 over a marketing and engineering team at their desks in the early evening, dashboards and code on their screens, one leaning in to a colleague.', poster: ['#101820', '#C9A97A'] },
+      { slug: 'b32-team-desk', key: 'B40', name: 'Two at a dashboard', round: 8, mergeOf: ['B32'], title: 'Reading the numbers together.', blurb: 'B32 over two colleagues at one desk, one seated and one leaning in, reading a traffic dashboard against a city at blue hour.', poster: ['#0E1A2A', '#D8CFC0'] },
+      { slug: 'b32-zev-dc-aisle', key: 'B41', name: 'Zev in the cold aisle', round: 11, mergeOf: ['B32'], title: 'Walking the aisle.', blurb: 'B32 over Zev from behind, walking a long cold aisle between server racks, the camera following at a steady distance.', poster: ['#070D14', '#5FB8C8'] },
+      { slug: 'b32-zev-dc-catwalk', key: 'B42', name: 'Zev on the catwalk', round: 11, mergeOf: ['B32'], title: 'Above the hall.', blurb: 'B32 over Zev from behind on a steel catwalk above a vast data hall, rows of racks glowing below.', poster: ['#0A1118', '#4E9FB0'] },
+      { slug: 'b32-zev-dc-glass', key: 'B43', name: 'Zev in the glass corridor', round: 11, mergeOf: ['B32'], title: 'Past the glass.', blurb: 'B32 over Zev from behind in a glass corridor, server racks glowing behind the glass on his right.', poster: ['#0E1218', '#6FB3C0'] },
+      { slug: 'b32-zev-agency-close', key: 'B44', name: 'Esy Search, over the shoulder', round: 11, mergeOf: ['B38'], title: 'The real product, on screen.', blurb: 'B32 over Zev’s left shoulder, his big monitor on the right showing the real os.esy.com/agency/search page, logo and nav included: the screenshot baked onto the screen in every frame, since the video model garbles UI.', poster: ['#0E1A2A', '#F4F1EA'] },
+      { slug: 'b32-zev-agency-desk', key: 'B45', name: 'Esy Search, at the desk', round: 11, mergeOf: ['B38'], live: true, liveHref: '/', title: 'B38, with Esy on the screen.', blurb: 'B38’s desk with the clip-art grid swapped for the real os.esy.com/agency/search page on his second screen.', poster: ['#101B2A', '#F4F1EA'] },
     ],
   },
   {

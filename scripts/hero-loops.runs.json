@@ -118,5 +118,257 @@
       "url": "https://images.esy.com/artifacts/tool/run-a9508497/step-2.mp4",
       "cost": 2.442715
     }
+  },
+  "datacenter-dusk": {
+    "still": {
+      "runId": "run-2897e946",
+      "url": "https://images.esy.com/artifacts/photo-image/run-2897e946/image.webp",
+      "cost": 0.213725
+    },
+    "loop": {
+      "runId": "run-9a33bb63",
+      "url": "https://images.esy.com/artifacts/tool/run-9a33bb63/step-2.mp4",
+      "cost": 2.444
+    }
+  },
+  "office-lights": {
+    "still": {
+      "runId": "run-e5876c8f",
+      "url": "https://images.esy.com/artifacts/photo-image/run-e5876c8f/image.webp",
+      "cost": 0.21189
+    },
+    "loop": {
+      "runId": "run-093cb26c",
+      "url": "https://images.esy.com/artifacts/tool/run-093cb26c/step-2.mp4",
+      "cost": 2.444
+    }
+  },
+  "office-night": {
+    "still": {
+      "runId": "run-62bd32a1",
+      "url": "https://images.esy.com/artifacts/photo-image/run-62bd32a1/image.webp",
+      "cost": 0.211885
+    },
+    "loop": {
+      "runId": "run-2395448b",
+      "url": "https://images.esy.com/artifacts/tool/run-2395448b/step-2.mp4",
+      "cost": 2.444
+    }
+  },
+  "datacenter-aerial": {
+    "still": {
+      "runId": "run-07519ed4",
+      "url": "https://images.esy.com/artifacts/photo-image/run-07519ed4/image.webp",
+      "cost": 0.214065
+    },
+    "loop": {
+      "runId": "run-8b008a30",
+      "url": "https://images.esy.com/artifacts/tool/run-8b008a30/step-2.mp4",
+      "cost": 2.444
+    }
+  },
+  "dev-output": {
+    "still": {
+      "runId": "run-e89cea13",
+      "url": "https://images.esy.com/artifacts/photo-image/run-e89cea13/image.webp",
+      "cost": 0.217605
+    },
+    "loop": {
+      "runId": "run-e9ec6d15",
+      "url": "https://images.esy.com/artifacts/tool/run-e9ec6d15/step-2.mp4",
+      "cost": 2.4467
+    }
+  },
+  "dev-window": {
+    "still": {
+      "runId": "run-895a8b32",
+      "url": "https://images.esy.com/artifacts/photo-image/run-895a8b32/image.webp",
+      "cost": 0.217575
+    },
+    "loop": {
+      "runId": "run-3a8624c5",
+      "url": "https://images.esy.com/artifacts/tool/run-3a8624c5/step-2.mp4",
+      "cost": 2.445578
+    }
+  },
+  "office-dashboards": {
+    "still": {
+      "runId": "run-9f2d0739",
+      "url": "https://images.esy.com/artifacts/photo-image/run-9f2d0739/image.webp",
+      "cost": 0.21669
+    },
+    "loop": {
+      "runId": "run-dc0ef710",
+      "url": "https://images.esy.com/artifacts/tool/run-dc0ef710/step-2.mp4",
+      "cost": 2.445845
+    }
+  },
+  "team-floor": {
+    "still": {
+      "runId": "run-511b8baf",
+      "url": "https://images.esy.com/artifacts/photo-image/run-511b8baf/image.webp",
+      "cost": 0.219225
+    },
+    "loop": {
+      "runId": "run-4dd749c6",
+      "url": "https://images.esy.com/artifacts/tool/run-4dd749c6/step-2.mp4",
+      "cost": 2.44663
+    }
+  },
+  "team-desk": {
+    "still": {
+      "runId": "run-f3168d1a",
+      "url": "https://images.esy.com/artifacts/photo-image/run-f3168d1a/image.webp",
+      "cost": 0.217395
+    },
+    "loop": {
+      "runId": "run-90d3c150",
+      "url": "https://images.esy.com/artifacts/tool/run-90d3c150/step-2.mp4",
+      "cost": 2.443859
+    }
+  },
+  "zev-window-edit": {
+    "still": {
+      "runId": "run-9c1f7d01",
+      "url": "https://images.esy.com/artifacts/tool/run-9c1f7d01/step-1.webp",
+      "cost": 0.211004
+    }
+  },
+  "zev-window": {
+    "still": {
+      "runId": "run-8bc226dd",
+      "url": "https://images.esy.com/artifacts/tool/run-8bc226dd/step-1.webp",
+      "cost": 0.211004
+    },
+    "loop": {
+      "runId": "run-51834d5a",
+      "url": "https://images.esy.com/artifacts/tool/run-51834d5a/step-2.mp4",
+      "cost": 2.446261
+    }
+  },
+  "zev-desk-a": {
+    "still": {
+      "runId": "run-ba77508f",
+      "url": "https://images.esy.com/artifacts/tool/run-ba77508f/step-1.webp",
+      "cost": 0.211
+    },
+    "loop": {
+      "runId": "run-f4b4a365",
+      "url": "https://images.esy.com/artifacts/tool/run-f4b4a365/step-2.mp4",
+      "cost": 2.448098
+    }
+  },
+  "zev-desk-b": {
+    "still": {
+      "runId": "run-d5e522f6",
+      "url": "https://images.esy.com/artifacts/tool/run-d5e522f6/step-1.webp",
+      "cost": 0.211
+    }
+  },
+  "zev-output": {
+    "still": {
+      "runId": "run-7b37b797",
+      "url": "https://images.esy.com/artifacts/tool/run-7b37b797/step-1.webp",
+      "cost": 0.211004
+    },
+    "loop": {
+      "runId": "run-20d92f97",
+      "url": "https://images.esy.com/artifacts/tool/run-20d92f97/step-2.mp4",
+      "cost": 2.447328
+    }
+  },
+  "zev-desk-a2": {
+    "loop": {
+      "runId": "run-294181e9",
+      "url": "https://images.esy.com/artifacts/tool/run-294181e9/step-2.mp4",
+      "cost": 2.447888
+    }
+  },
+  "zev-dc-glass": {
+    "still": {
+      "runId": "run-1f92419e",
+      "url": "https://images.esy.com/artifacts/tool/run-1f92419e/step-1.webp",
+      "cost": 0.211004
+    },
+    "loop": {
+      "runId": "run-a41b9aea",
+      "url": "https://images.esy.com/artifacts/tool/run-a41b9aea/step-2.mp4",
+      "cost": 2.447081
+    }
+  },
+  "zev-dc-aisle": {
+    "still": {
+      "runId": "run-f7b87c63",
+      "url": "https://images.esy.com/artifacts/tool/run-f7b87c63/step-1.webp",
+      "cost": 0.211004
+    },
+    "loop": {
+      "runId": "run-502de9ef",
+      "url": "https://images.esy.com/artifacts/tool/run-502de9ef/step-2.mp4",
+      "cost": 2.447281
+    }
+  },
+  "zev-dc-catwalk": {
+    "still": {
+      "runId": "run-668c3344",
+      "url": "https://images.esy.com/artifacts/tool/run-668c3344/step-1.webp",
+      "cost": 0.211004
+    },
+    "loop": {
+      "runId": "run-0eeb0a57",
+      "url": "https://images.esy.com/artifacts/tool/run-0eeb0a57/step-2.mp4",
+      "cost": 2.447596
+    }
+  },
+  "zev-agency-close": {
+    "base": {
+      "runId": "run-4f9d9f93",
+      "url": "https://images.esy.com/artifacts/tool/run-4f9d9f93/step-1.webp",
+      "cost": 0.211004
+    },
+    "still": {
+      "url": "https://images.esy.com/media/uploads/6c24a056-5db8-4098-92b5-825f725f319c/0c168745a4c94d21b111def140a039e9.webp",
+      "cost": 0,
+      "composite": "os.esy.com/agency/search screenshot, 2026-10-09"
+    },
+    "loop": {
+      "runId": "run-4502cd9b",
+      "url": "https://images.esy.com/artifacts/tool/run-4502cd9b/step-2.mp4",
+      "cost": 2.446706
+    }
+  },
+  "zev-agency-desk": {
+    "base": {
+      "runId": "run-7b37b797",
+      "url": "https://images.esy.com/artifacts/tool/run-7b37b797/step-1.webp",
+      "cost": 0.211004
+    },
+    "still": {
+      "url": "https://images.esy.com/media/uploads/6c24a056-5db8-4098-92b5-825f725f319c/c12abde7543b4f37b92db3d5861b2799.webp",
+      "cost": 0,
+      "composite": "os.esy.com/agency/search screenshot, 2026-10-09"
+    },
+    "loop": {
+      "runId": "run-16ec13a8",
+      "url": "https://images.esy.com/artifacts/tool/run-16ec13a8/step-2.mp4",
+      "cost": 2.447049
+    }
+  },
+  "zev-agency-shoulder": {
+    "base": {
+      "runId": "run-2f0a0621",
+      "url": "https://images.esy.com/artifacts/tool/run-2f0a0621/step-1.webp",
+      "cost": 0.211004
+    },
+    "still": {
+      "url": "https://images.esy.com/media/uploads/6c24a056-5db8-4098-92b5-825f725f319c/ba7b00a63dab41e1a8e65faefd42628e.webp",
+      "cost": 0,
+      "composite": "os.esy.com/agency/search screenshot, 2026-10-09"
+    },
+    "loop": {
+      "runId": "run-8d6ad0e8",
+      "url": "https://images.esy.com/artifacts/tool/run-8d6ad0e8/step-2.mp4",
+      "cost": 2.447205
+    }
   }
 }

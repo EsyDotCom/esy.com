@@ -1,12 +1,12 @@
 import NewsletterHomePage from "../components/NewsletterHome/NewsletterHomePage";
-import { HomeHeroHighFloor, resolveDesks } from "../components/EducationHero";
+import { HomeHeroAtWork, resolveDesks } from "../components/EducationHero";
 import { getAllAgenticArticles } from "../lib/published-articles";
 
 // The homepage is a Marketing Engineering publication, fronted by Zev. Hero
-// (2026-10-09): HomeHeroHighFloor, B32 from /prototypes/hero-backdrop/: a slow
-// shot of a high-floor office at dusk behind the same words, Zev's photo small
-// and signed under the button with his LinkedIn and GitHub on hover. The hero
-// before it is HomeHeroPortrait (src/components/EducationHero/HomeHeroes.tsx).
+// (2026-10-09, evening): HomeHeroAtWork, B45 from /prototypes/hero-backdrop/:
+// Zev from behind at his desk at dusk, os.esy.com's Search page on his screen,
+// signed under the button as before. The heroes before it are HomeHeroHighFloor
+// (B32, earlier that day) and HomeHeroPortrait (src/components/EducationHero/HomeHeroes.tsx).
 //
 // Hero 2026-10-06 → 10-09: C · Engineering from /prototypes/home-promise/. The blunt claim
 // "AI marketing is an engineering job now." leads, with no greeting before it;
@@ -96,9 +96,9 @@ export default async function HomePage() {
       compose={COMPOSE}
       appsLayout="tour"
       newsColumn
-      // To go back to the portrait hero (2026-10-06 → 10-09), render
-      // <HomeHeroPortrait desks={...} /> here instead (same import).
-      hero={<HomeHeroHighFloor desks={resolveDesks(articles)} />}
+      // To go back, import and render <HomeHeroHighFloor desks={...} /> (the high
+      // floor, 2026-10-09 day) or <HomeHeroPortrait desks={...} /> here instead.
+      hero={<HomeHeroAtWork desks={resolveDesks(articles)} />}
     />
   );
 }

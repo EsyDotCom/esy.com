@@ -42,12 +42,25 @@ const SMALL_LEFT: Record<string, { byline: 'top' | 'button' | 'foot'; faceSize: 
   // B23's high floor with everything B28–B30 settled: the original photo,
   // the near-solid copy side, and the profile card on hover.
   'highrise-profile': { byline: 'foot', faceSize: 56, photo: '/images/zev-uhuru.png', solidCopy: true, socials: 'profile' },
+  // Rounds 7–8: B32's layout over an open office, a data center, or people at work.
+  ...Object.fromEntries(['office-night', 'office-lights', 'datacenter-dusk', 'datacenter-aerial', 'dev-window', 'dev-output', 'team-floor', 'team-desk',
+    'zev-dc-aisle', 'zev-dc-catwalk', 'zev-dc-glass', 'zev-agency-close', 'zev-agency-desk'].map((id) => [
+    `b32-${id}`, { byline: 'foot' as const, faceSize: 56, photo: '/images/zev-uhuru.png', solidCopy: true, socials: 'profile' as const },
+  ])),
 };
 const SHOT_OF: Record<string, string> = {
   'highrise-top': 'desk-highrise', 'highrise-button': 'desk-highrise', 'highrise-foot': 'desk-highrise',
   'loft-top': 'desk-loft', 'loft-button': 'desk-loft', 'loft-foot': 'desk-loft', 'loft-foot-solid': 'desk-loft', 'loft-foot-original': 'desk-loft',
   'socials-pop': 'desk-loft', 'socials-profile': 'desk-loft', 'socials-zoom': 'desk-loft',
   'highrise-profile': 'desk-highrise',
+  // B33 was redone in round 8 with analytics dashboards on its screens; the first cut stays as 'office-night'.
+  'b32-office-night': 'office-dashboards', 'b32-office-lights': 'office-lights', 'b32-datacenter-dusk': 'datacenter-dusk', 'b32-datacenter-aerial': 'datacenter-aerial',
+  // B37 and B38 were redone as Zev himself (rounds 9–10, from his reference sheet); their first cuts stay as 'dev-window' and 'dev-output'.
+  'b32-dev-window': 'zev-desk-a', 'b32-dev-output': 'zev-output', 'b32-team-floor': 'team-floor', 'b32-team-desk': 'team-desk',
+  // Round 11: Zev walking a data center, and Esy's real Search page on his screen.
+  'b32-zev-dc-aisle': 'zev-dc-aisle', 'b32-zev-dc-catwalk': 'zev-dc-catwalk', 'b32-zev-dc-glass': 'zev-dc-glass',
+  // B44 was re-shot over his left shoulder (the first close-up put the screen under the copy); that cut stays as 'zev-agency-close'.
+  'b32-zev-agency-close': 'zev-agency-shoulder',
 };
 const CENTERED: Record<string, 'left' | 'right'> = { 'centered-left': 'left', 'centered-right': 'right', 'plain-left': 'left', 'plain-right': 'right', 'original-left': 'left' };
 

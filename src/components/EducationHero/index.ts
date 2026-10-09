@@ -15,7 +15,7 @@ export { EduStudioAfter, EduStudioAvatar, EduStudioProfile } from './EduStudio';
 export { CourseSignup, PROMISES, PromiseStudio } from './promises';
 // The homepage's heroes by name (2026-10-09): High floor is live; Portrait is the
 // one before it, kept for a one-line revert in src/app/page.js.
-export { HomeHeroHighFloor, HomeHeroPortrait } from './HomeHeroes';
+export { HomeHeroAtWork, HomeHeroHighFloor, HomeHeroPortrait } from './HomeHeroes';
 export type { HeroPromise } from './promises';
 export { latestLesson, resolveDesks } from './desks';
 export type { Lesson, ResolvedDesk } from './desks';

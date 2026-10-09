@@ -30,10 +30,11 @@ export function Bar({ onFind: _onFind }: { onFind?: (q: string) => void }) {
   return (
     <header className={`sd-bar ${solid ? 'is-solid' : ''}`}>
       <div className="sd-bar-in">
-        <Link href="/" className={`fo-lockup sf-lockup ${solid ? '' : 'is-light'}`} aria-label="Esy, The Marketing Engineer">
+        <Link href="/" className={`fo-lockup sf-lockup ${solid ? '' : 'is-light'}`} aria-label="Esy, AI Marketing">
           <span className="fo-wordmark">esy</span>
           <span className="fo-lockup-sep" aria-hidden="true" />
-          <span className="fo-lockup-name">The Marketing Engineer</span>
+          {/* Matches the site header's lockup, "esy | AI Marketing" (2026-10-09). */}
+          <span className="fo-lockup-name">AI Marketing</span>
         </Link>
         {/* The lockup and one action, nothing else (2026-10-06): no section
             links and no bar search; the page's own search and shelf cover it. */}

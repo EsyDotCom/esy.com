@@ -87,12 +87,13 @@ export default function LightHeader({
             size={60}
             priority
           />
-          {/* Lockup: wordmark · hairline · what this site is. esy.com is the
-              publication (2026-09-30), so it reads "esy | The Marketing
-              Engineer", as os.esy.com reads "esy | OS" and compose.esy.com
-              "esy | Compose". Phones show the wordmark alone. */}
+          {/* Lockup: wordmark · hairline · what this site is about, "esy | AI
+              Marketing" (2026-10-09; it read "The Marketing Engineer" from
+              09-30), the umbrella the homepage and every hub page title use,
+              as os.esy.com reads "esy | OS". The Marketing Engineer stays the
+              weekly email's name. Phones show the wordmark alone. */}
           <span className="lh-lockup-rule" aria-hidden="true" />
-          <span className="lh-lockup-tag">The Marketing Engineer</span>
+          <span className="lh-lockup-tag">AI Marketing</span>
         </Link>
         <nav className="lh-nav" aria-label="Primary">
           {/* The way back in for clients and the team (2026-10-04). os.esy.com

@@ -61,6 +61,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const excludedRoutes = [
     '/blog',
     '/prototypes', // noindex clickable directions, not public pages
+    '/newsletter/confirm', // the confirmation link's landing page, noindex
     '/gone', // the 410 page retired addresses render; never a destination
   ]
   

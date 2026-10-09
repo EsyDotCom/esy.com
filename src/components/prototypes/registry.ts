@@ -2992,6 +2992,70 @@ export const PROTOTYPES: Prototype[] = [
       { slug: 'studio-two-screens', key: 'K', name: 'Studio, two screens', round: 3, mergeOf: ['F', 'J'], title: 'His desk, both screens.', blurb: 'F’s room (shelf, lamp, city window, plant) with J’s two screens: Mason from behind at his desk at night, tentacles pressing the keys between an editor and the terminal.', poster: ['#0E2B45', '#E3B660'], live: true, liveHref: '/courses/how-to-use-claude-code/' },
     ],
   },
+  {
+    slug: 'newsletter',
+    name: 'The newsletter page',
+    date: '2026-10-09',
+    headline: 'Three ways to open esy.com/newsletter, so people can read before they subscribe.',
+    intro:
+      'The Marketing Engineer gets its own page, with an archive of past issues like The Batch. Each take opens it differently; click any issue to read it, and try the signup (it never sends).',
+    summary:
+      'The newsletter’s page over three sample issues: a masthead with the archive, the latest issue as the page itself, or the homepage’s studio hero with issue cards.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Three openings',
+        summary:
+          'A leads with the promise and a numbered archive, B lets the latest issue make the case on its own, C puts Zev’s face first. The issues are samples written around real facts.',
+      },
+      {
+        n: 2,
+        title: 'Closer to Substack',
+        summary:
+          'A publication home like Substack’s: the newsletter’s own masthead and tabs, a big cover for the latest issue, and covers generated through api.esy.com for every issue. D is the front page, E leads with the signup, F is a magazine grid with the week’s news.',
+      },
+      {
+        n: 3,
+        title: 'Below the cover',
+        summary:
+          'D’s top, closer to Substack (the name alone, the title lifted to the middle of a brighter cover), and three takes on the rest after Dan Koe’s Substack: a feed of issues with covers on the right, with a rail of Esy’s own properties (G), the week’s news (H), or no rail and the signup inline (I).',
+      },
+    ],
+    variants: [
+      { slug: 'batch', key: 'A', name: 'The Batch', round: 1, title: 'AI marketing, built in public.', blurb: 'A light masthead with the promise and signup, the latest issue featured, then every issue as a numbered list.', poster: ['#F8F9FA', '#00A896'] },
+      { slug: 'read-first', key: 'B', name: 'Read first', round: 1, title: 'The latest issue is the page.', blurb: 'This week’s issue in full as the page, with the signup and past issues in a column beside it.', poster: ['#FFFFFF', '#0A2540'] },
+      { slug: 'studio', key: 'C', name: 'Studio', round: 1, title: 'Every week, one AI marketing system I run.', blurb: 'The homepage’s navy hero with Zev’s portrait and the newsletter’s promise, then every issue as a card.', poster: ['#0A1626', '#00D4AA'] },
+      { slug: 'publication', key: 'D', name: 'Publication', round: 2, title: 'A front page, like Substack’s.', blurb: 'The newsletter’s own masthead and tabs, the latest issue as a big cover with “Read the latest”, a “Most popular” row, then a dark signup band.', poster: ['#F3F1ED', '#0A1626'] },
+      { slug: 'welcome', key: 'E', name: 'Welcome', round: 2, title: 'The signup leads, the latest cover beside it.', blurb: 'A navy welcome card with the promise and signup beside the latest issue’s cover, then a Latest / Top feed with covers on each row.', poster: ['#0A1626', '#F3F1ED'] },
+      { slug: 'magazine', key: 'F', name: 'Magazine', round: 2, title: 'A lead cover and the week’s news.', blurb: 'The latest issue two-thirds wide with the others stacked beside it, the week’s AI marketing news across the page, then the signup band.', poster: ['#F3F1ED', '#00A896'] },
+      { slug: 'feed-rail', key: 'G', name: 'Feed + rail', round: 3, mergeOf: ['D'], title: 'Feed, and Esy beside it.', blurb: 'D’s cover, then a Latest / Top feed with covers on the right and a rail: the newsletter card with the signup, then “Also from Esy”.', poster: ['#F3F1ED', '#0A2540'] },
+      { slug: 'feed-news', key: 'H', name: 'Feed + news', round: 3, mergeOf: ['D'], title: 'Feed, and the week’s news beside it.', blurb: 'D’s cover, the same feed, and a rail with the signup and this week’s AI Marketing News.', poster: ['#F3F1ED', '#00A896'] },
+      { slug: 'wide-feed', key: 'I', name: 'Wide feed', round: 3, mergeOf: ['D'], title: 'One wide feed, signup inline.', blurb: 'D’s cover, then a wider feed with bigger covers and a News tab, and the signup inline after the second issue.', poster: ['#F3F1ED', '#0A1626'] },
+    ],
+  },
+  {
+    slug: 'newsletter-issue',
+    name: 'A newsletter issue on the web',
+    date: '2026-10-09',
+    headline: 'Three ways to read one issue of The Marketing Engineer on the web.',
+    intro:
+      'Each issue gets its own page, for people who arrive from a shared link or the archive. Switch issues with the older and newer links; the signup never sends.',
+    summary:
+      'One issue as a page: a narrow letter, a reading page with a sections rail, or a magazine-style cover with the number big.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Three readings',
+        summary:
+          'Each issue covers one system, then the week’s AI marketing news (real AI Marketing News posts). L1 reads like the email, L2 keeps the sections and signup beside you, L3 opens on a cover.',
+      },
+    ],
+    variants: [
+      { slug: 'letter', key: 'L1', name: 'Letter', round: 1, title: 'It reads like the email.', blurb: 'One narrow column: the masthead line, the issue, the signup at the end, then older and newer issues.', poster: ['#FFFFFF', '#00A896'] },
+      { slug: 'guide', key: 'L2', name: 'Guide', round: 1, title: 'Sections and signup beside you.', blurb: 'A reading page with a sticky rail: the issue’s sections to jump between, and the signup always in view.', poster: ['#F8F9FA', '#0A2540'] },
+      { slug: 'cover', key: 'L3', name: 'Cover', round: 1, title: 'A cover for every issue.', blurb: 'A navy cover with the issue number big, the issue under it, a full-width signup band, then the other issues.', poster: ['#0A1626', '#00D4AA'] },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

@@ -17,7 +17,7 @@ type RevalidateBody = {
 };
 
 // Publications that feed The Marketing Engineer. All three render the same way
-// (homepage Latest + /engineer/<slug>/ articles), so a publish/unpublish on any of them
+// (homepage Latest + /articles/<slug>/ articles), so a publish/unpublish on any of them
 // revalidates the same routes. `agentic` is the publication going forward;
 // `esy-research` / `esy-learn` are the pre-merge sections, kept so their existing
 // articles and Connect wiring keep working.
@@ -94,7 +94,7 @@ export async function POST(request: NextRequest) {
   revalidateTag("published-articles");
   revalidateTag(`published-articles:${publication}`);
 
-  // The homepage lists the latest articles; the article itself lives at /engineer/<slug>/.
+  // The homepage lists the latest articles; the article itself lives at /articles/<slug>/.
   const paths = ["/", articlePath(slug), "/sitemap.xml"];
   paths.forEach((path) => revalidatePath(path));
   // Topic hubs list articles too; refresh the index and every hub under it.

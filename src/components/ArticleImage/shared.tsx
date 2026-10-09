@@ -8,7 +8,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import EnhancedMarkdownRenderer from '@/components/SchoolArticle/EnhancedMarkdownRenderer';
 import NewsletterSignup from '@/components/NewsletterHome/NewsletterSignup';
 import { articlePath } from '@/lib/article-path';
@@ -130,12 +130,17 @@ export function ArticleEnd({ related }: { related: AgenticVideo[] }) {
   );
 }
 
-/** Where the article sits: its topic hub, when it has one. */
+/** The way back: the article's topic hub ("← Agentic Workflows"), or the
+    topics when it has none. Articles have flat addresses (/articles/<slug>/,
+    2026-10-09), so this link is the trail back to where they're browsed,
+    matching the topic page's own "← Topics". */
 export function TopicKicker({ topic, onDark = false }: { topic: { name: string; href: string } | null; onDark?: boolean }) {
-  if (!topic) return <p className={`ai-kicker${onDark ? ' ai-kicker--onDark' : ''}`}>The Marketing Engineer</p>;
+  const back = topic ?? { name: 'Topics', href: '/topics/' };
   return (
     <p className={`ai-kicker${onDark ? ' ai-kicker--onDark' : ''}`}>
-      <Link href={topic.href}>{topic.name}</Link>
+      <Link href={back.href} className="ai-kicker-back">
+        <ArrowLeft size={13} aria-hidden="true" /> {back.name}
+      </Link>
     </p>
   );
 }

@@ -22,7 +22,7 @@ import "./films-a.css";
 import "./films-index.css";
 
 const LINKS = [
-  { label: "The Marketing Engineer", href: "/engineer/" },
+  { label: "The Marketing Engineer", href: "/newsletter/" },
   { label: "Topics", href: "/topics/" },
   { label: "Docs", href: "/docs/" },
   { label: "About", href: "/about/" },

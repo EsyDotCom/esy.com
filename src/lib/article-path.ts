@@ -1,16 +1,17 @@
-// Articles of The Marketing Engineer live under one namespace:
-// esy.com/engineer/<slug>/. /engineer is the publication's front page
-// and index; the namespace keeps articles out of the site root, so they read
-// as the publication's own and never compete with top-level routes. (They sat
-// at the root briefly, 2026-09-14; src/app/[slug] 308s those URLs here.)
+// Articles live under one namespace: esy.com/articles/<slug>/ (2026-10-09; it
+// was /engineer/<slug>/, which now 308s here). People browse them by topic
+// (/topics/), so there's no /articles index: /articles and /engineer go to
+// /topics. One flat address per article, whatever topics it's filed under,
+// so renaming a topic never breaks a link. (They sat at the site root briefly,
+// 2026-09-14; src/app/[slug] 308s those URLs here too.)
 // One helper so every link, canonical URL, and sitemap entry agrees.
 
-/** Where "latest articles" points: the Latest section on /engineer (the homepage until 2026-09-18). */
-export const LATEST_ARTICLES_HREF = "/engineer/#latest";
+/** Where "latest articles" points: the topics, where articles are browsed. */
+export const LATEST_ARTICLES_HREF = "/topics/";
 
 /** Canonical path for one article (trailing slash, per next.config trailingSlash). */
 export function articlePath(slug: string): string {
-  return `/engineer/${slug}/`;
+  return `/articles/${slug}/`;
 }
 
 // What an article slug may look like: lowercase words joined by single

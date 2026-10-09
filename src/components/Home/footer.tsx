@@ -303,7 +303,7 @@ export default function Footer () {
               { href: "/skills/", text: "Skills" },
               { href: "/topics/", text: "Topics" },
               { href: "/news/", text: "AI Marketing News" },
-              { href: "/engineer/", text: "The Marketing Engineer" },
+              { href: "/newsletter/", text: "The Marketing Engineer" },
             ]}
           />
 

@@ -131,7 +131,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // their content in TS data registries (not content directories), so each
   // must be enumerated explicitly. prompt-library is intentionally excluded.
 
-  // The Marketing Engineer articles, at /engineer/<slug>/. Slugs come from
+  // Articles, at /articles/<slug>/. Slugs come from
   // every publication via the merged getter (lastModified from real publish
   // dates).
   const agenticVideos = await getAllAgenticArticles()

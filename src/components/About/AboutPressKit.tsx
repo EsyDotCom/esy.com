@@ -29,7 +29,7 @@ export default function AboutPressKit() {
           <dl className="ab-kit-facts">
             <div><dt>Role</dt><dd>{ROLE}</dd></div>
             <div><dt>Based in</dt><dd>{PLACE}</dd></div>
-            <div><dt>Writes</dt><dd><Link href="/engineer/">The Marketing Engineer</Link></dd></div>
+            <div><dt>Writes</dt><dd><Link href="/newsletter/">The Marketing Engineer</Link></dd></div>
             <div><dt>Builds</dt><dd><a href={WORK.os.href} target="_blank" rel="noopener noreferrer">Esy OS</a></dd></div>
             <div><dt>Runs</dt><dd>
               <a href={WORK.clipart.href} target="_blank" rel="noopener noreferrer">clip.art</a>,{' '}

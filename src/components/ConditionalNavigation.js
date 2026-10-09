@@ -31,8 +31,8 @@ const ConditionalNavigation = () => {
   
   // Agentic pages (The Agentic Engineer — merged /learn + /research, Jul 2026).
   // Strict match so /agentic-workflows (separate SEO page) doesn't count.
-  // Articles live at /engineer/<slug>/ and take the default navigation.
-  const isLearnPage = normalizedPath === '/agentic' || normalizedPath?.startsWith('/engineer/');
+  // Articles live at /articles/<slug>/ and take the default navigation.
+  const isLearnPage = normalizedPath === '/agentic' || normalizedPath?.startsWith('/articles/');
   const isLearnIndex = normalizedPath === '/agentic';
   
   // Check if we're on course lesson pages (focused learning experience)
@@ -80,10 +80,9 @@ const ConditionalNavigation = () => {
   const isTopicsPage = normalizedPath === '/topics' || normalizedPath?.startsWith('/topics/');
   // Articles too: the whole publication (homepage, topics, articles) shares
   // the light header instead of the navy site bar.
-  const isArticlePage = normalizedPath?.startsWith('/engineer/');
-  // The publication's front page now lives at /engineer (the homepage is
-  // making room for Esy OS), and /prototypes render their own header.
-  const isEngineerIndex = normalizedPath === '/engineer';
+  const isArticlePage = normalizedPath?.startsWith('/articles/');
+  // /prototypes render their own header. (/engineer, the old front page,
+  // redirects to /topics since 2026-10-09.)
   const isPrototypesPage = normalizedPath === '/prototypes' || normalizedPath?.startsWith('/prototypes/');
   // The films index and every film page carry their own header: just the
   // logo, floating over the film.
@@ -115,7 +114,7 @@ const ConditionalNavigation = () => {
   // - Agents pages (own sidebar navigation)
   // - Scrollytelling story pages (own header via ScrollytellingHeader)
   // - Photo essays landing page (immersive experience with own header)
-  if (isEssayViewPage || isInfographicViewPage || isClipArtViewPage || isDocsPage || isAgentsPage || isScrollytellingStoryPage || isPhotoEssaysPage || isHomepage || isWaitlistPage || isTopicsPage || isArticlePage || isEngineerIndex || isPrototypesPage || isFilmPage || isEditorialPage || isCoursesPage || isNewsPage || isSkillsPage || isSeoPage || isNewsletterPage || isInvitePage) {
+  if (isEssayViewPage || isInfographicViewPage || isClipArtViewPage || isDocsPage || isAgentsPage || isScrollytellingStoryPage || isPhotoEssaysPage || isHomepage || isWaitlistPage || isTopicsPage || isArticlePage || isPrototypesPage || isFilmPage || isEditorialPage || isCoursesPage || isNewsPage || isSkillsPage || isSeoPage || isNewsletterPage || isInvitePage) {
     return null;
   }
 

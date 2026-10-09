@@ -392,50 +392,66 @@ const nextConfig = {
         permanent: true,
       },
       // School renamed to Learn (June 2026), Learn + Research merged into
-      // /agentic (Jul 2026), which became The Marketing Engineer (Sep 2026):
-      // /engineer is its front page (the homepage until 2026-09-18) and each article lives at
-      // /engineer/<slug>/. These point straight there so old links land in one
-      // hop instead of chaining through /agentic.
+      // /agentic (Jul 2026), which became The Marketing Engineer (Sep 2026),
+      // whose articles moved from /engineer/<slug>/ to /articles/<slug>/
+      // (2026-10-09). People browse articles by topic, so the old front pages
+      // land on /topics. Every old address reaches its new home directly (Next
+      // adds the trailing slash as a second, instant redirect).
+      {
+        source: '/engineer',
+        destination: '/topics',
+        permanent: true,
+      },
+      {
+        source: '/engineer/:slug*',
+        destination: '/articles/:slug*',
+        permanent: true,
+      },
+      {
+        source: '/articles',
+        destination: '/topics',
+        permanent: true,
+      },
       {
         source: '/school',
-        destination: '/engineer',
+        destination: '/topics',
         permanent: true,
       },
       {
         source: '/school/:path*',
-        destination: '/engineer/:path*',
+        destination: '/articles/:path*',
         permanent: true,
       },
       // The retired /learn/articles subtree has no article equivalent, so fold it
-      // into the index with specific rules BEFORE the catch-all slug mapping.
+      // into the topics with specific rules BEFORE the catch-all slug mapping.
       {
         source: '/learn',
-        destination: '/engineer',
+        destination: '/topics',
         permanent: true,
       },
       {
         source: '/learn/articles',
-        destination: '/engineer',
+        destination: '/topics',
         permanent: true,
       },
       {
         source: '/learn/articles/:path*',
-        destination: '/engineer',
+        destination: '/topics',
         permanent: true,
       },
       {
         source: '/learn/:slug*',
-        destination: '/engineer/:slug*',
+        destination: '/articles/:slug*',
         permanent: true,
       },
       {
         source: '/research',
-        destination: '/engineer',
+        destination: '/topics',
         permanent: true,
       },
       {
         source: '/research/:slug*',
-        destination: '/engineer/:slug*',
+        destination: '/articles/:slug*',
         permanent: true,
       },
       ...netlifyRedirectsFromFile(),

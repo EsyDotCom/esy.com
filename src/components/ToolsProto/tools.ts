@@ -153,6 +153,12 @@ export const TOOLS: Tool[] = [
     links: [{ kind: 'News', label: 'HubSpot’s Marketing Studio adds three agents', href: N('hubspot-marketing-studio-agents') }],
   },
   {
+    slug: 'n8n', name: 'n8n', maker: 'n8n', job: 'Automation & agents',
+    logo: L('n8n.png'),
+    does: 'Connects your apps into automated workflows, with AI agents as steps.',
+    links: [],
+  },
+  {
     slug: 'esy', name: 'Esy', maker: 'Esy (ours)', job: 'Automation & agents',
     wordmark: '/brand/logo/esy-wordmark.svg',
     does: 'Runs marketing work end to end, and records how every piece was made.',

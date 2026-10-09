@@ -6,11 +6,14 @@
  * cinema. The transcript sits under the room, on the light page. */
 
 import { Byline, TopicKicker } from '@/components/ArticleImage/shared';
+import { dekFor } from '@/lib/article-format';
 import FramedVideo from './FramedVideo';
 import { VideoArticleRest, videoDetail, type VideoArticle } from './shared';
 
 export default function VideoTheater(props: VideoArticle) {
   const { article, minutes, topic, segments } = props;
+  // The dek Compose writes, else the summary (registry and older articles).
+  const dek = dekFor(article);
   return (
     <article className="ai av av-theater">
       <FramedVideo
@@ -25,7 +28,7 @@ export default function VideoTheater(props: VideoArticle) {
           <header className="av-theater-head">
             <TopicKicker topic={topic} onDark />
             <h1 className="ai-title ai-title--onDark">{article.title}</h1>
-            {article.description && <p className="ai-dek ai-dek--onDark">{article.description}</p>}
+            {dek && <p className="ai-dek ai-dek--onDark">{dek}</p>}
             <Byline publishedAt={article.publishedAt} minutes={minutes} detail={videoDetail(article.durationSeconds)} onDark />
           </header>
         }

@@ -89,6 +89,18 @@ function directivePlugin() {
   };
 }
 
+// True when a hast node contains, at any depth, an image with a non-empty
+// title: one the img override below turns into a <figure>.
+function hasCaptionedImg(node) {
+  return Boolean(
+    node?.children?.some(
+      (child) =>
+        (child.tagName === 'img' && String(child.properties?.title ?? '').trim()) ||
+        hasCaptionedImg(child),
+    ),
+  );
+}
+
 const components = {
   // Handle blockquotes as key insights
   blockquote: ({ children }) => {
@@ -146,31 +158,47 @@ const components = {
     </a>
   ),
   
-  // Handle images with Next.js Image for optimization
-  img: ({ src, alt }) => (
-    <Image
-      src={src}
-      alt={alt || ''}
-      width={800}
-      height={450}
-      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 70vw, 660px"
-      loading="lazy"
-      style={{
-        display: 'block',
-        width: '100%',
-        maxWidth: '100%',
-        height: 'auto',
-        borderRadius: '12px',
-        margin: '1.5rem 0',
-        boxShadow: '0 2px 12px rgba(10, 37, 64, 0.08)',
-      }}
-    />
-  ),
+  // Handle images with Next.js Image for optimization. Compose exports an
+  // image's caption as its markdown title (`![alt](src "caption")`), so a
+  // titled image becomes a figure with a visible caption; an untitled one
+  // renders exactly as it always has.
+  img: ({ src, alt, title }) => {
+    const image = (
+      <Image
+        src={src}
+        alt={alt || ''}
+        width={800}
+        height={450}
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 70vw, 660px"
+        loading="lazy"
+        style={{
+          display: 'block',
+          width: '100%',
+          maxWidth: '100%',
+          height: 'auto',
+          borderRadius: '12px',
+          margin: '1.5rem 0',
+          boxShadow: '0 2px 12px rgba(10, 37, 64, 0.08)',
+        }}
+      />
+    );
+    const caption = typeof title === 'string' ? title.trim() : '';
+    if (!caption) return image;
+    return (
+      <figure className={styles.captionedFigure}>
+        {image}
+        <figcaption>{caption}</figcaption>
+      </figure>
+    );
+  },
 
-  // Handle paragraphs with better spacing
+  // Handle paragraphs with better spacing. A paragraph holding an image is
+  // unwrapped so the image (or its <figure>) never sits inside a <p>; a
+  // captioned image nested in a link is unwrapped too, since a <figure>
+  // inside a <p> is invalid HTML and breaks hydration.
   p: ({ children, node }) => {
     const hasImg = node?.children?.some(child => child.tagName === 'img');
-    if (hasImg) return <>{children}</>;
+    if (hasImg || hasCaptionedImg(node)) return <>{children}</>;
     return <p className={styles.paragraph}>{children}</p>;
   },
   

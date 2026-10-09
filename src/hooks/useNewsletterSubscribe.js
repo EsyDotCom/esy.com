@@ -32,7 +32,7 @@ const HONEYPOT_STYLE = {
  * @param {string} [opts.endpoint='/api/newsletter/subscribe'] - API endpoint to POST to
  * @param {number} [opts.errorResetMs=5000] - ms before auto-resetting error state
  *
- * Returns { subscribe, status, errorMessage, reset, honeypotProps, canSaveName, saveName }
+ * Returns { subscribe, status, errorMessage, reset, honeypotProps, canSaveName, saveName, alreadySubscribed }
  *
  * After a signup, `saveName(name)` adds a first name to the new subscriber
  * (/api/newsletter/name) with the one-time token the subscribe call returned;
@@ -42,6 +42,8 @@ const HONEYPOT_STYLE = {
 export function useNewsletterSubscribe({ endpoint = '/api/newsletter/subscribe', errorResetMs = 5000 } = {}) {
   const [status, setStatus] = useState('idle');
   const [nameToken, setNameToken] = useState(null);
+  // True when the address was already confirmed, so no email is coming.
+  const [alreadySubscribed, setAlreadySubscribed] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const errorTimerRef = useRef(null);
   const honeypotRef = useRef(null);
@@ -113,6 +115,7 @@ export function useNewsletterSubscribe({ endpoint = '/api/newsletter/subscribe',
       }
 
       setNameToken(typeof data.nameToken === 'string' ? data.nameToken : null);
+      setAlreadySubscribed(data.alreadySubscribed === true);
       setStatus('success');
     } catch (err) {
       setStatus('error');
@@ -165,5 +168,5 @@ export function useNewsletterSubscribe({ endpoint = '/api/newsletter/subscribe',
     }
   }, [nameToken]);
 
-  return { subscribe, status, errorMessage, reset, honeypotProps, canSaveName: !!nameToken, saveName };
+  return { subscribe, status, errorMessage, reset, honeypotProps, canSaveName: !!nameToken, saveName, alreadySubscribed };
 }

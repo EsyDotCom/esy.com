@@ -1,0 +1,31 @@
+/* esy.com/newsletter/confirm: one short card under the light header, in the
+   publication's own type and colours (the .nl variables). */
+
+.nc {
+  min-height: 60vh;
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 96px 16px 120px;
+}
+.nc-card { width: 100%; max-width: 520px; }
+.nc-body { margin: 0 0 20px; font-size: 1.05rem; line-height: 1.65; color: var(--nl-ink-soft); }
+.nc-sign {
+  margin: 0 0 28px; color: var(--nl-navy);
+  font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-style: italic; font-size: 1.3rem;
+}
+.nc-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--nl-jade); font-weight: 600; text-decoration: none;
+}
+.nc-link:hover { text-decoration: underline; }
+.nc-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px;
+  padding: 0 20px; border: 0; border-radius: 10px; cursor: pointer;
+  background: var(--nl-jade); color: #fff; font: inherit; font-weight: 600;
+}
+.nc-btn:disabled { opacity: 0.7; cursor: default; }
+.nc-note { margin: 14px 0 0; font-size: 0.95rem; color: var(--nl-navy); }
+.nc-note--error { color: #b42318; }
+
+@media (max-width: 600px) {
+  .nc { padding-top: 56px; }
+}

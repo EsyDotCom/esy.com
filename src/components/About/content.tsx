@@ -133,7 +133,7 @@ export const PROOF = [
   { value: '7+', label: 'years shipping production software', chapter: 'Vroom · fuboTV · Esy' },
   { value: '100+', label: 'tested landing pages at fuboTV', chapter: 'fuboTV' },
   { value: '7 figures', label: 'exit from digital-assets research', chapter: 'Digital assets' },
-  { value: '20,000+', label: 'pages published by Esy', chapter: 'Esy · clip.art' },
+  { value: '30,000+', label: 'pages published by Esy', chapter: 'Esy · clip.art' },
   { value: '#1', label: 'on Google for “AI clipart”', chapter: 'Esy · clip.art' },
   { value: '53% → <1%', label: 'color defects, after a 470-prompt benchmark', chapter: 'Esy' },
 ];
@@ -142,7 +142,7 @@ export const PROOF = [
 export const STORY_FULL = [
   'I’ve shipped production software for over seven years. At Vroom I built the vroom.com storefront and led SellUsYourCar.com. At fuboTV I built the component system behind 100+ landing pages, each tested for sign-ups.',
   'From 2021 to 2024 I researched and traded digital assets full time in Miami: market research, on-chain data, thesis-driven allocation. It ended in a seven-figure exit, and it taught me to decide from data.',
-  'Since 2024 I’ve built Esy, an engine that runs AI workflows end to end and records every run. It grew clip.art to #1 on Google for “AI clipart”, with 20,000+ pages published and 6,000+ ranking. Three apps run on it now: clip.art, SEOPage, and Compose, a team of agents that writes AI Marketing News here, with every post approved by me. I write The Marketing Engineer to teach what those systems taught me.',
+  'Since 2024 I’ve built Esy, an engine that runs AI workflows end to end and records every run. It grew clip.art to #1 on Google for “AI clipart”, with 30,000+ pages published and 6,000+ ranking. Three apps run on it now: clip.art, SEOPage, and Compose, a team of agents that writes AI Marketing News here, with every post approved by me. I write The Marketing Engineer to teach what those systems taught me.',
 ];
 
 /** Real numbers only. */

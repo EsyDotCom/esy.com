@@ -31,7 +31,7 @@ export const PROMISES: Record<string, HeroPromise> = {
     sub: (
       <>
         Learn to build AI systems that do a marketing team&apos;s work: research, writing, pages and reports. A free
-        email course with the systems I run my own businesses on, code included.
+        email course with the systems I run my own businesses on, and the skills to run them yourself.
       </>
     ),
   },
@@ -42,7 +42,7 @@ export const PROMISES: Record<string, HeroPromise> = {
     sub: (
       <>
         People still search. What changed is who does the work: AI can research, write and check pages, if you build
-        the system around it. A free email course with the systems I run, code included.
+        the system around it. A free email course with the systems I run, and the skills to run them yourself.
       </>
     ),
   },
@@ -52,8 +52,11 @@ export const PROMISES: Record<string, HeroPromise> = {
     headline: <>AI marketing is <em>an engineering job</em> now.</>,
     sub: (
       <>
-        The results don&apos;t come from better prompts. They come from systems that research, write, check and
-        publish on their own, and one person can build them. A free email course with the ones I run, code included.
+        {/* Proof first (2026-10-09, take A of three): the headline makes the claim,
+            this line backs it with real results (the same numbers as the About page). */}
+        My AI systems published 30,000+ pages and took clip.art to #1 on Google for “AI clipart”. One person built
+        them, and you can too. Take the free email course and leave with your first one running, built with the
+        same skills I use to grow and profit.
       </>
     ),
   },
@@ -76,9 +79,11 @@ export function CourseSignup() {
 }
 
 /** The hero as shipped: Studio with a promise's headline and subtitle, the
- *  course button, the 360px portrait captioned with the name (no greeting) and
- *  OS as the third app. esy.com renders C, esy.com/seo renders B, and the
- *  prototype renders all three, so they can't drift apart. */
+ *  course button and the 360px portrait captioned with the name (no greeting).
+ *  Since 2026-10-09 nothing sits under the button: the "systems run" row is
+ *  off, and the live pages pass no `latest`, so the signup is the only click.
+ *  esy.com renders C, esy.com/seo renders B, and the prototype renders all
+ *  three, so they can't drift apart. */
 export function PromiseStudio({ promise, desks, latest }: { promise: HeroPromise; desks: ResolvedDesk[]; latest?: Lesson | null }) {
   return (
     <EduStudio
@@ -91,6 +96,7 @@ export function PromiseStudio({ promise, desks, latest }: { promise: HeroPromise
       thirdApp="os"
       greeting={false}
       portrait="medium"
+      systemsRow={false}
     />
   );
 }

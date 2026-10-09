@@ -43,9 +43,13 @@ type StudioProps = {
       picked at /prototypes/face-size/), so the face and the headline weigh
       the same. Phones are unchanged. */
   portrait?: 'large' | 'medium';
+  /** "The systems run" row of app wordmarks under the signup. Off on the live
+      hero (2026-10-09): the line under the headline already carries the
+      clip.art proof, and the wordmarks linked away before the signup. */
+  systemsRow?: boolean;
 };
 
-export default function EduStudio({ latest, phone = 'photo', composeMark, headline, sub, signup, thirdApp = 'compose', greeting = true, portrait = 'large' }: StudioProps) {
+export default function EduStudio({ latest, phone = 'photo', composeMark, headline, sub, signup, thirdApp = 'compose', greeting = true, portrait = 'large', systemsRow = true }: StudioProps) {
   // Who's writing. The live hero names the businesses here; without the
   // greeting the wordmarks under the signup are the only place they appear.
   const role = greeting ? 'Marketing engineer · runs clip.art and SEOPage' : 'Marketing engineer';
@@ -101,31 +105,33 @@ export default function EduStudio({ latest, phone = 'photo', composeMark, headli
           </p>
           {signup ?? <EduSignup tone="dark" />}
 
-          {/* The proof: where the systems run, and the newest issue. */}
-          <div className="eh-studio-proof">
-            <span className="eh-studio-proof-label">The systems run</span>
-            <a href="https://clip.art" target="_blank" rel="noopener noreferrer" aria-label="clip.art">
-              <ClipArtWordmark className="eh-studio-clipart" />
-            </a>
-            <a href="https://seopage.com" target="_blank" rel="noopener noreferrer" aria-label="SEOPage" className="eh-studio-seopage">
-              <SeoPageWordmark weight="light" />
-            </a>
-            {thirdApp === 'os' ? (
-              // OS in the esy stencil, lowercase with its teal first letter,
-              // sized like the stencil Compose mark it replaces.
-              <a href="https://os.esy.com" target="_blank" rel="noopener noreferrer" aria-label="Esy OS">
-                <span className="cw cw--stencil eh-studio-compose" aria-hidden="true">
-                  <span className="cw-face">os</span>
-                </span>
+          {/* The proof: where the systems run (off on the live hero), then the newest issue. */}
+          {systemsRow && (
+            <div className="eh-studio-proof">
+              <span className="eh-studio-proof-label">The systems run</span>
+              <a href="https://clip.art" target="_blank" rel="noopener noreferrer" aria-label="clip.art">
+                <ClipArtWordmark className="eh-studio-clipart" />
               </a>
-            ) : (
-              composeMark && (
-                <a href="https://compose.esy.com" target="_blank" rel="noopener noreferrer" aria-label="Esy Compose">
-                  <ComposeWordmark mark={composeMark} className="eh-studio-compose" />
+              <a href="https://seopage.com" target="_blank" rel="noopener noreferrer" aria-label="SEOPage" className="eh-studio-seopage">
+                <SeoPageWordmark weight="light" />
+              </a>
+              {thirdApp === 'os' ? (
+                // OS in the esy stencil, lowercase with its teal first letter,
+                // sized like the stencil Compose mark it replaces.
+                <a href="https://os.esy.com" target="_blank" rel="noopener noreferrer" aria-label="Esy OS">
+                  <span className="cw cw--stencil eh-studio-compose" aria-hidden="true">
+                    <span className="cw-face">os</span>
+                  </span>
                 </a>
-              )
-            )}
-          </div>
+              ) : (
+                composeMark && (
+                  <a href="https://compose.esy.com" target="_blank" rel="noopener noreferrer" aria-label="Esy Compose">
+                    <ComposeWordmark mark={composeMark} className="eh-studio-compose" />
+                  </a>
+                )
+              )}
+            </div>
+          )}
           {latest?.href && (
             <Link href={latest.href} className="eh-studio-latest">
               <span>Latest</span> {latest.title} <ArrowRight size={14} aria-hidden="true" />

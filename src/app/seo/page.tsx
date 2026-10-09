@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import NewsletterHomePage from '@/components/NewsletterHome/NewsletterHomePage';
-import { PROMISES, PromiseStudio, latestLesson, resolveDesks } from '@/components/EducationHero';
+import { PROMISES, PromiseStudio, resolveDesks } from '@/components/EducationHero';
 import { getAllAgenticArticles } from '@/lib/published-articles';
 
 // esy.com/seo (shipped 2026-10-06): the homepage with B · SEO isn't dead from
@@ -35,7 +35,7 @@ export default async function SeoPage() {
       compose={{ mark: 'stencil', band: 'replay' }}
       appsLayout="tour"
       newsColumn
-      hero={<PromiseStudio promise={PROMISES.seo} desks={resolveDesks(articles)} latest={latestLesson(articles)} />}
+      hero={<PromiseStudio promise={PROMISES.seo} desks={resolveDesks(articles)} />}
     />
   );
 }

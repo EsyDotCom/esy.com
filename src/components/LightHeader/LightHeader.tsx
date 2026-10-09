@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Clock, Play } from 'lucide-react';
 
 import Logo from '@/components/Logo';
+import HeaderSubscribe from './HeaderSubscribe';
 import { agenticVideos } from '@/data/agentic-videos';
 import { LATEST_ARTICLES_HREF, articlePath } from '@/lib/article-path';
 import { type NavArticle, toNavArticles } from '@/lib/nav-articles';
@@ -96,13 +97,13 @@ export default function LightHeader({
           <span className="lh-lockup-tag">AI Marketing</span>
         </Link>
         <nav className="lh-nav" aria-label="Primary">
-          {/* The way into Esy's software (2026-10-04; "App" since 2026-10-09,
-              it read "Client sign in"). os.esy.com sends a signed-out visitor
-              to its sign-in page and a signed-in one to their start app, so one
-              address serves both. The subtle outline button (.lh-cta), never a
-              filled one: the page's own signup stays the one ask. When the
-              studio opens, app.esy.com gets its own link. */}
-          <a href="https://os.esy.com" className="lh-cta">App</a>
+          {/* Subscribe (2026-10-09): another way into the newsletter on every
+              page, opening the signup in a small panel. It replaced the link
+              to os.esy.com ("Client sign in", then "App"); the software is
+              reached from the newsletter and the footer instead. Still the
+              subtle outline button (.lh-cta): the page's own signup stays the
+              main ask. */}
+          <HeaderSubscribe />
           {/* Pre-launch: Make isn't open, so the dominant CTA is the waitlist.
               Restore the line below the day the studio opens.
           <Link href="https://app.esy.com" className="lh-cta">Start producing</Link>

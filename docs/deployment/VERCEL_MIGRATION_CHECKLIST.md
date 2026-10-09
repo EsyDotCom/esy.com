@@ -11,7 +11,9 @@ Set these in the Vercel project before cutting traffic over:
 - `ESY_API_URL=https://api.esy.com` — server-side source for Compose-published research/school articles and workflow catalog sync.
 - `NEXT_PUBLIC_ESY_API_URL=https://api.esy.com` — browser-side API base used by client features.
 - `ESY_REVALIDATE_SECRET=<shared random secret>` — required by `/api/revalidate`; must match `api.esy.com`.
-- `BEEHIIV_API_KEY=<production key>` and `BEEHIIV_PUBLICATION_ID=<production id>` — main newsletter API route.
+- `RESEND_API_KEY=<production key>` and `RESEND_NEWSLETTER_SEGMENT_ID=<Newsletter segment id>` — the newsletter list and its emails (since 2026-10-09); sent from `mail.esy.com`.
+- `NEWSLETTER_TOKEN_SECRET=<long random string>` — signs the confirmation links and the name step; changing it voids links already sent.
+- `BEEHIIV_API_KEY=<production key>` and `BEEHIIV_PUBLICATION_ID=<production id>` — the waitlist, and the newsletter's backup copy of confirmed subscribers until Resend is verified.
 - `BEEHIIV_RESEARCH_API_KEY=<production key>` and `BEEHIIV_RESEARCH_PUBLICATION_ID=<production id>` — research newsletter API route.
 - `NEXT_PUBLIC_IMAGE_CDN_PROVIDER=cloudflare` if the production image CDN mapping should stay enabled.
 - `NEXT_PUBLIC_IS_QA=true` only on QA/preview deployments that should noindex and block crawlers.

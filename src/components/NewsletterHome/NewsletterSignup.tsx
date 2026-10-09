@@ -34,7 +34,7 @@ export default function NewsletterSignup({
   askName?: boolean;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { subscribe, status, errorMessage, reset, honeypotProps, canSaveName, saveName } =
+  const { subscribe, status, errorMessage, reset, honeypotProps, canSaveName, saveName, alreadySubscribed } =
     useNewsletterSubscribe();
   const [open, setOpen] = useState(!reveal);
 
@@ -60,7 +60,10 @@ export default function NewsletterSignup({
       <div className={`nl-signup nl-signup--${tone}`}>
         <p className="nl-signup-done" role="status">
           <MailCheck size={18} aria-hidden="true" />
-          Almost there. Check your inbox and click the link to confirm.
+          {/* Already confirmed: no email is coming, so don't send them looking for one. */}
+          {alreadySubscribed
+            ? "You’re already subscribed. The next issue is on its way."
+            : "Almost there. Check your inbox and click the link to confirm."}
         </p>
         {askName && canSaveName && <NameStep saveName={saveName} />}
       </div>

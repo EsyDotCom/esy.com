@@ -3097,6 +3097,29 @@ export const PROTOTYPES: Prototype[] = [
       { slug: 'guide', key: 'K3', name: 'Guide', round: 1, title: 'The best AI marketing tools, compared.', blurb: 'A comparison table, a section per job and FAQs: the article “best ai marketing tools” searches expect.', poster: ['#0A2540', '#00D4AA'] },
     ],
   },
+  {
+    slug: 'topics',
+    name: 'The topics page',
+    date: '2026-10-09',
+    headline: 'Three ways to open esy.com/topics, where every article is browsed.',
+    intro:
+      'Articles now live at /articles/<slug>/ and people find them by topic. Each take reimagines /topics in Esy’s brand, over the real topics and articles; the topic covers are generated through api.esy.com.',
+    summary:
+      'The topics as a shelf of covers, as a magazine’s table of contents, or as a navy explorer with a panel for the picked topic.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Three openings',
+        summary:
+          'T1 shows each topic as a big cover with its newest article, T2 lists them like a table of contents with articles beside each, T3 lets you pick a topic and see it fill a panel. T3 shipped as esy.com/topics.',
+      },
+    ],
+    variants: [
+      { slug: 'covers', key: 'T1', name: 'Covers', round: 1, title: 'A shelf of covers.', blurb: 'Every topic as a big cover in the newsletter’s style, with its count and newest article under it.', poster: ['#0A1626', '#00D4AA'] },
+      { slug: 'contents', key: 'T2', name: 'Contents', round: 1, title: 'A table of contents.', blurb: 'Numbered topics in jade serif, what each covers, and its newest articles beside it.', poster: ['#FFFFFF', '#00A896'] },
+      { slug: 'explorer', key: 'T3', name: 'Explorer', round: 1, title: 'Pick a topic, see it fill the room.', blurb: 'A navy page with cut-corner topic tiles; the picked topic’s cover, story and articles fill a panel beside them.', poster: ['#0A1626', '#FFFFFF'], live: true, liveHref: '/topics/' },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

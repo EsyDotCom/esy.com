@@ -1,0 +1,122 @@
+{
+  "city": {
+    "still": {
+      "runId": "run-49df3618",
+      "url": "https://images.esy.com/artifacts/photo-image/run-49df3618/image.webp",
+      "cost": 0.209074
+    },
+    "loop": {
+      "runId": "run-131a3de5",
+      "url": "https://images.esy.com/artifacts/tool/run-131a3de5/step-2.mp4",
+      "cost": 2.443
+    }
+  },
+  "desk": {
+    "still": {
+      "runId": "run-73aa9f98",
+      "url": "https://images.esy.com/artifacts/photo-image/run-73aa9f98/image.webp",
+      "cost": 0.212145
+    },
+    "loop": {
+      "runId": "run-532b13fe",
+      "url": "https://images.esy.com/artifacts/tool/run-532b13fe/step-2.mp4",
+      "cost": 2.443
+    }
+  },
+  "studio": {
+    "still": {
+      "runId": "run-97466220",
+      "url": "https://images.esy.com/artifacts/photo-image/run-97466220/image.webp",
+      "cost": 0.2145
+    },
+    "loop": {
+      "runId": "run-7e35ab49",
+      "url": "https://images.esy.com/artifacts/tool/run-7e35ab49/step-2.mp4",
+      "cost": 2.442581
+    }
+  },
+  "architecture": {
+    "still": {
+      "runId": "run-ef52e149",
+      "url": "https://images.esy.com/artifacts/photo-image/run-ef52e149/image.webp",
+      "cost": 0.20936
+    },
+    "loop": {
+      "runId": "run-fb3e2be6",
+      "url": "https://images.esy.com/artifacts/tool/run-fb3e2be6/step-2.mp4",
+      "cost": 2.443
+    }
+  },
+  "glass": {
+    "still": {
+      "runId": "run-6ecf521d",
+      "url": "https://images.esy.com/artifacts/photo-image/run-6ecf521d/image.webp",
+      "cost": 0.2095
+    },
+    "loop": {
+      "runId": "run-3bbd7ea2",
+      "url": "https://images.esy.com/artifacts/tool/run-3bbd7ea2/step-2.mp4",
+      "cost": 2.443
+    }
+  },
+  "city-miami": {
+    "still": {
+      "runId": "run-245088c5",
+      "url": "https://images.esy.com/artifacts/photo-image/run-245088c5/image.webp",
+      "cost": 0.215259
+    },
+    "loop": {
+      "runId": "run-c2e79a53",
+      "url": "https://images.esy.com/artifacts/tool/run-c2e79a53/step-2.mp4",
+      "cost": 2.443221
+    }
+  },
+  "city-nyc": {
+    "still": {
+      "runId": "run-528052c3",
+      "url": "https://images.esy.com/artifacts/photo-image/run-528052c3/image.webp",
+      "cost": 0.2158
+    },
+    "loop": {
+      "runId": "run-9a84d526",
+      "url": "https://images.esy.com/artifacts/tool/run-9a84d526/step-2.mp4",
+      "cost": 2.443335
+    }
+  },
+  "desk-highrise": {
+    "still": {
+      "runId": "run-9b5227be",
+      "url": "https://images.esy.com/artifacts/photo-image/run-9b5227be/image.webp",
+      "cost": 0.215044
+    },
+    "loop": {
+      "runId": "run-6d35adb5",
+      "url": "https://images.esy.com/artifacts/tool/run-6d35adb5/step-2.mp4",
+      "cost": 2.443658
+    }
+  },
+  "desk-night": {
+    "still": {
+      "runId": "run-1ab6e9da",
+      "url": "https://images.esy.com/artifacts/photo-image/run-1ab6e9da/image.webp",
+      "cost": 0.21437
+    },
+    "loop": {
+      "runId": "run-2fad0032",
+      "url": "https://images.esy.com/artifacts/tool/run-2fad0032/step-2.mp4",
+      "cost": 2.443696
+    }
+  },
+  "desk-loft": {
+    "still": {
+      "runId": "run-55a7c539",
+      "url": "https://images.esy.com/artifacts/photo-image/run-55a7c539/image.webp",
+      "cost": 0.21594
+    },
+    "loop": {
+      "runId": "run-a9508497",
+      "url": "https://images.esy.com/artifacts/tool/run-a9508497/step-2.mp4",
+      "cost": 2.442715
+    }
+  }
+}

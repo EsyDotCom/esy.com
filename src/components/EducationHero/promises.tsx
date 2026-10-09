@@ -84,7 +84,7 @@ export function CourseSignup() {
  *  off, and the live pages pass no `latest`, so the signup is the only click.
  *  esy.com renders C, esy.com/seo renders B, and the prototype renders all
  *  three, so they can't drift apart. */
-export function PromiseStudio({ promise, desks, latest }: { promise: HeroPromise; desks: ResolvedDesk[]; latest?: Lesson | null }) {
+export function PromiseStudio({ promise, desks, latest, backdrop }: { promise: HeroPromise; desks: ResolvedDesk[]; latest?: Lesson | null; backdrop?: { video: string; poster: string; focus?: string; portrait?: boolean; photo?: string; centered?: 'left' | 'right'; plain?: boolean; faceSize?: number; byline?: 'top' | 'button' | 'foot'; solidCopy?: boolean; socials?: 'pop' | 'profile' | 'zoom' } }) {
   return (
     <EduStudio
       desks={desks}
@@ -97,6 +97,7 @@ export function PromiseStudio({ promise, desks, latest }: { promise: HeroPromise
       greeting={false}
       portrait="medium"
       systemsRow={false}
+      backdrop={backdrop}
     />
   );
 }

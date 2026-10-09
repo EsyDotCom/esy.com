@@ -1,9 +1,14 @@
 import NewsletterHomePage from "../components/NewsletterHome/NewsletterHomePage";
-import { PROMISES, PromiseStudio, resolveDesks } from "../components/EducationHero";
+import { HomeHeroHighFloor, resolveDesks } from "../components/EducationHero";
 import { getAllAgenticArticles } from "../lib/published-articles";
 
 // The homepage is a Marketing Engineering publication, fronted by Zev. Hero
-// (2026-10-06): C · Engineering from /prototypes/home-promise/. The blunt claim
+// (2026-10-09): HomeHeroHighFloor, B32 from /prototypes/hero-backdrop/: a slow
+// shot of a high-floor office at dusk behind the same words, Zev's photo small
+// and signed under the button with his LinkedIn and GitHub on hover. The hero
+// before it is HomeHeroPortrait (src/components/EducationHero/HomeHeroes.tsx).
+//
+// Hero 2026-10-06 → 10-09: C · Engineering from /prototypes/home-promise/. The blunt claim
 // "AI marketing is an engineering job now." leads, with no greeting before it;
 // the subtitle says what the free email course gives you; one button, "Start
 // the free email course", opens the email box (no form on first sight), and the
@@ -91,7 +96,9 @@ export default async function HomePage() {
       compose={COMPOSE}
       appsLayout="tour"
       newsColumn
-      hero={<PromiseStudio promise={PROMISES.engineering} desks={resolveDesks(articles)} />}
+      // To go back to the portrait hero (2026-10-06 → 10-09), render
+      // <HomeHeroPortrait desks={...} /> here instead (same import).
+      hero={<HomeHeroHighFloor desks={resolveDesks(articles)} />}
     />
   );
 }

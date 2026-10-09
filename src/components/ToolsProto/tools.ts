@@ -164,6 +164,7 @@ export const TOOLS: Tool[] = [
     slug: 'clay', name: 'Clay', maker: 'Clay', job: 'Data & prospecting',
     logo: L('clay.png', true),
     does: 'Finds and enriches leads from many data sources, then acts on them with AI.',
+    usedByEsy: true,
     links: [],
   },
   {

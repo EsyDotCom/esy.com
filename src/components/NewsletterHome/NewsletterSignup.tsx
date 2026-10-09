@@ -25,6 +25,9 @@ export default function NewsletterSignup({
   submit,
   reveal = false,
   askName = false,
+  // Fields sent with the address beyond the page path, e.g. /invite's `video`
+  // (which video the signup came from). Most forms send none.
+  extra,
 }: {
   tone?: "light" | "dark";
   note?: string;
@@ -32,6 +35,7 @@ export default function NewsletterSignup({
   submit?: string;
   reveal?: boolean;
   askName?: boolean;
+  extra?: Record<string, string>;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const { subscribe, status, errorMessage, reset, honeypotProps, canSaveName, saveName, alreadySubscribed } =
@@ -49,7 +53,7 @@ export default function NewsletterSignup({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    subscribe(inputRef.current?.value || "");
+    subscribe(inputRef.current?.value || "", extra);
   };
 
   // Success replaces the form outright — a live form after "you're in" invites

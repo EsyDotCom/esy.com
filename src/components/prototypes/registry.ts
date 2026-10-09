@@ -3056,6 +3056,47 @@ export const PROTOTYPES: Prototype[] = [
       { slug: 'cover', key: 'L3', name: 'Cover', round: 1, title: 'A cover for every issue.', blurb: 'A navy cover with the issue number big, the issue under it, a full-width signup band, then the other issues.', poster: ['#0A1626', '#00D4AA'] },
     ],
   },
+  {
+    slug: 'tools',
+    name: 'AI Marketing Tools',
+    date: '2026-10-09',
+    headline: 'Three ways to make AI marketing tools easy to find at esy.com/tools.',
+    intro:
+      'A new page for the “ai marketing tools” searches (5,400 a month, plus a long tail by job). Each take sorts the tools by the job they do and links only to tutorials, reviews, courses and news that exist.',
+    summary:
+      'A searchable directory, an opinionated “what I run” stack, or the “best AI marketing tools” guide the searches want.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Three ways in',
+        summary:
+          'K1 lets you search and filter by job, K2 names the tool I run for each job and the others worth knowing, K3 is a comparison table and a section per job with FAQs.',
+      },
+      {
+        n: 2,
+        title: 'More directories',
+        summary:
+          'Three more versions of K1: a sidebar of filters beside wide rows (K4), big job tiles to start from (K5), and “what I run” picks above the searchable grid (K6). Every take now ends with the not-affiliated line.',
+      },
+      {
+        n: 3,
+        title: 'Three looks',
+        summary:
+          'Visually different directories, each with a real hero and motion as you scroll, and art generated through api.esy.com: K7 is immersive navy, K8 has every tool drifting behind a light hero and job boxes that open in place, K9 is an editorial toolkit with a sticky job menu and swipeable rows.',
+      },
+    ],
+    variants: [
+      { slug: 'directory', key: 'K1', name: 'Directory', round: 1, title: 'Search and filter every tool.', blurb: 'Search, job chips and “has a tutorial” / “we use it” toggles over a grid of tool cards.', poster: ['#FFFFFF', '#0A2540'] },
+      { slug: 'stack', key: 'K2', name: 'My stack', round: 1, title: 'What I run, job by job.', blurb: 'For each job, the tool Esy runs on with my take and its tutorial, then the others worth knowing.', poster: ['#F8F9FA', '#00A896'] },
+      { slug: 'sidebar', key: 'K4', name: 'Sidebar', round: 2, mergeOf: ['K1'], title: 'Filters beside the list.', blurb: 'K1 as a classic directory: jobs, “we use it”, “has a tutorial” and “free plan” in a sticky left rail, wide rows on the right.', poster: ['#FFFFFF', '#0A2540'] },
+      { slug: 'jobs-first', key: 'K5', name: 'Jobs first', round: 2, mergeOf: ['K1'], title: 'Start from the job.', blurb: 'Big job tiles (“What do you need help with?”), then that job’s tools, with a bar to switch jobs.', poster: ['#0A1626', '#00D4AA'] },
+      { slug: 'picks-directory', key: 'K6', name: 'Picks + directory', round: 2, mergeOf: ['K1', 'K2'], title: 'My picks, then every tool.', blurb: 'K2’s “what I run” picks across the top, then K1’s searchable, filterable grid underneath.', poster: ['#F8F9FA', '#00A896'] },
+      { slug: 'night', key: 'K7', name: 'Night', round: 3, title: 'An immersive navy directory.', blurb: 'A full-bleed art hero with the title, search and job pills in it; dark cards fade up as you scroll and glow jade on hover.', poster: ['#0A1626', '#00D4AA'] },
+      { slug: 'orbit', key: 'K8', name: 'Orbit', round: 3, title: 'Every tool, drifting.', blurb: 'A light hero with every tool’s tile drifting in slow rows behind the title; a featured pick, then job boxes that open in place.', poster: ['#F2F6F8', '#0A2540'], live: true, liveHref: '/tools/' },
+      { slug: 'magazine', key: 'K9', name: 'Magazine', round: 3, title: 'The 2026 AI Marketing Toolkit.', blurb: 'An editorial cover hero with art, a sticky job menu that follows your scroll, and each job as a swipeable row with its own cover.', poster: ['#FFFFFF', '#00A896'] },
+      { slug: 'guide', key: 'K3', name: 'Guide', round: 1, title: 'The best AI marketing tools, compared.', blurb: 'A comparison table, a section per job and FAQs: the article “best ai marketing tools” searches expect.', poster: ['#0A2540', '#00D4AA'] },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

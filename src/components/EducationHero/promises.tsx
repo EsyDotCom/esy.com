@@ -67,7 +67,7 @@ export const PROMISES: Record<string, HeroPromise> = {
  *  the email box in place, and the first name is asked after signing up. */
 export function CourseSignup() {
   return (
-    <NewsletterSignup
+    <NewsletterSignup form="hero"
       tone="dark"
       reveal
       askName

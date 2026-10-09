@@ -31,6 +31,8 @@ const HONEYPOT_STYLE = {
  * @param {Object} opts
  * @param {string} [opts.endpoint='/api/newsletter/subscribe'] - API endpoint to POST to
  * @param {number} [opts.errorResetMs=5000] - ms before auto-resetting error state
+ * @param {string} [opts.form] - which signup box this is (e.g. 'header', 'hero', 'email-band'),
+ *   recorded on the subscriber beside the page so we know where they signed up
  *
  * Returns { subscribe, status, errorMessage, reset, honeypotProps, canSaveName, saveName, alreadySubscribed }
  *
@@ -39,7 +41,7 @@ const HONEYPOT_STYLE = {
  * `canSaveName` says whether there's a token to use. It resolves to an error
  * message, or null when the name was saved.
  */
-export function useNewsletterSubscribe({ endpoint = '/api/newsletter/subscribe', errorResetMs = 5000 } = {}) {
+export function useNewsletterSubscribe({ endpoint = '/api/newsletter/subscribe', errorResetMs = 5000, form = '' } = {}) {
   const [status, setStatus] = useState('idle');
   const [nameToken, setNameToken] = useState(null);
   // True when the address was already confirmed, so no email is coming.
@@ -95,6 +97,7 @@ export function useNewsletterSubscribe({ endpoint = '/api/newsletter/subscribe',
           hp: honeypotRef.current?.value || '',
           elapsedMs: Date.now() - mountedAtRef.current,
           source: typeof window !== 'undefined' ? window.location.pathname : '',
+          form,
         }),
       });
 
@@ -128,7 +131,7 @@ export function useNewsletterSubscribe({ endpoint = '/api/newsletter/subscribe',
         }, errorResetMs);
       }
     }
-  }, [endpoint, errorResetMs]);
+  }, [endpoint, errorResetMs, form]);
 
   // Spread onto a bare <input> inside each form. The name deliberately avoids
   // every autofill category (name, email, company, organization, address,

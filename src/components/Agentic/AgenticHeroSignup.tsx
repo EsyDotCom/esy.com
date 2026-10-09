@@ -11,7 +11,7 @@ import { useNewsletterSubscribe } from "@/hooks/useNewsletterSubscribe";
 export function AgenticHeroSignup() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [buttonHover, setButtonHover] = useState(false);
-  const { subscribe, status, errorMessage, reset, honeypotProps } = useNewsletterSubscribe();
+  const { subscribe, status, errorMessage, reset, honeypotProps } = useNewsletterSubscribe({ form: 'agentic-hero' });
 
   const isLoading = status === "loading";
 

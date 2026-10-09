@@ -28,6 +28,9 @@ export default function NewsletterSignup({
   // Fields sent with the address beyond the page path, e.g. /invite's `video`
   // (which video the signup came from). Most forms send none.
   extra,
+  // Which signup box this is ('hero', 'email-band', 'article-end', ...),
+  // recorded on the subscriber beside the page (2026-10-09).
+  form,
 }: {
   tone?: "light" | "dark";
   note?: string;
@@ -36,10 +39,11 @@ export default function NewsletterSignup({
   reveal?: boolean;
   askName?: boolean;
   extra?: Record<string, string>;
+  form?: string;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const { subscribe, status, errorMessage, reset, honeypotProps, canSaveName, saveName, alreadySubscribed } =
-    useNewsletterSubscribe();
+    useNewsletterSubscribe({ form });
   const [open, setOpen] = useState(!reveal);
 
   const isLoading = status === "loading";

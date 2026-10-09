@@ -42,3 +42,8 @@ export function attribute(source, video) {
     video: videoSlug && videoSlug !== 'invite' ? videoSlug : '',
   };
 }
+
+/** Which signup box a signup came from ('header', 'hero', 'email-band', ...),
+ *  as the form sends it (2026-10-09). Letters, digits and hyphens only, capped,
+ *  so a spoofed value can't write arbitrary text into a contact. */
+export const formLabel = (form) => slug(form, 40).toLowerCase();

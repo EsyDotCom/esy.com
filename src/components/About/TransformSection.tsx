@@ -14,7 +14,7 @@ interface TransformSectionProps {
 
 const TransformSection: React.FC<TransformSectionProps> = ({ currentTheme }) => {
   const [email, setEmail] = useState('');
-  const { subscribe, status, honeypotProps } = useNewsletterSubscribe();
+  const { subscribe, status, honeypotProps } = useNewsletterSubscribe({ form: 'about-transform' });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

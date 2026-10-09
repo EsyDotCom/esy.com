@@ -34,7 +34,7 @@ export function StudioHero({ signup = false, facts = false }: { signup?: boolean
           <p className="ab-studio-role">{ROLE} · {PLACE} · writes <b>The Marketing Engineer</b></p>
           {signup && (
             <div className="ab-studio-signup">
-              <NewsletterSignup tone="dark" note="One email a week · unsubscribe anytime" />
+              <NewsletterSignup form="about-hero" tone="dark" note="One email a week · unsubscribe anytime" />
             </div>
           )}
           {facts && (

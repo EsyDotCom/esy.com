@@ -79,7 +79,7 @@ export function NewsWire() {
           <aside className="nw-rail">
             <div className="nw-rail-card">
               <p className="nw-rail-title">The week&apos;s news, in one email</p>
-              <NewsletterSignup note="One email a week · unsubscribe anytime" />
+              <NewsletterSignup form="news-rail" note="One email a week · unsubscribe anytime" />
             </div>
             <div className="nw-rail-card">
               <p className="nw-rail-title">Topics</p>
@@ -156,7 +156,7 @@ export function NewsFrontPage() {
               ))}
               <div className="nw-front-signup">
                 <p className="nw-rail-title">Get the week&apos;s news by email</p>
-                <NewsletterSignup note="One email · unsubscribe anytime" />
+                <NewsletterSignup form="news-inline" note="One email · unsubscribe anytime" />
               </div>
             </div>
           </div>
@@ -195,7 +195,7 @@ export function NewsBriefing() {
             {first} – {last}: {posts.length} changes in the AI tools behind marketing. Each one is what happened, then why
             it matters for the systems you run.
           </p>
-          <div className="nw-brief-signup"><NewsletterSignup tone="dark" note="The briefing, once a week" /></div>
+          <div className="nw-brief-signup"><NewsletterSignup form="news-briefing" tone="dark" note="The briefing, once a week" /></div>
           <SampleNote onDark />
         </div>
       </section>

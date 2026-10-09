@@ -172,7 +172,7 @@ export function PostBrief() {
             </div>
             <div className="np-rail-card">
               <p className="np-rail-title">AI Marketing News, in your inbox</p>
-              <NewsletterSignup note="The week’s AI news in The Marketing Engineer" />
+              <NewsletterSignup form="news-post-rail" note="The week’s AI news in The Marketing Engineer" />
             </div>
           </aside>
         </div>
@@ -202,7 +202,7 @@ export function PostInStory() {
           <Source />
           <div className="np-inline-signup">
             <p className="np-rail-title">Follow {post.trend} by email</p>
-            <NewsletterSignup note="The week’s AI news in The Marketing Engineer" />
+            <NewsletterSignup form="news-post-story" note="The week’s AI news in The Marketing Engineer" />
           </div>
         </div>
       </article>
@@ -271,7 +271,7 @@ export function PostAtAGlance() {
           <Source />
           <div className="np-inline-signup">
             <p className="np-rail-title">Get the week’s AI news by email</p>
-            <NewsletterSignup note="The week’s AI news in The Marketing Engineer" />
+            <NewsletterSignup form="news-post-end" note="The week’s AI news in The Marketing Engineer" />
           </div>
           <section className="np-storybox" aria-label={`More on ${post.trend}`}>
             <p className="np-rail-title">More on {post.trend}</p>

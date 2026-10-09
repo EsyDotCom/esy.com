@@ -13,7 +13,7 @@ export function LearnHeroSignup() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [buttonHover, setButtonHover] = useState(false);
   // No endpoint override — defaults to /api/newsletter/subscribe (Learn publication).
-  const { subscribe, status, errorMessage, reset, honeypotProps } = useNewsletterSubscribe();
+  const { subscribe, status, errorMessage, reset, honeypotProps } = useNewsletterSubscribe({ form: 'learn-hero' });
 
   const isLoading = status === "loading";
 

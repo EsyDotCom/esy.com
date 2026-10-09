@@ -253,7 +253,7 @@ export function Cmd({ command, note, dark = false }: { command: string; note?: s
 export function Course({ tone = 'navy', withLessons = true }: { src?: string; tone?: 'navy' | 'glass'; withLessons?: boolean }) {
   const email = useRef<HTMLInputElement>(null);
   const name = useRef<HTMLInputElement>(null);
-  const { subscribe, status, errorMessage, reset, honeypotProps } = useNewsletterSubscribe();
+  const { subscribe, status, errorMessage, reset, honeypotProps } = useNewsletterSubscribe({ form: 'skills-course' });
   const submit = (e: FormEvent) => { e.preventDefault(); subscribe(email.current?.value || '', { name: name.current?.value || '' }); };
   const loading = status === 'loading';
   const error = status === 'error' && !!errorMessage;

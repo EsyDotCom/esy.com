@@ -23,7 +23,7 @@ export default function ArticleGuide({ article, image, sections, minutes, topic,
           <Byline publishedAt={article.publishedAt} minutes={minutes} />
           <div className="ai-guide-signup">
             <p>Get one system like this every week.</p>
-            <NewsletterSignup note="Free · unsubscribe anytime" />
+            <NewsletterSignup form="article-guide" note="Free · unsubscribe anytime" />
           </div>
         </div>
         {image && (

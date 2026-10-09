@@ -12,7 +12,7 @@ export default function WeeklyEmailBand() {
           The week&apos;s best tutorials, guides, and news in one email.
           Unsubscribe whenever you like.
         </p>
-        <NewsletterSignup tone="dark" />
+        <NewsletterSignup form="email-band" tone="dark" />
       </div>
     </section>
   );

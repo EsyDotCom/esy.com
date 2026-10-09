@@ -182,12 +182,12 @@ a.nlp-row, a.nlp-card, a.nlp-feature { text-decoration: none; color: inherit; }
 }
 
 /* ── Round 2 (2026-10-09): Substack-style publication home (D, E, F) ── */
-.nlp--pub { background: #F3F1ED; }
+.nlp--pub { background: var(--nl-bg); } /* the site's white (2026-10-09; it was Substack's warm paper) */
 .nlp-wrap--wide { max-width: 1240px; }
 .nlp-cover.has-cover { background-size: cover; background-position: center right; }
 
 /* The publication's own masthead and tabs */
-.nlp-pub { text-align: center; padding: 32px 24px 8px; background: #F3F1ED; }
+.nlp-pub { text-align: center; padding: 32px 24px 8px; background: var(--nl-bg); }
 .nlp-pub-name {
   margin: 0; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700;
   font-size: clamp(2.2rem, 4.6vw, 3.4rem); letter-spacing: -0.02em; color: var(--nl-navy);
@@ -299,7 +299,7 @@ a.nlp-row, a.nlp-card, a.nlp-feature { text-decoration: none; color: inherit; }
 .nlp-ftabs { position: relative; display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
 .nlp-seg { display: inline-flex; gap: 2px; padding: 4px; border-radius: 10px; border: 1px solid var(--nl-seam); background: #fff; }
 .nlp-seg-btn { padding: 8px 14px; border: 0; border-radius: 7px; background: none; cursor: pointer; font: inherit; font-weight: 600; color: var(--nl-ink-soft); }
-.nlp-seg-btn.is-on { background: #F3F1ED; color: var(--nl-navy); }
+.nlp-seg-btn.is-on { background: var(--nl-bg-alt); color: var(--nl-navy); }
 .nlp-search { padding: 8px; border: 0; background: none; cursor: pointer; color: var(--nl-navy); }
 .nlp-search-note { position: absolute; right: 0; top: 100%; margin: 4px 0 0; font-size: 0.82rem; color: var(--nl-ink-soft); }
 .nlp-feed-row .nlp-art--md { width: 240px; }

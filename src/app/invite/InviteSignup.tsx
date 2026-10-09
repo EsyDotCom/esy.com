@@ -17,7 +17,7 @@ function WithVideo() {
 }
 
 function InviteForm({ extra }: { extra?: Record<string, string> }) {
-  return <NewsletterSignup tone="dark" askName cta="Invite me" note={NOTE} extra={extra} />;
+  return <NewsletterSignup form="invite" tone="dark" askName cta="Invite me" note={NOTE} extra={extra} />;
 }
 
 // useSearchParams needs a Suspense boundary on a static page; the fallback is

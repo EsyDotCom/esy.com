@@ -18,7 +18,7 @@ import { useNewsletterSubscribe } from '@/hooks/useNewsletterSubscribe';
 export default function HeaderSubscribe() {
   const [open, setOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-  const { subscribe, status, errorMessage, reset, honeypotProps } = useNewsletterSubscribe();
+  const { subscribe, status, errorMessage, reset, honeypotProps } = useNewsletterSubscribe({ form: 'header' });
 
   // Opening puts the cursor in the box, so the click is followed straight by typing.
   useEffect(() => {

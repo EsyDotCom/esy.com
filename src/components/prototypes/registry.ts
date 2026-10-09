@@ -2852,6 +2852,85 @@ export const PROTOTYPES: Prototype[] = [
     ],
   },
   {
+    slug: 'hero-backdrop',
+    name: 'The hero backdrop',
+    date: '2026-10-09',
+    headline: 'Five photoreal backgrounds for the homepage hero, in place of the big portrait.',
+    intro:
+      'The live homepage with a quiet, slow shot behind the headline instead of Zev’s 360px portrait. Real places and real light, no people, nothing symbolic; the face becomes a small byline under the headline. Each shot is a still and an 8-second video made through api.esy.com.',
+    summary:
+      'A desk at dusk, sunlight on concrete, a city through glass, light across dark glass, and an empty studio at first light.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Five quiet shots',
+        summary:
+          'Each keeps its left side dark for the words and moves slowly: fading light, sliding shadows, breathing city lights, a passing band of light, a warming beam. The still shows for anyone with reduced motion on.',
+      },
+      {
+        n: 2,
+        title: 'The face comes back',
+        summary:
+          'For trust, the person stays the subject: the 360px portrait in front of a softened, darker shot, so the room is where Zev works rather than a second picture beside him.',
+      },
+      {
+        n: 3,
+        title: 'More of B6',
+        summary:
+          'Zev liked B6, so five more rooms at dusk and night with the portrait in front: a night office, a high floor, a loft, and two real skylines he named, New York and Miami.',
+      },
+      {
+        n: 4,
+        title: 'Centred',
+        summary:
+          'B6’s desk with the headline and subtitle centred, and a smaller portrait under them beside the course button, on the left or the right; B15 and B16 are the same on the live hero’s plain navy, with no shot. The photo is Zev’s headshot with a subtle smirk, rimless glasses and a navy studio backdrop.',
+      },
+      {
+        n: 5,
+        title: 'Smaller, on the left',
+        summary:
+          'B9’s high floor (B21–B23) and B10’s loft (B24–B26) with the room left open on the right, and Zev’s photo small on the left with the words: above the headline, beside the button, or signed under it. The photo is Smirk 1 plus glasses and a navy backdrop in one more edit (A).',
+      },
+      {
+        n: 6,
+        title: 'Socials behind the photo',
+        summary:
+          'B28 with Zev’s LinkedIn and GitHub one hover away: a pop card above the head, a profile card, or the photo growing into a close-up. Each opens on hover, keyboard focus or a tap.',
+      },
+    ],
+    variants: [
+      { slug: 'desk', key: 'B1', name: 'Desk at dusk', round: 1, title: 'Where the work happens.', blurb: 'A clean desk by a tall window at blue hour, a laptop glowing softly, the light outside fading.', poster: ['#0A1626', '#5B7FA6'] },
+      { slug: 'architecture', key: 'B2', name: 'Light on architecture', round: 1, title: 'Calm, deliberate, built.', blurb: 'Concrete and glass, late sun throwing long shadows that slide slowly across the wall.', poster: ['#11161C', '#C9C4BA'] },
+      { slug: 'city', key: 'B3', name: 'City through glass', round: 1, title: 'Scale, out of focus.', blurb: 'A night city fully blurred behind a window, its lights gently breathing.', poster: ['#08111F', '#3E7FB8'] },
+      { slug: 'glass', key: 'B4', name: 'Dark glass, moving light', round: 1, title: 'Precision.', blurb: 'A macro of dark glass and brushed metal with one soft band of light passing across it.', poster: ['#0B1418', '#7FA9A8'] },
+      { slug: 'studio', key: 'B5', name: 'Studio, early morning', round: 1, title: 'A working studio.', blurb: 'An empty, premium studio at first light, haze in the air and the beam slowly warming.', poster: ['#121A20', '#9FB7C2'] },
+      { slug: 'desk-portrait', key: 'B6', name: 'Desk + portrait', round: 2, mergeOf: ['B1'], title: 'You, at your desk.', blurb: 'B1’s desk at dusk, softened behind the 360px portrait captioned with the name.', poster: ['#0A1626', '#00D4AA'] },
+      { slug: 'studio-portrait', key: 'B7', name: 'Studio + portrait', round: 2, mergeOf: ['B5'], title: 'You, in the studio.', blurb: 'B5’s morning studio, softened behind the 360px portrait captioned with the name.', poster: ['#121A20', '#00D4AA'] },
+      { slug: 'desk-night', key: 'B8', name: 'Night office', round: 3, title: 'Late, at the desk.', blurb: 'A home office at night: a brass lamp, a bookshelf, the city through the window, behind the portrait.', poster: ['#0A1626', '#D9A85B'] },
+      { slug: 'desk-highrise', key: 'B9', name: 'High floor', round: 3, title: 'The view from up here.', blurb: 'A corner office high up at dusk, the skyline turning blue and two monitors glowing, behind the portrait.', poster: ['#0E1C2E', '#7FA3C8'] },
+      { slug: 'desk-loft', key: 'B10', name: 'Loft', round: 3, title: 'Brick, steel, evening.', blurb: 'A loft with steel windows, a desk and plants in the evening, behind the portrait.', poster: ['#15130F', '#5E8F6A'] },
+      { slug: 'city-nyc', key: 'B11', name: 'New York', round: 3, title: 'Manhattan at blue hour.', blurb: 'B6’s desk in a Manhattan office, the Empire State Building lighting up, behind the portrait.', poster: ['#0B1A33', '#E8C77A'] },
+      { slug: 'city-miami', key: 'B12', name: 'Miami', round: 3, title: 'Biscayne Bay at dusk.', blurb: 'B6’s desk in a Miami office, Brickell and the bay under a pink-blue sky, behind the portrait.', poster: ['#13213A', '#E8A3B0'] },
+      { slug: 'centered-left', key: 'B13', name: 'Centred, face left', round: 4, mergeOf: ['B6'], title: 'The words first, then you.', blurb: 'B6’s desk, the headline and subtitle centred, then a smaller portrait and name on the left of the course button.', poster: ['#0A1626', '#00D4AA'] },
+      { slug: 'centered-right', key: 'B14', name: 'Centred, face right', round: 4, mergeOf: ['B6'], title: 'The button, then who’s behind it.', blurb: 'B6’s desk, the headline and subtitle centred, then the course button with a smaller portrait and name on its right.', poster: ['#0A1626', '#00D4AA'] },
+      { slug: 'plain-left', key: 'B15', name: 'Centred on navy, face left', round: 4, mergeOf: ['B13'], title: 'B13 without the room.', blurb: 'B13’s centred layout on the live hero’s plain navy, no shot behind.', poster: ['#0A1626', '#00D4AA'] },
+      { slug: 'plain-right', key: 'B16', name: 'Centred on navy, face right', round: 4, mergeOf: ['B14'], title: 'B14 without the room.', blurb: 'B14’s centred layout on the live hero’s plain navy, no shot behind.', poster: ['#0A1626', '#00D4AA'] },
+      { slug: 'original-left', key: 'B17', name: 'Centred, original photo', round: 4, mergeOf: ['B13'], title: 'B13 with the untouched headshot.', blurb: 'B13’s centred layout on the desk at dusk, with Zev’s original headshot: no smirk, glasses or backdrop edits.', poster: ['#0A1626', '#00D4AA'] },
+      { slug: 'highrise-top', key: 'B21', name: 'High floor, face on top', round: 5, mergeOf: ['B9'], title: 'You, then the claim.', blurb: 'B9’s high floor with the skyline open on the right; a 64px portrait and name sit above the headline on the left.', poster: ['#0E1C2E', '#7FA3C8'] },
+      { slug: 'highrise-button', key: 'B22', name: 'High floor, face by the button', round: 5, mergeOf: ['B9'], title: 'You, beside the ask.', blurb: 'B9’s high floor with the skyline open; the portrait and name sit beside the course button on the left.', poster: ['#0E1C2E', '#7FA3C8'] },
+      { slug: 'highrise-foot', key: 'B23', name: 'High floor, signed', round: 5, mergeOf: ['B9'], title: 'Signed at the foot.', blurb: 'B9’s high floor with the skyline open; the portrait and name sign off under the button and its fine print.', poster: ['#0E1C2E', '#7FA3C8'] },
+      { slug: 'loft-top', key: 'B24', name: 'Loft, face on top', round: 5, mergeOf: ['B10'], title: 'You, then the claim.', blurb: 'B10’s loft with the room open on the right; a 64px portrait and name sit above the headline on the left.', poster: ['#15130F', '#5E8F6A'] },
+      { slug: 'loft-button', key: 'B25', name: 'Loft, face by the button', round: 5, mergeOf: ['B10'], title: 'You, beside the ask.', blurb: 'B10’s loft with the room open; the portrait and name sit beside the course button on the left.', poster: ['#15130F', '#5E8F6A'] },
+      { slug: 'loft-foot', key: 'B26', name: 'Loft, signed', round: 5, mergeOf: ['B10'], title: 'Signed at the foot.', blurb: 'B10’s loft with the room open; the portrait and name sign off under the button and its fine print.', poster: ['#15130F', '#5E8F6A'] },
+      { slug: 'loft-foot-solid', key: 'B27', name: 'Loft, signed, solid copy side', round: 5, mergeOf: ['B26'], title: 'B26, the words on solid navy.', blurb: 'B26 with the copy side nearly solid navy, fading quickly so the loft on the right stays clear.', poster: ['#0A1626', '#5E8F6A'] },
+      { slug: 'loft-foot-original', key: 'B28', name: 'Loft, signed, original photo', round: 5, mergeOf: ['B27'], title: 'B27 with the untouched headshot.', blurb: 'B27 exactly, with Zev’s original headshot in the signature: no smirk, glasses or backdrop edits.', poster: ['#0A1626', '#5E8F6A'] },
+      { slug: 'socials-pop', key: 'B29', name: 'Socials: pop card', round: 6, mergeOf: ['B28'], title: 'A card above the head.', blurb: 'B28 with a small card that pops above the photo on hover or tap: a close-up, the name, LinkedIn and GitHub.', poster: ['#0A1626', '#00D4AA'] },
+      { slug: 'socials-profile', key: 'B30', name: 'Socials: profile card', round: 6, mergeOf: ['B28'], title: 'A profile hover card.', blurb: 'B28 with a wider hover card: the close-up beside the name, a proof line, and LinkedIn and GitHub buttons.', poster: ['#0A1626', '#00D4AA'] },
+      { slug: 'socials-zoom', key: 'B31', name: 'Socials: zoom', round: 6, mergeOf: ['B28'], title: 'The photo grows.', blurb: 'B28 where the photo itself grows into a big close-up on hover or tap, with LinkedIn and GitHub icons under it.', poster: ['#0A1626', '#00D4AA'] },
+      { slug: 'highrise-profile', key: 'B32', name: 'High floor, signed, profile card', round: 6, mergeOf: ['B23', 'B28', 'B30'], title: 'B23 with what B28 and B30 settled.', blurb: 'B23’s high floor signed at the foot, with Zev’s original photo, the near-solid copy side (B27) and the profile card on hover (B30).', poster: ['#0E1C2E', '#00D4AA'], live: true, liveHref: '/' },
+    ],
+  },
+  {
     slug: 'home-promise',
     name: 'The homepage promise',
     date: '2026-10-06',

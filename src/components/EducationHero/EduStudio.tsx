@@ -20,6 +20,8 @@ import SeoPageWordmark from '@/components/NewsletterHome/SeoPageWordmark';
 import ComposeWordmark, { type ComposeMarkStyle } from '@/components/NewsletterHome/ComposeWordmark';
 import type { Lesson, ResolvedDesk } from './desks';
 import { EduSignup } from './shared';
+import HeroLoop from './HeroLoop';
+import SocialAvatar, { type SocialHover } from './SocialAvatar';
 
 export type StudioPhoneLayout = 'photo' | 'avatar' | 'profile' | 'after';
 
@@ -47,9 +49,33 @@ type StudioProps = {
       hero (2026-10-09): the line under the headline already carries the
       clip.art proof, and the wordmarks linked away before the signup. */
   systemsRow?: boolean;
+  /** A photoreal background loop in place of the portrait
+      (/prototypes/hero-backdrop/, 2026-10-09): the shot fills the hero, the
+      copy sits on its calm left side, and the face moves to a small byline
+      under the headline. With `portrait`, the face stays at full size in
+      front of a softened shot instead. */
+  backdrop?: {
+    video: string; poster: string; focus?: string; portrait?: boolean; photo?: string;
+    /** Centred headline and subtitle, with a smaller portrait under them on
+        the left or the right of the button (B13, B14). */
+    centered?: 'left' | 'right';
+    /** No shot: the live hero's plain navy ground (B15, B16). */
+    plain?: boolean;
+    /** The portrait's size, in px: under the centred copy (104 by default)
+        or as the byline (36 by default). */
+    faceSize?: number;
+    /** Where the byline sits when there's no big portrait (B21–B23): above
+        the headline, beside the course button, or under the fine print.
+        Under the headline when unset (B1–B5). */
+    byline?: 'top' | 'button' | 'foot';
+    /** The copy side nearly solid navy, fading quickly to the room (B27). */
+    solidCopy?: boolean;
+    /** Hovering the byline photo opens a close-up with LinkedIn and GitHub (B29–B31). */
+    socials?: SocialHover;
+  };
 };
 
-export default function EduStudio({ latest, phone = 'photo', composeMark, headline, sub, signup, thirdApp = 'compose', greeting = true, portrait = 'large', systemsRow = true }: StudioProps) {
+export default function EduStudio({ latest, phone = 'photo', composeMark, headline, sub, signup, thirdApp = 'compose', greeting = true, portrait = 'large', systemsRow = true, backdrop }: StudioProps) {
   // Who's writing. The live hero names the businesses here; without the
   // greeting the wordmarks under the signup are the only place they appear.
   const role = greeting ? 'Marketing engineer · runs clip.art and SEOPage' : 'Marketing engineer';
@@ -59,7 +85,7 @@ export default function EduStudio({ latest, phone = 'photo', composeMark, headli
   const me = (
     <div className="eh-studio-me">
       <span className="eh-studio-me-photo">
-        <Image src="/images/zev-uhuru.png" alt="" width={224} height={224} />
+        <Image src={backdrop?.photo ?? "/images/zev-uhuru.png"} alt="" width={224} height={224} />
       </span>
       <span className="eh-studio-me-text">
         <span className="eh-studio-hello">{greeting ? <>Hi, I&apos;m Zev.</> : 'Zev Uhuru'}</span>
@@ -68,15 +94,73 @@ export default function EduStudio({ latest, phone = 'photo', composeMark, headli
     </div>
   );
 
+  // The small face over a backdrop: a ringed photo with the name. Its place
+  // in the copy is backdrop.byline's (under the headline when unset).
+  const byline = (
+    <div className={`eh-studio-byline${backdrop?.byline ? ` eh-studio-byline--${backdrop.byline}` : ''}`}
+      style={backdrop?.faceSize ? { ['--eh-byline' as string]: `${backdrop.faceSize}px` } : undefined}>
+      {backdrop?.socials ? (
+        <SocialAvatar photo={backdrop.photo ?? '/images/zev-uhuru.png'} style={backdrop.socials} />
+      ) : (
+        <span className="eh-studio-byline-photo">
+          <Image src={backdrop?.photo ?? '/images/zev-uhuru.png'} alt="" width={160} height={160} />
+        </span>
+      )}
+      {backdrop?.byline ? (
+        <span className="eh-studio-byline-text"><b>Zev Uhuru</b><span>Marketing engineer</span></span>
+      ) : (
+        <><b>Zev Uhuru</b><span>· The Marketing Engineer</span></>
+      )}
+    </div>
+  );
+
+  // Centred takes (B13, B14): the headline and subtitle centred over the shot,
+  // then one row under them with a smaller portrait and the name on one side
+  // and the course button on the other.
+  if (backdrop?.centered) {
+    const face = (
+      <div className="eh-under-face" style={backdrop.faceSize ? { ['--eh-face' as string]: `${backdrop.faceSize}px` } : undefined}>
+        <span className="eh-under-ring">
+          <span className="eh-under-circle">
+            <Image src={backdrop.photo ?? '/images/zev-uhuru.png'} alt="Zev Uhuru" fill sizes="140px" priority />
+          </span>
+        </span>
+        <span className="eh-under-name">
+          <b>Zev Uhuru</b>
+          <span>Marketing engineer</span>
+        </span>
+      </div>
+    );
+    return (
+      <section className={`eh eh-studio eh-studio--backdrop eh-studio--centered${backdrop.plain ? ' eh-studio--plain' : ''}`} id="subscribe">
+        {!backdrop.plain && <HeroLoop video={backdrop.video} poster={backdrop.poster} focus={backdrop.focus} />}
+        <div className="nl-container eh-studio-inner">
+          <div className="eh-centered-copy">
+            <h1 className="eh-h1 eh-h1--onDark">
+              {headline ?? <>I build the AI systems that <em>run marketing</em>, and show you how.</>}
+            </h1>
+            <p className="eh-sub eh-sub--onDark">{sub}</p>
+            <div className={`eh-under eh-under--${backdrop.centered}`}>
+              {face}
+              <div className="eh-under-signup">{signup ?? <EduSignup tone="dark" />}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
-    <section className={`eh eh-studio eh-studio--phone-${phone} eh-studio--portrait-${portrait}`} id="subscribe">
+    <section className={`eh eh-studio eh-studio--phone-${phone} eh-studio--portrait-${portrait}${backdrop ? ' eh-studio--backdrop' : ''}${backdrop?.portrait ? ' eh-studio--backdrop-portrait' : ''}${backdrop?.solidCopy ? ' eh-studio--solid-copy' : ''}`} id="subscribe">
+      {backdrop && <HeroLoop video={backdrop.video} poster={backdrop.poster} focus={backdrop.focus} />}
       <div className="nl-container eh-studio-inner">
         {/* The portrait: zev-uhuru.png, the headshot used across the site. It
             is cropped to a circle on a white ground, so it's shown in a circle. */}
+        {(!backdrop || backdrop.portrait) && (
         <div className="eh-studio-photo">
           <div className="eh-studio-ring">
             <div className="eh-studio-circle">
-              <Image src="/images/zev-uhuru.png" alt="Zev Uhuru" fill priority sizes="(max-width: 960px) 60vw, 460px" />
+              <Image src={backdrop?.photo ?? "/images/zev-uhuru.png"} alt="Zev Uhuru" fill priority sizes="(max-width: 960px) 60vw, 460px" />
             </div>
           </div>
           {/* Without the greeting, the portrait is captioned with the name instead. */}
@@ -87,14 +171,18 @@ export default function EduStudio({ latest, phone = 'photo', composeMark, headli
             </p>
           )}
         </div>
+        )}
 
         <div className="eh-studio-copy">
           {greeting && me}
           {greeting && <p className="eh-studio-hello eh-studio-hello--main">Hi, I&apos;m Zev.</p>}
+          {backdrop?.byline === 'top' && byline}
           <h1 className="eh-h1 eh-h1--left eh-h1--onDark">
             {headline ?? <>I build the AI systems that <em>run marketing</em>, and show you how.</>}
           </h1>
-          {!greeting && me}
+          {!greeting && (!backdrop || backdrop.portrait) && me}
+          {/* Over a backdrop, the face is a byline under the headline, on every screen size. */}
+          {backdrop && !backdrop.portrait && !backdrop.byline && byline}
           <p className="eh-sub eh-sub--left eh-sub--onDark">
             {sub ?? (
               <>
@@ -103,7 +191,15 @@ export default function EduStudio({ latest, phone = 'photo', composeMark, headli
               </>
             )}
           </p>
-          {signup ?? <EduSignup tone="dark" />}
+          {backdrop?.byline === 'button' ? (
+            <div className="eh-byline-row">
+              {byline}
+              {signup ?? <EduSignup tone="dark" />}
+            </div>
+          ) : (
+            signup ?? <EduSignup tone="dark" />
+          )}
+          {backdrop?.byline === 'foot' && byline}
 
           {/* The proof: where the systems run (off on the live hero), then the newest issue. */}
           {systemsRow && (

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, MailCheck } from 'lucide-react';
+import { MailCheck } from 'lucide-react';
 import { EsyLoader } from '@/components/EsyLoader';
 import { useNewsletterSubscribe } from '@/hooks/useNewsletterSubscribe';
 
@@ -66,8 +66,9 @@ export default function HeaderSubscribe() {
           if (e.key === 'Escape' && !inputRef.current?.value) setOpen(false);
         }}
       />
-      <button type="submit" className="lh-sub-btn" disabled={isLoading} aria-label="Start the email course">
-        {isLoading ? <EsyLoader size={14} label="" /> : <ArrowRight size={16} aria-hidden="true" />}
+      {/* The button says what it does: "Start" (the email course). */}
+      <button type="submit" className="lh-sub-btn" disabled={isLoading}>
+        {isLoading ? <EsyLoader size={14} label="" /> : 'Start'}
       </button>
       {status === 'error' && errorMessage && (
         <p className="lh-sub-error" role="alert">{errorMessage}</p>

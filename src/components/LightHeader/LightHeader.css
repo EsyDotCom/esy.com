@@ -52,7 +52,11 @@
 }
 .lh-cta:hover { background: #00D4AA; }
 */
+/* Wide, not word-sized (2026-10-09): "App" is one short word, so the button
+   keeps the width "Client sign in" had and stays an easy target. */
 .lh-cta {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 120px;
   font-size: 0.94rem; font-weight: 600; color: #41566D;
   background: transparent; text-decoration: none;
   padding: 9px 16px; border-radius: 8px;

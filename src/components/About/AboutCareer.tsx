@@ -16,7 +16,7 @@ import { CAREER, PROOF, STORY_FULL } from './content';
 // G's strip: four of the résumé's numbers that read at a glance.
 const HEADLINE = [
   { value: '#1', label: 'on Google for “AI clipart”' },
-  { value: '20,000+', label: 'pages published by Esy' },
+  { value: '30,000+', label: 'pages published by Esy' },
   { value: '7 figures', label: 'exit from digital-assets research' },
   { value: '100+', label: 'tested landing pages at fuboTV' },
 ];

@@ -96,12 +96,13 @@ export default function LightHeader({
           <span className="lh-lockup-tag">AI Marketing</span>
         </Link>
         <nav className="lh-nav" aria-label="Primary">
-          {/* The way back in for clients and the team (2026-10-04). os.esy.com
-              sends a signed-out visitor to its sign-in page and a signed-in one
-              to their start app, so one address serves both. The subtle outline
-              button (.lh-cta), never a filled one: the page's own signup stays
-              the one ask. When the studio opens, app.esy.com gets its own link. */}
-          <a href="https://os.esy.com" className="lh-cta">Client sign in</a>
+          {/* The way into Esy's software (2026-10-04; "App" since 2026-10-09,
+              it read "Client sign in"). os.esy.com sends a signed-out visitor
+              to its sign-in page and a signed-in one to their start app, so one
+              address serves both. The subtle outline button (.lh-cta), never a
+              filled one: the page's own signup stays the one ask. When the
+              studio opens, app.esy.com gets its own link. */}
+          <a href="https://os.esy.com" className="lh-cta">App</a>
           {/* Pre-launch: Make isn't open, so the dominant CTA is the waitlist.
               Restore the line below the day the studio opens.
           <Link href="https://app.esy.com" className="lh-cta">Start producing</Link>

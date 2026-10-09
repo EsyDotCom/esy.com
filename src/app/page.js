@@ -1,5 +1,5 @@
 import NewsletterHomePage from "../components/NewsletterHome/NewsletterHomePage";
-import { PROMISES, PromiseStudio, latestLesson, resolveDesks } from "../components/EducationHero";
+import { PROMISES, PromiseStudio, resolveDesks } from "../components/EducationHero";
 import { getAllAgenticArticles } from "../lib/published-articles";
 
 // The homepage is a Marketing Engineering publication, fronted by Zev. Hero
@@ -32,7 +32,7 @@ import { getAllAgenticArticles } from "../lib/published-articles";
 // asking how it's used), so it sits in the description, not the title.
 const HOME_TITLE = "AI Marketing: Learn to Build the Systems That Run It | Esy";
 const HOME_META_DESCRIPTION =
-  "How to use AI in marketing from a founder who runs it: systems that research, write, check and publish on their own. A free email course, code included.";
+  "How to use AI in marketing from a founder who runs it: systems that research, write, check and publish on their own. A free email course, skills included.";
 
 export const metadata = {
   title: HOME_TITLE,
@@ -91,7 +91,7 @@ export default async function HomePage() {
       compose={COMPOSE}
       appsLayout="tour"
       newsColumn
-      hero={<PromiseStudio promise={PROMISES.engineering} desks={resolveDesks(articles)} latest={latestLesson(articles)} />}
+      hero={<PromiseStudio promise={PROMISES.engineering} desks={resolveDesks(articles)} />}
     />
   );
 }

@@ -380,7 +380,7 @@ export function AgenticHero({
               }}
             >
               <Image
-                src="/images/zev-uhuru.png"
+                src="/images/zev-uhuru-sweater-3.webp"
                 alt="Zev Uhuru"
                 width={36}
                 height={36}

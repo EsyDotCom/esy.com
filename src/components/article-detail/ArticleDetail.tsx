@@ -264,7 +264,7 @@ export function ArticleDetail({
                 style={{ width: 40, height: 40, borderRadius: "50%", overflow: "hidden", flexShrink: 0 }}
               >
                 <Image
-                  src="/images/zev-uhuru.png"
+                  src="/images/zev-uhuru-sweater-3.webp"
                   alt="Zev Uhuru"
                   width={40}
                   height={40}

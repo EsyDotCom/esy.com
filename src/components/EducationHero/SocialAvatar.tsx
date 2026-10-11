@@ -6,18 +6,35 @@
  * GitHub links:
  *   pop     — a small card above the head: the close-up, the name, two links
  *   profile — a wider card: the close-up beside the name, a proof line, two buttons
- *   zoom    — the photo itself grows into a big close-up, two round icons under it */
+ *   zoom    — the photo itself grows into a big close-up, two round icons under it
+ *
+ * The homepage hero's 'profile' card is the one in use, and since 2026-10-11 every
+ * small photo of Zev on the site opens it too (bylines, author boxes, /skills).
+ * Each caller keeps its own frame (size, ring) through frameClassName. */
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import Image from 'next/image';
 import { Github, Linkedin } from 'lucide-react';
-import { LINKEDIN_URL } from './shared';
-
-export const GITHUB_URL = 'https://github.com/ZevUhuru';
+import { GITHUB_URL, LINKEDIN_URL, ZEV_PHOTO } from './zev';
+import './SocialAvatar.css';
 
 export type SocialHover = 'pop' | 'profile' | 'zoom';
 
-export default function SocialAvatar({ photo, style }: { photo: string; style: SocialHover }) {
+export default function SocialAvatar({
+  photo = ZEV_PHOTO,
+  style = 'profile',
+  frameClassName = 'eh-studio-byline-photo',
+  frameStyle,
+  size = 80,
+}: {
+  photo?: string;
+  style?: SocialHover;
+  /** The caller's own frame class: its size, ring and shadow. Defaults to the hero byline's. */
+  frameClassName?: string;
+  frameStyle?: CSSProperties;
+  /** The frame's rendered size in px, so the small photo loads at 2x and no larger. */
+  size?: number;
+}) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
   // Leaving the photo waits a beat before closing, so the pointer can travel
@@ -57,8 +74,8 @@ export default function SocialAvatar({ photo, style }: { photo: string; style: S
     >
       {/* The small photo is the trigger: a button, so it works by tap and keyboard. */}
       <button type="button" className="sa-trigger" aria-expanded={open} aria-label="Zev Uhuru: LinkedIn and GitHub" onClick={() => setOpen((o) => !o)}>
-        <span className="eh-studio-byline-photo">
-          <Image src={photo} alt="" width={160} height={160} />
+        <span className={`sa-frame ${frameClassName}`} style={frameStyle}>
+          <Image src={photo} alt="" width={size * 2} height={size * 2} />
         </span>
       </button>
 

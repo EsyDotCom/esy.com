@@ -149,7 +149,7 @@ export default function LightHeader({
                 </p>
                 <div className="nav-agentic-byline">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/images/zev-uhuru.png" alt="" className="nav-agentic-avatar" />
+                  <img src="/images/zev-uhuru-sweater-3.webp" alt="" className="nav-agentic-avatar" />
                   <div className="nav-agentic-byline-text">
                     <span className="nav-agentic-byline-name">Zev Uhuru</span>
                     <span className="nav-agentic-byline-role">Agentic Engineer</span>

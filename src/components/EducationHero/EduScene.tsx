@@ -37,7 +37,7 @@ export default function EduScene({ backdrop = SCENE_BACKDROP }: { desks: Resolve
         {/* The face: who will be writing to you. */}
         <div className="eh-scene-byline">
           <span className="eh-scene-avatar">
-            <Image src="/images/zev-uhuru.png" alt="" width={96} height={96} />
+            <Image src="/images/zev-uhuru-sweater-3.webp" alt="" width={96} height={96} />
           </span>
           <p>
             <b>Written by Zev Uhuru</b>

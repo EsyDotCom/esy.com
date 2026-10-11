@@ -85,7 +85,7 @@ export default function EduStudio({ latest, phone = 'photo', composeMark, headli
   const me = (
     <div className="eh-studio-me">
       <span className="eh-studio-me-photo">
-        <Image src={backdrop?.photo ?? "/images/zev-uhuru.png"} alt="" width={224} height={224} />
+        <Image src={backdrop?.photo ?? "/images/zev-uhuru-sweater-3.webp"} alt="" width={224} height={224} />
       </span>
       <span className="eh-studio-me-text">
         <span className="eh-studio-hello">{greeting ? <>Hi, I&apos;m Zev.</> : 'Zev Uhuru'}</span>
@@ -100,10 +100,10 @@ export default function EduStudio({ latest, phone = 'photo', composeMark, headli
     <div className={`eh-studio-byline${backdrop?.byline ? ` eh-studio-byline--${backdrop.byline}` : ''}`}
       style={backdrop?.faceSize ? { ['--eh-byline' as string]: `${backdrop.faceSize}px` } : undefined}>
       {backdrop?.socials ? (
-        <SocialAvatar photo={backdrop.photo ?? '/images/zev-uhuru.png'} style={backdrop.socials} />
+        <SocialAvatar photo={backdrop.photo ?? '/images/zev-uhuru-sweater-3.webp'} style={backdrop.socials} />
       ) : (
         <span className="eh-studio-byline-photo">
-          <Image src={backdrop?.photo ?? '/images/zev-uhuru.png'} alt="" width={160} height={160} />
+          <Image src={backdrop?.photo ?? '/images/zev-uhuru-sweater-3.webp'} alt="" width={160} height={160} />
         </span>
       )}
       {backdrop?.byline ? (
@@ -122,7 +122,7 @@ export default function EduStudio({ latest, phone = 'photo', composeMark, headli
       <div className="eh-under-face" style={backdrop.faceSize ? { ['--eh-face' as string]: `${backdrop.faceSize}px` } : undefined}>
         <span className="eh-under-ring">
           <span className="eh-under-circle">
-            <Image src={backdrop.photo ?? '/images/zev-uhuru.png'} alt="Zev Uhuru" fill sizes="140px" priority />
+            <Image src={backdrop.photo ?? '/images/zev-uhuru-sweater-3.webp'} alt="Zev Uhuru" fill sizes="140px" priority />
           </span>
         </span>
         <span className="eh-under-name">
@@ -154,13 +154,13 @@ export default function EduStudio({ latest, phone = 'photo', composeMark, headli
     <section className={`eh eh-studio eh-studio--phone-${phone} eh-studio--portrait-${portrait}${backdrop ? ' eh-studio--backdrop' : ''}${backdrop?.portrait ? ' eh-studio--backdrop-portrait' : ''}${backdrop?.solidCopy ? ' eh-studio--solid-copy' : ''}`} id="subscribe">
       {backdrop && <HeroLoop video={backdrop.video} poster={backdrop.poster} focus={backdrop.focus} />}
       <div className="nl-container eh-studio-inner">
-        {/* The portrait: zev-uhuru.png, the headshot used across the site. It
+        {/* The portrait: zev-uhuru-sweater-3.webp, the headshot used across the site. It
             is cropped to a circle on a white ground, so it's shown in a circle. */}
         {(!backdrop || backdrop.portrait) && (
         <div className="eh-studio-photo">
           <div className="eh-studio-ring">
             <div className="eh-studio-circle">
-              <Image src={backdrop?.photo ?? "/images/zev-uhuru.png"} alt="Zev Uhuru" fill priority sizes="(max-width: 960px) 60vw, 460px" />
+              <Image src={backdrop?.photo ?? "/images/zev-uhuru-sweater-3.webp"} alt="Zev Uhuru" fill priority sizes="(max-width: 960px) 60vw, 460px" />
             </div>
           </div>
           {/* Without the greeting, the portrait is captioned with the name instead. */}

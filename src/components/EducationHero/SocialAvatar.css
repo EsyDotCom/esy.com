@@ -1,0 +1,78 @@
+/* Zev's small photo with his socials behind it (moved out of EducationHero.css,
+ * 2026-10-11, so every small photo on the site can use it; first built as
+ * /prototypes/hero-backdrop/ B29–B31). Colours fall back to the brand values
+ * where the page isn't inside the publication's .nl scope. */
+
+/* The frame the caller passes (its own size, ring and shadow) is a block in the
+ * button, framed like the hero byline: the head centred in the circle. */
+.sa .sa-frame { display: block; transition: transform 0.25s ease, box-shadow 0.25s ease;
+  --zev-avatar-scale: 1.1; --zev-avatar-x: 0%; --zev-avatar-y: 3%; }
+.sa .sa-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.sa { position: relative; display: inline-flex; flex: none; }
+.sa-trigger { padding: 0; border: 0; background: none; border-radius: 50%; cursor: pointer; display: block; }
+.sa-trigger:focus-visible { outline: 2px solid var(--nl-jade-bright, #00D4AA); outline-offset: 4px; }
+/* The pop: the photo grows a touch while the card is open. */
+.sa.is-open .sa-frame { transform: scale(1.06); }
+.sa-card {
+  /* The card reads the same on every page, whatever the host's alignment or type */
+  text-align: left; line-height: 1.4; font-weight: 400; white-space: normal;
+  position: absolute; z-index: 5; opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1), visibility 0s linear 0.25s;
+}
+.sa.is-open .sa-card { opacity: 1; visibility: visible; pointer-events: auto; transition-delay: 0s; }
+/* An invisible bridge over the gap between the photo and a card above it,
+   so moving the pointer up into the card never leaves the hover. */
+.sa--pop .sa-card::before, .sa--profile .sa-card::before, .sa--zoom .sa-card::before { content: ''; position: absolute; left: 0; right: 0; top: 100%; height: 24px; }
+.sa-closeup { position: relative; display: block; border-radius: 50%; overflow: hidden; --zev-avatar-scale: 1.1; --zev-avatar-x: 0%; --zev-avatar-y: 3%; }
+.sa-closeup img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.sa .sa-who { display: flex; flex-direction: column; gap: 2px; font-size: 0.82rem; color: rgba(255, 255, 255, 0.66); }
+.sa .sa-card .sa-who b { font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-style: italic; font-weight: 600; font-size: 1.25rem; color: var(--nl-jade-bright, #00D4AA); }
+.sa .sa-proof { margin-top: 6px; color: rgba(255, 255, 255, 0.82); line-height: 1.45; }
+.sa .sa-links { display: flex; gap: 8px; }
+.sa .sa-link { display: inline-flex; align-items: center; gap: 7px; padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.16); background: rgba(255, 255, 255, 0.06); color: #fff; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: background 0.15s ease, border-color 0.15s ease; }
+.sa .sa-link:hover, .sa .sa-link:focus-visible { background: rgba(0, 212, 170, 0.14); border-color: var(--nl-jade-bright, #00D4AA); outline: none; }
+
+/* B29 · Pop card: a small card above the head, a pointer down to the photo. */
+.sa--pop .sa-card {
+  bottom: calc(100% + 16px); left: -16px; width: 220px; padding: 18px; border-radius: 14px;
+  display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center;
+  background: #0E1E33; border: 1px solid rgba(0, 212, 170, 0.35); box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.85);
+  transform: translateY(8px);
+}
+.sa--pop .sa-card::after { content: ''; position: absolute; top: 100%; left: 38px; border: 9px solid transparent; border-top-color: #0E1E33; }
+.sa--pop.is-open .sa-card { transform: translateY(0); }
+.sa--pop .sa-closeup { width: 120px; height: 120px; box-shadow: 0 0 0 3px var(--nl-jade-bright, #00D4AA); }
+.sa--pop .sa-who { align-items: center; }
+
+/* B30 · Profile card: wider, the close-up beside the name, two buttons. */
+.sa--profile .sa-card {
+  bottom: calc(100% + 16px); left: -16px; width: 360px; padding: 18px; border-radius: 14px;
+  display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 12px 16px; align-items: center;
+  background: #0E1E33; border: 1px solid rgba(255, 255, 255, 0.14); box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.85);
+  transform: translateY(8px);
+}
+.sa--profile.is-open .sa-card { transform: translateY(0); }
+.sa--profile .sa-closeup { width: 112px; height: 112px; grid-row: span 2; box-shadow: 0 0 0 3px var(--nl-jade-bright, #00D4AA); }
+.sa--profile .sa-links { grid-column: 2; }
+
+/* B31 · Zoom: the photo grows into a big close-up just above itself, the
+   two icons sitting on the circle's bottom edge. Nothing covers the name. */
+.sa--zoom .sa-card {
+  bottom: calc(100% + 14px); left: -20px; width: 220px; display: flex; flex-direction: column; align-items: center;
+  transform: scale(0.25); transform-origin: 48px 100%;
+}
+.sa--zoom.is-open .sa-card { transform: scale(1); }
+.sa--zoom .sa-closeup { width: 220px; height: 220px; box-shadow: 0 0 0 4px var(--nl-jade-bright, #00D4AA), 0 30px 70px -20px rgba(0, 0, 0, 0.9); }
+.sa--zoom .sa-links { margin-top: -24px; position: relative; }
+.sa--zoom .sa-link { width: 46px; height: 46px; justify-content: center; padding: 0; border-radius: 50%; background: #0E1E33; border: 2px solid var(--nl-jade-bright, #00D4AA); box-shadow: 0 10px 24px -10px rgba(0, 0, 0, 0.9); }
+.sa--zoom .sa-link:hover, .sa--zoom .sa-link:focus-visible { background: #133052; }
+.sa--zoom .sa-link-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+@media (max-width: 560px) {
+  .sa--profile .sa-card { width: min(320px, calc(100vw - 48px)); grid-template-columns: 84px minmax(0, 1fr); }
+  .sa--profile .sa-closeup { width: 84px; height: 84px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sa-card, .sa-frame { transition: none; }
+}

@@ -6,8 +6,8 @@
  * tokens, its display serif, and the site-wide newsletter signup, which posts
  * to the same list as every other form. */
 
-import Image from 'next/image';
 import Link from 'next/link';
+import SocialAvatar from '@/components/EducationHero/SocialAvatar';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import EnhancedMarkdownRenderer from '@/components/SchoolArticle/EnhancedMarkdownRenderer';
 import NewsletterSignup from '@/components/NewsletterHome/NewsletterSignup';
@@ -33,9 +33,8 @@ export function Byline({
 }) {
   return (
     <div className={`ai-byline${onDark ? ' ai-byline--onDark' : ''}`}>
-      <span className="ai-byline-photo">
-        <Image src="/images/zev-uhuru.png" alt="" width={88} height={88} />
-      </span>
+      {/* Hover or tap opens the homepage hero's profile card (LinkedIn, GitHub) */}
+      <SocialAvatar frameClassName="ai-byline-photo" size={44} />
       <span className="ai-byline-text">
         <b>Zev Uhuru</b>
         <span>
@@ -97,9 +96,7 @@ export function ArticleEnd({ related }: { related: AgenticVideo[] }) {
   return (
     <footer className="ai-end">
       <div className="ai-author">
-        <span className="ai-author-photo">
-          <Image src="/images/zev-uhuru.png" alt="Zev Uhuru" width={144} height={144} />
-        </span>
+        <SocialAvatar frameClassName="ai-author-photo" size={72} />
         <div>
           <p className="ai-author-name">Zev Uhuru</p>
           <p className="ai-author-bio">

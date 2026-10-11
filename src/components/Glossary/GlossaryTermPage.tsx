@@ -4,7 +4,7 @@ import React, { useMemo } from 'react';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import Image from 'next/image';
+import SocialAvatar from '@/components/EducationHero/SocialAvatar';
 import { Bot, GitBranch, ShieldCheck, Server, FileOutput, ArrowRight, Linkedin, Github, type LucideIcon } from 'lucide-react';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import WorkflowCircuit from '@/components/ArtifactDetailTemplate/WorkflowCircuit';
@@ -159,15 +159,8 @@ export default function GlossaryTermPage({ term }: GlossaryTermPageProps) {
             {/* Author */}
             <aside className={styles.author} aria-label="Article author">
               <div className={styles.authorInner}>
-                <div className={styles.authorAvatar}>
-                  <Image
-                    src="/images/zev-uhuru.png"
-                    alt="Zev Uhuru"
-                    width={72}
-                    height={72}
-                    style={{ objectFit: 'cover' }}
-                  />
-                </div>
+                {/* Hover or tap opens the homepage hero's profile card (LinkedIn, GitHub) */}
+                <SocialAvatar frameClassName={styles.authorAvatar} size={72} />
                 <div className={styles.authorInfo}>
                   <span className={styles.authorLabel}>Written by</span>
                   <h4 className={styles.authorName}>Zev Uhuru</h4>

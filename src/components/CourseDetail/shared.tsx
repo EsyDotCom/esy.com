@@ -73,7 +73,7 @@ export function TeacherBlock({ course }: { course: Course }) {
   return (
     <div className="nl-author">
       <div className="nl-author-photo">
-        <Image src="/images/zev-uhuru.png" alt={course.author.name} width={144} height={144} />
+        <Image src="/images/zev-uhuru-sweater-3.webp" alt={course.author.name} width={144} height={144} />
       </div>
       <div>
         <p className="nl-eyebrow">Who teaches it</p>

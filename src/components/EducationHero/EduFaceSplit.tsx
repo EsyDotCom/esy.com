@@ -33,7 +33,7 @@ export default function EduFaceSplit({ latest }: { desks: ResolvedDesk[]; latest
         <figure className="eh-face-figure">
           <div className="eh-face-ring">
             <div className="eh-face-photo">
-              <Image src="/images/zev-uhuru.png" alt="Zev Uhuru" fill sizes="(max-width: 960px) 70vw, 420px" priority />
+              <Image src="/images/zev-uhuru-sweater-3.webp" alt="Zev Uhuru" fill sizes="(max-width: 960px) 70vw, 420px" priority />
             </div>
           </div>
 

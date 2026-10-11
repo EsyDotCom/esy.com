@@ -4,7 +4,7 @@ category: "LLM Basics"
 author:
   name: "Zev Uhuru"
   title: "Agentic Engineer"
-  avatar: "/images/zev-uhuru.png"
+  avatar: "/images/zev-uhuru-sweater-3.webp"
   bio: "Leading expert in natural language processing and deep learning."
 date: "Mar 20, 2025"
 readTime: "12 min read"

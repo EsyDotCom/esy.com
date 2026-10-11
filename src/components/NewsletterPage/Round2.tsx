@@ -21,7 +21,7 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { findPost, postPath } from '@/data/news';
 import { type Issue, ISSUES, ISSUE_COUNT, LATEST } from './issues';
-import { PageSignup, SampleNote, useDateLabel, useIssueHref } from './shared';
+import { PageSignup, SampleNote, useCover, useDateLabel, useIssueHref } from './shared';
 import { PROMISE } from './Takes';
 
 
@@ -29,10 +29,11 @@ import { PROMISE } from './Takes';
     back to the L3 cover: navy with the number big. */
 export function IssueArt({ issue, size = 'sm' }: { issue: Issue; size?: 'sm' | 'md' | 'lg' }) {
   const n = String(issue.n).padStart(2, '0');
+  const cover = useCover()(issue);
   return (
     <span
-      className={`nlp-art nlp-art--${size}${issue.cover ? ' has-cover' : ''}`}
-      style={issue.cover ? { backgroundImage: `url(${issue.cover})` } : undefined}
+      className={`nlp-art nlp-art--${size}${cover ? ' has-cover' : ''}`}
+      style={cover ? { backgroundImage: `url(${cover})` } : undefined}
       aria-hidden="true"
     >
       <span className="nlp-art-n">{n}</span>
@@ -53,11 +54,12 @@ export function Masthead() {
 export function LeadCard({ issue }: { issue: Issue }) {
   const href = useIssueHref();
   const dateLabel = useDateLabel();
+  const cover = useCover()(issue);
   return (
     <Link
       href={href(issue)}
-      className={`nlp-lead${issue.cover ? ' has-cover' : ''}`}
-      style={issue.cover ? { backgroundImage: `linear-gradient(90deg, rgba(10,22,38,0.92) 0%, rgba(10,22,38,0.7) 30%, rgba(10,22,38,0.15) 55%, rgba(10,22,38,0) 70%), url(${issue.cover})` } : undefined}
+      className={`nlp-lead${cover ? ' has-cover' : ''}`}
+      style={cover ? { backgroundImage: `linear-gradient(90deg, rgba(10,22,38,0.92) 0%, rgba(10,22,38,0.7) 30%, rgba(10,22,38,0.15) 55%, rgba(10,22,38,0) 70%), url(${cover})` } : undefined}
     >
       <span className="nlp-lead-text">
         <span className="nlp-lead-kicker">No. {issue.n} · {dateLabel(issue)}</span>

@@ -3148,6 +3148,12 @@ export const PROTOTYPES: Prototype[] = [
         summary:
           'D’s top, closer to Substack (the name alone, the title lifted to the middle of a brighter cover), and three takes on the rest after Dan Koe’s Substack: a feed of issues with covers on the right, with a rail of Esy’s own properties (G), the week’s news (H), or no rail and the signup inline (I).',
       },
+      {
+        n: 4,
+        title: 'Real covers',
+        summary:
+          'The generated glowing scenes read as 2023 AI art, so the covers move into the room from the homepage video and the YouTube thumbnails. J puts each issue’s real page on the monitor at Zev’s desk; K shows the issue’s headline result as a card over the room, out of focus. Both on the live page.',
+      },
     ],
     variants: [
       { slug: 'batch', key: 'A', name: 'The Batch', round: 1, title: 'AI marketing, built in public.', blurb: 'A light masthead with the promise and signup, the latest issue featured, then every issue as a numbered list.', poster: ['#F8F9FA', '#00A896'] },
@@ -3159,6 +3165,8 @@ export const PROTOTYPES: Prototype[] = [
       { slug: 'feed-rail', key: 'G', name: 'Feed + rail', round: 3, mergeOf: ['D'], title: 'Feed, and Esy beside it.', blurb: 'D’s cover, then a Latest / Top feed with covers on the right and a rail: the newsletter card with the signup, then “Also from Esy”.', poster: ['#F3F1ED', '#0A2540'] },
       { slug: 'feed-news', key: 'H', name: 'Feed + news', round: 3, mergeOf: ['D'], title: 'Feed, and the week’s news beside it.', blurb: 'D’s cover, the same feed, and a rail with the signup and this week’s AI Marketing News.', poster: ['#F3F1ED', '#00A896'] },
       { slug: 'wide-feed', key: 'I', name: 'Wide feed', round: 3, mergeOf: ['D'], title: 'One wide feed, signup inline.', blurb: 'D’s cover, then a wider feed with bigger covers and a News tab, and the signup inline after the second issue.', poster: ['#F3F1ED', '#0A1626'] },
+      { slug: 'real-screen', key: 'J', name: 'Real screen', round: 4, mergeOf: ['I'], live: true, liveHref: '/newsletter/', title: 'The real thing, on his screen.', blurb: 'The live page with new covers: a photo of the desk from the homepage video, the issue’s real page on the monitor (clip.art, AI Marketing News, SEOPage).', poster: ['#0A1626', '#F3F1ED'] },
+      { slug: 'proof-card', key: 'K', name: 'Proof card', round: 4, mergeOf: ['I'], title: 'The result, as a card.', blurb: 'The live page with new covers: the same room out of focus, the issue’s headline result as a crisp card (#1 for “AI clipart”, the newsroom, cited by AI).', poster: ['#0A1626', '#00D4AA'] },
     ],
   },
   {

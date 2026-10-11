@@ -29,7 +29,7 @@ import '@/components/BrandShapes/reef.css';
 import './course-covers.css';
 
 // One warm light in the room, the band's gold, and the desk it falls on.
-const W = { gold: '#E3B660', glow: '#F6DDA3', wood: '#C9AE84', woodEdge: '#9C8159', wall: '#0E2B45', wall2: '#0B2238', floor: '#081A2C' };
+export const W = { gold: '#E3B660', glow: '#F6DDA3', wood: '#C9AE84', woodEdge: '#9C8159', wall: '#0E2B45', wall2: '#0B2238', floor: '#081A2C' };
 
 /** Every round-2 cover: the scene, then the esy brand, centred at the very top,
  *  where the band's "presents" line used to run (it drops when a drawn cover is
@@ -45,7 +45,7 @@ function Frame({ format, label, children }: { format: CoverFormat; label: string
 }
 
 /** A screen showing a terminal (prompt, lines typing) or an editor (file list, code). */
-function Screen({ x, y, w, h, kind = 'terminal', id }: { x: number; y: number; w: number; h: number; kind?: 'terminal' | 'editor'; id: string }) {
+export function Screen({ x, y, w, h, kind = 'terminal', id }: { x: number; y: number; w: number; h: number; kind?: 'terminal' | 'editor'; id: string }) {
   const pad = Math.max(10, w * 0.07);
   const lh = h * 0.13;
   const bar = Math.max(4, lh * 0.42);
@@ -87,7 +87,7 @@ function Screen({ x, y, w, h, kind = 'terminal', id }: { x: number; y: number; w
 }
 
 /** A desk lamp leaning in from (x, y), its warm cone falling to `floor`. */
-function Lamp({ x, y, floor, flip = false, id }: { x: number; y: number; floor: number; flip?: boolean; id: string }) {
+export function Lamp({ x, y, floor, flip = false, id }: { x: number; y: number; floor: number; flip?: boolean; id: string }) {
   const s = flip ? -1 : 1;
   return (
     <g>
@@ -105,7 +105,7 @@ function Lamp({ x, y, floor, flip = false, id }: { x: number; y: number; floor: 
   );
 }
 
-function Plant({ x, y, s = 1 }: { x: number; y: number; s?: number }) {
+export function Plant({ x, y, s = 1 }: { x: number; y: number; s?: number }) {
   const leaf = (dx: number, dy: number, r: number, f: string, k: number) => (
     <polygon key={k} points={`0,0 ${10 * s},${-14 * s} 0,${-34 * s} ${-10 * s},${-14 * s}`} transform={`translate(${x + dx * s} ${y + dy * s}) rotate(${r})`} fill={f} />
   );
@@ -122,7 +122,7 @@ function Plant({ x, y, s = 1 }: { x: number; y: number; s?: number }) {
 }
 
 /** A bookshelf: shelves and spines in the palette. */
-function Shelf({ x, y, w, rows }: { x: number; y: number; w: number; rows: number }) {
+export function Shelf({ x, y, w, rows }: { x: number; y: number; w: number; rows: number }) {
   const tones = [C.navy, C.deep, C.ivory, '#163A5F', C.teal];
   return (
     <g>
@@ -141,7 +141,7 @@ function Shelf({ x, y, w, rows }: { x: number; y: number; w: number; rows: numbe
 }
 
 /** A window onto the night city: sky, an octagon moon, stars, a stencil skyline with lit windows. */
-function CityWindow({ x, y, w, h, id }: { x: number; y: number; w: number; h: number; id: string }) {
+export function CityWindow({ x, y, w, h, id }: { x: number; y: number; w: number; h: number; id: string }) {
   const blocks = Array.from({ length: Math.ceil(w / 46) }, (_, k) => ({ bx: x + k * 46, bh: h * (0.22 + ((k * 37) % 5) * 0.07) }));
   return (
     <g>
@@ -190,7 +190,7 @@ function Desk({ x, y, w, legs = 160 }: { x: number; y: number; w: number; legs?:
 }
 
 /** The esy wordmark as a brand mark on a surface: teal "e", then "sy", in Black Ops One. */
-function EsyMark({ x, y, size, tone = 'light', rotate = 0, opacity = 0.9, anchor = 'middle' }: { x: number; y: number; size: number; tone?: 'light' | 'dark'; rotate?: number; opacity?: number; anchor?: 'start' | 'middle' }) {
+export function EsyMark({ x, y, size, tone = 'light', rotate = 0, opacity = 0.9, anchor = 'middle' }: { x: number; y: number; size: number; tone?: 'light' | 'dark'; rotate?: number; opacity?: number; anchor?: 'start' | 'middle' }) {
   return (
     <text
       x={x}
@@ -210,7 +210,7 @@ function EsyMark({ x, y, size, tone = 'light', rotate = 0, opacity = 0.9, anchor
 }
 
 /** A monitor on a stand, its screen a Screen; with `logo`, the esy mark on its chin. */
-function Monitor({ x, y, w, h, kind, id, logo = false }: { x: number; y: number; w: number; h: number; kind?: 'terminal' | 'editor'; id: string; logo?: boolean }) {
+export function Monitor({ x, y, w, h, kind, id, logo = false }: { x: number; y: number; w: number; h: number; kind?: 'terminal' | 'editor'; id: string; logo?: boolean }) {
   const chin = logo ? 22 : 6;
   return (
     <g>
@@ -238,7 +238,7 @@ const tipOf = (i: number, x: number, y: number, w: number): [number, number] => 
 };
 
 /** A small keyboard slab whose keys under Mason's tips light in turn. */
-function Keys({ x, y, w, cols, rows, lit }: { x: number; y: number; w: number; cols: number; rows: number; lit: number[] }) {
+export function Keys({ x, y, w, cols, rows, lit }: { x: number; y: number; w: number; cols: number; rows: number; lit: number[] }) {
   const k = w / cols;
   return (
     <g>
@@ -266,7 +266,7 @@ function Keys({ x, y, w, cols, rows, lit }: { x: number; y: number; w: number; c
 /* ── The desk, seen a little from above ──
    Its top is a band from the far edge (where the monitor stands) to the near
    one (where Mason sits), so a keyboard can lie on it between them. */
-function DeskTop({ x0, x1, far, near, spread = 30, legs = 200 }: { x0: number; x1: number; far: number; near: number; spread?: number; legs?: number }) {
+export function DeskTop({ x0, x1, far, near, spread = 30, legs = 200 }: { x0: number; x1: number; far: number; near: number; spread?: number; legs?: number }) {
   return (
     <g>
       {legs > 0 && (
@@ -281,9 +281,9 @@ function DeskTop({ x0, x1, far, near, spread = 30, legs = 200 }: { x0: number; x
   );
 }
 
-type K4 = [number, number, number, number];
+export type K4 = [number, number, number, number];
 /** The four keys his tips rest on, as points, for a Keys grid. */
-const keysAt = (x: number, y: number, w: number, cols: number, ns: K4) =>
+export const keysAt = (x: number, y: number, w: number, cols: number, ns: K4) =>
   ns.map((n) => keyCenter(x, y, w, cols, n)) as [[number, number], [number, number], [number, number], [number, number]];
 
 /* ── F · Studio ──

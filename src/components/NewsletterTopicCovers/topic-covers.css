@@ -1,0 +1,114 @@
+/* Newsletter covers by topic (2026-10-11). The art is SVG; everything moves
+   with CSS only. Each moving part is drawn at its finished place and animates
+   FROM elsewhere, so .tc-still and reduced motion show the finished idea. */
+
+.tc-art { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+.tc-art g, .tc-art polygon, .tc-art line, .tc-art circle { transform-box: view-box; }
+
+/* A · Dots: each dot leaves the screen (--fx, --fy back to it), works, comes home. */
+.tc-go { animation: tc-go 9s ease-in-out calc(var(--k) * 0.45s) infinite both; }
+@keyframes tc-go {
+  0% { translate: var(--fx) var(--fy); opacity: 0; }
+  6% { translate: var(--fx) var(--fy); opacity: 1; }
+  30%, 76% { translate: 0 0; opacity: 1; }
+  94% { translate: var(--fx) var(--fy); opacity: 1; }
+  100% { translate: var(--fx) var(--fy); opacity: 0; }
+}
+.tc-slot { animation: tc-slot 9s steps(1) calc(var(--k) * 0.45s) infinite both; }
+@keyframes tc-slot { 0% { fill-opacity: 0.05; stroke-opacity: 0.45; } 30%, 76% { fill-opacity: 0.3; stroke-opacity: 1; } 77%, 100% { fill-opacity: 0.05; stroke-opacity: 0.45; } }
+.tc-bob { animation: tc-bob 1.8s ease-in-out calc(var(--k) * -0.37s) infinite alternate; }
+@keyframes tc-bob { from { translate: 0 -3px; } to { translate: 0 3px; } }
+
+/* A · Muse: the steps light in turn, then the card asks for an OK. 9s. */
+.tc-ask { animation: tc-ask 9s ease-out infinite both; }
+@keyframes tc-ask { 0%, 62% { translate: 0 18px; opacity: 0; } 68%, 94% { translate: 0 0; opacity: 1; } 98%, 100% { translate: 0 0; opacity: 0; } }
+.tc-ok { animation: tc-ok 1.2s ease-in-out infinite alternate; }
+@keyframes tc-ok { from { fill: #00A896; } to { fill: #2BD8BB; } }
+
+/* B · Dots: the full stop splits into a team above the word, links up, folds back. 8s. */
+.tc-split { animation: tc-split 8s cubic-bezier(.3,.7,.3,1) calc(var(--k) * 0.08s) infinite both; }
+@keyframes tc-split {
+  0%, 8% { translate: var(--fx) var(--fy); opacity: 0; }
+  12% { opacity: 1; }
+  32%, 80% { translate: 0 0; opacity: 1; }
+  96% { translate: var(--fx) var(--fy); opacity: 1; }
+  100% { translate: var(--fx) var(--fy); opacity: 0; }
+}
+
+/* B · Muse: the night crosses over the word. 10s. */
+.tc-moon { animation: tc-moon 10s linear infinite both; }
+@keyframes tc-moon { 0% { translate: -320px 40px; opacity: 0; } 8% { opacity: 1; } 60% { translate: 0 0; } 92% { opacity: 1; } 100% { translate: 180px 10px; opacity: 0; } }
+.tc-ring { animation: tc-ring 10s ease-out infinite both; transform-origin: 1170px 521px; }
+@keyframes tc-ring { 0%, 64% { opacity: 0; scale: 0.6; } 70%, 94% { opacity: 1; scale: 1; } 98%, 100% { opacity: 0; scale: 1; } }
+
+/* Steps (A · Muse) and tiles (B · Muse) light one by one and reset together. */
+.tc-step-0 { animation: tc-step-0 9s steps(1) infinite both; }
+@keyframes tc-step-0 { 0% { fill-opacity: 0; } 8%, 95% { fill-opacity: 1; } 96%, 100% { fill-opacity: 0; } }
+.tc-step-1 { animation: tc-step-1 9s steps(1) infinite both; }
+@keyframes tc-step-1 { 0% { fill-opacity: 0; } 20%, 95% { fill-opacity: 1; } 96%, 100% { fill-opacity: 0; } }
+.tc-step-2 { animation: tc-step-2 9s steps(1) infinite both; }
+@keyframes tc-step-2 { 0% { fill-opacity: 0; } 32%, 95% { fill-opacity: 1; } 96%, 100% { fill-opacity: 0; } }
+.tc-step-3 { animation: tc-step-3 9s steps(1) infinite both; }
+@keyframes tc-step-3 { 0% { fill-opacity: 0; } 44%, 95% { fill-opacity: 1; } 96%, 100% { fill-opacity: 0; } }
+.tc-step-4 { animation: tc-step-4 9s steps(1) infinite both; }
+@keyframes tc-step-4 { 0% { fill-opacity: 0; } 56%, 95% { fill-opacity: 1; } 96%, 100% { fill-opacity: 0; } }
+.tc-tile-0 { animation: tc-tile-0 10s steps(1) infinite both; }
+@keyframes tc-tile-0 { 0% { opacity: 0.18; } 6%, 95% { opacity: 1; } 96%, 100% { opacity: 0.18; } }
+.tc-tile-1 { animation: tc-tile-1 10s steps(1) infinite both; }
+@keyframes tc-tile-1 { 0% { opacity: 0.18; } 15%, 95% { opacity: 1; } 96%, 100% { opacity: 0.18; } }
+.tc-tile-2 { animation: tc-tile-2 10s steps(1) infinite both; }
+@keyframes tc-tile-2 { 0% { opacity: 0.18; } 24%, 95% { opacity: 1; } 96%, 100% { opacity: 0.18; } }
+.tc-tile-3 { animation: tc-tile-3 10s steps(1) infinite both; }
+@keyframes tc-tile-3 { 0% { opacity: 0.18; } 33%, 95% { opacity: 1; } 96%, 100% { opacity: 0.18; } }
+.tc-tile-4 { animation: tc-tile-4 10s steps(1) infinite both; }
+@keyframes tc-tile-4 { 0% { opacity: 0.18; } 42%, 95% { opacity: 1; } 96%, 100% { opacity: 0.18; } }
+.tc-tile-5 { animation: tc-tile-5 10s steps(1) infinite both; }
+@keyframes tc-tile-5 { 0% { opacity: 0.18; } 51%, 95% { opacity: 1; } 96%, 100% { opacity: 0.18; } }
+.tc-tile-6 { animation: tc-tile-6 10s steps(1) infinite both; }
+@keyframes tc-tile-6 { 0% { opacity: 0.18; } 60%, 95% { opacity: 1; } 96%, 100% { opacity: 0.18; } }
+.tc-link-0 { animation: tc-link-0 8s steps(1) infinite both; }
+@keyframes tc-link-0 { 0% { opacity: 0; } 34%, 78% { opacity: 1; } 79%, 100% { opacity: 0; } }
+.tc-link-1 { animation: tc-link-1 8s steps(1) infinite both; }
+@keyframes tc-link-1 { 0% { opacity: 0; } 37%, 78% { opacity: 1; } 79%, 100% { opacity: 0; } }
+.tc-link-2 { animation: tc-link-2 8s steps(1) infinite both; }
+@keyframes tc-link-2 { 0% { opacity: 0; } 40%, 78% { opacity: 1; } 79%, 100% { opacity: 0; } }
+.tc-link-3 { animation: tc-link-3 8s steps(1) infinite both; }
+@keyframes tc-link-3 { 0% { opacity: 0; } 43%, 78% { opacity: 1; } 79%, 100% { opacity: 0; } }
+
+/* Still: email, social, and anyone who asked for less motion. */
+.tc-still *, .tc-still { animation: none !important; }
+@media (prefers-reduced-motion: reduce) { .tc-art, .tc-art * { animation: none !important; } }
+
+
+/* ── The page: the issue cover header with art, then the sheet ── */
+.tc-cover { position: relative; overflow: hidden; min-height: clamp(440px, 42vw, 640px); display: flex; }
+.tc-cover { background: #0A1626; }
+/* The art takes the right half (it's drawn anchored right), so the room or the
+   word sits beside the title instead of under it. */
+.tc-cover-art { position: absolute; inset: 0 0 0 50%; }
+.tc-cover-shade { position: absolute; inset: 0; background: linear-gradient(90deg, #0A1626 0%, #0A1626 48%, rgba(10, 22, 38, 0.6) 53%, rgba(10, 22, 38, 0) 62%); }
+.tc-cover-in { position: relative; width: 100%; display: flex; flex-direction: column; justify-content: space-between; }
+.tc-cover .nlp-cover-title { max-width: 470px; }
+.tc-cover .nlp-cover-dek { max-width: 470px; }
+@media (max-width: 720px) {
+  .tc-cover-art { left: 0; }
+  .tc-cover-shade { background: linear-gradient(180deg, rgba(10, 22, 38, 0.2) 0%, rgba(10, 22, 38, 0.75) 45%, #0A1626 80%); }
+}
+
+.tc-sheet { padding: 56px 0 120px; background: #F8F9FA; }
+.tc-sheet-head { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end; justify-content: space-between; margin-bottom: 32px; }
+.tc-sheet-head .nl-lede { max-width: 640px; }
+.tc-toggle { display: flex; gap: 4px; padding: 4px; border-radius: 999px; background: #E9EEF2; }
+.tc-toggle a { padding: 8px 14px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; color: #42566B; text-decoration: none; }
+.tc-toggle a[aria-current='page'] { background: #0A2540; color: #fff; }
+.tc-label { margin: 32px 0 12px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #5B6B7C; }
+.tc-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.tc-grid--small { grid-template-columns: repeat(2, minmax(0, 320px)); }
+.tc-card { margin: 0; }
+.tc-frame { position: relative; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #0A1626; }
+.tc-card figcaption { margin-top: 12px; font-weight: 600; color: #0A2540; }
+.tc-card-n { color: #00A896; margin-right: 6px; }
+.tc-card-idea { display: block; margin-top: 4px; font-weight: 400; color: #5B6B7C; font-size: 0.92rem; }
+.tc-note { margin: 28px 0 0; max-width: 720px; color: #5B6B7C; font-size: 0.92rem; line-height: 1.6; }
+.tc-note strong { color: #0A2540; }
+@media (max-width: 720px) { .tc-grid, .tc-grid--small { grid-template-columns: 1fr; } }

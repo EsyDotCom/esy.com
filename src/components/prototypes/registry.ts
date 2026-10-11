@@ -3209,6 +3209,29 @@ export const PROTOTYPES: Prototype[] = [
     ],
   },
   {
+    slug: 'newsletter-topic-cover',
+    name: 'Newsletter covers by topic',
+    date: '2026-10-11',
+    headline: 'Three ways to put the issue’s topic on the cover, with no one’s face.',
+    intro:
+      'Covers stop showing Zev and carry the topic instead, in Esy’s look. Each take is drawn for the next two issues, Meta’s Muse and OpenAI’s Dots: switch issues under the cover, and see both moving and still.',
+    summary:
+      'Mason doing the topic’s work, the topic’s name as the art, or the desk at night with one object that tells it.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Three ways to design them',
+        summary:
+          'A draws Mason in the course cover’s room doing the topic’s work, B makes the topic’s name the cover, C edits the live covers’ desk photo with gpt-image-2.5 Sunburst. A and B move in code; C is a still until a video model animates it.',
+      },
+    ],
+    variants: [
+      { slug: 'mason', key: 'A', name: 'Mason at work', round: 1, title: 'Mason does the topic’s work.', blurb: 'Dots leave his screen for jobs around the room; Muse works a long task on his second screen, then asks for his OK.', poster: ['#0E2B45', '#00D4AA'] },
+      { slug: 'type', key: 'B', name: 'Type', round: 1, title: 'The topic’s name is the cover.', blurb: 'Huge stencil type: the full stop in “dots.” splits into a team; the night passes over “muse” while its steps fill in.', poster: ['#0A1626', '#FFFFFF'] },
+      { slug: 'room', key: 'C', name: 'The room', round: 1, title: 'The desk at night, one object.', blurb: 'The live covers’ desk with the screen off, edited with Sunburst: glowing dots on the move, or a phone waiting for an OK.', poster: ['#081A2C', '#2BD8BB'] },
+    ],
+  },
+  {
     slug: 'newsletter-issue',
     name: 'A newsletter issue on the web',
     date: '2026-10-09',

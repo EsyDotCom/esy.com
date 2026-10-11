@@ -233,3 +233,37 @@
   .lp-slimbar { flex-wrap: wrap; }
   .lp-slimbar-pos { order: -1; width: 100%; }
 }
+
+/* ══ Round 4 (2026-10-11): the instructor (instructor.tsx) ══════════════
+   Zev's photo is SocialAvatar, so every take pops and opens his profile card. */
+.lp-ins-photo { border-radius: 50%; overflow: hidden; background: #0E1E33; }
+.lp-ins-photo--byline { width: 44px; height: 44px; box-shadow: 0 0 0 2px var(--nl-jade-bright); }
+.lp-ins-photo--rail { width: 56px; height: 56px; box-shadow: 0 0 0 2px var(--nl-jade-bright); }
+
+/* I · Byline: under the title, the title's bottom margin moves below it. */
+.lp-stage-title--byline { margin-bottom: 14px; }
+.lp-ins-byline { display: flex; align-items: center; gap: 12px; margin: 0 0 26px; }
+.lp-ins-byline p { margin: 0; display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 8px; font-size: 0.95rem; color: rgba(255, 255, 255, 0.66); }
+.lp-ins-byline b { color: #fff; font-weight: 600; }
+.lp-ins-byline .lp-ins-role::before { content: '·'; margin-right: 8px; }
+
+/* J · Rail: a glass card above the playlist, like the playlist itself. */
+.lp-ins-card {
+  display: flex; align-items: center; gap: 14px; padding: 16px 20px; border-radius: 22px; color: #fff;
+  background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.lp-ins-card p { margin: 0; display: flex; flex-direction: column; gap: 2px; line-height: 1.3; }
+.lp-ins-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-jade-bright); }
+.lp-ins-card b { font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-size: 1.3rem; font-weight: 700; }
+.lp-ins-card .lp-ins-role { font-size: 0.85rem; color: rgba(255, 255, 255, 0.62); }
+/* Near the top of the page the profile card would open under the sticky header
+   (and, in the rail, off the right edge), so in I and J it opens downward. In the
+   rail it lines up with the rail, over the playlist. */
+:is(.lp-ins-byline, .lp-ins-card) .sa--profile .sa-card { top: calc(100% + 16px); bottom: auto; transform: translateY(-8px); }
+:is(.lp-ins-byline, .lp-ins-card) .sa--profile.is-open .sa-card { transform: translateY(0); }
+:is(.lp-ins-byline, .lp-ins-card) .sa--profile .sa-card::before { top: auto; bottom: 100%; }
+.lp-ins-card .sa--profile .sa-card { left: -21px; width: 340px; box-sizing: border-box; grid-template-columns: 84px minmax(0, 1fr); }
+.lp-ins-card .sa--profile .sa-closeup { width: 84px; height: 84px; }
+
+/* K · End: the course page's "Who teaches it", after the notes. */
+.lp-ins-end { margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--nl-seam); }

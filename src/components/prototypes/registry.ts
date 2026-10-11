@@ -837,6 +837,12 @@ export const PROTOTYPES: Prototype[] = [
         summary:
           'E\u2019s stage stays; the part under it changes. F reads the notes as a guide with a contents rail and ends on a navy up-next band, G puts a sticky lesson kit beside them, and H ends on a big next-lesson card with the rest of the course.',
       },
+      {
+        n: 4,
+        title: 'The instructor',
+        summary:
+          'H shipped without a face on it. Zev asked for his photo as the instructor: I puts a byline under the title, J a card at the top of the rail, K the course page\u2019s \u201cWho teaches it\u201d after the notes.',
+      },
     ],
     variants: [
       {
@@ -919,12 +925,45 @@ export const PROTOTYPES: Prototype[] = [
         name: 'Body · End card',
         round: 3,
         mergeOf: ['E'],
-        live: true,
-        liveHref: '/courses/how-to-use-claude-code/introduction-and-setup/',
         title: 'Introduction & Setup',
         blurb:
           'The notes centred, opening on a \u201cWhat you\u2019ll learn\u201d checklist, ending on a big card for the next lesson with the course cover, then the rest of the course.',
         poster: ['#F8F9FA', '#00A896'],
+      },
+      {
+        slug: 'instructor-byline',
+        key: 'I',
+        name: 'Instructor \u00b7 Byline',
+        round: 4,
+        mergeOf: ['H'],
+        live: true,
+        liveHref: '/courses/how-to-use-claude-code/introduction-and-setup/',
+        title: 'Introduction & Setup',
+        blurb:
+          'H with Zev under the lesson title: his photo, \u201cTaught by Zev Uhuru \u00b7 Marketing engineer\u201d, like an article byline. Hover the photo for his profile card.',
+        poster: ['#0A1626', '#00D4AA'],
+      },
+      {
+        slug: 'instructor-rail',
+        key: 'J',
+        name: 'Instructor \u00b7 Rail',
+        round: 4,
+        mergeOf: ['H'],
+        title: 'Introduction & Setup',
+        blurb:
+          'H with a \u201cYour instructor\u201d card at the top of the rail, beside the video and above the playlist. Hover the photo for his profile card.',
+        poster: ['#0A1626', '#0F3460'],
+      },
+      {
+        slug: 'instructor-end',
+        key: 'K',
+        name: 'Instructor \u00b7 After the notes',
+        round: 4,
+        mergeOf: ['H'],
+        title: 'Introduction & Setup',
+        blurb:
+          'H with the course page\u2019s \u201cWho teaches it\u201d after the notes, before the next-lesson card: the big photo and the bio.',
+        poster: ['#F8F9FA', '#0A2540'],
       },
     ],
   },

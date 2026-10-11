@@ -259,3 +259,9 @@
 /* When nothing sits between the navy spotlight and the navy email band (one
    course, nothing upcoming), white space keeps them from merging. */
 .ci-show + .nl-final { margin-top: 80px; }
+
+/* The "Taught by" credit with Zev's photo (SocialAvatar, 2026-10-11): the row
+   centres on the photo instead of the text baseline. */
+.nl-film-credits .ci-credit-teacher { align-items: center; }
+.ci-credit-teacher dd { display: flex; align-items: center; gap: 10px; }
+.ci-credit-photo { width: 32px; height: 32px; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 2px var(--nl-jade-bright); }

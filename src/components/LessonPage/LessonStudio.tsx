@@ -6,6 +6,9 @@
  * Round 2 varies the stage, not the layout:
  *   D · Night       — `night`: A's dark room (navy, jade spotlight) behind B.
  *   E · Night + ask — `night` plus `signup`: the email signup under the playlist.
+ *
+ * Round 4 places the instructor (instructor.tsx): `instructor` = byline (I),
+ * rail (J) or end (K).
  */
 import Link from 'next/link';
 import FramedVideo from '@/components/ArticleVideo/FramedVideo';
@@ -14,6 +17,8 @@ import WeeklyEmailBand from '@/components/NewsletterHome/WeeklyEmailBand';
 import { courseHref, lessonsOf, minutesOf } from '@/components/CoursesIndex/shared';
 import { LessonList, LessonNotes, SampleVideoNote, UpNext, lessonPosition, type LessonPageProps } from './shared';
 import { BodyEndCard, BodyGuide, BodyKit } from './body';
+import { InstructorByline, InstructorRailCard } from './instructor';
+import { TeacherBlock } from '@/components/CourseDetail/shared';
 
 export default function LessonStudio({
   course,
@@ -23,6 +28,7 @@ export default function LessonStudio({
   night = false,
   signup = false,
   body = 'default',
+  instructor,
 }: LessonPageProps & {
   /** A's dark room behind the stage, title in white. */
   night?: boolean;
@@ -30,6 +36,8 @@ export default function LessonStudio({
   signup?: boolean;
   /** Below the player: B's original, or round 3's guide, kit or end card (body.tsx). */
   body?: 'default' | 'guide' | 'kit' | 'endcard';
+  /** Round 4: where Zev shows as the instructor; none when unset. */
+  instructor?: 'byline' | 'rail' | 'end';
 }) {
   return (
     <article className={`ai av av-studio lp lp-studio ${night ? 'lp-studio--night' : ''}`}>
@@ -38,7 +46,8 @@ export default function LessonStudio({
           <p className="lp-kicker lp-kicker--onDark">
             <Link href={courseHref(course)}>{course.title}</Link> · {lessonPosition(course, lesson)} · {chapterTitle}
           </p>
-          <h1 className="lp-stage-title">{lesson.title}</h1>
+          <h1 className={`lp-stage-title${instructor === 'byline' ? ' lp-stage-title--byline' : ''}`}>{lesson.title}</h1>
+          {instructor === 'byline' && <InstructorByline course={course} />}
 
           {/* The player and the playlist, side by side. */}
           <div className="lp-player">
@@ -53,6 +62,7 @@ export default function LessonStudio({
               />
             </div>
             <aside className="lp-player-rail">
+              {instructor === 'rail' && <InstructorRailCard course={course} />}
               <div className="lp-player-list">
                 {signup && (
                   <p className="lp-rail-meta">
@@ -81,7 +91,7 @@ export default function LessonStudio({
       ) : body === 'kit' ? (
         <BodyKit course={course} lesson={lesson} />
       ) : body === 'endcard' ? (
-        <BodyEndCard course={course} lesson={lesson} />
+        <BodyEndCard course={course} lesson={lesson} teacher={instructor === 'end' ? <TeacherBlock course={course} /> : undefined} />
       ) : (
         <div className="ai-col lp-col">
           <UpNext course={course} lesson={lesson} />

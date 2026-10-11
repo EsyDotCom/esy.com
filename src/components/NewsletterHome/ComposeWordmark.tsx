@@ -14,11 +14,18 @@
  * Everything is sized in em: set font-size on the mark or its parent. The
  * letters take currentColor; the first letter takes --cw-accent (jade).
  */
-import { Cormorant_Garamond } from 'next/font/google';
+// Fonts are self-hosted from src/fonts/ (scripts/fetch-google-fonts.py), so builds never fetch from Google.
+import localFont from 'next/font/local';
 import './ComposeWordmark.css';
 
 // Compose's italic display cut, loaded only where the pen mark renders.
-const composeItalic = Cormorant_Garamond({ weight: '600', style: 'italic', subsets: ['latin'], display: 'swap' });
+const composeItalic = localFont({
+  src: [
+    { path: '../../fonts/cormorant-garamond/cormorant-garamond-300-700-italic.woff2', weight: '300 700', style: 'italic' },
+  ],
+  display: 'swap',
+  adjustFontFallback: 'Times New Roman',
+});
 
 export type ComposeMarkStyle = 'lockup' | 'stencil' | 'pen';
 

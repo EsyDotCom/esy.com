@@ -10,13 +10,21 @@
  * its container; the panes scroll on their own inside it. */
 
 import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { Cormorant_Garamond } from 'next/font/google';
+// Fonts are self-hosted from src/fonts/ (scripts/fetch-google-fonts.py), so builds never fetch from Google.
+import localFont from 'next/font/local';
 import './folio.css';
 import './runway.css';
 import './preview.css';
 
 // Folio's display serif. Inter and Black Ops One are already loaded site-wide.
-const cormorant = Cormorant_Garamond({ variable: '--font-cormorant', subsets: ['latin'], weight: ['600', '700'], style: ['normal', 'italic'] });
+const cormorant = localFont({
+  src: [
+    { path: '../../fonts/cormorant-garamond/cormorant-garamond-300-700-italic.woff2', weight: '300 700', style: 'italic' },
+    { path: '../../fonts/cormorant-garamond/cormorant-garamond-300-700-normal.woff2', weight: '300 700', style: 'normal' },
+  ],
+  variable: '--font-cormorant',
+  adjustFontFallback: 'Times New Roman',
+});
 
 const DESIGN_WIDTH = 1240;
 const NAV = ['Home', 'Brief', 'Inbox', 'Clients', 'Work', 'Agents', 'Data'];

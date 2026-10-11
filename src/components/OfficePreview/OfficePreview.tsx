@@ -11,7 +11,8 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { BookOpen, Library, LineChart, Mail, Moon, Search, Sun, Users, Wrench } from 'lucide-react';
-import { Figtree, IBM_Plex_Mono } from 'next/font/google';
+// Fonts are self-hosted from src/fonts/ (scripts/fetch-google-fonts.py), so builds never fetch from Google.
+import localFont from 'next/font/local';
 import {
   API_KEYS,
   BUDGETS,
@@ -32,8 +33,19 @@ import './preview.css';
 
 // The office's type: Figtree for UI, Plex Mono for figures. Newsreader (the
 // display serif) is already loaded site-wide under the same variable name.
-const figtree = Figtree({ variable: '--font-figtree', subsets: ['latin'] });
-const plexMono = IBM_Plex_Mono({ variable: '--font-plex-mono', subsets: ['latin'], weight: ['400', '500'] });
+const figtree = localFont({
+  src: [
+    { path: '../../fonts/figtree/figtree-300-900-normal.woff2', weight: '300 900', style: 'normal' },
+  ],
+  variable: '--font-figtree',
+});
+const plexMono = localFont({
+  src: [
+    { path: '../../fonts/ibm-plex-mono/ibm-plex-mono-400-normal.woff2', weight: '400', style: 'normal' },
+    { path: '../../fonts/ibm-plex-mono/ibm-plex-mono-500-normal.woff2', weight: '500', style: 'normal' },
+  ],
+  variable: '--font-plex-mono',
+});
 
 export type OfficeTheme = 'light' | 'dark';
 /** The parts of the Books a hero can point at. */

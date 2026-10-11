@@ -13,11 +13,22 @@
  * If the builder's look changes, re-port from that component.
  */
 import { useEffect, useRef, useState } from 'react';
-import { Archivo, Funnel_Display } from 'next/font/google';
+// Fonts are self-hosted from src/fonts/ (scripts/fetch-google-fonts.py), so builds never fetch from Google.
+import localFont from 'next/font/local';
 
 // The builder's display face and SEOPage's wordmark face.
-const archivoFont = Archivo({ weight: ['700', '800'], subsets: ['latin'], display: 'swap' });
-const funnelDisplay = Funnel_Display({ weight: '700', subsets: ['latin'], display: 'swap' });
+const archivoFont = localFont({
+  src: [
+    { path: '../../fonts/archivo/archivo-100-900-normal.woff2', weight: '100 900', style: 'normal' },
+  ],
+  display: 'swap',
+});
+const funnelDisplay = localFont({
+  src: [
+    { path: '../../fonts/funnel-display/funnel-display-300-800-normal.woff2', weight: '300 800', style: 'normal' },
+  ],
+  display: 'swap',
+});
 
 const W = 1180;
 const H = 762;

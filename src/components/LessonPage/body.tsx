@@ -10,6 +10,7 @@
  *                  rest of the course.
  */
 import Link from 'next/link';
+import type { ReactNode } from 'react';
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check, Play } from 'lucide-react';
 import type { Course, Lesson } from '@/lib/learn/types';
 import { splitSections, type ArticleSection } from '@/components/ArticleImage/article';
@@ -179,7 +180,7 @@ export function BodyKit({ course, lesson }: { course: Course; lesson: Lesson }) 
 
 /* ── H · End card ──────────────────────────────────────────────────────── */
 
-export function BodyEndCard({ course, lesson }: { course: Course; lesson: Lesson }) {
+export function BodyEndCard({ course, lesson, teacher }: { course: Course; lesson: Lesson; teacher?: ReactNode }) {
   const sections = noteSections(lesson);
   const { next } = getAdjacentLessons(course, lesson.slug);
   const points = coveredPoints(lesson);
@@ -210,6 +211,9 @@ export function BodyEndCard({ course, lesson }: { course: Course; lesson: Lesson
           <p className="lp-placeholder">Notes for this lesson are on the way.</p>
         )}
       </div>
+
+      {/* Round 4 K: who taught it, after the notes and before what comes next. */}
+      {teacher && <div className="ai-col lp-ins-end">{teacher}</div>}
 
       {/* The end card: the next lesson big, then the rest of the course. */}
       <section className="lp-endcard-wrap">

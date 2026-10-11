@@ -11,6 +11,7 @@ import { ArrowRight, Play } from 'lucide-react';
 import type { Course } from '@/lib/learn/types';
 import WeeklyEmailBand from '@/components/NewsletterHome/WeeklyEmailBand';
 import { CourseCoverArt } from '@/components/CourseCovers/covers';
+import SocialAvatar from '@/components/EducationHero/SocialAvatar';
 import { COURSE_ART } from './covers';
 import {
   CourseCover,
@@ -74,7 +75,14 @@ export function NowShowingBand({
           <p className="nl-film-log">“{firstSentence(course.description)}”</p>
           {/* The credits: who teaches it, then every lesson with its running time. */}
           <dl className="nl-film-credits">
-            <div><dt>Taught by</dt><dd>{course.author.name}</dd></div>
+            {/* Zev's small photo opens his profile card, as on the lesson pages (2026-10-11). */}
+            <div className="ci-credit-teacher">
+              <dt>Taught by</dt>
+              <dd>
+                <SocialAvatar frameClassName="ci-credit-photo" size={32} />
+                {course.author.name}
+              </dd>
+            </div>
             {lessons.map((l, i) => (
               <div key={l.slug}>
                 <dt>Lesson {i + 1}</dt>

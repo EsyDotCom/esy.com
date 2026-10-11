@@ -18,6 +18,9 @@ import '@/components/LessonPage/LessonPage.css';
 // and a big card for the next lesson with the rest of the course (H). It
 // replaces the dark/light player page (LessonClient, retired).
 //
+// 2026-10-11: lesson page I (round 4) adds Zev as the instructor, a byline
+// under the title whose photo opens his profile card (LessonPage/instructor.tsx).
+//
 // A lesson without its own Mux recording plays a stand-in video and says so
 // on the page (LessonPage/video.ts); missing notes show a placeholder.
 
@@ -72,7 +75,7 @@ export default async function LessonPage({ params }: PageProps) {
   return (
     <div className={`nl ${nlSerif.variable}`}>
       <LightHeader latest={toNavArticles(all)} />
-      <LessonStudio course={course} lesson={lesson} chapterTitle={chapter} video={video} night signup body="endcard" />
+      <LessonStudio course={course} lesson={lesson} chapterTitle={chapter} video={video} night signup body="endcard" instructor="byline" />
     </div>
   );
 }

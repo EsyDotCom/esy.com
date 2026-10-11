@@ -9,10 +9,16 @@
  *
  * If seopage.com ships an updated logo, re-copy it from that component.
  */
-import { Funnel_Display } from 'next/font/google';
+// Fonts are self-hosted from src/fonts/ (scripts/fetch-google-fonts.py), so builds never fetch from Google.
+import localFont from 'next/font/local';
 
 // seopage.com's wordmark face, loaded only where this mark renders.
-const funnelDisplay = Funnel_Display({ weight: ['600', '700'], subsets: ['latin'], display: 'swap' });
+const funnelDisplay = localFont({
+  src: [
+    { path: '../../fonts/funnel-display/funnel-display-300-800-normal.woff2', weight: '300 800', style: 'normal' },
+  ],
+  display: 'swap',
+});
 
 export default function SeoPageWordmark({
   className = '',

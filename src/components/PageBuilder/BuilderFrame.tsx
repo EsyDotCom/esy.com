@@ -7,7 +7,8 @@
  * menus that lead outside the builder answer with a one-line note. */
 
 import { useEffect, useState, type MouseEvent, type ReactNode } from 'react';
-import { Cormorant_Garamond } from 'next/font/google';
+// Fonts are self-hosted from src/fonts/ (scripts/fetch-google-fonts.py), so builds never fetch from Google.
+import localFont from 'next/font/local';
 import './folio.css';
 import './agency.css';
 import './app.css';
@@ -17,7 +18,14 @@ import './preview.css';
 
 // Folio's display serif. Inter and Black Ops One already load site-wide under
 // the variable names folio.css reads.
-const cormorant = Cormorant_Garamond({ variable: '--font-cormorant', subsets: ['latin'], weight: ['600', '700'], style: ['normal', 'italic'] });
+const cormorant = localFont({
+  src: [
+    { path: '../../fonts/cormorant-garamond/cormorant-garamond-300-700-italic.woff2', weight: '300 700', style: 'italic' },
+    { path: '../../fonts/cormorant-garamond/cormorant-garamond-300-700-normal.woff2', weight: '300 700', style: 'normal' },
+  ],
+  variable: '--font-cormorant',
+  adjustFontFallback: 'Times New Roman',
+});
 
 const OUTSIDE = 'a, .fo-lockup, .ed-page, .ed-crumb-cur';
 

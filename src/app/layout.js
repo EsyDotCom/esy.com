@@ -1,4 +1,5 @@
-import { Geist, Geist_Mono, Newsreader, Inter, Literata, ZCOOL_XiaoWei, Noto_Serif_JP, Black_Ops_One } from "next/font/google";
+// Fonts are self-hosted from src/fonts/ (scripts/fetch-google-fonts.py), so builds never fetch from Google.
+import localFont from "next/font/local";
 import "./globals.css";
 import Navigation from "@/components/Home/navigation";
 import Footer from "@/components/Home/footer";
@@ -10,47 +11,64 @@ import ConditionalNavigation from "@/components/ConditionalNavigation";
 import ConditionalFooter from "@/components/ConditionalFooter";
 import { HeaderSearchProvider } from "@/contexts/HeaderSearchContext";
 
-const geistSans = Geist({
+const geistSans = localFont({
+  src: [
+    { path: "../fonts/geist/geist-100-900-normal.woff2", weight: "100 900", style: "normal" },
+  ],
   variable: "--font-geist-sans",
-  subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
+const geistMono = localFont({
+  src: [
+    { path: "../fonts/geist-mono/geist-mono-100-900-normal.woff2", weight: "100 900", style: "normal" },
+  ],
   variable: "--font-geist-mono",
-  subsets: ["latin"],
 });
 
-const newsreader = Newsreader({
+const newsreader = localFont({
+  src: [
+    { path: "../fonts/newsreader/newsreader-200-800-normal.woff2", weight: "200 800", style: "normal" },
+  ],
   variable: "--font-newsreader",
-  subsets: ["latin"],
+  adjustFontFallback: "Times New Roman",
 });
 
-const inter = Inter({
+const inter = localFont({
+  src: [
+    { path: "../fonts/inter/inter-100-900-normal.woff2", weight: "100 900", style: "normal" },
+  ],
   variable: "--font-inter",
-  subsets: ["latin"],
 });
 
-const literata = Literata({
+const literata = localFont({
+  src: [
+    { path: "../fonts/literata/literata-200-900-normal.woff2", weight: "200 900", style: "normal" },
+  ],
   variable: "--font-literata",
-  subsets: ["latin"],
+  adjustFontFallback: "Times New Roman",
 });
 
-const zcoolXiaowei = ZCOOL_XiaoWei({
+const zcoolXiaowei = localFont({
+  src: [
+    { path: "../fonts/zcool-xiaowei/zcool-xiaowei-400-normal.woff2", weight: "400", style: "normal" },
+  ],
   variable: "--font-zcool-xiaowei",
-  subsets: ["latin"],
-  weight: "400",
+  adjustFontFallback: "Times New Roman",
 });
 
-const notoSerifJP = Noto_Serif_JP({
+const notoSerifJP = localFont({
+  src: [
+    { path: "../fonts/noto-serif-jp/noto-serif-jp-200-900-normal.woff2", weight: "200 900", style: "normal" },
+  ],
   variable: "--font-noto-serif-jp",
-  subsets: ["latin"],
-  weight: ["400", "700"],
+  adjustFontFallback: "Times New Roman",
 });
 
-const blackOpsOne = Black_Ops_One({
+const blackOpsOne = localFont({
+  src: [
+    { path: "../fonts/black-ops-one/black-ops-one-400-normal.woff2", weight: "400", style: "normal" },
+  ],
   variable: "--font-black-ops-one",
-  subsets: ["latin"],
-  weight: "400",
 });
 
 // Check if QA environment (set via NEXT_PUBLIC_IS_QA=true)

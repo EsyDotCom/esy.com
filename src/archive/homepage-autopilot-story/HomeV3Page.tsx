@@ -14,17 +14,20 @@
  */
 
 import Link from 'next/link';
-import { Cormorant_Garamond } from 'next/font/google';
+// Fonts are self-hosted from src/fonts/ (scripts/fetch-google-fonts.py), so builds never fetch from Google.
+import localFont from 'next/font/local';
 import { ArrowRight } from 'lucide-react';
 
 // The site's global stylesheet only pulls Cormorant at weight 400, so every
 // 700 headline was browser-synthesised faux bold — mushy strokes, wrong
 // weight rhythm. This loads the real cuts, scoped to this page.
-const cormorant = Cormorant_Garamond({
-  weight: ['600', '700'],
-  subsets: ['latin'],
-  display: 'swap',
+const cormorant = localFont({
+  src: [
+    { path: '../../fonts/cormorant-garamond/cormorant-garamond-300-700-normal.woff2', weight: '300 700', style: 'normal' },
+  ],
   variable: '--hv3-serif',
+  display: 'swap',
+  adjustFontFallback: 'Times New Roman',
 });
 
 import { getAllAgenticArticles } from '@/lib/published-articles';

@@ -26,8 +26,10 @@ export const issueHref = (template: string): IssueHref => (issue) =>
    - archive: where "All issues" goes
    - live:    the real site. The signup really subscribes, and while the
               issues are samples, dates show "Sample issue" instead: a past
-              date would claim an issue went out that never did. */
-export interface NewsletterMode { link: string; archive: string; live: boolean }
+              date would claim an issue went out that never did.
+   - covers:  optional cover set to show instead of each issue's own cover, a
+              template with {n} (the round-4 cover prototypes, 2026-10-11). */
+export interface NewsletterMode { link: string; archive: string; live: boolean; covers?: string }
 const ModeContext = createContext<NewsletterMode>({
   link: '/prototypes/newsletter-issue/cover/?issue={n}',
   archive: '/prototypes/newsletter/wide-feed/',
@@ -36,6 +38,12 @@ const ModeContext = createContext<NewsletterMode>({
 export const NewsletterModeProvider = ModeContext.Provider;
 export const useNewsletterMode = () => useContext(ModeContext);
 export const useIssueHref = () => issueHref(useContext(ModeContext).link);
+
+/** An issue's cover: the mode's cover set when one is given, else the issue's own. */
+export function useCover() {
+  const { covers } = useContext(ModeContext);
+  return (issue: Issue) => (covers ? covers.replace('{n}', String(issue.n)) : issue.cover);
+}
 
 /** An issue's date as a label: the date in prototypes, "Sample issue" on the live site. */
 export function useDateLabel() {

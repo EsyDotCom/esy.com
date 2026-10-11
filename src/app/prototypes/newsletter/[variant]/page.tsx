@@ -4,6 +4,7 @@ import { nlSerif } from '@/components/NewsletterHome/serif';
 import { TakeBatch, TakeReadFirst, TakeStudio } from '@/components/NewsletterPage/Takes';
 import { TakeMagazine, TakePublication, TakeWelcome } from '@/components/NewsletterPage/Round2';
 import { TakeFeedNews, TakeFeedRail, TakeWideFeed } from '@/components/NewsletterPage/Round3';
+import { TakeProofCard, TakeRealScreen } from '@/components/NewsletterPage/Round4';
 import PrototypeBar from '@/components/prototypes/PrototypeBar';
 import { findPrototype } from '@/components/prototypes/registry';
 import '@/components/NewsletterHome/NewsletterHome.css';
@@ -21,6 +22,7 @@ const TAKES = {
   batch: TakeBatch, 'read-first': TakeReadFirst, studio: TakeStudio,
   publication: TakePublication, welcome: TakeWelcome, magazine: TakeMagazine,
   'feed-rail': TakeFeedRail, 'feed-news': TakeFeedNews, 'wide-feed': TakeWideFeed,
+  'real-screen': TakeRealScreen, 'proof-card': TakeProofCard,
 } as const;
 
 export function generateStaticParams() {

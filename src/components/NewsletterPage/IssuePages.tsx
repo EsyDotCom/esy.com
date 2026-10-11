@@ -18,7 +18,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { type Issue, ISSUES, neighbours } from './issues';
-import { IssueBody, IssueMeta, IssueNav, IssueRow, PageSignup, SampleNote, issueHref, sectionTitles, useDateLabel, useNewsletterMode } from './shared';
+import { IssueBody, IssueMeta, IssueNav, IssueRow, PageSignup, SampleNote, issueHref, sectionTitles, useCover, useDateLabel, useNewsletterMode } from './shared';
 import { PROMISE } from './Takes';
 
 function BackToArchive() {
@@ -114,11 +114,12 @@ export function IssueCover({ issue, link }: { issue: Issue; link: string }) {
   const { archive } = useNewsletterMode();
   const dateLabel = useDateLabel();
   const others = ISSUES.filter((i) => i.n !== issue.n);
+  const cover = useCover()(issue);
   return (
     <main className="nlp">
       <header
-        className={`nlp-cover${issue.cover ? ' has-cover' : ''}`}
-        style={issue.cover ? { backgroundImage: `linear-gradient(90deg, #0A1626 0%, #0A1626 40%, rgba(10,22,38,0.6) 65%, rgba(10,22,38,0.1) 100%), url(${issue.cover})` } : undefined}
+        className={`nlp-cover${cover ? ' has-cover' : ''}`}
+        style={cover ? { backgroundImage: `linear-gradient(90deg, #0A1626 0%, #0A1626 40%, rgba(10,22,38,0.6) 65%, rgba(10,22,38,0.1) 100%), url(${cover})` } : undefined}
       >
         <div className="nlp-cover-in">
           <Link href={archive} className="nlp-back nlp-back--dark"><ArrowLeft size={14} aria-hidden="true" /> All issues</Link>

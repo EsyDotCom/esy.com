@@ -1,7 +1,7 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
+import SocialAvatar from '@/components/EducationHero/SocialAvatar';
 import { useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { ArrowRight, Check, Copy, Search } from 'lucide-react';
 import { useNewsletterSubscribe } from '@/hooks/useNewsletterSubscribe';
@@ -69,9 +69,8 @@ export function Hero({ right, stage, lede, byline, tall = false }: { right: Reac
 export function Zev({ size = 44, line, quote }: { size?: number; line: string; quote?: string }) {
   return (
     <figure className={`sf-zev ${quote ? 'has-quote' : ''}`}>
-      <span className="sf-zev-photo" style={{ width: size, height: size }}>
-        <Image src="/images/zev-uhuru.png" alt="Zev Uhuru" width={size * 2} height={size * 2} />
-      </span>
+      {/* Hover or tap opens the homepage hero's profile card; the head sits centred in the ring */}
+      <SocialAvatar frameClassName="sf-zev-photo" frameStyle={{ width: size, height: size }} size={size} />
       <figcaption>
         {quote && <q>{quote}</q>}
         <b>Zev Uhuru</b>

@@ -86,7 +86,7 @@ export function AgenticOperator({
             }}
           >
             <Image
-              src="/images/zev-uhuru.png"
+              src="/images/zev-uhuru-sweater-3.webp"
               alt="Zev Uhuru"
               width={160}
               height={160}

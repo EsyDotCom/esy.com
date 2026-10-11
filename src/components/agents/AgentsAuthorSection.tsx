@@ -1,4 +1,4 @@
-import Image from "next/image";
+import SocialAvatar from "@/components/EducationHero/SocialAvatar";
 import { Linkedin, Github } from "lucide-react";
 
 interface AuthorSocial {
@@ -28,16 +28,8 @@ export function AgentsAuthorSection({
   return (
     <aside className="agents-author-section" aria-label="Article author">
       <div className="agents-author-inner">
-        <div className="agents-author-avatar">
-          <Image
-            src={image}
-            alt={name}
-            width={72}
-            height={72}
-            style={{ objectFit: "cover" }}
-            priority={false}
-          />
-        </div>
+        {/* Hover or tap opens the homepage hero's profile card (LinkedIn, GitHub) */}
+        <SocialAvatar photo={image} frameClassName="agents-author-avatar" size={72} />
 
         <div className="agents-author-info">
           <span className="agents-author-written-by">Written by</span>

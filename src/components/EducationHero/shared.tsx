@@ -12,10 +12,11 @@ import Link from 'next/link';
 import { ArrowUpRight, Linkedin, PlayCircle, Youtube } from 'lucide-react';
 import NewsletterSignup from '@/components/NewsletterHome/NewsletterSignup';
 import type { Lesson } from './desks';
+import { LINKEDIN_URL } from './zev';
 import './EducationHero.css';
 
 export const YOUTUBE_URL = 'https://www.youtube.com/@EsyDotCom';
-export const LINKEDIN_URL = 'https://www.linkedin.com/in/zevuhuru/';
+export { LINKEDIN_URL };
 
 /** The one action. Same Beehiiv-backed list as every other signup on the site;
  *  the hook sends the page path, so prototype signups are tagged by URL. */
@@ -28,7 +29,7 @@ export function Byline({ compact = false }: { compact?: boolean }) {
   return (
     <div className={`eh-byline${compact ? ' eh-byline--compact' : ''}`}>
       <span className="eh-byline-photo">
-        <Image src="/images/zev-uhuru.png" alt="" width={88} height={88} />
+        <Image src="/images/zev-uhuru-sweater-3.webp" alt="" width={88} height={88} />
       </span>
       <p>
         <b>Zev Uhuru</b>

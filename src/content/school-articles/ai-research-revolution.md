@@ -4,7 +4,7 @@ category: "Academic Writing"
 author:
   name: "Zev Uhuru"
   title: "Agentic Engineer"
-  avatar: "/images/zev-uhuru.png"
+  avatar: "/images/zev-uhuru-sweater-3.webp"
   bio: "Explores the intersection of AI and academic research."
 date: "Mar 18, 2025"
 readTime: "6 min read"

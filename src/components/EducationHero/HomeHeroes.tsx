@@ -21,8 +21,9 @@ import { PROMISES, PromiseStudio } from './promises';
 
 type HeroProps = { desks: ResolvedDesk[] };
 
-// B32's byline and copy treatment, shared by the heroes built on it.
-const SIGNED = { byline: 'foot', faceSize: 56, photo: '/images/zev-uhuru.png', solidCopy: true, socials: 'profile' } as const;
+// B32's byline and copy treatment, shared by the heroes built on it. The photo is Zev's
+// headshot in the hero video's charcoal sweater over a white T-shirt (take 3 of 5, 2026-10-11).
+const SIGNED = { byline: 'foot', faceSize: 56, photo: '/images/zev-uhuru-sweater-3.webp', solidCopy: true, socials: 'profile' } as const;
 
 export function HomeHeroAtWork({ desks }: HeroProps) {
   return <PromiseStudio promise={PROMISES.engineering} desks={desks} backdrop={{ ...HERO_SHOTS['zev-agency-desk'], ...SIGNED }} />;

@@ -553,7 +553,7 @@ export default async function NewsletterHomePage({
       <section className="nl-section" aria-labelledby="nl-author-title">
         <div className="nl-container nl-author">
           <div className="nl-author-photo">
-            <Image src="/images/zev-uhuru.png" alt="Zev Uhuru" width={144} height={144} />
+            <Image src="/images/zev-uhuru-sweater-3.webp" alt="Zev Uhuru" width={144} height={144} />
           </div>
           <div>
             <p className="nl-eyebrow">Who writes it</p>

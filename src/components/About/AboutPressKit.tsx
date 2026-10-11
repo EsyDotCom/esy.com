@@ -80,7 +80,7 @@ export default function AboutPressKit() {
                 <div className="ab-portrait ab-portrait--square">
                   <Image src={PORTRAIT} alt={NAME} fill sizes="280px" style={{ objectFit: 'cover' }} />
                 </div>
-                <a href={PORTRAIT} download="zev-uhuru.png" className="ab-copy">
+                <a href={PORTRAIT} download="zev-uhuru.webp" className="ab-copy">
                   <Download size={14} aria-hidden="true" /> Download headshot
                 </a>
               </figure>

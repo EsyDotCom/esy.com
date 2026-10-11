@@ -188,4 +188,4 @@ export const ETYMOLOGY = {
   text: 'Esy comes from Synthesis Essay, reversed into the acronym ESY. It’s pronounced “Eh-see.”',
 };
 
-export const PORTRAIT = '/images/zev-uhuru.png';
+export const PORTRAIT = '/images/zev-uhuru-sweater-3.webp';

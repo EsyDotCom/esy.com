@@ -3,7 +3,9 @@
 
 /* The portrait: globals.css zooms every image of Zev to crop it, so it always
    sits in a clipping frame. */
-.ab-portrait { position: relative; overflow: hidden; border-radius: 50%; background: #E9EEF3; flex-shrink: 0; }
+.ab-portrait { position: relative; overflow: hidden; border-radius: 50%; background: #E9EEF3; flex-shrink: 0;
+  /* The hero's framing: the global 1.5× zoom (globals.css) cut off the top of his head */
+  --zev-avatar-scale: 1.1; --zev-avatar-x: 0%; --zev-avatar-y: 3%; }
 .ab-portrait--md { width: 96px; height: 96px; }
 .ab-portrait--xl { width: 340px; height: 340px; }
 .ab-portrait--ring { box-shadow: 0 0 0 8px #fff, 0 0 0 14px var(--nl-jade), 0 40px 80px -30px rgba(0, 0, 0, 0.7); }

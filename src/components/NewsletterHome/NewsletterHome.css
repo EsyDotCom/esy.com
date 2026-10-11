@@ -407,6 +407,8 @@
 .nl-author-photo {
   width: 144px; height: 144px; border-radius: 999px; overflow: hidden;
   box-shadow: 0 0 0 4px var(--nl-bg), 0 0 0 5px rgba(0, 168, 150, 0.45);
+  /* The hero's framing: the global 1.5× zoom (globals.css) cut off the top of his head */
+  --zev-avatar-scale: 1.1; --zev-avatar-x: 0%; --zev-avatar-y: 3%;
 }
 .nl-author-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .nl-author-links { display: flex; align-items: center; flex-wrap: wrap; gap: 18px; }

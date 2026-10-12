@@ -3,7 +3,7 @@
 /* The clock behind every clip.art run replay. Playback moves through phases
  * (the order, then each step, then done); within a phase, `p` runs 0 → 1.
  * `runSeconds` and `usd` are the real run's clock and running cost at that
- * moment, so the counters on screen always read true: the 31.6-second render
+ * moment, so the counters on screen always read true: the run's long render
  * plays in about three seconds, and the clock fast-forwards to match.
  *
  * It plays until someone presses pause (`playing` / `toggle`, for a play/pause

@@ -1,6 +1,6 @@
 'use client';
 
-/* F · Spotlight: the finished piece is the star. The hot dog stands large
+/* F · Spotlight: the finished piece is the star. The finished piece stands large
  * under a spotlight; as each step completes, a callout pops in around it on a
  * thin leader line with that step's real result, like a product launch
  * annotating its hero shot. It ends with the receipt sliding in, stamped.
@@ -9,12 +9,15 @@ import { CLIPART_RUN as RUN } from './clipartRun';
 import { clock, money, useRunReplay, type Phase } from './useRunReplay';
 
 // Each callout: the step it belongs to, where it sits, what it says.
+// What each step recorded, read from the run (never typed in here).
+const res = (short: string) => RUN.timeline.find((t) => t.short === short);
+const RENDER = res('Render');
 const CALLOUTS: { phase: Phase; pos: string; label: string; value: string }[] = [
-  { phase: 'render', pos: 'tl', label: 'Rendered', value: 'gpt-image-2 · 31.6s · $0.053' },
-  { phase: 'cutout', pos: 'tr', label: 'Cut out', value: '70% of the frame keyed clear' },
-  { phase: 'audit', pos: 'ml', label: 'Audited', value: '0 damaged holes · no halo' },
-  { phase: 'name', pos: 'mr', label: 'Named', value: 'Happy Hot Dog with Sunglasses' },
-  { phase: 'gate', pos: 'bl', label: 'Gated', value: 'No stray text · pass' },
+  { phase: 'render', pos: 'tl', label: 'Rendered', value: RENDER ? `${(RENDER.end - RENDER.start).toFixed(1)}s · $${RENDER.usd.toFixed(3)}` : '' },
+  { phase: 'cutout', pos: 'tr', label: 'Cut out', value: res('Cutout')?.result ?? '' },
+  { phase: 'audit', pos: 'ml', label: 'Audited', value: res('Audit')?.result ?? '' },
+  { phase: 'name', pos: 'mr', label: 'Named', value: RUN.title },
+  { phase: 'gate', pos: 'bl', label: 'Gated', value: res('Gate')?.result ?? '' },
 ];
 
 export default function ReplaySpotlight() {

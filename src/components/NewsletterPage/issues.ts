@@ -28,8 +28,10 @@ export interface Issue {
   dek: string;
   topic: string;
   minutes: number;
-  /** The issue's cover (16:9): the issue's real page on the monitor at Zev's
-      desk, made by scripts/newsletter-cover.py (2026-10-11). */
+  /** The issue's cover (16:9), also its share image: vinyl Mason acting out the
+      title (the standard since 2026-10-12), made by scripts/newsletter-mason-cover.mjs
+      from one sentence of what he's doing. The desk covers before it stay in
+      /images/newsletter/covers/<n>.webp. */
   cover?: string;
   body: IssueSection[];
 }
@@ -37,7 +39,7 @@ export interface Issue {
 export const ISSUES: Issue[] = [
   {
     n: 3,
-    cover: '/images/newsletter/covers/3.webp',
+    cover: '/images/newsletter/covers/vinyl-mason/3.webp',
     slug: 'landing-pages-ai-will-cite',
     date: '2026-10-08',
     title: 'Landing pages that AI answers quote',
@@ -69,7 +71,7 @@ export const ISSUES: Issue[] = [
   },
   {
     n: 2,
-    cover: '/images/newsletter/covers/2.webp',
+    cover: '/images/newsletter/covers/vinyl-mason/2.webp',
     slug: 'the-agent-newsroom',
     date: '2026-10-01',
     title: 'The agent newsroom behind AI Marketing News',
@@ -107,7 +109,7 @@ export const ISSUES: Issue[] = [
   },
   {
     n: 1,
-    cover: '/images/newsletter/covers/1.webp',
+    cover: '/images/newsletter/covers/vinyl-mason/1.webp',
     slug: 'how-clip-art-got-to-number-one',
     date: '2026-09-24',
     title: 'How clip.art got to #1 for “AI clipart”',

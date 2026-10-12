@@ -101,6 +101,11 @@ export default async function HomePage() {
       // chips, Latest cut to four, and the last ask offers the email course
       // like the hero. Drop `trim` to bring the old page back.
       trim
+      // F · Publication (2026-10-12): under the hero, The Marketing Engineer's
+      // newest issue with its Mason cover, the issues before it, a signup for
+      // the next one, and AI Marketing News beside them. lead="articles" (the
+      // default) brings Latest back.
+      lead="newsletter"
       // To go back, import and render <HomeHeroHighFloor desks={...} /> (the high
       // floor, 2026-10-09 day) or <HomeHeroPortrait desks={...} /> here instead.
       hero={<HomeHeroAtWork desks={resolveDesks(articles)} />}

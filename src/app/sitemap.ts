@@ -3,7 +3,8 @@ import fs from 'fs'
 import path from 'path'
 import { getAllTemplates } from '@/lib/templates'
 import { courses } from '@/lib/learn/mockData'
-import { liveStories, postsInStory, publishedPosts } from '@/data/news'
+import { liveStoriesOf, postsInStoryOf } from '@/data/news'
+import { getNews } from '@/lib/published-news'
 import {
   getAllAgenticArticles,
 } from '@/lib/published-articles'
@@ -144,9 +145,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })
   })
 
-  // AI Marketing News: every published post and every story page (/news/<slug>/).
-  // The /news index is auto-discovered above. Posts use their publish day.
-  publishedPosts().forEach(post => {
+  // AI Marketing News: every published post and every story page (/news/<slug>/),
+  // the registry's and those published from Compose (getNews()). The /news index
+  // is auto-discovered above. Posts use their publish day.
+  const news = await getNews()
+  news.posts.forEach(post => {
     sitemap.push({
       url: `${baseUrl}/news/${post.slug}/`,
       lastModified: new Date(post.publishedAt),
@@ -154,10 +157,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     })
   })
-  liveStories().forEach(story => {
+  liveStoriesOf(news.posts, news.stories).forEach(story => {
     sitemap.push({
       url: `${baseUrl}/news/${story.slug}/`,
-      lastModified: new Date(postsInStory(story.slug)[0].publishedAt),
+      lastModified: new Date(postsInStoryOf(news.posts, story.slug)[0].publishedAt),
       changeFrequency: 'daily',
       priority: 0.7,
     })

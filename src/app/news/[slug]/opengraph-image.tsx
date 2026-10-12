@@ -1,11 +1,19 @@
 import { ImageResponse } from 'next/og';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { eventLabel, findPost, findStory, liveStories, postsInStory, publishedPosts } from '@/data/news';
+import { eventLabel, findPostIn, findStoryIn, liveStories, postsInStoryOf, publishedPosts } from '@/data/news';
+import { getNews } from '@/lib/published-news';
 
 // The share image for every AI Marketing News post and story: the same fact card as
 // the page's cover (components/News/FactCard.tsx), at 1200×630. Logos are the
 // companies' official SVGs, embedded unchanged.
+//
+// Registry slugs prerender; posts published from Compose and their stories draw
+// on demand (dynamicParams), from the same merged news the page reads. A story
+// with no cleared logo draws the company's name.
+
+export const revalidate = 3600;
+export const dynamicParams = true;
 
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
@@ -24,13 +32,14 @@ async function asset(path: string) {
 
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = findPost(slug);
-  const story = post ? findStory(post.story) : findStory(slug);
+  const news = await getNews();
+  const post = findPostIn(news.posts, slug);
+  const story = findStoryIn(news.stories, post ? post.story : slug);
   if (!story) return new ImageResponse(<div style={{ display: 'flex', width: '100%', height: '100%', background: NAVY }} />, size);
 
   const title = post ? post.card.title : story.name;
   const kicker = post ? story.name : 'The story';
-  const list = postsInStory(story.slug);
+  const list = postsInStoryOf(news.posts, story.slug);
   const facts = post ? post.card.facts : [`${list.length} ${list.length === 1 ? 'post' : 'posts'}`, `Latest news ${eventLabel(list[0]?.eventDate ?? '2026-09')}`];
   const date = post ? `${eventLabel(post.eventDate)}${post.eventDate.length > 7 ? ', ' : ' '}${post.eventDate.slice(0, 4)}` : story.line;
 

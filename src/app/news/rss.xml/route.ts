@@ -1,8 +1,10 @@
-import { findStory, postPath, publishedPosts } from '@/data/news';
+import { findStoryIn, postPath } from '@/data/news';
+import { getNews } from '@/lib/published-news';
 
 /* AI Marketing News as RSS (2026-10-12): the newest 50 posts, for news readers,
  * Google's publisher tools and posting to social as each story goes up. Linked
- * from /news and every post (<link rel="alternate">). */
+ * from /news and every post (<link rel="alternate">). Includes posts published
+ * from Compose (getNews()); the revalidate webhook refreshes it on publish. */
 
 export const revalidate = 3600;
 
@@ -11,12 +13,13 @@ const SITE = 'https://esy.com';
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
 const rfc822 = (iso: string) => new Date(iso.length === 10 ? `${iso}T12:00:00Z` : iso).toUTCString();
 
-export function GET() {
-  const posts = publishedPosts().slice(0, 50);
+export async function GET() {
+  const news = await getNews();
+  const posts = news.posts.slice(0, 50);
   const items = posts
     .map((p) => {
       const url = `${SITE}${postPath(p.slug)}`;
-      const story = findStory(p.story);
+      const story = findStoryIn(news.stories, p.story);
       return `    <item>
       <title>${esc(p.headline)}</title>
       <link>${url}</link>

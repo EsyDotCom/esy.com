@@ -9,8 +9,10 @@
  *   NewsStoryPage — a story's page: every post in it, the page that can rank
  *                   for the story's name.
  *
- * Data and rules: src/data/news/index.ts. No labels ("Breaking" etc.): the
- * dates say when things happened.
+ * Data and rules: src/data/news/index.ts. Each page gets the posts and stories
+ * from its route (getNews() in src/lib/published-news.ts: the registry plus
+ * posts published from Compose), so nothing here reads the registry directly.
+ * No labels ("Breaking" etc.): the dates say when things happened.
  */
 import Link from 'next/link';
 import {
@@ -21,8 +23,8 @@ import NewsletterSignup from '@/components/NewsletterHome/NewsletterSignup';
 import WeeklyEmailBand from '@/components/NewsletterHome/WeeklyEmailBand';
 import { FactCard, StoryCard } from './FactCard';
 import {
-  eventLabel, findStory, liveStories, longDate, postPath, postsInStory, publishedPosts,
-  type NewsPost, type NewsStory,
+  eventLabel, findStoryIn, liveStoriesOf, longDate, postPath, postsInStoryOf,
+  type NewsData, type NewsPost, type NewsStory,
 } from '@/data/news';
 
 const SITE = 'https://esy.com';
@@ -33,10 +35,10 @@ const SIGNUP_NOTE = 'The week’s AI news in The Marketing Engineer';
 /* ── Shared pieces ── */
 
 /** "News from Sep 29 · via Meta Newsroom" — when it happened, and where it's from. */
-function PostMeta({ post, source = true }: { post: NewsPost; source?: boolean }) {
+function PostMeta({ post, story, source = true }: { post: NewsPost; story: NewsStory | undefined; source?: boolean }) {
   return (
     <p className="nw-meta">
-      <span className="nw-topic">{findStory(post.story)?.name}</span>
+      <span className="nw-topic">{story?.name}</span>
       <span>{eventLabel(post.eventDate)}</span>
       {source && <span>via {post.sources[0]?.publisher}</span>}
     </p>
@@ -44,11 +46,11 @@ function PostMeta({ post, source = true }: { post: NewsPost; source?: boolean })
 }
 
 /** A post as a card: its fact card (unless the row already shows one), date, headline. */
-function PostCard({ post, cover = true }: { post: NewsPost; cover?: boolean }) {
+function PostCard({ post, story, cover = true }: { post: NewsPost; story: NewsStory | undefined; cover?: boolean }) {
   return (
     <Link href={postPath(post.slug)} className={`nt-card nx-card ${cover ? '' : 'nx-card--text'}`}>
-      {cover && <span className="nx-card-cover"><FactCard post={post} size="sm" /></span>}
-      <PostMeta post={post} source={false} />
+      {cover && <span className="nx-card-cover"><FactCard post={post} story={story} size="sm" /></span>}
+      <PostMeta post={post} story={story} source={false} />
       <h4>{post.headline}</h4>
     </Link>
   );
@@ -64,9 +66,11 @@ function Signup({ title }: { title: string }) {
 }
 
 /* ── /news ── */
-export function NewsIndexPage() {
-  const posts = publishedPosts();
-  const stories = liveStories();
+export function NewsIndexPage({ news }: { news: NewsData }) {
+  const { posts } = news;
+  const stories = liveStoriesOf(posts, news.stories);
+  const postsInStory = (slug: string) => postsInStoryOf(posts, slug);
+  const storyOf = (slug: string) => findStoryIn(news.stories, slug);
   // The lead: the newest story with two or more posts.
   const multi = stories.filter((s) => postsInStory(s.slug).length >= MIN_POSTS);
   const lead = multi[0];
@@ -94,8 +98,8 @@ export function NewsIndexPage() {
               <div className="nw-front-grid nw-front-grid--flat">
                 <article className="nw-lead">
                   <Link href={postPath(leadPost.slug)} className="nx-lead-link">
-                    <span className="nx-lead-cover"><FactCard post={leadPost} /></span>
-                    <PostMeta post={leadPost} />
+                    <span className="nx-lead-cover"><FactCard post={leadPost} story={lead} /></span>
+                    <PostMeta post={leadPost} story={lead} />
                     <h3 className="nw-lead-headline">{leadPost.headline}</h3>
                   </Link>
                   <p className="nw-lead-dek">{leadPost.dek}</p>
@@ -105,7 +109,7 @@ export function NewsIndexPage() {
                   <p className="nw-desk-sub">More on {lead.name}</p>
                   {leadMore.map((p) => (
                     <article key={p.slug} className="nw-second-item">
-                      <PostMeta post={p} source={false} />
+                      <PostMeta post={p} story={lead} source={false} />
                       <h4 className="nw-second-headline"><Link href={postPath(p.slug)}>{p.headline}</Link></h4>
                       <p className="nw-wire-dek">{p.dek}</p>
                     </article>
@@ -133,14 +137,14 @@ export function NewsIndexPage() {
                     <li key={s.slug} className="nt-row">
                       <div className="nt-row-head">
                         <Link href={postPath(list[0].slug)} className="nx-row-cover" tabIndex={-1} aria-hidden="true">
-                          <FactCard post={list[0]} size="sm" />
+                          <FactCard post={list[0]} story={s} size="sm" />
                         </Link>
                         <h3><Link href={`/news/${s.slug}/`}>{s.name}</Link></h3>
                         <p>{s.line}</p>
                         <span className="nt-row-stats">{list.length} posts · latest news {eventLabel(list[0].eventDate)}</span>
                       </div>
                       <div className="nt-row-cards">
-                        {list.slice(0, 3).map((p) => <PostCard key={p.slug} post={p} cover={false} />)}
+                        {list.slice(0, 3).map((p) => <PostCard key={p.slug} post={p} story={s} cover={false} />)}
                         <Link href={`/news/${s.slug}/`} className="nm-more">Every post on {s.name} <ArrowRight size={14} aria-hidden="true" /></Link>
                       </div>
                     </li>
@@ -161,7 +165,7 @@ export function NewsIndexPage() {
                 <li key={p.slug} className="nw-wire-item">
                   <time className="nw-wire-time" dateTime={p.eventDate}>{eventLabel(p.eventDate)}</time>
                   <div>
-                    <p className="nw-topic">{findStory(p.story)?.name}</p>
+                    <p className="nw-topic">{storyOf(p.story)?.name}</p>
                     <h3 className="nw-wire-headline"><Link href={postPath(p.slug)}>{p.headline}</Link></h3>
                     <p className="nw-wire-dek">{p.dek}</p>
                   </div>
@@ -187,8 +191,8 @@ const FACT_ICON: Record<string, LucideIcon> = {
 };
 
 /** The story line: each chapter links to its post; this one is marked. */
-function StoryLine({ post, story }: { post: NewsPost; story: NewsStory }) {
-  const chapters = [...postsInStory(story.slug)].reverse(); // oldest news first
+function StoryLine({ post, story, posts }: { post: NewsPost; story: NewsStory; posts: NewsPost[] }) {
+  const chapters = [...postsInStoryOf(posts, story.slug)].reverse(); // oldest news first
   return (
     <nav className="npg-story-wrap" aria-label={`The ${story.name} story`}>
       <div className="npg-story">
@@ -224,14 +228,17 @@ function StoryLine({ post, story }: { post: NewsPost; story: NewsStory }) {
   );
 }
 
-export function NewsPostPage({ post }: { post: NewsPost }) {
-  const story = findStory(post.story)!;
-  const more = publishedPosts().filter((p) => p.story !== post.story).slice(0, 4);
+export function NewsPostPage({ post, news }: { post: NewsPost; news: NewsData }) {
+  // Every post's story exists (getNews() builds one for Compose posts), but a
+  // missing one only drops the story line, never the page.
+  const story = findStoryIn(news.stories, post.story);
+  const storyOf = (slug: string) => findStoryIn(news.stories, slug);
+  const more = news.posts.filter((p) => p.story !== post.story).slice(0, 4);
   return (
     <>
       <article className="np np--spec">
         <div className="nl-container"><div className="npi-col nx-col">
-          <StoryLine post={post} story={story} />
+          {story && <StoryLine post={post} story={story} posts={news.posts} />}
           <h1 className="np-title">{post.headline}</h1>
           <p className="np-dek">{post.dek}</p>
           <div className="np-byline">
@@ -263,7 +270,7 @@ export function NewsPostPage({ post }: { post: NewsPost }) {
             <p>{post.why}</p>
           </section>
 
-          <figure className="nx-figure"><FactCard post={post} /></figure>
+          <figure className="nx-figure"><FactCard post={post} story={story} /></figure>
 
           <div className="np-body">{post.body.map((para) => <p key={para.slice(0, 40)}>{para}</p>)}</div>
 
@@ -312,7 +319,7 @@ export function NewsPostPage({ post }: { post: NewsPost }) {
               AI Marketing News is independent: the companies we cover don’t sponsor, review or endorse it. Spotted a mistake? See our <Link href="/editorial-standards/">editorial standards</Link> or email <a href="mailto:zev@esy.com">zev@esy.com</a>.
             </p>
           </section>
-          <Signup title={`Follow ${story.name} by email`} />
+          <Signup title={story ? `Follow ${story.name} by email` : 'Get the week’s AI news by email'} />
         </div></div>
       </article>
 
@@ -320,7 +327,7 @@ export function NewsPostPage({ post }: { post: NewsPost }) {
         <section className="nl-section nl-section--alt" aria-labelledby="np-more">
           <div className="nl-container">
             <h2 className="nt-title" id="np-more">More AI Marketing News</h2>
-            <div className="nx-more">{more.map((p) => <PostCard key={p.slug} post={p} />)}</div>
+            <div className="nx-more">{more.map((p) => <PostCard key={p.slug} post={p} story={storyOf(p.story)} />)}</div>
           </div>
         </section>
       )}
@@ -330,8 +337,8 @@ export function NewsPostPage({ post }: { post: NewsPost }) {
 }
 
 /* ── /news/<story>/ ── */
-export function NewsStoryPage({ story }: { story: NewsStory }) {
-  const list = postsInStory(story.slug);
+export function NewsStoryPage({ story, news }: { story: NewsStory; news: NewsData }) {
+  const list = postsInStoryOf(news.posts, story.slug);
   return (
     <>
       <section className="np nx-story">
@@ -362,8 +369,7 @@ export function NewsStoryPage({ story }: { story: NewsStory }) {
 
 /* ── Structured data ── */
 
-export function postJsonLd(post: NewsPost) {
-  const story = findStory(post.story);
+export function postJsonLd(post: NewsPost, story: NewsStory | undefined) {
   return [
     {
       '@context': 'https://schema.org',

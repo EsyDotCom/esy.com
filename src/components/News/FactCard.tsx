@@ -5,7 +5,7 @@
  * (app/news/[slug]/opengraph-image.tsx) draws the same card at 1200×630.
  */
 /* eslint-disable @next/next/no-img-element -- small official SVG logos, unchanged */
-import { eventLabel, findStory, type NewsPost, type NewsStory } from '@/data/news';
+import { eventLabel, type NewsPost, type NewsStory } from '@/data/news';
 
 /** The company: its logo if cleared, its name set in type otherwise. */
 export function CompanyMark({ story, tone = 'dark' }: { story: NewsStory; tone?: 'dark' | 'light' }) {
@@ -16,16 +16,17 @@ export function CompanyMark({ story, tone = 'dark' }: { story: NewsStory; tone?:
   return <span className="nfc-company">{company.name}</span>;
 }
 
-export function FactCard({ post, size = 'lg' }: { post: NewsPost; size?: 'lg' | 'sm' }) {
-  const story = findStory(post.story)!;
+/** The story comes from the caller (the registry's, or one built from a post published in
+ *  Compose), so a post whose story can't be found draws without the company, never crashes. */
+export function FactCard({ post, story, size = 'lg' }: { post: NewsPost; story: NewsStory | undefined; size?: 'lg' | 'sm' }) {
   return (
-    <span className={`nfc nfc--${size}`} role="img" aria-label={`${story.company.name}: ${post.card.title}. ${post.card.facts.join(', ')}.`}>
+    <span className={`nfc nfc--${size}`} role="img" aria-label={`${story ? `${story.company.name}: ` : ''}${post.card.title}. ${post.card.facts.join(', ')}.`}>
       <span className="nfc-in">
       <span className="nfc-top">
-        <CompanyMark story={story} />
+        {story && <CompanyMark story={story} />}
         <span className="nfc-brand">AI Marketing News</span>
       </span>
-      <span className="nfc-story">{story.name}</span>
+      <span className="nfc-story">{story?.name}</span>
       <span className="nfc-title">{post.card.title}</span>
       <span className="nfc-facts">
         {post.card.facts.map((f) => <span key={f}>{f}</span>)}

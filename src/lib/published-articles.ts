@@ -77,16 +77,23 @@ function isRetryable(err: unknown): boolean {
   return err.status === undefined || err.status >= 500;
 }
 
-// Headless reads: each esy.com section is a Publication. We read its published
-// documents from the publication-scoped public endpoint (no `kind` axis — the
-// Publication is the destination). The cache tag is keyed by publication slug so
-// the publish/unpublish webhook can purge exactly this section.
-async function fetchPublished(publicationSlug: string): Promise<ApiArticle[]> {
-  const res = await fetch(`${API_URL}/v1/publications/public/${publicationSlug}/articles`, {
-    next: {
-      revalidate: REVALIDATE_SECONDS,
-      tags: ["published-articles", `published-articles:${publicationSlug}`],
-    },
+// One public list endpoint, read through Next's data cache under `tags` so the
+// revalidate webhook can purge exactly this list. Shared by articles (below)
+// and AI Marketing News (src/lib/published-news.ts).
+export type PublicListSource = {
+  /** Path under the API, e.g. /v1/publications/public/agentic/articles. */
+  path: string;
+  /** Data-cache tags the publish/unpublish webhook purges. */
+  tags: string[];
+  /** Log prefix: "published-articles", "published-news". */
+  source: string;
+  /** Which list, for logs: the publication slug. */
+  name: string;
+};
+
+async function fetchPublicList<T>({ path, tags, source, name }: PublicListSource): Promise<T[]> {
+  const res = await fetch(`${API_URL}${path}`, {
+    next: { revalidate: REVALIDATE_SECONDS, tags },
   });
   // Throw — do NOT return [] — on a bad response. Returning an empty list here
   // would let Next cache an article-less render on a transient API blip (e.g. an
@@ -94,27 +101,24 @@ async function fetchPublished(publicationSlug: string): Promise<ApiArticle[]> {
   // cache expired. By throwing, an in-flight ISR regeneration is discarded and
   // Next keeps serving the last-good render; only a cold cache + dead API errors.
   // A 404 here means the publication is missing/not public: thrown like any
-  // error, and fetchPublishedSafe then renders without that one publication
+  // error, and fetchPublicListSafe then renders without that one publication
   // rather than failing the whole page.
   if (!res.ok) {
-    throw new PublishedFetchError(
-      `published-articles ${publicationSlug}: HTTP ${res.status}`,
-      res.status,
-    );
+    throw new PublishedFetchError(`${source} ${name}: HTTP ${res.status}`, res.status);
   }
   const body = await res.json();
-  return (body.items ?? []) as ApiArticle[];
+  return (body.items ?? []) as T[];
 }
 
 // Build-time and local dev graceful degradation: api.esy.com can 502/500 or be
 // unreachable, and `next dev` shouldn't require a local API process. Fall back
 // to the git registry. At production ISR time we deliberately let the error
 // propagate so Next serves the last-good cache instead of caching an empty list.
-async function fetchPublishedSafe(publicationSlug: string): Promise<ApiArticle[]> {
+export async function fetchPublicListSafe<T>(list: PublicListSource): Promise<T[]> {
   let lastError: unknown;
   for (let attempt = 1; attempt <= FETCH_ATTEMPTS; attempt++) {
     try {
-      return await withTimeout(fetchPublished(publicationSlug), FETCH_TIMEOUT_MS, publicationSlug);
+      return await withTimeout(fetchPublicList<T>(list), FETCH_TIMEOUT_MS, list.name);
     } catch (err) {
       lastError = err;
       if (attempt < FETCH_ATTEMPTS && isRetryable(err)) {
@@ -129,11 +133,13 @@ async function fetchPublishedSafe(publicationSlug: string): Promise<ApiArticle[]
   // private, and no retry or later render will change that. Rethrowing it would
   // fail every regeneration of every page that reads the hub (the homepage,
   // /news, /about…) and freeze them at the last deploy, which is what happened
-  // when the retired `agentic` publication was removed from the API. So that one publication
-  // contributes nothing, loudly, and the other sections still render.
+  // when the retired `agentic` publication was removed from the API. So that
+  // publication contributes nothing, loudly, and the other sections still
+  // render. For news it also means /news shows the registry alone until the
+  // API's `news` publication exists.
   if (lastError instanceof PublishedFetchError && lastError.status !== undefined && lastError.status >= 400 && lastError.status < 500) {
     console.error(
-      `[published-articles] ${publicationSlug}: HTTP ${lastError.status}; the publication is missing or not public, so pages render without it.`,
+      `[${list.source}] ${list.name}: HTTP ${lastError.status}; the publication is missing or not public, so pages render without it.`,
     );
     return [];
   }
@@ -143,7 +149,7 @@ async function fetchPublishedSafe(publicationSlug: string): Promise<ApiArticle[]
     // registry-only page silently, and nobody finds out until an article is
     // missing from production.
     console.warn(
-      `[published-articles] ${publicationSlug}: API unavailable after ${FETCH_ATTEMPTS} attempts — using static registry only.`,
+      `[${list.source}] ${list.name}: API unavailable after ${FETCH_ATTEMPTS} attempts — using static registry only.`,
       lastError,
     );
     return [];
@@ -151,9 +157,23 @@ async function fetchPublishedSafe(publicationSlug: string): Promise<ApiArticle[]
   throw lastError;
 }
 
+// Headless reads: each esy.com section is a Publication. We read its published
+// documents from the publication-scoped public endpoint (no `kind` axis — the
+// Publication is the destination). The cache tag is keyed by publication slug so
+// the publish/unpublish webhook can purge exactly this section.
+function fetchPublishedSafe(publicationSlug: string): Promise<ApiArticle[]> {
+  return fetchPublicListSafe<ApiArticle>({
+    path: `/v1/publications/public/${publicationSlug}/articles`,
+    tags: ["published-articles", `published-articles:${publicationSlug}`],
+    source: "published-articles",
+    name: publicationSlug,
+  });
+}
+
 // Static registry entries win slug collisions: they're the curated, reviewed
-// source of record; the API adds net-new articles.
-function mergeBySlug<T extends { slug: string; publishedAt: string }>(
+// source of record; the API adds net-new articles. Also used by AI Marketing
+// News, where the registry wins during the move to Compose.
+export function mergeBySlug<T extends { slug: string; publishedAt: string }>(
   registry: T[],
   api: T[],
 ): T[] {

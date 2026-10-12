@@ -14,13 +14,17 @@ type RevalidateBody = {
   slug?: string;
   action?: "publish" | "unpublish" | "test";
   categories?: string[];
+  /** What was published: "news-post" for AI Marketing News. Informational. */
+  kind?: string;
 };
 
-// Publications whose articles esy.com shows. Both render the same way
+// Publications esy.com shows. The article publications render the same way
 // (homepage Latest + /articles/<slug>/ articles), so a publish/unpublish on
 // either revalidates the same routes. `agentic` and `engineer` are retired
-// (2026-10-12); articles are browsed under /topics.
-const KNOWN_PUBLICATIONS = new Set(["esy-research", "esy-learn"]);
+// (2026-10-12); articles are browsed under /topics. `news` is AI Marketing
+// News (/news), whose posts are published from Compose
+// (src/lib/published-news.ts).
+const KNOWN_PUBLICATIONS = new Set(["esy-research", "esy-learn", "news"]);
 
 /**
  * Legacy Bearer / x-revalidate-secret check. Kept as a fallback during the HMAC
@@ -86,6 +90,29 @@ export async function POST(request: NextRequest) {
       { error: `Expected body with slug and a known publication (${known}).` },
       { status: 400 },
     );
+  }
+
+  // AI Marketing News: a news post was published or unpublished in Compose.
+  // Purge the news list's cached API read, then every page that shows posts:
+  // the /news layout covers /news, each post and story page and their share
+  // images; the homepage carries the news column; the feeds and sitemaps list
+  // posts. A post's story page can change with it, so no single path is enough.
+  if (publication === "news") {
+    revalidateTag("published-news");
+    revalidateTag("published-news:news");
+    revalidatePath("/news", "layout");
+    const paths = ["/", "/news-sitemap.xml", "/news/rss.xml", "/sitemap.xml"];
+    paths.forEach((path) => revalidatePath(path));
+
+    return NextResponse.json({
+      revalidated: true,
+      action: body.action ?? "publish",
+      publication,
+      slug,
+      categories: body.categories ?? [],
+      // "/news" stands for the whole /news layout (every post and story page).
+      paths: ["/news", ...paths],
+    });
   }
 
   // Refresh both the tagged API fetch (keyed by publication slug) and the concrete

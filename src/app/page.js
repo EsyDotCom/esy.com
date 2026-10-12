@@ -96,6 +96,11 @@ export default async function HomePage() {
       compose={COMPOSE}
       appsLayout="tour"
       newsColumn
+      // B · Trimmed (2026-10-12, /prototypes/home-focus/): no 02 Creatives or 03
+      // Films (SEOPage's explainer lives in its story in the tour), no work
+      // chips, Latest cut to four, and the last ask offers the email course
+      // like the hero. Drop `trim` to bring the old page back.
+      trim
       // To go back, import and render <HomeHeroHighFloor desks={...} /> (the high
       // floor, 2026-10-09 day) or <HomeHeroPortrait desks={...} /> here instead.
       hero={<HomeHeroAtWork desks={resolveDesks(articles)} />}

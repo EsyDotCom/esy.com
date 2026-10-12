@@ -1903,6 +1903,28 @@ export const PROTOTYPES: Prototype[] = [
     ],
   },
   {
+    slug: 'home-focus',
+    name: 'The homepage, focused',
+    date: '2026-10-12',
+    headline: 'A homepage where every block backs the hero.',
+    intro:
+      'The homepage sells “AI marketing is an engineering job”. These cut what doesn’t back that up: 03 Films (a children’s film), 02 Creatives as its own section, the work chips, and eight-month-old articles. Compare with A, the page as it is.',
+    summary: 'The live homepage, then trimmed (B), then trimmed with the apps tour above Latest (C).',
+    rounds: [
+      {
+        n: 1,
+        title: 'What leaves',
+        summary:
+          'B drops 03 Films and 02 Creatives (SEOPage’s explainer moves into its story in the apps tour), the 01/02/03 chips, and cuts Latest to the feature and three newest with a link to the rest; the last ask offers the email course, like the hero. C is B with the proof first.',
+      },
+    ],
+    variants: [
+      { slug: 'live', key: 'A', name: 'Live', round: 1, title: 'The homepage as it is.', blurb: 'Today’s esy.com, for comparison.', poster: ['#0A2540', '#00D4AA'] },
+      { slug: 'trimmed', key: 'B', name: 'Trimmed', round: 1, live: true, liveHref: '/', title: 'Only what backs the hero.', blurb: 'No Films or Creatives sections, no chips, Latest cut to four, the course offered again at the end.', poster: ['#F8F9FA', '#0A2540'] },
+      { slug: 'proof-first', key: 'C', name: 'Proof first', round: 1, mergeOf: ['B'], title: 'The claim, then the proof.', blurb: 'B with the apps tour (clip.art, SEOPage, Compose) straight after the hero, above Latest.', poster: ['#061527', '#00D4AA'] },
+    ],
+  },
+  {
     slug: 'home-trim',
     name: 'A shorter homepage: one apps band and AI News',
     date: '2026-09-30',

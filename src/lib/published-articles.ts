@@ -93,8 +93,9 @@ async function fetchPublished(publicationSlug: string): Promise<ApiArticle[]> {
   // api.esy.com redeploy), silently dropping every published article until the
   // cache expired. By throwing, an in-flight ISR regeneration is discarded and
   // Next keeps serving the last-good render; only a cold cache + dead API errors.
-  // A 404 here means the publication is missing/not public — also an error, not
-  // "no articles" (a populated publication returns 200 with an items array).
+  // A 404 here means the publication is missing/not public: thrown like any
+  // error, and fetchPublishedSafe then renders without that one publication
+  // rather than failing the whole page.
   if (!res.ok) {
     throw new PublishedFetchError(
       `published-articles ${publicationSlug}: HTTP ${res.status}`,
@@ -124,6 +125,19 @@ async function fetchPublishedSafe(publicationSlug: string): Promise<ApiArticle[]
     }
   }
 
+  // A 4xx is a definite answer, not a blip: the publication is missing or
+  // private, and no retry or later render will change that. Rethrowing it would
+  // fail every regeneration of every page that reads the hub (the homepage,
+  // /news, /about…) and freeze them at the last deploy, which is what happened
+  // when the retired `agentic` publication was removed from the API. So that one publication
+  // contributes nothing, loudly, and the other sections still render.
+  if (lastError instanceof PublishedFetchError && lastError.status !== undefined && lastError.status >= 400 && lastError.status < 500) {
+    console.error(
+      `[published-articles] ${publicationSlug}: HTTP ${lastError.status}; the publication is missing or not public, so pages render without it.`,
+    );
+    return [];
+  }
+
   if (mayFallbackToRegistryOnly()) {
     // Warn in builds too, not just dev: without this a degraded deploy ships a
     // registry-only page silently, and nobody finds out until an article is
@@ -144,7 +158,7 @@ function mergeBySlug<T extends { slug: string; publishedAt: string }>(
   api: T[],
 ): T[] {
   // Registry wins; the seen set also dedupes API-vs-API collisions, which can
-  // happen now that /agentic reads two publications into one list.
+  // happen now that two publications feed one list.
   const seen = new Set(registry.map((v) => v.slug));
   const merged = [...registry];
   for (const a of api) {
@@ -157,13 +171,12 @@ function mergeBySlug<T extends { slug: string; publishedAt: string }>(
   );
 }
 
-// The Agentic Engineer (/agentic) reads every publication that feeds the hub:
-// `agentic` (the publication authored against going forward) plus the two
-// pre-merge sections, esy-research (deep dives, model + tool research) and
-// esy-learn (tutorials), whose already-published articles must keep rendering.
-// The static registry is curated research; net-new articles from any publication
-// merge in by publish date.
-const AGENTIC_PUBLICATIONS = ["agentic", "esy-research", "esy-learn"];
+// The publications esy.com's articles come from: esy-research (deep dives,
+// model and tool research) and esy-learn (tutorials). `agentic` and `engineer`
+// are retired (2026-10-12): articles are browsed under /topics, and their
+// publications no longer exist on the API. The static registry is curated
+// research; net-new articles from any publication merge in by publish date.
+const AGENTIC_PUBLICATIONS = ["esy-research", "esy-learn"];
 
 export async function getAllAgenticArticles(): Promise<AgenticVideo[]> {
   // Fetch every publication in parallel; a failure in any one degrades to the

@@ -16,12 +16,11 @@ type RevalidateBody = {
   categories?: string[];
 };
 
-// Publications that feed The Marketing Engineer. All three render the same way
-// (homepage Latest + /articles/<slug>/ articles), so a publish/unpublish on any of them
-// revalidates the same routes. `agentic` is the publication going forward;
-// `esy-research` / `esy-learn` are the pre-merge sections, kept so their existing
-// articles and Connect wiring keep working.
-const KNOWN_PUBLICATIONS = new Set(["agentic", "esy-research", "esy-learn"]);
+// Publications whose articles esy.com shows. Both render the same way
+// (homepage Latest + /articles/<slug>/ articles), so a publish/unpublish on
+// either revalidates the same routes. `agentic` and `engineer` are retired
+// (2026-10-12); articles are browsed under /topics.
+const KNOWN_PUBLICATIONS = new Set(["esy-research", "esy-learn"]);
 
 /**
  * Legacy Bearer / x-revalidate-secret check. Kept as a fallback during the HMAC

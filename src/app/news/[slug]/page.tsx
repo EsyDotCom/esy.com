@@ -35,7 +35,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         publishedTime: post.publishedAt, authors: ['Zev Uhuru'],
       },
       twitter: { card: 'summary_large_image', title, description: post.dek, site: '@EsyDotCom' },
-      alternates: { canonical: postPath(post.slug) },
+      // Large image previews in Discover and Top Stories; the RSS feed for readers and publisher tools.
+      robots: { index: true, follow: true, 'max-image-preview': 'large' },
+      alternates: { canonical: postPath(post.slug), types: { 'application/rss+xml': [{ url: '/news/rss.xml', title: 'AI Marketing News' }] } },
     };
   }
   const story = findStory(slug);

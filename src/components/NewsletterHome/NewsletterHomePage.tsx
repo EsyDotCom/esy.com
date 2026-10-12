@@ -23,17 +23,19 @@ import type { AgenticVideo } from '@/data/agentic-videos';
 import LightHeader from '@/components/LightHeader/LightHeader';
 import { toNavArticles } from '@/lib/nav-articles';
 import { AUTHOR_SOCIALS } from '@/components/Agentic/authorSocials';
-import { articlePath } from '@/lib/article-path';
+import { LATEST_ARTICLES_HREF, articlePath } from '@/lib/article-path';
 import { formatDate, formatMinutes, thumbnailFor } from '@/lib/article-format';
 import { TOPICS, topicHref } from '@/data/topics';
 import { FILMS, filmHref } from '@/data/films';
 import { CREATIVES } from '@/data/creatives';
+import { ISSUES, issueDate } from '@/components/NewsletterPage/issues';
 import CreativePlayer from './CreativePlayer';
 import FilmPosterBand from './FilmPosterBand';
 import FilmStrip from './FilmStrip';
 import ClipArtVisuals, { type ClipArtVisual } from './ClipArtVisuals';
 import NewsletterHero from './NewsletterHero';
 import WeeklyEmailBand from './WeeklyEmailBand';
+import NewsletterSignup from './NewsletterSignup';
 import { nlSerif } from './serif';
 import ClipArtWordmark from './ClipArtWordmark';
 import SeoPageWordmark from './SeoPageWordmark';
@@ -151,6 +153,23 @@ function CreativeShowcase() {
   );
 }
 
+/** SEOPage's explainer, folded into its story in the apps tour when 02 Creatives is off. */
+function SeoPageExplainer() {
+  const c = CREATIVES[0];
+  if (!c) return null;
+  return (
+    <Link href={articlePath(c.articleSlug)} className="nl-case-extra">
+      <span className="nl-case-extra-frames" aria-hidden="true">
+        {c.frames.map((src) => <span key={src} style={{ backgroundImage: `url(${src})` }} />)}
+      </span>
+      <span>
+        <b>Its explainer, {c.kind.split('·')[1]?.trim() ?? ''}</b>
+        <span>Built in code in one session. How we made it →</span>
+      </span>
+    </Link>
+  );
+}
+
 export default async function NewsletterHomePage({
   hero,
   filmBand = 'strip',
@@ -158,6 +177,10 @@ export default async function NewsletterHomePage({
   compose,
   appsLayout = 'bands',
   newsColumn = false,
+  trim = false,
+  appsFirst = false,
+  lead = 'articles',
+  issueCovers,
 }: {
   /** 01 Apps as a ledger plus one case-study band per app ('bands', live), or
    *  merged into one band that shows one app at a time (/prototypes/home-trim/).
@@ -165,6 +188,18 @@ export default async function NewsletterHomePage({
   appsLayout?: 'bands' | AppsLayout;
   /** AI Marketing News's newest headlines in a slim column beside Latest (/prototypes/home-trim/). */
   newsColumn?: boolean;
+  /** The focused page (/prototypes/home-focus/): no 02 Creatives or 03 Films (SEOPage's explainer moves
+   *  into its story in the apps tour), no work chips, Latest cut to the feature and three newest, and the
+   *  last ask makes the hero's offer (the email course). */
+  trim?: boolean;
+  /** Put the apps tour, the proof, straight after the hero and above Latest (/prototypes/home-focus/). */
+  appsFirst?: boolean;
+  /** What leads under the hero: the latest articles, or the publication itself, The Marketing Engineer's
+   *  newest issues beside AI Marketing News (D · Publication, /prototypes/home-focus/). */
+  lead?: 'articles' | 'newsletter';
+  /** Swap the issues' covers for another set, as a path with {n} for the issue number
+   *  (/images/newsletter/covers/vinyl-net/{n}.webp). Off, each issue's own cover. */
+  issueCovers?: string;
   /** Compose as the third app: its mark in the 01 Apps ledger and its own case
    *  study band after SEOPage's. The homepage passes the stencil mark and the
    *  replay band (2026-09-30); /engineer leaves it off. The other marks and
@@ -183,13 +218,65 @@ export default async function NewsletterHomePage({
   const featuredThumb = featured ? thumbnailFor(featured) : null;
   const properties = compose ? [...PROPERTIES, COMPOSE_PROPERTY] : PROPERTIES;
 
-  return (
-    <div className={`nl ${nlSerif.variable}`}>
-      <LightHeader latest={toNavArticles(articles)} />
+  // The publication: the newest issue as the feature, the ones before it as a list, AI Marketing News beside.
+  const [issue, ...earlier] = ISSUES;
+  const coverOf = (i: (typeof ISSUES)[number]) => (issueCovers ? issueCovers.replace('{n}', String(i.n)) : i.cover);
+  const publicationSection = issue && (
+    <section className="nl-section nl-section--alt" id="latest" aria-labelledby="nl-pub-title">
+      <div className="nl-container">
+        <div className="nl-section-head">
+          <h2 className="nl-title" id="nl-pub-title">The Marketing Engineer</h2>
+          <Link href="/newsletter/" className="nl-inline-link">
+            All issues <ArrowRight size={15} aria-hidden="true" />
+          </Link>
+        </div>
+        <div className="nl-latest-grid">
+          <div>
+            <p className="nl-col-label">This week&apos;s issue</p>
+            <Link href={`/newsletter/${issue.slug}/`} className="nl-featured">
+              {coverOf(issue) && (
+                <span className="nl-featured-media">
+                  <img src={coverOf(issue)} alt="" width={960} height={540} loading="lazy" />
+                </span>
+              )}
+              <span className="nl-featured-body">
+                <span className="nl-meta">No. {issue.n} · {issueDate(issue.date)} · {issue.minutes} min read</span>
+                <span className="nl-featured-title">{issue.title}</span>
+                <span className="nl-featured-desc">{issue.dek}</span>
+                <span className="nl-read">
+                  Read the issue <ArrowRight size={15} aria-hidden="true" />
+                </span>
+              </span>
+            </Link>
+            {earlier.length > 0 && (
+              <ul className="nl-list">
+                {earlier.slice(0, 3).map((i) => (
+                  <li key={i.slug}>
+                    {/* Each earlier issue with a small cover, so the issues read as a series. */}
+                    <Link href={`/newsletter/${i.slug}/`} className="nl-row nl-row--issue">
+                      {coverOf(i) && <img className="nl-row-thumb" src={coverOf(i)} alt="" width={128} height={72} loading="lazy" />}
+                      <span className="nl-row-title">{i.title}</span>
+                      <span className="nl-row-cat">No. {i.n} · {issueDate(i.date)}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {/* The next issue, asked for where the reader just saw this one. Same list as every signup. */}
+            <div className="nl-issue-signup">
+              <p><b>Get the next issue.</b> One AI marketing system a week, and the week&apos;s news. Free.</p>
+              <NewsletterSignup form="home-issues" cta="Subscribe" note="Unsubscribe in one click." />
+            </div>
+          </div>
+          <NewsColumn />
+        </div>
+      </div>
+    </section>
+  );
 
-      {/* ══ Masthead: name, promise, one action (or the page's own hero) ══ */}
-      {hero ?? <NewsletterHero />}
-
+  // Latest and the apps tour, as blocks, so a page can put the proof first.
+  const latestSection = lead === 'newsletter' ? publicationSection : (
+    <>
       {/* ══ Latest ══
           The newest article earns the width; the rest of the latest dozen are
           a quiet list. `#latest` is where the header link and the old
@@ -247,7 +334,7 @@ export default async function NewsletterHomePage({
 
             {more.length > 0 && (
               <ul className="nl-list">
-                {more.slice(0, newsColumn ? 6 : more.length).map((article) => (
+                {more.slice(0, trim ? 3 : newsColumn ? 6 : more.length).map((article) => (
                   <li key={article.slug}>
                     <Link href={articlePath(article.slug)} className="nl-row">
                       <span className="nl-row-date">{formatDate(article.publishedAt)}</span>
@@ -258,6 +345,13 @@ export default async function NewsletterHomePage({
                 ))}
               </ul>
             )}
+            {trim && (
+              <p className="nl-more-articles">
+                <Link href={LATEST_ARTICLES_HREF} className="nl-inline-link">
+                  More articles, by topic <ArrowRight size={15} aria-hidden="true" />
+                </Link>
+              </p>
+            )}
             </div>
             {newsColumn && <NewsColumn />}
             </div>
@@ -265,6 +359,10 @@ export default async function NewsletterHomePage({
         </section>
       )}
 
+    </>
+  );
+  const appsSection = (
+    <>
       {/* ══ The work, 01 · Apps, merged ══
           One band for every app instead of a ledger plus a band each: the
           head on white like 02 and 03, then the chosen app's story and replay. */}
@@ -282,10 +380,11 @@ export default async function NewsletterHomePage({
                 <p className="nl-lede">
                   Three apps built on Esy and run every day. Nothing here is a sandbox demo, so the results in each article are the results they actually got.
                 </p>
-                <WorkIndex current="apps" apps={APP_STORIES.length} />
+                {!trim && <WorkIndex current="apps" apps={APP_STORIES.length} />}
               </div>
             </>
           }
+          extras={trim ? { seopage: <SeoPageExplainer /> } : undefined}
         />
       ) : (
         <>
@@ -458,6 +557,20 @@ export default async function NewsletterHomePage({
         </>
       )}
 
+    </>
+  );
+
+  return (
+    <div className={`nl ${nlSerif.variable}`}>
+      <LightHeader latest={toNavArticles(articles)} />
+
+      {/* ══ Masthead: name, promise, one action (or the page's own hero) ══ */}
+      {hero ?? <NewsletterHero />}
+
+      {appsFirst ? <>{appsSection}{latestSection}</> : <>{latestSection}{appsSection}</>}
+
+      {!trim && (
+        <>
       {/* ══ The work, 02 · Creatives ══
           Ads and explainers: marketing work that runs in feeds, as opposed to
           films, which are stories. The same head and ledger as 01; the newest
@@ -549,6 +662,9 @@ export default async function NewsletterHomePage({
       {/* ══ The newest film, as a poster with its credits ══ */}
       {filmBand === 'strip' ? <FilmStrip /> : <FilmPosterBand />}
 
+        </>
+      )}
+
       {/* ══ The author ══ */}
       <section className="nl-section" aria-labelledby="nl-author-title">
         <div className="nl-container nl-author">
@@ -589,7 +705,7 @@ export default async function NewsletterHomePage({
       </section>
 
       {/* ══ The ask, once more ══ */}
-      <WeeklyEmailBand />
+      <WeeklyEmailBand offer={trim ? 'course' : 'weekly'} />
     </div>
   );
 }

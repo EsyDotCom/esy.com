@@ -626,3 +626,22 @@
   .nl-latest-grid { grid-template-columns: 1fr; gap: 40px; }
   .nl-news { position: static; padding-left: 0; border-left: 0; }
 }
+
+/* The focused homepage (2026-10-12, /prototypes/home-focus/): the link under a
+   shortened Latest, and SEOPage's explainer folded into its story in the tour. */
+.nl-more-articles { margin: 18px 0 0; }
+.nl-case-extra { display: flex; align-items: center; gap: 14px; margin: 4px 0 18px; padding: 10px 12px; border-radius: 12px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.1); color: inherit; text-decoration: none; }
+.nl-case-extra:hover { background: rgba(255, 255, 255, 0.1); }
+.nl-case-extra-frames { display: flex; gap: 3px; flex: none; }
+.nl-case-extra-frames span { width: 34px; height: 22px; border-radius: 3px; background-size: cover; background-position: center; }
+.nl-case-extra > span:last-child { display: flex; flex-direction: column; gap: 2px; font-size: 0.85rem; line-height: 1.35; opacity: 0.85; }
+.nl-case-extra b { font-weight: 600; opacity: 1; }
+/* D · Publication: the small label over the newest issue. */
+.nl-col-label { margin: 0 0 12px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--nl-jade, #00A896); }
+.nl-issue-signup { margin-top: 28px; padding: 22px 24px; border-radius: 14px; background: #fff; border: 1px solid rgba(10, 37, 64, 0.08); }
+.nl-issue-signup > p { margin: 0 0 14px; color: var(--nl-ink-soft, #42566B); line-height: 1.5; }
+.nl-issue-signup > p b { color: var(--nl-navy, #0A2540); }
+/* The earlier issues: a small cover, the title, then the number and date. */
+.nl-row.nl-row--issue { grid-template-columns: 112px minmax(0, 1fr) auto; align-items: center; }
+.nl-row-thumb { display: block; width: 112px; height: 63px; object-fit: cover; border-radius: 8px; background: #0A1626; }
+@media (max-width: 600px) { .nl-row.nl-row--issue { grid-template-columns: 88px minmax(0, 1fr); } .nl-row--issue .nl-row-thumb { width: 88px; height: 50px; } .nl-row--issue .nl-row-cat { grid-column: 2; } }

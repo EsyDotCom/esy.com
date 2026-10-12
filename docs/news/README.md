@@ -80,7 +80,7 @@ The cover and the share image are the fact card, drawn from `card`, the story an
 
 ### 6. Publish
 
-1. Set `status: 'published'` and `publishedAt` to today.
+1. Set `status: 'published'` and `publishedAt` to now, with the time and offset (`2026-10-12T09:30:00-04:00`): Google News orders fresh stories by it. A later non-correction change sets `updatedAt` the same way.
 2. Open a PR (routes and content are PR-only in this repo). Run `npm run lint` and `npm run build`.
 3. After it deploys, open the post and its story page on esy.com, and check the share image at `/news/<post>/opengraph-image/`.
 
@@ -95,3 +95,14 @@ If something's wrong, fix it and add a line to the post saying what changed and 
 - Never change `publishedAt` to an earlier date, and never add labels.
 - Don't add company logos without checking that company's brand terms, and never generate one.
 - Show Zev every new post before it goes live: the byline is his.
+
+## Google News (2026-10-12)
+
+What makes a post eligible for Google News and Top Stories, and where each piece lives:
+
+- **News sitemap:** `/news-sitemap.xml` (`src/app/news-sitemap.xml/route.ts`) lists posts from the last two days, the window Google News reads, and is named in robots.txt. Older posts stay in `/sitemap.xml`.
+- **Structured data:** every post carries `NewsArticle` (`postJsonLd` in `src/components/News/News.tsx`): headline, full-time `datePublished`, `dateModified` (from `updatedAt`), author, the publisher with its logo (`/brand/logo/esy-wordmark.png`), sources as `isBasedOn` and `citation`.
+- **Large images:** `/news` and every post set `max-image-preview:large`, so Discover and Top Stories can show the fact card big.
+- **RSS:** `/news/rss.xml`, linked from `/news` and every post.
+- **How it was made:** every post's Sources note says it was researched and drafted in Compose and approved by Zev, and the editorial standards' "How we use AI" says the same. Google asks publishers to say how content is made.
+- **Cadence:** the editorial standards promise a pace we can keep (two good posts a week beats seven thin ones). Google News weighs recency and a steady rhythm, so a quiet fortnight costs more than a slower steady week.

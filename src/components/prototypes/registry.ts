@@ -1903,6 +1903,43 @@ export const PROTOTYPES: Prototype[] = [
     ],
   },
   {
+    slug: 'home-focus',
+    name: 'The homepage, focused',
+    date: '2026-10-12',
+    headline: 'A homepage where every block backs the hero.',
+    intro:
+      'The homepage sells “AI marketing is an engineering job”. These cut what doesn’t back that up: 03 Films (a children’s film), 02 Creatives as its own section, the work chips, and eight-month-old articles. Compare with A, the page as it is.',
+    summary: 'The live homepage, then trimmed (B), then trimmed with the apps tour above Latest (C).',
+    rounds: [
+      {
+        n: 1,
+        title: 'What leaves',
+        summary:
+          'B drops 03 Films and 02 Creatives (SEOPage’s explainer moves into its story in the apps tour), the 01/02/03 chips, and cuts Latest to the feature and three newest with a link to the rest; the last ask offers the email course, like the hero. C is B with the proof first.',
+      },
+      {
+        n: 2,
+        title: 'The publication leads',
+        summary:
+          'D is B with Latest turned into the publication: “The Marketing Engineer” heads the section, the newest issue is the feature and the ones before it a list, and AI Marketing News stays beside it. The articles leave the homepage and work through search and the topic pages.',
+      },
+      {
+        n: 3,
+        title: 'Vinyl covers',
+        summary:
+          'D with the issues’ covers in the brand’s vinyl, made on Sunburst: E draws each issue’s system as glossy vinyl and light, F has vinyl Mason doing each issue’s job.',
+      },
+    ],
+    variants: [
+      { slug: 'live', key: 'A', name: 'Live', round: 1, title: 'The homepage as it is.', blurb: 'Today’s esy.com, for comparison.', poster: ['#0A2540', '#00D4AA'] },
+      { slug: 'trimmed', key: 'B', name: 'Trimmed', round: 1, title: 'Only what backs the hero.', blurb: 'No Films or Creatives sections, no chips, Latest cut to four, the course offered again at the end.', poster: ['#F8F9FA', '#0A2540'] },
+      { slug: 'publication', key: 'D', name: 'Publication', round: 2, mergeOf: ['B'], title: 'The newsletter and the news, first.', blurb: 'B with The Marketing Engineer’s newest issues as the lead under the hero and AI Marketing News beside them.', poster: ['#F8F9FA', '#00A896'] },
+      { slug: 'publication-net', key: 'E', name: 'Vinyl network covers', round: 3, mergeOf: ['D'], title: 'Each issue as a vinyl system.', blurb: 'D with covers of glossy vinyl and light: the winning stack, the agent line at a gold gate, the answer slab being quoted.', poster: ['#0A1626', '#00D4AA'] },
+      { slug: 'publication-mason', key: 'F', name: 'Vinyl Mason covers', round: 3, mergeOf: ['D'], live: true, liveHref: '/', title: 'Mason does each issue’s job.', blurb: 'D with vinyl Mason acting out each title: on the top step with a trophy, stamping the agents’ newspaper, setting the block an AI answer quotes.', poster: ['#16283F', '#2BD8BB'] },
+      { slug: 'proof-first', key: 'C', name: 'Proof first', round: 1, mergeOf: ['B'], title: 'The claim, then the proof.', blurb: 'B with the apps tour (clip.art, SEOPage, Compose) straight after the hero, above Latest.', poster: ['#061527', '#00D4AA'] },
+    ],
+  },
+  {
     slug: 'home-trim',
     name: 'A shorter homepage: one apps band and AI News',
     date: '2026-09-30',

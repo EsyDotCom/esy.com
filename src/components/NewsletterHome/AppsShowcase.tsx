@@ -45,7 +45,7 @@ function Visual({ id }: { id: AppId }) {
 }
 
 /** The case study's story column: meta, title, what it is, its pills, the link. */
-function Story({ app, title = true }: { app: AppStory; title?: boolean }) {
+function Story({ app, title = true, extra }: { app: AppStory; title?: boolean; extra?: ReactNode }) {
   return (
     <div className="nl-case-story">
       <div className="nl-case-meta">
@@ -59,6 +59,7 @@ function Story({ app, title = true }: { app: AppStory; title?: boolean }) {
         </h3>
       )}
       <p className="nl-case-desc">{app.desc}</p>
+      {extra}
       <div className="nl-case-styles">
         <span className="nl-case-styles-label">{app.pillsLabel}</span>
         <div className="nl-case-pills">{app.pills.map((p) => <span key={p} className="nl-case-pill">{p}</span>)}</div>
@@ -73,7 +74,9 @@ function Story({ app, title = true }: { app: AppStory; title?: boolean }) {
 }
 
 /** Tabs and tour: the wordmarks across the band, optionally advancing. */
-function Tabbed({ tour }: { tour: boolean }) {
+type Extras = Partial<Record<AppId, ReactNode>>;
+
+function Tabbed({ tour, extras = {} }: { tour: boolean; extras?: Extras }) {
   const [on, setOn] = useState(0);
   const [picked, setPicked] = useState(!tour);
   const [hover, setHover] = useState(false);
@@ -127,11 +130,11 @@ function Tabbed({ tour }: { tour: boolean }) {
           {app.id === 'seopage' ? (
             <>
               <div className="nl-case-replay"><Visual id={app.id} /></div>
-              <Story app={app} />
+              <Story app={app} extra={extras[app.id]} />
             </>
           ) : (
             <>
-              <Story app={app} />
+              <Story app={app} extra={extras[app.id]} />
               <div className="as-visual"><Visual id={app.id} /></div>
             </>
           )}
@@ -143,7 +146,7 @@ function Tabbed({ tour }: { tour: boolean }) {
 }
 
 /** Rail: the apps stacked on the left as the picker, the replay on the right. */
-function Rail() {
+function Rail({ extras = {} }: { extras?: Extras }) {
   const [on, setOn] = useState(0);
   const app = APP_STORIES[on];
   return (
@@ -157,7 +160,7 @@ function Rail() {
                 <span className="as-rail-role">{a.role}</span>
                 {k !== on && <span className="as-rail-line">{a.line}</span>}
               </button>
-              {k === on && <div className="as-rail-body"><Story app={a} title={false} /></div>}
+              {k === on && <div className="as-rail-body"><Story app={a} title={false} extra={extras[a.id]} /></div>}
             </li>
           ))}
         </ul>
@@ -169,11 +172,12 @@ function Rail() {
   );
 }
 
-export default function AppsShowcase({ layout, head }: { layout: AppsLayout; head: ReactNode }) {
+/** `extras` adds a line under an app's description (e.g. SEOPage's explainer, when the homepage drops 02 Creatives). */
+export default function AppsShowcase({ layout, head, extras }: { layout: AppsLayout; head: ReactNode; extras?: Extras }) {
   return (
     <section className={`as as--${layout}`} id="work-apps" aria-labelledby="nl-where-title">
       <div className="nl-container as-head">{head}</div>
-      {layout === 'rail' ? <Rail /> : <Tabbed tour={layout === 'tour'} />}
+      {layout === 'rail' ? <Rail extras={extras} /> : <Tabbed tour={layout === 'tour'} extras={extras} />}
     </section>
   );
 }

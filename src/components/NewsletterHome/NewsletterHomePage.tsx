@@ -252,10 +252,11 @@ export default async function NewsletterHomePage({
               <ul className="nl-list">
                 {earlier.slice(0, 3).map((i) => (
                   <li key={i.slug}>
-                    <Link href={`/newsletter/${i.slug}/`} className="nl-row">
-                      <span className="nl-row-date">{issueDate(i.date)}</span>
+                    {/* Each earlier issue with a small cover, so the issues read as a series. */}
+                    <Link href={`/newsletter/${i.slug}/`} className="nl-row nl-row--issue">
+                      {coverOf(i) && <img className="nl-row-thumb" src={coverOf(i)} alt="" width={128} height={72} loading="lazy" />}
                       <span className="nl-row-title">{i.title}</span>
-                      <span className="nl-row-cat">No. {i.n}</span>
+                      <span className="nl-row-cat">No. {i.n} · {issueDate(i.date)}</span>
                     </Link>
                   </li>
                 ))}

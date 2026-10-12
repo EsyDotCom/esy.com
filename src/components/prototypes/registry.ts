@@ -1923,11 +1923,19 @@ export const PROTOTYPES: Prototype[] = [
         summary:
           'D is B with Latest turned into the publication: “The Marketing Engineer” heads the section, the newest issue is the feature and the ones before it a list, and AI Marketing News stays beside it. The articles leave the homepage and work through search and the topic pages.',
       },
+      {
+        n: 3,
+        title: 'Vinyl covers',
+        summary:
+          'D with the issues’ covers in the brand’s vinyl, made on Sunburst: E draws each issue’s system as glossy vinyl and light, F has vinyl Mason doing each issue’s job.',
+      },
     ],
     variants: [
       { slug: 'live', key: 'A', name: 'Live', round: 1, title: 'The homepage as it is.', blurb: 'Today’s esy.com, for comparison.', poster: ['#0A2540', '#00D4AA'] },
       { slug: 'trimmed', key: 'B', name: 'Trimmed', round: 1, live: true, liveHref: '/', title: 'Only what backs the hero.', blurb: 'No Films or Creatives sections, no chips, Latest cut to four, the course offered again at the end.', poster: ['#F8F9FA', '#0A2540'] },
       { slug: 'publication', key: 'D', name: 'Publication', round: 2, mergeOf: ['B'], title: 'The newsletter and the news, first.', blurb: 'B with The Marketing Engineer’s newest issues as the lead under the hero and AI Marketing News beside them.', poster: ['#F8F9FA', '#00A896'] },
+      { slug: 'publication-net', key: 'E', name: 'Vinyl network covers', round: 3, mergeOf: ['D'], title: 'Each issue as a vinyl system.', blurb: 'D with covers of glossy vinyl and light: the winning stack, the agent line at a gold gate, the answer slab being quoted.', poster: ['#0A1626', '#00D4AA'] },
+      { slug: 'publication-mason', key: 'F', name: 'Vinyl Mason covers', round: 3, mergeOf: ['D'], title: 'Mason does each issue’s job.', blurb: 'D with vinyl Mason on every cover: stacking the winning tile, running the newsroom line, lifting the answer slab.', poster: ['#16283F', '#2BD8BB'] },
       { slug: 'proof-first', key: 'C', name: 'Proof first', round: 1, mergeOf: ['B'], title: 'The claim, then the proof.', blurb: 'B with the apps tour (clip.art, SEOPage, Compose) straight after the hero, above Latest.', poster: ['#061527', '#00D4AA'] },
     ],
   },

@@ -180,6 +180,7 @@ export default async function NewsletterHomePage({
   trim = false,
   appsFirst = false,
   lead = 'articles',
+  issueCovers,
 }: {
   /** 01 Apps as a ledger plus one case-study band per app ('bands', live), or
    *  merged into one band that shows one app at a time (/prototypes/home-trim/).
@@ -196,6 +197,9 @@ export default async function NewsletterHomePage({
   /** What leads under the hero: the latest articles, or the publication itself, The Marketing Engineer's
    *  newest issues beside AI Marketing News (D · Publication, /prototypes/home-focus/). */
   lead?: 'articles' | 'newsletter';
+  /** Swap the issues' covers for another set, as a path with {n} for the issue number
+   *  (/images/newsletter/covers/vinyl-net/{n}.webp). Off, each issue's own cover. */
+  issueCovers?: string;
   /** Compose as the third app: its mark in the 01 Apps ledger and its own case
    *  study band after SEOPage's. The homepage passes the stencil mark and the
    *  replay band (2026-09-30); /engineer leaves it off. The other marks and
@@ -216,6 +220,7 @@ export default async function NewsletterHomePage({
 
   // The publication: the newest issue as the feature, the ones before it as a list, AI Marketing News beside.
   const [issue, ...earlier] = ISSUES;
+  const coverOf = (i: (typeof ISSUES)[number]) => (issueCovers ? issueCovers.replace('{n}', String(i.n)) : i.cover);
   const publicationSection = issue && (
     <section className="nl-section nl-section--alt" id="latest" aria-labelledby="nl-pub-title">
       <div className="nl-container">
@@ -229,9 +234,9 @@ export default async function NewsletterHomePage({
           <div>
             <p className="nl-col-label">This week&apos;s issue</p>
             <Link href={`/newsletter/${issue.slug}/`} className="nl-featured">
-              {issue.cover && (
+              {coverOf(issue) && (
                 <span className="nl-featured-media">
-                  <img src={issue.cover} alt="" width={960} height={540} loading="lazy" />
+                  <img src={coverOf(issue)} alt="" width={960} height={540} loading="lazy" />
                 </span>
               )}
               <span className="nl-featured-body">

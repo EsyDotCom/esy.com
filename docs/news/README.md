@@ -103,7 +103,7 @@ When the September posts were checked, this is what changed:
 |---|---|
 | `headline` | The outcome, with the product's name. Aim for under 90 characters. |
 | `dek` | One or two sentences: what happened. |
-| `why` | Why it matters to someone who builds marketing systems. Without this, it's a rewrite of the announcement, and we don't publish those. |
+| `why` | One sentence of fact: who this changes things for, and how. Without it, a post is a rewrite of the announcement, and we don't publish those. Opinion goes in Zev's take, not here. |
 | `body` | Two to four short paragraphs: the facts in full. |
 | `facts` | "At a glance": four to seven `[label, value]` pairs. Labels like What, For, Where, Price, Connects, Control, Announced, Released, Get it pick their icon automatically. |
 | `check` | One to three "what to check in your own setup" lines. |
@@ -153,3 +153,63 @@ What makes a post eligible for Google News and Top Stories, and where each piece
 - **RSS:** `/news/rss.xml`, linked from `/news` and every post.
 - **How it was made:** every post's Sources note says who wrote it (Zev, or AI agents with Zev's approval), and the editorial standards' "How we use AI" says the same. Google asks publishers to say how content is made.
 - **Cadence:** news every day (the editorial standards say so, and so does the homepage's "Daily"). Google News weighs recency and a steady rhythm; see "The weekly rhythm" above.
+
+## Zev's take (2026-10-12)
+
+The part of a post that only Zev can write, and the main reason to read the news here rather than on the company's blog. Every post has one: a post can't publish without it.
+
+- **What it is:** what he thinks the news means and what he'd do about it. For example: what he'd test this week, what he'd change in a setup, or who should ignore it. A prediction is fine if it's marked as one.
+- **How it differs from "Why it matters":**
+
+  | | Why it matters | Zev's take |
+  |---|---|---|
+  | What it is | Fact: who this changes things for, and how | Opinion: what he thinks and what he'd do |
+  | Can it be checked? | Yes, against the source | No, it's judgment |
+  | Length | One sentence | Two sentences to a paragraph or two |
+  | Who writes it | Zev, or agents on a drafted post | Only Zev |
+
+  They must not repeat each other. If the take starts with "This means…", that line belongs in "Why it matters".
+- **Who writes it:** always Zev, in the first person. AI agents may draft every other part of a post, but never this one. A drafted post arrives with the take empty.
+- **Length:** two sentences at least, and a paragraph or two is normal. Past about 250 words it's usually becoming an article: write the article and link it from the post.
+- **Where it shows:** right under "Why it matters", near the top. It's signed and set apart, so a reader can tell opinion from fact. The order is headline, summary, why it matters, Zev's take, at a glance, the story, what to check, questions, sources.
+- **In the API:** `take` on a news post (api.esy.com #579). The publish check needs at least two sentences.
+
+## Search (2026-10-12)
+
+The public rules are "Search" in the editorial standards. Behind them:
+
+- **Headlines** carry the product's name and the outcome. They're what people type.
+- **Stories and topics.** Every post goes to a story (`/news/<story>/`, named after the product people search for). Every article goes to its topics (`/topics/<topic>/`). Those pages are what rank for a subject, so each one gets its own written explainer; a page that's only a list is thin.
+- **Coming with the topics build:** news and articles share seven topics (AI Advertising, AI Search & SEO, AI Social Media, AI Creative, AI Marketing Tools, AI Models, AI Agents & Workflows). Each topic page gathers both, and the AI marketing guide (`/ai-marketing/`) sits over all seven. Prototypes: `/prototypes/ai-topics/` and `/prototypes/ai-marketing/`.
+- **Internal links:**
+  - Every post links its story and topic, and anything deeper.
+  - Topic pages link related topics and the guide.
+  - The guide links every topic.
+- **Questions:** real searches, answered in a sentence or two. They're published as FAQ data, and they're what AI answers quote.
+- **Honest dates:**
+  - `updatedAt` and a page's "Updated" date move only when its words or its list of posts change.
+  - Never touch a date to look fresh. Google treats that as manipulation, and it's untrue.
+- **Never:** near-duplicate posts, rewrites of other outlets, or pages generated in bulk from feeds. That is Google's "scaled content abuse", and it can sink the whole site.
+- **Measure:** Search Console. Watch which pages show for which searches, which searches have no page yet, and whether the news sitemap is read.
+
+## The upkeep schedule ("watering") (2026-10-12)
+
+What keeps the stories, topics and the guide growing. Some of it happens on its own, some Esy drafts for Zev to approve, and some is Zev's judgment.
+
+| When | What | How |
+|---|---|---|
+| Every day | A news post, filed to its story (and, with the topics build, its topic) | Zev writes it. The story page, topic page and the guide's "latest" lists update on publish. |
+| About twice a week | An article, filed to its topics; good ones become a topic's "start here" pick | Zev |
+| Weekly (Monday) | Rewrite the explainer of any topic that moved (3+ new posts since the last update, or an explainer older than 30 days), and update the guide's chapter for it | Esy drafts with every fact checked against a linked post; Zev approves in Compose. Until that workflow exists, Zev rereads the topic pages by hand. |
+| Monthly | Gap review: thin topics, rising searches with no page (Search Console), and the next articles to write | Zev, from Compose's Topics screen once it exists |
+| Every few months | Split a topic that has outgrown its page (around 40 posts), or merge two that overlap. Old addresses redirect. | Zev |
+
+What's automatic and what isn't:
+- **The lists are dynamic:** what's on a topic page, counts, "latest" lists, sitemaps and feeds.
+- **The words need watering:** explainers, the guide's chapters, questions, and "start here" picks.
+- **No AI-drafted words go live unapproved.**
+
+The system that runs this is in the newsroom plan (compose.esy.com #39, "Keeping topics and the guide growing"):
+- Topics and the guide become data in Esy and documents in Compose, not code in this repo.
+- The morning budget's beats file each story to its topic.
+- A weekly workflow drafts the refreshes.

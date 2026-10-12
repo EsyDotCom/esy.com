@@ -4,6 +4,10 @@
  * Zev confirms before they go live: corrections, AI use, our own products,
  * and the pace line in "How a news post is built" (2026-10-12: news daily,
  * articles about twice a week, a weekly tutorial issue; confirmed by Zev).
+ * Added 2026-10-12 at Zev's request: Zev's take (the commentary part of a
+ * news post), Search, and Publishing and upkeep, the schedule that keeps
+ * the topic pages and the guide current. Rules here describe what's true
+ * now; docs/news/README.md is the working playbook, including what's coming.
  */
 import Link from 'next/link';
 
@@ -49,7 +53,7 @@ export const COMPARISON: [string, string, string][] = [
   ['Answers', 'What changed, and does it matter to me?', 'How do I build or do this?'],
   ['Shelf life', 'Weeks. Dated and pinned to a version.', 'Months or years. Updated in place.'],
   ['Speed', 'Within a few days; a post about older news says when it happened', 'When it’s done right'],
-  ['Shape', '200 to 600 words: key facts, why it matters, what to check, sources', 'As long as the build needs: steps, video, results'],
+  ['Shape', '200 to 600 words: why it matters, Zev’s take, key facts, what to check, sources', 'As long as the build needs: steps, video, results'],
   ['Headline', 'Needs a version or date to make sense', 'Makes sense without one'],
 ];
 
@@ -66,8 +70,8 @@ export const COMPARISON_SHORT: [string, string, string][] = [
 /** The rules grouped by when you need them (E · By stage), by PRINCIPLES id. */
 export const RULE_STAGES: { name: string; ids: string[] }[] = [
   { name: 'Before you write', ids: ['grey-area', 'news-post', 'article'] },
-  { name: 'While you write', ids: ['accuracy', 'ai', 'style'] },
-  { name: 'After you publish', ids: ['how-they-connect', 'corrections', 'our-products'] },
+  { name: 'While you write', ids: ['accuracy', 'ai', 'search', 'style'] },
+  { name: 'After you publish', ids: ['how-they-connect', 'upkeep', 'corrections', 'our-products'] },
 ];
 
 // Real pieces, sorted by the six-month test (titles are looked up at render).
@@ -82,11 +86,15 @@ export const ARTICLE_EXAMPLES = [
 /** The parts every news post has, in order. */
 export const NEWS_PARTS: [string, string][] = [
   ['The story', 'Every post belongs to a story (Meta Muse, Google Search…), and the story line at the top links its other posts.'],
-  ['At a glance', 'The key facts in a few lines: what, who it’s for, where, price, when.'],
   [
     'Why it matters for marketers',
-    'Our angle: what it changes for people who build marketing systems. Without this part it’s a rewrite of the announcement, and we don’t publish those.',
+    'One sentence of fact: who this changes things for, and how. Without it, a post is a rewrite of the announcement, and we don’t publish those.',
   ],
+  [
+    'Zev’s take',
+    'What Zev thinks it means and what he’d do about it, from two sentences to a paragraph or two. It’s opinion, signed and set apart from the facts, and always in his own words: AI agents never write it. Every post has one.',
+  ],
+  ['At a glance', 'The key facts in a few lines: what, who it’s for, where, price, when.'],
   ['What happened', 'The facts in full, in our own words, with the version and the date.'],
   ['What to check', 'The next step in your own setup.'],
   ['Questions', 'The two to four questions people actually search, each answered in a sentence or two.'],
@@ -183,6 +191,23 @@ export const PRINCIPLES: Principle[] = [
     ),
   },
   {
+    id: 'upkeep',
+    title: 'Publishing and upkeep',
+    body: (
+      <>
+        <p>A publication is a garden: it grows only if it&apos;s tended. This is our schedule.</p>
+        <ul>
+          <li><b>Every day:</b> a news post, filed to its story. Its story&apos;s page lists it as soon as it&apos;s live.</li>
+          <li><b>About twice a week:</b> an article, filed to its topics.</li>
+          <li><b>Every week:</b> the tutorial email, and a review of each topic that moved: when a topic page&apos;s explainer no longer matches the news, we rewrite it.</li>
+          <li><b>Every month:</b> we look at which topics are thin and what readers search for that we haven&apos;t covered, and choose what to write next.</li>
+          <li><b>Every few months:</b> we split a topic that has grown too big, or merge two that overlap. Old links keep working.</li>
+        </ul>
+        <p>AI may draft an update to a topic page. A person checks every fact in it against the post it comes from, and approves it before it goes up.</p>
+      </>
+    ),
+  },
+  {
     id: 'corrections',
     title: 'Corrections and updates',
     body: (
@@ -202,7 +227,7 @@ export const PRINCIPLES: Principle[] = [
         workflows and Claude. A person reviews, tests and signs off every piece, and AI images say so in their captions.
         Zev writes AI Marketing News every day. Some posts are researched and drafted by AI agents, which find the
         company&apos;s own announcement, write, and check every claim against it. Every post says which, and Zev
-        approves each one before it goes up.
+        approves each one before it goes up. Agents can draft the facts; Zev&apos;s take is always his own words.
         News covers aren&apos;t AI images: they&apos;re cards we draw from the post&apos;s own facts. We never have AI
         draw a company&apos;s logo.
       </p>
@@ -218,6 +243,20 @@ export const PRINCIPLES: Principle[] = [
         approve what we write. Their logos appear only as their own files, unchanged, where their brand terms allow
         news use; otherwise we just use their name.
       </p>
+    ),
+  },
+  {
+    id: 'search',
+    title: 'Search',
+    body: (
+      <ul>
+        <li>We write for readers first. A headline says what happened, with the product&apos;s name, never a tease.</li>
+        <li>Every piece belongs somewhere: a news post to its story, an article to its topics. Those pages gather everything on them, so each is the best single place to read about its subject.</li>
+        <li>Every piece links its sources, its story or topics, and anything we&apos;ve written that goes deeper.</li>
+        <li>Questions in a post are ones people actually ask, answered plainly.</li>
+        <li>Dates are honest. A page&apos;s &ldquo;Updated&rdquo; date changes only when its words do; we never refresh a date to look current.</li>
+        <li>We don&apos;t make pages to catch searches: no near-copies of one post, no rewrites of other outlets, nothing generated in bulk from feeds.</li>
+      </ul>
     ),
   },
   {

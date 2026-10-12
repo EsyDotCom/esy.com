@@ -17,14 +17,14 @@ News every day, articles about twice a week, and one newsletter a week that teac
 
 | When | What | Who | Becomes |
 |---|---|---|---|
-| Every day | One news post | Zev writes it. Compose can draft on a busy day; `writtenBy` on the post says which. | The issue's "This week in AI marketing" |
+| Every day | One news post | Zev writes it. AI agents can draft on a busy day; `writtenBy` on the post says which. | The issue's "This week in AI marketing" |
 | About Tue and Thu | One article each: a piece of this week's system | Zev | The steps of the issue's tutorial |
 | End of the week | The issue: a tutorial that builds one AI marketing system from the week's articles, then the week's news | Zev | `/newsletter/<slug>/`, the homepage, the email |
 
 ### Every day: the news post (about 30 minutes)
 
 1. Pick the day's story (step 1 below). If nothing happened that's worth a post, write a short one or none. Never pad a story to fill the slot.
-2. Write it (steps 2 to 4 below). Set `writtenBy: 'zev'` when you wrote it, `'compose'` when Compose drafted it. The post says which.
+2. Write it (steps 2 to 4 below). Set `writtenBy: 'zev'` when you wrote it, `'agents'` when AI agents drafted it. The post says which.
 3. Publish it (step 6 below), with `publishedAt` set to the full time.
 4. Keep a running note of stories that could carry this week's system.
 
@@ -113,7 +113,7 @@ When the September posts were checked, this is what changed:
 | `card` | The fact card: a short `title` ("Muse for Small Business") and exactly three short `facts` ("15 tools connected", "US & Canada", "Free for most"). Keep each fact under about 25 characters so they fit on one line. |
 | `eventDate` | When the news happened: `YYYY-MM-DD`, or `YYYY-MM` when only the month is known. |
 | `publishedAt` | When the post goes up on esy.com, with the time and offset. Never earlier. |
-| `writtenBy` | `'zev'` when Zev wrote it, `'compose'` when Compose drafted it. The post says which. |
+| `writtenBy` | `'zev'` when Zev wrote it, `'agents'` when AI agents drafted it. The post says which. Never claim a tool drafted a post unless it did. |
 
 ### 5. The cover is automatic
 
@@ -151,5 +151,5 @@ What makes a post eligible for Google News and Top Stories, and where each piece
 - **Structured data:** every post carries `NewsArticle` (`postJsonLd` in `src/components/News/News.tsx`): headline, full-time `datePublished`, `dateModified` (from `updatedAt`), author, the publisher with its logo (`/brand/logo/esy-wordmark.png`), sources as `isBasedOn` and `citation`.
 - **Large images:** `/news` and every post set `max-image-preview:large`, so Discover and Top Stories can show the fact card big.
 - **RSS:** `/news/rss.xml`, linked from `/news` and every post.
-- **How it was made:** every post's Sources note says it was researched and drafted in Compose and approved by Zev, and the editorial standards' "How we use AI" says the same. Google asks publishers to say how content is made.
+- **How it was made:** every post's Sources note says who wrote it (Zev, or AI agents with Zev's approval), and the editorial standards' "How we use AI" says the same. Google asks publishers to say how content is made.
 - **Cadence:** news every day (the editorial standards say so, and so does the homepage's "Daily"). Google News weighs recency and a steady rhythm; see "The weekly rhythm" above.

@@ -97,3 +97,9 @@
   width: max-content; max-width: 280px; font-size: 0.8rem; color: #b42318; background: #fff; border: 1px solid #f3c7c2;
 }
 .lh-sub-done { display: inline-flex; align-items: center; gap: 6px; margin: 0; font-size: 0.9rem; font-weight: 600; color: #0A2540; }
+
+/* The site's default header (2026-10-12): the layout renders a sitewide copy on
+   every page that doesn't bring other chrome. A page that renders its own
+   LightHeader (to pass the live article list) keeps that one, and the sitewide
+   copy steps aside, so there's never a second bar and nothing flashes. */
+body:has(main header.lh) .lh--sitewide { display: none; }

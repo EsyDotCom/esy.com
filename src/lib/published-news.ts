@@ -47,6 +47,10 @@ export interface PublicNewsPost {
   /** 'written' in a Compose session (Zev); 'drafted' through an API key (AI agents). */
   origin: 'written' | 'drafted';
   readMinutes: number;
+  /** Zev's take: markdown subset (paragraphs, links, bold, italic). */
+  take: string;
+  /** Every URL linked in the take, in order, once each. */
+  takeLinks: string[];
   /** Not used yet: the byline stays "By Zev Uhuru" for now. */
   author: { name: string; role: string; avatar: string } | null;
 }
@@ -81,6 +85,7 @@ function toNewsPost(p: PublicNewsPost): NewsPost {
     // Esy records how the post was made; the Sources note on the post says it.
     writtenBy: p.origin === 'written' ? 'zev' : 'agents',
     readMinutes: p.readMinutes,
+    ...(p.take ? { take: p.take, takeLinks: p.takeLinks ?? [] } : {}),
   };
 }
 

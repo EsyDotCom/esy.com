@@ -1325,6 +1325,12 @@ export const PROTOTYPES: Prototype[] = [
         summary:
           'Zev picked D for its questions, which AI answers read. G, H and I keep D\u2019s page and redesign the story and the key facts: an editorial line and a quiet list (G), story segments and fact tiles (H), a timeline beside the headline and a spec sheet with icons (I). All three add FAQ data.',
       },
+      {
+        n: 4,
+        title: 'Zev’s take',
+        summary:
+          'The live post page (I) with Zev’s take: signed commentary right under the one-line “Why it matters”, before the key facts, with his articles linked inside it (2026-10-12).',
+      },
     ],
     variants: [
       {
@@ -1416,6 +1422,7 @@ export const PROTOTYPES: Prototype[] = [
         blurb: 'G\u2019s story line on top, named chapters you can click to preview; the key facts as a two-column spec sheet with an icon each.',
         poster: ['#FFFFFF', '#00A896'],
       },
+      { slug: 'with-take', key: 'J', name: 'With Zev’s take', round: 4, title: 'The fact, then his take.', blurb: 'The live page with the new order: why it matters, Zev’s take (signed, linking an article), then at a glance. The take is sample text.', poster: ['#FFFFFF', '#0A2540'] },
     ],
   },
   {

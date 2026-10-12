@@ -17,7 +17,13 @@
  * the posts move over.
  */
 
-export type NewsTopic = 'Ads' | 'SEO' | 'Social' | 'Creative' | 'Marketing Tools' | 'AI Models';
+// The registry's posts carry the six legacy topic names. Posts from Compose
+// carry the seven shared AI marketing topics as slugs (2026-10-12; news and
+// articles will share them). No page shows a post's topic yet, so both live
+// side by side until the topics build moves the registry over.
+export type NewsTopic =
+  | 'Ads' | 'SEO' | 'Social' | 'Creative' | 'Marketing Tools' | 'AI Models'
+  | 'ai-advertising' | 'ai-search' | 'ai-social' | 'ai-creative' | 'ai-marketing-tools' | 'ai-models' | 'ai-agents';
 
 export interface NewsCompany {
   name: string;
@@ -89,6 +95,12 @@ export interface NewsPost {
    *  session is 'zev', 'drafted' through an API key is 'agents'. */
   writtenBy: 'zev' | 'agents';
   readMinutes: number;
+  /** Zev's take: his signed commentary, a markdown subset (paragraphs,
+      [links](url), **bold**, *italic*). Required on posts from Compose;
+      registry posts from before 2026-10-12 have none. */
+  take?: string;
+  /** Every URL the take links, in order (the API's `takeLinks`). */
+  takeLinks?: string[];
   /** Why a draft is held, for the next person to pick it up. */
   held?: string;
 }

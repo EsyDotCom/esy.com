@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import NewsletterSignup from '@/components/NewsletterHome/NewsletterSignup';
 import WeeklyEmailBand from '@/components/NewsletterHome/WeeklyEmailBand';
+import { ZevTake } from './Take';
 import { FactCard, StoryCard } from './FactCard';
 import {
   eventLabel, findStoryIn, liveStoriesOf, longDate, postPath, postsInStoryOf,
@@ -228,7 +229,7 @@ function StoryLine({ post, story, posts }: { post: NewsPost; story: NewsStory; p
   );
 }
 
-export function NewsPostPage({ post, news }: { post: NewsPost; news: NewsData }) {
+export function NewsPostPage({ post, news, sample = false }: { post: NewsPost; news: NewsData; /** Prototype only: marks the take as sample text. */ sample?: boolean }) {
   // Every post's story exists (getNews() builds one for Compose posts), but a
   // missing one only drops the story line, never the page.
   const story = findStoryIn(news.stories, post.story);
@@ -246,6 +247,14 @@ export function NewsPostPage({ post, news }: { post: NewsPost; news: NewsData })
               By <Link href="/about/">Zev Uhuru</Link> · Posted <time dateTime={post.publishedAt}>{longDate(post.publishedAt)}</time> · News from {eventLabel(post.eventDate)} · {post.readMinutes} min read
             </span>
           </div>
+
+          <section className="np-why" aria-labelledby="np-why">
+            <h2 id="np-why">Why it matters</h2>
+            <p>{post.why}</p>
+          </section>
+
+          {/* Zev's take: signed opinion, right under the one-line fact. */}
+          <ZevTake post={post} sample={sample} />
 
           {post.facts.length > 0 && (
             <section className="npi-facts" aria-labelledby="np-facts">
@@ -265,10 +274,6 @@ export function NewsPostPage({ post, news }: { post: NewsPost; news: NewsData })
             </section>
           )}
 
-          <section className="np-why" aria-labelledby="np-why">
-            <h2 id="np-why">Why it matters</h2>
-            <p>{post.why}</p>
-          </section>
 
           <figure className="nx-figure"><FactCard post={post} story={story} /></figure>
 

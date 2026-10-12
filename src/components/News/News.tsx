@@ -306,8 +306,10 @@ export function NewsPostPage({ post }: { post: NewsPost }) {
               ))}
             </ol>
             <p className="nx-sources-foot">
-              Researched and drafted in Compose, Esy’s newsroom of agents, in our own words from these sources; every
-              fact was checked against them, and Zev approved the post before it went up. AI Marketing News is independent: the companies we cover don’t sponsor, review or endorse it. Spotted a mistake? See our <Link href="/editorial-standards/">editorial standards</Link> or email <a href="mailto:zev@esy.com">zev@esy.com</a>.
+              {post.writtenBy === 'zev'
+                ? 'Written by Zev in his own words from these sources, every fact checked against them.'
+                : 'Researched and drafted in Compose, Esy’s newsroom of agents, in our own words from these sources; every fact was checked against them, and Zev approved the post before it went up.'}{' '}
+              AI Marketing News is independent: the companies we cover don’t sponsor, review or endorse it. Spotted a mistake? See our <Link href="/editorial-standards/">editorial standards</Link> or email <a href="mailto:zev@esy.com">zev@esy.com</a>.
             </p>
           </section>
           <Signup title={`Follow ${story.name} by email`} />

@@ -306,7 +306,8 @@ export function NewsPostPage({ post }: { post: NewsPost }) {
               ))}
             </ol>
             <p className="nx-sources-foot">
-              Written in our own words from these sources. AI Marketing News is independent: the companies we cover don’t sponsor, review or endorse it. Spotted a mistake? See our <Link href="/editorial-standards/">editorial standards</Link> or email <a href="mailto:zev@esy.com">zev@esy.com</a>.
+              Researched and drafted in Compose, Esy’s newsroom of agents, in our own words from these sources; every
+              fact was checked against them, and Zev approved the post before it went up. AI Marketing News is independent: the companies we cover don’t sponsor, review or endorse it. Spotted a mistake? See our <Link href="/editorial-standards/">editorial standards</Link> or email <a href="mailto:zev@esy.com">zev@esy.com</a>.
             </p>
           </section>
           <Signup title={`Follow ${story.name} by email`} />
@@ -368,11 +369,11 @@ export function postJsonLd(post: NewsPost) {
       headline: post.headline,
       description: post.dek,
       datePublished: post.publishedAt,
-      dateModified: post.publishedAt,
+      dateModified: post.updatedAt ?? post.publishedAt,
       // The fact card, as the share image (app/news/[slug]/opengraph-image.tsx).
       image: [`${SITE}${postPath(post.slug)}opengraph-image/`],
       author: [{ '@type': 'Person', name: 'Zev Uhuru', url: `${SITE}/about/` }],
-      publisher: { '@type': 'Organization', name: 'Esy', url: SITE },
+      publisher: { '@type': 'Organization', name: 'Esy', url: SITE, logo: { '@type': 'ImageObject', url: `${SITE}/brand/logo/esy-wordmark.png`, width: 600, height: 220 } },
       mainEntityOfPage: `${SITE}${postPath(post.slug)}`,
       isBasedOn: post.sources.map((src) => src.url),
       citation: post.sources.map((src) => ({ '@type': 'CreativeWork', name: src.title, url: src.url, publisher: src.publisher })),

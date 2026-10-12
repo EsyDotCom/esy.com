@@ -72,8 +72,12 @@ export interface NewsPost {
   card: { title: string; /** Three short facts. */ facts: string[] };
   /** When the news happened: YYYY-MM-DD, or YYYY-MM when only the month is known. */
   eventDate: string;
-  /** When the post went up on esy.com (YYYY-MM-DD). */
+  /** When the post went up on esy.com: the full time with its offset for new posts
+   *  (2026-10-12T09:30:00-04:00), so Google can order fresh stories; YYYY-MM-DD for
+   *  posts from before 2026-10-12, whose time wasn't recorded. */
   publishedAt: string;
+  /** When the post last changed beyond a correction (same format). Feeds dateModified. */
+  updatedAt?: string;
   readMinutes: number;
   /** Why a draft is held, for the next person to pick it up. */
   held?: string;
@@ -575,7 +579,8 @@ export function eventLabel(date: string) {
 
 /** "September 30, 2026" from YYYY-MM-DD. */
 export function longDate(date: string) {
-  const [y, m, d] = date.split('-').map(Number);
+  // The day part only, so a full timestamp and a bare date read the same.
+  const [y, m, d] = date.slice(0, 10).split('-').map(Number);
   return new Date(Date.UTC(y, m - 1, d, 12)).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 }
 

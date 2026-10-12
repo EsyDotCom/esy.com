@@ -191,6 +191,9 @@ export const PRINCIPLES: Principle[] = [
       <p>
         We write about AI tools, and we use them: for research, first drafts and images, mostly through Esy&apos;s own
         workflows and Claude. A person reviews, tests and signs off every piece, and AI images say so in their captions.
+        AI Marketing News is researched and drafted by agents in Compose, Esy&apos;s newsroom: one finds the
+        company&apos;s own announcement, one writes, one checks every claim against it. Zev reads and approves each post
+        before it goes up, and every post says so.
         News covers aren&apos;t AI images: they&apos;re cards we draw from the post&apos;s own facts. We never have AI
         draw a company&apos;s logo.
       </p>

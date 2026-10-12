@@ -21,7 +21,9 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   openGraph: { title: TITLE, description: DESCRIPTION, type: 'website', url: 'https://esy.com/news/', siteName: 'Esy', locale: 'en_US' },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION, site: '@EsyDotCom' },
-  alternates: { canonical: '/news/' },
+  // Large image previews in Discover and Top Stories; the RSS feed for readers and publisher tools.
+  robots: { index: true, follow: true, 'max-image-preview': 'large' },
+  alternates: { canonical: '/news/', types: { 'application/rss+xml': [{ url: '/news/rss.xml', title: 'AI Marketing News' }] } },
 };
 
 export const revalidate = 3600;

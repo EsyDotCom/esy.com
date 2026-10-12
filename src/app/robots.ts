@@ -82,6 +82,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: '/',
       },
     ],
-    sitemap: 'https://esy.com/sitemap.xml',
+    // The Google News sitemap lists only the last two days' news posts (src/app/news-sitemap.xml).
+    sitemap: ['https://esy.com/sitemap.xml', 'https://esy.com/news-sitemap.xml'],
   };
 }

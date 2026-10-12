@@ -1,6 +1,7 @@
 "use client"
 import { usePathname } from 'next/navigation';
 import ContextAwareNavigation from "@/components/Navigation/ContextAwareNavigation";
+import LightHeader from "@/components/LightHeader/LightHeader";
 import { useHeaderSearch } from '@/contexts/HeaderSearchContext';
 import { getSearchContextFromPath } from '@/lib/searchContexts';
 
@@ -120,25 +121,33 @@ const ConditionalNavigation = () => {
     return null;
   }
 
-  // Render the common navigation on all other pages
-  // Show header search:
+  // The navy bar is legacy (2026-10-12): it renders only on the older pages
+  // below, which still rely on it (and its search). Every other page gets the
+  // live light header by default, so a new page never falls back to navy.
+  // Pages that render their own LightHeader hide this copy (LightHeader.css).
+  const isLegacyNavyPage =
+    isGlossaryPage || isLearnIndex || isEssaysPage || normalizedPath === '/essays/guides' || isTemplatesPage ||
+    isScrollytellingIndex || isPrivacyPage || isTermsPage || isAgenticWorkflowsPage || normalizedPath === '/cookies';
+  if (!isLegacyNavyPage) {
+    return <LightHeader sitewide />;
+  }
+
+  // Show header search (navy pages only):
   // - Always on glossary view pages (/glossary/*)
   // - On glossary index only after scrolling past main search
-  // - On learn index only after scrolling past main search (NO search on learn article pages)
+  // - On learn index only after scrolling past main search
   // - Always on essays index (visible on page load)
   // - On templates index only after scrolling past main search
-  // - On scrollytelling index only after scrolling past discovery bar
-  // - NO search on about, privacy, terms, agentic-workflows (informational pages)
+  // - NO search on privacy, terms, agentic-workflows (informational pages)
   const shouldShowHeaderSearch =
     (isGlossaryPage && (isGlossaryIndex ? showHeaderSearch : true)) ||
-    (isLearnPage && !isCourseLessonPage && isLearnIndex && showHeaderSearch) ||
+    (isLearnIndex && showHeaderSearch) ||
     (isTemplatesPage && (isTemplatesIndex ? showHeaderSearch : true)) ||
-    isEssaysPage ||  // Essays: always show search (icon-only on mobile)
-    (isHomepage && showHeaderSearch);
-  
+    isEssaysPage;
+
   // Determine search context using centralized system
   const searchContext = getSearchContextFromPath(pathname);
-  
+
   return <ContextAwareNavigation showHeaderSearch={shouldShowHeaderSearch} forceContext={searchContext} />;
 };
 

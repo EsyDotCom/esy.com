@@ -1,0 +1,37 @@
+<!doctype html>
+<!-- L · Clay + Claude Code: the terminal on the left builds the table on the right, the raw list turning into leads.
+     A stand-in drawn for the prototype, not either product's interface; the tutorial would use screenshots from Zev's own run. -->
+<html><head><meta charset="utf-8"><style>
+  * { box-sizing: border-box; margin: 0; }
+  body { width: 1280px; height: 888px; background: #101010; font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', sans-serif; display: grid; grid-template-columns: 540px 1fr; }
+  .term { padding: 52px 36px; font-family: 'SF Mono', Menlo, monospace; font-size: 31px; line-height: 1.42; color: #D6D2CB; }
+  .term .me { color: #fff; margin-bottom: 26px; }
+  .term .o { color: #D97757; }
+  .term p { margin-bottom: 18px; }
+  .term .run { color: #E8B04A; }
+  .sheet { background: #F7F5F0; color: #1D232B; padding: 52px 44px; }
+  .sheet h2 { font-size: 40px; font-weight: 700; margin-bottom: 30px; }
+  table { width: 100%; border-collapse: collapse; font-size: 28px; }
+  th { text-align: left; font-size: 23px; font-weight: 600; color: #7A828C; padding: 0 0 16px; border-bottom: 2px solid #E2DED6; }
+  td { padding: 20px 0; border-bottom: 2px solid #ECE8E0; font-weight: 500; }
+  .ok { color: #2F9E5A; font-weight: 700; }
+  .wait { color: #B9B2A6; }
+</style></head><body>
+  <div class="term">
+    <p class="me"><span class="o">&gt;</span> turn raw-list.csv into leads in Clay</p>
+    <p><span class="o">●</span> Made the table “Fall leads”</p>
+    <p><span class="o">●</span> Added title, size and work email</p>
+    <p class="run"><span class="o">●</span> Finding emails… 312 / 480</p>
+  </div>
+  <div class="sheet">
+    <h2>Fall leads</h2>
+    <table>
+      <tr><th>Company</th><th>Title</th><th>Email</th></tr>
+      <tr><td>Northwind Coffee</td><td>Head of Growth</td><td class="ok">✓ Found</td></tr>
+      <tr><td>Bluebird Labs</td><td>CMO</td><td class="ok">✓ Found</td></tr>
+      <tr><td>Harbor &amp; Pine</td><td>Founder</td><td class="ok">✓ Found</td></tr>
+      <tr><td>Kite Studio</td><td>Marketing lead</td><td class="ok">✓ Found</td></tr>
+      <tr><td>Fieldnote</td><td>VP Marketing</td><td class="wait">Finding…</td></tr>
+    </table>
+  </div>
+</body></html>

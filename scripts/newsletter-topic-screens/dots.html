@@ -1,0 +1,23 @@
+<!doctype html>
+<!-- L · Dots: the screen shows a team of agents at work in the background, one row per Dot, in each Dot's colour.
+     A stand-in drawn for the prototype, not OpenAI's interface; the issue would use a screenshot from Zev's own setup. -->
+<html><head><meta charset="utf-8"><style>
+  * { box-sizing: border-box; margin: 0; }
+  body { width: 1280px; height: 888px; background: #0E1116; color: #E8ECF1; font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', sans-serif; padding: 64px 72px; }
+  .top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 48px; }
+  h1 { font-size: 58px; font-weight: 700; letter-spacing: -0.02em; }
+  .pill { font-size: 30px; font-weight: 600; padding: 12px 26px; border-radius: 999px; background: #17321F; color: #7BE08F; }
+  .row { display: grid; grid-template-columns: 44px 1fr auto; align-items: center; gap: 30px; padding: 26px 0; border-top: 2px solid #1E242D; }
+  .dot { width: 40px; height: 40px; border-radius: 50%; }
+  .task { font-size: 40px; font-weight: 600; }
+  .app { display: block; margin-top: 6px; font-size: 28px; font-weight: 500; color: #8A96A6; }
+  .st { font-size: 30px; font-weight: 600; color: #8A96A6; }
+  .st.on { color: #7BE08F; }
+</style></head><body>
+  <div class="top"><h1>Background tasks</h1><span class="pill">● 4 running</span></div>
+  <div class="row"><span class="dot" style="background:#7CB33A"></span><span class="task">Reply to new leads<span class="app">Gmail</span></span><span class="st on">Running</span></div>
+  <div class="row"><span class="dot" style="background:#F2C230"></span><span class="task">Draft Tuesday’s post<span class="app">LinkedIn</span></span><span class="st on">Running</span></div>
+  <div class="row"><span class="dot" style="background:#8EC3E6"></span><span class="task">Log call notes<span class="app">HubSpot</span></span><span class="st">Done</span></div>
+  <div class="row"><span class="dot" style="background:#F08FA8"></span><span class="task">Check ad spend<span class="app">Google Ads</span></span><span class="st on">Running</span></div>
+  <div class="row"><span class="dot" style="background:#F28A2E"></span><span class="task">Send the weekly report<span class="app">Slack</span></span><span class="st on">Running</span></div>
+</body></html>

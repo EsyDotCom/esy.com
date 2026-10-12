@@ -19,8 +19,14 @@ const STAGES: { phase: Phase; label: string }[] = [
   { phase: 'gate', label: 'Gate' },
 ];
 
-// The render is 31.6 of the run's 37.9 seconds; the bar shows that truthfully.
-const WIDTH: Partial<Record<Phase, number>> = { render: 76, cutout: 6, audit: 5, name: 7, gate: 6 };
+// Each stage's share of the bar is its real seconds in the run (the render is most of it).
+const STEP_OF: Partial<Record<Phase, string>> = { render: 'Render', cutout: 'Cutout', audit: 'Audit', name: 'Name', gate: 'Gate' };
+const WIDTH: Partial<Record<Phase, number>> = Object.fromEntries(
+  Object.entries(STEP_OF).map(([phase, short]) => {
+    const t = RUN.timeline.find((s) => s.short === short);
+    return [phase, t ? Math.max(4, Math.round(((t.end - t.start) / RUN.seconds) * 100)) : 4];
+  }),
+);
 
 export default function ReplayControlRoom() {
   const r = useRunReplay();

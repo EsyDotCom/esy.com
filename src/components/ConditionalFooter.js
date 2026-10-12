@@ -10,6 +10,7 @@ import { BRAND_FOOTERS } from "@/components/BrandShapes/brand-footers";
 // The brand-shapes prototype footers load only on those prototype pages, so
 // every other page's footer doesn't carry fifty prototype scenes.
 const BrandFooter = dynamic(() => import("@/components/BrandShapes/BrandFooter"));
+const ToyFooter = dynamic(() => import("@/components/MasonToy/ToyFooter"));
 
 const ConditionalFooter = () => {
   const pathname = usePathname();
@@ -98,6 +99,18 @@ const ConditionalFooter = () => {
     return (
       <>
         <BrandFooter variant={brandProto[1]} />
+        <Footer />
+      </>
+    );
+  }
+
+  // Mason as a toy (/prototypes/mason-toy/<take>/): each take's world, a
+  // felt or vinyl photo, in place of the reef, under the same footer card.
+  const toyProto = normalizedPath?.match(/^\/prototypes\/mason-toy\/([^/]+)$/);
+  if (toyProto) {
+    return (
+      <>
+        <ToyFooter variant={toyProto[1]} />
         <Footer />
       </>
     );

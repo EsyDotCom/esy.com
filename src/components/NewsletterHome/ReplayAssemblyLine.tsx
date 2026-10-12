@@ -1,6 +1,6 @@
 'use client';
 
-/* E · Assembly line: the brand's factory, for one real run. The hot dog rides
+/* E · Assembly line: the brand's factory, for one real run. The asset rides
  * a moving belt through five stations and changes at each: rendered on its
  * keying green, cut out, outlined by the audit, tagged with its name, stamped
  * by the gate. At the end it lands on the shelf beside five siblings, the

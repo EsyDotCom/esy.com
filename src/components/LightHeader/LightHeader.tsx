@@ -41,9 +41,12 @@ const SHOW_ARTICLES_MENU = false;
 
 export default function LightHeader({
   latest = REGISTRY_LATEST,
+  sitewide = false,
 }: {
   /** Newest articles for the Articles dropdown; server pages pass the live list. */
   latest?: NavArticle[];
+  /** The layout's default copy (ConditionalNavigation). It hides itself when the page renders its own LightHeader. */
+  sitewide?: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -72,7 +75,7 @@ export default function LightHeader({
   };
 
   return (
-    <header className="lh">
+    <header className={sitewide ? 'lh lh--sitewide' : 'lh'}>
       <div className="lh-inner">
         <Link href="/" className="lh-wordmark" aria-label="Esy home">
           {/* The real Logo, not a flat span: `animatedE` renders the brand "e"

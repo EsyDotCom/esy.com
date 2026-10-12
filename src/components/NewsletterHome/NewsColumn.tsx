@@ -3,18 +3,22 @@
  * /prototypes/home-trim/). Articles are weekly; AI Marketing News is daily, so a slim
  * column of its newest headlines keeps the front page current between
  * articles without a section of its own. Text only: story, headline, when it
- * happened. Reads the same posts /news does (src/data/news).
+ * happened. Reads the same posts /news does: the registry plus posts published
+ * from Compose (getNews(), src/lib/published-news.ts). The revalidate webhook
+ * refreshes the homepage when a post is published.
  */
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { NEWS_STORIES, eventLabel, postPath, publishedPosts } from '@/data/news';
+import { eventLabel, findStoryIn, postPath } from '@/data/news';
+import { getNews } from '@/lib/published-news';
 
 const COUNT = 6;
 
-export default function NewsColumn() {
-  const posts = publishedPosts().slice(0, COUNT);
+export default async function NewsColumn() {
+  const news = await getNews();
+  const posts = news.posts.slice(0, COUNT);
   if (posts.length === 0) return null;
-  const story = (slug: string) => NEWS_STORIES.find((s) => s.slug === slug)?.name ?? '';
+  const story = (slug: string) => findStoryIn(news.stories, slug)?.name ?? '';
 
   return (
     <aside className="nl-news" aria-labelledby="nl-news-title">

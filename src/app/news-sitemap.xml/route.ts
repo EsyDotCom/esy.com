@@ -1,10 +1,13 @@
-import { postPath, publishedPosts } from '@/data/news';
+import { postPath, publishedTime } from '@/data/news';
+import { getNews } from '@/lib/published-news';
 
 /* The Google News sitemap (2026-10-12): AI Marketing News posts from the last
  * two days, the window Google News reads (developers.google.com/search/docs/
  * crawling-indexing/sitemaps/news-sitemap). Older posts stay in /sitemap.xml.
  * An empty list is valid, and it refills as soon as a post goes up. The
- * publication name matches the publisher on every post's NewsArticle data. */
+ * publication name matches the publisher on every post's NewsArticle data.
+ * Includes posts published from Compose (getNews()); the revalidate webhook
+ * refreshes it on publish, so a new post is listed within seconds. */
 
 export const revalidate = 3600;
 
@@ -13,9 +16,9 @@ const WINDOW_MS = 2 * 24 * 60 * 60 * 1000;
 
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
 
-export function GET() {
+export async function GET() {
   const since = Date.now() - WINDOW_MS;
-  const fresh = publishedPosts().filter((p) => new Date(p.publishedAt).getTime() >= since);
+  const fresh = (await getNews()).posts.filter((p) => publishedTime(p) >= since);
   const urls = fresh
     .map(
       (p) => `  <url>

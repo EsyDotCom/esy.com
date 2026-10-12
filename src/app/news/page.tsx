@@ -4,13 +4,16 @@ import { nlSerif } from '@/components/NewsletterHome/serif';
 import { NewsIndexPage } from '@/components/News/News';
 import { toNavArticles } from '@/lib/nav-articles';
 import { getAllAgenticArticles } from '@/lib/published-articles';
+import { getNews } from '@/lib/published-news';
 import '@/components/NewsletterHome/NewsletterHome.css';
 import '@/components/NewsIndex/NewsIndex.css';
 import '@/components/NewsPost/NewsPost.css';
 import '@/components/News/News.css';
 
 // AI Marketing News (2026-09-30): P · Trend desk · Rows · Wire from /prototypes/news/.
-// Posts and stories: src/data/news/index.ts.
+// Posts and stories: src/data/news/index.ts, plus posts published from Compose
+// (getNews(), src/lib/published-news.ts). The revalidate webhook refreshes it
+// when a post is published; the hourly revalidate is the backstop.
 
 const TITLE = 'AI Marketing News — The Marketing Engineer';
 const DESCRIPTION =
@@ -29,11 +32,11 @@ export const metadata: Metadata = {
 export const revalidate = 3600;
 
 export default async function NewsPage() {
-  const articles = await getAllAgenticArticles();
+  const [articles, news] = await Promise.all([getAllAgenticArticles(), getNews()]);
   return (
     <div className={`nl ${nlSerif.variable}`}>
       <LightHeader latest={toNavArticles(articles)} />
-      <NewsIndexPage />
+      <NewsIndexPage news={news} />
     </div>
   );
 }

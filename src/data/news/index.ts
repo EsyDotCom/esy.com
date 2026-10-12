@@ -11,9 +11,19 @@
  *
  * Only `status: 'published'` posts render. A story needs two published posts
  * for its own row on /news; its page at /news/<story>/ lists every post.
+ *
+ * Posts published from Compose through api.esy.com are merged in by
+ * src/lib/published-news.ts (getNews()); this registry wins a slug clash while
+ * the posts move over.
  */
 
-export type NewsTopic = 'Ads' | 'SEO' | 'Social' | 'Creative' | 'Marketing Tools' | 'AI Models';
+// The registry's posts carry the six legacy topic names. Posts from Compose
+// carry the seven shared AI marketing topics as slugs (2026-10-12; news and
+// articles will share them). No page shows a post's topic yet, so both live
+// side by side until the topics build moves the registry over.
+export type NewsTopic =
+  | 'Ads' | 'SEO' | 'Social' | 'Creative' | 'Marketing Tools' | 'AI Models'
+  | 'ai-advertising' | 'ai-search' | 'ai-social' | 'ai-creative' | 'ai-marketing-tools' | 'ai-models' | 'ai-agents';
 
 export interface NewsCompany {
   name: string;
@@ -80,10 +90,17 @@ export interface NewsPost {
   updatedAt?: string;
   /** Who wrote it, said on the post: 'zev' when Zev wrote it himself, 'agents' when AI agents
    *  researched and drafted it (the posts before 2026-10-12, drafted in Claude sessions and
-   *  committed by esy-agent, not in Compose). Zev approves every post either way. When Compose's
-   *  newsroom drafts posts, it gets its own value then, not before. */
+   *  committed by esy-agent, not in Compose). Zev approves every post either way. Posts published
+   *  from Compose take it from Esy's `origin` (src/lib/published-news.ts): 'written' in a Compose
+   *  session is 'zev', 'drafted' through an API key is 'agents'. */
   writtenBy: 'zev' | 'agents';
   readMinutes: number;
+  /** Zev's take: his signed commentary, a markdown subset (paragraphs,
+      [links](url), **bold**, *italic*). Required on posts from Compose;
+      registry posts from before 2026-10-12 have none. */
+  take?: string;
+  /** Every URL the take links, in order (the API's `takeLinks`). */
+  takeLinks?: string[];
   /** Why a draft is held, for the next person to pick it up. */
   held?: string;
 }
@@ -567,27 +584,59 @@ export const NEWS_POSTS: NewsPost[] = [
   if (clash) throw new Error(`AI Marketing News: "${clash.slug}" is both a post and a story; rename the post.`);
 }
 
-/* ── Reads ── */
+/* ── Reads ──
+ * The pure helpers (…In / …Of) work over whatever posts and stories they're
+ * given, so the server pages can pass the registry merged with posts published
+ * from Compose (src/lib/published-news.ts, getNews()). The zero-argument
+ * helpers read the registry alone; the 'use client' newsletter components
+ * (src/components/NewsletterPage/*) still use them. Every `posts` argument is
+ * published posts, newest first, as publishedPosts() and getNews() return them. */
 
-/** Published posts, newest news first (they share a publish day at launch). */
-export function publishedPosts(): NewsPost[] {
-  return NEWS_POSTS.filter((p) => p.status === 'published').sort(
-    (a, b) => b.publishedAt.localeCompare(a.publishedAt) || b.eventDate.localeCompare(a.eventDate),
-  );
+/** The site's news data: published posts newest first, and the stories they belong to. */
+export interface NewsData {
+  posts: NewsPost[];
+  stories: NewsStory[];
 }
 
-export const findPost = (slug: string) => publishedPosts().find((p) => p.slug === slug);
-export const findStory = (slug: string) => NEWS_STORIES.find((s) => s.slug === slug);
-
-/** A story's published posts, newest news first. */
-export const postsInStory = (story: string) => publishedPosts().filter((p) => p.story === story);
-
-/** Stories with at least one published post, most recent news first. */
-export function liveStories(): NewsStory[] {
-  return NEWS_STORIES.filter((s) => postsInStory(s.slug).length > 0).sort(
-    (a, b) => postsInStory(b.slug)[0].eventDate.localeCompare(postsInStory(a.slug)[0].eventDate),
-  );
+/** When a post went up, in ms. A bare YYYY-MM-DD (posts before 2026-10-12) counts as
+ *  noon UTC that day, as the RSS feed dates it, so it sorts sensibly against full times. */
+export function publishedTime(post: Pick<NewsPost, 'publishedAt'>): number {
+  const at = post.publishedAt.length === 10 ? `${post.publishedAt}T12:00:00Z` : post.publishedAt;
+  const ms = Date.parse(at);
+  return Number.isNaN(ms) ? 0 : ms;
 }
+
+/** Newest post first by publish time; on a tie, newest news (eventDate) first. */
+export function newestFirst(a: NewsPost, b: NewsPost): number {
+  return publishedTime(b) - publishedTime(a) || b.eventDate.localeCompare(a.eventDate);
+}
+
+/** A list's published posts, newest first. */
+export const publishedOf = (posts: NewsPost[]) => posts.filter((p) => p.status === 'published').sort(newestFirst);
+
+export const findPostIn = (posts: NewsPost[], slug: string) => posts.find((p) => p.slug === slug);
+export const findStoryIn = (stories: NewsStory[], slug: string) => stories.find((s) => s.slug === slug);
+
+/** A story's posts, newest first (in the order given). */
+export const postsInStoryOf = (posts: NewsPost[], story: string) => posts.filter((p) => p.story === story);
+
+/** Stories with at least one post, most recent news first. */
+export function liveStoriesOf(posts: NewsPost[], stories: NewsStory[]): NewsStory[] {
+  const latest = (s: NewsStory) => postsInStoryOf(posts, s.slug)[0];
+  return stories.filter((s) => latest(s)).sort((a, b) => latest(b).eventDate.localeCompare(latest(a).eventDate));
+}
+
+/** The registry's published posts, newest first. */
+export const publishedPosts = (): NewsPost[] => publishedOf(NEWS_POSTS);
+
+export const findPost = (slug: string) => findPostIn(publishedPosts(), slug);
+export const findStory = (slug: string) => findStoryIn(NEWS_STORIES, slug);
+
+/** A story's published posts in the registry, newest first. */
+export const postsInStory = (story: string) => postsInStoryOf(publishedPosts(), story);
+
+/** Registry stories with at least one published post, most recent news first. */
+export const liveStories = (): NewsStory[] => liveStoriesOf(publishedPosts(), NEWS_STORIES);
 
 /** "Sep 29" from YYYY-MM-DD, "September" from YYYY-MM. */
 export function eventLabel(date: string) {

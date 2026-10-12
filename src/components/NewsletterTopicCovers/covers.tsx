@@ -22,22 +22,24 @@
 import type { CSSProperties, ReactNode } from 'react';
 import { Box, C } from '@/components/BrandShapes/draw';
 import { octagon, pts } from '@/components/BrandShapes/symbols';
-import { CityWindow, DeskTop, EsyMark, Keys, Lamp, Monitor, Plant, Shelf, W, keysAt, type K4 } from '@/components/CourseCovers/covers2';
+import { CityWindow, DeskTop, Keys, Lamp, Monitor, Plant, Shelf, W, keysAt, type K4 } from '@/components/CourseCovers/covers2';
 import { MasonBack } from '@/components/CourseCovers/mason-poses';
+import { CamoDrawnCover, CamoPhotoCover } from './mason-camo';
 import type { TopicId } from './topics';
 import './topic-covers.css';
 
-export type TakeId = 'mason' | 'type' | 'room';
+export type TakeId = 'mason' | 'type' | 'room' | 'scene' | 'tagged' | 'poster' | 'glow' | 'screen' | 'bug' | 'credit' | 'night-chip' | 'glow-app' | 'camo-drawn' | 'camo-toy' | 'camo-felt' | 'net' | 'sys';
+type StyleId = Exclude<TakeId, 'mason' | 'type' | 'room' | 'camo-drawn' | 'camo-toy' | 'camo-felt' | 'net' | 'sys'>;
 
 const v = (vars: Record<string, string | number>) => vars as CSSProperties;
 
-/** Every cover: 1280×720, anchored right (the issue title sits over the left),
- *  with the esy brand at the top centre. `still` stops the motion. */
+/** Every cover: 1280×720, anchored right (the issue title sits over the left).
+ *  No esy mark: the page and the email already say who it's from (Zev,
+ *  2026-10-11). `still` stops the motion. */
 function Art({ label, still, children }: { label: string; still?: boolean; children: ReactNode }) {
   return (
     <svg className={`tc-art${still ? ' tc-still' : ''}`} viewBox="0 0 1280 720" preserveAspectRatio="xMaxYMid slice" role="img" aria-label={label}>
       {children}
-      <EsyMark x={640} y={70} size={40} opacity={1} />
     </svg>
   );
 }
@@ -256,23 +258,83 @@ export function TypeMuse({ still }: { still?: boolean }) {
 
 /** Sunburst edits of the desk plate (run-478aa4ef), cooled and pushed right
  *  like scripts/newsletter-cover.py does: dots run-a3d1a60c, muse run-a8e299e3. */
-export const ROOM_COVERS: Record<TopicId, { src: string; alt: string }> = {
+export const ROOM_COVERS: Record<'muse' | 'dots', { src: string; alt: string }> = {
   dots: { src: '/prototypes/newsletter-topic-cover/room-dots.webp', alt: 'The dark desk at night with the monitor off and five small glowing jade spheres travelling across the wood' },
   muse: { src: '/prototypes/newsletter-topic-cover/room-muse.webp', alt: 'The dark desk at night with the monitor off and a phone lying on the desk, lit by a card with one jade button' },
 };
 
-export function RoomCover({ topic }: { topic: TopicId }) {
+export function RoomCover({ topic }: { topic: 'muse' | 'dots' }) {
   const { src, alt } = ROOM_COVERS[topic];
   return (
     <svg className="tc-art" viewBox="0 0 1280 720" preserveAspectRatio="xMaxYMid slice" role="img" aria-label={alt}>
       <image href={src} width={1280} height={720} preserveAspectRatio="xMidYMid slice" />
-      <EsyMark x={640} y={70} size={40} opacity={1} />
+    </svg>
+  );
+}
+
+/* ── Round 2 (2026-10-11): one scene per topic on the live covers' desk, three styles ──
+   The picked idea per topic (scripts/newsletter-topic-covers.py has all three of each):
+   Dots, the night crew along the desk's edge; Muse, Jolly working late with
+   the phone waiting for an OK; Clay + Claude Code, a claymation build from raw
+   clay to contact cards under an orange terminal. Stills; a video model can
+   animate each one later. */
+const SCENE_ALT: Record<TopicId, string> = {
+  dots: 'Five small cartoon Dots sit along the edge of a dark desk at night, the screen off: a green bean, a pear in glasses, a cloud in a beret, a bunny in headphones and an orange triangle, each busy with a phone, a card, a clipboard or an envelope',
+  muse: 'Jolly, Muse’s cream fuzzy mascot, types at a desk at night beside printed product photos, a phone lying lit on the desk waiting for an OK',
+  clay: 'On a dark desk under a terminal glowing orange, lumps of bright clay ride a little clay conveyor and come out as contact cards with sculpted faces',
+};
+const STYLE_ALT: Record<StyleId, string> = {
+  scene: '',
+  tagged: ', with the product’s own logo and name on a white chip',
+  poster: ' cut out on the product’s own colour, with a short hook above',
+  // Round 3 (2026-10-11): five versions of E, none with a colour rule
+  glow: ', the product’s logo lit on the wall behind like a sign',
+  screen: ', the product’s logo and name lit on the monitor',
+  bug: ', the product’s logo small in the top-right corner',
+  credit: ', an editorial credit line with the product’s logo top right',
+  'night-chip': ', the product’s logo and name on a dark glass chip',
+  // Round 4 (2026-10-11): G with the kind of app the issue is about open on the monitor
+  'glow-app': ', the product’s logo lit on the wall behind like a sign, and an app at work on the monitor',
+};
+
+export function StyleCover({ style, topic }: { style: StyleId; topic: TopicId }) {
+  return (
+    <svg className="tc-art" viewBox="0 0 1280 720" preserveAspectRatio="xMaxYMid slice" role="img" aria-label={SCENE_ALT[topic] + STYLE_ALT[style]}>
+      <image href={`/prototypes/newsletter-topic-cover/${style}-${topic}.webp`} width={1280} height={720} preserveAspectRatio="xMidYMid slice" />
+    </svg>
+  );
+}
+
+/* Round 6 (2026-10-11): abstract vinyl networks, no character; the product's logo on a dark glass chip. */
+const NET_ALT: Record<'net' | 'sys', Record<TopicId, string>> = {
+  net: {
+    dots: 'Five glossy vinyl nodes in green, yellow, light blue, pink and orange, wired to one navy hub by glowing teal light',
+    muse: 'A path of vinyl tiles lighting up blue one by one, ending at a glowing jade octagon gate where a blue orb waits',
+    clay: 'Rough lumps of clay-coloured vinyl run through a glowing network and come out as precise teal tiles, one node glowing orange',
+  },
+  sys: {
+    dots: 'A navy vinyl octagon hub with eight glowing cables out to eight small modules, five of them in the Dots’ colours',
+    muse: 'A grid of dark vinyl blocks with jade light running between them, one block in the middle lit and waiting',
+    clay: 'A lattice of vinyl tiles with glowing seams, rough and clay-coloured at the bottom, precise at the top, where one tile glows orange',
+  },
+};
+
+export function NetCover({ kind, topic }: { kind: 'net' | 'sys'; topic: TopicId }) {
+  return (
+    <svg className="tc-art" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice" role="img" aria-label={`${NET_ALT[kind][topic]}, the product’s logo on a dark chip`}>
+      <image href={`/prototypes/newsletter-topic-cover/${kind}-${topic}.webp`} width={1280} height={720} preserveAspectRatio="xMidYMid slice" />
     </svg>
   );
 }
 
 /** The cover for a take and topic. */
 export function CoverArt({ take, topic, still }: { take: TakeId; topic: TopicId; still?: boolean }) {
+  // Round 5: Mason in the product's camouflage, drawn in code (moves) or as a photo
+  if (take === 'camo-drawn') return <CamoDrawnCover topic={topic} still={still} />;
+  if (take === 'camo-toy' || take === 'camo-felt') return <CamoPhotoCover kind={take} topic={topic} />;
+  if (take === 'net' || take === 'sys') return <NetCover kind={take} topic={topic} />;
+  if (take !== 'mason' && take !== 'type' && take !== 'room') return <StyleCover style={take} topic={topic} />;
+  if (topic === 'clay') return null; // round 1 wasn't drawn for Clay
   if (take === 'room') return <RoomCover topic={topic} />;
   if (take === 'type') return topic === 'dots' ? <TypeDots still={still} /> : <TypeMuse still={still} />;
   return topic === 'dots' ? <MasonDots still={still} /> : <MasonMuse still={still} />;

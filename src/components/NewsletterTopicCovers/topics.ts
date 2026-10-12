@@ -10,9 +10,17 @@
      (about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/)
    - Dots: OpenAI's always-on agents, launched at DevDay on 2026-09-29. "Start
      with your primary dot, give it a name, and make it your own … over time,
-     we envision teams of Dots working together on your behalf." */
+     we envision teams of Dots working together on your behalf."
+   - Clay + Claude Code (round 2, 2026-10-11): a tutorial issue, using Claude
+     Code to build and run a Clay table. Clay's brand is claymation (its site
+     art is handmade clay); Claude's is its warm orange. The title is a draft.
 
-export type TopicId = 'muse' | 'dots';
+   How the products look, for the covers (press coverage of the launches):
+   Dots' default character is a green bean with two diamond eyes, and others
+   include a yellow pear in glasses and a bow tie and a blue cloud in a beret;
+   Muse's mascot, Jolly, is cream and fuzzy with beady eyes and rosy cheeks. */
+
+export type TopicId = 'muse' | 'dots' | 'clay';
 
 export interface TopicIssue {
   id: TopicId;
@@ -44,7 +52,22 @@ export const TOPIC_ISSUES: TopicIssue[] = [
     minutes: 9,
     idea: 'Small agents that go off and do the work, then a team of them.',
   },
+  {
+    id: 'clay',
+    n: 6,
+    date: '2026-10-29',
+    title: 'Clay and Claude Code: a lead list that builds itself',
+    dek: 'A step-by-step tutorial: Claude Code sets up and runs a Clay table for your next campaign, from a raw list to leads worth writing to.',
+    minutes: 12,
+    idea: 'Raw lists go in, finished leads come out.',
+  },
 ];
+
+/** The topics a take is drawn for: round 1 drew Muse and Dots; round 2 adds Clay. */
+export const ROUND_ONE_TOPICS: TopicId[] = ['muse', 'dots'];
+
+/** The issue's name on the page's toggle. */
+export const TOPIC_NAMES: Record<TopicId, string> = { muse: 'Meta Muse', dots: 'OpenAI Dots', clay: 'Clay + Claude Code' };
 
 export const findTopic = (id?: string) => TOPIC_ISSUES.find((t) => t.id === id) ?? TOPIC_ISSUES[0];
 

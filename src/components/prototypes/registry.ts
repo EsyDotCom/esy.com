@@ -3209,6 +3209,164 @@ export const PROTOTYPES: Prototype[] = [
     ],
   },
   {
+    slug: 'brand',
+    name: 'The brand kit',
+    date: '2026-10-11',
+    headline: 'esy.com/brand: the Esy brand kit, in vinyl.',
+    intro:
+      'Three ways to lay out the brand kit: the name, the wordmark (and pictures of it in vinyl), colour, type, the vinyl world, Mason and voice, with the files. Mason opens his own kit.',
+    summary:
+      'A press-kit sheet, a toy-store showroom, and a style guide with a contents rail, all from one content module.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Three kits',
+        summary:
+          'Same content (org-docs/brand/ESY_DEFINITION.md and VISUAL_LANGUAGE.md), three stances: A a press kit, B a showroom where the vinyl pictures lead, C a guide for whoever makes the next cover.',
+      },
+    ],
+    variants: [
+      { slug: 'sheet', key: 'A', name: 'Sheet', round: 1, live: true, liveHref: '/brand', title: 'A press kit.', blurb: 'The vinyl wordmark up top, then name, logo, colour, type, the world, Mason and voice, each with its files.', poster: ['#0A2540', '#00A896'] },
+      { slug: 'showroom', key: 'B', name: 'Showroom', round: 1, title: 'Serious systems, made of toys.', blurb: 'A toy store: big vinyl pictures lead each section, the toy world up front.', poster: ['#EFEBE2', '#0A2540'] },
+      { slug: 'guide', key: 'C', name: 'Guide', round: 1, title: 'A style guide.', blurb: 'A sticky contents rail, the rules first and the pictures as evidence.', poster: ['#F8F9FA', '#00A896'] },
+    ],
+  },
+  {
+    slug: 'brand-mason',
+    name: 'Mason’s kit',
+    date: '2026-10-11',
+    headline: 'esy.com/brand/mason: Mason, in vinyl.',
+    intro:
+      'Three ways to give Mason his own page under the brand kit: his figure from every side, how to draw him so he stays himself, his poses and editions, and the files.',
+    summary:
+      'A character sheet, his story in big pictures, and a collectible’s product page.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Three Mason pages',
+        summary:
+          'D is a model sheet (turnaround, spec, do and don’t, poses, the flat drawing for small sizes), E tells who he is and what he does, F sells him like a designer toy.',
+      },
+    ],
+    variants: [
+      { slug: 'sheet', key: 'D', name: 'Character sheet', round: 1, title: 'Always the same figure.', blurb: 'His turnaround, spec, do and don’t, poses, editions and the flat drawing.', poster: ['#F8F9FA', '#0A2540'] },
+      { slug: 'story', key: 'E', name: 'Story', round: 1, title: 'Meet Mason.', blurb: 'Who he is, where he lives, what he does, in big vinyl pictures; the rules at the end.', poster: ['#0E3A4A', '#2BD8BB'] },
+      { slug: 'toybox', key: 'F', name: 'Toy box', round: 1, title: 'Designer vinyl, Series 1.', blurb: 'A collectible’s product page: the studio shot, a spec table, poses in the box, the camouflage editions.', poster: ['#EFEBE2', '#00A896'] },
+    ],
+  },
+  {
+    slug: 'vinyl-banners',
+    name: 'Banners in glossy vinyl',
+    date: '2026-10-11',
+    headline: 'The Marketing Engineer’s banners, rebuilt in glossy vinyl.',
+    intro:
+      'Five concepts for the YouTube channel art and the LinkedIn and X headers, in the glossy vinyl and glowing light of the newsletter’s network covers. Each take shows one concept the ways each site crops it, with downloads.',
+    summary:
+      'A network, Mason at his bench, a production line, our 45° pieces as a kit, and a vinyl city, each one picture cut for YouTube, LinkedIn and X.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Five in vinyl',
+        summary:
+          'Each concept is one 2560 × 1440 picture in glossy vinyl, the art in the left half of a band across the middle, the name on the right inside every site’s safe area, over the navy wash the live banner uses.',
+      },
+    ],
+    variants: [
+      { slug: 'network', key: 'A', name: 'Network', round: 1, title: 'Systems, wired together.', blurb: 'A vinyl network of chamfered nodes and glowing teal tubes running into a jade hub.', poster: ['#0A1626', '#00D4AA'] },
+      { slug: 'bench', key: 'B', name: 'Bench', round: 1, title: 'Mason, wiring it up.', blurb: 'Vinyl Mason at a low bench, wiring up a small glowing network with several arms.', poster: ['#0A1626', '#2BD8BB'] },
+      { slug: 'line', key: 'C', name: 'Line', round: 1, title: 'Raw in, finished out.', blurb: 'Rough lumps ride a conveyor through a glowing gantry and come out as precise jade tiles.', poster: ['#0A1626', '#00A896'] },
+      { slug: 'kit', key: 'D', name: 'Kit', round: 1, title: 'Our pieces, as a kit.', blurb: 'Our 45° stencil pieces laid out in glossy vinyl like a model kit, a few lit from inside.', poster: ['#0A1626', '#F4F1EA'] },
+      { slug: 'skyline', key: 'E', name: 'Skyline', round: 1, title: 'A city that runs itself.', blurb: 'A vinyl city at night, light running between the towers like a network.', poster: ['#0A1626', '#00D4AA'] },
+    ],
+  },
+  {
+    slug: 'mason-toy',
+    name: 'Mason as a toy',
+    date: '2026-10-11',
+    headline: 'Mason, made real: felt or vinyl, and which one runs the footer.',
+    intro:
+      'Each take is one material in one footer world. The page shows that material’s concept pieces; scroll to the bottom to see its world under the footer card. Flip material with the switch at the top.',
+    summary:
+      'Felt or vinyl Mason, each in the reef and on a shelf of his camouflage editions, with five concept pieces per material. The whole scene is made of the material, not only him.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Felt or vinyl',
+        summary:
+          'Zev liked both toy Masons from the Camouflage covers. Each material gets five concept pieces (studio shot, mailing the issue, at the bench, on the keys, in the box) and two footer worlds (the reef as a diorama, a shelf of the camouflage editions), every scene built from the material itself.',
+      },
+      {
+        n: 2,
+        title: 'Flocked',
+        summary:
+          'Zev liked felt but felt vinyl matches the logo better. E tries flocked vinyl, the designer-toy finish that puts fine velvet over a crisp moulded figure: the logo’s exact 45° cuts with felt’s warmth.',
+      },
+      {
+        n: 3,
+        title: 'In use',
+        summary:
+          'Felt is out. Vinyl against flocked where Mason will actually work: five newsletter covers (Camouflage for three issues, The Jar, Unboxing) and three YouTube thumbnails on the channel’s Desk system, every scene made of the material.',
+      },
+      {
+        n: 4,
+        title: 'Footers that show his mind',
+        summary:
+          'Three of ten footer ideas about octopus intelligence, in flocked, the home edition: H the Simul (eight chess games at once), I the Chain Reaction (a machine he built, running end to end), J the Thread Wall (everything he made, threaded back to its parts). K, L and M are the same three in vinyl.',
+      },
+      {
+        n: 5,
+        title: 'What Esy stands for',
+        summary:
+          'Vinyl is the brand’s material now (org-docs/brand/VISUAL_LANGUAGE.md). Of ten footer ideas built on Esy’s own messages, three in vinyl: N the Gate (humans think, AI assists), O the Essai (every attempt kept), P the Assembly (workflows, not prompts).',
+      },
+      {
+        n: 6,
+        title: 'The live footer, in vinyl',
+        summary:
+          'The toy theme runs throughout. Q is today’s live footer, Mason’s reef with the octagon gate, captured from the site and remade as a vinyl diorama on Sunburst with the same layout, with the school of fish added in the middle. A still: an 8-second loop was made too, but at 2.6 MB against today’s 15 KB footer it was dropped.',
+      },
+      {
+        n: 7,
+        title: 'At the computer',
+        summary:
+          'Five stills of Mason operating a computer in glossy vinyl worlds, from behind with his arms on the keys: R the reef console, S the study, T the control room, U the workshop, V the rooftop. All on Sunburst.',
+      },
+      {
+        n: 8,
+        title: 'The office',
+        summary:
+          'A vinyl office of many Masons at desks, many agents and one mind: W the office floor at night, X the bullpen (daylight), Y mission control. Stills on Sunburst.',
+      },
+    ],
+    variants: [
+      { slug: 'felt-reef', key: 'A', name: 'Felt · Reef', round: 1, title: 'A felted reef.', blurb: 'Felt Mason stacks the octagon gate in a needle-felted reef diorama.', poster: ['#0E3A4A', '#2BD8BB'] },
+      { slug: 'felt-shelf', key: 'B', name: 'Felt · Shelf', round: 1, title: 'The felt collection.', blurb: 'Felt Mason on a felted shelf at night with his camouflage editions.', poster: ['#2A1E14', '#F2C230'] },
+      { slug: 'toy-reef', key: 'C', name: 'Vinyl · Reef', round: 1, title: 'A vinyl reef playset.', blurb: 'Vinyl Mason stacks the octagon gate in a glossy toy reef.', poster: ['#0A2540', '#00D4AA'] },
+      { slug: 'toy-shelf', key: 'D', name: 'Vinyl · Shelf', round: 1, title: 'The vinyl collection.', blurb: 'Vinyl Mason on a vinyl shelf at night with his camouflage editions.', poster: ['#101820', '#0064E0'] },
+      { slug: 'flocked-shelf', key: 'E', name: 'Flocked · Shelf', round: 2, mergeOf: ['B', 'D'], title: 'Vinyl’s shape, felt’s warmth.', blurb: 'Flocked vinyl Mason (crisp cuts under fine velvet) on a flocked shelf with his camouflage editions.', poster: ['#0A2540', '#2BD8BB'] },
+      { slug: 'toy-use', key: 'F', name: 'Vinyl · In use', round: 3, mergeOf: ['D'], title: 'Vinyl Mason at work.', blurb: 'Vinyl Mason on five newsletter covers and three YouTube thumbnails, each scene a vinyl playset.', poster: ['#0A2540', '#00D4AA'] },
+      { slug: 'flocked-simul', key: 'H', name: 'Footer · Simul', round: 4, mergeOf: ['E'], title: 'Eight games at once.', blurb: 'Flocked Mason plays eight chess boards at once, one arm on each.', poster: ['#0E2B45', '#2BD8BB'] },
+      { slug: 'flocked-chain', key: 'I', name: 'Footer · Chain reaction', round: 4, mergeOf: ['E'], title: 'A machine he built.', blurb: 'A chain-reaction machine runs the width of the footer, from a marble to a finished cube.', poster: ['#C9B79A', '#0A2540'] },
+      { slug: 'flocked-threads', key: 'J', name: 'Footer · Thread wall', round: 4, mergeOf: ['E'], title: 'Where everything came from.', blurb: 'A wall of everything he made, each piece threaded back to its parts.', poster: ['#0A2540', '#00A896'] },
+      { slug: 'toy-simul', key: 'K', name: 'Footer · Simul, vinyl', round: 4, mergeOf: ['H'], title: 'Eight games at once, in vinyl.', blurb: 'H in vinyl: Mason plays eight chess boards at once.', poster: ['#16283F', '#00D4AA'] },
+      { slug: 'toy-chain', key: 'L', name: 'Footer · Chain reaction, vinyl', round: 4, mergeOf: ['I'], title: 'The machine, in vinyl.', blurb: 'I in vinyl: the chain-reaction machine, marble to finished cube.', poster: ['#D9D2C5', '#0A2540'] },
+      { slug: 'toy-threads', key: 'M', name: 'Footer · Thread wall, vinyl', round: 4, mergeOf: ['J'], title: 'The thread wall, in vinyl.', blurb: 'J in vinyl: everything he made, threaded back to its parts.', poster: ['#16283F', '#2BD8BB'] },
+      { slug: 'toy-gate', key: 'N', name: 'Footer · The Gate', round: 5, title: 'Humans think. AI assists.', blurb: 'The line does the work and stops at a lit gate; Mason holds the finished piece up for approval.', poster: ['#16283F', '#00D4AA'] },
+      { slug: 'toy-essai', key: 'O', name: 'Footer · The Essai', round: 5, title: 'Every attempt, kept.', blurb: 'Every version of one piece in a row, rough to glowing; Mason sets down the last.', poster: ['#16283F', '#2BD8BB'] },
+      { slug: 'toy-assembly', key: 'P', name: 'Footer · The Assembly', round: 5, title: 'Workflows, not prompts.', blurb: 'One clear line, a station for every step, raw in and finished out, Mason at several stations.', poster: ['#16283F', '#00A896'] },
+      { slug: 'toy-livereef', key: 'Q', name: 'Footer · Live reef, vinyl', round: 6, mergeOf: ['C'], title: 'Today’s footer, as a toy.', blurb: 'The live reef footer remade in vinyl, same layout, with the school swimming through the middle. A still.', poster: ['#0E3A4A', '#2BD8BB'] },
+      { slug: 'toy-pc-reef', key: 'R', name: 'Footer · Reef console', round: 7, title: 'A computer in the reef.', blurb: 'Mason types at a desktop built into a glossy vinyl reef.', poster: ['#0E3A4A', '#2BD8BB'] },
+      { slug: 'toy-pc-study', key: 'S', name: 'Footer · Study', round: 7, live: true, liveHref: '/', title: 'Two screens at night.', blurb: 'Mason at two glowing monitors in a glossy vinyl study.', poster: ['#16283F', '#2BD8BB'] },
+      { slug: 'toy-pc-control', key: 'T', name: 'Footer · Control room', round: 7, title: 'Every arm on a control.', blurb: 'Mason at a curved console, each arm on its own keyboard, dial or slider.', poster: ['#16283F', '#00D4AA'] },
+      { slug: 'toy-pc-workshop', key: 'U', name: 'Footer · Workshop', round: 7, title: 'A terminal on the bench.', blurb: 'Mason types at a chunky terminal while other arms hold parts.', poster: ['#3A4250', '#00D4AA'] },
+      { slug: 'toy-pc-rooftop', key: 'V', name: 'Footer · Rooftop', round: 7, title: 'A laptop over the city.', blurb: 'Mason on a glossy ledge with a laptop over a vinyl city at night.', poster: ['#16283F', '#F4F1EA'] },
+      { slug: 'toy-office-floor', key: 'W', name: 'Footer · Office floor', round: 8, title: 'A floor of Masons.', blurb: 'An open-plan office at night, a dozen Masons at their own desks.', poster: ['#16283F', '#2BD8BB'] },
+      { slug: 'toy-office-bullpen', key: 'X', name: 'Footer · Bullpen', round: 8, title: 'Passing the work along.', blurb: 'Masons at shared desks in daylight, passing finished tiles along.', poster: ['#E9E4DA', '#0A2540'] },
+      { slug: 'toy-office-tiers', key: 'Y', name: 'Footer · Mission control', round: 8, title: 'One wall, many desks.', blurb: 'Rows of Masons on stepped desks facing one glowing wall of screens.', poster: ['#16283F', '#00D4AA'] },
+      { slug: 'flocked-use', key: 'G', name: 'Flocked · In use', round: 3, mergeOf: ['E'], title: 'Flocked Mason at work.', blurb: 'Flocked Mason on the same five covers and three thumbnails, each scene in flocked velvet.', poster: ['#0A2540', '#2BD8BB'] },
+    ],
+  },
+  {
     slug: 'newsletter-topic-cover',
     name: 'Newsletter covers by topic',
     date: '2026-10-11',
@@ -3224,11 +3382,55 @@ export const PROTOTYPES: Prototype[] = [
         summary:
           'A draws Mason in the course cover’s room doing the topic’s work, B makes the topic’s name the cover, C edits the live covers’ desk photo with gpt-image-2.5 Sunburst. A and B move in code; C is a still until a video model animates it.',
       },
+      {
+        n: 2,
+        title: 'The product at the desk',
+        summary:
+          'The products’ own characters at work on the live covers’ desk, one picked idea per topic (the Dots’ night crew, Jolly working late, a claymation build for Clay + Claude Code), in three styles: D the scene alone, E tagged with the product’s logo and colours, F the characters on the product’s colour with a hook. No esy mark on any cover.',
+      },
+      {
+        n: 3,
+        title: 'Five versions of E',
+        summary:
+          'E was picked; its colour rule along the bottom is gone. Five ways to tag the scene with the product’s own logo: G lights it on the wall like a sign, H puts it on the monitor, I keeps only a small corner mark, J writes an editorial credit, K makes E’s chip dark glass with a glowing logo.',
+      },
+      {
+        n: 4,
+        title: 'G, with the app on screen',
+        summary:
+          'G was picked. L keeps its sign and puts the kind of app the issue is about on the monitor, at work. The screens are stand-ins until a real issue brings its own screenshot.',
+      },
+      {
+        n: 5,
+        title: 'Camouflage',
+        summary:
+          'Back to Mason: an octopus changes its skin, so he takes on the issue’s product, with its own logo on a tag from one arm. One idea, three ways to draw him: M in code (it moves), N a vinyl toy and O a felt toy on the live covers’ desk.',
+      },
+      {
+        n: 6,
+        title: 'Vinyl networks',
+        summary:
+          'Abstract covers with no character: glossy vinyl shapes cut at our 45°, joined by glowing light. P draws each issue’s idea as a system, Q as a wider one; the product’s logo on a dark glass chip.',
+      },
     ],
     variants: [
       { slug: 'mason', key: 'A', name: 'Mason at work', round: 1, title: 'Mason does the topic’s work.', blurb: 'Dots leave his screen for jobs around the room; Muse works a long task on his second screen, then asks for his OK.', poster: ['#0E2B45', '#00D4AA'] },
       { slug: 'type', key: 'B', name: 'Type', round: 1, title: 'The topic’s name is the cover.', blurb: 'Huge stencil type: the full stop in “dots.” splits into a team; the night passes over “muse” while its steps fill in.', poster: ['#0A1626', '#FFFFFF'] },
       { slug: 'room', key: 'C', name: 'The room', round: 1, title: 'The desk at night, one object.', blurb: 'The live covers’ desk with the screen off, edited with Sunburst: glowing dots on the move, or a phone waiting for an OK.', poster: ['#081A2C', '#2BD8BB'] },
+      { slug: 'scene', key: 'D', name: 'Scene', round: 2, mergeOf: ['C'], title: 'The product, at work at the desk.', blurb: 'The live covers’ desk with the product’s own characters on it: five Dots along the edge, Jolly typing late, a claymation lead line under an orange terminal.', poster: ['#0B1A2A', '#7CB33A'] },
+      { slug: 'tagged', key: 'E', name: 'Tagged', round: 2, mergeOf: ['D'], title: 'The scene, branded.', blurb: 'D with the product’s own logo and name on a white chip (round 3 took off the colour rule along the bottom).', poster: ['#0B1A2A', '#0064E0'] },
+      { slug: 'poster', key: 'F', name: 'Poster', round: 2, mergeOf: ['D'], title: 'The product’s colour, a hook.', blurb: 'D’s characters cut out on the product’s own colour, on a ledge, with a four-word hook.', poster: ['#D97757', '#FFFFFF'] },
+      { slug: 'glow', key: 'G', name: 'Glow', round: 3, mergeOf: ['E'], title: 'The logo, lit on the wall.', blurb: 'The product’s logo glowing on the wall behind the desk like a sign, its light spilling round it, the name beneath.', poster: ['#0B1A2A', '#C8FFEC'] },
+      { slug: 'screen', key: 'H', name: 'On screen', round: 3, mergeOf: ['E'], title: 'The product, on the monitor.', blurb: 'The logo and name lit on the monitor, as if the product is what’s running.', poster: ['#0A0E14', '#FFFFFF'] },
+      { slug: 'bug', key: 'I', name: 'Bug', round: 3, mergeOf: ['E'], title: 'Just the mark, in the corner.', blurb: 'Only the product’s logo, small, top right, like a channel’s corner mark.', poster: ['#0B1A2A', '#FFFFFF'] },
+      { slug: 'credit', key: 'J', name: 'Credit', round: 3, mergeOf: ['E'], title: 'A credit line.', blurb: 'The logo and “OPENAI · DOTS” in spaced small capitals over a hairline, top right, like a magazine credit.', poster: ['#0B1A2A', '#E3E8EE'] },
+      { slug: 'night-chip', key: 'K', name: 'Night chip', round: 3, mergeOf: ['E'], title: 'E’s chip, in dark glass.', blurb: 'E’s chip as dark glass with white words and the logo glowing softly in its own colour.', poster: ['#08121F', '#0082FB'] },
+      { slug: 'glow-app', key: 'L', name: 'Glow + app', round: 4, mergeOf: ['G'], title: 'The sign, and the app at work.', blurb: 'G’s lit logo on the wall, with the kind of app the issue is about running on the monitor.', poster: ['#0B1A2A', '#7BE08F'] },
+      { slug: 'camo-drawn', key: 'M', name: 'Camouflage · Drawn', round: 5, title: 'Mason wears the product.', blurb: 'Mason in the product’s colours and patterns, its logo on a tag from one arm, drawn in code in the course covers’ room.', poster: ['#0E2B45', '#F2C230'] },
+      { slug: 'camo-toy', key: 'N', name: 'Camouflage · Toy', round: 5, mergeOf: ['M'], title: 'Mason, a vinyl toy.', blurb: 'M’s Mason made a real vinyl toy on the live covers’ desk.', poster: ['#0B1A2A', '#0064E0'] },
+      { slug: 'net', key: 'P', name: 'Network', round: 6, title: 'The idea, as a system.', blurb: 'Glossy vinyl shapes joined by glowing light: the Dots wired to a hub, Muse’s path stopping at a gate, Clay’s lumps coming out as tiles.', poster: ['#0A1626', '#00D4AA'] },
+      { slug: 'sys', key: 'Q', name: 'Systems', round: 6, title: 'Wider systems.', blurb: 'A hub and its modules, a city grid of light, a lattice from rough to precise, in vinyl and glowing seams.', poster: ['#0A1626', '#2BD8BB'] },
+      { slug: 'camo-felt', key: 'O', name: 'Camouflage · Felt', round: 5, mergeOf: ['M'], title: 'Mason, a felt toy.', blurb: 'M’s Mason made a handmade felt toy on the live covers’ desk.', poster: ['#0B1A2A', '#D97757'] },
     ],
   },
   {

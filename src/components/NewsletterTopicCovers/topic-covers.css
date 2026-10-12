@@ -112,3 +112,31 @@
 .tc-note { margin: 28px 0 0; max-width: 720px; color: #5B6B7C; font-size: 0.92rem; line-height: 1.6; }
 .tc-note strong { color: #0A2540; }
 @media (max-width: 720px) { .tc-grid, .tc-grid--small { grid-template-columns: 1fr; } }
+
+/* Round 2 (2026-10-11): three issues side by side on the sheet. */
+.tc-grid--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 900px) { .tc-grid--three { grid-template-columns: 1fr; } }
+
+/* The whole cover on the issue page (2026-10-11). Round 2 on is a 16:9 picture
+   with something to see from edge to edge, so it isn't cropped to half the
+   header: it sits whole on the right at its own shape, and the header is at
+   least as tall as it. The big issue number makes way (the kicker has it). */
+.tc-cover--whole { min-height: max(440px, calc(56vw * 9 / 16)); }
+.tc-cover--whole .tc-cover-art {
+  inset: 50% 0 auto auto; width: 56%; aspect-ratio: 16 / 9; translate: 0 -50%;
+  mask-image: linear-gradient(90deg, transparent 0, #000 6%);
+}
+.tc-cover--whole .tc-cover-shade { display: none; }
+.tc-cover--whole .nlp-cover-n { display: none; }
+.tc-cover--whole .nlp-cover-grid { grid-template-columns: minmax(0, 1fr); }
+.tc-cover--whole .nlp-cover-title, .tc-cover--whole .nlp-cover-dek { max-width: min(440px, 38vw); }
+/* Narrow screens: the cover on top at full width, the title under it. */
+@media (max-width: 900px) {
+  .tc-cover--whole { flex-direction: column; min-height: 0; }
+  .tc-cover--whole .tc-cover-art { position: relative; inset: auto; width: 100%; translate: none; mask-image: none; }
+  .tc-cover--whole .nlp-cover-title, .tc-cover--whole .nlp-cover-dek { max-width: none; }
+}
+
+/* Round 5 (2026-10-11), Camouflage: the spots on Mason's skin shimmer in turn, as an octopus's do. */
+.tc-camo-spot { animation: tc-camo 3.2s ease-in-out calc(var(--k) * 0.4s) infinite; }
+@keyframes tc-camo { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }

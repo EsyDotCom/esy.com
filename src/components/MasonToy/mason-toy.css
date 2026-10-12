@@ -1,0 +1,69 @@
+/* Mason as a toy (2026-10-11). Prefix mt-. */
+.mt { background: #F8F9FA; color: #0A2540; }
+.mt-wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+.mt-top { padding: 72px 0 32px; }
+.mt-eyebrow { margin: 0 0 10px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #00A896; }
+.mt-title { margin: 0 0 12px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: clamp(2.4rem, 5vw, 3.6rem); line-height: 1.02; letter-spacing: -0.02em; }
+.mt-lede { margin: 0 0 24px; max-width: 620px; font-size: 1.1rem; line-height: 1.55; color: #42566B; }
+.mt-toggle { display: inline-flex; gap: 4px; padding: 4px; border-radius: 999px; background: #E9EEF2; }
+.mt-toggle a { padding: 8px 18px; border-radius: 999px; font-size: 0.9rem; font-weight: 600; color: #42566B; text-decoration: none; }
+.mt-toggle a[aria-current='page'] { background: #0A2540; color: #fff; }
+.mt-gallery { padding-bottom: 260px; }
+.mt-piece { margin: 0; }
+.mt-piece img { display: block; width: 100%; height: auto; border-radius: 16px; background: #0A1626; }
+.mt-piece figcaption { margin-top: 10px; font-size: 0.95rem; color: #5B6B7C; }
+.mt-piece figcaption b { color: #0A2540; }
+.mt-piece--hero { margin-bottom: 32px; }
+.mt-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 24px; }
+.mt-note { margin: 32px 0 0; max-width: 720px; font-size: 0.95rem; line-height: 1.6; color: #5B6B7C; }
+.mt-note strong { color: #0A2540; }
+.mt-note a { color: #00796C; }
+@media (max-width: 720px) { .mt-grid { grid-template-columns: 1fr; } }
+
+/* The footer world as a full-bleed photo: wider screens see more of the scene,
+   phones a taller crop centred on Mason. */
+.mt-fw { background: #0A1626; }
+.mt-fw img, .mt-fw video { width: 100%; max-width: none; height: clamp(420px, 46vw, 760px); object-fit: cover; object-position: 50% 65%; }
+@media (max-width: 900px) { .mt-fw img, .mt-fw video { width: 100%; height: 520px; margin-top: 0; } }
+/* The reef's Mason stands lower in his picture than the shelf's toys, so its crop sits lower, keeping him clear of the card. */
+.mt-fw--reef img { object-position: 50% 80%; }
+
+/* Round 3, in use: section heads and a channel-style thumbnail grid. */
+.mt-h2 { margin: 48px 0 18px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 2rem; color: #0A2540; }
+.mt-gallery > .mt-h2:first-child { margin-top: 8px; }
+.mt-yt { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.mt-yt-card { margin: 0; }
+.mt-yt-card img { display: block; width: 100%; height: auto; border-radius: 12px; }
+.mt-yt-card figcaption { display: flex; flex-direction: column; gap: 3px; margin-top: 10px; font-size: 0.9rem; color: #5B6B7C; }
+.mt-yt-card b { color: #0A2540; font-size: 1rem; line-height: 1.35; }
+.mt-yt-kind { margin-top: 4px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #00A896; }
+@media (max-width: 900px) { .mt-yt { grid-template-columns: 1fr; } }
+
+/* Round 4 footers: where each scene's action sits, so it clears the footer card. */
+.mt-fw--simul img { object-position: 50% 25%; }
+.mt-fw--chain img { object-position: 50% 40%; }
+.mt-fw--threads img { object-position: 50% 88%; }
+
+/* Round 5 footers: tall scenes, so the crop sits a little lower to keep the work above the card. */
+.mt-fw--gate img, .mt-fw--assembly img { object-position: 50% 45%; }
+/* The loops are 16:9, so they sit a little higher than the 3:2 stills. */
+.mt-fw--gate video, .mt-fw--assembly video { object-position: 50% 35%; }
+.mt-fw--essai img { object-position: 50% 40%; }
+
+/* The clip-art set: transparent cutouts on the replay's pale tile. */
+.mt-note--top { margin: 0 0 16px; }
+.mt-clip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.mt-clip-card { margin: 0; }
+.mt-clip-card img { display: block; width: 100%; height: auto; border-radius: 14px; background: #EEF2F6; }
+.mt-clip-card figcaption { display: flex; flex-direction: column; margin-top: 8px; font-size: 0.85rem; color: #5B6B7C; }
+.mt-clip-card b { color: #0A2540; }
+@media (max-width: 720px) { .mt-clip { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* The live reef in vinyl: 16:9, its story along the seabed, so the crop sits at the bottom to keep Mason and the gate above the card. */
+.mt-fw--livereef img, .mt-fw--livereef video { object-position: 50% 100%; }
+
+/* Round 7, at the computer: the scene fills the top of a 3:2 still, so the crop sits high. */
+.mt-fw--pc-reef img, .mt-fw--pc-study img, .mt-fw--pc-control img, .mt-fw--pc-workshop img, .mt-fw--pc-rooftop img { object-position: 50% 30%; }
+
+/* Round 8, the offices: the desks fill the top of a 3:2 still. */
+.mt-fw--office-floor img, .mt-fw--office-bullpen img, .mt-fw--office-tiers img { object-position: 50% 25%; }

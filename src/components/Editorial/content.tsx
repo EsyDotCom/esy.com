@@ -2,11 +2,12 @@
  * /prototypes/editorial/ renders three designs over exactly these words, so
  * the comparison is about design, not copy. Four of these are commitments
  * Zev confirms before they go live: corrections, AI use, our own products,
- * and the pace line in "How a news post is built".
+ * and the pace line in "How a news post is built" (2026-10-12: news daily,
+ * articles about twice a week, a weekly tutorial issue; confirmed by Zev).
  */
 import Link from 'next/link';
 
-export const STANDARDS_UPDATED = '2026-09-30';
+export const STANDARDS_UPDATED = '2026-10-12';
 
 export const updatedLabel = () =>
   new Date(`${STANDARDS_UPDATED}T12:00:00Z`).toLocaleDateString('en-US', {
@@ -124,7 +125,11 @@ export const PRINCIPLES: Principle[] = [
             <li key={t}><b>{t}.</b> {d}</li>
           ))}
         </ol>
-        <p>We publish at a pace we can keep: two good news posts a week beats seven thin ones.</p>
+        <p>
+          We publish news every day. Something changes in AI marketing every day, and a short, accurate post about it
+          beats a long one that arrives late. If a day brings nothing worth a post, we say less, not more: we never pad a
+          story to fill the slot.
+        </p>
         <p>
           A post’s date is the day it went up here. When a post covers news from earlier, it says when that news
           happened, and we never backdate a post.
@@ -140,6 +145,7 @@ export const PRINCIPLES: Principle[] = [
         <li>It starts from something we actually built, ran or tested, not from a press release.</li>
         <li>It shows the work: the setup, the steps, the result, and what broke along the way.</li>
         <li>It stays current: when a tool changes, we update it in place and show the date, instead of publishing a new one.</li>
+        <li>About two a week, each one piece of the system that week&apos;s newsletter teaches. We don&apos;t rush one out to fill a slot.</li>
       </ul>
     ),
   },
@@ -153,7 +159,10 @@ export const PRINCIPLES: Principle[] = [
           <li>Every news post links its story, and the story’s page lists every post on it.</li>
           <li>When an article goes deeper, the news post links to it.</li>
           <li>When a story keeps mattering, we write the article and link it from the news post.</li>
-          <li>In the weekly email, an article leads and the week&apos;s news follows as a short roundup.</li>
+          <li>
+            Each week&apos;s email is a tutorial: it builds one AI marketing system, step by step, from that week&apos;s
+            articles, then rounds up the week&apos;s news.
+          </li>
         </ul>
       </>
     ),
@@ -191,9 +200,9 @@ export const PRINCIPLES: Principle[] = [
       <p>
         We write about AI tools, and we use them: for research, first drafts and images, mostly through Esy&apos;s own
         workflows and Claude. A person reviews, tests and signs off every piece, and AI images say so in their captions.
-        AI Marketing News is researched and drafted by agents in Compose, Esy&apos;s newsroom: one finds the
-        company&apos;s own announcement, one writes, one checks every claim against it. Zev reads and approves each post
-        before it goes up, and every post says so.
+        Zev writes AI Marketing News every day. Some posts are researched and drafted by agents in Compose,
+        Esy&apos;s newsroom: one finds the company&apos;s own announcement, one writes, one checks every claim against it.
+        Every post says which, and Zev approves each one before it goes up.
         News covers aren&apos;t AI images: they&apos;re cards we draw from the post&apos;s own facts. We never have AI
         draw a company&apos;s logo.
       </p>

@@ -55,13 +55,25 @@ News every day, articles about twice a week, and one newsletter a week that teac
 
 ### Known friction
 
-Posts live in the code (`src/data/news/index.ts`), so each one needs a PR and a deploy before it's live. One PR per post, merged the same day. The planned fix is serving posts from Esy's API, so a post is live the moment it's approved.
+Posts in the code (`src/data/news/index.ts`) need a PR and a deploy before they're live: one PR per post, merged the same day. Posts published from Compose skip that and are live about a second after they're approved (see "Publishing from Compose" below).
+
+## Publishing from Compose
+
+Posts can now be published from Compose through Esy's API (api.esy.com), as articles are. esy.com reads them from `GET /v1/publications/public/news/posts` and merges them with the registry (`getNews()` in `src/lib/published-news.ts`), so they show on `/news`, their own pages, their story's page, the homepage column, the RSS feed and both sitemaps.
+
+- **Live in about a second.** Publishing or unpublishing sends a signed webhook to `/api/revalidate` with `publication: "news"`, which refreshes every page that lists posts. The hourly refresh is only a backstop.
+- **The registry wins a clash while posts move over.** If a Compose post has the same slug as a published post in `src/data/news/index.ts`, the registry's post shows. A Compose post whose slug is a story's slug, or whose story's slug is a post's slug, is skipped with a warning in the logs.
+- **New stories come with the post.** A Compose post can name a story the registry doesn't have; esy.com builds it from the post (name, line, company), with the company's name in type and no logo. Logos are still added by hand in `COMPANY`, under the rules in step 5.
+- **`writtenBy` comes from Esy's `origin`.** A post written in a Compose session is `written`, shown as written by Zev; one drafted through an API key is `drafted`, shown as drafted by AI agents. The byline stays "By Zev Uhuru" for now.
+- **The webhook secret** is `ESY_REVALIDATE_SECRET_NEWS` in esy.com's hosting env: the same value as the `news` publication's webhook secret in Esy. The shared `ESY_REVALIDATE_SECRET` still works as a fallback.
+- **The same rules apply.** Every fact is checked against the company's own page, posts carry their real publish time, and Zev approves every post before it goes up, whichever way it's published.
 
 ## Where things live
 
 | What | Where |
 |---|---|
-| Posts and stories (the only file you edit to publish) | `src/data/news/index.ts` |
+| Posts and stories in the code | `src/data/news/index.ts` |
+| Posts published from Compose, merged with the registry | `src/lib/published-news.ts`; refreshed by `src/app/api/revalidate/route.ts` |
 | The pages | `src/components/News/News.tsx`; routes in `src/app/news/` |
 | The cover and share image (the fact card) | `src/components/News/FactCard.tsx`, `src/app/news/[slug]/opengraph-image.tsx` |
 | Company logos, with where each came from | `public/images/news/logos/`, listed in `COMPANY` in the data file |
@@ -128,7 +140,7 @@ The cover and the share image are the fact card, drawn from `card`, the story an
 ### 6. Publish
 
 1. Set `status: 'published'` and `publishedAt` to now, with the time and offset (`2026-10-12T09:30:00-04:00`): Google News orders fresh stories by it. A later non-correction change sets `updatedAt` the same way.
-2. Open a PR (routes and content are PR-only in this repo). Run `npm run lint` and `npm run build`.
+2. Open a PR (routes and content are PR-only in this repo). Run `npm run lint` and `npm run build`. (A post published from Compose skips this step; see "Publishing from Compose".)
 3. After it deploys, open the post and its story page on esy.com, and check the share image at `/news/<post>/opengraph-image/`.
 
 ### 7. Corrections

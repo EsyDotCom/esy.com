@@ -1917,10 +1917,17 @@ export const PROTOTYPES: Prototype[] = [
         summary:
           'B drops 03 Films and 02 Creatives (SEOPage’s explainer moves into its story in the apps tour), the 01/02/03 chips, and cuts Latest to the feature and three newest with a link to the rest; the last ask offers the email course, like the hero. C is B with the proof first.',
       },
+      {
+        n: 2,
+        title: 'The publication leads',
+        summary:
+          'D is B with Latest turned into the publication: “The Marketing Engineer” heads the section, the newest issue is the feature and the ones before it a list, and AI Marketing News stays beside it. The articles leave the homepage and work through search and the topic pages.',
+      },
     ],
     variants: [
       { slug: 'live', key: 'A', name: 'Live', round: 1, title: 'The homepage as it is.', blurb: 'Today’s esy.com, for comparison.', poster: ['#0A2540', '#00D4AA'] },
       { slug: 'trimmed', key: 'B', name: 'Trimmed', round: 1, live: true, liveHref: '/', title: 'Only what backs the hero.', blurb: 'No Films or Creatives sections, no chips, Latest cut to four, the course offered again at the end.', poster: ['#F8F9FA', '#0A2540'] },
+      { slug: 'publication', key: 'D', name: 'Publication', round: 2, mergeOf: ['B'], title: 'The newsletter and the news, first.', blurb: 'B with The Marketing Engineer’s newest issues as the lead under the hero and AI Marketing News beside them.', poster: ['#F8F9FA', '#00A896'] },
       { slug: 'proof-first', key: 'C', name: 'Proof first', round: 1, mergeOf: ['B'], title: 'The claim, then the proof.', blurb: 'B with the apps tour (clip.art, SEOPage, Compose) straight after the hero, above Latest.', poster: ['#061527', '#00D4AA'] },
     ],
   },

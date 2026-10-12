@@ -13,11 +13,14 @@ import { getAllAgenticArticles } from '@/lib/published-articles';
 //                    its story), no work chips, Latest cut to four, the course
 //                    offered again at the end
 //   C · Proof first  B with the apps tour above Latest, straight after the hero
+//   D · Publication  B with Latest turned into the publication: The Marketing
+//                    Engineer's newest issues as the lead, AI Marketing News beside
 
-const TAKES: Record<string, { trim: boolean; appsFirst: boolean }> = {
+const TAKES: Record<string, { trim: boolean; appsFirst: boolean; lead?: 'articles' | 'newsletter' }> = {
   live: { trim: false, appsFirst: false },
   trimmed: { trim: true, appsFirst: false },
   'proof-first': { trim: true, appsFirst: true },
+  publication: { trim: true, appsFirst: false, lead: 'newsletter' },
 };
 
 const prototype = findPrototype('home-focus')!;
@@ -47,6 +50,7 @@ export default async function HomeFocusVariantPage({ params }: { params: Promise
         newsColumn
         trim={take.trim}
         appsFirst={take.appsFirst}
+        lead={take.lead}
         hero={<HomeHeroAtWork desks={resolveDesks(articles)} />}
       />
       <PrototypeBar prototype={prototype} current={variant} />

@@ -28,12 +28,14 @@ import { formatDate, formatMinutes, thumbnailFor } from '@/lib/article-format';
 import { TOPICS, topicHref } from '@/data/topics';
 import { FILMS, filmHref } from '@/data/films';
 import { CREATIVES } from '@/data/creatives';
+import { ISSUES, issueDate } from '@/components/NewsletterPage/issues';
 import CreativePlayer from './CreativePlayer';
 import FilmPosterBand from './FilmPosterBand';
 import FilmStrip from './FilmStrip';
 import ClipArtVisuals, { type ClipArtVisual } from './ClipArtVisuals';
 import NewsletterHero from './NewsletterHero';
 import WeeklyEmailBand from './WeeklyEmailBand';
+import NewsletterSignup from './NewsletterSignup';
 import { nlSerif } from './serif';
 import ClipArtWordmark from './ClipArtWordmark';
 import SeoPageWordmark from './SeoPageWordmark';
@@ -177,6 +179,7 @@ export default async function NewsletterHomePage({
   newsColumn = false,
   trim = false,
   appsFirst = false,
+  lead = 'articles',
 }: {
   /** 01 Apps as a ledger plus one case-study band per app ('bands', live), or
    *  merged into one band that shows one app at a time (/prototypes/home-trim/).
@@ -190,6 +193,9 @@ export default async function NewsletterHomePage({
   trim?: boolean;
   /** Put the apps tour, the proof, straight after the hero and above Latest (/prototypes/home-focus/). */
   appsFirst?: boolean;
+  /** What leads under the hero: the latest articles, or the publication itself, The Marketing Engineer's
+   *  newest issues beside AI Marketing News (D · Publication, /prototypes/home-focus/). */
+  lead?: 'articles' | 'newsletter';
   /** Compose as the third app: its mark in the 01 Apps ledger and its own case
    *  study band after SEOPage's. The homepage passes the stencil mark and the
    *  replay band (2026-09-30); /engineer leaves it off. The other marks and
@@ -208,8 +214,62 @@ export default async function NewsletterHomePage({
   const featuredThumb = featured ? thumbnailFor(featured) : null;
   const properties = compose ? [...PROPERTIES, COMPOSE_PROPERTY] : PROPERTIES;
 
+  // The publication: the newest issue as the feature, the ones before it as a list, AI Marketing News beside.
+  const [issue, ...earlier] = ISSUES;
+  const publicationSection = issue && (
+    <section className="nl-section nl-section--alt" id="latest" aria-labelledby="nl-pub-title">
+      <div className="nl-container">
+        <div className="nl-section-head">
+          <h2 className="nl-title" id="nl-pub-title">The Marketing Engineer</h2>
+          <Link href="/newsletter/" className="nl-inline-link">
+            All issues <ArrowRight size={15} aria-hidden="true" />
+          </Link>
+        </div>
+        <div className="nl-latest-grid">
+          <div>
+            <p className="nl-col-label">This week&apos;s issue</p>
+            <Link href={`/newsletter/${issue.slug}/`} className="nl-featured">
+              {issue.cover && (
+                <span className="nl-featured-media">
+                  <img src={issue.cover} alt="" width={960} height={540} loading="lazy" />
+                </span>
+              )}
+              <span className="nl-featured-body">
+                <span className="nl-meta">No. {issue.n} · {issueDate(issue.date)} · {issue.minutes} min read</span>
+                <span className="nl-featured-title">{issue.title}</span>
+                <span className="nl-featured-desc">{issue.dek}</span>
+                <span className="nl-read">
+                  Read the issue <ArrowRight size={15} aria-hidden="true" />
+                </span>
+              </span>
+            </Link>
+            {earlier.length > 0 && (
+              <ul className="nl-list">
+                {earlier.slice(0, 3).map((i) => (
+                  <li key={i.slug}>
+                    <Link href={`/newsletter/${i.slug}/`} className="nl-row">
+                      <span className="nl-row-date">{issueDate(i.date)}</span>
+                      <span className="nl-row-title">{i.title}</span>
+                      <span className="nl-row-cat">No. {i.n}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {/* The next issue, asked for where the reader just saw this one. Same list as every signup. */}
+            <div className="nl-issue-signup">
+              <p><b>Get the next issue.</b> One AI marketing system a week, and the week&apos;s news. Free.</p>
+              <NewsletterSignup form="home-issues" cta="Subscribe" note="Unsubscribe in one click." />
+            </div>
+          </div>
+          <NewsColumn />
+        </div>
+      </div>
+    </section>
+  );
+
   // Latest and the apps tour, as blocks, so a page can put the proof first.
-  const latestSection = (
+  const latestSection = lead === 'newsletter' ? publicationSection : (
     <>
       {/* ══ Latest ══
           The newest article earns the width; the rest of the latest dozen are

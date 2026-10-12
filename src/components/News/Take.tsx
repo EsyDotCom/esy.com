@@ -8,7 +8,8 @@ import Link from 'next/link';
 import type { NewsPost } from '@/data/news';
 
 // Links, then bold, then italic: the only marks a take carries.
-const INLINE = /\[([^\]]+)\]\(([^)\s]+)\)|\*\*([^*]+)\*\*|\*([^*]+)\*/g;
+// A link may carry a title, [text](url "title"), which the API keeps; the title is dropped here.
+const INLINE = /\[([^\]]+)\]\(([^)\s]+)(?:\s+"[^"]*")?\)|\*\*([^*]+)\*\*|\*([^*]+)\*/g;
 const unescape = (t: string) => t.replace(/\\([\\*_[\]])/g, '$1');
 
 /** A link inside the take: our own pages navigate in-site; others open as plain links. */

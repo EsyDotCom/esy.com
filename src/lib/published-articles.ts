@@ -93,8 +93,9 @@ async function fetchPublished(publicationSlug: string): Promise<ApiArticle[]> {
   // api.esy.com redeploy), silently dropping every published article until the
   // cache expired. By throwing, an in-flight ISR regeneration is discarded and
   // Next keeps serving the last-good render; only a cold cache + dead API errors.
-  // A 404 here means the publication is missing/not public — also an error, not
-  // "no articles" (a populated publication returns 200 with an items array).
+  // A 404 here means the publication is missing/not public: thrown like any
+  // error, and fetchPublishedSafe then renders without that one publication
+  // rather than failing the whole page.
   if (!res.ok) {
     throw new PublishedFetchError(
       `published-articles ${publicationSlug}: HTTP ${res.status}`,
@@ -122,6 +123,19 @@ async function fetchPublishedSafe(publicationSlug: string): Promise<ApiArticle[]
       }
       break;
     }
+  }
+
+  // A 4xx is a definite answer, not a blip: the publication is missing or
+  // private, and no retry or later render will change that. Rethrowing it would
+  // fail every regeneration of every page that reads the hub (the homepage,
+  // /news, /about…) and freeze them at the last deploy, which is what happened
+  // when `agentic` stopped existing on the API. So that one publication
+  // contributes nothing, loudly, and the other sections still render.
+  if (lastError instanceof PublishedFetchError && lastError.status !== undefined && lastError.status >= 400 && lastError.status < 500) {
+    console.error(
+      `[published-articles] ${publicationSlug}: HTTP ${lastError.status}; the publication is missing or not public, so pages render without it.`,
+    );
+    return [];
   }
 
   if (mayFallbackToRegistryOnly()) {

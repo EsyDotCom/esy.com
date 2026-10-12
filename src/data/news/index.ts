@@ -78,9 +78,11 @@ export interface NewsPost {
   publishedAt: string;
   /** When the post last changed beyond a correction (same format). Feeds dateModified. */
   updatedAt?: string;
-  /** Who wrote it, said on the post: 'zev' when Zev wrote it himself, 'compose' when agents in
-   *  Compose researched and drafted it. Zev approves every post either way (2026-10-12). */
-  writtenBy: 'zev' | 'compose';
+  /** Who wrote it, said on the post: 'zev' when Zev wrote it himself, 'agents' when AI agents
+   *  researched and drafted it (the posts before 2026-10-12, drafted in Claude sessions and
+   *  committed by esy-agent, not in Compose). Zev approves every post either way. When Compose's
+   *  newsroom drafts posts, it gets its own value then, not before. */
+  writtenBy: 'zev' | 'agents';
   readMinutes: number;
   /** Why a draft is held, for the next person to pick it up. */
   held?: string;
@@ -165,7 +167,7 @@ export const NEWS_POSTS: NewsPost[] = [
     card: { title: 'Muse for Small Business', facts: ['15 tools connected', 'US & Canada', 'Free for most'] },
     eventDate: '2026-09-29',
     publishedAt: PUBLISHED,
-    writtenBy: 'compose',
+    writtenBy: 'agents',
     readMinutes: 3,
   },
   {
@@ -197,7 +199,7 @@ export const NEWS_POSTS: NewsPost[] = [
     card: { title: 'Meta Enterprise Platform', facts: ['Muse API & Muse Code', 'For businesses & devs', 'Led by CJ Desai'] },
     eventDate: '2026-09-28',
     publishedAt: PUBLISHED,
-    writtenBy: 'compose',
+    writtenBy: 'agents',
     readMinutes: 2,
   },
   {
@@ -229,7 +231,7 @@ export const NEWS_POSTS: NewsPost[] = [
     card: { title: 'Muse, a personal AI agent', facts: ['Does tasks, not just answers', 'US first', 'iOS, Android, web'] },
     eventDate: '2026-09-08',
     publishedAt: PUBLISHED,
-    writtenBy: 'compose',
+    writtenBy: 'agents',
     readMinutes: 2,
   },
 
@@ -263,7 +265,7 @@ export const NEWS_POSTS: NewsPost[] = [
     card: { title: 'Multimodal search in Search Console', facts: ['Lens & Circle to Search', 'Image uploads', 'Worldwide'] },
     eventDate: '2026-09-24',
     publishedAt: PUBLISHED,
-    writtenBy: 'compose',
+    writtenBy: 'agents',
     readMinutes: 2,
   },
   {
@@ -295,7 +297,7 @@ export const NEWS_POSTS: NewsPost[] = [
     card: { title: 'September 2026 spam update', facts: ['Started Sep 24', 'Still rolling out Sep 30', '4th this year'] },
     eventDate: '2026-09-24',
     publishedAt: PUBLISHED,
-    writtenBy: 'compose',
+    writtenBy: 'agents',
     readMinutes: 2,
   },
 
@@ -328,7 +330,7 @@ export const NEWS_POSTS: NewsPost[] = [
     card: { title: 'Search campaigns move to AI Max', facts: ['Auto-created assets', 'Campaign-level broad match', 'DSA: Feb 2027'] },
     eventDate: '2026-09',
     publishedAt: PUBLISHED,
-    writtenBy: 'compose',
+    writtenBy: 'agents',
     readMinutes: 2,
   },
   {
@@ -357,7 +359,7 @@ export const NEWS_POSTS: NewsPost[] = [
     card: { title: 'AI Max\u2019s three features', facts: ['Search term matching', 'Text customization', 'Final URL expansion'] },
     eventDate: '2026-09',
     publishedAt: PUBLISHED,
-    writtenBy: 'compose',
+    writtenBy: 'agents',
     readMinutes: 2,
   },
 
@@ -392,7 +394,7 @@ export const NEWS_POSTS: NewsPost[] = [
     card: { title: 'Claude Sonnet 5.5', facts: ['$2 / $10 per M tokens', '30%+ faster', 'Docs, slides, sheets'] },
     eventDate: '2026-09-28',
     publishedAt: PUBLISHED,
-    writtenBy: 'compose',
+    writtenBy: 'agents',
     readMinutes: 2,
   },
   {
@@ -426,7 +428,7 @@ export const NEWS_POSTS: NewsPost[] = [
     card: { title: 'Eleven v4 and v4 Turbo', facts: ['90+ languages', 'Clone from 10 seconds', '~150 ms to speech'] },
     eventDate: '2026-09-28',
     publishedAt: PUBLISHED,
-    writtenBy: 'compose',
+    writtenBy: 'agents',
     readMinutes: 2,
   },
   {
@@ -457,7 +459,7 @@ export const NEWS_POSTS: NewsPost[] = [
     card: { title: 'Marketing Studio agents', facts: ['Campaign', 'Content', 'Nurture'] },
     eventDate: '2026-09-16',
     publishedAt: PUBLISHED,
-    writtenBy: 'compose',
+    writtenBy: 'agents',
     readMinutes: 2,
   },
   {
@@ -487,7 +489,7 @@ export const NEWS_POSTS: NewsPost[] = [
     card: { title: 'What ChatGPT ad clicks cost', facts: ['Under $3 to $13', 'No benchmarks yet', 'Reported Sep 8'] },
     eventDate: '2026-09-08',
     publishedAt: PUBLISHED,
-    writtenBy: 'compose',
+    writtenBy: 'agents',
     readMinutes: 2,
   },
 
@@ -509,7 +511,7 @@ export const NEWS_POSTS: NewsPost[] = [
     sources: [{ publisher: 'Common Thread Collective', title: '', url: 'https://commonthreadco.com/blogs/coachs-corner/every-chatgpt-ads-update-in-2026-updated-weekly', date: '', supports: '', secondary: true }],
     eventDate: '2026-09',
     publishedAt: PUBLISHED,
-    writtenBy: 'compose' as const,
+    writtenBy: 'agents' as const,
     readMinutes: 2,
     held: 'Only an agency blog confirms it; OpenAI’s pages block automated reads. OpenAI’s own snippet says Sponsored Agents are a test with select US advertisers.',
   })),
@@ -530,7 +532,7 @@ export const NEWS_POSTS: NewsPost[] = [
     sources: [{ publisher: 'OpenAI', title: '', url: 'https://openai.com/index/devday-2026/', date: '', supports: '', secondary: true }],
     eventDate: '2026-09-29',
     publishedAt: PUBLISHED,
-    writtenBy: 'compose' as const,
+    writtenBy: 'agents' as const,
     readMinutes: 3,
     held: 'Details come from news summaries; OpenAI’s own pages block automated reads.',
   },
@@ -551,7 +553,7 @@ export const NEWS_POSTS: NewsPost[] = [
     sources: [{ publisher: 'Search Engine Roundtable', title: '', url: 'https://www.seroundtable.com/google-al-contribution-pilot-42076.html', date: '', supports: '', secondary: true }],
     eventDate: '2026-09-14',
     publishedAt: PUBLISHED,
-    writtenBy: 'compose' as const,
+    writtenBy: 'agents' as const,
     readMinutes: 3,
     held: 'No Google announcement found; only trade press.',
   },

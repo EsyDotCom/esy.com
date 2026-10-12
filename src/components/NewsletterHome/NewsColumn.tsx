@@ -34,9 +34,7 @@ export default function NewsColumn() {
       </ul>
       <Link href="/news/" className="nl-news-all">All AI Marketing News <ArrowRight size={14} aria-hidden="true" /></Link>
       <p className="nl-news-note">
-        Written every day by Zev, some drafted with agents in{' '}
-        <a href="https://compose.esy.com" target="_blank" rel="noopener noreferrer">Compose</a>, and every fact checked against
-        the company&apos;s own page.
+        Written by Zev, some drafted with AI agents, and every fact checked against the company&apos;s own page.
       </p>
     </aside>
   );

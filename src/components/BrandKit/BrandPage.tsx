@@ -1,7 +1,7 @@
 /* esy.com/brand, three ways (2026-10-11). Same kit, different stance:
 
-   A · Sheet     a press kit: the vinyl logo up top, then logo, colour, type,
-                 the toy world, Mason and voice, each with its files
+   A · Sheet     a press kit: the vinyl logo up top, then logo, icons, colour,
+                 type, the toy world, Mason and voice, each with its files
    B · Showroom  a toy store: big vinyl pictures lead every section, the
                  rules sit small beside them, the toy world up front
    C · Guide     a style guide: a sticky contents rail, rules first, pictures
@@ -12,6 +12,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { LOGO, MASON, NAME, VOICE } from './kit';
+import { BrandIcons } from './Icons';
 import { FlatLogos, MasonCard, Materials, Rules, SceneGrid, Swatches, TypeSpecimens, VinylLogos } from './parts';
 
 export type BrandTake = 'sheet' | 'showroom' | 'guide';
@@ -48,21 +49,24 @@ function Sheet({ masonHref }: { masonHref?: string }) {
           <Rules items={LOGO.rules} />
           <VinylLogos />
         </Section>
-        <Section id="colour" kicker="03 · Colour" title="Navy, teal and light">
+        <Section id="icons" kicker="03 · Icons" title="The e and Mason">
+          <BrandIcons />
+        </Section>
+        <Section id="colour" kicker="04 · Colour" title="Navy, teal and light">
           <Swatches />
         </Section>
-        <Section id="type" kicker="04 · Type" title="Three faces, three jobs">
+        <Section id="type" kicker="05 · Type" title="Three faces, three jobs">
           <TypeSpecimens />
         </Section>
-        <Section id="world" kicker="05 · The world" title="Everything is vinyl">
+        <Section id="world" kicker="06 · The world" title="Everything is vinyl">
           <p className="bk-p">The toy theme runs through everything we picture. Vinyl comes in three forms:</p>
           <Materials />
           <SceneGrid />
         </Section>
-        <Section id="mason" kicker="06 · Mascot" title="Mason">
+        <Section id="mason" kicker="07 · Mascot" title="Mason">
           <MasonCard href={masonHref} />
         </Section>
-        <Section id="voice" kicker="07 · Voice" title="How we sound">
+        <Section id="voice" kicker="08 · Voice" title="How we sound">
           <Rules items={VOICE} />
         </Section>
       </div>
@@ -126,7 +130,7 @@ function Showroom() {
 
 /* ── C · Guide ── */
 const GUIDE = [
-  ['name', 'Name'], ['logo', 'Logo'], ['colour', 'Colour'], ['type', 'Type'], ['world', 'Imagery'], ['mason', 'Mason'], ['voice', 'Voice'],
+  ['name', 'Name'], ['logo', 'Logo'], ['icons', 'Icons'], ['colour', 'Colour'], ['type', 'Type'], ['world', 'Imagery'], ['mason', 'Mason'], ['voice', 'Voice'],
 ] as const;
 
 function Guide() {
@@ -149,6 +153,9 @@ function Guide() {
           <Rules items={LOGO.rules} />
           <FlatLogos />
           <VinylLogos />
+        </Section>
+        <Section id="icons" kicker="Icons" title="The e and Mason">
+          <BrandIcons />
         </Section>
         <Section id="colour" kicker="Colour" title="Six colours">
           <Swatches />

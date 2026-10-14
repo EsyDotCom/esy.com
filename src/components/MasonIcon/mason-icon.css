@@ -1,0 +1,132 @@
+/* Mason as an icon (mi-), 2026-10-13: /prototypes/mason-icon/. */
+
+.mi { max-width: 1080px; margin: 0 auto; padding: 48px 20px 140px; color: #0A2540; }
+.mi-head { max-width: 720px; }
+.mi-kicker { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #00796C; margin: 0 0 10px; }
+.mi-head h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.1; margin: 0 0 14px; letter-spacing: -0.01em; }
+.mi-blurb { font-size: 18px; line-height: 1.55; margin: 0 0 12px; }
+.mi-note { font-size: 14px; line-height: 1.55; color: #4A5B6E; margin: 0; }
+
+.mi-sec { margin-top: 56px; }
+.mi-sec h2 { font-size: 22px; margin: 0 0 16px; }
+.mi-sec-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+.mi-sec-head h2 { margin: 0; }
+.mi-label { font-size: 12px; font-weight: 600; color: #4A5B6E; margin: 14px 0 6px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+.mi-toggle { border: 1px solid #C9D3DD; background: #fff; border-radius: 999px; padding: 6px 14px; font-size: 13px; cursor: pointer; color: #0A2540; }
+.mi-toggle[aria-pressed='true'] { background: #0A2540; color: #fff; border-color: #0A2540; }
+
+/* Today beside the take, on a light and a dark ground. */
+.mi-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.mi-hero-icon { margin: 0; }
+.mi-hero-tiles { display: grid; grid-template-columns: 1fr 1fr; border-radius: 16px; overflow: hidden; border: 1px solid #E1E7EE; }
+.mi-hero-tiles img { width: 100%; height: auto; padding: 14%; box-sizing: border-box; }
+.mi-on-light { background: #fff; }
+.mi-on-dark { background: #202124; }
+.mi-hero-icon figcaption { font-size: 14px; font-weight: 600; margin-top: 8px; }
+
+/* Browser tab strips at real size (or 2×). */
+.mi-strips { display: grid; gap: 8px; overflow-x: auto; }
+.mi-strip-pair { min-width: 0; }
+.mi-strips.is-zoom .mi-strip { zoom: 2; }
+.mi-strip { display: flex; align-items: flex-end; gap: 2px; padding: 8px 8px 0; border-radius: 10px 10px 0 0; overflow: hidden; font: 12px/1 system-ui, -apple-system, 'Segoe UI', sans-serif; }
+.mi-strip.is-light { background: #DEE1E6; color: #1F1F1F; }
+.mi-strip.is-dark { background: #202124; color: #E8EAED; }
+.mi-tab { display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 10px; width: 200px; min-width: 0; border-radius: 8px 8px 0 0; flex: 0 1 200px; }
+.mi-strip.is-light .mi-tab.is-active { background: #fff; }
+.mi-strip.is-dark .mi-tab.is-active { background: #35363A; }
+.mi-tab img { width: 16px; height: 16px; flex: none; }
+.mi-tab-blank { width: 16px; height: 16px; border-radius: 50%; background: #9AA0A6; flex: none; }
+.mi-tab-title { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mi-tab-x { opacity: 0.6; font-size: 14px; }
+.mi-tab-plus { padding: 0 10px 10px; opacity: 0.7; font-size: 16px; }
+
+/* Every size, plus a real 16-px raster blown up. */
+.mi-sizes { display: grid; gap: 18px; }
+.mi-size-cells { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 22px; padding: 18px; border: 1px solid #E1E7EE; border-radius: 14px; background: #fff; }
+.mi-size { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.mi-size img { display: block; }
+.mi-size figcaption { font-size: 11px; color: #4A5B6E; }
+.mi-pixels { width: 128px; height: 128px; image-rendering: pixelated; background: #fff; outline: 1px solid #E1E7EE; }
+
+/* Phone home screens: today beside the take. */
+.mi-phones { display: flex; flex-wrap: wrap; gap: 28px; }
+.mi-phone { margin: 0; }
+.mi-phone-screen { width: 270px; padding: 28px 18px; border-radius: 34px; background: linear-gradient(160deg, #1B3A5C, #0A2540 60%, #06333A); display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px 10px; border: 8px solid #111; box-sizing: border-box; }
+.mi-app { display: flex; flex-direction: column; align-items: center; gap: 5px; font: 10px/1.2 system-ui, -apple-system, sans-serif; color: #fff; }
+.mi-app-icon { width: 50px; height: 50px; border-radius: 12px; display: block; overflow: hidden; }
+.mi-phone figcaption { font-size: 14px; font-weight: 600; margin-top: 10px; text-align: center; }
+
+/* The head in vinyl. */
+.mi-vinyl { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
+.mi-vinyl figure { margin: 0; }
+.mi-vinyl img { width: 100%; height: auto; border-radius: 14px; display: block; }
+.mi-vinyl figcaption { font-size: 13px; line-height: 1.45; margin-top: 8px; color: #4A5B6E; }
+.mi-vinyl figcaption b { color: #0A2540; }
+
+@media (max-width: 720px) {
+  .mi { padding-top: 32px; }
+  .mi-pair { grid-template-columns: 1fr; }
+  .mi-vinyl { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .mi-strip { overflow-x: auto; }
+  .mi-tab { flex: 0 0 160px; }
+  .mi-strips.is-zoom .mi-strip { zoom: 1.4; }
+}
+
+/* ── Round 2 (2026-10-13): D · Black or navy, E · Vinyl app icon ── */
+.mi-note--gap { margin-bottom: 16px; }
+.mi-mask-ios { border-radius: 22.37%; }
+.mi-mask-circle { border-radius: 50%; }
+.mi-mask-squircle { border-radius: 32%; }
+
+.mi-grounds { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.mi-ground { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 24px 12px; border: 1px solid #E1E7EE; border-radius: 16px; }
+.mi-ground img { width: 100%; max-width: 180px; height: auto; }
+.mi-ground figcaption { font-size: 14px; font-weight: 600; text-align: center; }
+
+.mi-masters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.mi-master { margin: 0; }
+.mi-master-art { position: relative; border: 1px solid #E1E7EE; }
+.mi-master-art img, .mi-master-art svg { display: block; width: 100%; height: auto; }
+.mi-master-art svg { position: absolute; inset: 0; height: 100%; }
+.mi-master figcaption { font-size: 13px; line-height: 1.45; margin-top: 8px; color: #4A5B6E; }
+.mi-master figcaption b { color: #0A2540; }
+.mi-masks { display: flex; align-items: center; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
+.mi-masks img { width: 64px; height: 64px; }
+.mi-masks span { font-size: 11px; color: #4A5B6E; }
+
+/* A phone at iPhone scale: a 390-pt screen with 60-pt icons. */
+.mi-phone.is-real .mi-phone-screen { width: 390px; padding: 34px 27px; gap: 26px 0; border-radius: 48px; border-width: 10px; }
+.mi-phone.is-real .mi-app { font-size: 12px; }
+.mi-phone.is-real .mi-app-icon { width: 60px; height: 60px; border-radius: 13.4px; object-fit: cover; }
+
+.mi-ladder { display: grid; gap: 14px; }
+.mi-ladder-cells { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 28px; padding: 18px; border: 1px solid #E1E7EE; border-radius: 14px; background: #F7F9FB; }
+.mi-ladder-cell { margin: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.mi-ladder-cell figcaption { font-size: 12px; color: #4A5B6E; display: flex; flex-direction: column; gap: 4px; }
+.mi-chip { display: inline-block; width: fit-content; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; }
+.mi-chip.is-vinyl { background: #E3F4F0; color: #00796C; }
+.mi-chip.is-flat { background: #FDECEA; color: #B3261E; }
+
+.mi-mocks { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 22px; }
+.mi-spot, .mi-settings { margin: 0; width: 340px; max-width: 100%; border-radius: 16px; padding: 10px 14px; font: 14px/1.3 system-ui, -apple-system, sans-serif; }
+.mi-spot { background: #1C1C1E; color: #fff; }
+.mi-settings { background: #F2F2F7; color: #000; }
+.mi-spot-row, .mi-settings-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; }
+.mi-spot-row img, .mi-settings-row img { flex: none; object-fit: cover; }
+.mi-spot-row span { display: flex; flex-direction: column; }
+.mi-spot-row small { color: #98989D; font-size: 12px; }
+.mi-settings-row { border-bottom: 1px solid #D8D8DC; }
+.mi-settings-row span:first-of-type { flex: 1; }
+.mi-settings-row span:last-child { color: #C4C4C6; font-size: 18px; }
+.mi-spot figcaption, .mi-settings figcaption { font-size: 12px; margin-top: 8px; opacity: 0.7; }
+
+.mi-plan { width: 100%; border-collapse: collapse; font-size: 14px; }
+.mi-plan th, .mi-plan td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #E1E7EE; }
+.mi-plan th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: #4A5B6E; }
+
+@media (max-width: 720px) {
+  .mi-grounds, .mi-masters { grid-template-columns: 1fr; }
+  .mi-phone.is-real .mi-phone-screen { width: 100%; max-width: 390px; padding: 26px 14px; }
+  .mi-phone.is-real { width: 100%; }
+}

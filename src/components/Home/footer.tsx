@@ -1,5 +1,6 @@
 "use client";
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
@@ -238,7 +239,15 @@ export default function Footer () {
         <div className="footer-content">
           <div className="footer-brand">
             <div className="footer-logo">
-              <Logo href="" wordmarkOnly wordmarkFont="blackops" theme={logoTheme} />
+              {/* The vinyl esy (2026-10-14), light or dark to match the footer's
+                  theme, at the flat wordmark's 54px width. */}
+              <Image
+                src={logoTheme === 'light' ? '/brand/logo/esy-wordmark-vinyl.png' : '/brand/logo/esy-wordmark-vinyl-dark.png'}
+                alt="esy"
+                width={logoTheme === 'light' ? 424 : 408}
+                height={160}
+                style={{ width: 54, height: 'auto', display: 'block' }}
+              />
               {/* "esy | AI Marketing", matching the header (2026-10-09);
                   colours follow the footer's own theme. */}
               <span aria-hidden="true" style={{ width: 1, height: 16, background: theme.faint }} />

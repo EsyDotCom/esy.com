@@ -117,10 +117,9 @@ export function IssueCover({ issue, link }: { issue: Issue; link: string }) {
   const cover = useCover()(issue);
   return (
     <main className="nlp">
-      <header
-        className={`nlp-cover${cover ? ' has-cover' : ''}`}
-        style={cover ? { backgroundImage: `linear-gradient(90deg, #0A1626 0%, #0A1626 40%, rgba(10,22,38,0.6) 65%, rgba(10,22,38,0.1) 100%), url(${cover})` } : undefined}
-      >
+      {/* The cover is shown whole under the title, never as a cropped, dimmed
+          backdrop: readers couldn't make the art out behind the text (2026-10-14). */}
+      <header className={`nlp-cover${cover ? ' has-art' : ''}`}>
         <div className="nlp-cover-in">
           <Link href={archive} className="nlp-back nlp-back--dark"><ArrowLeft size={14} aria-hidden="true" /> All issues</Link>
           <div className="nlp-cover-grid">
@@ -133,6 +132,12 @@ export function IssueCover({ issue, link }: { issue: Issue; link: string }) {
           </div>
         </div>
       </header>
+      {cover && (
+        <figure className="nlp-cover-art">
+          <Image src={cover} alt={issue.coverAlt ?? ''} width={1536} height={864} priority sizes="(max-width: 1100px) 100vw, 1040px" />
+          {issue.coverCaption && <figcaption>{issue.coverCaption}</figcaption>}
+        </figure>
+      )}
       <article className="nlp-letter nlp-letter--cover">
         <IssueBody issue={issue} />
         <CoursePromo />

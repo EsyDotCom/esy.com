@@ -6,6 +6,7 @@
    every archive piece takes an `href` for the issue. Each take is a different
    arrangement of these, so a merge round is a small new component. */
 
+import SocialAvatar from '@/components/EducationHero/SocialAvatar';
 import { createContext, useContext, useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Copy, MailCheck } from 'lucide-react';
@@ -138,7 +139,11 @@ export function IssueBody({ issue }: { issue: Issue }) {
   return (
     <div className="nlp-body">
       {issue.body.map((s, i) => <Section key={i} id={`s${i}`} s={s} />)}
-      <p className="nlp-sign">Zev</p>
+      {/* The sign-off carries Zev's small photo; hover or tap opens his profile card. */}
+      <p className="nlp-sign">
+        <SocialAvatar frameClassName="nlp-sign-photo" size={40} />
+        Zev
+      </p>
     </div>
   );
 }

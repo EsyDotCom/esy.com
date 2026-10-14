@@ -8,7 +8,8 @@
  *   The e            transparent (the bare e that was live until 2026-10-14),
  *                    on navy (the browser tab: Zev's pick), on black, on white
  *   Mason, flat      transparent, on navy (small app sizes), on teal
- *   Mason, vinyl     on teal (the app icon), on navy, and cut out (alpha)
+ *   Mason, vinyl     on teal (the home-screen icon, head 75% of the width), on
+ *                    navy, cut out (alpha), and Android's adaptive foreground
  *
  * Every variant is written as SVG (flat marks) or PNG at 16, 32, 48, 180 and
  * 512 (plus 1024 for Mason) into public/brand/icons/. The live icons come
@@ -19,8 +20,8 @@
  * The tiled e is redrawn on a 16-pixel grid (32 units a pixel in a 512 box)
  * so its straight edges land on whole pixels at 16 and 32. The vinyl sources
  * live beside this script (scripts/brand-icons/): edit-image renders of his
- * head from the studio shot, reframed so the head sits inside Android's safe
- * zone; the cut-out is keyed from the teal render here, no extra run.
+ * head from the studio shot. The teal render is keyed here (no extra run) for
+ * the tile's crop, the cut-out and the Android foreground; navy is a reframe.
  *
  *   node scripts/brand-icons.mjs
  */
@@ -98,9 +99,9 @@ const flatTile = (ground, h, name) => svgDoc('Mason', `Mason, flat, on ${name}.`
  * Key the head out of its teal render: flood-fill the background from the
  * edges on "tealness" (green minus red), so the teal stripe inside the head is
  * never reached; alpha ramps across the edge, and edge pixels lose the teal
- * spill. Then centre it in a transparent 1024 square.
+ * spill. Returns the keyed RGBA and the head's bounds (alpha over half).
  */
-async function vinylCutout(file) {
+async function keyHead(file) {
   const { data, info } = await sharp(file).removeAlpha().raw().toBuffer({ resolveWithObject: true });
   const W = info.width, H = info.height, N = W * H;
   const gr = new Float32Array(N);
@@ -131,6 +132,7 @@ async function vinylCutout(file) {
     }
   }
   const rgba = Buffer.alloc(N * 4);
+  const box = { x0: W, y0: H, x1: 0, y1: 0 };
   for (let p = 0; p < N; p++) {
     const r = data[p * 3], b = data[p * 3 + 2];
     let g = data[p * 3 + 1];
@@ -139,14 +141,53 @@ async function vinylCutout(file) {
     if (bg[p] && gr[p] > BG * 0.6) a = 0;
     if (near[p] && a > 0) g = Math.min(g, Math.max(r, b));
     rgba.set([r, g, b, Math.round(a * 255)], p * 4);
+    if (a > 0.5) {
+      const x = p % W, y = (p / W) | 0;
+      box.x0 = Math.min(box.x0, x); box.x1 = Math.max(box.x1, x);
+      box.y0 = Math.min(box.y0, y); box.y1 = Math.max(box.y1, y);
+    }
   }
-  const trimmed = await sharp(rgba, { raw: { width: W, height: H, channels: 4 } }).trim().png().toBuffer();
-  const fitted = await sharp(trimmed).resize(900, 900, { fit: 'inside' }).png().toBuffer();
+  return { rgba, W, H, box };
+}
+
+const blank = (s) => sharp({ create: { width: s, height: s, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } } });
+const trimmedHead = async ({ rgba, W, H }) => sharp(rgba, { raw: { width: W, height: H, channels: 4 } }).trim().png().toBuffer();
+
+/** The cut-out: the keyed head centred in a transparent 1024 square, 900 px at its longest. */
+async function vinylCutout(keyed) {
+  const fitted = await sharp(await trimmedHead(keyed)).resize(900, 900, { fit: 'inside' }).png().toBuffer();
   const { width, height } = await sharp(fitted).metadata();
-  return sharp({ create: { width: 1024, height: 1024, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } } })
-    .composite([{ input: fitted, left: Math.round((1024 - width) / 2), top: Math.round((1024 - height) / 2) }])
-    .png()
-    .toBuffer();
+  return blank(1024).composite([{ input: fitted, left: Math.round((1024 - width) / 2), top: Math.round((1024 - height) / 2) }]).png().toBuffer();
+}
+
+/**
+ * The home-screen icon (iOS, the App Store, profile pictures): cropped from
+ * the original render around the head so the head spans `share` of the tile's
+ * width, centred on its own teal. iOS only rounds the corners, so the head can
+ * be big; cropping the render (not enlarging a shrunk copy) keeps it sharp.
+ */
+async function vinylTile(file, keyed, share) {
+  const { box, W, H } = keyed;
+  const side = Math.min(W, H, Math.round((box.x1 - box.x0) / share));
+  const cx = (box.x0 + box.x1) / 2, cy = (box.y0 + box.y1) / 2;
+  const left = Math.max(0, Math.min(W - side, Math.round(cx - side / 2)));
+  const top = Math.max(0, Math.min(H - side, Math.round(cy - side / 2)));
+  return sharp(file).extract({ left, top, width: side, height: side }).resize(1024, 1024, { kernel: 'lanczos3' }).png().toBuffer();
+}
+
+/**
+ * Android's adaptive-icon foreground: the keyed head on transparent, small
+ * enough that its bounding box's corners stay inside the centred safe circle
+ * (66% across, so 33% from the centre; sized to 31% for margin). The launcher
+ * draws it over a background layer: teal, the render's own #2BE1CA.
+ */
+async function androidForeground(keyed) {
+  const head = await trimmedHead(keyed);
+  const { width: w, height: h } = await sharp(head).metadata();
+  const k = (0.31 * 1024) / (Math.hypot(w, h) / 2);
+  const fw = Math.round(w * k), fh = Math.round(h * k);
+  const fitted = await sharp(head).resize(fw, fh).png().toBuffer();
+  return blank(1024).composite([{ input: fitted, left: Math.round((1024 - fw) / 2), top: Math.round((1024 - fh) / 2) }]).png().toBuffer();
 }
 
 /* ── Writers ───────────────────────────────────────────────────────── */
@@ -204,10 +245,15 @@ const FLAT = {
 };
 for (const [name, svg] of Object.entries(FLAT)) await variant(name, { svg, sizes: [...SIZES, 1024] });
 
+// One teal render feeds the home-screen tile (head 75% of the width), the
+// Android foreground and the cut-out. Navy stays the reframed render.
+const TEAL_RENDER = path.join(SRC, 'vinyl-teal-render.webp');
+const keyed = await keyHead(TEAL_RENDER);
 const VINYL = {
-  'mason-vinyl-teal': fs.readFileSync(path.join(SRC, 'vinyl-teal.webp')),
+  'mason-vinyl-teal': await vinylTile(TEAL_RENDER, keyed, 0.75),
   'mason-vinyl-navy': fs.readFileSync(path.join(SRC, 'vinyl-navy.webp')),
-  'mason-vinyl-cutout': await vinylCutout(path.join(SRC, 'vinyl-teal-render.webp')),
+  'mason-vinyl-cutout': await vinylCutout(keyed),
+  'mason-vinyl-android-foreground': await androidForeground(keyed),
 };
 for (const [name, raster] of Object.entries(VINYL)) await variant(name, { raster, sizes: [...SIZES, 1024] });
 

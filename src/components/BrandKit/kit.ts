@@ -83,7 +83,7 @@ export const MASON = {
     { part: 'Head', is: 'A tall octagon with 45° cut corners, navy, a small teal stripe on its left side.' },
     { part: 'Eyes', is: 'Two upright rectangular ivory eyes with small dark pupils. No mouth: calm, never grinning.' },
     { part: 'Collar', is: 'A navy ring under the head.' },
-    { part: 'Arms', is: 'Eight, of short blocky segments: front arms navy, back arms deep teal, every tip bright teal.' },
+    { part: 'Arms', is: 'Eight, of short blocky segments in navy and deep teal, every tip bright teal. At rest, seven fan forward and the eighth curls up behind him like a tail.' },
     { part: 'Material', is: 'Matte-satin designer vinyl, about the height of a coffee mug.' },
   ],
   rules: {

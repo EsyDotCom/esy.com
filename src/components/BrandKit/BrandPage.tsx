@@ -63,7 +63,8 @@ function Sheet({ masonHref }: { masonHref?: string }) {
           <Materials />
           <SceneGrid />
         </Section>
-        <Section id="mason" kicker="07 · Mascot" title="Mason">
+        <Section id="mason" kicker="07 · Mascot" title="OctoMason™">
+          <p className="bk-p">Mason for short.</p>
           <MasonCard href={masonHref} />
         </Section>
         <Section id="voice" kicker="08 · Voice" title="How we sound">
@@ -168,7 +169,8 @@ function Guide() {
           <Rules items={['Every picture of Esy’s world is vinyl: matte-satin, glossy, or lit from inside.', 'The whole scene is vinyl, never a toy dropped into a photograph.', 'Models draw no words and no logos; we set words in our type and lay on logos from the companies’ own files.', 'Zev’s own profiles keep his real desk photo.']} />
           <Materials />
         </Section>
-        <Section id="mason" kicker="Mason" title="The mascot">
+        <Section id="mason" kicker="Mason" title="OctoMason™">
+          <p className="bk-p">Mason for short.</p>
           <MasonCard href={MASON_HREF} />
         </Section>
         <Section id="voice" kicker="Voice" title="How we sound">
@@ -179,11 +181,11 @@ function Guide() {
   );
 }
 
-/** One take. `live` is the shipped esy.com/brand (A): no prototype note, and Mason's card stays a card until his page is picked. */
+/** One take. `live` is the shipped esy.com/brand (A): no prototype note, and Mason's card opens /mason. */
 export default function BrandPage({ take, live = false }: { take: BrandTake; live?: boolean }) {
   return (
     <main className="bk">
-      {take === 'sheet' ? <Sheet masonHref={live ? undefined : MASON_HREF} /> : take === 'showroom' ? <Showroom /> : <Guide />}
+      {take === 'sheet' ? <Sheet masonHref={live ? '/mason/' : MASON_HREF} /> : take === 'showroom' ? <Showroom /> : <Guide />}
       {live ? (
         <p className="bk-wrap bk-foot">The SVGs are the logo; the vinyl renders are pictures of it. Every picture here is made with Esy, on api.esy.com.</p>
       ) : (

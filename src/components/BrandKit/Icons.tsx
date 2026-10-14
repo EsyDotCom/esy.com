@@ -46,9 +46,10 @@ const SUITE: Mark[] = [
   {
     id: 'vinyl',
     name: 'Mason, vinyl',
-    line: 'His head in vinyl, made from his studio shot. On a tile the head stays inside Android’s safe zone, so no launcher’s mask cuts it.',
+    line: 'His head in vinyl, made from his studio shot. On the home-screen tile his head fills the space; Android gets its own foreground, smaller, so its launchers’ masks never cut him.',
     rows: [
-      { file: 'mason-vinyl-teal', ground: 'On teal', use: 'App icon, profile pictures', tile: true, big: true },
+      { file: 'mason-vinyl-teal', ground: 'On teal', use: 'App icon, profile pictures', note: 'His head spans three quarters of the tile; iOS only rounds the corners.', tile: true, big: true },
+      { file: 'mason-vinyl-android-foreground', ground: 'Android foreground', use: 'Android app icon', note: 'Transparent, with his head inside the safe zone (a centred circle 66% across) so no launcher’s mask cuts it. Android draws it over a teal (#2BE1CA) background layer.', checker: true, big: true },
       { file: 'mason-vinyl-navy', ground: 'On navy', tile: true, big: true },
       { file: 'mason-vinyl-cutout', ground: 'Cut out', note: 'Transparent PNG, for placing on any ground.', checker: true, big: true },
     ],
@@ -143,7 +144,8 @@ function Suite({ mark }: { mark: Mark }) {
 
 const WHERE = [
   ['Browser tab, bookmarks', '16, 32, 48 px', 'The e, on navy'],
-  ['Home screen, App Store, Spotlight', '1024 px, 60 pt, 40 pt', 'Mason, vinyl, on teal'],
+  ['iPhone home screen, App Store, Spotlight', '1024 px, 60 pt, 40 pt', 'Mason, vinyl, on teal'],
+  ['Android home screen', 'Adaptive icon, 108 dp', 'Mason, vinyl, Android foreground on teal'],
   ['Settings, notifications', '29 pt, 20 pt', 'Mason, flat, on navy'],
   ['Profile pictures', 'Any', 'Mason, vinyl, on teal'],
 ];

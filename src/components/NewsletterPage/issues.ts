@@ -33,13 +33,62 @@ export interface Issue {
       from one sentence of what he's doing. The desk covers before it stay in
       /images/newsletter/covers/<n>.webp. */
   cover?: string;
+  /** What the cover shows, for screen readers. */
+  coverAlt?: string;
+  /** One line under the cover saying what Mason is doing and why, in plain words. */
+  coverCaption?: string;
   body: IssueSection[];
 }
 
 export const ISSUES: Issue[] = [
   {
+    n: 4,
+    cover: '/images/newsletter/covers/vinyl-mason/4.webp',
+    coverAlt: 'Mason the octopus at a microscope over a tray of small figurines dressed as different characters, while a screen beside him shows the one he found, magnified and glowing.',
+    coverCaption: 'Mason studies a crowd of possible customers under the microscope, and the screen shows the one he’s looking for.',
+    slug: 'find-what-to-build',
+    date: '2026-10-15',
+    title: 'Find what to build: the ICP discovery system',
+    dek: 'Your ideal customer is a guess until you’ve talked to them. The system that turns the guess into real people, their own words, and booked calls.',
+    topic: 'AI marketing',
+    minutes: 6,
+    body: [
+      {
+        kind: 'lead',
+        text: [
+          'This week I wrote about the trap most builders fall into: building for a fantasy customer, then wondering why nobody pays.',
+          'This issue is the fix. It’s the system for finding out who actually has the problem, what they call it, and whether they’ll pay to make it go away.',
+          'AI makes every step faster. It can’t do the step that matters most: talking to people. Skip that and AI just takes you further down the wrong road, faster.',
+        ],
+      },
+      {
+        kind: 'system',
+        title: 'How you find your ICP',
+        steps: [
+          { name: 'Write down the guess', does: 'One paragraph: who it’s for, the pain, what they’d pay. You write it down so you can prove it wrong.' },
+          { name: 'Collect their words', does: 'Have AI read where they already complain and pull out each problem in their own words, with a link to where they said it.' },
+          { name: 'Talk to ten', does: 'Ten short calls. Ask about the last time the problem happened and what they did, never “would you buy this?”' },
+          { name: 'Build the avatar', does: 'One named person: the trigger, their pains, their objections, the exact words they use, and the quote behind each.' },
+          { name: 'Test the pull, then book', does: 'One piece of content and one small ad aimed at that pain. Count replies and booked calls, not likes. Every sales call is another interview.' },
+        ],
+      },
+      { kind: 'take', title: 'The call-notes skill', what: 'Paste a call transcript. It returns their pains in their own words, the trigger, what they’ve tried, their objections, any sign they’d pay, and where you led the witness.', label: 'Copy the skill' },
+      { kind: 'news', slugs: ['meta-muse-launch', 'hubspot-marketing-studio-agents', 'chatgpt-ads-costs-vary'] },
+      {
+        kind: 'reads',
+        items: [
+          { title: 'Why builders get stuck', why: 'The essay on zev.esy.com this issue answers.', href: 'https://zev.esy.com' },
+          { title: 'The Mom Test, Rob Fitzpatrick', why: 'How to ask questions people can’t lie to you about.', href: 'https://www.momtestbook.com' },
+        ],
+      },
+      { kind: 'next', text: 'Bring your ICP guess to the AI Marketing community and we’ll pull it apart together.', cta: 'Join the community', href: 'https://www.skool.com/ai-marketing' },
+    ],
+  },
+  {
     n: 3,
     cover: '/images/newsletter/covers/vinyl-mason/3.webp',
+    coverAlt: 'Mason the octopus setting a block into a page that an AI chat window is quoting.',
+    coverCaption: 'Mason sets a block into a page that an AI answer is quoting.',
     slug: 'landing-pages-ai-will-cite',
     date: '2026-10-08',
     title: 'Landing pages that AI answers quote',
@@ -72,6 +121,8 @@ export const ISSUES: Issue[] = [
   {
     n: 2,
     cover: '/images/newsletter/covers/vinyl-mason/2.webp',
+    coverAlt: 'Robot agents researching, writing and checking while Mason the octopus stamps the finished paper.',
+    coverCaption: 'The agents research, write and check; Mason stamps the paper only when it’s right.',
     slug: 'the-agent-newsroom',
     date: '2026-10-01',
     title: 'The agent newsroom behind AI Marketing News',
@@ -110,6 +161,8 @@ export const ISSUES: Issue[] = [
   {
     n: 1,
     cover: '/images/newsletter/covers/vinyl-mason/1.webp',
+    coverAlt: 'Mason the octopus on the top step of a winners’ podium, holding up a glowing trophy.',
+    coverCaption: 'Mason on the top step: clip.art at #1 for “AI clipart”.',
     slug: 'how-clip-art-got-to-number-one',
     date: '2026-09-24',
     title: 'How clip.art got to #1 for “AI clipart”',

@@ -2091,7 +2091,7 @@ html {
   max-width: 1440px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 2.4fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 2.4fr 1fr 1fr 1fr;
   gap: 2rem;
 }
 
@@ -2328,7 +2328,7 @@ html {
 /* Responsive */
 @media (max-width: 1200px) {
   .footer-content {
-    grid-template-columns: 2.4fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 2.4fr 1fr 1fr 1fr;
     gap: 1.5rem;
   }
 }
@@ -3085,3 +3085,8 @@ html {
     justify-content: center;
   }
 }
+/* The footer's bottom line (2026-10-14): the copyright, then Privacy, Terms and
+   Editorial standards, in one quiet row that wraps on phones. */
+.footer-bottom-line { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; margin: 0; }
+.footer-bottom-line a { color: inherit; text-decoration: none; }
+.footer-bottom-line a:hover { text-decoration: underline; }

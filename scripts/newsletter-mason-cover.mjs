@@ -19,6 +19,9 @@
  * - The whole scene is glossy vinyl, night, navy and teal.
  * - The scene shows the title plainly; it doesn't need to be clever.
  * - No words or numbers in the image: the title sits beside it on every page.
+ * - Exactly eight arms (2026-10-14): at work each one has a job or stands; at
+ *   rest seven fan forward and the eighth curls up behind like a tail. The
+ *   model often adds a ninth, so count his arms in every take before using it.
  */
 
 import fs from 'fs';
@@ -29,6 +32,11 @@ import sharp from 'sharp';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT_DIR = path.join(ROOT, 'public/images/newsletter/covers/vinyl-mason');
 const API = process.env.ESY_API_URL || 'https://api.esy.com';
+// The master every cover is edited from: his original front studio shot, seven
+// arms forward and the eighth hidden behind (run-80a49586). Starting from the
+// tail shot (run-cfbeb89e) made the model add a ninth or tenth arm, so the tail
+// shot is for showing him at rest (/mason, /brand), not for generating
+// (Zev, 2026-10-14). Add the tail on purpose when a scene shows him resting.
 const STUDIO_SHOT = 'https://images.esy.com/artifacts/tool/run-80a49586/step-1.webp';
 const SUNBURST = 'openai/gpt-image-2.5-sunburst-2026-09-08';
 
@@ -62,6 +70,7 @@ const LOOK =
 const instruction = (scene) =>
   `This photo shows a toy character: ${LOOK}, a designer vinyl toy. Keep exactly this character, the same shape, colours and proportions, and photograph it in a completely new scene: ${scene}. ` +
   'The whole scene is a glossy designer-vinyl toy playset at the character’s scale: every object and surface is moulded vinyl with crisp 45-degree chamfered corners, polished to a shine, with translucent parts glowing teal and jade from inside. Deep navy and teal, night, a little warm lamp light. A wide composition with the character and its work on the right two thirds and calm space on the left. ' +
+  'The character has exactly eight arms, never more and never fewer: every arm is either doing a job or resting on the ground; if it is resting, seven arms fan forward and the eighth curls up behind it like a tail. ' +
   'Photorealistic. No text, no letters, no numbers, no logos anywhere, no people. Any page, screen, newspaper or card shows only blank lines, shapes and pictures, never readable words or numbers.';
 
 /** One take: start the edit, wait for it, crop the 3:2 render to 16:9 and save it. */
@@ -98,4 +107,5 @@ if (!n || !scene) {
 fs.mkdirSync(OUT_DIR, { recursive: true });
 console.log(`Issue ${n}: two takes of “${scene}”`);
 await Promise.all(['a', 'b'].map((letter) => take(n, scene, letter)));
+console.log('Count his arms in each take: exactly eight (at rest, seven forward and one curled behind).');
 console.log(`Pick one, rename it ${n}.webp, and set the issue's cover to /images/newsletter/covers/vinyl-mason/${n}.webp.`);

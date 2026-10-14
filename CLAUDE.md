@@ -32,5 +32,6 @@ Before writing, checking or publishing anything in `src/data/news/` or `/news`, 
 ## Key Documentation (In This Repo)
 
 - `../../../org-docs/brand/ESY_DEFINITION.md` (org.esy) — Canonical brand definition and product philosophy (moved out of this repo; `docs/brand/ESY_DEFINITION.md` is now a pointer stub)
+- `docs/brand/VISUAL_LANGUAGE.md` — Esy's imagery (vinyl) and Mason's rules: OctoMason™ naming, his eight arms, which reference to show vs generate from, and checking every picture before it's used. Read it before making or editing any Mason image.
 - `docs/strategy/sessions/2026-04-12-engineer-first-rebrand-and-homepage-redesign.md` — Current positioning: engineer-first
 - `docs/strategy/GROWTH_STRATEGY.md` — Growth and distribution strategy

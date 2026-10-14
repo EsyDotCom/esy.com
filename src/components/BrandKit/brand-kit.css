@@ -183,3 +183,34 @@
 @media (max-width: 520px) {
   .bk-ic-where th:nth-child(2), .bk-ic-where td:nth-child(2) { display: none; }
 }
+
+/* OctoMason™, esy.com/mason (2026-10-14). Prefix om-; the rest is the kit's bk- styles. */
+.om-hero { overflow: hidden; background: radial-gradient(ellipse at 75% 40%, #163A5F 0%, #0A2540 60%); color: #fff; }
+.om-hero-in { max-width: 1120px; margin: 0 auto; padding: 72px 24px 56px; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 32px; align-items: center; }
+.om-hero .bk-h1 { margin-bottom: 4px; }
+.om-short { margin: 0 0 18px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-size: clamp(1.3rem, 2.4vw, 1.7rem); color: #2BD8BB; }
+.om-hero-head { width: 100%; max-width: 380px; height: auto; justify-self: center; filter: drop-shadow(0 24px 40px rgba(0, 0, 0, 0.35)); }
+.om-two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 36px; align-items: center; }
+.om-two--top { align-items: start; margin-top: 28px; }
+.om-h3 { margin: 0 0 10px; font-size: 1.15rem; color: #0A2540; }
+.om-more a { color: #00796C; font-weight: 600; text-decoration: none; }
+.om-more a:hover { text-decoration: underline; }
+.om-covers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.om-cover { display: flex; flex-direction: column; gap: 6px; color: inherit; text-decoration: none; }
+.om-cover img { width: 100%; height: auto; border-radius: 14px; }
+.om-cover-n { margin-top: 4px; font-weight: 700; color: #0A2540; line-height: 1.35; }
+.om-cover:hover .om-cover-n { color: #00796C; }
+.om-cover-cap { font-size: 0.9rem; line-height: 1.5; color: #5B6B7C; }
+.om-seen { margin-top: 36px; }
+.om-app { margin: 0; display: flex; flex-direction: column; gap: 12px; }
+.om-app img { width: 180px; height: 180px; border-radius: 22.37%; }
+.om-app figcaption { font-size: 0.9rem; line-height: 1.5; color: #5B6B7C; max-width: 420px; }
+.om-app figcaption b, .om-app a { color: #0A2540; }
+.om-app a { color: #00796C; font-weight: 600; text-decoration: none; }
+
+@media (max-width: 900px) {
+  .om-hero-in, .om-two, .om-covers { grid-template-columns: minmax(0, 1fr); }
+  .om-hero-in { padding-top: 48px; }
+  .om-hero-head { max-width: 240px; }
+}
+

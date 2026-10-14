@@ -116,7 +116,7 @@ export function MasonCard({ href }: { href?: string }) {
       <span className="bk-mason-card-copy">
         <b>Meet Mason</b>
         <span>{MASON.who}</span>
-        {href && <span className="bk-more">Mason’s kit →</span>}
+        {href && <span className="bk-more">{href === '/mason/' ? 'More about Mason →' : 'Mason’s kit →'}</span>}
       </span>
     </>
   );
@@ -171,14 +171,14 @@ export function Editions() {
   );
 }
 
-/** The flat stencil drawing, for small and functional uses, at a few real sizes. */
+/** The flat stencil drawing at rest (seven arms forward, the tail up behind), for small and functional uses, at a few real sizes. */
 export function FlatMason() {
   return (
     <div className="bk-flat">
       {[180, 96, 48, 24].map((s) => (
         <div key={s} className="bk-flat-cell">
           <div className="bk-flat-fig" style={{ width: s * 1.33 }}>
-            <OctopusFigure items={{}} />
+            <OctopusFigure pose="rest" />
           </div>
           <span>{s}px</span>
         </div>
@@ -190,7 +190,7 @@ export function FlatMason() {
 export function Turnaround() {
   return (
     <figure className="bk-shot bk-turn">
-      <Image src={MASON.turnaround} alt="Mason’s turnaround: front, three-quarter, side and back" width={1536} height={1024} sizes="(max-width: 1120px) 100vw, 1072px" />
+      <Image src={MASON.turnaround} alt="Mason’s turnaround at rest: front, three-quarter, side and back, his eighth arm curled up behind like a tail" width={1536} height={380} sizes="(max-width: 1120px) 100vw, 1072px" />
       <figcaption>Front, three-quarter, side, back. <Download href={MASON.turnaround} label="Turnaround" /> · <Download href={MASON.studio} label="Studio shot (the reference)" /></figcaption>
     </figure>
   );

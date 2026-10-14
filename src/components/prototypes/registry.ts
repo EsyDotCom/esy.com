@@ -3564,6 +3564,37 @@ export const PROTOTYPES: Prototype[] = [
       { slug: 'explorer', key: 'T3', name: 'Explorer', round: 1, title: 'Pick a topic, see it fill the room.', blurb: 'A navy page with cut-corner topic tiles; the picked topic’s cover, story and articles fill a panel beside them.', poster: ['#0A1626', '#FFFFFF'], live: true, liveHref: '/topics/' },
     ],
   },
+  {
+    slug: 'mason-icon',
+    name: 'Mason as an icon',
+    date: '2026-10-13',
+    headline: 'Could Mason’s head be our favicon?',
+    intro:
+      'Each take is one head-only mark beside today’s e: in a browser tab (light and dark), at every size a favicon ships at, pixel by pixel at 16, and on a phone. The tab you’re in wears the take while it’s open.',
+    summary:
+      'Three head-only marks for the favicon and app icon (Mason’s head, the e with his eyes, a teal tile), each beside today’s e, plus his vinyl head rendered as an icon object.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Three heads',
+        summary:
+          'Zev thinks today’s e is ideal but wanted to see Mason as a favicon, head only. A is his head as the toy is, B keeps the e and gives it his eyes, C is the head as a teal tile. All three are drawn on the 16-pixel grid.',
+      },
+      {
+        n: 2,
+        title: 'The tab stays the e',
+        summary:
+          'Zev agreed the browser tab keeps the e. D compares the tile under it, black or navy, with C’s Mason on navy beside them. E makes the vinyl head a real app icon: inside Android’s safe zone and iOS’s mask, at the sizes a phone shows it, falling back to flat C where detail breaks. Navy won (2026-10-14): D and E shipped together as the Icons section of esy.com/brand, and the site’s favicon became the e on navy, its apple-touch icon the vinyl head on teal.',
+      },
+    ],
+    variants: [
+      { slug: 'head', key: 'A', name: 'The head', round: 1, title: 'Mason’s head, as he is.', blurb: 'The toy’s navy octagon head with its teal stripe and ivory eyes, snapped to the 16-pixel grid; a teal rim on dark tab bars.', image: '/prototypes/mason-icon/head.webp' },
+      { slug: 'head-e', key: 'B', name: 'Head + E', round: 1, title: 'The e, looking back.', blurb: 'Today’s e, untouched, with Mason’s eyes either side of its centre gap.', image: '/prototypes/mason-icon/head-e.webp' },
+      { slug: 'tile', key: 'C', name: 'Teal tile', round: 1, title: 'His head as a teal tile.', blurb: 'The head’s octagon in solid teal with only his marks on it; reads on light and dark tab bars.', image: '/prototypes/mason-icon/tile.webp' },
+      { slug: 'grounds', key: 'D', name: 'Black or navy', round: 2, title: 'The e, on black or navy.', blurb: 'The tab stays the e. Today’s e on black, the e on navy and C’s Mason on navy, at every size, in the tab bar and on a phone.', image: '/prototypes/mason-icon/grounds.webp', live: true, liveHref: '/brand/#icons' },
+      { slug: 'app', key: 'E', name: 'Vinyl app icon', round: 2, mergeOf: ['C'], title: 'The vinyl head as the app icon.', blurb: 'The vinyl head inside Android’s safe zone and iOS’s mask, at 60, 40, 29 and 20 points beside flat C; the small sizes fall back to flat.', image: '/prototypes/mason-icon/app.webp', live: true, liveHref: '/brand/#icons' },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

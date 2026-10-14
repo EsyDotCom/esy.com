@@ -16,6 +16,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import SocialAvatar from '@/components/EducationHero/SocialAvatar';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { type Issue, ISSUES, neighbours } from './issues';
 import { IssueBody, IssueMeta, IssueNav, IssueRow, PageSignup, SampleNote, issueHref, sectionTitles, useCover, useDateLabel, useNewsletterMode } from './shared';
@@ -109,6 +110,20 @@ function CoursePromo() {
   );
 }
 
+/** An issue title for the masthead: a colon is the natural pause, so the line
+    breaks right after the first one; each part then balances if it still wraps
+    (text-wrap in CSS). Titles without a colon are just balanced. */
+function TitleLines({ title }: { title: string }) {
+  const at = title.indexOf(': ');
+  if (at < 0) return <>{title}</>;
+  return (
+    <>
+      <span className="nlp-title-part">{title.slice(0, at + 1)}</span>
+      <span className="nlp-title-part">{title.slice(at + 2)}</span>
+    </>
+  );
+}
+
 export function IssueCover({ issue, link }: { issue: Issue; link: string }) {
   const href = issueHref(link);
   const { archive } = useNewsletterMode();
@@ -126,8 +141,18 @@ export function IssueCover({ issue, link }: { issue: Issue; link: string }) {
             <span className="nlp-cover-n" aria-hidden="true">{String(issue.n).padStart(2, '0')}</span>
             <div>
               <p className="nlp-cover-kicker">The Marketing Engineer · No. {issue.n} · {dateLabel(issue)} · {issue.minutes} min</p>
-              <h1 className="nlp-cover-title">{issue.title}</h1>
+              <h1 className="nlp-cover-title"><TitleLines title={issue.title} /></h1>
               <p className="nlp-cover-dek">{issue.dek}</p>
+              {/* Who wrote it, on the first screen (2026-10-14): the site's byline
+                  photo, which opens Zev's profile card. The sign-off at the end
+                  stays as the letter's close. */}
+              <div className="nlp-cover-byline">
+                <SocialAvatar frameClassName="nlp-cover-byline-photo" size={40} />
+                <span className="nlp-cover-byline-text">
+                  <b>Zev Uhuru</b>
+                  <span>Marketing engineer</span>
+                </span>
+              </div>
             </div>
           </div>
         </div>

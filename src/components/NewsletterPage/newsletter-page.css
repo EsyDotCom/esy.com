@@ -154,10 +154,11 @@ a.nlp-row, a.nlp-card, a.nlp-feature { text-decoration: none; color: inherit; }
 }
 .nlp-cover-kicker { margin: 0 0 12px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255, 255, 255, 0.65); }
 .nlp-cover-title {
-  margin: 0 0 14px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700;
-  font-size: clamp(2.2rem, 4.4vw, 3.4rem); line-height: 1.05; letter-spacing: -0.02em; color: #fff;
+  margin: 0 0 18px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700;
+  font-size: clamp(2.2rem, 4.4vw, 3.4rem); line-height: 1.14; letter-spacing: -0.02em; color: #fff;
+  text-wrap: balance; /* even lines, never one word left alone on the last line */
 }
-.nlp-cover-dek { margin: 0; max-width: 620px; font-size: 1.12rem; line-height: 1.55; color: rgba(255, 255, 255, 0.78); }
+.nlp-cover-dek { margin: 0; max-width: 620px; text-wrap: pretty; font-size: 1.12rem; line-height: 1.55; color: rgba(255, 255, 255, 0.78); }
 .nlp-band { background: #0A1626; }
 .nlp-band-in { max-width: 1120px; margin: 0 auto; padding: 48px 24px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: center; }
 .nlp-band-title { margin: 0 0 8px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 1.9rem; color: #fff; }
@@ -385,3 +386,12 @@ a.nlp-row, a.nlp-card, a.nlp-feature { text-decoration: none; color: inherit; }
 }
 .nlp-sign-photo { flex: none; width: 40px; height: 40px; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 2px #fff, 0 0 0 4px #00A896; }
 .nlp-sign-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* The byline on the issue's first screen (2026-10-14). */
+.nlp-cover-byline { display: flex; align-items: center; gap: 12px; margin-top: 22px; }
+.nlp-cover-byline-photo { flex: none; width: 40px; height: 40px; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 2px #0A1626, 0 0 0 4px #00A896; }
+.nlp-cover-byline-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.nlp-cover-byline-text { display: flex; flex-direction: column; gap: 1px; font-size: 0.9rem; line-height: 1.35; }
+.nlp-cover-byline-text b { color: #fff; font-weight: 600; }
+.nlp-cover-byline-text span { color: rgba(255, 255, 255, 0.68); }
+.nlp-title-part { display: block; text-wrap: balance; }

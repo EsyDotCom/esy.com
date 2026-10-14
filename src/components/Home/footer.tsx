@@ -291,36 +291,24 @@ export default function Footer () {
             </div>
           </div>
           
-          {/* Four columns (2026-09-30): the products, what to read, what to
-              watch and learn from, and the company. */}
-          <FooterColumn
-            title="Products"
-            links={[
-              { href: "https://os.esy.com", text: "OS" },
-              { href: "https://compose.esy.com", text: "Compose" },
-              // Managed and Pricing rejoin when their pages ship (parked
-              // 2026-09-02 — a footer link to an unready page is a promise
-              // the site can't keep).
-            ]}
-          />
-
+          {/* Three columns (2026-10-14): what to read, what to learn from, and
+              the company. The products moved out: OS and Compose already sit in
+              the From ESY band below, so the column only repeated them. */}
           <FooterColumn
             title="Read"
             links={[
-              // Ordered by length, shortest first (2026-10-06), so the column
-              // reads as a clean stair. Skills joined the same day.
-              { href: "/skills/", text: "Skills" },
-              { href: "/topics/", text: "Topics" },
               { href: "/news/", text: "AI Marketing News" },
-              { href: "/tools/", text: "AI Marketing Tools" },
               { href: "/newsletter/", text: "The Marketing Engineer" },
+              { href: "/topics/", text: "Topics" },
+              { href: "/tools/", text: "AI Marketing Tools" },
             ]}
           />
 
           <FooterColumn
-            title="Watch & learn"
+            title="Learn"
             links={[
               { href: "/courses/", text: "Courses" },
+              { href: "/skills/", text: "Skills" },
               { href: "/films/", text: "Films" },
             ]}
           />
@@ -330,13 +318,11 @@ export default function Footer () {
             links={[
               { href: "/about/", text: "About" },
               { href: "mailto:zev@esy.com", text: "Contact" },
-              // Moved from Read (2026-10-06): how the company works, beside
-              // who it is. Editorial standards is still where readers and
-              // search engines look for how the publication keeps things right.
               { href: "/docs", text: "Docs" },
-              { href: "/editorial-standards/", text: "Editorial standards" },
-              { href: "/privacy/", text: "Privacy" },
-              { href: "/terms/", text: "Terms" },
+              // The brand kit and Mason's page (2026-10-14): nothing linked to
+              // either, and octomason.com lands on /mason.
+              { href: "/brand/", text: "Brand" },
+              { href: "/mason/", text: "OctoMason™" },
             ]}
           />
         </div>
@@ -368,7 +354,14 @@ export default function Footer () {
         </div>
 
         <div className="footer-bottom" style={{ borderTopColor: theme.border }}>
-          <p style={{ color: theme.faint }}>&copy; 2024-2026 ESY, LLC. All rights reserved.</p>
+          {/* The bottom line (2026-10-14): the copyright, then the pages people
+              look for but don't browse to, moved out of the Company column. */}
+          <p className="footer-bottom-line" style={{ color: theme.faint }}>
+            <span>&copy; 2024-2026 ESY, LLC. All rights reserved.</span>
+            <Link href="/privacy/">Privacy</Link>
+            <Link href="/terms/">Terms</Link>
+            <Link href="/editorial-standards/">Editorial standards</Link>
+          </p>
         </div>
       </footer>
     );

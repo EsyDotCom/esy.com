@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import './FooterWorld.css';
 
 /* Mason's study (live since 2026-10-12, S · Study on /prototypes/mason-toy/):
@@ -9,8 +10,10 @@ import './FooterWorld.css';
  * stays above the footer card; loaded lazily, since few visitors reach it. */
 export default function StudyFooter() {
   return (
-    <div className="fw fw--study" aria-hidden="true">
+    <div className="fw fw--study">
       <Image src="/brand/scenes/mason-study.webp" alt="" width={1536} height={1024} sizes="100vw" />
+      {/* Who that is (2026-10-14): a small tag in the scene's corner. */}
+      <Link href="/mason/" className="fw-mason-tag">That&rsquo;s Mason <span aria-hidden="true">&rarr;</span></Link>
     </div>
   );
 }

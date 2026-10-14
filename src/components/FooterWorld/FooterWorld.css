@@ -50,7 +50,7 @@ body:has(.fw) footer.footer {
 
 /* Mason's study (StudyFooter, 2026-10-12): a 3:2 photo, full-bleed and cropped
    to a band, its desk in the top part so the footer card never covers him. */
-.fw--study { background: #16283F; }
+.fw--study { position: relative; background: #16283F; }
 .fw.fw--study img {
   width: 100%;
   height: clamp(420px, 46vw, 760px);
@@ -62,3 +62,14 @@ body:has(.fw) footer.footer {
 }
 /* The office: its desks fill the top of the still. */
 .fw.fw--office img { object-position: 50% 25%; }
+
+/* "That's Mason →" (2026-10-14): a quiet tag in the study's top-left corner,
+   linking to his page. */
+.fw-mason-tag {
+  position: absolute; top: 20px; left: 24px; z-index: 1;
+  padding: 7px 12px; border-radius: 999px;
+  background: rgba(10, 22, 38, 0.72); color: #E8EDF3; border: 1px solid rgba(255, 255, 255, 0.16);
+  font-size: 0.82rem; font-weight: 500; letter-spacing: 0.01em; text-decoration: none;
+  backdrop-filter: blur(4px); transition: background 160ms ease, color 160ms ease;
+}
+.fw-mason-tag:hover, .fw-mason-tag:focus-visible { background: #00A896; color: #fff; border-color: #00A896; }

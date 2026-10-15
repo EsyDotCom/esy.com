@@ -4,17 +4,18 @@ Marketing and content site for the Esy brand. For Esy ecosystem context, see `..
 
 ## What This Repo Is
 
-The public-facing marketing site at esy.com. Visual essays, brand storytelling, SEO content, documentation landing pages. This is NOT the app — the app lives at `app.esy.com/`.
+esy.com, Esy's public face: an AI marketing publication by Zev for Morgan, the owner of a small agency that already has clients (2026-10-14). The newsletter (The Marketing Engineer), AI Marketing News, articles, courses, skills and tools, and the YouTube hub. `README.md` maps every page, where its code lives and how content gets here.
 
 ## What This Repo Is NOT
 
-- Not the dashboard (that's `client/app.esy.com/`)
+- Not the app (that's os.esy.com, `client/os.esy.com/`; app.esy.com is legacy, superseded 2026-10-02)
 - Not the API (that's `server/api.esy.com/`)
-- Not a generation tool — it markets and explains what Esy does
+- Not a door for the verticals' buyers (a local service business goes to seopage.com)
+- Not a generation tool: it teaches, and points to the courses and os.esy.com
 
 ## Deployment Workflow
 
-Before pushing or deploying, read `../app.esy.com/docs/DEPLOYMENT_WORKFLOW.md`. This repo follows the shared Esy workflow: run `npm run lint` and `npm run build`, use PRs for public-route/SEO/publishing/API-contract/auth/deployment-risk changes, and keep `main` deployable.
+Before pushing or deploying, read `../os.esy.com/docs/DEPLOYMENT_WORKFLOW.md`. This repo follows the shared Esy workflow: run `npm run lint` and `npm run build`, use PRs for public-route/SEO/publishing/API-contract/auth/deployment-risk changes, and keep `main` deployable.
 
 ### Direct push vs PR (this repo's quick rule)
 
@@ -33,5 +34,8 @@ Before writing, checking or publishing anything in `src/data/news/` or `/news`, 
 
 - `../../../org-docs/brand/ESY_DEFINITION.md` (org.esy) — Canonical brand definition and product philosophy (moved out of this repo; `docs/brand/ESY_DEFINITION.md` is now a pointer stub)
 - `docs/brand/VISUAL_LANGUAGE.md` — Esy's imagery (vinyl) and Mason's rules: OctoMason™ naming, his eight arms, which reference to show vs generate from, and checking every picture before it's used. Read it before making or editing any Mason image.
-- `docs/strategy/sessions/2026-04-12-engineer-first-rebrand-and-homepage-redesign.md` — Current positioning: engineer-first
+- `docs/org/` — How Esy fits together (copy of org.esy `architecture/ARCHITECTURE.md`) and who we write for: Morgan is the primary ICP, YouTube is the base (2026-10-14)
+- `docs/news/README.md` — The newsroom: the daily news post, the two articles, and the weekly issue's nine parts (Esy's `esy-issue` template v2)
+- `docs/prototypes/README.md` — Every prototype at `/prototypes/`, its takes, and which one shipped
+- `docs/strategy/sessions/2026-04-12-engineer-first-rebrand-and-homepage-redesign.md` — The April engineer-first positioning, narrowed to Morgan by `docs/org/DECISIONS-2026-10-14.md`
 - `docs/strategy/GROWTH_STRATEGY.md` — Growth and distribution strategy

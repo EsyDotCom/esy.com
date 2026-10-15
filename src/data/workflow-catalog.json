@@ -1,6 +1,6 @@
 {
   "_comment": "SYNCED SNAPSHOT — do not hand-edit. Regenerate with: node scripts/sync-workflow-catalog.mjs (pulls api.esy.com GET /v1/catalog/workflows). Mirrors the platform's published, versioned workflow templates.",
-  "generatedAt": "2026-09-03T18:39:15.191304Z",
+  "generatedAt": "2026-10-15T04:03:46.637986Z",
   "total": 21,
   "items": [
     {
@@ -26,8 +26,8 @@
         },
         {
           "name": "Cutout QA",
-          "description": "Refine the cutout edges and audit the alpha, escalating the remover on failure.",
-          "stepCount": 2
+          "description": "Refine the cutout edges, re-cut the die-cut border when asked, and audit the alpha.",
+          "stepCount": 3
         }
       ],
       "whatYouProvide": [
@@ -77,7 +77,9 @@
             "options": [
               "low",
               "medium",
-              "high"
+              "high",
+              "xhigh",
+              "max"
             ]
           },
           {
@@ -98,12 +100,19 @@
             "required": false,
             "default": true,
             "description": "On an enforced cutout-audit failure, retry the same render through stronger background-removal models (Heavy/Matting at 2K, then BRIA) before re-rendering; off fails straight to re-render"
+          },
+          {
+            "name": "diecutBorder",
+            "type": "boolean",
+            "required": false,
+            "default": false,
+            "description": "Re-cut the sticker's white die-cut border geometrically after the cutout"
           }
         ]
       },
-      "version": "2026.08.25.1",
+      "version": "2026.09.07",
       "cadence": "On demand",
-      "updatedAt": "2026-09-01T14:46:01.663391Z"
+      "updatedAt": "2026-10-11T21:09:01.375090Z"
     },
     {
       "id": "finalize-clip-art-asset",
@@ -160,7 +169,7 @@
       },
       "version": "2026.07.21",
       "cadence": "On demand",
-      "updatedAt": "2026-09-01T14:46:07.084085Z"
+      "updatedAt": "2026-10-11T21:09:04.700319Z"
     },
     {
       "id": "generate-essay-analytical",
@@ -234,7 +243,7 @@
       },
       "version": "2026.06.04",
       "cadence": "On demand",
-      "updatedAt": "2026-09-01T14:45:54.328909Z"
+      "updatedAt": "2026-10-11T21:08:57.096200Z"
     },
     {
       "id": "generate-essay-argumentative",
@@ -316,7 +325,7 @@
       },
       "version": "2026.06.04",
       "cadence": "On demand",
-      "updatedAt": "2026-09-01T14:45:53.874467Z"
+      "updatedAt": "2026-10-11T21:08:56.848694Z"
     },
     {
       "id": "generate-character-set",
@@ -387,7 +396,13 @@
               "pixel",
               "kawaii",
               "3d",
-              "doodle"
+              "doodle",
+              "line-art",
+              "paper-art",
+              "retro",
+              "botanical",
+              "geometric",
+              "stained-glass"
             ]
           },
           {
@@ -405,7 +420,9 @@
             "options": [
               "low",
               "medium",
-              "high"
+              "high",
+              "xhigh",
+              "max"
             ]
           },
           {
@@ -422,9 +439,9 @@
           }
         ]
       },
-      "version": "2026.07.30",
+      "version": "2026.09.09",
       "cadence": "On demand",
-      "updatedAt": "2026-09-01T14:46:05.273859Z"
+      "updatedAt": "2026-10-11T21:09:03.521633Z"
     },
     {
       "id": "generate-clip-art-asset-ref",
@@ -521,7 +538,13 @@
               "pixel",
               "kawaii",
               "3d",
-              "doodle"
+              "doodle",
+              "line-art",
+              "paper-art",
+              "retro",
+              "botanical",
+              "geometric",
+              "stained-glass"
             ]
           },
           {
@@ -533,7 +556,11 @@
             "options": [
               "1:1",
               "3:4",
-              "4:3"
+              "4:3",
+              "3:2",
+              "2:3",
+              "16:9",
+              "9:16"
             ]
           },
           {
@@ -545,7 +572,27 @@
             "options": [
               "low",
               "medium",
-              "high"
+              "high",
+              "xhigh",
+              "max"
+            ]
+          },
+          {
+            "name": "size",
+            "type": "string",
+            "required": false,
+            "default": "",
+            "description": "Exact WIDTHxHEIGHT for this render, e.g. '2560x1440'. Empty (the default) means aspectRatio decides. Both edges must be multiples of 16, neither over 3840, the ratio between 1:3 and 3:1, and the total pixels between 655,360 and 8,294,400. Above 2560x1440 the provider calls results experimental — allowed, more variable."
+          },
+          {
+            "name": "transparencyMode",
+            "type": "enum",
+            "required": false,
+            "description": "Which mechanism produces transparency: removal (the render wears a matte and the keyed/ML ladder cuts it) or native (the model draws the alpha itself)",
+            "default": "removal",
+            "options": [
+              "removal",
+              "native"
             ]
           },
           {
@@ -633,9 +680,9 @@
           }
         ]
       },
-      "version": "2026.07.31.3",
+      "version": "2026.09.27",
       "cadence": "On demand",
-      "updatedAt": "2026-09-01T14:46:05.724826Z"
+      "updatedAt": "2026-10-11T21:09:03.757506Z"
     },
     {
       "id": "generate-clip-art-asset-v2",
@@ -716,7 +763,13 @@
               "pixel",
               "kawaii",
               "3d",
-              "doodle"
+              "doodle",
+              "line-art",
+              "paper-art",
+              "retro",
+              "botanical",
+              "geometric",
+              "stained-glass"
             ]
           },
           {
@@ -728,8 +781,19 @@
             "options": [
               "1:1",
               "3:4",
-              "4:3"
+              "4:3",
+              "3:2",
+              "2:3",
+              "16:9",
+              "9:16"
             ]
+          },
+          {
+            "name": "size",
+            "type": "string",
+            "required": false,
+            "default": "",
+            "description": "Exact WIDTHxHEIGHT for this render, e.g. '2560x1440'. Empty (the default) means aspectRatio decides. Both edges must be multiples of 16, neither over 3840, the ratio between 1:3 and 3:1, and the total pixels between 655,360 and 8,294,400. Above 2560x1440 the provider calls results experimental — allowed, more variable."
           },
           {
             "name": "quality",
@@ -740,7 +804,20 @@
             "options": [
               "low",
               "medium",
-              "high"
+              "high",
+              "xhigh",
+              "max"
+            ]
+          },
+          {
+            "name": "transparencyMode",
+            "type": "enum",
+            "required": false,
+            "description": "Which mechanism produces transparency: removal (the render wears a matte and the keyed/ML ladder cuts it) or native (the model draws the alpha itself)",
+            "default": "removal",
+            "options": [
+              "removal",
+              "native"
             ]
           },
           {
@@ -828,9 +905,9 @@
           }
         ]
       },
-      "version": "2026.07.31.2",
+      "version": "2026.09.19",
       "cadence": "On demand",
-      "updatedAt": "2026-09-01T14:45:59.372024Z"
+      "updatedAt": "2026-10-11T21:08:59.994061Z"
     },
     {
       "id": "generate-clip-art-asset",
@@ -923,7 +1000,7 @@
       },
       "version": "2026.05.16",
       "cadence": "On demand",
-      "updatedAt": "2026-09-01T14:45:53.419838Z"
+      "updatedAt": "2026-10-11T21:08:56.612464Z"
     },
     {
       "id": "generate-essay-college-application",
@@ -1000,13 +1077,13 @@
       },
       "version": "2026.06.04",
       "cadence": "On demand",
-      "updatedAt": "2026-09-01T14:45:55.669982Z"
+      "updatedAt": "2026-10-11T21:08:57.892102Z"
     },
     {
       "id": "generate-coloring-page",
       "name": "Generate Coloring Page",
-      "description": "Generate a printable coloring page: clean black line art on a white background (no fills, no shading), plus classifier-produced catalog metadata.",
-      "shortDescription": "Printable line-art coloring page with classification.",
+      "description": "Generate a printable coloring page: clean black line art on a white background (no fills, no shading), post-processed for paper or tablet, quality-gated against KDP print and WCAG touch standards, plus classifier-produced catalog metadata.",
+      "shortDescription": "Printable line-art coloring page, post-processed, gated, classified.",
       "artifactClass": "visual",
       "outputType": "visual",
       "depth": "quick",
@@ -1019,6 +1096,21 @@
           "stepCount": 1
         },
         {
+          "name": "Post-process",
+          "description": "Threshold, seal contour gaps, raise strokes to the print floor, despeckle.",
+          "stepCount": 1
+        },
+        {
+          "name": "Audit",
+          "description": "Measure stroke weight, grey, margin ink, gaps and tappable regions; fail what would not print or fill.",
+          "stepCount": 1
+        },
+        {
+          "name": "Text gate",
+          "description": "OCR the page against its text contract: exact lettering on a facts page, none on an art page.",
+          "stepCount": 1
+        },
+        {
           "name": "Classify",
           "description": "Produce catalog metadata.",
           "stepCount": 1
@@ -1028,16 +1120,25 @@
         "Subject prompt",
         "Aspect ratio",
         "Quality tier",
+        "Product (print or app)",
+        "Text contract (optional)",
         "Category list"
       ],
       "whatYouGet": [
-        "Printable line-art image in ESY R2",
+        "Post-processed line-art page in ESY R2 (lossless PNG)",
+        "Quality audit with metrics",
+        "OCR text-gate verdict",
         "Catalog metadata",
         "Resolved provider prompt",
         "Per-step cost ledger"
       ],
       "qaChecks": [
-        "Line-art purity (no fills/shading)",
+        "No surviving grey (threshold)",
+        "Contours sealed (openGapRatio <= 0.03; dense detail reads negative and passes)",
+        "Lettering matches the text contract (OCR gate)",
+        "Structural stroke >= 1.5pt at Letter (print)",
+        "Ink clear of the 0.25\" safe band (print)",
+        ">= 20 regions at 24x24 CSS px, WCAG 2.2 SC 2.5.8 (app)",
         "Prompt fit"
       ],
       "intakeSchema": {
@@ -1065,9 +1166,13 @@
             "description": "Aspect ratio",
             "default": "3:4",
             "options": [
-              "3:4",
               "1:1",
-              "4:3"
+              "3:4",
+              "4:3",
+              "3:2",
+              "2:3",
+              "16:9",
+              "9:16"
             ]
           },
           {
@@ -1079,7 +1184,53 @@
             "options": [
               "low",
               "medium",
-              "high"
+              "high",
+              "xhigh",
+              "max"
+            ]
+          },
+          {
+            "name": "size",
+            "type": "string",
+            "required": false,
+            "default": "",
+            "description": "Exact WIDTHxHEIGHT for this render, e.g. '2560x1440'. Empty (the default) means aspectRatio decides. Both edges must be multiples of 16, neither over 3840, the ratio between 1:3 and 3:1, and the total pixels between 655,360 and 8,294,400. Above 2560x1440 the provider calls results experimental — allowed, more variable."
+          },
+          {
+            "name": "detail",
+            "type": "enum",
+            "required": false,
+            "default": "print",
+            "description": "Which product this page is: 'print' (paper — bold strokes, clear margins) or 'app' (tablet — sealed contours, tappable regions)",
+            "options": [
+              "print",
+              "app"
+            ]
+          },
+          {
+            "name": "renderModel",
+            "type": "string",
+            "required": false,
+            "default": "openai/gpt-image-2.5-flare-2026-09-08",
+            "description": "Registry id of the image model to render with. Print: openai/gpt-image-2.5-flare-2026-09-08. App: openai/gpt-image-2.5-sunburst-2026-09-08. An unregistered id falls back to the bound provider."
+          },
+          {
+            "name": "postProcess",
+            "type": "boolean",
+            "required": false,
+            "default": true,
+            "description": "Threshold, seal gaps, raise strokes to the floor, despeckle. Off skips with provenance; the audit still runs on the raw render."
+          },
+          {
+            "name": "lineArtAuditMode",
+            "type": "enum",
+            "required": false,
+            "default": "enforce",
+            "description": "Quality gate: 'enforce' (default) fails a page that would print or fill badly so the order re-renders it, 'report' records metrics only, 'off' skips the audit",
+            "options": [
+              "enforce",
+              "report",
+              "off"
             ]
           },
           {
@@ -1087,12 +1238,39 @@
             "type": "string",
             "required": true,
             "description": "Comma-separated category slugs the classifier must choose from (empty fails the run in preflight)"
+          },
+          {
+            "name": "textPolicy",
+            "type": "enum",
+            "required": false,
+            "default": "",
+            "options": [
+              "",
+              "none",
+              "exact",
+              "freeform"
+            ],
+            "description": "Per-item text contract: none = text forbidden; exact = must match expectedText; freeform = text allowed, judged on legibility/spelling only. Empty derives from textBearing (true=exact, false=freeform). Use 'none' deliberately, for assets that must carry no characters at all."
+          },
+          {
+            "name": "textBearing",
+            "type": "boolean",
+            "required": false,
+            "default": false,
+            "description": "True when the asset must carry legible text (the OCR gate then checks it)"
+          },
+          {
+            "name": "expectedText",
+            "type": "string",
+            "required": false,
+            "default": "",
+            "description": "The EXACT text the asset must carry; leave empty unless textPolicy is 'exact'"
           }
         ]
       },
-      "version": "2026.07.04",
+      "version": "2026.09.16",
       "cadence": "On demand",
-      "updatedAt": "2026-09-01T14:45:59.833515Z"
+      "updatedAt": "2026-10-11T21:09:00.472025Z"
     },
     {
       "id": "generate-essay-expository",
@@ -1166,7 +1344,7 @@
       },
       "version": "2026.06.04",
       "cadence": "On demand",
-      "updatedAt": "2026-09-01T14:45:54.780312Z"
+      "updatedAt": "2026-10-11T21:08:57.334063Z"
     },
     {
       "id": "generate-illustration",
@@ -1258,10 +1436,13 @@
             "description": "Aspect ratio",
             "default": "4:3",
             "options": [
-              "4:3",
               "1:1",
               "3:4",
-              "16:9"
+              "4:3",
+              "3:2",
+              "2:3",
+              "16:9",
+              "9:16"
             ]
           },
           {
@@ -1273,8 +1454,17 @@
             "options": [
               "low",
               "medium",
-              "high"
+              "high",
+              "xhigh",
+              "max"
             ]
+          },
+          {
+            "name": "size",
+            "type": "string",
+            "required": false,
+            "default": "",
+            "description": "Exact WIDTHxHEIGHT for this render, e.g. '2560x1440'. Empty (the default) means aspectRatio decides. Both edges must be multiples of 16, neither over 3840, the ratio between 1:3 and 3:1, and the total pixels between 655,360 and 8,294,400. Above 2560x1440 the provider calls results experimental — allowed, more variable."
           },
           {
             "name": "categories",
@@ -1311,9 +1501,9 @@
           }
         ]
       },
-      "version": "2026.08.22",
+      "version": "2026.09.16",
       "cadence": "On demand",
-      "updatedAt": "2026-09-01T14:46:00.293560Z"
+      "updatedAt": "2026-10-11T21:09:00.700921Z"
     },
     {
       "id": "generate-essay-narrative",
@@ -1385,7 +1575,7 @@
       },
       "version": "2026.06.04",
       "cadence": "On demand",
-      "updatedAt": "2026-09-01T14:45:55.226059Z"
+      "updatedAt": "2026-10-11T21:08:57.592658Z"
     },
     {
       "id": "generate-pack-cover",
@@ -1459,7 +1649,7 @@
       },
       "version": "2026.08.06.1",
       "cadence": "On demand",
-      "updatedAt": "2026-09-01T14:46:06.631832Z"
+      "updatedAt": "2026-10-11T21:09:04.468487Z"
     },
     {
       "id": "generate-research-infographic",
@@ -1535,7 +1725,7 @@
       },
       "version": "2026.06.01",
       "cadence": "On demand",
-      "updatedAt": "2026-09-01T14:45:49.389115Z"
+      "updatedAt": "2026-10-11T21:08:54.607968Z"
     },
     {
       "id": "generate-research-paper",
@@ -1617,7 +1807,7 @@
       },
       "version": "2026.06.04",
       "cadence": "On demand",
-      "updatedAt": "2026-09-01T14:45:56.128076Z"
+      "updatedAt": "2026-10-11T21:08:58.122191Z"
     },
     {
       "id": "generate-research-report",
@@ -1672,7 +1862,7 @@
       },
       "version": "2026.05.29",
       "cadence": "On demand",
-      "updatedAt": "2026-09-01T14:45:48.925102Z"
+      "updatedAt": "2026-10-11T21:08:54.338626Z"
     },
     {
       "id": "generate-worksheet",
@@ -1758,6 +1948,22 @@
             ]
           },
           {
+            "name": "aspectRatio",
+            "type": "enum",
+            "required": false,
+            "description": "Aspect ratio",
+            "default": "3:4",
+            "options": [
+              "1:1",
+              "3:4",
+              "4:3",
+              "3:2",
+              "2:3",
+              "16:9",
+              "9:16"
+            ]
+          },
+          {
             "name": "quality",
             "type": "enum",
             "required": false,
@@ -1766,8 +1972,17 @@
             "options": [
               "low",
               "medium",
-              "high"
+              "high",
+              "xhigh",
+              "max"
             ]
+          },
+          {
+            "name": "size",
+            "type": "string",
+            "required": false,
+            "default": "",
+            "description": "Exact WIDTHxHEIGHT for this render, e.g. '2560x1440'. Empty (the default) means aspectRatio decides. Both edges must be multiples of 16, neither over 3840, the ratio between 1:3 and 3:1, and the total pixels between 655,360 and 8,294,400. Above 2560x1440 the provider calls results experimental — allowed, more variable."
           },
           {
             "name": "categories",
@@ -1777,9 +1992,9 @@
           }
         ]
       },
-      "version": "2026.07.04",
+      "version": "2026.09.16",
       "cadence": "On demand",
-      "updatedAt": "2026-09-01T14:46:01.200693Z"
+      "updatedAt": "2026-10-11T21:09:01.150192Z"
     },
     {
       "id": "plan-clipart-pack",
@@ -1878,7 +2093,13 @@
               "pixel",
               "kawaii",
               "3d",
-              "doodle"
+              "doodle",
+              "line-art",
+              "paper-art",
+              "retro",
+              "botanical",
+              "geometric",
+              "stained-glass"
             ]
           },
           {
@@ -1918,6 +2139,18 @@
             ]
           },
           {
+            "name": "textPolicy",
+            "type": "enum",
+            "required": false,
+            "default": "",
+            "options": [
+              "",
+              "freeform",
+              "none"
+            ],
+            "description": "Words in the pieces: 'freeform' = correctly spelled incidental text allowed; 'none' = no letters, numbers or words anywhere; '' = the planner decides per item. Items with exact quoted copy keep it either way."
+          },
+          {
             "name": "demandBrief",
             "type": "artifactReference",
             "required": false,
@@ -1938,9 +2171,9 @@
           }
         ]
       },
-      "version": "2026.08.01.2",
+      "version": "2026.09.14",
       "cadence": "On demand",
-      "updatedAt": "2026-09-01T14:46:04.329508Z"
+      "updatedAt": "2026-10-11T21:09:02.784870Z"
     },
     {
       "id": "remove-image-background",
@@ -1983,7 +2216,7 @@
       },
       "version": "2026.07.18",
       "cadence": "On demand",
-      "updatedAt": "2026-09-01T14:46:02.101164Z"
+      "updatedAt": "2026-10-11T21:09:01.621925Z"
     },
     {
       "id": "upscale-to-print-clip-art-asset",
@@ -2040,7 +2273,7 @@
       },
       "version": "2026.07.21",
       "cadence": "On demand",
-      "updatedAt": "2026-09-01T14:46:07.530595Z"
+      "updatedAt": "2026-10-11T21:09:04.915356Z"
     }
   ]
 }

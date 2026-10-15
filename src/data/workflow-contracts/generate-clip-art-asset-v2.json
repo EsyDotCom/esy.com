@@ -1,6 +1,6 @@
 {
   "_comment": "SYNCED SNAPSHOT — do not hand-edit. Regenerate with: node scripts/sync-workflow-catalog.mjs (pulls api.esy.com GET /v1/catalog/workflows/{id}).",
-  "generatedAt": "2026-09-03T18:39:15.191304Z",
+  "generatedAt": "2026-10-15T04:03:46.637986Z",
   "id": "generate-clip-art-asset-v2",
   "name": "Generate Clip Art (v2)",
   "description": "Generate a catalog-ready clip-art asset: styled render, optional background removal (variant selectable via the backgroundRemover role), and classifier-produced catalog metadata — one audited run per asset. Successor to generate-clip-art-asset.",
@@ -9,7 +9,7 @@
   "outputType": "visual",
   "status": "active",
   "supersededById": null,
-  "version": "2026.07.31.2",
+  "version": "2026.09.19",
   "stages": [
     {
       "name": "Render",
@@ -59,7 +59,13 @@
           "pixel",
           "kawaii",
           "3d",
-          "doodle"
+          "doodle",
+          "line-art",
+          "paper-art",
+          "retro",
+          "botanical",
+          "geometric",
+          "stained-glass"
         ]
       },
       {
@@ -71,8 +77,19 @@
         "options": [
           "1:1",
           "3:4",
-          "4:3"
+          "4:3",
+          "3:2",
+          "2:3",
+          "16:9",
+          "9:16"
         ]
+      },
+      {
+        "name": "size",
+        "type": "string",
+        "required": false,
+        "default": "",
+        "description": "Exact WIDTHxHEIGHT for this render, e.g. '2560x1440'. Empty (the default) means aspectRatio decides. Both edges must be multiples of 16, neither over 3840, the ratio between 1:3 and 3:1, and the total pixels between 655,360 and 8,294,400. Above 2560x1440 the provider calls results experimental — allowed, more variable."
       },
       {
         "name": "quality",
@@ -83,7 +100,20 @@
         "options": [
           "low",
           "medium",
-          "high"
+          "high",
+          "xhigh",
+          "max"
+        ]
+      },
+      {
+        "name": "transparencyMode",
+        "type": "enum",
+        "required": false,
+        "description": "Which mechanism produces transparency: removal (the render wears a matte and the keyed/ML ladder cuts it) or native (the model draws the alpha itself)",
+        "default": "removal",
+        "options": [
+          "removal",
+          "native"
         ]
       },
       {
@@ -440,7 +470,55 @@
       "revision": 53,
       "contentHash": "sha256:42578c51d5e1df3aab3c681d810b6d8817b41ba0112f7849e3b841e2d4c36553",
       "createdAt": "2026-08-06T22:47:27.001404Z"
+    },
+    {
+      "version": "2026.07.31.2",
+      "revision": 76,
+      "contentHash": "sha256:d2dace3b70de91a8ea68993b10a58ff37f372bb16ef9ee0d14830e2d0289a4aa",
+      "createdAt": "2026-09-06T00:04:40.475967Z"
+    },
+    {
+      "version": "2026.09.08",
+      "revision": 78,
+      "contentHash": "sha256:659f417a8a1ed54e330d5dacd8685d795a0887857a2d4281441d87b315f3069b",
+      "createdAt": "2026-09-08T07:26:39.194933Z"
+    },
+    {
+      "version": "2026.09.10",
+      "revision": 80,
+      "contentHash": "sha256:42282222cd574104655e77de883d5267b9e1d3d711d15505c3804c1966aad3d2",
+      "createdAt": "2026-09-09T22:42:06.634795Z"
+    },
+    {
+      "version": "2026.09.10.1",
+      "revision": 82,
+      "contentHash": "sha256:a636a634ea952b0af201085e6518133a46dce3446a3f2132c22219f0ece61271",
+      "createdAt": "2026-09-11T00:18:59.291244Z"
+    },
+    {
+      "version": "2026.09.10",
+      "revision": 85,
+      "contentHash": "sha256:42282222cd574104655e77de883d5267b9e1d3d711d15505c3804c1966aad3d2",
+      "createdAt": "2026-09-12T23:37:42.823409Z"
+    },
+    {
+      "version": "2026.09.10.1",
+      "revision": 86,
+      "contentHash": "sha256:a636a634ea952b0af201085e6518133a46dce3446a3f2132c22219f0ece61271",
+      "createdAt": "2026-09-12T23:42:40.662729Z"
+    },
+    {
+      "version": "2026.09.19",
+      "revision": 88,
+      "contentHash": "sha256:0c90dec78fa4a97efec090d0355cc625b8dc555b377d384a5a80d6b95e795e37",
+      "createdAt": "2026-09-20T02:38:59.221591Z"
+    },
+    {
+      "version": "2026.09.19",
+      "revision": 90,
+      "contentHash": "sha256:6a4a37b8f3a9dcc078b3dd56e0d9a0e410ec6ce3227d56d77df43973d187bff7",
+      "createdAt": "2026-09-27T19:00:48.448079Z"
     }
   ],
-  "updatedAt": "2026-09-01T14:45:59.372024Z"
+  "updatedAt": "2026-10-11T21:08:59.994061Z"
 }

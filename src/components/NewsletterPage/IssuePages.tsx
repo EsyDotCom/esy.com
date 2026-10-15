@@ -96,7 +96,7 @@ export function IssueGuide({ issue, link }: { issue: Issue; link: string }) {
 /** The course an issue points to (2026-10-09: the newsletter promotes a course
     on its issue pages; news is already in every issue). The Claude Code course
     is the one live course with a poster. */
-function CoursePromo() {
+export function CoursePromo() {
   return (
     <Link href="/courses/how-to-use-claude-code/" className="nlp-course">
       <Image src="/images/courses/claude-code-poster.webp" alt="" width={360} height={225} className="nlp-course-img" />

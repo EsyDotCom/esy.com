@@ -1,6 +1,6 @@
 {
   "_comment": "SYNCED SNAPSHOT — do not hand-edit. Regenerate with: node scripts/sync-workflow-catalog.mjs (pulls api.esy.com GET /v1/catalog/workflows/{id}).",
-  "generatedAt": "2026-09-03T18:39:15.191304Z",
+  "generatedAt": "2026-10-15T04:03:46.637986Z",
   "id": "generate-character-set",
   "name": "Generate Character Reference Set",
   "description": "Render the practitioner-standard labeled character reference sheet (front view, full-body, three-quarter view, expression grid — name written on the sheet, plain neutral background) from a character bible. The sheet is the visual anchor for reference-consistent generation: pass its URL to generate-clip-art-asset-ref and generate-pack-cover. Product-agnostic — storyboard/scene pipelines can consume the same character-set artifact. sheetComplexity picks the board tier and defaults to 'master' (the comprehensive identity board — turnaround with scale marks, expressions, head details, hero close-up, posture variations, wardrobe callouts, hand gestures), whose extra panels anchor character identity for downstream video generation (animate-character) and make the sheet a deliverable in its own right. 'standard' (turnaround + 8-expression grid + palette) and 'minimal' (the original bare turnaround anchor) remain available for cheap pack fan-out.",
@@ -9,7 +9,7 @@
   "outputType": "visual",
   "status": "active",
   "supersededById": null,
-  "version": "2026.07.30",
+  "version": "2026.09.09",
   "stages": [
     {
       "name": "Render",
@@ -54,7 +54,13 @@
           "pixel",
           "kawaii",
           "3d",
-          "doodle"
+          "doodle",
+          "line-art",
+          "paper-art",
+          "retro",
+          "botanical",
+          "geometric",
+          "stained-glass"
         ]
       },
       {
@@ -72,7 +78,9 @@
         "options": [
           "low",
           "medium",
-          "high"
+          "high",
+          "xhigh",
+          "max"
         ]
       },
       {
@@ -189,7 +197,19 @@
       "revision": 40,
       "contentHash": "sha256:be60de10b9a6d04f7668e6ad80cccf34c742d676205e2c858d2c21b3e86fbe21",
       "createdAt": "2026-08-06T22:08:49.062839Z"
+    },
+    {
+      "version": "2026.07.30",
+      "revision": 64,
+      "contentHash": "sha256:02e0197fa81cca6a98dc32b8a12a5120440ec08845e55b5c68606ab2f499a781",
+      "createdAt": "2026-09-06T00:04:47.320809Z"
+    },
+    {
+      "version": "2026.09.09",
+      "revision": 68,
+      "contentHash": "sha256:1a32120cba0a6e65880e15e76e32e728143db45bbafc55d3109838162c438529",
+      "createdAt": "2026-09-09T22:42:14.115991Z"
     }
   ],
-  "updatedAt": "2026-09-01T14:46:05.273859Z"
+  "updatedAt": "2026-10-11T21:09:03.521633Z"
 }

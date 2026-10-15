@@ -1,6 +1,6 @@
 {
   "_comment": "SYNCED SNAPSHOT — do not hand-edit. Regenerate with: node scripts/sync-workflow-catalog.mjs (pulls api.esy.com GET /v1/catalog/workflows/{id}).",
-  "generatedAt": "2026-09-03T18:39:15.191304Z",
+  "generatedAt": "2026-10-15T04:03:46.637986Z",
   "id": "plan-clipart-pack",
   "name": "Plan Clip Art Theme Pack",
   "description": "Plan a complete clip-art THEME PACK the way successful marketplace sellers do: theme/market research, a committed style recipe (with a character bible when the theme sells better around one recurring character), a fully-compiled asset manifest with deliberate element-type variety, and the full listing kit (count-bearing titles, answer-first summary, SEO copy, 13 tags, FAQ, plain-English license, per-asset alt text, cover concept). Emits objective packFacts — the consuming storefront maps facts to tier/price. Items feed a Generation Order over generate-clip-art-asset-ref (character packs) or generate-clip-art-asset-v2.",
@@ -9,7 +9,7 @@
   "outputType": "knowledge",
   "status": "active",
   "supersededById": null,
-  "version": "2026.08.01.2",
+  "version": "2026.09.14",
   "stages": [
     {
       "name": "Research",
@@ -84,7 +84,13 @@
           "pixel",
           "kawaii",
           "3d",
-          "doodle"
+          "doodle",
+          "line-art",
+          "paper-art",
+          "retro",
+          "botanical",
+          "geometric",
+          "stained-glass"
         ]
       },
       {
@@ -122,6 +128,18 @@
           "yes",
           "no"
         ]
+      },
+      {
+        "name": "textPolicy",
+        "type": "enum",
+        "required": false,
+        "default": "",
+        "options": [
+          "",
+          "freeform",
+          "none"
+        ],
+        "description": "Words in the pieces: 'freeform' = correctly spelled incidental text allowed; 'none' = no letters, numbers or words anywhere; '' = the planner decides per item. Items with exact quoted copy keep it either way."
       },
       {
         "name": "demandBrief",
@@ -783,7 +801,19 @@
       "revision": 40,
       "contentHash": "sha256:aa96d021e5e0d64bb4d4fad450b3a0f2a1281a4771a266a485a466b935414406",
       "createdAt": "2026-08-06T22:08:48.915644Z"
+    },
+    {
+      "version": "2026.08.01.2",
+      "revision": 64,
+      "contentHash": "sha256:181426aabdbe6dec3c16849cd0be825c82a679ea179f9bd85d608c5b033c0da4",
+      "createdAt": "2026-09-06T00:04:46.371718Z"
+    },
+    {
+      "version": "2026.09.14",
+      "revision": 76,
+      "contentHash": "sha256:4102a2c533632560adee6901ca4941c310b367f396ba6a02df5bc3365ca92694",
+      "createdAt": "2026-09-20T02:39:00.903702Z"
     }
   ],
-  "updatedAt": "2026-09-01T14:46:04.329508Z"
+  "updatedAt": "2026-10-11T21:09:02.784870Z"
 }

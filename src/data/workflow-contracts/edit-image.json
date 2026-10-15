@@ -1,6 +1,6 @@
 {
   "_comment": "SYNCED SNAPSHOT — do not hand-edit. Regenerate with: node scripts/sync-workflow-catalog.mjs (pulls api.esy.com GET /v1/catalog/workflows/{id}).",
-  "generatedAt": "2026-09-03T18:39:15.191304Z",
+  "generatedAt": "2026-10-15T04:03:46.637986Z",
   "id": "edit-image",
   "name": "Edit Image (Instruction)",
   "description": "Edit a platform-stored image with a natural-language instruction (OpenAI images/edits), with optional background re-removal for transparent assets.",
@@ -9,7 +9,7 @@
   "outputType": "visual",
   "status": "active",
   "supersededById": null,
-  "version": "2026.08.25.1",
+  "version": "2026.09.07",
   "stages": [
     {
       "name": "Edit",
@@ -23,8 +23,8 @@
     },
     {
       "name": "Cutout QA",
-      "description": "Refine the cutout edges and audit the alpha, escalating the remover on failure.",
-      "stepCount": 2
+      "description": "Refine the cutout edges, re-cut the die-cut border when asked, and audit the alpha.",
+      "stepCount": 3
     }
   ],
   "intakeSchema": {
@@ -57,7 +57,9 @@
         "options": [
           "low",
           "medium",
-          "high"
+          "high",
+          "xhigh",
+          "max"
         ]
       },
       {
@@ -78,6 +80,13 @@
         "required": false,
         "default": true,
         "description": "On an enforced cutout-audit failure, retry the same render through stronger background-removal models (Heavy/Matting at 2K, then BRIA) before re-rendering; off fails straight to re-render"
+      },
+      {
+        "name": "diecutBorder",
+        "type": "boolean",
+        "required": false,
+        "default": false,
+        "description": "Re-cut the sticker's white die-cut border geometrically after the cutout"
       }
     ]
   },
@@ -102,10 +111,16 @@
       "inputPath": "step-2.url"
     },
     {
+      "id": "step-2c",
+      "name": "Manufacture die-cut border",
+      "kind": "tool",
+      "inputPath": "step-2a.url"
+    },
+    {
       "id": "step-2b",
       "name": "Audit cutout",
       "kind": "tool",
-      "inputPath": "step-2a.url"
+      "inputPath": "step-2c.url"
     }
   ],
   "gates": [
@@ -193,7 +208,19 @@
       "revision": 71,
       "contentHash": "sha256:0c3ee25bfdbc3557dec9c9d6a1e3704d8da23a97e3530ba2218a01d43b83f26b",
       "createdAt": "2026-08-25T16:37:42.276826Z"
+    },
+    {
+      "version": "2026.09.07",
+      "revision": 77,
+      "contentHash": "sha256:eabf3779d3fe3fb453ec0ba71783cf789606939ebb5d5b06b57fb97b95a013b5",
+      "createdAt": "2026-09-07T23:11:58.062365Z"
+    },
+    {
+      "version": "2026.09.07",
+      "revision": 80,
+      "contentHash": "sha256:12d9de996603215ce785c2d9e1f66f189e71181cda0af78e2a08b0b26bd93e13",
+      "createdAt": "2026-09-09T22:42:09.781118Z"
     }
   ],
-  "updatedAt": "2026-09-01T14:46:01.663391Z"
+  "updatedAt": "2026-10-11T21:09:01.375090Z"
 }

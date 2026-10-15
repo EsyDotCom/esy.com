@@ -3493,11 +3493,20 @@ export const PROTOTYPES: Prototype[] = [
         summary:
           'Each issue covers one system, then the week’s AI marketing news (real AI Marketing News posts). L1 reads like the email, L2 keeps the sections and signup beside you, L3 opens on a cover.',
       },
+      {
+        n: 2,
+        title: 'The issue for agencies',
+        summary:
+          'Written for Morgan, the small-agency owner (primary ICP, 2026-10-14). The weekly tutorial stays the issue and gains three short parts: what it did for us, how to sell it to your clients, and a weekly scoreboard. One sample, outbound with Clay through os.esy.com/agency/outreach; the Clay connection is hypothetical and every number is os.esy.com’s sample campaign. Zev picked L5 · Receipts first with cover A · Finding (2026-10-15).',
+      },
     ],
     variants: [
       { slug: 'letter', key: 'L1', name: 'Letter', round: 1, title: 'It reads like the email.', blurb: 'One narrow column: the masthead line, the issue, the signup at the end, then older and newer issues.', poster: ['#FFFFFF', '#00A896'] },
       { slug: 'guide', key: 'L2', name: 'Guide', round: 1, title: 'Sections and signup beside you.', blurb: 'A reading page with a sticky rail: the issue’s sections to jump between, and the signup always in view.', poster: ['#F8F9FA', '#0A2540'] },
-      { slug: 'cover', key: 'L3', name: 'Cover', round: 1, title: 'A cover for every issue.', blurb: 'A navy cover with the issue number big, the issue under it, a full-width signup band, then the other issues.', poster: ['#0A1626', '#00D4AA'] },
+      { slug: 'cover', key: 'L3', name: 'Cover', round: 1, title: 'A cover for every issue.', blurb: 'A navy cover with the issue number big, the issue under it, a full-width signup band, then the other issues.', poster: ['#0A1626', '#00D4AA'], live: true, liveHref: '/newsletter/' },
+      { slug: 'build-proof', key: 'L4', name: 'Build, then proof', round: 2, title: 'The tutorial, then what it did for us.', blurb: 'L3’s page in the issue’s order: the steps (each says who runs it: you, Clay or Esy), how Clay plugs into Esy, our funnel and spend, how to sell it to clients, the news, then the scoreboard.', poster: ['#FFFFFF', '#00A896'] },
+      { slug: 'receipts', key: 'L5', name: 'Receipts first', round: 2, title: 'The numbers on the cover, and beside every step. Picked.', blurb: 'This week’s scoreboard sits on the cover, each step carries what it did on our campaign, and the Clay connection is shown as os.esy.com’s Outreach screen. Sell it is a dark card.', poster: ['#0A1626', '#00D4AA'] },
+      { slug: 'build-sell', key: 'L6', name: 'Build it, sell it', round: 2, title: 'Build it on the left, sell it on the right.', blurb: 'Two tracks: Build it (a flow from Clay to Esy, the steps, the prompt, our results) beside a sticky Sell it card with the offer, example prices, the math, the objection and the scoreboard.', poster: ['#F8F9FA', '#0A2540'] },
     ],
   },
   {

@@ -15,6 +15,8 @@ It's news, not articles. Apply the six-month test: if the piece is still worth r
 
 News every day, articles about twice a week, and one newsletter a week that teaches a system. Each feeds the next: the news finds the week's system, the articles build it, the issue teaches it.
 
+**Who it's for (2026-10-14):** Morgan, the owner of a small agency that already has clients (Compose plan §12). Every issue is still a tutorial anyone can follow; the payoff is Morgan's: clients, delivery, margin. Never write like the "start an AI agency" channels (no "first client", no "$10k a month"). YouTube is the base; the newsletter is where viewers go next.
+
 | When | What | Who | Becomes |
 |---|---|---|---|
 | Every day | One news post | Zev writes it. AI agents can draft on a busy day; `writtenBy` on the post says which. | The issue's "This week in AI marketing" |
@@ -31,6 +33,7 @@ News every day, articles about twice a week, and one newsletter a week that teac
 ### Monday: pick the week's system
 
 - One system a reader can build in an afternoon: a workflow, a skill, a setup. Prefer one that builds on something that just launched, so the news earns the attention and the tutorial keeps it.
+- Prefer a system we run ourselves, on our own pipeline or our clients: a system we run has numbers for "What it did for us". If it's a tool (Clay, say), teach our own setup of it.
 - Split it into two parts, each of which stands on its own as an article.
 
 ### About Tuesday and Thursday: the two articles
@@ -42,7 +45,17 @@ News every day, articles about twice a week, and one newsletter a week that teac
 ### End of the week: the issue
 
 1. **Title it as the system:** "Build X that does Y", or the outcome it gets.
-2. **Body:** the system step by step, each step linking the article that goes deeper; one thing to copy (a skill or a prompt); then "This week in AI marketing": three to five of the week's news posts, a line each, linked.
+2. **Body (2026-10-14), in this order, about six minutes in all:**
+   1. **Lead:** why this system, this week.
+   2. **The system:** the tutorial, step by step, each step linking the article that goes deeper and saying who runs it (you, a tool, or Esy). This stays the main body.
+   3. **What it did for us** (a few lines): the same system on our own pipeline or clients, with the numbers and the cost. Publish them when they're bad too.
+   4. **Sell it to your clients** (a short paragraph): how an agency delivers and prices it, and the client's likely objection.
+   5. **One thing to copy:** a skill or a prompt.
+   6. **This week in AI marketing:** three to five of the week's news posts, linked, chosen for what an agency would act on.
+   7. **Reads**, then **the scoreboard** (three lines: this week's prospects, calls and clients, with the running total), then **next** (a course, the community or Esy).
+   - At most once a month, an issue can be a client case study instead of a tutorial.
+   - Clients are named only with their permission (a case-study clause in the contract). Prospects are never named.
+   - The three new parts (results, clients, scoreboard) are section kinds the issue builder needs; until then they're samples in `/prototypes/newsletter-issue/` round 2.
 3. **Cover:** `node scripts/newsletter-mason-cover.mjs <n> "<what Mason is doing that shows the title>"`. It makes two takes of vinyl Mason acting out the title; pick one, rename it `<n>.webp`, and set the issue's `cover`. Keep the sentence plain: the cover should read as the title, not as a puzzle.
 4. **Add it** to `src/components/NewsletterPage/issues.ts`, newest first. It shows on the homepage, on `/newsletter` and on its own page, with the cover as its share image.
 5. **Send it** to subscribers.

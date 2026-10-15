@@ -1,6 +1,6 @@
 {
   "_comment": "SYNCED SNAPSHOT — do not hand-edit. Regenerate with: node scripts/sync-workflow-catalog.mjs (pulls api.esy.com GET /v1/catalog/workflows/{id}).",
-  "generatedAt": "2026-09-03T18:39:15.191304Z",
+  "generatedAt": "2026-10-15T04:03:46.637986Z",
   "id": "generate-clip-art-asset-ref",
   "name": "Generate Clip Art (reference-consistent)",
   "description": "Sibling of generate-clip-art-asset-v2 for REFERENCE-ANCHORED PACKS: renders each asset AGAINST a reference image (esy/image-edit). anchorMode picks what the reference anchors — 'character' (default) reproduces the reference subject across a pack; 'style' copies only its palette/linework/rendering while each asset depicts its own subject (pack-studio Style Kits). The prompt must be fully compiled (compactBible + subject + styleFragment — plan-clipart-pack does this); the reference sheet URL is shared across an order's children via intake_base. Then background removal and catalog classification, exactly like v2.",
@@ -9,7 +9,7 @@
   "outputType": "visual",
   "status": "active",
   "supersededById": null,
-  "version": "2026.07.31.3",
+  "version": "2026.09.27",
   "stages": [
     {
       "name": "Render",
@@ -76,7 +76,13 @@
           "pixel",
           "kawaii",
           "3d",
-          "doodle"
+          "doodle",
+          "line-art",
+          "paper-art",
+          "retro",
+          "botanical",
+          "geometric",
+          "stained-glass"
         ]
       },
       {
@@ -88,7 +94,11 @@
         "options": [
           "1:1",
           "3:4",
-          "4:3"
+          "4:3",
+          "3:2",
+          "2:3",
+          "16:9",
+          "9:16"
         ]
       },
       {
@@ -100,7 +110,27 @@
         "options": [
           "low",
           "medium",
-          "high"
+          "high",
+          "xhigh",
+          "max"
+        ]
+      },
+      {
+        "name": "size",
+        "type": "string",
+        "required": false,
+        "default": "",
+        "description": "Exact WIDTHxHEIGHT for this render, e.g. '2560x1440'. Empty (the default) means aspectRatio decides. Both edges must be multiples of 16, neither over 3840, the ratio between 1:3 and 3:1, and the total pixels between 655,360 and 8,294,400. Above 2560x1440 the provider calls results experimental — allowed, more variable."
+      },
+      {
+        "name": "transparencyMode",
+        "type": "enum",
+        "required": false,
+        "description": "Which mechanism produces transparency: removal (the render wears a matte and the keyed/ML ladder cuts it) or native (the model draws the alpha itself)",
+        "default": "removal",
+        "options": [
+          "removal",
+          "native"
         ]
       },
       {
@@ -467,7 +497,55 @@
       "revision": 41,
       "contentHash": "sha256:3b70fe28ebdd0039bc66f26d7c7aba4afe087e2fef8e10c307ba429ab31b36d0",
       "createdAt": "2026-08-06T22:47:28.688241Z"
+    },
+    {
+      "version": "2026.07.31.3",
+      "revision": 64,
+      "contentHash": "sha256:065eefbce0925e67c9c48b070f6e28ad208ac089e28b077e6c57fbe5ba253a46",
+      "createdAt": "2026-09-06T00:04:47.764025Z"
+    },
+    {
+      "version": "2026.07.31.3",
+      "revision": 66,
+      "contentHash": "sha256:3420f16ab28fa16f03a6f7d9abaa67b989729e4b6ef47d46634d7701e424b79c",
+      "createdAt": "2026-09-08T07:26:45.946672Z"
+    },
+    {
+      "version": "2026.09.10",
+      "revision": 68,
+      "contentHash": "sha256:f763d515757e5055a97852c7054ed39829a386b995ade6a73c49e42bcf824123",
+      "createdAt": "2026-09-09T22:42:14.563184Z"
+    },
+    {
+      "version": "2026.09.10.1",
+      "revision": 70,
+      "contentHash": "sha256:195266e1be8c93b0fad89641d3fe5dc4a33409acd1c9ba55dcb17074a8bf6408",
+      "createdAt": "2026-09-11T00:19:09.948736Z"
+    },
+    {
+      "version": "2026.09.10",
+      "revision": 73,
+      "contentHash": "sha256:f763d515757e5055a97852c7054ed39829a386b995ade6a73c49e42bcf824123",
+      "createdAt": "2026-09-12T23:37:50.806772Z"
+    },
+    {
+      "version": "2026.09.10.1",
+      "revision": 74,
+      "contentHash": "sha256:195266e1be8c93b0fad89641d3fe5dc4a33409acd1c9ba55dcb17074a8bf6408",
+      "createdAt": "2026-09-12T23:42:47.974605Z"
+    },
+    {
+      "version": "2026.09.19",
+      "revision": 76,
+      "contentHash": "sha256:fce5ba397cc2b78d48003180d432cb7648ac4f28559f4e616ea625d1ef052818",
+      "createdAt": "2026-09-20T02:39:01.615462Z"
+    },
+    {
+      "version": "2026.09.27",
+      "revision": 78,
+      "contentHash": "sha256:626fc00d69db593f60d1a2ecaed1e504ef9d49320f4f8fc185c39ad3525296de",
+      "createdAt": "2026-09-27T19:00:51.004807Z"
     }
   ],
-  "updatedAt": "2026-09-01T14:46:05.724826Z"
+  "updatedAt": "2026-10-11T21:09:03.757506Z"
 }

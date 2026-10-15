@@ -1,19 +1,34 @@
 {
   "_comment": "SYNCED SNAPSHOT — do not hand-edit. Regenerate with: node scripts/sync-workflow-catalog.mjs (pulls api.esy.com GET /v1/catalog/workflows/{id}).",
-  "generatedAt": "2026-09-03T18:39:15.191304Z",
+  "generatedAt": "2026-10-15T04:03:46.637986Z",
   "id": "generate-coloring-page",
   "name": "Generate Coloring Page",
-  "description": "Generate a printable coloring page: clean black line art on a white background (no fills, no shading), plus classifier-produced catalog metadata.",
-  "shortDescription": "Printable line-art coloring page with classification.",
+  "description": "Generate a printable coloring page: clean black line art on a white background (no fills, no shading), post-processed for paper or tablet, quality-gated against KDP print and WCAG touch standards, plus classifier-produced catalog metadata.",
+  "shortDescription": "Printable line-art coloring page, post-processed, gated, classified.",
   "artifactClass": "visual",
   "outputType": "visual",
   "status": "active",
   "supersededById": null,
-  "version": "2026.07.04",
+  "version": "2026.09.16",
   "stages": [
     {
       "name": "Render",
       "description": "Compose the line-art prompt and call the image model.",
+      "stepCount": 1
+    },
+    {
+      "name": "Post-process",
+      "description": "Threshold, seal contour gaps, raise strokes to the print floor, despeckle.",
+      "stepCount": 1
+    },
+    {
+      "name": "Audit",
+      "description": "Measure stroke weight, grey, margin ink, gaps and tappable regions; fail what would not print or fill.",
+      "stepCount": 1
+    },
+    {
+      "name": "Text gate",
+      "description": "OCR the page against its text contract: exact lettering on a facts page, none on an art page.",
       "stepCount": 1
     },
     {
@@ -47,9 +62,13 @@
         "description": "Aspect ratio",
         "default": "3:4",
         "options": [
-          "3:4",
           "1:1",
-          "4:3"
+          "3:4",
+          "4:3",
+          "3:2",
+          "2:3",
+          "16:9",
+          "9:16"
         ]
       },
       {
@@ -61,7 +80,53 @@
         "options": [
           "low",
           "medium",
-          "high"
+          "high",
+          "xhigh",
+          "max"
+        ]
+      },
+      {
+        "name": "size",
+        "type": "string",
+        "required": false,
+        "default": "",
+        "description": "Exact WIDTHxHEIGHT for this render, e.g. '2560x1440'. Empty (the default) means aspectRatio decides. Both edges must be multiples of 16, neither over 3840, the ratio between 1:3 and 3:1, and the total pixels between 655,360 and 8,294,400. Above 2560x1440 the provider calls results experimental — allowed, more variable."
+      },
+      {
+        "name": "detail",
+        "type": "enum",
+        "required": false,
+        "default": "print",
+        "description": "Which product this page is: 'print' (paper — bold strokes, clear margins) or 'app' (tablet — sealed contours, tappable regions)",
+        "options": [
+          "print",
+          "app"
+        ]
+      },
+      {
+        "name": "renderModel",
+        "type": "string",
+        "required": false,
+        "default": "openai/gpt-image-2.5-flare-2026-09-08",
+        "description": "Registry id of the image model to render with. Print: openai/gpt-image-2.5-flare-2026-09-08. App: openai/gpt-image-2.5-sunburst-2026-09-08. An unregistered id falls back to the bound provider."
+      },
+      {
+        "name": "postProcess",
+        "type": "boolean",
+        "required": false,
+        "default": true,
+        "description": "Threshold, seal gaps, raise strokes to the floor, despeckle. Off skips with provenance; the audit still runs on the raw render."
+      },
+      {
+        "name": "lineArtAuditMode",
+        "type": "enum",
+        "required": false,
+        "default": "enforce",
+        "description": "Quality gate: 'enforce' (default) fails a page that would print or fill badly so the order re-renders it, 'report' records metrics only, 'off' skips the audit",
+        "options": [
+          "enforce",
+          "report",
+          "off"
         ]
       },
       {
@@ -69,6 +134,33 @@
         "type": "string",
         "required": true,
         "description": "Comma-separated category slugs the classifier must choose from (empty fails the run in preflight)"
+      },
+      {
+        "name": "textPolicy",
+        "type": "enum",
+        "required": false,
+        "default": "",
+        "options": [
+          "",
+          "none",
+          "exact",
+          "freeform"
+        ],
+        "description": "Per-item text contract: none = text forbidden; exact = must match expectedText; freeform = text allowed, judged on legibility/spelling only. Empty derives from textBearing (true=exact, false=freeform). Use 'none' deliberately, for assets that must carry no characters at all."
+      },
+      {
+        "name": "textBearing",
+        "type": "boolean",
+        "required": false,
+        "default": false,
+        "description": "True when the asset must carry legible text (the OCR gate then checks it)"
+      },
+      {
+        "name": "expectedText",
+        "type": "string",
+        "required": false,
+        "default": "",
+        "description": "The EXACT text the asset must carry; leave empty unless textPolicy is 'exact'"
       }
     ]
   },
@@ -82,6 +174,51 @@
     },
     {
       "id": "step-2",
+      "name": "Post-process line art",
+      "kind": "tool",
+      "inputPath": "step-1.url"
+    },
+    {
+      "id": "step-3",
+      "name": "Audit line art",
+      "kind": "tool",
+      "inputPath": "step-2.url"
+    },
+    {
+      "id": "step-3b",
+      "name": "Text gate",
+      "kind": "llm",
+      "capability": "text",
+      "role": "textGate",
+      "requireTrue": "pass",
+      "failMessage": "OCR text gate rejected the render",
+      "jsonSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "foundText": {
+            "type": "string",
+            "description": "All legible text read from the image; empty if none"
+          },
+          "pass": {
+            "type": "boolean"
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "foundText",
+          "pass",
+          "reason"
+        ]
+      },
+      "system": "redacted",
+      "promptTemplate": "redacted",
+      "maxTokens": "redacted"
+    },
+    {
+      "id": "step-4",
       "name": "Classify asset",
       "kind": "llm",
       "capability": "text",
@@ -140,22 +277,53 @@
       "unlocks": [
         "step-2"
       ]
+    },
+    {
+      "id": "gate-line-art",
+      "name": "Line-art audit",
+      "type": "quality",
+      "inputs": [
+        "post-processed"
+      ],
+      "outputs": [
+        "audited"
+      ],
+      "unlocks": [
+        "step-3b"
+      ]
+    },
+    {
+      "id": "gate-text",
+      "name": "OCR text gate",
+      "type": "quality",
+      "inputs": [
+        "audited"
+      ],
+      "outputs": [
+        "lettering-checked"
+      ],
+      "unlocks": [
+        "step-4"
+      ]
     }
   ],
   "artifactSchema": {
     "artifactClass": "visual",
     "artifactType": "coloring-page",
     "files": [
-      "image/webp"
+      "image/png"
     ],
     "metadata": {
       "aspectRatio": "enum [3:4, 1:1, 4:3]",
-      "quality": "enum [low, medium, high]",
+      "quality": "enum [low, medium, high, xhigh, max]",
+      "detail": "enum [print, app]",
+      "lineArtAudit": "object",
       "classification": "object"
     }
   },
   "providers": {
     "imageGenerator": "redacted",
+    "textGate": "redacted",
     "classifier": "redacted"
   },
   "budgetPolicy": "redacted",
@@ -177,7 +345,37 @@
       "revision": 52,
       "contentHash": "sha256:e2361b169361fe6e0963846552a4ce645567b0d5340cbeb090da3f92194ffc81",
       "createdAt": "2026-08-06T22:08:47.462572Z"
+    },
+    {
+      "version": "2026.09.09.1",
+      "revision": 80,
+      "contentHash": "sha256:9d9b4f4e743530ad96d5392cbf5701d240a900bd6c9c7505658076b39dac2004",
+      "createdAt": "2026-09-09T22:42:07.692657Z"
+    },
+    {
+      "version": "2026.09.10",
+      "revision": 84,
+      "contentHash": "sha256:857afae2f856745fb09fb7d695279a6584b30b7fe2ec9d53e4c3f29d30cece57",
+      "createdAt": "2026-09-12T04:56:49.454434Z"
+    },
+    {
+      "version": "2026.09.09.1",
+      "revision": 85,
+      "contentHash": "sha256:9d9b4f4e743530ad96d5392cbf5701d240a900bd6c9c7505658076b39dac2004",
+      "createdAt": "2026-09-12T23:37:44.483737Z"
+    },
+    {
+      "version": "2026.09.10",
+      "revision": 86,
+      "contentHash": "sha256:857afae2f856745fb09fb7d695279a6584b30b7fe2ec9d53e4c3f29d30cece57",
+      "createdAt": "2026-09-12T23:42:41.582175Z"
+    },
+    {
+      "version": "2026.09.16",
+      "revision": 88,
+      "contentHash": "sha256:8534d85006b48d544c4a93066d6f5868695b431a8bbf9dcc7ecb276bf4d09899",
+      "createdAt": "2026-09-20T02:38:59.510757Z"
     }
   ],
-  "updatedAt": "2026-09-01T14:45:59.833515Z"
+  "updatedAt": "2026-10-11T21:09:00.472025Z"
 }

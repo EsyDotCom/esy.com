@@ -15,23 +15,16 @@
    → 84 emailed → 11 replied → 1 meeting → 1 client, $52.92 spent), so the issue
    and the app agree. Prices in "Sell it" are examples, said so on the page.
 
-   Kept apart from ISSUES on purpose: ISSUES feeds the live /newsletter pages,
-   and this sample must never show there. */
+   It leads ISSUES since 2026-10-15 (Zev: ship the Clay example live), so it
+   says at the top that its numbers are a sample, and the connection note says
+   Esy doesn't talk to Clay yet. Only types come from issues.ts, so the import
+   back from issues.ts is not a cycle at runtime. */
 
 import type { Issue, IssueSection } from './issues';
 
-/** How Clay plugs into Esy: only this sample has it, because the connection is
-    hypothetical and the live issues never show one. */
-export type ConnectSection = {
-  kind: 'connect';
-  title: string;
-  lines: { label: string; text: string }[];
-  keeps: { clay: string[]; esy: string[] };
-  note: string;
-};
-
-export type AgencySection = IssueSection | ConnectSection;
-export type AgencyIssue = Omit<Issue, 'body'> & { body: AgencySection[] };
+export type ConnectSection = Extract<IssueSection, { kind: 'connect' }>;
+export type AgencySection = IssueSection;
+export type AgencyIssue = Issue;
 
 const FUNNEL = [
   { label: 'Found on Google Maps', n: 1240 },
@@ -59,15 +52,16 @@ export const usd = (n: number) => `$${n.toFixed(2)}`;
 export const AGENCY_ISSUE: AgencyIssue = {
   n: 5,
   slug: 'book-calls-with-clay',
-  date: '2026-10-22',
+  date: '2026-10-15',
   title: 'Book calls for local clients: outbound with Clay and Esy',
   dek: 'The outbound system we run for local service businesses: Clay finds and checks them, Esy writes, waits for your sign-off and sends. What it booked, and how to sell it to your clients.',
   topic: 'AI outreach',
   minutes: 7,
   // Zev picked cover A · Finding (2026-10-15); B and C stay in the prototype's switch.
-  cover: '/prototypes/newsletter-issue/covers/5-find-a.webp',
+  cover: '/images/newsletter/covers/vinyl-mason/5.webp',
   coverAlt: 'Mason the octopus on a rooftop at night, holding a lantern out over a small vinyl town where a few roofs glow teal.',
   coverCaption: 'Mason’s lantern finds the few houses in town worth writing to.',
+  sample: 'A sample issue. The campaign, its numbers and the prices are examples from Esy’s sample data, and Esy doesn’t connect to Clay yet.',
   body: [
     {
       kind: 'lead',
@@ -191,7 +185,7 @@ export const AGENCY_ISSUE: AgencyIssue = {
     },
     {
       kind: 'scoreboard',
-      week: 'Week of Oct 19',
+      week: 'Week of Oct 12',
       rows: [
         { label: 'Businesses found', week: 96, total: 1240 },
         { label: 'Emailed', week: 31, total: 84 },

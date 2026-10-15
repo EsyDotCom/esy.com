@@ -135,6 +135,8 @@ function Cover({ children }: { children?: React.ReactNode }) {
             </p>
             <h1 className="nlp-cover-title"><TitleLines title={issue.title} /></h1>
             <p className="nlp-cover-dek">{issue.dek}</p>
+            {/* A sample issue says so up top, before any of its numbers. */}
+            {issue.sample && <p className="nlp-cover-sample">{issue.sample}</p>}
             <div className="nlp-cover-byline">
               <SocialAvatar frameClassName="nlp-cover-byline-photo" size={40} />
               <span className="nlp-cover-byline-text"><b>Zev Uhuru</b><span>Marketing engineer</span></span>

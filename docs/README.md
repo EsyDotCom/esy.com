@@ -4,6 +4,11 @@ This directory contains technical documentation for the Esy.com project.
 
 ## Structure
 
+### Org
+- `/org/` - **How Esy fits together**: what each surface does, who signs in where, who each audience is (copies of org.esy canon; org.esy wins)
+  - `ARCHITECTURE.md` - api.esy.com, os.esy.com, Compose, esy.com, seopage.com, clip.art: roles, records and audiences
+  - `DECISIONS-2026-10-14.md` - Morgan as the primary ICP, YouTube as the base, SEOPage's buyers and plans
+
 ### Foundations
 - `/foundations/` - **Foundational principles that define how Esy thinks about workflows, artifacts, and platform vocabulary**
   - `WORKFLOW_PRIMITIVES.md` - The three-level workflow model: `Workflow Schema` (the rules), `Workflow Template` (a predesigned workflow), `Workflow Specification` (a per-run populated instance). Rendered at `/docs/foundations`. Canonical public references at [`docs.esy.com/concepts/workflow-schemas`](https://docs.esy.com/concepts/workflow-schemas), [`/concepts/workflow-templates`](https://docs.esy.com/concepts/workflow-templates), [`/concepts/workflow-specifications`](https://docs.esy.com/concepts/workflow-specifications).

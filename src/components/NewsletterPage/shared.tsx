@@ -43,13 +43,13 @@ export const useIssueHref = () => issueHref(useContext(ModeContext).link);
 /** An issue's cover: the mode's cover set when one is given, else the issue's own. */
 export function useCover() {
   const { covers } = useContext(ModeContext);
-  return (issue: Issue) => (covers ? covers.replace('{n}', String(issue.n)) : issue.cover);
+  return (issue: Pick<Issue, 'n' | 'cover'>) => (covers ? covers.replace('{n}', String(issue.n)) : issue.cover);
 }
 
 /** An issue's date as a label: the date in prototypes, "Sample issue" on the live site. */
 export function useDateLabel() {
   const { live } = useContext(ModeContext);
-  return (issue: Issue) => (live ? 'Sample issue' : issueDate(issue.date));
+  return (issue: Pick<Issue, 'date'>) => (live ? 'Sample issue' : issueDate(issue.date));
 }
 
 /** The signup for these pages: the real one on the live site, the prototype one elsewhere. */
@@ -194,6 +194,10 @@ function Section({ s, id }: { s: IssueSection; id: string }) {
           {s.text} <a href={s.href}>{s.cta} <ArrowRight size={13} aria-hidden="true" /></a>
         </p>
       );
+    // The parts for agencies (results, clients, scoreboard) have their own
+    // pieces in the live issue page (IssueRound2); these older takes skip them.
+    default:
+      return null;
   }
 }
 

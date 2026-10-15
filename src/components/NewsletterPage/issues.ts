@@ -10,11 +10,47 @@
    pages and #1 for "AI clipart", SEOPage, Compose, the news posts); the issues
    themselves, their dates and their wording are samples. */
 
+/** One step of the week's system. `where` says who runs it (You, a tool such
+    as Clay, or Esy); `result` is what the step did on our own run. Both are
+    optional: issues written before 2026-10-14 have neither. */
+export type IssueStep = {
+  name: string;
+  does: string;
+  where?: string;
+  result?: { n?: string; of?: string; note: string };
+};
+
+/* The parts of an issue, matching Esy's "Newsletter issue" template v2
+   (api.esy.com esy-issue, 2026-10-15; order in docs/news/README.md). The
+   three parts for agencies (results, clients, scoreboard) are optional, so an
+   issue without them reads as it did before. */
 export type IssueSection =
   | { kind: 'lead'; text: string[] }
-  | { kind: 'system'; title: string; steps: { name: string; does: string }[] }
-  | { kind: 'take'; title: string; what: string; label: string } // a skill or prompt to copy
+  | { kind: 'system'; title: string; steps: IssueStep[] }
+  // "What it did for us": the same system on our own pipeline. `per` names the
+  // funnel rows to divide the spend by ("Per reply" over "Replied").
+  | {
+      kind: 'results';
+      title: string;
+      funnel: { label: string; n: number }[];
+      spend: { label: string; usd: number }[];
+      per?: { label: string; funnel: string }[];
+      lesson: string;
+    }
+  // "Sell it to your clients": the offer, what's in it, example prices, the math, the objection.
+  | {
+      kind: 'clients';
+      title: string;
+      offer: string;
+      includes: string[];
+      price: { label: string; value: string }[];
+      math: string[];
+      objection: { q: string; a: string };
+    }
+  | { kind: 'take'; title: string; what: string; label: string } // the weekly skill: its name, what it returns
   | { kind: 'reads'; items: { title: string; why: string; href: string }[] }
+  // Our scoreboard: this week's numbers with the running total.
+  | { kind: 'scoreboard'; week: string; rows: { label: string; week: number; total: number }[] }
   | { kind: 'next'; text: string; cta: string; href: string } // the course or os.esy.com
   // The week's AI marketing news: real AI Marketing News posts, by slug, so an
   // issue never restates news in its own words (src/data/news, docs/news).
@@ -147,7 +183,7 @@ export const ISSUES: Issue[] = [
           { name: 'Me', does: 'Approve or send back. One click, every post.' },
         ],
       },
-      { kind: 'take', title: 'The fact-check prompt', what: 'The exact prompt the Fact-checker runs, ready to paste into your AI.', label: 'Copy the prompt' },
+      { kind: 'take', title: 'The fact-check skill', what: 'The exact check the Fact-checker runs, as a skill your AI can use: give it a draft and it returns each claim with its source, or a flag.', label: 'Copy the skill' },
       { kind: 'news', slugs: ['meta-muse-for-small-business', 'meta-enterprise-platform', 'claude-sonnet-5-5', 'elevenlabs-v4-launch'] },
       {
         kind: 'reads',

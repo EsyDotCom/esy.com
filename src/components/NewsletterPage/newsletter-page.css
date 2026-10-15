@@ -400,7 +400,7 @@ a.nlp-row, a.nlp-card, a.nlp-feature { text-decoration: none; color: inherit; }
    (IssueRound2.tsx). nla- = newsletter, agency issue. ─────────────────────── */
 .nla-where { display: inline-block; margin-left: 6px; padding: 1px 8px; border-radius: 999px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; vertical-align: 2px; white-space: nowrap; }
 .nla-where--you { background: rgba(10, 37, 64, 0.08); color: var(--nl-navy); }
-.nla-where--clay { background: #FFF1DC; color: #8A4B00; }
+.nla-where--tool { background: #FFF1DC; color: #8A4B00; } /* a tool such as Clay */
 .nla-where--esy { background: rgba(0, 168, 150, 0.12); color: #007A6C; }
 
 .nla-steps { margin: 28px 0; }
@@ -546,3 +546,6 @@ a.nlp-row, a.nlp-card, a.nlp-feature { text-decoration: none; color: inherit; }
 .nla-cover-pick span { font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--nl-ink-soft); margin-right: 4px; }
 .nla-cover-pick button { padding: 4px 12px; border-radius: 999px; border: 1px solid var(--nl-seam); background: #fff; color: var(--nl-navy); font-weight: 600; cursor: pointer; }
 .nla-cover-pick button.is-on { background: var(--nl-navy); border-color: var(--nl-navy); color: #fff; }
+
+/* The weekly skill's fixed kicker above that week's skill (2026-10-15). */
+.nla-take-kicker { margin: 0 0 4px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--nl-jade); }

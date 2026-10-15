@@ -18,51 +18,19 @@
    Kept apart from ISSUES on purpose: ISSUES feeds the live /newsletter pages,
    and this sample must never show there. */
 
-import type { Issue } from './issues';
+import type { Issue, IssueSection } from './issues';
 
-/** Where a step runs. */
-export type Where = 'You' | 'Clay' | 'Esy' | 'Clay → Esy';
-
-export type AgencyStep = {
-  name: string;
-  where: Where;
-  does: string;
-  /** What this step did on our campaign, for the takes that show proof per step. */
-  result?: { n: string; of?: string; note: string };
+/** How Clay plugs into Esy: only this sample has it, because the connection is
+    hypothetical and the live issues never show one. */
+export type ConnectSection = {
+  kind: 'connect';
+  title: string;
+  lines: { label: string; text: string }[];
+  keeps: { clay: string[]; esy: string[] };
+  note: string;
 };
 
-export type AgencySection =
-  | { kind: 'lead'; text: string[] }
-  | { kind: 'system'; title: string; steps: AgencyStep[] }
-  | {
-      kind: 'connect';
-      title: string;
-      lines: { label: string; text: string }[];
-      keeps: { clay: string[]; esy: string[] };
-      note: string;
-    }
-  | {
-      kind: 'results';
-      title: string;
-      funnel: { label: string; n: number }[];
-      spend: { label: string; usd: number }[];
-      lesson: string;
-    }
-  | {
-      kind: 'clients';
-      title: string;
-      offer: string;
-      includes: string[];
-      price: { label: string; value: string }[];
-      math: string[];
-      objection: { q: string; a: string };
-    }
-  | { kind: 'take'; title: string; what: string; label: string }
-  | { kind: 'news'; slugs: string[] }
-  | { kind: 'reads'; items: { title: string; why: string; href: string }[] }
-  | { kind: 'scoreboard'; week: string; rows: { label: string; week: number; total: number }[] }
-  | { kind: 'next'; text: string; cta: string; href: string };
-
+export type AgencySection = IssueSection | ConnectSection;
 export type AgencyIssue = Omit<Issue, 'body'> & { body: AgencySection[] };
 
 const FUNNEL = [
@@ -86,7 +54,6 @@ const SPEND = [
 ];
 
 export const spendTotal = SPEND.reduce((n, s) => n + s.usd, 0);
-export const funnelN = (label: string) => FUNNEL.find((f) => f.label === label)?.n ?? 0;
 export const usd = (n: number) => `$${n.toFixed(2)}`;
 
 export const AGENCY_ISSUE: AgencyIssue = {
@@ -97,6 +64,10 @@ export const AGENCY_ISSUE: AgencyIssue = {
   dek: 'The outbound system we run for local service businesses: Clay finds and checks them, Esy writes, waits for your sign-off and sends. What it booked, and how to sell it to your clients.',
   topic: 'AI outreach',
   minutes: 7,
+  // Zev picked cover A · Finding (2026-10-15); B and C stay in the prototype's switch.
+  cover: '/prototypes/newsletter-issue/covers/5-find-a.webp',
+  coverAlt: 'Mason the octopus on a rooftop at night, holding a lantern out over a small vinyl town where a few roofs glow teal.',
+  coverCaption: 'Mason’s lantern finds the few houses in town worth writing to.',
   body: [
     {
       kind: 'lead',
@@ -113,6 +84,7 @@ export const AGENCY_ISSUE: AgencyIssue = {
         {
           name: 'Write the rules',
           where: 'You',
+          result: { note: 'Rules v3, from 3 won and 5 lost' },
           does: 'Who fits, in plain lines you can prove wrong: roofing contractors in four Texas metros, 25+ reviews rated 4.2 or better, a site with two or fewer service pages, no franchises. Esy keeps each version of the rules, so you can see which one won clients.',
         },
         {
@@ -172,6 +144,10 @@ export const AGENCY_ISSUE: AgencyIssue = {
       title: 'What it did for us',
       funnel: FUNNEL,
       spend: SPEND,
+      per: [
+        { label: 'Per reply', funnel: 'Replied' },
+        { label: 'Per client', funnel: 'Became a client' },
+      ],
       lesson: 'The biggest drop wasn’t the email. It was the list: 301 roofers had no website at all. They need a site before they need AI search, so they’re a different offer, and a different campaign.',
     },
     {
@@ -201,9 +177,9 @@ export const AGENCY_ISSUE: AgencyIssue = {
     },
     {
       kind: 'take',
-      title: 'The first-lines prompt',
+      title: 'First lines from facts',
       what: 'Give it the facts Clay found: their reviews, the gap on their site, the reason to write now. It writes two opening lines that use only those facts, cites each one, and flags any line it can’t source.',
-      label: 'Copy the prompt',
+      label: 'Copy the skill',
     },
     { kind: 'news', slugs: ['google-ai-max-three-features', 'chatgpt-ads-costs-vary', 'hubspot-marketing-studio-agents'] },
     {

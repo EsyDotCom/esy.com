@@ -113,7 +113,7 @@ export function CoursePromo() {
 /** An issue title for the masthead: a colon is the natural pause, so the line
     breaks right after the first one; each part then balances if it still wraps
     (text-wrap in CSS). Titles without a colon are just balanced. */
-function TitleLines({ title }: { title: string }) {
+export function TitleLines({ title }: { title: string }) {
   const at = title.indexOf(': ');
   if (at < 0) return <>{title}</>;
   return (

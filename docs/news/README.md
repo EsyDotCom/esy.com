@@ -50,12 +50,12 @@ News every day, articles about twice a week, and one newsletter a week that teac
    2. **The system:** the tutorial, step by step, each step linking the article that goes deeper and saying who runs it (you, a tool, or Esy). This stays the main body.
    3. **What it did for us** (a few lines): the same system on our own pipeline or clients, with the numbers and the cost. Publish them when they're bad too.
    4. **Sell it to your clients** (a short paragraph): how an agency delivers and prices it, and the client's likely objection.
-   5. **One thing to copy:** a skill or a prompt.
+   5. **The weekly skill:** one skill to copy, by name, with one line on what it returns. Always a skill (a prompt goes out packaged as one), so the name holds every week.
    6. **This week in AI marketing:** three to five of the week's news posts, linked, chosen for what an agency would act on.
    7. **Reads**, then **the scoreboard** (three lines: this week's prospects, calls and clients, with the running total), then **next** (a course, the community or Esy).
    - At most once a month, an issue can be a client case study instead of a tutorial.
    - Clients are named only with their permission (a case-study clause in the contract). Prospects are never named.
-   - The three new parts (results, clients, scoreboard) are section kinds the issue builder needs; until then they're samples in `/prototypes/newsletter-issue/` round 2.
+   - These are the parts of Esy's "Newsletter issue" template v2 (`esy-issue` in api.esy.com, 2026-10-15), so Compose starts every issue with them. The issue page (L5 · Receipts first, `IssueRound2.tsx`) has a section kind for each (`results`, `clients`, `scoreboard` in `issues.ts`) and shows only the parts an issue has.
 3. **Cover:** `node scripts/newsletter-mason-cover.mjs <n> "<what Mason is doing that shows the title>"`. It makes two takes of vinyl Mason acting out the title; pick one, rename it `<n>.webp`, and set the issue's `cover`. Keep the sentence plain: the cover should read as the title, not as a puzzle.
 4. **Add it** to `src/components/NewsletterPage/issues.ts`, newest first. It shows on the homepage, on `/newsletter` and on its own page, with the cover as its share image.
 5. **Send it** to subscribers.

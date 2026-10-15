@@ -17,23 +17,40 @@
 
    All three read one sample (agency-issue.ts). The Clay connection is
    hypothetical and every number is os.esy.com's sample campaign; the page
-   says so. No signup sends. */
+   says so. No signup sends.
+
+   L5 is the live issue page (2026-10-15): /newsletter/<slug>/ renders
+   IssueReceipts with a real issue. Every piece reads the issue from context
+   and draws nothing when the issue lacks its part, so an issue written before
+   the template's v2 (no results, clients or scoreboard) still reads whole. */
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { ArrowLeft, ArrowRight, Copy } from 'lucide-react';
 import SocialAvatar from '@/components/EducationHero/SocialAvatar';
-import { ISSUES } from './issues';
-import { AGENCY_ISSUE, type AgencySection, type AgencyStep, funnelN, spendTotal, usd } from './agency-issue';
-import { CoursePromo } from './IssuePages';
-import { IssueRow, NewsSection, PageSignup, useIssueHref, useNewsletterMode } from './shared';
+import { ISSUES, type IssueStep } from './issues';
+import { AGENCY_ISSUE, type AgencyIssue, type AgencySection, usd } from './agency-issue';
+import { CoursePromo, TitleLines } from './IssuePages';
+import { IssueRow, NewsSection, PageSignup, SampleNote, useCover, useDateLabel, useIssueHref, useNewsletterMode } from './shared';
 import { PROMISE } from './Takes';
 
 type Kind = AgencySection['kind'];
 type Of<K extends Kind> = Extract<AgencySection, { kind: K }>;
-const issue = AGENCY_ISSUE;
-const part = <K extends Kind>(k: K) => issue.body.find((s) => s.kind === k) as Of<K>;
+
+/* The issue on this page: the round-2 sample in the prototypes, a real issue
+   on /newsletter/<slug>/. A live Issue is a narrower AgencyIssue (it never has
+   the sample's Clay connection), so one context serves both. */
+const IssueCtx = createContext<AgencyIssue>(AGENCY_ISSUE);
+const useIssue = () => useContext(IssueCtx);
+/** One part of the issue, or undefined when the issue doesn't have it. */
+function usePart<K extends Kind>(k: K): Of<K> | undefined {
+  return useIssue().body.find((s) => s.kind === k) as Of<K> | undefined;
+}
+/** True when the steps carry their own numbers (L5's proof column). */
+function useStepsHaveProof() {
+  return !!usePart('system')?.steps.some((st) => st.result);
+}
 const fmt = (n: number) => n.toLocaleString('en-US');
 
 const SAMPLE_LINE =
@@ -65,7 +82,7 @@ const COVERS = [
 ] as const;
 
 /** The cover art under the band, with a prototype switch between the three takes. */
-function CoverArt() {
+function CoverPicker() {
   const [i, setI] = useState(0);
   const c = COVERS[i];
   return (
@@ -84,22 +101,39 @@ function CoverArt() {
   );
 }
 
-/** The navy cover band (L3's), then the cover art. */
+/** The issue's own cover, shown whole under the band (as L3 does). */
+function CoverArt() {
+  const issue = useIssue();
+  const cover = useCover()(issue);
+  if (!cover) return null;
+  return (
+    <figure className="nlp-cover-art">
+      <Image src={cover} alt={issue.coverAlt ?? ''} width={1536} height={864} priority sizes="(max-width: 1100px) 100vw, 1040px" />
+      {issue.coverCaption && <figcaption>{issue.coverCaption}</figcaption>}
+    </figure>
+  );
+}
+
+/** The navy cover band (L3's), then the cover art. The prototypes keep the
+    three-cover switch for No. 5; the live page shows the issue's cover. */
 function Cover({ children }: { children?: React.ReactNode }) {
-  const { archive } = useNewsletterMode();
+  const issue = useIssue();
+  const { archive, live } = useNewsletterMode();
+  const dateLabel = useDateLabel();
+  // An issue with a "Sell it to your clients" part is written for agencies.
+  const forAgencies = !!usePart('clients');
   return (
     <>
-    <header className="nlp-cover has-art">
+    <header className={`nlp-cover${issue.cover ? ' has-art' : ''}`}>
       <div className="nlp-cover-in">
         <Link href={archive} className="nlp-back nlp-back--dark"><ArrowLeft size={14} aria-hidden="true" /> All issues</Link>
         <div className="nlp-cover-grid">
           <span className="nlp-cover-n" aria-hidden="true">{String(issue.n).padStart(2, '0')}</span>
           <div>
-            <p className="nlp-cover-kicker">The Marketing Engineer · No. {issue.n} · Oct 22, 2026 · {issue.minutes} min · For agencies</p>
-            <h1 className="nlp-cover-title">
-              <span className="nlp-title-part">Book calls for local clients:</span>
-              <span className="nlp-title-part">outbound with Clay and Esy</span>
-            </h1>
+            <p className="nlp-cover-kicker">
+              The Marketing Engineer · No. {issue.n} · {dateLabel(issue)} · {issue.minutes} min{forAgencies && ' · For agencies'}
+            </p>
+            <h1 className="nlp-cover-title"><TitleLines title={issue.title} /></h1>
             <p className="nlp-cover-dek">{issue.dek}</p>
             <div className="nlp-cover-byline">
               <SocialAvatar frameClassName="nlp-cover-byline-photo" size={40} />
@@ -110,24 +144,26 @@ function Cover({ children }: { children?: React.ReactNode }) {
         {children}
       </div>
     </header>
-    <CoverArt />
+    {live ? <CoverArt /> : <CoverPicker />}
     </>
   );
 }
 
 function Lead() {
-  return <>{part('lead').text.map((t, i) => <p key={i} className="nlp-p">{t}</p>)}</>;
+  const lead = usePart('lead');
+  return <>{lead?.text.map((t, i) => <p key={i} className="nlp-p">{t}</p>)}</>;
 }
 
-/** Who does the step: you, Clay, Esy, or the hand-off between them. */
-function Where({ w }: { w: AgencyStep['where'] }) {
-  const tone = w === 'You' ? 'you' : w === 'Clay' ? 'clay' : 'esy';
+/** Who does the step: you, a tool (Clay), Esy, or the hand-off into Esy. */
+function Where({ w }: { w: string }) {
+  const tone = w === 'You' ? 'you' : w.includes('Esy') ? 'esy' : 'tool';
   return <span className={`nla-where nla-where--${tone}`}>{w}</span>;
 }
 
 /** The steps as the tutorial reads: name, who runs it, what it does. */
 function Steps({ proof = false }: { proof?: boolean }) {
-  const s = part('system');
+  const s = usePart('system');
+  if (!s) return null;
   return (
     <div className={`nla-steps${proof ? ' nla-steps--proof' : ''}`} id="system">
       <p className="nlp-h">{s.title}</p>
@@ -136,20 +172,12 @@ function Steps({ proof = false }: { proof?: boolean }) {
           <li key={st.name} className="nla-step">
             <span className="nla-step-n">{i + 1}</span>
             <div className="nla-step-main">
-              <p className="nla-step-head"><b>{st.name}</b> <Where w={st.where} /></p>
+              <p className="nla-step-head"><b>{st.name}</b>{st.where && <> <Where w={st.where} /></>}</p>
               <p className="nla-step-does">{st.does}</p>
             </div>
             {proof && (
               <div className="nla-step-proof">
-                {st.result ? (
-                  <>
-                    <span className="nla-proof-n">{st.result.n}</span>
-                    {st.result.of && <span className="nla-proof-of">of {st.result.of}</span>}
-                    <span className="nla-proof-note">{st.result.note}</span>
-                  </>
-                ) : (
-                  <span className="nla-proof-note">Rules v3, from 3 won and 5 lost</span>
-                )}
+                {st.result && <StepResult r={st.result} />}
               </div>
             )}
           </li>
@@ -159,9 +187,20 @@ function Steps({ proof = false }: { proof?: boolean }) {
   );
 }
 
+function StepResult({ r }: { r: NonNullable<IssueStep['result']> }) {
+  return (
+    <>
+      {r.n && <span className="nla-proof-n">{r.n}</span>}
+      {r.of && <span className="nla-proof-of">of {r.of}</span>}
+      <span className="nla-proof-note">{r.note}</span>
+    </>
+  );
+}
+
 /** How Clay plugs into Esy, in words, with what each side keeps. */
 function ConnectBox() {
-  const c = part('connect');
+  const c = usePart('connect');
+  if (!c) return null;
   return (
     <div className="nla-connect" id="connect">
       <p className="nlp-h">{c.title}</p>
@@ -177,7 +216,9 @@ function ConnectBox() {
 }
 
 function Keeps() {
-  const { keeps } = part('connect');
+  const c = usePart('connect');
+  if (!c) return null;
+  const { keeps } = c;
   return (
     <div className="nla-keeps">
       <div><p className="nla-keeps-h"><Where w="Clay" /> keeps</p><ul>{keeps.clay.map((k) => <li key={k}>{k}</li>)}</ul></div>
@@ -189,7 +230,9 @@ function Keeps() {
 /** The connection as os.esy.com would show it: a mock of Outreach with sample
     rows (sample businesses, finders and costs). */
 function ConnectWindow() {
-  const c = part('connect');
+  const c = usePart('connect');
+  const spend = spendOf(usePart('results'));
+  if (!c) return null;
   const rows = [
     { name: 'Bluebonnet Roofing', city: 'Austin', why: 'Hail on Oct 9; no storm-repair page', src: 'Clay · Prospeo', cost: '$0.29' },
     { name: 'Kestrel Roof & Gutter', city: 'Dallas', why: 'Offers metal roofs; no page for them', src: 'Clay · Hunter', cost: '$0.07' },
@@ -217,7 +260,7 @@ function ConnectWindow() {
               </li>
             ))}
           </ul>
-          <p className="nla-win-foot">Campaign spend {usd(spendTotal)} of $150 · Clay data {usd(38.4)}</p>
+          <p className="nla-win-foot">Campaign spend {usd(spend)} of $150 · Clay data {usd(38.4)}</p>
         </div>
       </figure>
       <dl className="nla-connect-lines">
@@ -232,7 +275,8 @@ function ConnectWindow() {
 
 /** The connection as a flow: Clay's half, the hand-off, Esy's half. */
 function ConnectFlow() {
-  const c = part('connect');
+  const c = usePart('connect');
+  if (!c) return null;
   return (
     <div className="nla-connect" id="connect">
       <p className="nlp-h">{c.title}</p>
@@ -263,10 +307,15 @@ function ConnectFlow() {
   );
 }
 
+const spendOf = (r?: Of<'results'>) => (r ? r.spend.reduce((n, s) => n + s.usd, 0) : 0);
+
 /** What it did for us: the funnel as bars (log-ish widths so 1 still shows), and the spend. */
 function Results({ withFunnel = true }: { withFunnel?: boolean }) {
-  const r = part('results');
-  const top = r.funnel[0].n;
+  const r = usePart('results');
+  if (!r) return null;
+  const top = r.funnel[0]?.n ?? 0;
+  const total = spendOf(r);
+  const funnelN = (label: string) => r.funnel.find((f) => f.label === label)?.n ?? 0;
   return (
     <div className="nla-results" id="results">
       <p className="nlp-h">{withFunnel ? r.title : 'What it cost us'}</p>
@@ -284,9 +333,10 @@ function Results({ withFunnel = true }: { withFunnel?: boolean }) {
       <table className="nla-spend">
         <tbody>
           {r.spend.map((s) => <tr key={s.label}><td>{s.label}</td><td>{usd(s.usd)}</td></tr>)}
-          <tr className="nla-spend-total"><td>Total</td><td>{usd(spendTotal)}</td></tr>
-          <tr><td>Per reply</td><td>{usd(spendTotal / funnelN('Replied'))}</td></tr>
-          <tr><td>Per client</td><td>{usd(spendTotal / funnelN('Became a client'))}</td></tr>
+          <tr className="nla-spend-total"><td>Total</td><td>{usd(total)}</td></tr>
+          {r.per?.filter((p) => funnelN(p.funnel) > 0).map((p) => (
+            <tr key={p.label}><td>{p.label}</td><td>{usd(total / funnelN(p.funnel))}</td></tr>
+          ))}
         </tbody>
       </table>
       <p className="nlp-p nla-lesson">{r.lesson}</p>
@@ -296,7 +346,8 @@ function Results({ withFunnel = true }: { withFunnel?: boolean }) {
 
 /** Sell it to your clients: the offer, what's in it, example prices, the math, the objection. */
 function Clients({ card = false }: { card?: boolean }) {
-  const c = part('clients');
+  const c = usePart('clients');
+  if (!c) return null;
   return (
     <div className={`nla-clients${card ? ' nla-clients--card' : ''}`} id="clients">
       <p className="nla-clients-kicker">For your clients</p>
@@ -312,11 +363,15 @@ function Clients({ card = false }: { card?: boolean }) {
   );
 }
 
+/** The weekly skill (the template's `skill` part, 2026-10-15): the same
+    kicker every week, then this week's skill by name. */
 function Take() {
-  const t = part('take');
+  const t = usePart('take');
   const [copied, setCopied] = useState(false);
+  if (!t) return null;
   return (
     <div className="nlp-take" id="take">
+      <p className="nla-take-kicker">The weekly skill</p>
       <p className="nlp-h">{t.title}</p>
       <p className="nlp-p">{t.what}</p>
       <button type="button" className="nlp-take-btn" onClick={() => setCopied(true)}>
@@ -326,19 +381,26 @@ function Take() {
   );
 }
 
+function News() {
+  const n = usePart('news');
+  return n ? <NewsSection slugs={n.slugs} /> : null;
+}
+
 function Reads() {
-  const r = part('reads');
+  const r = usePart('reads');
+  if (!r) return null;
   return (
     <div className="nlp-reads">
       <p className="nlp-h">Worth your time</p>
-      <ul>{r.items.map((x) => <li key={x.title}><a href={x.href}>{x.title}</a>: {x.why}</li>)}</ul>
+      <ul>{r.items.map((x) => <li key={x.title}><Link href={x.href}>{x.title}</Link>: {x.why}</li>)}</ul>
     </div>
   );
 }
 
 /** This week's numbers, with the running total. `tone` dark sits on the cover. */
 function Scoreboard({ tone = 'light' }: { tone?: 'light' | 'dark' }) {
-  const s = part('scoreboard');
+  const s = usePart('scoreboard');
+  if (!s) return null;
   return (
     <div className={`nla-score nla-score--${tone}`} id="scoreboard">
       <p className="nla-score-h">Our scoreboard · {s.week}</p>
@@ -356,7 +418,8 @@ function Scoreboard({ tone = 'light' }: { tone?: 'light' | 'dark' }) {
 }
 
 function Next() {
-  const n = part('next');
+  const n = usePart('next');
+  if (!n) return null;
   return <p className="nlp-next">{n.text} <a href={n.href}>{n.cta} <ArrowRight size={13} aria-hidden="true" /></a></p>;
 }
 
@@ -364,9 +427,11 @@ function Sign() {
   return <p className="nlp-sign"><SocialAvatar frameClassName="nlp-sign-photo" size={40} />Zev</p>;
 }
 
-/** The foot every take shares: the course, the signup band, the other issues. */
+/** The foot every take shares: the signup band, the other issues, and what's a sample. */
 function Foot() {
   const href = useIssueHref();
+  const { n } = useIssue();
+  const { live } = useNewsletterMode();
   return (
     <>
       <section className="nlp-band">
@@ -380,16 +445,17 @@ function Foot() {
       </section>
       <section className="nlp-wrap">
         <p className="nlp-label">More issues</p>
-        <div className="nlp-list">{ISSUES.map((i) => <IssueRow key={i.n} issue={i} href={href} />)}</div>
-        <p className="nlp-sample">{SAMPLE_LINE}</p>
+        <div className="nlp-list">{ISSUES.filter((i) => i.n !== n).map((i) => <IssueRow key={i.n} issue={i} href={href} />)}</div>
+        {live ? <SampleNote /> : <p className="nlp-sample">{SAMPLE_LINE}</p>}
       </section>
     </>
   );
 }
 
 /* ── L4 · Build, then proof ──────────────────────────────────────────────── */
-export function IssueBuildProof() {
+export function IssueBuildProof({ issue = AGENCY_ISSUE }: { issue?: AgencyIssue }) {
   return (
+    <IssueCtx.Provider value={issue}>
     <main className="nlp">
       <Cover />
       <article className="nlp-letter nlp-letter--cover">
@@ -399,7 +465,7 @@ export function IssueBuildProof() {
         <Results />
         <Clients />
         <Take />
-        <NewsSection slugs={part('news').slugs} />
+        <News />
         <Reads />
         <Scoreboard />
         <Next />
@@ -408,22 +474,33 @@ export function IssueBuildProof() {
       </article>
       <Foot />
     </main>
+    </IssueCtx.Provider>
   );
 }
 
 /* ── L5 · Receipts first ─────────────────────────────────────────────────── */
-export function IssueReceipts() {
+export function IssueReceipts({ issue = AGENCY_ISSUE }: { issue?: AgencyIssue }) {
+  return (
+    <IssueCtx.Provider value={issue}>
+      <Receipts />
+    </IssueCtx.Provider>
+  );
+}
+
+function Receipts() {
+  // When the steps carry their numbers, the funnel would repeat them: show the spend only.
+  const proof = useStepsHaveProof();
   return (
     <main className="nlp">
       <Cover><Scoreboard tone="dark" /></Cover>
       <article className="nlp-letter nlp-letter--cover nla-wide">
         <Lead />
-        <Steps proof />
+        <Steps proof={proof} />
         <ConnectWindow />
-        <Results withFunnel={false} />
+        <Results withFunnel={!proof} />
         <Clients card />
         <Take />
-        <NewsSection slugs={part('news').slugs} />
+        <News />
         <Reads />
         <Next />
         <Sign />
@@ -435,8 +512,9 @@ export function IssueReceipts() {
 }
 
 /* ── L6 · Build it, sell it ──────────────────────────────────────────────── */
-export function IssueBuildSell() {
+export function IssueBuildSell({ issue = AGENCY_ISSUE }: { issue?: AgencyIssue }) {
   return (
+    <IssueCtx.Provider value={issue}>
     <main className="nlp">
       <Cover />
       <div className="nla-split">
@@ -455,7 +533,7 @@ export function IssueBuildSell() {
         </aside>
       </div>
       <div className="nlp-letter nla-after">
-        <NewsSection slugs={part('news').slugs} />
+        <News />
         <Reads />
         <Next />
         <Sign />
@@ -463,5 +541,6 @@ export function IssueBuildSell() {
       </div>
       <Foot />
     </main>
+    </IssueCtx.Provider>
   );
 }

@@ -7,8 +7,8 @@ import { LiveIssue } from '@/components/NewsletterPage/Live';
 import '@/components/NewsletterHome/NewsletterHome.css';
 import '@/components/NewsletterPage/newsletter-page.css';
 
-// One issue of The Marketing Engineer (2026-10-09), as L3 · Cover from
-// /prototypes/newsletter-issue/, with the course promo. The issues are samples
+// One issue of The Marketing Engineer (2026-10-09), as L5 · Receipts first from
+// /prototypes/newsletter-issue/ since 2026-10-15 (L3 · Cover before), with the course promo. The issues are samples
 // for now, so these pages stay out of search until real ones replace them.
 // (/newsletter/confirm/ is its own folder and wins over this segment.)
 

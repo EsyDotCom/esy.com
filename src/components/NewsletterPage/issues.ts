@@ -8,7 +8,13 @@
    Each issue covers one system, then the week's AI marketing news, linked to
    the real AI Marketing News posts. The facts are real (clip.art's 30,000+
    pages and #1 for "AI clipart", SEOPage, Compose, the news posts); the issues
-   themselves, their dates and their wording are samples. */
+   themselves, their dates and their wording are samples.
+
+   No. 5 (agency-issue.ts) is the first issue with every v2 part, and has led
+   the live list since 2026-10-15 so the live page shows L5 whole. Its numbers
+   are os.esy.com's sample campaign, said at the top of the issue (`sample`). */
+
+import { AGENCY_ISSUE } from './agency-issue';
 
 /** One step of the week's system. `where` says who runs it (You, a tool such
     as Clay, or Esy); `result` is what the step did on our own run. Both are
@@ -47,6 +53,14 @@ export type IssueSection =
       math: string[];
       objection: { q: string; a: string };
     }
+  // How a tool plugs into Esy, and what each side keeps (No. 5: Clay).
+  | {
+      kind: 'connect';
+      title: string;
+      lines: { label: string; text: string }[];
+      keeps: { clay: string[]; esy: string[] };
+      note: string;
+    }
   | { kind: 'take'; title: string; what: string; label: string } // the weekly skill: its name, what it returns
   | { kind: 'reads'; items: { title: string; why: string; href: string }[] }
   // Our scoreboard: this week's numbers with the running total.
@@ -73,17 +87,21 @@ export interface Issue {
   coverAlt?: string;
   /** One line under the cover saying what Mason is doing and why, in plain words. */
   coverCaption?: string;
+  /** Said at the top of the issue when its numbers are a sample, not ours. */
+  sample?: string;
   body: IssueSection[];
 }
 
 export const ISSUES: Issue[] = [
+  // No. 5 is the full v2 issue (every part), so the live page shows L5 whole.
+  AGENCY_ISSUE,
   {
     n: 4,
     cover: '/images/newsletter/covers/vinyl-mason/4.webp',
     coverAlt: 'Mason the octopus at a microscope over a tray of small figurines dressed as different characters, while a screen beside him shows the one he found, magnified and glowing.',
     coverCaption: 'Mason studies a crowd of possible customers under the microscope, and the screen shows the one he’s looking for.',
     slug: 'find-what-to-build',
-    date: '2026-10-15',
+    date: '2026-10-08',
     title: 'Find what to build: the ICP discovery system',
     dek: 'Your ideal customer is a guess until you’ve talked to them. The system that turns the guess into real people, their own words, and booked calls.',
     topic: 'AI marketing',
@@ -126,7 +144,7 @@ export const ISSUES: Issue[] = [
     coverAlt: 'Mason the octopus setting a block into a page that an AI chat window is quoting.',
     coverCaption: 'Mason sets a block into a page that an AI answer is quoting.',
     slug: 'landing-pages-ai-will-cite',
-    date: '2026-10-08',
+    date: '2026-10-01',
     title: 'Landing pages that AI answers quote',
     dek: 'Why SEOPage writes every page as answers first, and the skill that does the research.',
     topic: 'AI search',
@@ -160,7 +178,7 @@ export const ISSUES: Issue[] = [
     coverAlt: 'Robot agents researching, writing and checking while Mason the octopus stamps the finished paper.',
     coverCaption: 'The agents research, write and check; Mason stamps the paper only when it’s right.',
     slug: 'the-agent-newsroom',
-    date: '2026-10-01',
+    date: '2026-09-24',
     title: 'The agent newsroom behind AI Marketing News',
     dek: 'A Researcher, a Writer and a Fact-checker, and the one step that stays human.',
     topic: 'AI agents',
@@ -200,7 +218,7 @@ export const ISSUES: Issue[] = [
     coverAlt: 'Mason the octopus on the top step of a winners’ podium, holding up a glowing trophy.',
     coverCaption: 'Mason on the top step: clip.art at #1 for “AI clipart”.',
     slug: 'how-clip-art-got-to-number-one',
-    date: '2026-09-24',
+    date: '2026-09-17',
     title: 'How clip.art got to #1 for “AI clipart”',
     dek: '30,000+ pages, one person, and the system that decides what to make next.',
     topic: 'SEO',

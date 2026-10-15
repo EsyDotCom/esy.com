@@ -159,6 +159,7 @@ a.nlp-row, a.nlp-card, a.nlp-feature { text-decoration: none; color: inherit; }
   text-wrap: balance; /* even lines, never one word left alone on the last line */
 }
 .nlp-cover-dek { margin: 0; max-width: 620px; text-wrap: pretty; font-size: 1.12rem; line-height: 1.55; color: rgba(255, 255, 255, 0.78); }
+.nlp-cover-sample { margin: 14px 0 0; max-width: 620px; padding: 8px 12px; border: 1px dashed rgba(255, 255, 255, 0.32); border-radius: 8px; font-size: 0.82rem; line-height: 1.45; color: rgba(255, 255, 255, 0.72); }
 .nlp-band { background: #0A1626; }
 .nlp-band-in { max-width: 1120px; margin: 0 auto; padding: 48px 24px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: center; }
 .nlp-band-title { margin: 0 0 8px; font-family: var(--nl-serif, 'Cormorant Garamond'), Georgia, serif; font-weight: 700; font-size: 1.9rem; color: #fff; }

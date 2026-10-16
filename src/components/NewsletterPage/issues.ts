@@ -61,7 +61,9 @@ export type IssueSection =
       keeps: { clay: string[]; esy: string[] };
       note: string;
     }
-  | { kind: 'take'; title: string; what: string; label: string } // the weekly skill: its name, what it returns
+  // The weekly skill: its name, what it returns, the button, and (issues from
+  // Compose) the skill itself, which the button copies.
+  | { kind: 'take'; title: string; what: string; label: string; skill?: string }
   | { kind: 'reads'; items: { title: string; why: string; href: string }[] }
   // Our scoreboard: this week's numbers with the running total.
   | { kind: 'scoreboard'; week: string; rows: { label: string; week: number; total: number }[] }
@@ -89,6 +91,10 @@ export interface Issue {
   coverCaption?: string;
   /** Said at the top of the issue when its numbers are a sample, not ours. */
   sample?: string;
+  /** A real issue, written in Compose and published through Esy
+      (src/lib/published-issues.ts). The issues in this file are samples, so
+      the live site labels them "Sample issue"; a real one shows its date. */
+  real?: boolean;
   body: IssueSection[];
 }
 

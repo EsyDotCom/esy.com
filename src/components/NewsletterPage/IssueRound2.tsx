@@ -29,10 +29,10 @@ import Link from 'next/link';
 import { createContext, useContext, useState } from 'react';
 import { ArrowLeft, ArrowRight, Copy } from 'lucide-react';
 import SocialAvatar from '@/components/EducationHero/SocialAvatar';
-import { ISSUES, type IssueStep } from './issues';
+import { type IssueStep } from './issues';
 import { AGENCY_ISSUE, type AgencyIssue, type AgencySection, usd } from './agency-issue';
 import { CoursePromo, TitleLines } from './IssuePages';
-import { IssueRow, NewsSection, PageSignup, SampleNote, useCover, useDateLabel, useIssueHref, useNewsletterMode } from './shared';
+import { IssueRow, NewsSection, PageSignup, SampleNote, useCover, useDateLabel, useIssueHref, useIssues, useNewsletterMode } from './shared';
 import { PROMISE } from './Takes';
 
 type Kind = AgencySection['kind'];
@@ -376,8 +376,16 @@ function Take() {
       <p className="nla-take-kicker">The weekly skill</p>
       <p className="nlp-h">{t.title}</p>
       <p className="nlp-p">{t.what}</p>
-      <button type="button" className="nlp-take-btn" onClick={() => setCopied(true)}>
-        <Copy size={14} aria-hidden="true" /> {copied ? 'Sample: the real issue copies it' : t.label}
+      {/* A skill written in Compose is copied for real; the samples only say what would happen. */}
+      <button
+        type="button"
+        className="nlp-take-btn"
+        onClick={() => {
+          if (t.skill) navigator.clipboard?.writeText(t.skill).catch(() => {});
+          setCopied(true);
+        }}
+      >
+        <Copy size={14} aria-hidden="true" /> {copied ? (t.skill ? 'Copied' : 'Sample: the real issue copies it') : t.label}
       </button>
     </div>
   );
@@ -434,6 +442,7 @@ function Foot() {
   const href = useIssueHref();
   const { n } = useIssue();
   const { live } = useNewsletterMode();
+  const issues = useIssues();
   return (
     <>
       <section className="nlp-band">
@@ -447,7 +456,7 @@ function Foot() {
       </section>
       <section className="nlp-wrap">
         <p className="nlp-label">More issues</p>
-        <div className="nlp-list">{ISSUES.filter((i) => i.n !== n).map((i) => <IssueRow key={i.n} issue={i} href={href} />)}</div>
+        <div className="nlp-list">{issues.filter((i) => i.n !== n).map((i) => <IssueRow key={i.n} issue={i} href={href} />)}</div>
         {live ? <SampleNote /> : <p className="nlp-sample">{SAMPLE_LINE}</p>}
       </section>
     </>

@@ -19,15 +19,17 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Search } from 'lucide-react';
 import { postPath, publishedPosts } from '@/data/news';
-import { type Issue, ISSUES, LATEST } from './issues';
+import { type Issue } from './issues';
 import { FeedRow, LeadCard, Masthead } from './Round2';
-import { PageSignup, SampleNote } from './shared';
+import { PageSignup, SampleNote, useIssues } from './shared';
 import { PROMISE } from './Takes';
 
 type Feed = 'Latest' | 'Top' | 'News';
 
-// "Top" is a sample order (the clip.art issue first, as the most read).
-const ordered = (feed: Feed): Issue[] => (feed === 'Top' ? [...ISSUES].sort((a, b) => a.n - b.n) : ISSUES);
+// "Top" is a sample order (the clip.art issue first, as the most read). The
+// issues come from context: the registry, or on the live page the registry
+// merged with Compose's (src/lib/published-issues.ts).
+const ordered = (feed: Feed, issues: Issue[]): Issue[] => (feed === 'Top' ? [...issues].sort((a, b) => a.n - b.n) : issues);
 
 /** Latest / Top (and News, for I) as a segmented control, with a search button that answers with a note. */
 function FeedTabs({ feed, onFeed, tabs }: { feed: Feed; onFeed: (f: Feed) => void; tabs: Feed[] }) {
@@ -117,10 +119,11 @@ function RailNews() {
 
 /** D's top, unchanged: the name, then the latest issue's cover. */
 function Top() {
+  const [latest] = useIssues();
   return (
     <>
       <Masthead />
-      <div className="nlp-wrap nlp-wrap--wide"><LeadCard issue={LATEST} /></div>
+      <div className="nlp-wrap nlp-wrap--wide">{latest && <LeadCard issue={latest} />}</div>
     </>
   );
 }
@@ -128,13 +131,14 @@ function Top() {
 /* G · Feed + rail */
 export function TakeFeedRail() {
   const [feed, setFeed] = useState<Feed>('Latest');
+  const all = useIssues();
   return (
     <main className="nlp nlp--pub">
       <Top />
       <div className="nlp-wrap nlp-wrap--wide nlp-below">
         <section className="nlp-feedcol">
           <FeedTabs feed={feed} onFeed={setFeed} tabs={['Latest', 'Top']} />
-          <div className="nlp-feed">{ordered(feed).map((i) => <FeedRow key={i.n} issue={i} />)}</div>
+          <div className="nlp-feed">{ordered(feed, all).map((i) => <FeedRow key={i.n} issue={i} />)}</div>
         </section>
         <aside className="nlp-rail">
           <PubCard />
@@ -149,13 +153,14 @@ export function TakeFeedRail() {
 /* H · Feed + news */
 export function TakeFeedNews() {
   const [feed, setFeed] = useState<Feed>('Latest');
+  const all = useIssues();
   return (
     <main className="nlp nlp--pub">
       <Top />
       <div className="nlp-wrap nlp-wrap--wide nlp-below">
         <section className="nlp-feedcol">
           <FeedTabs feed={feed} onFeed={setFeed} tabs={['Latest', 'Top']} />
-          <div className="nlp-feed">{ordered(feed).map((i) => <FeedRow key={i.n} issue={i} />)}</div>
+          <div className="nlp-feed">{ordered(feed, all).map((i) => <FeedRow key={i.n} issue={i} />)}</div>
         </section>
         <aside className="nlp-rail">
           <PubCard />
@@ -172,7 +177,7 @@ export function TakeFeedNews() {
    course. The feed lists every issue, so there's no "Every issue" link. */
 export function TakeWideFeed() {
   const [feed, setFeed] = useState<Feed>('Latest');
-  const issues = ordered(feed);
+  const issues = ordered(feed, useIssues());
   return (
     <main className="nlp nlp--pub">
       <Top />

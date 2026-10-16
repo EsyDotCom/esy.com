@@ -44,7 +44,7 @@ The full map, with who signs in where and where each record lives, is [docs/org/
 |---|---|---|
 | [`/`](https://esy.com/) | The homepage: Zev at his desk (hero), the newsletter, the latest issue, the news column, the courses | `src/app/page.js` → `components/NewsletterHome/` |
 | [`/newsletter`](https://esy.com/newsletter/) | The Marketing Engineer: signup, the latest issue's cover, every issue | `src/app/newsletter/` → `components/NewsletterPage/Live.tsx` |
-| [`/newsletter/<slug>`](https://esy.com/newsletter/find-what-to-build/) | One issue: **L5 · Receipts first** (since 2026-10-15) | `IssueRound2.tsx` (layout), `issues.ts` (issues) |
+| [`/newsletter/<slug>`](https://esy.com/newsletter/find-what-to-build/) | One issue: **L5 · Receipts first** (since 2026-10-15) | `IssueRound2.tsx` (layout); issues from Compose via `lib/published-issues.ts`, samples in `issues.ts` |
 | [`/news`](https://esy.com/news/) | **AI Marketing News**: a news post every day, grouped by story, with RSS and a Google News sitemap | `src/app/news/` → `components/News/`, posts in `src/data/news/` |
 | [`/news/<slug>`](https://esy.com/news/) | One news post | `components/NewsPost/` |
 | [`/articles/<slug>`](https://esy.com/topics/) | One article (image or video). `/articles` itself redirects to `/topics` | `src/app/articles/[slug]/`, `lib/published-articles.ts` |
@@ -97,7 +97,7 @@ The full map, with who signs in where and where each record lives, is [docs/org/
 |---|---|---|---|
 | **News posts** (daily) | Compose, or `src/data/news/index.ts` | `/news`, the homepage column, RSS, both sitemaps | [docs/news/README.md](docs/news/README.md): facts are checked against the company's own announcement, real publish dates, logos only as the company's own files |
 | **Articles** (about Tue and Thu) | Compose → api.esy.com | `/articles/<slug>`, `/topics` | `lib/published-articles.ts`: the registry in git plus Compose's articles, refreshed by the webhook |
-| **Newsletter issues** (weekly) | Compose, from Esy's **"Newsletter issue"** template (`esy-issue` v2) | `/newsletter/<slug>`, the homepage, the email | [docs/news/README.md](docs/news/README.md) → "End of the week: the issue" |
+| **Newsletter issues** (weekly) | Compose, from Esy's **"Newsletter issue"** template (`esy-issue` v2) → api.esy.com (kind `issue`) | `/newsletter/<slug>`, the homepage, the email (sent once, from Compose) | [docs/news/README.md](docs/news/README.md) → "End of the week: the issue" |
 | **Covers** | `scripts/newsletter-mason-cover.mjs` | Every issue and article | Vinyl Mason doing the work in the title; esy brand top centre |
 
 **An issue has up to nine parts**, matching the `esy-issue` v2 template:

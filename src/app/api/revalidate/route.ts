@@ -14,7 +14,8 @@ type RevalidateBody = {
   slug?: string;
   action?: "publish" | "unpublish" | "test";
   categories?: string[];
-  /** What was published: "news-post" for AI Marketing News. Informational. */
+  /** What was published: "news-post" for AI Marketing News, "issue" for a
+      newsletter issue. Routes `engineer` deliveries. */
   kind?: string;
 };
 
@@ -24,7 +25,12 @@ type RevalidateBody = {
 // (2026-10-12); articles are browsed under /topics. `news` is AI Marketing
 // News (/news), whose posts are published from Compose
 // (src/lib/published-news.ts).
-const KNOWN_PUBLICATIONS = new Set(["esy-research", "esy-learn", "news"]);
+//
+// `engineer` is The Marketing Engineer's publication on api.esy.com, and
+// since 2026-10-16 the newsletter's issues are published from Compose into it
+// (src/lib/published-issues.ts). Only its issues are shown, so a delivery from
+// it counts only when it's for an issue.
+const KNOWN_PUBLICATIONS = new Set(["esy-research", "esy-learn", "news", "engineer"]);
 
 /**
  * Legacy Bearer / x-revalidate-secret check. Kept as a fallback during the HMAC
@@ -80,7 +86,10 @@ export async function POST(request: NextRequest) {
 
   const publication = body.publication?.trim();
   const slug = body.slug?.trim();
-  if (!publication || !KNOWN_PUBLICATIONS.has(publication) || !slug) {
+  // The Marketing Engineer's articles are retired; only its issues have pages.
+  // Its Connect panel's "Verify connection" (action "test") still answers.
+  const retiredDelivery = publication === "engineer" && body.kind !== "issue" && body.action !== "test";
+  if (!publication || !KNOWN_PUBLICATIONS.has(publication) || !slug || retiredDelivery) {
     // Derive the list from the set so a newly wired publication never leaves a
     // stale name in the error a Connect panel shows the operator.
     const known = [...KNOWN_PUBLICATIONS]
@@ -112,6 +121,28 @@ export async function POST(request: NextRequest) {
       categories: body.categories ?? [],
       // "/news" stands for the whole /news layout (every post and story page).
       paths: ["/news", ...paths],
+    });
+  }
+
+  // The Marketing Engineer: an issue was published, updated or unpublished in
+  // Compose. Purge the issues' cached API read, then every page that shows
+  // issues: the /newsletter layout covers the index and every issue page (each
+  // lists the others); the homepage and /seo carry the latest issue.
+  if (publication === "engineer") {
+    revalidateTag("published-issues");
+    revalidateTag("published-issues:engineer");
+    revalidatePath("/newsletter", "layout");
+    const paths = ["/", "/seo", "/sitemap.xml"];
+    paths.forEach((path) => revalidatePath(path));
+
+    return NextResponse.json({
+      revalidated: true,
+      action: body.action ?? "publish",
+      publication,
+      slug,
+      categories: body.categories ?? [],
+      // "/newsletter" stands for the whole /newsletter layout (every issue page).
+      paths: ["/newsletter", ...paths],
     });
   }
 

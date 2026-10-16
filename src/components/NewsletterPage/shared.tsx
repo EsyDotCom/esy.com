@@ -12,7 +12,7 @@ import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Copy, MailCheck } from 'lucide-react';
 import NewsletterSignup from '@/components/NewsletterHome/NewsletterSignup';
 import { findPost, postPath } from '@/data/news';
-import { type Issue, type IssueSection, issueDate } from './issues';
+import { type Issue, type IssueSection, ISSUES, issueDate } from './issues';
 
 /** Where an issue opens. Built on the client from a plain string a server page
     can pass: a template with {n} or {slug}, e.g. '/newsletter/{slug}/' (live)
@@ -37,6 +37,21 @@ const ModeContext = createContext<NewsletterMode>({
   live: false,
 });
 export const NewsletterModeProvider = ModeContext.Provider;
+
+/* The issues these components show (2026-10-16). The live pages pass the
+   registry merged with the issues published from Compose
+   (src/lib/published-issues.ts), and the headlines of the news posts they
+   link; prototypes keep the registry alone, the default. */
+export interface IssuesData {
+  /** Newest number first. */
+  issues: Issue[];
+  /** News posts Esy holds that issues link, by slug (the registry's are found directly). */
+  news: Record<string, { headline: string; topic: string }>;
+}
+const IssuesContext = createContext<IssuesData>({ issues: ISSUES, news: {} });
+export const IssuesProvider = IssuesContext.Provider;
+export const useIssues = () => useContext(IssuesContext).issues;
+const useIssueNews = () => useContext(IssuesContext).news;
 export const useNewsletterMode = () => useContext(ModeContext);
 export const useIssueHref = () => issueHref(useContext(ModeContext).link);
 
@@ -46,10 +61,11 @@ export function useCover() {
   return (issue: Pick<Issue, 'n' | 'cover'>) => (covers ? covers.replace('{n}', String(issue.n)) : issue.cover);
 }
 
-/** An issue's date as a label: the date in prototypes, "Sample issue" on the live site. */
+/** An issue's date as a label: the date in prototypes and for real issues,
+    "Sample issue" for the registry's samples on the live site. */
 export function useDateLabel() {
   const { live } = useContext(ModeContext);
-  return (issue: Pick<Issue, 'date'>) => (live ? 'Sample issue' : issueDate(issue.date));
+  return (issue: Pick<Issue, 'date' | 'real'>) => (live && !issue.real ? 'Sample issue' : issueDate(issue.date));
 }
 
 /** The signup for these pages: the real one on the live site, the prototype one elsewhere. */
@@ -203,7 +219,15 @@ function Section({ s, id }: { s: IssueSection; id: string }) {
 
 /** The week's AI marketing news: the real posts' headlines and topics, each linking to its page. */
 export function NewsSection({ slugs, id, variant = 'list' }: { slugs: string[]; id?: string; variant?: 'list' | 'cards' }) {
-  const posts = slugs.map((s) => findPost(s)).filter((p) => p !== undefined);
+  // The registry's posts first; posts published from Compose come from the live page's data.
+  const held = useIssueNews();
+  const posts = slugs
+    .map((s) => {
+      const p = findPost(s);
+      if (p) return { slug: p.slug, topic: p.topic as string, headline: p.headline };
+      return held[s] ? { slug: s, ...held[s] } : undefined;
+    })
+    .filter((p) => p !== undefined);
   if (!posts.length) return null;
   return (
     <div className={`nlp-news nlp-news--${variant}`} id={id}>
@@ -247,6 +271,13 @@ export function IssueNav({ older, newer, href }: { older?: Issue; newer?: Issue;
     live site it says plainly that the issues are previews. */
 export function SampleNote() {
   const { live } = useContext(ModeContext);
+  const issues = useIssues();
+  // Once a real issue is out, the note only explains the samples left in the list.
+  if (live && issues.some((i) => i.real)) {
+    return issues.every((i) => i.real) ? null : (
+      <p className="nlp-sample">The issues marked “Sample issue” show what each one looks like; the dated ones went out.</p>
+    );
+  }
   if (live) {
     return (
       <p className="nlp-sample">

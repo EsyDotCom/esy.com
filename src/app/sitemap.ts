@@ -5,6 +5,7 @@ import { getAllTemplates } from '@/lib/templates'
 import { courses } from '@/lib/learn/mockData'
 import { liveStoriesOf, postsInStoryOf } from '@/data/news'
 import { getNews } from '@/lib/published-news'
+import { getIssues } from '@/lib/published-issues'
 import {
   getAllAgenticArticles,
 } from '@/lib/published-articles'
@@ -162,6 +163,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${baseUrl}/news/${story.slug}/`,
       lastModified: new Date(postsInStoryOf(news.posts, story.slug)[0].publishedAt),
       changeFrequency: 'daily',
+      priority: 0.7,
+    })
+  })
+
+  // The Marketing Engineer: real issues only (published from Compose). The
+  // registry's sample issues are noindex, so they stay out of the sitemap too.
+  const issues = await getIssues()
+  issues.filter(issue => issue.real).forEach(issue => {
+    sitemap.push({
+      url: `${baseUrl}/newsletter/${issue.slug}/`,
+      lastModified: new Date(issue.date),
+      changeFrequency: 'monthly',
       priority: 0.7,
     })
   })

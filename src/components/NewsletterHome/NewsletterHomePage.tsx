@@ -28,7 +28,8 @@ import { formatDate, formatMinutes, thumbnailFor } from '@/lib/article-format';
 import { TOPICS, topicHref } from '@/data/topics';
 import { FILMS, filmHref } from '@/data/films';
 import { CREATIVES } from '@/data/creatives';
-import { ISSUES, issueDate } from '@/components/NewsletterPage/issues';
+import { type Issue, issueDate } from '@/components/NewsletterPage/issues';
+import { getIssues } from '@/lib/published-issues';
 import CreativePlayer from './CreativePlayer';
 import FilmPosterBand from './FilmPosterBand';
 import FilmStrip from './FilmStrip';
@@ -218,9 +219,10 @@ export default async function NewsletterHomePage({
   const featuredThumb = featured ? thumbnailFor(featured) : null;
   const properties = compose ? [...PROPERTIES, COMPOSE_PROPERTY] : PROPERTIES;
 
-  // The publication: the newest issue as the feature, the ones before it as a list, AI Marketing News beside.
-  const [issue, ...earlier] = ISSUES;
-  const coverOf = (i: (typeof ISSUES)[number]) => (issueCovers ? issueCovers.replace('{n}', String(i.n)) : i.cover);
+  // The publication: the newest issue as the feature, the ones before it as a
+  // list, AI Marketing News beside. The registry merged with Compose's issues.
+  const [issue, ...earlier] = await getIssues();
+  const coverOf = (i: Issue) => (issueCovers ? issueCovers.replace('{n}', String(i.n)) : i.cover);
   const publicationSection = issue && (
     <section className="nl-section nl-section--alt" id="latest" aria-labelledby="nl-pub-title">
       <div className="nl-container">

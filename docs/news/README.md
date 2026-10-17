@@ -57,8 +57,12 @@ News every day, articles about twice a week, and one newsletter a week that teac
    - Clients are named only with their permission (a case-study clause in the contract). Prospects are never named.
    - These are the parts of Esy's "Newsletter issue" template v2 (`esy-issue` in api.esy.com, 2026-10-15), so Compose starts every issue with them. The issue page (L5 · Receipts first, `IssueRound2.tsx`) has a section kind for each (`results`, `clients`, `scoreboard` in `issues.ts`) and shows only the parts an issue has.
 3. **Cover:** `node scripts/newsletter-mason-cover.mjs <n> "<what Mason is doing that shows the title>"`. It makes two takes of vinyl Mason acting out the title; pick one, rename it `<n>.webp`, and set the issue's `cover`. Keep the sentence plain: the cover should read as the title, not as a puzzle.
-4. **Add it** to `src/components/NewsletterPage/issues.ts`, newest first. It shows on the homepage, on `/newsletter` and on its own page, with the cover as its share image.
-5. **Send it** to subscribers.
+4. **Write it in Compose** (since 2026-10-16), from the "Newsletter issue" template. Esy holds the issue (kind `issue`, in The Marketing Engineer's publication) and checks it before it goes out. Compose shows what's missing.
+5. **Publish it.** Choose the page, the email, or both:
+   - **The page** goes up at `/newsletter/<slug>/` within about a second, and shows on the homepage and on `/newsletter` (`src/lib/published-issues.ts`). Publishing it again updates the page and never resends the email.
+   - **The email** goes to everyone confirmed on the list, once. Send yourself a test first; it goes only to your own address.
+   - Or schedule both for the publication's slot, and Esy sends them at that time.
+   - The issues in `issues.ts` are the samples from before Compose. While one is still in that file, it wins over an Esy issue with the same slug.
 
 ### Every week: a five-minute check
 

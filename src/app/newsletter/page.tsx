@@ -2,13 +2,17 @@ import type { Metadata } from 'next';
 import LightHeader from '@/components/LightHeader/LightHeader';
 import { nlSerif } from '@/components/NewsletterHome/serif';
 import { LiveNewsletterIndex } from '@/components/NewsletterPage/Live';
+import { getIssueNews, getIssues } from '@/lib/published-issues';
 import '@/components/NewsletterHome/NewsletterHome.css';
 import '@/components/NewsletterPage/newsletter-page.css';
 
 // esy.com/newsletter (2026-10-09): The Marketing Engineer's home. Picked from
 // /prototypes/newsletter/: D's top (the name, the latest issue's big cover)
 // with I's wide feed (Latest / Top, the signup inline after the second issue).
-// Issues are samples until Compose writes real ones, and say so.
+// Issues are samples until Compose writes real ones, and say so. The list is
+// the registry merged with the issues published from Compose
+// (src/lib/published-issues.ts), refreshed by the revalidate webhook.
+export const revalidate = 3600;
 
 const TITLE = 'AI Marketing Newsletter — The Marketing Engineer';
 const DESCRIPTION =
@@ -22,11 +26,12 @@ export const metadata: Metadata = {
   alternates: { canonical: '/newsletter/' },
 };
 
-export default function NewsletterPage() {
+export default async function NewsletterPage() {
+  const issues = await getIssues();
   return (
     <div className={`nl ${nlSerif.variable}`}>
       <LightHeader />
-      <LiveNewsletterIndex />
+      <LiveNewsletterIndex data={{ issues, news: await getIssueNews(issues) }} />
     </div>
   );
 }

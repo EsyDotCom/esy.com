@@ -34,6 +34,9 @@ export interface AgenticVideo {
   coverImageAlt?: string;
   /** The title for search results and link previews (the API falls back to `title`). */
   searchTitle?: string;
+  /** "noindex" keeps the article out of search and the sitemap while it stays
+      live (api.esy.com #589; src/lib/search-indexing.ts). Registry entries have none. */
+  searchIndexing?: 'index' | 'noindex';
 }
 
 export const agenticVideos: AgenticVideo[] = [

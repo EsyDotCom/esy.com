@@ -41,6 +41,8 @@ export interface PublicIssue {
   /** ISO 8601 with offset. */
   publishedAt: string;
   updatedAt: string;
+  /** "noindex": live, but out of search and the sitemap (api.esy.com #589). */
+  searchIndexing?: 'index' | 'noindex';
 }
 
 /** A news post an issue links, for the "This week in AI marketing" part. */
@@ -51,7 +53,8 @@ export interface IssueNewsLink {
 
 // The API's issue onto the registry's Issue, so every page renders both the
 // same way. Optional keys only when they say something, as the registry writes them.
-function toIssue(p: PublicIssue): Issue {
+// Exported for the preview route (src/lib/preview.ts).
+export function toIssue(p: PublicIssue): Issue {
   return {
     n: p.number,
     slug: p.slug,
@@ -65,8 +68,11 @@ function toIssue(p: PublicIssue): Issue {
     ...(p.coverCaption ? { coverCaption: p.coverCaption } : {}),
     ...(p.sample ? { sample: p.sample } : {}),
     body: p.parts ?? [],
-    // Written in Compose and sent: a real issue, so its page shows its date.
+    // Written in Compose and published through Esy: a real issue, so its page
+    // shows its date, and it's in search unless Esy says noindex
+    // (issueInSearch in src/lib/search-indexing.ts).
     real: true,
+    ...(p.searchIndexing === 'noindex' ? { searchIndexing: 'noindex' as const } : {}),
   };
 }
 

@@ -103,6 +103,9 @@ export interface NewsPost {
   takeLinks?: string[];
   /** Why a draft is held, for the next person to pick it up. */
   held?: string;
+  /** "noindex" keeps the post out of search and both sitemaps while it stays
+      live (api.esy.com #589; src/lib/search-indexing.ts). Registry posts have none. */
+  searchIndexing?: 'index' | 'noindex';
 }
 
 /* Companies we cover. Logos are the companies' own files, unchanged, and only

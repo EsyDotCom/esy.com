@@ -95,6 +95,9 @@ export interface Issue {
       (src/lib/published-issues.ts). The issues in this file are samples, so
       the live site labels them "Sample issue"; a real one shows its date. */
   real?: boolean;
+  /** "noindex" keeps a real issue out of search and the sitemap while it stays
+      live (api.esy.com #589; src/lib/search-indexing.ts). */
+  searchIndexing?: 'index' | 'noindex';
   body: IssueSection[];
 }
 

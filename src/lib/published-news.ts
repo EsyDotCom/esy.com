@@ -53,12 +53,15 @@ export interface PublicNewsPost {
   takeLinks: string[];
   /** Not used yet: the byline stays "By Zev Uhuru" for now. */
   author: { name: string; role: string; avatar: string } | null;
+  /** "noindex": live, but out of search and both sitemaps (api.esy.com #589). */
+  searchIndexing?: 'index' | 'noindex';
 }
 
 // Map the API's post onto the registry's NewsPost so every page renders both
 // the same way. Sources match registry style: `note` only when it says
-// something, `secondary` only when true.
-function toNewsPost(p: PublicNewsPost): NewsPost {
+// something, `secondary` only when true. Exported for the preview route, which
+// renders a draft in the same shape (src/lib/preview.ts).
+export function toNewsPost(p: PublicNewsPost): NewsPost {
   const sources: NewsSource[] = (p.sources ?? []).map(({ note, secondary, ...rest }) => ({
     ...rest,
     ...(secondary ? { secondary: true } : {}),
@@ -86,12 +89,13 @@ function toNewsPost(p: PublicNewsPost): NewsPost {
     writtenBy: p.origin === 'written' ? 'zev' : 'agents',
     readMinutes: p.readMinutes,
     ...(p.take ? { take: p.take, takeLinks: p.takeLinks ?? [] } : {}),
+    ...(p.searchIndexing === 'noindex' ? { searchIndexing: 'noindex' as const } : {}),
   };
 }
 
 // A story the registry doesn't know yet, from the API post's story fields.
 // No logo: logos are added by hand once a company's terms allow it.
-const toNewsStory = (s: PublicNewsPost['story']): NewsStory => ({
+export const toNewsStory = (s: PublicNewsPost['story']): NewsStory => ({
   slug: s.slug,
   name: s.name,
   line: s.line,

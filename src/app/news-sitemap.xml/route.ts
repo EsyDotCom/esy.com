@@ -1,5 +1,6 @@
 import { postPath, publishedTime } from '@/data/news';
 import { getNews } from '@/lib/published-news';
+import { inSearch } from '@/lib/search-indexing';
 
 /* The Google News sitemap (2026-10-12): AI Marketing News posts from the last
  * two days, the window Google News reads (developers.google.com/search/docs/
@@ -7,7 +8,8 @@ import { getNews } from '@/lib/published-news';
  * An empty list is valid, and it refills as soon as a post goes up. The
  * publication name matches the publisher on every post's NewsArticle data.
  * Includes posts published from Compose (getNews()); the revalidate webhook
- * refreshes it on publish, so a new post is listed within seconds. */
+ * refreshes it on publish, so a new post is listed within seconds. A post Esy
+ * marks noindex is never listed (src/lib/search-indexing.ts). */
 
 export const revalidate = 3600;
 
@@ -18,7 +20,7 @@ const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
 
 export async function GET() {
   const since = Date.now() - WINDOW_MS;
-  const fresh = (await getNews()).posts.filter((p) => publishedTime(p) >= since);
+  const fresh = (await getNews()).posts.filter((p) => inSearch(p) && publishedTime(p) >= since);
   const urls = fresh
     .map(
       (p) => `  <url>

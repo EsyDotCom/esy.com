@@ -1,0 +1,58 @@
+/* PreviewBar (2026-10-17): the "Preview: not published" bar on a draft opened
+   from a preview link. Amber on navy with a hazard stripe, so it can't be
+   mistaken for part of the page. Own colours, because it sits on every kind
+   of page (articles, news, issues). */
+
+.pvb {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 16px;
+  background: #0A2540;
+  color: #FFFFFF;
+  border-top: 6px solid transparent;
+  border-image: repeating-linear-gradient(-45deg, #FFB020 0 12px, #0A2540 12px 24px) 6;
+  font: 500 15px/1.4 system-ui, -apple-system, 'Segoe UI', sans-serif;
+  box-shadow: 0 -8px 24px rgba(10, 37, 64, 0.25);
+}
+
+.pvb-text {
+  margin: 0;
+}
+
+.pvb-text b {
+  color: #FFB020;
+  font-weight: 700;
+}
+
+.pvb-exit {
+  flex: none;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #FFB020;
+  color: #0A2540;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.pvb-exit:hover,
+.pvb-exit:focus-visible {
+  background: #FFFFFF;
+}
+
+/* Room at the foot of the page so the bar never covers its last lines. */
+body:has(.pvb) {
+  padding-bottom: 72px;
+}
+
+@media (max-width: 640px) {
+  .pvb-text span {
+    display: none;
+  }
+}

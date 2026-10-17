@@ -7,6 +7,9 @@ import { findPostIn, findStoryIn, liveStories, liveStoriesOf, postPath, publishe
 import { toNavArticles } from '@/lib/nav-articles';
 import { getAllAgenticArticles } from '@/lib/published-articles';
 import { getNews } from '@/lib/published-news';
+import { inSearch } from '@/lib/search-indexing';
+import { previewNewsPost, readPreview, sectionPathFor } from '@/lib/preview';
+import PreviewBar from '@/components/PreviewBar/PreviewBar';
 import '@/components/NewsletterHome/NewsletterHome.css';
 import '@/components/NewsIndex/NewsIndex.css';
 import '@/components/NewsPost/NewsPost.css';
@@ -27,6 +30,18 @@ export function generateStaticParams() {
   return [...publishedPosts().map((p) => ({ slug: p.slug })), ...liveStories().map((s) => ({ slug: s.slug }))];
 }
 
+// The news to render this slug against: the published news, or, when a
+// preview link is open for this post (Draft Mode), the same news with the
+// draft in it, plus its story if that's new too (src/lib/preview.ts).
+async function newsFor(slug: string): Promise<{ news: NewsData; isPreview: boolean }> {
+  const news = await getNews();
+  const preview = await readPreview('news-post', slug);
+  if (!preview) return { news, isPreview: false };
+  const { post, story } = previewNewsPost(preview);
+  const stories = news.stories.some((s) => s.slug === story.slug) ? news.stories : [...news.stories, story];
+  return { news: { posts: [post, ...news.posts.filter((p) => p.slug !== slug)], stories }, isPreview: true };
+}
+
 // The post at this slug, or else a story with at least one post; drafts and
 // unknown slugs resolve to neither.
 function resolve(news: NewsData, slug: string) {
@@ -38,7 +53,7 @@ function resolve(news: NewsData, slug: string) {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const { post, story } = resolve(await getNews(), slug);
+  const { post, story } = resolve((await newsFor(slug)).news, slug);
   if (post) {
     const title = `${post.headline} — AI Marketing News`;
     return {
@@ -50,7 +65,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       },
       twitter: { card: 'summary_large_image', title, description: post.dek, site: '@EsyDotCom' },
       // Large image previews in Discover and Top Stories; the RSS feed for readers and publisher tools.
-      robots: { index: true, follow: true, 'max-image-preview': 'large' },
+      // A post Esy marks noindex (or a preview) is live but kept out of search.
+      robots: inSearch(post) ? { index: true, follow: true, 'max-image-preview': 'large' } : { index: false, follow: true },
       alternates: { canonical: postPath(post.slug), types: { 'application/rss+xml': [{ url: '/news/rss.xml', title: 'AI Marketing News' }] } },
     };
   }
@@ -68,7 +84,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function NewsSlugPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const news = await getNews();
+  const { news, isPreview } = await newsFor(slug);
   const { post, live: story } = resolve(news, slug);
   if (!post && !story) notFound();
   const articles = await getAllAgenticArticles();
@@ -84,6 +100,7 @@ export default async function NewsSlugPage({ params }: { params: Promise<{ slug:
       ) : (
         <NewsStoryPage story={story} news={news} />
       )}
+      {isPreview && <PreviewBar exitTo={sectionPathFor('news-post')} />}
     </div>
   );
 }

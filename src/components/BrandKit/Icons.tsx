@@ -31,7 +31,7 @@ const SUITE: Mark[] = [
       { file: 'e-navy', ground: 'On navy', note: 'Our tab icon from 14 to 18 October 2026.', svg: true, ico: true },
       { file: 'e-black', ground: 'On black', svg: true },
       { file: 'e-white', ground: 'On white', note: 'For light grounds that need a tile, such as a white app store listing.', svg: true, paper: true },
-      { file: 'e-flat-tab', ground: 'Maxed, flat', note: 'The bare e as big as the icon allows, to compare with the vinyl e in the tab.', svg: true, checker: true },
+      { file: 'e-flat-tab', ground: 'The tab, maxed', use: 'In the tab, on every Esy app', note: 'The bare teal e as big as the icon allows, drawn on the pixel grid so it stays crisp at 16.', svg: true, ico: true, checker: true },
     ],
   },
   {
@@ -39,7 +39,7 @@ const SUITE: Mark[] = [
     name: 'The e, vinyl',
     line: 'The e as a glossy teal vinyl piece, rendered by Esy from the flat e and keyed off its grey ground. Same letterform, in the brand’s material.',
     rows: [
-      { file: 'e-vinyl-tab', ground: 'The tab, maxed', use: 'In the tab (being tried)', note: 'No ground, the e as big as the icon allows.', ico: true, checker: true, big: true },
+      { file: 'e-vinyl-tab', ground: 'The tab, maxed', note: 'No ground, the e as big as the icon allows. Tried in the tab on 2026-10-18; the flat e is crisper at 16.', ico: true, checker: true, big: true },
       { file: 'e-vinyl-transparent', ground: 'Transparent', note: 'Cut out, for placing on any ground.', checker: true, big: true },
       { file: 'e-vinyl-navy', ground: 'On navy', tile: true, big: true },
       { file: 'e-vinyl-white', ground: 'On white', paper: true, big: true },

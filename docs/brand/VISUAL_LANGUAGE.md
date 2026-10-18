@@ -77,7 +77,7 @@ He may wear a product's colours for the newsletter (*Camouflage*: the colours ch
 
 The flat stencil drawing of Mason (`OctopusFigure`, code) stays for small and functional uses: icons, avatars, the loader, 404s, anything under about 100px or that must move cheaply in code. It is a drawing of the vinyl figure, not a second mascot. At rest it follows the same rule: seven arms forward and the tail (`pose="rest"`).
 
-**Icons:** the browser tab is being tried with the e as teal vinyl, maxed on transparent (since 2026-10-18; the flat e on navy before). Mason's head is in the suite as an alternative. The navy app tile keeps a small border (head 88% of the height). The app icon is his vinyl head on teal, filling about three quarters of the tile (Android gets a smaller foreground inside its safe circle); below 40pt it falls back to the flat head. Files and the full suite: esy.com/brand#icons.
+**Icons:** the browser tab is the flat teal e, maxed on transparent, on every Esy app (esy.com, Compose, os.esy.com; decided 2026-10-18; the e on a navy tile before). The vinyl e and Mason's head are in the suite as alternatives. The navy app tile keeps a small border (head 88% of the height). The app icon is his vinyl head on teal, filling about three quarters of the tile (Android gets a smaller foreground inside its safe circle); below 40pt it falls back to the flat head. Files and the full suite: esy.com/brand#icons.
 
 ---
 

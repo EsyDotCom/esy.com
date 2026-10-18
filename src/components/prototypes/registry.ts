@@ -3604,6 +3604,29 @@ export const PROTOTYPES: Prototype[] = [
       { slug: 'app', key: 'E', name: 'Vinyl app icon', round: 2, mergeOf: ['C'], title: 'The vinyl head as the app icon.', blurb: 'The vinyl head inside Android’s safe zone and iOS’s mask, at 60, 40, 29 and 20 points beside flat C; the small sizes fall back to flat.', image: '/prototypes/mason-icon/app.webp', live: true, liveHref: '/brand/#icons' },
     ],
   },
+  {
+    slug: 'product-home',
+    name: 'The homepage as the product’s front door',
+    date: '2026-10-18',
+    headline: 'What if esy.com led with the product?',
+    intro:
+      'Three homepages for os.esy.com’s AI search product, as if the publication moved to /newsletter. Each shows the real Search screen with sample clients; switch light and dark at the bottom left.',
+    summary:
+      'esy.com as the front door to AI search tracking for agencies and brands: the product up front, the morning paper, and two doors (agencies and brands). The publication becomes a band that sends readers to /newsletter.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Three front doors',
+        summary:
+          'P1 leads with the real os.esy.com/agency/search screen under the promise; P2 turns the picked sign-in’s morning paper into the homepage; P3 splits the hero into agencies and brands, each with its own feature rows, then compares AI search with classic SEO.',
+      },
+    ],
+    variants: [
+      { slug: 'product', key: 'P1', name: 'The product up front', round: 1, title: 'See where AI answers cite your clients.', blurb: 'The promise on navy, the real Search screen in a browser frame, then how it works, three features, the work Esy does, proof from our own brands, and the newsletter as a band.', poster: ['#0A2540', '#00D4AA'] },
+      { slug: 'paper', key: 'P2', name: 'The morning paper', round: 1, title: 'Your clients, on the front page of AI search.', blurb: 'A newspaper front page: the lead story on a sample client, Mason at his desk as the photo, and each section of the paper a product feature.', poster: ['#FFFFFF', '#0A2540'] },
+      { slug: 'doors', key: 'P3', name: 'Two doors', round: 1, title: 'Be the answer AI search gives.', blurb: 'Pick agencies or brands in the hero and the feature rows below change to match; then the product, AI search beside classic SEO, pricing and questions.', poster: ['#061527', '#2BD8BB'] },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

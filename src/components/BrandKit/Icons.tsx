@@ -31,6 +31,18 @@ const SUITE: Mark[] = [
       { file: 'e-navy', ground: 'On navy', note: 'Our tab icon from 14 to 18 October 2026.', svg: true, ico: true },
       { file: 'e-black', ground: 'On black', svg: true },
       { file: 'e-white', ground: 'On white', note: 'For light grounds that need a tile, such as a white app store listing.', svg: true, paper: true },
+      { file: 'e-flat-tab', ground: 'Maxed, flat', note: 'The bare e as big as the icon allows, to compare with the vinyl e in the tab.', svg: true, checker: true },
+    ],
+  },
+  {
+    id: 'e-vinyl',
+    name: 'The e, vinyl',
+    line: 'The e as a glossy teal vinyl piece, rendered by Esy from the flat e and keyed off its grey ground. Same letterform, in the brand’s material.',
+    rows: [
+      { file: 'e-vinyl-tab', ground: 'The tab, maxed', use: 'In the tab (being tried)', note: 'No ground, the e as big as the icon allows.', ico: true, checker: true, big: true },
+      { file: 'e-vinyl-transparent', ground: 'Transparent', note: 'Cut out, for placing on any ground.', checker: true, big: true },
+      { file: 'e-vinyl-navy', ground: 'On navy', tile: true, big: true },
+      { file: 'e-vinyl-white', ground: 'On white', paper: true, big: true },
     ],
   },
   {
@@ -50,7 +62,7 @@ const SUITE: Mark[] = [
     rows: [
       { file: 'mason-vinyl-teal', ground: 'On teal', use: 'App icon, profile pictures', note: 'His head spans three quarters of the tile; iOS only rounds the corners.', tile: true, big: true },
       { file: 'mason-vinyl-android-foreground', ground: 'Android foreground', use: 'Android app icon', note: 'Transparent, with his head inside the safe zone (a centred circle 66% across) so no launcher’s mask cuts it. Android draws it over a teal (#2BE1CA) background layer.', checker: true, big: true },
-      { file: 'mason-vinyl-tab-transparent', ground: 'The tab, transparent', use: 'In the tab', note: 'His head alone, as tall as the icon, the biggest he can be at 16 and 32.', ico: true, checker: true, big: true },
+      { file: 'mason-vinyl-tab-transparent', ground: 'The tab, transparent', note: 'His head alone, as tall as the icon, the biggest he can be at 16 and 32. Tried in the tab on 2026-10-18.', checker: true, big: true },
       { file: 'mason-vinyl-tab', ground: 'The tab, on navy', note: 'The same head on navy, for tabs where a navy head would vanish.', big: true },
       { file: 'mason-vinyl-navy', ground: 'On navy', note: 'His head fills 88% of the tile’s height, on navy with a soft glow behind it.', tile: true, big: true },
       { file: 'mason-vinyl-cutout', ground: 'Cut out', note: 'Transparent PNG, for placing on any ground.', checker: true, big: true },

@@ -56,8 +56,11 @@ const ytFile = path.join(OUT_DIR, 'youtube-desk.jpg');
 await yt.locator('#banner').screenshot({ path: ytFile, type: 'jpeg', quality: 92 });
 console.log(`  youtube → ${path.relative(ROOT, ytFile)}`);
 
-// GitHub (1280×320) and X (1500×500) at 2x, so they stay sharp on retina screens.
-for (const [kind, w, h] of [['github', 1280, 320], ['x', 1500, 500]]) {
+// GitHub (1280×320) and X (1500×500) at 2x, so they stay sharp on retina
+// screens; and the social kit's (2026-10-18): Facebook, Bluesky, Substack,
+// Skool, Reddit and the LinkedIn company cover. scripts/brand-social.mjs copies them into
+// public/brand/social/banners/.
+for (const [kind, w, h] of [['github', 1280, 320], ['x', 1500, 500], ['facebook', 851, 315], ['bluesky', 1500, 500], ['substack', 1100, 220], ['skool', 1084, 576], ['reddit', 1920, 384], ['linkedin-company', 1512, 256]]) {
   const page2 = await browser.newPage({ viewport: { width: w, height: h }, deviceScaleFactor: 2 });
   await page2.goto(`${BASE}/prototypes/social-banner/${kind}/raw/`, { waitUntil: 'networkidle', timeout: 180000 });
   await page2.addStyleTag({ content: 'nextjs-portal { display: none !important; }' });

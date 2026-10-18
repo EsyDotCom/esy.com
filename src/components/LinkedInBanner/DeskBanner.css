@@ -25,3 +25,44 @@
 .db--x .db-mark { margin-bottom: 16px !important; font-size: 46px; line-height: 1; }
 .db--x .db-name { font-size: 92px; }
 .db--x .db-sub { margin-top: 16px !important; font-size: 28px; }
+
+/* Added 2026-10-18 for the social kit (esy.com/brand#social). */
+
+/* Facebook page cover, 851 × 315: phones show the middle 2.4:1, so the words
+   sit in from the right edge. */
+.db--facebook .db-copy { right: 72px; width: 460px; }
+.db--facebook .db-mark { margin-bottom: 8px !important; font-size: 26px; line-height: 1; }
+.db--facebook .db-name { font-size: 52px; }
+.db--facebook .db-sub { margin-top: 8px !important; font-size: 16px; }
+
+/* Bluesky, 1500 × 500: as X, clear of the bottom-left avatar. */
+.db--bluesky .db-img { object-position: 22% center; }
+.db--bluesky .db-copy { right: 90px; width: 820px; }
+.db--bluesky .db-mark { margin-bottom: 16px !important; font-size: 46px; line-height: 1; }
+.db--bluesky .db-name { font-size: 92px; }
+.db--bluesky .db-sub { margin-top: 16px !important; font-size: 28px; }
+
+/* Substack email header, 1100 × 220: the wordmark and the title. */
+.db--substack .db-copy { right: 56px; width: 560px; }
+.db--substack .db-mark { margin-bottom: 8px !important; font-size: 28px; line-height: 1; }
+.db--substack .db-name { font-size: 56px; }
+
+/* Skool group cover, 1084 × 576: shown whole, so the words can sit lower. */
+.db--skool .db-img { object-position: 26% center; }
+.db--skool .db-copy { right: 64px; width: 600px; }
+.db--skool .db-mark { margin-bottom: 14px !important; font-size: 40px; line-height: 1; }
+.db--skool .db-name { font-size: 76px; }
+.db--skool .db-sub { margin-top: 14px !important; font-size: 22px; }
+
+/* Reddit community banner, 1920 × 384: phones crop the sides, so the words
+   sit well in from the right. */
+.db--reddit .db-copy { right: 220px; width: 760px; }
+.db--reddit .db-mark { margin-bottom: 12px !important; font-size: 38px; line-height: 1; }
+.db--reddit .db-name { font-size: 80px; }
+.db--reddit .db-sub { margin-top: 12px !important; font-size: 24px; }
+
+/* LinkedIn company page cover, 1512 × 256: the page logo sits bottom-left. */
+.db--linkedin-company .db-copy { right: 64px; width: 640px; }
+.db--linkedin-company .db-mark { margin-bottom: 8px !important; font-size: 26px; line-height: 1; }
+.db--linkedin-company .db-name { font-size: 58px; }
+.db--linkedin-company .db-sub { margin-top: 8px !important; font-size: 18px; }

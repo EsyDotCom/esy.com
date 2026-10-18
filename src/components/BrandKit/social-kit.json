@@ -1,0 +1,319 @@
+{
+  "_about": "The social media kit (2026-10-18): which profile picture each platform takes, and which banner. Read by scripts/brand-social.mjs (writes public/brand/social/) and src/components/BrandKit/SocialKit.tsx (/brand#social). Sizes were checked on each platform's help page on 2026-10-18; where a platform publishes no size, `official` is false and the size is a safe common one.",
+  "inUse": "mason",
+  "marks": [
+    {
+      "id": "mason",
+      "name": "Mason, vinyl, on teal",
+      "line": "His vinyl head on the teal of his studio render, the same as the phone's home-screen icon. The brand canon gives profile pictures to him."
+    },
+    {
+      "id": "e-vinyl",
+      "name": "The e, vinyl, on navy",
+      "line": "The vinyl e on navy, the letter from the wordmark in the brand's material."
+    },
+    {
+      "id": "wordmark",
+      "name": "The wordmark, on navy",
+      "line": "esy as the header draws it, on navy. Small inside a circle, so best where the picture shows large."
+    }
+  ],
+  "avatars": [
+    {
+      "id": "x",
+      "name": "X",
+      "size": 400,
+      "crop": "circle",
+      "official": true,
+      "source": "https://help.x.com/en/managing-your-account/common-issues-when-uploading-profile-photo",
+      "note": "400 × 400, up to 2 MB."
+    },
+    {
+      "id": "linkedin",
+      "name": "LinkedIn page",
+      "size": 400,
+      "crop": "square",
+      "official": true,
+      "source": "https://www.linkedin.com/help/linkedin/answer/a563309",
+      "note": "Company logo: 400 × 400 recommended, 268 minimum, 3 MB."
+    },
+    {
+      "id": "youtube",
+      "name": "YouTube",
+      "size": 800,
+      "crop": "circle",
+      "official": false,
+      "source": "https://support.google.com/youtube/answer/10456525",
+      "note": "Shown at 98 × 98, up to 15 MB; YouTube gives no upload size, so 800."
+    },
+    {
+      "id": "instagram",
+      "name": "Instagram",
+      "size": 320,
+      "crop": "circle",
+      "official": false,
+      "source": "https://help.instagram.com/",
+      "note": "Instagram publishes no size; 320 is what it keeps."
+    },
+    {
+      "id": "threads",
+      "name": "Threads",
+      "size": 320,
+      "crop": "circle",
+      "official": false,
+      "source": "https://help.instagram.com/",
+      "note": "Threads uses the Instagram profile picture."
+    },
+    {
+      "id": "tiktok",
+      "name": "TikTok",
+      "size": 400,
+      "crop": "circle",
+      "official": false,
+      "source": "https://support.tiktok.com/en/getting-started/setting-up-your-profile/adding-a-profile-photo-or-video",
+      "note": "TikTok publishes no size; 400 is safe."
+    },
+    {
+      "id": "facebook",
+      "name": "Facebook page",
+      "size": 320,
+      "crop": "circle",
+      "official": true,
+      "source": "https://www.facebook.com/help/125379114252045",
+      "note": "320 × 320 for best quality; shown at 176 (computer) and 196 (phone)."
+    },
+    {
+      "id": "bluesky",
+      "name": "Bluesky",
+      "size": 800,
+      "crop": "circle",
+      "official": false,
+      "source": "https://bsky.social/about/support",
+      "note": "Bluesky sets a square and a 1 MB limit, not a size; 800 stays under it."
+    },
+    {
+      "id": "reddit",
+      "name": "Reddit",
+      "size": 500,
+      "crop": "circle",
+      "official": false,
+      "source": "https://support.reddithelp.com/",
+      "note": "Community icon: Reddit's community guide calls 500 × 500 optimal."
+    },
+    {
+      "id": "pinterest",
+      "name": "Pinterest",
+      "size": 400,
+      "crop": "circle",
+      "official": false,
+      "source": "https://help.pinterest.com/en/article/edit-your-profile",
+      "note": "Pinterest publishes no size; 400 is safe."
+    },
+    {
+      "id": "github",
+      "name": "GitHub",
+      "size": 500,
+      "crop": "rounded",
+      "official": true,
+      "source": "https://docs.github.com/en/account-and-profile/reference/profile-reference",
+      "note": "About 500 × 500, under 1 MB. Organisations show it as a rounded square."
+    },
+    {
+      "id": "skool",
+      "name": "Skool",
+      "size": 512,
+      "crop": "rounded",
+      "official": false,
+      "source": "https://www.skool.com/ai-marketing",
+      "note": "Skool publishes no size; 512 is safe for the group icon."
+    },
+    {
+      "id": "substack",
+      "name": "Substack",
+      "size": 512,
+      "crop": "rounded",
+      "official": false,
+      "source": "https://support.substack.com/",
+      "note": "Publication logo: at least 256 × 256, square."
+    }
+  ],
+  "banners": [
+    {
+      "id": "linkedin",
+      "name": "LinkedIn, personal",
+      "width": 1584,
+      "height": 396,
+      "file": "linkedin.png",
+      "inUse": true,
+      "official": true,
+      "source": "https://www.linkedin.com/help/linkedin/answer/a563309",
+      "note": "Zev's profile banner, 4:1.",
+      "safe": null,
+      "from": "desk.png"
+    },
+    {
+      "id": "linkedin-company",
+      "name": "LinkedIn page",
+      "width": 3024,
+      "height": 512,
+      "file": "linkedin-company.png",
+      "inUse": false,
+      "official": true,
+      "source": "https://www.linkedin.com/help/linkedin/answer/a563309",
+      "note": "The company page cover: 1512 × 256, at 2x. The page logo sits over the bottom-left.",
+      "safe": null,
+      "from": "linkedin-company-desk.png"
+    },
+    {
+      "id": "youtube",
+      "name": "YouTube",
+      "width": 2560,
+      "height": 1440,
+      "file": "youtube.jpg",
+      "inUse": true,
+      "official": true,
+      "source": "https://support.google.com/youtube/answer/10456525",
+      "note": "2560 × 1440 for TV, 6 MB. Only the centre shows on every device.",
+      "safe": {
+        "width": 1546,
+        "height": 423
+      },
+      "from": "youtube-desk.jpg"
+    },
+    {
+      "id": "x",
+      "name": "X",
+      "width": 3000,
+      "height": 1000,
+      "file": "x.jpg",
+      "inUse": true,
+      "official": true,
+      "source": "https://help.x.com/en/managing-your-account/common-issues-when-uploading-profile-photo",
+      "note": "1500 × 500, made at 2x, as JPEG to stay under 2 MB. The avatar sits over the bottom-left.",
+      "safe": {
+        "width": 3000,
+        "height": 760
+      },
+      "from": "x-desk.png"
+    },
+    {
+      "id": "github",
+      "name": "GitHub",
+      "width": 2560,
+      "height": 640,
+      "file": "github.png",
+      "inUse": true,
+      "official": false,
+      "source": "https://docs.github.com/en/account-and-profile",
+      "note": "The profile README banner, 1280 × 320 at 2x.",
+      "safe": null,
+      "from": "github-desk.png"
+    },
+    {
+      "id": "facebook",
+      "name": "Facebook page",
+      "width": 1702,
+      "height": 630,
+      "file": "facebook.jpg",
+      "inUse": false,
+      "official": true,
+      "source": "https://www.facebook.com/help/125379114252045",
+      "note": "851 × 315 at 2x. Phones crop it to 2.4:1, so the words stay in the middle.",
+      "safe": {
+        "width": 1512,
+        "height": 630
+      },
+      "from": "facebook-desk.png"
+    },
+    {
+      "id": "bluesky",
+      "name": "Bluesky",
+      "width": 3000,
+      "height": 1000,
+      "file": "bluesky.jpg",
+      "inUse": false,
+      "official": false,
+      "source": "https://bsky.social/about/support",
+      "note": "3:1 under 1 MB; the avatar sits over the bottom-left.",
+      "safe": {
+        "width": 3000,
+        "height": 760
+      },
+      "from": "bluesky-desk.png"
+    },
+    {
+      "id": "substack",
+      "name": "Substack email",
+      "width": 2200,
+      "height": 440,
+      "file": "substack.png",
+      "inUse": false,
+      "official": false,
+      "source": "https://support.substack.com/",
+      "note": "The email header, 1100 × 220 at 2x. The site header itself is the wordmark.",
+      "safe": null,
+      "from": "substack-desk.png"
+    },
+    {
+      "id": "skool",
+      "name": "Skool",
+      "width": 2168,
+      "height": 1152,
+      "file": "skool.jpg",
+      "inUse": false,
+      "official": false,
+      "source": "https://www.skool.com/ai-marketing",
+      "note": "Skool publishes no size; 1084 × 576 (at 2x) is how its cover shows.",
+      "safe": null,
+      "from": "skool-desk.png"
+    },
+    {
+      "id": "reddit",
+      "name": "Reddit",
+      "width": 1920,
+      "height": 384,
+      "file": "reddit.png",
+      "inUse": false,
+      "official": false,
+      "source": "https://support.reddithelp.com/",
+      "note": "Community banner, 5:1 on desktop; phones crop the sides.",
+      "safe": {
+        "width": 1536,
+        "height": 384
+      },
+      "from": "reddit-desk.png"
+    }
+  ],
+  "none": [
+    "Instagram",
+    "Threads",
+    "TikTok",
+    "Pinterest"
+  ],
+  "takes": [
+    {
+      "file": "/prototypes/linkedin-banner/masthead.png",
+      "name": "Masthead"
+    },
+    {
+      "file": "/prototypes/linkedin-banner/proof.png",
+      "name": "Proof"
+    },
+    {
+      "file": "/prototypes/linkedin-banner/scene.png",
+      "name": "Scene"
+    },
+    {
+      "file": "/prototypes/linkedin-banner/nameplate.png",
+      "name": "Nameplate"
+    },
+    {
+      "file": "/prototypes/linkedin-banner/desks.png",
+      "name": "Desks"
+    },
+    {
+      "file": "/prototypes/linkedin-banner/night.png",
+      "name": "Night"
+    }
+  ]
+}

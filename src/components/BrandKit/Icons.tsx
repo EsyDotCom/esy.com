@@ -31,7 +31,7 @@ const SUITE: Mark[] = [
       { file: 'e-navy', ground: 'On navy', note: 'Our tab icon from 14 to 18 October 2026.', svg: true, ico: true },
       { file: 'e-black', ground: 'On black', svg: true },
       { file: 'e-white', ground: 'On white', note: 'For light grounds that need a tile, such as a white app store listing.', svg: true, paper: true },
-      { file: 'e-flat-tab', ground: 'The tab, maxed', use: 'In the tab, on every Esy app', note: 'The bare teal e as big as the icon allows, drawn on the pixel grid so it stays crisp at 16.', svg: true, ico: true, checker: true },
+      { file: 'e-flat-tab', ground: 'The tab, maxed', use: 'In the tab, on every Esy app', note: 'The flat e in the light teal (#2BD8BB), near edge to edge on transparent. The same file every Esy app serves.', svg: true, ico: true, checker: true },
     ],
   },
   {

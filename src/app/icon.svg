@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Esy">
+  <!-- The tab icon: the flat Black Ops One e, near edge to edge, in the light
+       teal (#2BD8BB) on every Esy app. Made by esy.com scripts/brand-icons.mjs. -->
+  <g transform="translate(9 28) scale(0.43) translate(-95 1062) scale(1 -1)">
+    <path fill="#2BD8BB" d="M360 0 95 265V797L360 1062H537V0ZM607 426V611H840V797H607V1062H982L1247 797V426ZM607 0V248H1201V133L1069 0Z"/>
+  </g>
+</svg>

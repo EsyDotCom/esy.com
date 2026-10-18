@@ -17,8 +17,9 @@
  *
  * Every variant is written as SVG (flat marks) or PNG at 16, 32, 48, 180 and
  * 512 (plus 1024 for Mason) into public/brand/icons/. The live icons come
- * from the same drawings: src/app/icon.png and src/app/favicon.ico are vinyl
- * Mason on navy (the e on navy until 2026-10-18), src/app/apple-icon.png is
+ * from the same drawings: src/app/icon.svg is the flat teal e that every Esy
+ * app's tab shares, with src/app/favicon.ico as its raster fallback (the e on
+ * navy until 2026-10-18); src/app/apple-icon.png is
  * vinyl Mason on teal; public/favicon/* is kept in step.
  *
  * The tiled e is redrawn on a 16-pixel grid (32 units a pixel in a 512 box)
@@ -54,10 +55,18 @@ const eBare = () => svgDoc('Esy', 'The e, transparent.', `  <g transform="transl
 
 // The bare e maxed for the tab: the glyph's box (1152 × 1062 font units)
 // fitted to the full 512 on its longer side, centred, never stretched.
-const eFlatTab = () => {
-  const k = 512 / 1152, h = 1062 * k, ty = (512 - h) / 2 + h;
-  return svgDoc('Esy', 'The e, maxed for the tab.', `  <g transform="translate(0 ${ty.toFixed(2)}) scale(${k.toFixed(5)} ${(-k).toFixed(5)}) translate(-95 0)"><path fill="${C.teal}" d="${E_GLYPH}"/></g>\n`);
-};
+// The tab icon every Esy app serves, byte for byte (esy.com, Compose and
+// os.esy.com's src/app/icon.svg). It's the flat e near edge to edge, always in the
+// light teal (mint): Zev, 2026-10-18, "favicon should have the light teal".
+const E_TAB_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Esy">
+  <!-- The tab icon: the flat Black Ops One e, near edge to edge, in the light
+       teal (#2BD8BB) on every Esy app. Made by esy.com scripts/brand-icons.mjs. -->
+  <g transform="translate(9 28) scale(0.43) translate(-95 1062) scale(1 -1)">
+    <path fill="${C.mint}" d="${E_GLYPH}"/>
+  </g>
+</svg>
+`;
+const eFlatTab = () => E_TAB_SVG;
 
 // The tiled e, in whole pixels inside a 12 × 12 box at (2, 2): the left stroke
 // 5 px with 3-px cuts, a 1-px gap, the right block 6 px with its 3-px top cut
@@ -409,7 +418,8 @@ const VINYL = {
 };
 for (const [name, raster] of Object.entries(VINYL)) await variant(name, { raster, sizes: [...SIZES, 1024] });
 
-// The live site: the flat teal e in the tab (the e on a navy tile until 2026-10-18), and
+// The live site: the flat e in the light teal in the tab, the same file every Esy
+// app serves (the e on a navy tile until 2026-10-18), and
 // vinyl Mason on teal on a phone's home screen.
 // Which tab icon is live: the flat teal e, maxed on transparent (Zev's pick,
 // 2026-10-18: "use the flat teal e everywhere"). It's drawn as SVG on the
@@ -420,7 +430,8 @@ const TAB_SVG = eFlatTab();
 const tabPng = (size) => pngFromSvg(TAB_SVG, size);
 const tabImages = await Promise.all([16, 32, 48].map(async (size) => ({ size, data: await tabPng(size) })));
 await write(`public/brand/icons/${TAB}.ico`, ico(tabImages));
-await write('src/app/icon.png', await tabPng(512));
+await write('src/app/icon.svg', E_TAB_SVG);
+fs.rmSync(out('src/app/icon.png'), { force: true }); // the SVG replaces the PNG tab icon
 await write('src/app/favicon.ico', ico(tabImages));
 await write('src/app/apple-icon.png', await pngFrom(VINYL['mason-vinyl-teal'], 180));
 await write('public/favicon/favicon.ico', ico(tabImages));

@@ -10,6 +10,7 @@ import { CLIPART_RUN } from '@/components/NewsletterHome/clipartRun';
 import { CREATIVES } from '@/data/creatives';
 import { FILMS } from '@/data/films';
 import { courses } from '@/lib/learn/mockData';
+import { profileOf, type SocialPlatform } from '@/lib/social-profiles';
 
 export const NAME = 'Zev Uhuru';
 export const ROLE = 'Marketing engineer';
@@ -174,12 +175,13 @@ export const NOW = [
   'Building the next SEOPage and clip.art workflows on Esy.',
 ];
 
-/** Where to find him. */
+/** Where to find him. The addresses come from the one list of Esy's profiles. */
+const hrefOf = (p: SocialPlatform) => profileOf(p)?.href ?? '';
 export const SOCIALS = [
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/zevuhuru/', handle: 'in/zevuhuru', Icon: Linkedin },
-  { label: 'YouTube', href: 'https://www.youtube.com/@EsyDotCom', handle: '@EsyDotCom', Icon: Youtube },
-  { label: 'X', href: 'https://x.com/ESYdotcom', handle: '@ESYdotcom', Icon: XSocialIcon },
-  { label: 'GitHub', href: 'https://github.com/ZevUhuru', handle: 'ZevUhuru', Icon: Github },
+  { label: 'LinkedIn', href: hrefOf('linkedin-personal'), handle: 'in/zevuhuru', Icon: Linkedin },
+  { label: 'YouTube', href: hrefOf('youtube'), handle: '@EsyDotCom', Icon: Youtube },
+  { label: 'X', href: hrefOf('x'), handle: '@ESYdotcom', Icon: XSocialIcon },
+  { label: 'GitHub', href: hrefOf('github-personal'), handle: 'ZevUhuru', Icon: Github },
 ];
 
 /** Where the name comes from (kept from the old /about). Its link to the

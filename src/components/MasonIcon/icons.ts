@@ -62,7 +62,7 @@ function face(stripe: string, eye: string, pupil: string) {
   ].join('');
 }
 
-// Today's e: the real Black Ops One glyph, exactly as src/app/icon.svg draws it.
+// Today's e: the real Black Ops One glyph, exactly as public/brand/icons/e-navy.svg draws it (the tab icon until 2026-10-18).
 const E_PATH = 'M360 0 95 265V797L360 1062H537V0ZM607 426V611H840V797H607V1062H982L1247 797V426ZM607 0V248H1201V133L1069 0Z';
 const E_GROUP = (fill: string) =>
   `<g transform="translate(9 28) scale(0.43) translate(-95 1062) scale(1 -1)"><path d="${E_PATH}" fill="${fill}"/></g>`;

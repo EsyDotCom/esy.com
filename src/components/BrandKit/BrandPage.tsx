@@ -13,6 +13,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { LOGO, MASON, NAME, VOICE } from './kit';
 import { BrandIcons } from './Icons';
+import { SocialKit } from './SocialKit';
 import { FlatLogos, MasonCard, Materials, Rules, SceneGrid, Swatches, TypeSpecimens, VinylLogos } from './parts';
 
 export type BrandTake = 'sheet' | 'showroom' | 'guide';
@@ -52,22 +53,25 @@ function Sheet({ masonHref }: { masonHref?: string }) {
         <Section id="icons" kicker="03 · Icons" title="The e and Mason">
           <BrandIcons />
         </Section>
-        <Section id="colour" kicker="04 · Colour" title="Navy, teal and light">
+        <Section id="social" kicker="04 · Social kit" title="Profile pictures and banners">
+          <SocialKit />
+        </Section>
+        <Section id="colour" kicker="05 · Colour" title="Navy, teal and light">
           <Swatches />
         </Section>
-        <Section id="type" kicker="05 · Type" title="Three faces, three jobs">
+        <Section id="type" kicker="06 · Type" title="Three faces, three jobs">
           <TypeSpecimens />
         </Section>
-        <Section id="world" kicker="06 · The world" title="Everything is vinyl">
+        <Section id="world" kicker="07 · The world" title="Everything is vinyl">
           <p className="bk-p">The toy theme runs through everything we picture. Vinyl comes in three forms:</p>
           <Materials />
           <SceneGrid />
         </Section>
-        <Section id="mason" kicker="07 · Mascot" title="OctoMason™">
+        <Section id="mason" kicker="08 · Mascot" title="OctoMason™">
           <p className="bk-p">Mason for short.</p>
           <MasonCard href={masonHref} />
         </Section>
-        <Section id="voice" kicker="08 · Voice" title="How we sound">
+        <Section id="voice" kicker="09 · Voice" title="How we sound">
           <Rules items={VOICE} />
         </Section>
       </div>
@@ -131,7 +135,7 @@ function Showroom() {
 
 /* ── C · Guide ── */
 const GUIDE = [
-  ['name', 'Name'], ['logo', 'Logo'], ['icons', 'Icons'], ['colour', 'Colour'], ['type', 'Type'], ['world', 'Imagery'], ['mason', 'Mason'], ['voice', 'Voice'],
+  ['name', 'Name'], ['logo', 'Logo'], ['icons', 'Icons'], ['social', 'Social kit'], ['colour', 'Colour'], ['type', 'Type'], ['world', 'Imagery'], ['mason', 'Mason'], ['voice', 'Voice'],
 ] as const;
 
 function Guide() {
@@ -157,6 +161,9 @@ function Guide() {
         </Section>
         <Section id="icons" kicker="Icons" title="The e and Mason">
           <BrandIcons />
+        </Section>
+        <Section id="social" kicker="Social kit" title="Profile pictures and banners">
+          <SocialKit />
         </Section>
         <Section id="colour" kicker="Colour" title="Six colours">
           <Swatches />

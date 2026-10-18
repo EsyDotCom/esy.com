@@ -409,19 +409,22 @@ const VINYL = {
 };
 for (const [name, raster] of Object.entries(VINYL)) await variant(name, { raster, sizes: [...SIZES, 1024] });
 
-// The live site: the tab icon picked above (the flat e on navy until 2026-10-18), and
+// The live site: the flat teal e in the tab (the e on a navy tile until 2026-10-18), and
 // vinyl Mason on teal on a phone's home screen.
-// Which tab icon is live: the vinyl e maxed on transparent (being tried,
-// 2026-10-18). Also ready: 'mason-vinyl-tab-transparent', 'mason-vinyl-tab'.
-const TAB = 'e-vinyl-tab';
-const TAB_RASTER = VINYL_E_SET[TAB] ?? VINYL[TAB];
-const tabImages = await Promise.all([16, 32, 48].map(async (size) => ({ size, data: await pngFrom(TAB_RASTER, size) })));
+// Which tab icon is live: the flat teal e, maxed on transparent (Zev's pick,
+// 2026-10-18: "use the flat teal e everywhere"). It's drawn as SVG on the
+// pixel grid, so every size is rasterised from the drawing, never resampled.
+// Also in the suite: 'e-vinyl-tab', 'mason-vinyl-tab-transparent', 'mason-vinyl-tab'.
+const TAB = 'e-flat-tab';
+const TAB_SVG = eFlatTab();
+const tabPng = (size) => pngFromSvg(TAB_SVG, size);
+const tabImages = await Promise.all([16, 32, 48].map(async (size) => ({ size, data: await tabPng(size) })));
 await write(`public/brand/icons/${TAB}.ico`, ico(tabImages));
-await write('src/app/icon.png', await pngFrom(TAB_RASTER, 512));
+await write('src/app/icon.png', await tabPng(512));
 await write('src/app/favicon.ico', ico(tabImages));
 await write('src/app/apple-icon.png', await pngFrom(VINYL['mason-vinyl-teal'], 180));
 await write('public/favicon/favicon.ico', ico(tabImages));
-for (const s of [16, 32, 192, 512]) await write(`public/favicon/favicon-${s}x${s}.png`, await pngFrom(TAB_RASTER, s));
+for (const s of [16, 32, 192, 512]) await write(`public/favicon/favicon-${s}x${s}.png`, await tabPng(s));
 await write('public/favicon/apple-touch-icon.png', await pngFrom(VINYL['mason-vinyl-teal'], 180));
 
 console.log(`Wrote ${count} files.`);

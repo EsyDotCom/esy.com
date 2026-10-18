@@ -21,7 +21,7 @@
  *
  * The banners come from scripts/export-linkedin-banners.mjs (the desk banner
  * at every size, run first), copied into public/brand/social/banners/, and
- * everything goes into one esy-social-kit.zip.
+ * each mark's profile pictures also go into their own ZIP (no all-in-one kit ZIP).
  */
 import fs from 'fs';
 import path from 'path';
@@ -87,8 +87,6 @@ for (const b of KIT.banners) {
   else await img.png({ compressionLevel: 9 }).toFile(dst);
   count += 1;
 }
-const kitZip = path.join(OUT, 'esy-social-kit.zip');
-fs.rmSync(kitZip, { force: true });
-execFileSync('zip', ['-q', '-X', '-r', kitZip, '.', '-x', '*.zip'], { cwd: OUT });
-count += 1;
+// No all-in-one ZIP: it duplicated every file (about 11 MB). Each mark keeps its own ZIP.
+fs.rmSync(path.join(OUT, 'esy-social-kit.zip'), { force: true });
 console.log(`Wrote ${count} files to ${path.relative(ROOT, OUT)}/.`);

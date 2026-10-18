@@ -104,7 +104,6 @@ export function SocialKit() {
       <p className="bk-p">
         Everything Esy puts on a social profile: the picture, the banner, and where each one is live. The profile picture in use is <b>{inUse?.name}</b>. Every file is made by <code>scripts/brand-social.mjs</code> and <code>scripts/export-linkedin-banners.mjs</code>, at each platform’s upload size.
       </p>
-      <p className="bk-sk-kit"><Download href={`${DIR}/esy-social-kit.zip`} label="Download the kit (every picture and banner, ZIP)" /></p>
 
       <h3 className="bk-h3">Profile pictures</h3>
       <p className="bk-p bk-sk-small">Every platform but LinkedIn shows the picture as a circle, so each mark sits inside one: its box stays within 80% of the circle.</p>

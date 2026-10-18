@@ -9,8 +9,9 @@
  *                    on navy (the browser tab: Zev's pick), on black, on white
  *   Mason, flat      transparent, on navy (small app sizes), on teal
  *   Mason, vinyl     on teal (the home-screen icon, head 75% of the width), on
- *                    navy (the browser tab since 2026-10-18, head 88% of the
- *                    height), cut out (alpha), and Android's adaptive foreground
+ *                    navy (head 88% of the height), the tab icon (on navy,
+ *                    head the full height: the biggest he can be at 16 and
+ *                    32), cut out (alpha), and Android's adaptive foreground
  *
  * Every variant is written as SVG (flat marks) or PNG at 16, 32, 48, 180 and
  * 512 (plus 1024 for Mason) into public/brand/icons/. The live icons come
@@ -274,20 +275,23 @@ const keyed = await keyHead(TEAL_RENDER);
 const VINYL = {
   'mason-vinyl-teal': await vinylTile(TEAL_RENDER, keyed, 0.75),
   'mason-vinyl-navy': await vinylOnNavy(keyed, 0.88),
+  // The browser tab: the same tile with his head as tall as the icon (Zev:
+  // "the largest it can be"), since a favicon has no room to spare for a border.
+  'mason-vinyl-tab': await vinylOnNavy(keyed, 1),
   'mason-vinyl-cutout': await vinylCutout(keyed),
   'mason-vinyl-android-foreground': await androidForeground(keyed),
 };
 for (const [name, raster] of Object.entries(VINYL)) await variant(name, { raster, sizes: [...SIZES, 1024] });
 
-// The live site: vinyl Mason on navy in the tab (the e until 2026-10-18), and
+// The live site: vinyl Mason on navy, full height, in the tab (the e until 2026-10-18), and
 // vinyl Mason on teal on a phone's home screen.
-const tabImages = await Promise.all([16, 32, 48].map(async (size) => ({ size, data: await pngFrom(VINYL['mason-vinyl-navy'], size) })));
-await write('public/brand/icons/mason-vinyl-navy.ico', ico(tabImages));
-await write('src/app/icon.png', await pngFrom(VINYL['mason-vinyl-navy'], 512));
+const tabImages = await Promise.all([16, 32, 48].map(async (size) => ({ size, data: await pngFrom(VINYL['mason-vinyl-tab'], size) })));
+await write('public/brand/icons/mason-vinyl-tab.ico', ico(tabImages));
+await write('src/app/icon.png', await pngFrom(VINYL['mason-vinyl-tab'], 512));
 await write('src/app/favicon.ico', ico(tabImages));
 await write('src/app/apple-icon.png', await pngFrom(VINYL['mason-vinyl-teal'], 180));
 await write('public/favicon/favicon.ico', ico(tabImages));
-for (const s of [16, 32, 192, 512]) await write(`public/favicon/favicon-${s}x${s}.png`, await pngFrom(VINYL['mason-vinyl-navy'], s));
+for (const s of [16, 32, 192, 512]) await write(`public/favicon/favicon-${s}x${s}.png`, await pngFrom(VINYL['mason-vinyl-tab'], s));
 await write('public/favicon/apple-touch-icon.png', await pngFrom(VINYL['mason-vinyl-teal'], 180));
 
 console.log(`Wrote ${count} files.`);

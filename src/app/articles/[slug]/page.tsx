@@ -5,6 +5,9 @@ import { loadTranscriptSegments } from "@/lib/transcript-loader";
 import { transcriptToPlainText, toIsoDuration } from "@/lib/transcripts";
 import { isArticleSlugShape, articlePath } from "@/lib/article-path";
 import { coverFor, searchTitleFor } from "@/lib/article-format";
+import { inSearch } from "@/lib/search-indexing";
+import { previewArticle, readPreview, sectionPathFor } from "@/lib/preview";
+import PreviewBar from "@/components/PreviewBar/PreviewBar";
 import ImageArticlePage from "@/components/ArticleImage/ImageArticlePage";
 import VideoArticlePage from "@/components/ArticleVideo/VideoArticlePage";
 import type { Metadata } from "next";
@@ -31,9 +34,12 @@ export async function generateStaticParams() {
 }
 
 // Junk-shaped paths (file probes, uppercase, dots) can't be articles, so they
-// skip the article lookup entirely.
+// skip the article lookup entirely. A preview link (Draft Mode) shows the
+// draft instead of the published copy (src/lib/preview.ts).
 async function resolveArticle(slug: string) {
   if (!isArticleSlugShape(slug)) return undefined;
+  const preview = await readPreview("article", slug);
+  if (preview) return previewArticle(preview);
   return findAgenticArticle(slug);
 }
 
@@ -61,6 +67,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: url,
     },
+    // Live but kept out of search when Esy says noindex; a preview always is.
+    ...(inSearch(video) ? {} : { robots: { index: false, follow: true } }),
     openGraph: {
       title: shareTitle,
       description: video.description.slice(0, 160),
@@ -84,8 +92,11 @@ export default async function AgenticVideoPage({ params }: Props) {
   if (!video) notFound();
 
   // Related articles resolve against the merged list so API and registry
-  // articles can cross-reference each other.
-  const all = await getAllAgenticArticles();
+  // articles can cross-reference each other. A previewed draft joins it.
+  const published = await getAllAgenticArticles();
+  const isPreview = Boolean(await readPreview("article", slug));
+  const all = isPreview ? [video, ...published.filter((v) => v.slug !== video.slug)] : published;
+  const bar = isPreview ? <PreviewBar exitTo={sectionPathFor("article")} /> : null;
 
   // No video: the image-led article page (E · Cover Bar), described to search
   // engines as an Article rather than a VideoObject.
@@ -110,6 +121,7 @@ export default async function AgenticVideoPage({ params }: Props) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
         />
         <ImageArticlePage article={video} all={all} />
+        {bar}
       </>
     );
   }
@@ -158,6 +170,7 @@ export default async function AgenticVideoPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <VideoArticlePage article={video} all={all} segments={transcriptSegments} />
+      {bar}
     </>
   );
 }

@@ -17,6 +17,11 @@ type RevalidateBody = {
   /** What was published: "news-post" for AI Marketing News, "issue" for a
       newsletter issue. Routes `engineer` deliveries. */
   kind?: string;
+  /** "index" | "noindex": whether the piece may be in search (api.esy.com
+      #589). Esy also sends a delivery when only this changed on a live piece,
+      so every branch below refreshes the page, its lists and both sitemaps;
+      the pages re-read the piece and decide (src/lib/search-indexing.ts). */
+  searchIndexing?: "index" | "noindex";
 };
 
 // Publications esy.com shows. The article publications render the same way
@@ -119,6 +124,7 @@ export async function POST(request: NextRequest) {
       publication,
       slug,
       categories: body.categories ?? [],
+      searchIndexing: body.searchIndexing ?? "index",
       // "/news" stands for the whole /news layout (every post and story page).
       paths: ["/news", ...paths],
     });
@@ -132,7 +138,7 @@ export async function POST(request: NextRequest) {
     revalidateTag("published-issues");
     revalidateTag("published-issues:engineer");
     revalidatePath("/newsletter", "layout");
-    const paths = ["/", "/seo", "/sitemap.xml"];
+    const paths = ["/", "/seo", "/sitemap.xml", "/news-sitemap.xml"];
     paths.forEach((path) => revalidatePath(path));
 
     return NextResponse.json({
@@ -141,6 +147,7 @@ export async function POST(request: NextRequest) {
       publication,
       slug,
       categories: body.categories ?? [],
+      searchIndexing: body.searchIndexing ?? "index",
       // "/newsletter" stands for the whole /newsletter layout (every issue page).
       paths: ["/newsletter", ...paths],
     });
@@ -152,7 +159,7 @@ export async function POST(request: NextRequest) {
   revalidateTag(`published-articles:${publication}`);
 
   // The homepage lists the latest articles; the article itself lives at /articles/<slug>/.
-  const paths = ["/", articlePath(slug), "/sitemap.xml"];
+  const paths = ["/", articlePath(slug), "/sitemap.xml", "/news-sitemap.xml"];
   paths.forEach((path) => revalidatePath(path));
   // Topic hubs list articles too; refresh the index and every hub under it.
   revalidatePath("/topics", "layout");
@@ -163,6 +170,7 @@ export async function POST(request: NextRequest) {
     publication,
     slug,
     categories: body.categories ?? [],
+    searchIndexing: body.searchIndexing ?? "index",
     paths,
   });
 }

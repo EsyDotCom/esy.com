@@ -6,6 +6,7 @@ import { courses } from '@/lib/learn/mockData'
 import { liveStoriesOf, postsInStoryOf } from '@/data/news'
 import { getNews } from '@/lib/published-news'
 import { getIssues } from '@/lib/published-issues'
+import { inSearch, issueInSearch } from '@/lib/search-indexing'
 import {
   getAllAgenticArticles,
 } from '@/lib/published-articles'
@@ -135,8 +136,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Articles, at /articles/<slug>/. Slugs come from
   // every publication via the merged getter (lastModified from real publish
-  // dates).
-  const agenticVideos = await getAllAgenticArticles()
+  // dates). An article Esy marks noindex stays live but isn't listed
+  // (src/lib/search-indexing.ts).
+  const agenticVideos = (await getAllAgenticArticles()).filter(inSearch)
   agenticVideos.forEach(video => {
     sitemap.push({
       url: `${baseUrl}${articlePath(video.slug)}`,
@@ -149,8 +151,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // AI Marketing News: every published post and every story page (/news/<slug>/),
   // the registry's and those published from Compose (getNews()). The /news index
   // is auto-discovered above. Posts use their publish day.
+  // Posts Esy marks noindex are left out, and a story is listed only when it
+  // has a post that's in search.
   const news = await getNews()
-  news.posts.forEach(post => {
+  const newsInSearch = news.posts.filter(inSearch)
+  newsInSearch.forEach(post => {
     sitemap.push({
       url: `${baseUrl}/news/${post.slug}/`,
       lastModified: new Date(post.publishedAt),
@@ -158,19 +163,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     })
   })
-  liveStoriesOf(news.posts, news.stories).forEach(story => {
+  liveStoriesOf(newsInSearch, news.stories).forEach(story => {
     sitemap.push({
       url: `${baseUrl}/news/${story.slug}/`,
-      lastModified: new Date(postsInStoryOf(news.posts, story.slug)[0].publishedAt),
+      lastModified: new Date(postsInStoryOf(newsInSearch, story.slug)[0].publishedAt),
       changeFrequency: 'daily',
       priority: 0.7,
     })
   })
 
-  // The Marketing Engineer: real issues only (published from Compose). The
-  // registry's sample issues are noindex, so they stay out of the sitemap too.
+  // The Marketing Engineer: real issues only (published from Compose), unless
+  // Esy marks one noindex. The registry's sample issues are noindex, so they
+  // stay out of the sitemap too.
   const issues = await getIssues()
-  issues.filter(issue => issue.real).forEach(issue => {
+  issues.filter(issueInSearch).forEach(issue => {
     sitemap.push({
       url: `${baseUrl}/newsletter/${issue.slug}/`,
       lastModified: new Date(issue.date),

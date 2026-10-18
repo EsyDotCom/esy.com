@@ -9,19 +9,20 @@
  *                    on navy (the browser tab: Zev's pick), on black, on white
  *   Mason, flat      transparent, on navy (small app sizes), on teal
  *   Mason, vinyl     on teal (the home-screen icon, head 75% of the width), on
- *                    navy, cut out (alpha), and Android's adaptive foreground
+ *                    navy (the browser tab since 2026-10-18, head 88% of the
+ *                    height), cut out (alpha), and Android's adaptive foreground
  *
  * Every variant is written as SVG (flat marks) or PNG at 16, 32, 48, 180 and
  * 512 (plus 1024 for Mason) into public/brand/icons/. The live icons come
- * from the same drawings: src/app/icon.svg and src/app/favicon.ico are the e
- * on navy, src/app/apple-icon.png is vinyl Mason on teal; public/favicon/*
- * is kept in step.
+ * from the same drawings: src/app/icon.png and src/app/favicon.ico are vinyl
+ * Mason on navy (the e on navy until 2026-10-18), src/app/apple-icon.png is
+ * vinyl Mason on teal; public/favicon/* is kept in step.
  *
  * The tiled e is redrawn on a 16-pixel grid (32 units a pixel in a 512 box)
  * so its straight edges land on whole pixels at 16 and 32. The vinyl sources
  * live beside this script (scripts/brand-icons/): edit-image renders of his
  * head from the studio shot. The teal render is keyed here (no extra run) for
- * the tile's crop, the cut-out and the Android foreground; navy is a reframe.
+ * the tile's crop, the cut-out, the navy tile and the Android foreground.
  *
  *   node scripts/brand-icons.mjs
  */
@@ -176,6 +177,26 @@ async function vinylTile(file, keyed, share) {
 }
 
 /**
+ * The navy tile, which is also the browser tab (2026-10-18). The keyed head
+ * sits on brand navy at `share` of the tile's height. Zev wanted more head
+ * and less border than the old reframed render, whose head filled under half
+ * the tile. A soft centre glow (one step up from navy) lifts the navy head off
+ * its navy ground, so the stripe and eyes still read at 16 and 32.
+ */
+async function vinylOnNavy(keyed, share) {
+  const head = await trimmedHead(keyed);
+  const { width: w, height: h } = await sharp(head).metadata();
+  const fh = Math.round(1024 * share), fw = Math.round((w * fh) / h);
+  const fitted = await sharp(head).resize(fw, fh, { kernel: 'lanczos3' }).png().toBuffer();
+  const ground = Buffer.from(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024"><defs><radialGradient id="g" cx="50%" cy="50%" r="62%">` +
+      `<stop offset="0" stop-color="#16385F"/><stop offset="1" stop-color="${C.navy}"/></radialGradient></defs>` +
+      `<rect width="1024" height="1024" fill="url(#g)"/></svg>`,
+  );
+  return sharp(ground).composite([{ input: fitted, left: Math.round((1024 - fw) / 2), top: Math.round((1024 - fh) / 2) }]).png().toBuffer();
+}
+
+/**
  * Android's adaptive-icon foreground: the keyed head on transparent, small
  * enough that its bounding box's corners stay inside the centred safe circle
  * (66% across, so 33% from the centre; sized to 31% for margin). The launcher
@@ -246,23 +267,27 @@ const FLAT = {
 for (const [name, svg] of Object.entries(FLAT)) await variant(name, { svg, sizes: [...SIZES, 1024] });
 
 // One teal render feeds the home-screen tile (head 75% of the width), the
-// Android foreground and the cut-out. Navy stays the reframed render.
+// navy tile and tab icon (head 88% of the height), the Android foreground and
+// the cut-out.
 const TEAL_RENDER = path.join(SRC, 'vinyl-teal-render.webp');
 const keyed = await keyHead(TEAL_RENDER);
 const VINYL = {
   'mason-vinyl-teal': await vinylTile(TEAL_RENDER, keyed, 0.75),
-  'mason-vinyl-navy': fs.readFileSync(path.join(SRC, 'vinyl-navy.webp')),
+  'mason-vinyl-navy': await vinylOnNavy(keyed, 0.88),
   'mason-vinyl-cutout': await vinylCutout(keyed),
   'mason-vinyl-android-foreground': await androidForeground(keyed),
 };
 for (const [name, raster] of Object.entries(VINYL)) await variant(name, { raster, sizes: [...SIZES, 1024] });
 
-// The live site: the e on navy in the tab, vinyl Mason on teal on a phone.
-await write('src/app/icon.svg', E['e-navy']);
-await write('src/app/favicon.ico', ico(icoImages));
+// The live site: vinyl Mason on navy in the tab (the e until 2026-10-18), and
+// vinyl Mason on teal on a phone's home screen.
+const tabImages = await Promise.all([16, 32, 48].map(async (size) => ({ size, data: await pngFrom(VINYL['mason-vinyl-navy'], size) })));
+await write('public/brand/icons/mason-vinyl-navy.ico', ico(tabImages));
+await write('src/app/icon.png', await pngFrom(VINYL['mason-vinyl-navy'], 512));
+await write('src/app/favicon.ico', ico(tabImages));
 await write('src/app/apple-icon.png', await pngFrom(VINYL['mason-vinyl-teal'], 180));
-await write('public/favicon/favicon.ico', ico(icoImages));
-for (const s of [16, 32, 192, 512]) await write(`public/favicon/favicon-${s}x${s}.png`, await pngFromSvg(E['e-navy'], s));
+await write('public/favicon/favicon.ico', ico(tabImages));
+for (const s of [16, 32, 192, 512]) await write(`public/favicon/favicon-${s}x${s}.png`, await pngFrom(VINYL['mason-vinyl-navy'], s));
 await write('public/favicon/apple-touch-icon.png', await pngFrom(VINYL['mason-vinyl-teal'], 180));
 
 console.log(`Wrote ${count} files.`);

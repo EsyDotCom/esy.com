@@ -25,10 +25,10 @@ const SUITE: Mark[] = [
   {
     id: 'e',
     name: 'The e',
-    line: 'The e from the wordmark, for the browser tab. On a tile it’s drawn on a 16-pixel grid so it stays sharp at 16 and 32.',
+    line: 'The e from the wordmark. On a tile it’s drawn on a 16-pixel grid so it stays sharp at 16 and 32.',
     rows: [
-      { file: 'e-transparent', ground: 'Transparent', note: 'The bare e, our tab icon until October 2026.', svg: true, checker: true },
-      { file: 'e-navy', ground: 'On navy', use: 'In the tab', svg: true, ico: true },
+      { file: 'e-transparent', ground: 'Transparent', note: 'The bare e, our tab icon until 14 October 2026.', svg: true, checker: true },
+      { file: 'e-navy', ground: 'On navy', note: 'Our tab icon from 14 to 18 October 2026.', svg: true, ico: true },
       { file: 'e-black', ground: 'On black', svg: true },
       { file: 'e-white', ground: 'On white', note: 'For light grounds that need a tile, such as a white app store listing.', svg: true, paper: true },
     ],
@@ -50,7 +50,7 @@ const SUITE: Mark[] = [
     rows: [
       { file: 'mason-vinyl-teal', ground: 'On teal', use: 'App icon, profile pictures', note: 'His head spans three quarters of the tile; iOS only rounds the corners.', tile: true, big: true },
       { file: 'mason-vinyl-android-foreground', ground: 'Android foreground', use: 'Android app icon', note: 'Transparent, with his head inside the safe zone (a centred circle 66% across) so no launcher’s mask cuts it. Android draws it over a teal (#2BE1CA) background layer.', checker: true, big: true },
-      { file: 'mason-vinyl-navy', ground: 'On navy', tile: true, big: true },
+      { file: 'mason-vinyl-navy', ground: 'On navy', use: 'In the tab', note: 'His head fills 88% of the tile’s height, on navy with a soft glow behind it so the stripe and eyes still read at 16.', ico: true, tile: true, big: true },
       { file: 'mason-vinyl-cutout', ground: 'Cut out', note: 'Transparent PNG, for placing on any ground.', checker: true, big: true },
     ],
   },

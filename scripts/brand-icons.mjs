@@ -197,6 +197,16 @@ async function vinylOnNavy(keyed, share) {
   return sharp(ground).composite([{ input: fitted, left: Math.round((1024 - fw) / 2), top: Math.round((1024 - fh) / 2) }]).png().toBuffer();
 }
 
+/** His head alone on transparent, as tall as the icon: the tab icon on its
+ *  own, with no tile (2026-10-18, Zev: "lets try a transparent version"). */
+async function vinylClear(keyed, share) {
+  const head = await trimmedHead(keyed);
+  const { width: w, height: h } = await sharp(head).metadata();
+  const fh = Math.round(1024 * share), fw = Math.round((w * fh) / h);
+  const fitted = await sharp(head).resize(fw, fh, { kernel: 'lanczos3' }).png().toBuffer();
+  return blank(1024).composite([{ input: fitted, left: Math.round((1024 - fw) / 2), top: Math.round((1024 - fh) / 2) }]).png().toBuffer();
+}
+
 /**
  * Android's adaptive-icon foreground: the keyed head on transparent, small
  * enough that its bounding box's corners stay inside the centred safe circle
@@ -278,6 +288,8 @@ const VINYL = {
   // The browser tab: the same tile with his head as tall as the icon (Zev:
   // "the largest it can be"), since a favicon has no room to spare for a border.
   'mason-vinyl-tab': await vinylOnNavy(keyed, 1),
+  // The tab icon without its tile: his head alone, as tall as the icon.
+  'mason-vinyl-tab-transparent': await vinylClear(keyed, 1),
   'mason-vinyl-cutout': await vinylCutout(keyed),
   'mason-vinyl-android-foreground': await androidForeground(keyed),
 };
@@ -285,13 +297,16 @@ for (const [name, raster] of Object.entries(VINYL)) await variant(name, { raster
 
 // The live site: vinyl Mason on navy, full height, in the tab (the e until 2026-10-18), and
 // vinyl Mason on teal on a phone's home screen.
-const tabImages = await Promise.all([16, 32, 48].map(async (size) => ({ size, data: await pngFrom(VINYL['mason-vinyl-tab'], size) })));
-await write('public/brand/icons/mason-vinyl-tab.ico', ico(tabImages));
-await write('src/app/icon.png', await pngFrom(VINYL['mason-vinyl-tab'], 512));
+// Which tab icon is live: the transparent head (being tried, 2026-10-18) or
+// 'mason-vinyl-tab', the same head on navy.
+const TAB = 'mason-vinyl-tab-transparent';
+const tabImages = await Promise.all([16, 32, 48].map(async (size) => ({ size, data: await pngFrom(VINYL[TAB], size) })));
+await write(`public/brand/icons/${TAB}.ico`, ico(tabImages));
+await write('src/app/icon.png', await pngFrom(VINYL[TAB], 512));
 await write('src/app/favicon.ico', ico(tabImages));
 await write('src/app/apple-icon.png', await pngFrom(VINYL['mason-vinyl-teal'], 180));
 await write('public/favicon/favicon.ico', ico(tabImages));
-for (const s of [16, 32, 192, 512]) await write(`public/favicon/favicon-${s}x${s}.png`, await pngFrom(VINYL['mason-vinyl-tab'], s));
+for (const s of [16, 32, 192, 512]) await write(`public/favicon/favicon-${s}x${s}.png`, await pngFrom(VINYL[TAB], s));
 await write('public/favicon/apple-touch-icon.png', await pngFrom(VINYL['mason-vinyl-teal'], 180));
 
 console.log(`Wrote ${count} files.`);

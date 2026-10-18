@@ -50,7 +50,8 @@ const SUITE: Mark[] = [
     rows: [
       { file: 'mason-vinyl-teal', ground: 'On teal', use: 'App icon, profile pictures', note: 'His head spans three quarters of the tile; iOS only rounds the corners.', tile: true, big: true },
       { file: 'mason-vinyl-android-foreground', ground: 'Android foreground', use: 'Android app icon', note: 'Transparent, with his head inside the safe zone (a centred circle 66% across) so no launcher’s mask cuts it. Android draws it over a teal (#2BE1CA) background layer.', checker: true, big: true },
-      { file: 'mason-vinyl-tab', ground: 'The tab', use: 'In the tab', note: 'His head as tall as the icon, the biggest he can be at 16 and 32, on navy.', ico: true, big: true },
+      { file: 'mason-vinyl-tab-transparent', ground: 'The tab, transparent', use: 'In the tab', note: 'His head alone, as tall as the icon, the biggest he can be at 16 and 32.', ico: true, checker: true, big: true },
+      { file: 'mason-vinyl-tab', ground: 'The tab, on navy', note: 'The same head on navy, for tabs where a navy head would vanish.', big: true },
       { file: 'mason-vinyl-navy', ground: 'On navy', note: 'His head fills 88% of the tile’s height, on navy with a soft glow behind it.', tile: true, big: true },
       { file: 'mason-vinyl-cutout', ground: 'Cut out', note: 'Transparent PNG, for placing on any ground.', checker: true, big: true },
     ],

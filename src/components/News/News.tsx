@@ -17,9 +17,10 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import {
-  ArrowRight, ArrowUpRight, CalendarDays, Download, Info, MapPin, Plug, ShieldCheck, Sparkles, Store, Tag, Users,
+  ArrowRight, ArrowUpRight, Building2, CalendarDays, Download, Globe2, Info, MapPin, Plug, ShieldCheck, Sparkles, Store, Tag, Users,
   type LucideIcon,
 } from 'lucide-react';
+import { detailRows, glanceRows, latestChange, dateWords, whoWhereJsonLd } from '@/lib/news-who-where';
 import NewsletterSignup from '@/components/NewsletterHome/NewsletterSignup';
 import WeeklyEmailBand from '@/components/NewsletterHome/WeeklyEmailBand';
 import { ZevTake } from './Take';
@@ -191,6 +192,8 @@ const FACT_ICON: Record<string, LucideIcon> = {
   Control: ShieldCheck, Announced: CalendarDays, Launched: CalendarDays, Released: CalendarDays,
   Started: CalendarDays, When: CalendarDays, Reported: CalendarDays, Rollout: CalendarDays,
   'Get it': Download, 'Led by': Users, Apps: Download,
+  // The rows Who and where adds (WW2, 2026-10-19).
+  Involved: Building2, 'Announced in': MapPin, 'Applies in': Globe2, Affects: Users,
 };
 
 /** The story line: each chapter links to its post; this one is marked. */
@@ -236,8 +239,9 @@ export function NewsPostPage({ post, news, sample = false, slots }: {
   news: NewsData;
   /** Prototype only: marks the take as sample text. */
   sample?: boolean;
-  /** Prototype only (/prototypes/news-share): replaces the share bar and rail with a take's own rows. The live page passes none. */
-  slots?: { underByline?: ReactNode; afterArticle?: ReactNode; beside?: ReactNode };
+  /** Prototype only (/prototypes/news-share, /prototypes/news-who-where): replaces the share bar and rail with a take's own rows,
+      and lets a take add a block after At a glance, set the body itself, or add one before Sources. The live page passes none. */
+  slots?: { underByline?: ReactNode; afterArticle?: ReactNode; beside?: ReactNode; afterFacts?: ReactNode; body?: ReactNode; beforeSources?: ReactNode };
 }) {
   // Every post's story exists (getNews() builds one for Compose posts), but a
   // missing one only drops the story line, never the page.
@@ -249,6 +253,12 @@ export function NewsPostPage({ post, news, sample = false, slots }: {
   const share = { url: `https://esy.com${postPath(post.slug)}`, title: post.headline };
   const beside = slots ? slots.beside : <ShareRail {...share} />;
   const afterArticle = slots ? slots.afterArticle : <ShareBar {...share} />;
+  // Who and where (WW2): its rows join At a glance, the dateline opens the
+  // story, the newest change sits under the byline and the rest is Details.
+  const ww = post.whoWhere;
+  const facts = [...post.facts, ...glanceRows(ww)];
+  const details = detailRows(ww);
+  const change = latestChange(ww);
   return (
     <>
       <article className="np np--spec">
@@ -263,6 +273,11 @@ export function NewsPostPage({ post, news, sample = false, slots }: {
             </span>
           </div>
           {slots?.underByline}
+          {change && (
+            <p className="np-updated">
+              <b>{change.kind === 'correction' ? 'Corrected' : 'Updated'} {dateWords(change.at.slice(0, 10))}:</b> {change.text}
+            </p>
+          )}
 
           <section className="np-why" aria-labelledby="np-why">
             <h2 id="np-why">Why it matters</h2>
@@ -272,11 +287,11 @@ export function NewsPostPage({ post, news, sample = false, slots }: {
           {/* Zev's take: signed opinion, right under the one-line fact. */}
           <ZevTake post={post} sample={sample} />
 
-          {post.facts.length > 0 && (
+          {facts.length > 0 && (
             <section className="npi-facts" aria-labelledby="np-facts">
               <h2 id="np-facts">At a glance</h2>
               <dl>
-                {post.facts.map(([k, v]) => {
+                {facts.map(([k, v]) => {
                   const Icon = FACT_ICON[k] ?? Info;
                   return (
                     <div key={k}>
@@ -291,9 +306,20 @@ export function NewsPostPage({ post, news, sample = false, slots }: {
           )}
 
 
+          {slots?.afterFacts}
+
           <figure className="nx-figure"><FactCard post={post} story={story} /></figure>
 
-          <div className="np-body">{post.body.map((para) => <p key={para.slice(0, 40)}>{para}</p>)}</div>
+          {slots?.body ?? (
+            <div className="np-body">
+              {post.body.map((para, i) => (
+                <p key={para.slice(0, 40)}>
+                  {i === 0 && ww?.dateline && <span className="np-dateline">{ww.dateline.city.toUpperCase()} — </span>}
+                  {para}
+                </p>
+              ))}
+            </div>
+          )}
 
           {post.check.length > 0 && (
             <section className="np-check" aria-labelledby="np-check">
@@ -315,6 +341,17 @@ export function NewsPostPage({ post, news, sample = false, slots }: {
           )}
 
           {afterArticle}
+
+          {slots?.beforeSources}
+
+          {details.length > 0 && (
+            <section className="np-details" aria-labelledby="np-details">
+              <h2 id="np-details">Details</h2>
+              <table>
+                <tbody>{details.map(([k, v], i) => <tr key={`${k}-${i}`}><th scope="row">{k}</th><td>{v}</td></tr>)}</tbody>
+              </table>
+            </section>
+          )}
 
           {/* Sources: every fact's origin, the company's own page first. */}
           <section className="nx-sources" aria-labelledby="np-sources">
@@ -392,6 +429,9 @@ export function NewsStoryPage({ story, news }: { story: NewsStory; news: NewsDat
 
 /* ── Structured data ── */
 
+/** "AI Search" for the slug "ai-search": the topic as keywords read it. */
+const topicWords = (topic: string) => topic.split('-').map((w) => (w === 'ai' ? 'AI' : w[0]?.toUpperCase() + w.slice(1))).join(' ');
+
 export function postJsonLd(post: NewsPost, story: NewsStory | undefined) {
   return [
     {
@@ -406,10 +446,16 @@ export function postJsonLd(post: NewsPost, story: NewsStory | undefined) {
       author: [{ '@type': 'Person', name: 'Zev Uhuru', url: `${SITE}/about/` }],
       publisher: { '@type': 'Organization', name: 'Esy', url: SITE, logo: { '@type': 'ImageObject', url: `${SITE}/brand/logo/esy-wordmark.png`, width: 600, height: 220 } },
       mainEntityOfPage: `${SITE}${postPath(post.slug)}`,
-      isBasedOn: post.sources.map((src) => src.url),
+      // What the post is based on: the company's own post (every fact is checked
+      // against it); coverage stays a citation. Registry posts without one list all.
+      isBasedOn: (post.sources.some((src) => !src.secondary) ? post.sources.filter((src) => !src.secondary) : post.sources).map((src) => src.url),
       citation: post.sources.map((src) => ({ '@type': 'CreativeWork', name: src.title, url: src.url, publisher: src.publisher })),
       about: story?.name,
       articleSection: 'AI Marketing News',
+      // Who and where (WW2): the companies with their sameAs, the dateline and
+      // places, the audience, and corrections. Overrides `about` and
+      // `dateModified` when the post has them.
+      ...whoWhereJsonLd(post.whoWhere, topicWords(post.topic)),
     },
     post.faq.length > 0 && {
       '@context': 'https://schema.org',

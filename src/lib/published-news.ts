@@ -12,6 +12,7 @@ import {
   type NewsTopic,
 } from '@/data/news';
 import { fetchPublicListSafe, mergeBySlug } from '@/lib/published-articles';
+import { toWhoWhere } from '@/lib/news-who-where';
 
 // AI Marketing News = the static registry (src/data/news/index.ts) + posts
 // published from Compose through api.esy.com, merged the way articles are
@@ -55,6 +56,8 @@ export interface PublicNewsPost {
   author: { name: string; role: string; avatar: string } | null;
   /** "noindex": live, but out of search and both sitemaps (api.esy.com #589). */
   searchIndexing?: 'index' | 'noindex';
+  /** Who and where, kept values only (WW2, 2026-10-19); absent before then. */
+  whoWhere?: unknown;
 }
 
 // Map the API's post onto the registry's NewsPost so every page renders both
@@ -90,6 +93,8 @@ export function toNewsPost(p: PublicNewsPost): NewsPost {
     readMinutes: p.readMinutes,
     ...(p.take ? { take: p.take, takeLinks: p.takeLinks ?? [] } : {}),
     ...(p.searchIndexing === 'noindex' ? { searchIndexing: 'noindex' as const } : {}),
+    // Only when the post says something about who and where; older posts render as before.
+    ...(toWhoWhere(p.whoWhere) ? { whoWhere: toWhoWhere(p.whoWhere)! } : {}),
   };
 }
 

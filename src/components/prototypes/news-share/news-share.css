@@ -101,3 +101,8 @@
   .nsh-row .nsh-icon { min-width: 36px; padding: 0 4px; }
   .nsh-label { margin-right: 4px; }
 }
+
+/* SH4 · the rail only where the margin has room (>=1200px); never on tablet or phone. */
+@media (min-width: 1180px) and (max-width: 1199.98px) {
+  .nsh-rail--wide { display: none; }
+}

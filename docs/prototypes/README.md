@@ -154,3 +154,8 @@ The verticals' buyers (seopage.com, clip.art) are still never addressed here.
   - **Eligibility:** only a whole domain or subdomain qualifies, never a folder, so it's **esy.com**, not esy.com/news. It's available wherever Google Search is. On 2026-10-19, **esy.com appeared in the tool** (with its teal e icon), so it's eligible. It wasn't ticked, so no account was changed.
   - **The badge:** Google's official asset pack ([zip](https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_all_languages.zip)), English light and dark at 1x and 2x, in `public/prototypes/news-share/`, used unmodified. Light sits on white; the dark badge (black) sits on the navy band. Google publishes no further rules for the badge or its G.
 - **Rules followed:** no pills (the badge's rounded shape is Google's own asset), square corners on the left-accent nudge, and brand colours. The news post page is light only, so the takes are too.
+- **The pick (2026-10-19):** Zev picked SH1 for desktop and phone, and SH3's rail for desktop. **SH4 · Footer + rail** merges them:
+  - SH1's navy footer bar after every article, everywhere;
+  - SH3's sticky rail beside the column, only from 1200px wide;
+  - on tablets and phones, just the footer bar: no rail, no bottom share bar, no share sheet;
+  - no /news nudge.

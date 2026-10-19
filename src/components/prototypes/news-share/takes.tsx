@@ -8,6 +8,9 @@
 //   SH3 · Sticky rail  — a slim rail beside the column while reading; on a
 //                        phone a bottom bar with Share (the device's sheet);
 //                        the badge after the article and a one-time nudge for /news.
+//   SH4 · Footer + rail  — the pick (2026-10-19): SH1's footer bar everywhere,
+//                        plus SH3's rail on wide desktops only. No phone bar,
+//                        no share sheet, no /news nudge.
 
 import type { NewsPost, NewsData } from '@/data/news';
 import { NewsPostPage } from '@/components/News/News';
@@ -79,5 +82,27 @@ export function TakeRail({ post, news, target }: Props) {
         <NativeShare target={target} tag="proto-sh3" />
       </div>
     </>
+  );
+}
+
+export function TakeFooterRail({ post, news, target }: Props) {
+  return (
+    <NewsPostPage
+      post={post}
+      news={news}
+      slots={{
+        beside: (
+          <div className="nsh-rail nsh-rail--wide" data-take="sh4">
+            <ShareRow target={target} tag="proto-sh4" vertical label={false} />
+          </div>
+        ),
+        afterArticle: (
+          <div className="nsh-band" data-take="sh4">
+            <ShareRow target={target} tag="proto-sh4" />
+            <PreferredSourceBadge theme="dark" />
+          </div>
+        ),
+      }}
+    />
   );
 }

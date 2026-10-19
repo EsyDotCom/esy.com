@@ -1,0 +1,50 @@
+/* Sharing an AI Marketing News post (SH4, 2026-10-19). Brand palette only;
+   the badge is Google's own asset. The post page is light; the bar is navy. */
+
+.nws-row { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+.nws-row--vertical { flex-direction: column; gap: 6px; }
+.nws-label { margin-right: 8px; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255, 255, 255, 0.72); }
+
+.nws-icon {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  min-width: 40px; height: 40px; padding: 0 8px; border: 0; border-radius: 8px;
+  background: transparent; color: var(--nl-navy); cursor: pointer; text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.nws-icon:hover { background: rgba(10, 37, 64, 0.06); }
+.nws-icon:focus-visible { outline: 2px solid var(--nl-jade); outline-offset: 2px; }
+.nws-icon.is-copied { color: var(--nl-jade); }
+.nws-copied { font-size: 0.82rem; font-weight: 600; }
+.nws-copied:empty { display: none; }
+
+/* The bar after the article. */
+.nws-bar {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+  margin: 40px 0 8px; padding: 18px 22px; border-radius: 14px; background: var(--nl-navy);
+}
+.nws-bar .nws-icon { color: #FFFFFF; }
+.nws-bar .nws-icon:hover { background: rgba(255, 255, 255, 0.1); }
+.nws-bar .nws-icon.is-copied { color: var(--nl-jade-bright); }
+.nws-badge { display: inline-flex; flex-shrink: 0; border-radius: 12px; }
+.nws-badge img { display: block; width: 169px; height: auto; }
+.nws-badge:focus-visible { outline: 2px solid var(--nl-jade-bright); outline-offset: 3px; }
+
+/* The rail beside the column: wide screens only, at rest above the bar. */
+.nws-rail { display: none; }
+@media (min-width: 1200px) {
+  .np { position: relative; }
+  .nws-rail { display: block; position: sticky; top: 140px; float: left; z-index: 2; margin-left: calc(50% - 470px); width: 48px; height: 0; }
+  .nws-rail.is-resting { position: absolute; float: none; top: var(--nws-rest-top); left: calc(50% - 470px); margin-left: 0; }
+  .nws-rail-box { padding: 6px 4px; border: 1px solid var(--nl-seam); border-radius: 12px; background: #FFFFFF; width: 48px; }
+}
+
+/* Phone: the bar stacks, and "Share" plus all six icons stay on one line. */
+@media (max-width: 720px) {
+  .nws-bar { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 480px) {
+  .nws-bar { padding-left: 14px; padding-right: 14px; }
+  .nws-bar .nws-row { flex-wrap: nowrap; gap: 0; }
+  .nws-bar .nws-icon { min-width: 36px; padding: 0 4px; }
+  .nws-label { margin-right: 4px; }
+}

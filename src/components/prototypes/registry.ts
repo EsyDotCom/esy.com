@@ -3627,6 +3627,28 @@ export const PROTOTYPES: Prototype[] = [
       { slug: 'doors', key: 'P3', name: 'Two doors', round: 1, title: 'Be the answer AI search gives.', blurb: 'Pick agencies or brands in the hero and the feature rows below change to match; then the product, AI search beside classic SEO, pricing and questions.', poster: ['#061527', '#2BD8BB'] },
     ],
   },
+  {
+    slug: 'news-share',
+    name: 'Sharing a news post',
+    date: '2026-10-19',
+    headline: 'Share a post, and follow us in Google.',
+    intro:
+      'Three places for share links and Google\u2019s \u201cAdd as a preferred source\u201d on a real AI Marketing News post. Share links are plain URLs (no scripts or trackers), tagged ?src=proto-sh* so prototype clicks never count; the badge is Google\u2019s own asset, linking to its source preferences for esy.com.',
+    summary: 'Share links and the preferred-source badge on a news post: a footer bar, top and bottom, or a sticky rail.',
+    rounds: [
+      {
+        n: 1,
+        title: 'Footer, top and bottom, or a rail',
+        summary:
+          'SH1 puts Share and the badge on a navy band after the article, as in Zev\u2019s reference. SH2 adds a compact row under the byline and a card with one line of why. SH3 keeps a slim rail beside the column, a Share button on phones that opens the device\u2019s sheet, and a one-time nudge for /news.',
+      },
+    ],
+    variants: [
+      { slug: 'footer', key: 'SH1', name: 'Footer bar', round: 1, title: 'Share, then follow us in Google.', blurb: 'After the article: Share with X, LinkedIn, Facebook, Threads, email and copy link on the left; Google\u2019s preferred-source badge on the right; on a navy band. Stacks on a phone.', poster: ['#0A2540', '#FFFFFF'] },
+      { slug: 'top-bottom', key: 'SH2', name: 'Top and bottom', round: 1, title: 'A quick share up top, the full set at the end.', blurb: 'Link, X and LinkedIn under the byline; after the article the full row and a card: \u201cSee our news first in Google\u201d with one line of why and the badge.', poster: ['#FFFFFF', '#F8F9FA'] },
+      { slug: 'rail', key: 'SH3', name: 'Sticky rail', round: 1, title: 'Share is always one click away.', blurb: 'A slim rail beside the column while you read; on a phone, a Share button that opens the device\u2019s share sheet. The badge card after the article, and a one-time nudge on /news.', poster: ['#F8F9FA', '#00A896'] },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

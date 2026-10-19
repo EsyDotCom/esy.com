@@ -15,6 +15,7 @@
  * No labels ("Breaking" etc.): the dates say when things happened.
  */
 import Link from 'next/link';
+import type { ReactNode } from 'react';
 import {
   ArrowRight, ArrowUpRight, CalendarDays, Download, Info, MapPin, Plug, ShieldCheck, Sparkles, Store, Tag, Users,
   type LucideIcon,
@@ -229,7 +230,14 @@ function StoryLine({ post, story, posts }: { post: NewsPost; story: NewsStory; p
   );
 }
 
-export function NewsPostPage({ post, news, sample = false }: { post: NewsPost; news: NewsData; /** Prototype only: marks the take as sample text. */ sample?: boolean }) {
+export function NewsPostPage({ post, news, sample = false, slots }: {
+  post: NewsPost;
+  news: NewsData;
+  /** Prototype only: marks the take as sample text. */
+  sample?: boolean;
+  /** Prototype only (/prototypes/news-share): extra rows inside the article, e.g. share links. The live page passes none. */
+  slots?: { underByline?: ReactNode; afterArticle?: ReactNode; beside?: ReactNode };
+}) {
   // Every post's story exists (getNews() builds one for Compose posts), but a
   // missing one only drops the story line, never the page.
   const story = findStoryIn(news.stories, post.story);
@@ -238,6 +246,7 @@ export function NewsPostPage({ post, news, sample = false }: { post: NewsPost; n
   return (
     <>
       <article className="np np--spec">
+        {slots?.beside}
         <div className="nl-container"><div className="npi-col nx-col">
           {story && <StoryLine post={post} story={story} posts={news.posts} />}
           <h1 className="np-title">{post.headline}</h1>
@@ -247,6 +256,7 @@ export function NewsPostPage({ post, news, sample = false }: { post: NewsPost; n
               By <Link href="/about/">Zev Uhuru</Link> · Posted <time dateTime={post.publishedAt}>{longDate(post.publishedAt)}</time> · News from {eventLabel(post.eventDate)} · {post.readMinutes} min read
             </span>
           </div>
+          {slots?.underByline}
 
           <section className="np-why" aria-labelledby="np-why">
             <h2 id="np-why">Why it matters</h2>
@@ -297,6 +307,8 @@ export function NewsPostPage({ post, news, sample = false }: { post: NewsPost; n
               ))}
             </section>
           )}
+
+          {slots?.afterArticle}
 
           {/* Sources: every fact's origin, the company's own page first. */}
           <section className="nx-sources" aria-labelledby="np-sources">

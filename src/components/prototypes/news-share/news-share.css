@@ -1,0 +1,115 @@
+/* Sharing and the preferred-source badge on a news post (prototype, 2026-10-19).
+   Brand palette only (navy, ink, jade); the badge is Google's own asset.
+   The news post page is light; the navy band carries the dark badge. */
+
+.nsh-row { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+.nsh-row--vertical { flex-direction: column; gap: 6px; }
+.nsh-label { margin-right: 8px; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-ink-soft); }
+
+.nsh-icon {
+  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  min-width: 40px; height: 40px; padding: 0 8px; border: 0; border-radius: 8px;
+  background: transparent; color: var(--nl-navy); cursor: pointer; text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.nsh-icon:hover { background: rgba(10, 37, 64, 0.06); }
+.nsh-icon:focus-visible { outline: 2px solid var(--nl-jade); outline-offset: 2px; }
+.nsh-icon.is-copied { color: var(--nl-jade); }
+.nsh-copied { font-size: 0.82rem; font-weight: 600; }
+.nsh-copied:empty { display: none; }
+
+.nsh-badge { display: inline-flex; flex-shrink: 0; border-radius: 12px; }
+.nsh-badge img { display: block; width: 169px; height: auto; }
+.nsh-badge:focus-visible { outline: 2px solid var(--nl-jade); outline-offset: 3px; }
+
+/* SH1 · the navy band after the article. */
+.nsh-band {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+  margin: 40px 0 8px; padding: 18px 22px; border-radius: 14px; background: var(--nl-navy);
+}
+.nsh-band .nsh-label { color: rgba(255, 255, 255, 0.72); }
+.nsh-band .nsh-icon { color: #FFFFFF; }
+.nsh-band .nsh-icon:hover { background: rgba(255, 255, 255, 0.1); }
+.nsh-band .nsh-icon.is-copied { color: var(--nl-jade-bright); }
+
+/* SH2 · the compact row under the byline, and the footer. */
+.nsh-top { display: flex; justify-content: flex-end; margin: -6px 0 8px; }
+.nsh-foot { display: grid; gap: 18px; margin: 40px 0 8px; padding-top: 22px; border-top: 1px solid var(--nl-seam); }
+
+/* The preferred-source card. */
+.nsh-pref {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 18px 22px; border: 1px solid var(--nl-seam); border-radius: 14px; background: var(--nl-bg-alt);
+}
+.nsh-pref-title { margin: 0 0 4px; font-family: var(--nl-serif, Georgia, serif); font-size: 1.15rem; font-weight: 600; color: var(--nl-navy); }
+.nsh-pref-line { margin: 0; max-width: 46ch; font-size: 0.92rem; line-height: 1.5; color: var(--nl-ink-soft); }
+.nsh-pref--navy { border-color: transparent; background: var(--nl-navy); }
+.nsh-pref--navy .nsh-pref-title { color: #FFFFFF; }
+.nsh-pref--navy .nsh-pref-line { color: rgba(255, 255, 255, 0.78); }
+.np .nsh-pref { margin: 40px 0 8px; }
+
+/* SH3 · the rail beside the column (wide screens), and the phone bar. */
+.nsh-rail { display: none; }
+@media (min-width: 1180px) {
+  .np { position: relative; }
+  .nsh-rail {
+    display: block; position: sticky; top: 140px; float: left; z-index: 2;
+    margin-left: calc(50% - 470px); width: 48px; height: 0;
+  }
+  .nsh-rail .nsh-row { padding: 6px 4px; border: 1px solid var(--nl-seam); border-radius: 12px; background: #FFFFFF; width: 48px; }
+}
+.nsh-phonebar { display: none; }
+@media (max-width: 720px) {
+  .nsh-phonebar {
+    display: flex; position: fixed; left: 0; right: 0; bottom: var(--nsh-bar-offset, 0px); z-index: 30;
+    justify-content: center; padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    border-top: 1px solid var(--nl-seam); background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(6px);
+  }
+}
+.nsh-native { position: relative; width: 100%; max-width: 420px; }
+.nsh-native-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; height: 46px;
+  border: 0; border-radius: 10px; background: var(--nl-navy); color: #FFFFFF; font: inherit; font-weight: 600; cursor: pointer;
+}
+.nsh-native-btn:focus-visible { outline: 2px solid var(--nl-jade); outline-offset: 2px; }
+.nsh-native-menu {
+  position: absolute; left: 0; right: 0; bottom: 54px; display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  padding: 8px 10px; border: 1px solid var(--nl-seam); border-radius: 12px; background: #FFFFFF; box-shadow: 0 10px 30px rgba(10, 37, 64, 0.16);
+}
+
+/* SH3 · the /news nudge, shown above the post in the prototype. */
+.nsh-nudge-demo { max-width: 780px; margin: 24px auto 0; padding: 0 20px; }
+.nsh-demo-label { margin: 0 0 8px; font-size: 0.78rem; font-weight: 600; color: var(--nl-ink-soft); }
+.nsh-nudge {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 14px; padding: 12px 14px 12px 18px;
+  border: 1px solid var(--nl-seam); border-left: 3px solid var(--nl-jade); border-radius: 0; background: var(--nl-bg-alt);
+}
+.nsh-nudge p { flex: 1 1 280px; margin: 0; font-size: 0.92rem; line-height: 1.45; color: var(--nl-ink); }
+
+@media (max-width: 720px) {
+  .nsh-band, .nsh-pref { flex-direction: column; align-items: flex-start; }
+  .np { padding-bottom: 96px; }
+}
+
+/* Prototype only: lift the phone bar above the take picker so both can be used. */
+.nsh-proto { --nsh-bar-offset: 76px; }
+
+/* Phone: keep "Share" and all six icons on one line. */
+@media (max-width: 480px) {
+  .nsh-band, .nsh-foot .nsh-row { padding-left: 14px; padding-right: 14px; }
+  .nsh-row { flex-wrap: nowrap; gap: 0; }
+  .nsh-row .nsh-icon { min-width: 36px; padding: 0 4px; }
+  .nsh-label { margin-right: 4px; }
+}
+
+/* SH4 · the rail only where the margin has room (>=1200px); never on tablet or phone. */
+@media (min-width: 1180px) and (max-width: 1199.98px) {
+  .nsh-rail--wide { display: none; }
+}
+
+/* SH4 · the rail's stop: sticky while reading, then at rest above the footer bar. */
+@media (min-width: 1200px) {
+  .nsh-railstop { position: sticky; top: 140px; float: left; z-index: 2; margin-left: calc(50% - 470px); width: 48px; height: 0; }
+  .nsh-railstop .nsh-rail--wide { position: static; float: none; margin: 0; width: 48px; height: auto; }
+  .nsh-railstop.is-resting { position: absolute; float: none; top: var(--nsh-rest-top); left: calc(50% - 470px); margin-left: 0; }
+}

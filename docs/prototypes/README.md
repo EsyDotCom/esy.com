@@ -141,3 +141,22 @@ The scaled-window recipe in step 3 forces the desktop layout with CSS overrides.
 - ARCHITECTURE.md, the README and the root CLAUDE.md's esy.com entry are rewritten to say esy.com sells os.esy.com.
 
 The verticals' buyers (seopage.com, clip.art) are still never addressed here.
+
+**Sharing a news post (2026-10-19)** is at `/prototypes/news-share/`. It adds share links and Google's "Add as a preferred source" to a real AI Marketing News post (the September 2026 spam update), drawn by the real `NewsPostPage` with two optional slots (`underByline`, `afterArticle`) plus `beside` for a rail; the live page passes none, so it renders as before.
+- **The takes:**
+  - **SH1 · Footer bar:** as in Zev's reference. After the article, on a navy band: Share with X, LinkedIn, Facebook, Threads, email and copy link on the left, Google's badge on the right. Stacks on a phone.
+  - **SH2 · Top and bottom:** link, X and LinkedIn under the byline. After the article, the full row and a card, "See our news first in Google", with one line of why and the badge.
+  - **SH3 · Sticky rail:** a slim rail beside the column on wide screens. On a phone, a Share button that opens the device's share sheet (`navigator.share`), falling back to a menu. The badge card after the article, and a one-time nudge for /news (remembered per browser).
+- **Share links** are plain URLs to each network's own share page (X intent, LinkedIn share-offsite, Facebook sharer, Threads intent, mailto), plus copy link. There are no scripts, SDKs or trackers. Bluesky is left out because Esy has no account there yet. In the prototype every shared address carries `?src=proto-sh1/2/3`, so prototype clicks never count.
+- **Google's Preferred Sources,** from Google's own page ([Search Central, "Preferred sources"](https://developers.google.com/search/docs/appearance/preferred-sources), updated 2026-09-18):
+  - **What it is:** a reader picks the sites they want to see more of, and Google shows them more often in **Top Stories**, plus AI Mode and AI Overviews where those run. Google says readers who pick a source click through to it about twice as often. It doesn't override Google's spam or quality systems, and a post still has to match the search and be current.
+  - **The link:** `https://www.google.com/preferences/source?q=esy.com` opens Google's source preferences with the site filled in. Google also offers a script button (`news.google.com/swg/js/v1/publisher.js`), which we don't use, to keep third-party scripts off the page.
+  - **Eligibility:** only a whole domain or subdomain qualifies, never a folder, so it's **esy.com**, not esy.com/news. It's available wherever Google Search is. On 2026-10-19, **esy.com appeared in the tool** (with its teal e icon), so it's eligible. It wasn't ticked, so no account was changed.
+  - **The badge:** Google's official asset pack ([zip](https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_all_languages.zip)), English light and dark at 1x and 2x, in `public/prototypes/news-share/`, used unmodified. Light sits on white; the dark badge (black) sits on the navy band. Google publishes no further rules for the badge or its G.
+- **Rules followed:** no pills (the badge's rounded shape is Google's own asset), square corners on the left-accent nudge, and brand colours. The news post page is light only, so the takes are too.
+- **The pick (2026-10-19):** Zev picked SH1 for desktop and phone, and SH3's rail for desktop. **SH4 · Footer + rail** merges them:
+  - SH1's navy footer bar after every article, everywhere;
+  - SH3's sticky rail beside the column, only from 1200px wide;
+  - on tablets and phones, just the footer bar: no rail, no bottom share bar, no share sheet;
+  - no /news nudge.
+  - **The rail stops before the footer** (Zev's follow-up the same day): it follows the reader until it comes within 56px of the footer bar, then rests there and scrolls away with the page. An IntersectionObserver on the bar makes the switch, with no scroll listener and no jump.

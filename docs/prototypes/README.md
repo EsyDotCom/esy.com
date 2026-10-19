@@ -159,3 +159,4 @@ The verticals' buyers (seopage.com, clip.art) are still never addressed here.
   - SH3's sticky rail beside the column, only from 1200px wide;
   - on tablets and phones, just the footer bar: no rail, no bottom share bar, no share sheet;
   - no /news nudge.
+  - **The rail stops before the footer** (Zev's follow-up the same day): it follows the reader until it comes within 56px of the footer bar, then rests there and scrolls away with the page. An IntersectionObserver on the bar makes the switch, with no scroll listener and no jump.

@@ -181,3 +181,55 @@ export function PreferredSourceNudge() {
     </div>
   );
 }
+
+/**
+ * SH4's rail stops before the article's end (Zev, 2026-10-19: "the rail should
+ * stop some distance prior to the footer"). The rail is sticky until its
+ * bottom would come within `gap` px of the footer share bar; then it rests in
+ * place, `gap` px above the bar, and scrolls away with the page. An
+ * IntersectionObserver watches the bar against a band at the top of the
+ * window as tall as the rail's stop line, so there's no scroll listener.
+ * It's rebuilt on resize, because the line depends on the window's height.
+ */
+export function RailStop({ children, bar, gap = 56, top = 140 }: { children: React.ReactNode; bar: string; gap?: number; top?: number }) {
+  const [rest, setRest] = useState<number | null>(null);
+  const [el, setEl] = useState<HTMLDivElement | null>(null);
+  useEffect(() => {
+    const footer = document.querySelector<HTMLElement>(bar);
+    const article = el?.closest<HTMLElement>('.np');
+    const rail = el?.firstElementChild as HTMLElement | null;
+    if (!footer || !article || !rail) return;
+    let io: IntersectionObserver | null = null;
+    const build = () => {
+      io?.disconnect();
+      const railH = rail.getBoundingClientRect().height;
+      const line = top + railH + gap; // px from the window's top where the bar meets the rail's stop
+      const below = Math.max(0, window.innerHeight - line);
+      io = new IntersectionObserver(
+        ([entry]) => {
+          const barTop = entry.boundingClientRect.top;
+          if (barTop <= line) {
+            // Rest the rail gap px above the bar, in the article's coordinates.
+            const restTop = barTop - article.getBoundingClientRect().top - railH - gap;
+            setRest(Math.max(0, restTop));
+          } else {
+            setRest(null);
+          }
+        },
+        { rootMargin: `0px 0px -${below}px 0px`, threshold: [0, 1] },
+      );
+      io.observe(footer);
+    };
+    build();
+    window.addEventListener('resize', build);
+    return () => {
+      io?.disconnect();
+      window.removeEventListener('resize', build);
+    };
+  }, [el, bar, gap, top]);
+  return (
+    <div ref={setEl} className={`nsh-railstop${rest !== null ? ' is-resting' : ''}`} style={rest !== null ? ({ '--nsh-rest-top': `${rest}px` } as React.CSSProperties) : undefined}>
+      {children}
+    </div>
+  );
+}

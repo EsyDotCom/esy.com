@@ -106,3 +106,10 @@
 @media (min-width: 1180px) and (max-width: 1199.98px) {
   .nsh-rail--wide { display: none; }
 }
+
+/* SH4 · the rail's stop: sticky while reading, then at rest above the footer bar. */
+@media (min-width: 1200px) {
+  .nsh-railstop { position: sticky; top: 140px; float: left; z-index: 2; margin-left: calc(50% - 470px); width: 48px; height: 0; }
+  .nsh-railstop .nsh-rail--wide { position: static; float: none; margin: 0; width: 48px; height: auto; }
+  .nsh-railstop.is-resting { position: absolute; float: none; top: var(--nsh-rest-top); left: calc(50% - 470px); margin-left: 0; }
+}

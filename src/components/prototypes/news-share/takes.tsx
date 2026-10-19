@@ -14,7 +14,7 @@
 
 import type { NewsPost, NewsData } from '@/data/news';
 import { NewsPostPage } from '@/components/News/News';
-import { NativeShare, PreferredSourceBadge, PreferredSourceCard, PreferredSourceNudge, ShareRow } from './parts';
+import { NativeShare, PreferredSourceBadge, PreferredSourceCard, PreferredSourceNudge, RailStop, ShareRow } from './parts';
 import type { ShareTarget } from './share';
 import './news-share.css';
 
@@ -92,9 +92,11 @@ export function TakeFooterRail({ post, news, target }: Props) {
       news={news}
       slots={{
         beside: (
-          <div className="nsh-rail nsh-rail--wide" data-take="sh4">
-            <ShareRow target={target} tag="proto-sh4" vertical label={false} />
-          </div>
+          <RailStop bar='.nsh-band[data-take="sh4"]'>
+            <div className="nsh-rail nsh-rail--wide" data-take="sh4">
+              <ShareRow target={target} tag="proto-sh4" vertical label={false} />
+            </div>
+          </RailStop>
         ),
         afterArticle: (
           <div className="nsh-band" data-take="sh4">

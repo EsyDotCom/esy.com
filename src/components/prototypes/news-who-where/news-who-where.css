@@ -1,0 +1,47 @@
+/* Who and where on a news post, the reader's side (prototypes R1–R3b,
+   2026-10-19). On top of News.css and NewsPost.css; every class is nww-.
+   Brand only: navy, teal/jade, white and #F8F9FA. No pills: names are text
+   and links, lists are rows. A box with a coloured left accent is square. */
+
+.nww-dateline { font-family: var(--nl-sans, system-ui), sans-serif; font-size: 0.82em; font-weight: 700; letter-spacing: 0.06em; color: var(--nl-navy); }
+.nww-updated { margin: 10px 0 0; font-size: 0.9rem; color: var(--nl-ink-soft); }
+.nww-updated b { color: var(--nl-navy); }
+.nww-updated span { color: var(--nl-ink-soft); opacity: 0.8; }
+
+/* R1: the box reads as At a glance's twin. */
+.nww-box dd a { color: var(--nl-navy); text-decoration: underline; text-decoration-color: var(--nl-jade); text-underline-offset: 3px; }
+
+/* R2: Details, a plain table before Sources. */
+.nww-details { margin: 32px 0 0; }
+.nww-details h2, .nww-inpost h2 { margin: 0 0 10px; }
+.nww-details table { width: 100%; border-collapse: collapse; border-top: 1px solid var(--nl-navy); font-size: 0.98rem; }
+.nww-details th { width: 32%; padding: 12px 12px 12px 0; border-bottom: 1px solid var(--nl-seam); text-align: left; vertical-align: top; font-weight: 700; color: var(--nl-navy); }
+.nww-details td { padding: 12px 0; border-bottom: 1px solid var(--nl-seam); color: var(--nl-ink); }
+.nww-details td span { display: block; }
+.nww-details i { color: var(--nl-ink-soft); }
+
+/* R3: names in the text are links to their page. */
+.nww-name { color: inherit; text-decoration: underline; text-decoration-color: var(--nl-jade); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.nww-name:hover { color: var(--nl-jade); }
+.nww-inpost { margin: 32px 0 0; }
+.nww-inpost ul { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--nl-navy); }
+.nww-inpost li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; padding: 12px 0; border-bottom: 1px solid var(--nl-seam); font-size: 0.98rem; }
+.nww-inpost li b { color: var(--nl-navy); }
+.nww-inpost li a { color: inherit; text-decoration: none; }
+.nww-inpost li span { color: var(--nl-ink-soft); }
+.nww-inpost .nww-more { margin-left: auto; font-size: 0.9rem; font-weight: 600; color: var(--nl-jade) !important; }
+
+/* What search reads: quiet, closed until opened. */
+.nww-ld { margin: 28px 0 0; padding: 12px 0 0; border-top: 1px dashed var(--nl-seam); }
+.nww-ld summary { cursor: pointer; font-size: 0.9rem; font-weight: 600; color: var(--nl-navy); }
+.nww-ld summary span { margin-left: 6px; font-weight: 400; color: var(--nl-ink-soft); }
+.nww-ld pre { max-height: 420px; margin: 10px 0 0; padding: 14px 16px; overflow: auto; background: #F8F9FA; font-size: 0.76rem; line-height: 1.5; color: var(--nl-navy); white-space: pre; }
+
+@media (max-width: 640px) {
+  .nww-details th { width: 40%; }
+  .nww-inpost .nww-more { margin-left: 0; flex-basis: 100%; }
+}
+
+/* R3b: the company's own site and Wikipedia, on one line. */
+.nww-co-links { margin: 0 0 18px; font-size: 0.92rem; color: var(--nl-ink-soft); }
+.nww-co-links a { display: inline-flex; align-items: center; gap: 3px; color: var(--nl-navy); text-decoration: underline; text-decoration-color: var(--nl-jade); text-underline-offset: 3px; }

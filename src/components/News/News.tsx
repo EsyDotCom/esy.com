@@ -236,8 +236,9 @@ export function NewsPostPage({ post, news, sample = false, slots }: {
   news: NewsData;
   /** Prototype only: marks the take as sample text. */
   sample?: boolean;
-  /** Prototype only (/prototypes/news-share): replaces the share bar and rail with a take's own rows. The live page passes none. */
-  slots?: { underByline?: ReactNode; afterArticle?: ReactNode; beside?: ReactNode };
+  /** Prototype only (/prototypes/news-share, /prototypes/news-who-where): replaces the share bar and rail with a take's own rows,
+      and lets a take add a block after At a glance, set the body itself, or add one before Sources. The live page passes none. */
+  slots?: { underByline?: ReactNode; afterArticle?: ReactNode; beside?: ReactNode; afterFacts?: ReactNode; body?: ReactNode; beforeSources?: ReactNode };
 }) {
   // Every post's story exists (getNews() builds one for Compose posts), but a
   // missing one only drops the story line, never the page.
@@ -291,9 +292,11 @@ export function NewsPostPage({ post, news, sample = false, slots }: {
           )}
 
 
+          {slots?.afterFacts}
+
           <figure className="nx-figure"><FactCard post={post} story={story} /></figure>
 
-          <div className="np-body">{post.body.map((para) => <p key={para.slice(0, 40)}>{para}</p>)}</div>
+          {slots?.body ?? <div className="np-body">{post.body.map((para) => <p key={para.slice(0, 40)}>{para}</p>)}</div>}
 
           {post.check.length > 0 && (
             <section className="np-check" aria-labelledby="np-check">
@@ -315,6 +318,8 @@ export function NewsPostPage({ post, news, sample = false, slots }: {
           )}
 
           {afterArticle}
+
+          {slots?.beforeSources}
 
           {/* Sources: every fact's origin, the company's own page first. */}
           <section className="nx-sources" aria-labelledby="np-sources">

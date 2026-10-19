@@ -160,3 +160,12 @@ The verticals' buyers (seopage.com, clip.art) are still never addressed here.
   - on tablets and phones, just the footer bar: no rail, no bottom share bar, no share sheet;
   - no /news nudge.
   - **The rail stops before the footer** (Zev's follow-up the same day): it follows the reader until it comes within 56px of the footer bar, then rests there and scrolls away with the page. An IntersectionObserver on the bar makes the switch, with no scroll listener and no jump.
+
+**Who and where on a news post (2026-10-19)** is at `/prototypes/news-who-where/`, the reader's side of "What does a news post know about who and where?". The editor's side is in Compose, at `/compose/prototypes/who-where/` (WW1–WW3); the plan and the proposed `fields.whoWhere` shape are in Compose's `docs/plans/2026-10-19-news-who-where.md`. Every take uses the real `NewsPostPage`, with SH4's share bar and rail, on a real story (Salesforce's $1B for Spain: its own post and the MADRID dateline are real) in sample wording. `NewsPostPage` gains three more prototype-only slots: `afterFacts`, `body` and `beforeSources`. The live page passes none.
+- **R1 · Who-and-where box:** a section after At a glance, in its style: involved, announced in, applies in, affects, and the dates. "MADRID —" opens the post, and an update line sits under the byline.
+- **R2 · In At a glance:** "Led by", "Where" and "For" join At a glance, and a plain Details table before Sources holds the dates, the rollout, the products and the changes.
+- **R3 · Linked names:** Salesforce in the text links to its page, and "In this post" before Sources lists who and where.
+- **R3b · A company's page:** every post naming Salesforce, with its role in each. Only the first post is real.
+- **Search:** each take ends with "What search reads", the `NewsArticle` data it would add: `about`/`mentions` with `sameAs`, `dateline`, `contentLocation`, `spatialCoverage`, `audience`, `keywords` and `correction`.
+- **Logos:** Salesforce appears as a name only, because its brand terms haven't been checked.
+- **Recommendation:** R1 with Compose's WW1. Runner-up: R3 and R3b, once companies repeat across posts.

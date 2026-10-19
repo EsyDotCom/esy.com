@@ -3656,6 +3656,29 @@ export const PROTOTYPES: Prototype[] = [
       { slug: 'footer-rail', key: 'SH4', name: 'Footer + rail', round: 2, title: 'Share at the end, and beside you while you read.', blurb: 'SH1\u2019s footer everywhere, with SH3\u2019s rail on desktop.', poster: ['#0A2540', '#F8F9FA'] },
     ],
   },
+  {
+    slug: 'news-who-where',
+    name: 'Who and where on a news post',
+    date: '2026-10-19',
+    headline: 'Who it’s about, where it happened, and who it affects.',
+    intro:
+      'What a news post knows about who and where, as readers see it: the companies and people involved, the dateline, where the news applies, who it affects, key dates and updates. Each take is the real post page (with the share bar and rail) on a real story, Salesforce\u2019s $1B for Spain, worded as a sample. Each ends with what search reads from it. The editor\u2019s side is in Compose (/prototypes/who-where).',
+    summary: 'Stakeholders, places and who it affects on a news post: a box, rows in At a glance, or linked names with a page per company.',
+    rounds: [
+      {
+        n: 1,
+        title: 'A box, At a glance, or linked names',
+        summary:
+          'R1 adds a \u201cWho and where\u201d section after At a glance. R2 adds rows to At a glance and a Details table before Sources. R3 links names in the text to a page per company (R3b), with \u201cIn this post\u201d before Sources. All three open the post with the dateline.',
+      },
+    ],
+    variants: [
+      { slug: 'box', key: 'R1', name: 'Who-and-where box', round: 1, title: 'A section of its own, after the key facts.', blurb: 'Involved, announced in, applies in, affects and the dates, in At a glance\u2019s style; \u201cMADRID \u2014\u201d opens the post; the update is under the byline. Pairs with Compose WW1.', poster: ['#FFFFFF', '#00A896'] },
+      { slug: 'glance', key: 'R2', name: 'In At a glance', round: 1, title: 'No new section: the key facts carry it.', blurb: 'Led by, Where and For join At a glance; a plain Details table before Sources holds the dates, rollout, products and changes. Pairs with Compose WW2.', poster: ['#F8F9FA', '#0A2540'] },
+      { slug: 'linked', key: 'R3', name: 'Linked names', round: 1, title: 'Every name leads somewhere.', blurb: 'Salesforce in the text links to its page on AI Marketing News; \u201cIn this post\u201d before Sources lists who and where. Pairs with Compose WW3.', poster: ['#FFFFFF', '#0A2540'] },
+      { slug: 'company', key: 'R3b', name: 'A company\u2019s page', round: 1, title: 'Every post that names Salesforce.', blurb: 'Where R3\u2019s names lead: a page per company listing each post and its role in it, with its site and Wikipedia, the page that can rank for \u201cSalesforce AI news\u201d.', poster: ['#0A2540', '#F8F9FA'] },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

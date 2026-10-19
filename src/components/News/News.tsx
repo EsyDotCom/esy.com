@@ -23,6 +23,7 @@ import {
 import NewsletterSignup from '@/components/NewsletterHome/NewsletterSignup';
 import WeeklyEmailBand from '@/components/NewsletterHome/WeeklyEmailBand';
 import { ZevTake } from './Take';
+import { ShareBar, ShareRail } from './Share';
 import { FactCard, StoryCard } from './FactCard';
 import {
   eventLabel, findStoryIn, liveStoriesOf, longDate, postPath, postsInStoryOf,
@@ -235,7 +236,7 @@ export function NewsPostPage({ post, news, sample = false, slots }: {
   news: NewsData;
   /** Prototype only: marks the take as sample text. */
   sample?: boolean;
-  /** Prototype only (/prototypes/news-share): extra rows inside the article, e.g. share links. The live page passes none. */
+  /** Prototype only (/prototypes/news-share): replaces the share bar and rail with a take's own rows. The live page passes none. */
   slots?: { underByline?: ReactNode; afterArticle?: ReactNode; beside?: ReactNode };
 }) {
   // Every post's story exists (getNews() builds one for Compose posts), but a
@@ -243,10 +244,15 @@ export function NewsPostPage({ post, news, sample = false, slots }: {
   const story = findStoryIn(news.stories, post.story);
   const storyOf = (slug: string) => findStoryIn(news.stories, slug);
   const more = news.posts.filter((p) => p.story !== post.story).slice(0, 4);
+  // Share (SH4, 2026-10-19): the bar after the article and, from 1200px, the
+  // rail beside the column. A prototype passing its own slots draws its own.
+  const share = { url: `https://esy.com${postPath(post.slug)}`, title: post.headline };
+  const beside = slots ? slots.beside : <ShareRail {...share} />;
+  const afterArticle = slots ? slots.afterArticle : <ShareBar {...share} />;
   return (
     <>
       <article className="np np--spec">
-        {slots?.beside}
+        {beside}
         <div className="nl-container"><div className="npi-col nx-col">
           {story && <StoryLine post={post} story={story} posts={news.posts} />}
           <h1 className="np-title">{post.headline}</h1>
@@ -308,7 +314,7 @@ export function NewsPostPage({ post, news, sample = false, slots }: {
             </section>
           )}
 
-          {slots?.afterArticle}
+          {afterArticle}
 
           {/* Sources: every fact's origin, the company's own page first. */}
           <section className="nx-sources" aria-labelledby="np-sources">

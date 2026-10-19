@@ -98,3 +98,18 @@
 .np-take p:last-child { margin-bottom: 0; }
 .np-take a { color: var(--nl-jade); text-decoration: underline; text-underline-offset: 2px; }
 .np-take a:hover { color: var(--nl-navy); }
+
+/* Who and where (WW2, 2026-10-19; src/lib/news-who-where.ts). The dateline
+   opens the story, the newest change sits under the byline, and Details is a
+   plain table before Sources. Brand only; no pills. */
+.np-dateline { font-family: var(--nl-sans, system-ui), sans-serif; font-size: 0.82em; font-weight: 700; letter-spacing: 0.06em; color: var(--nl-navy); }
+.np-updated { margin: 10px 0 0; font-size: 0.9rem; color: var(--nl-ink-soft); }
+.np-updated b { color: var(--nl-navy); }
+.np-details { margin: 32px 0 0; }
+.np-details h2 { margin: 0 0 10px; }
+.np-details table { width: 100%; border-collapse: collapse; border-top: 1px solid var(--nl-navy); font-size: 0.98rem; }
+.np-details th { width: 32%; padding: 12px 12px 12px 0; border-bottom: 1px solid var(--nl-seam); text-align: left; vertical-align: top; font-weight: 700; color: var(--nl-navy); }
+.np-details td { padding: 12px 0; border-bottom: 1px solid var(--nl-seam); color: var(--nl-ink); }
+@media (max-width: 640px) {
+  .np-details th { width: 40%; }
+}

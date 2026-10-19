@@ -16,6 +16,7 @@
  * src/lib/published-news.ts (getNews()); this registry wins a slug clash while
  * the posts move over.
  */
+import type { NewsWhoWhere } from '@/lib/news-who-where';
 
 // The registry's posts carry the six legacy topic names. Posts from Compose
 // carry the seven shared AI marketing topics as slugs (2026-10-12; news and
@@ -106,6 +107,10 @@ export interface NewsPost {
   /** "noindex" keeps the post out of search and both sitemaps while it stays
       live (api.esy.com #589; src/lib/search-indexing.ts). Registry posts have none. */
   searchIndexing?: 'index' | 'noindex';
+  /** Who and where (WW2, 2026-10-19): who's involved, where it applies, who it
+      affects, rollout, dates, products, updates. Posts from Compose only, and
+      only what Zev kept (src/lib/news-who-where.ts). */
+  whoWhere?: NewsWhoWhere;
 }
 
 /* Companies we cover. Logos are the companies' own files, unchanged, and only

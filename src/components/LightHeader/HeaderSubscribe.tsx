@@ -6,10 +6,10 @@ import { EsyLoader } from '@/components/EsyLoader';
 import { useNewsletterSubscribe } from '@/hooks/useNewsletterSubscribe';
 
 /* The header's button (2026-10-09): another way to subscribe, on every page
-   with the light header. It replaced "App" (os.esy.com), and reads as an action,
-   "Start Email Course": the same promise as every signup (the free email
-   course, then the weekly issue), and "email" so nobody expects one of the
-   video courses at /courses. Like the homepage
+   with the light header. It replaced "App" (os.esy.com). Its label (2026-10-19)
+   is "Free AI Marketing Course": the topic people came for and the price, since
+   "Start Email Course" read as a course about email. Same promise as every
+   signup (the free email course, then the weekly issue). Like the homepage
    hero's signup, it starts as a button and turns into the email box in place
    when clicked, focused; Escape (with the box empty) turns it back. It posts
    to the same signup as every form, recorded against the page it was made on,
@@ -36,7 +36,7 @@ export default function HeaderSubscribe() {
   if (!open) {
     return (
       <button type="button" className="lh-cta" onClick={() => setOpen(true)}>
-        Start Email Course
+        Free AI Marketing Course
       </button>
     );
   }

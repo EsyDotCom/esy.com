@@ -26,7 +26,11 @@ export const LOGO = {
     'Use the SVG files. Don’t retype, redraw, stretch, outline or recolour it.',
     'Give it room: at least the height of the e on every side.',
     'On busy pictures, put it on a calm patch of navy or ivory, never over the art.',
-    'The vinyl renders are pictures of the logo, for scenes and covers; the SVG is the logo.',
+    'The vinyl wordmark renders are pictures of the logo, for scenes and covers; the SVG is the logo.',
+    // Zev's call, 2026-10-21: the e is the company's symbol, Mason the mascot.
+    'The e is Esy’s symbol: icons, app tiles, profile pictures, and anywhere a square mark goes. Mason is the mascot, not the symbol.',
+    'The vinyl e on navy wherever the mark shows at 32px or more. Below that, and for print or one colour, the flat e: its SVG is the master.',
+    'The full wordmark stays in headers and footers, and wherever the name has to be read.',
   ],
 };
 

@@ -1,16 +1,16 @@
 {
   "_about": "The social media kit (2026-10-18): which profile picture each platform takes, and which banner. Read by scripts/brand-social.mjs (writes public/brand/social/) and src/components/BrandKit/SocialKit.tsx (/brand#social). Sizes were checked on each platform's help page on 2026-10-18; where a platform publishes no size, `official` is false and the size is a safe common one.",
-  "inUse": "mason",
+  "inUse": "e-vinyl",
   "marks": [
-    {
-      "id": "mason",
-      "name": "Mason, vinyl, on teal",
-      "line": "His vinyl head on the teal of his studio render, the same as the phone's home-screen icon. The brand canon gives profile pictures to him."
-    },
     {
       "id": "e-vinyl",
       "name": "The e, vinyl, on navy",
-      "line": "The vinyl e on navy, the letter from the wordmark in the brand's material."
+      "line": "The vinyl e on navy, the letter from the wordmark in the brand's material. Esy's symbol, so its profile picture everywhere (2026-10-21)."
+    },
+    {
+      "id": "mason",
+      "name": "Mason, vinyl, on teal",
+      "line": "His vinyl head on the teal of his studio render. Our profile picture until 2026-10-21; Mason is the mascot, not the symbol."
     },
     {
       "id": "wordmark",

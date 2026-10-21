@@ -137,8 +137,9 @@ export default function OctoMasonPage() {
               <figcaption><b>The footer.</b> Mason at work in his study, at the foot of every page.</figcaption>
             </figure>
             <figure className="om-app">
-              <Image src={`${ICONS}/mason-vinyl-teal-512.png`} alt="Mason’s vinyl head on teal, the Esy app icon" width={512} height={512} sizes="180px" />
-              <figcaption><b>The app icon.</b> His vinyl head on teal, on a phone’s home screen and as our profile picture. <Link href="/brand/#icons">Icons →</Link></figcaption>
+              {/* Retired as the icon 2026-10-21: the e is Esy's symbol, Mason the mascot. */}
+              <Image src={`${ICONS}/mason-vinyl-teal-512.png`} alt="Mason’s vinyl head on teal" width={512} height={512} sizes="180px" />
+              <figcaption><b>The old app icon.</b> His vinyl head on teal was our app icon and profile picture until 21 October 2026. The e is Esy’s symbol now; Mason is the mascot. <Link href="/brand/#icons">Icons →</Link></figcaption>
             </figure>
           </div>
         </Section>

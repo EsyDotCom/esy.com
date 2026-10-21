@@ -20,7 +20,8 @@
  * from the same drawings: src/app/icon.svg is the flat teal e that every Esy
  * app's tab shares, with src/app/favicon.ico as its raster fallback (the e on
  * navy until 2026-10-18); src/app/apple-icon.png is
- * vinyl Mason on teal; public/favicon/* is kept in step.
+ * the vinyl e on navy (vinyl Mason on teal until 2026-10-21, when the e
+ * became the company's symbol); public/favicon/* is kept in step.
  *
  * The tiled e is redrawn on a 16-pixel grid (32 units a pixel in a 512 box)
  * so its straight edges land on whole pixels at 16 and 32. The vinyl sources
@@ -420,7 +421,7 @@ for (const [name, raster] of Object.entries(VINYL)) await variant(name, { raster
 
 // The live site: the flat e in the light teal in the tab, the same file every Esy
 // app serves (the e on a navy tile until 2026-10-18), and
-// vinyl Mason on teal on a phone's home screen.
+// the vinyl e on navy on a phone's home screen (vinyl Mason on teal until 2026-10-21).
 // Which tab icon is live: the flat teal e, maxed on transparent (Zev's pick,
 // 2026-10-18: "use the flat teal e everywhere"). It's drawn as SVG on the
 // pixel grid, so every size is rasterised from the drawing, never resampled.
@@ -433,9 +434,9 @@ await write(`public/brand/icons/${TAB}.ico`, ico(tabImages));
 await write('src/app/icon.svg', E_TAB_SVG);
 fs.rmSync(out('src/app/icon.png'), { force: true }); // the SVG replaces the PNG tab icon
 await write('src/app/favicon.ico', ico(tabImages));
-await write('src/app/apple-icon.png', await pngFrom(VINYL['mason-vinyl-teal'], 180));
+await write('src/app/apple-icon.png', await pngFrom(VINYL_E_SET['e-vinyl-navy'], 180));
 await write('public/favicon/favicon.ico', ico(tabImages));
 for (const s of [16, 32, 192, 512]) await write(`public/favicon/favicon-${s}x${s}.png`, await tabPng(s));
-await write('public/favicon/apple-touch-icon.png', await pngFrom(VINYL['mason-vinyl-teal'], 180));
+await write('public/favicon/apple-touch-icon.png', await pngFrom(VINYL_E_SET['e-vinyl-navy'], 180));
 
 console.log(`Wrote ${count} files.`);

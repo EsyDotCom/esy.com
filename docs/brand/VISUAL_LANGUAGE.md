@@ -2,7 +2,7 @@
 
 ## Status
 AUTHORITATIVE / SOURCE OF TRUTH for Esy's imagery
-Decided: 2026-10-11 · Mason's name, arms and references added 2026-10-14
+Decided: 2026-10-11 · Mason's name, arms and references added 2026-10-14 · The e as Esy's symbol 2026-10-21
 Owner: Zev
 
 ---
@@ -75,9 +75,17 @@ If OctoMason becomes merch and a vinyl toy, he should exist as a posable 3D mode
 
 He may wear a product's colours for the newsletter (*Camouflage*: the colours change, the shape never does).
 
-The flat stencil drawing of Mason (`OctopusFigure`, code) stays for small and functional uses: icons, avatars, the loader, 404s, anything under about 100px or that must move cheaply in code. It is a drawing of the vinyl figure, not a second mascot. At rest it follows the same rule: seven arms forward and the tail (`pose="rest"`).
+The flat stencil drawing of Mason (`OctopusFigure`, code) stays for small and functional uses of the mascot: the loader, 404s, small illustrations, anything under about 100px or that must move cheaply in code. It is a drawing of the vinyl figure, not a second mascot. At rest it follows the same rule: seven arms forward and the tail (`pose="rest"`).
 
-**Icons:** the browser tab is the flat e in the light teal (mint `#2BD8BB`), near edge to edge on transparent, the identical file on every Esy app (esy.com, Compose, os.esy.com; decided 2026-10-18; the e on a navy tile before). The vinyl e and Mason's head are in the suite as alternatives. The navy app tile keeps a small border (head 88% of the height). The app icon is his vinyl head on teal, filling about three quarters of the tile (Android gets a smaller foreground inside its safe circle); below 40pt it falls back to the flat head. Files and the full suite: esy.com/brand#icons.
+### The e is the symbol, Mason is the mascot
+
+Decided 2026-10-21 (Zev). **The e is Esy's symbol**: icons, app tiles, profile pictures, and anywhere a square mark goes. It makes Esy look as serious as the work it does; a mascot as the core icon would read as a cartoon company. **Mason is the mascot**: newsletter imagery, social images, around the site and in demonstrations, never the company's icon.
+
+- **The vinyl e on navy** wherever the mark shows at 32px or more: the phone's home-screen icon, every profile picture, Esy's tile among other tools' logos.
+- **The flat e** below 32px, and for print or one colour. Its SVG is the master; the vinyl e is a render of it.
+- **The full wordmark** stays in headers and footers, and wherever the name has to be read.
+
+**Icons:** the browser tab is the flat e in the light teal (mint `#2BD8BB`), near edge to edge on transparent, the identical file on every Esy app (esy.com, Compose, os.esy.com; decided 2026-10-18; the e on a navy tile before). The app icon is the vinyl e on navy (vinyl Mason on teal until 2026-10-21); its small sizes are the flat e on navy. The e has no Android foreground yet. Files and the full suite: esy.com/brand#icons.
 
 ---
 

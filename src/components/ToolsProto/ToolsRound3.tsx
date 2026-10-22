@@ -24,6 +24,9 @@ const ART = '/images/tools/art';
 const jobSlug = (j: ToolJob) => j.toLowerCase().replace(/ & /g, '-').replace(/\s+/g, '-');
 const jobArt = (j: ToolJob) => `${ART}/${jobSlug(j)}.webp`;
 const USED = TOOLS.filter((t) => t.usedByEsy).length;
+// In Orbit (live /tools) Esy's hero chip, job box icons and cards are like the rest: the brand
+// kit's "The e, vinyl, on navy" tile and its name, not the bare wordmark (2026-10-21).
+const orbitTool = (t: Tool): Tool => (t.slug === 'esy' ? { ...t, wordmark: undefined, logo: { src: '/brand/icons/e-vinyl-navy-180.png' } } : t);
 const match = (t: Tool, q: string) => !q || `${t.name} ${t.maker} ${t.does} ${t.job}`.toLowerCase().includes(q.toLowerCase());
 
 /** Fades its children up the first time they scroll into view; still for reduced motion. */
@@ -111,7 +114,7 @@ export function TakeOrbit() {
         <div className="t3o-drift" aria-hidden="true">
           {rows.map((row, i) => (
             <div key={i} className={`t3o-row t3o-row--${i}`}>
-              {[...row, ...row, ...row, ...row].map((t, k) => (
+              {[...row, ...row, ...row, ...row].map(orbitTool).map((t, k) => (
                 <span key={`${t.slug}-${k}`} className={`t3o-chip${t.wordmark ? ' t3o-chip--mark' : ''}`}><Tile tool={t} />{!t.wordmark && ` ${t.name}`}</span>
               ))}
             </div>
@@ -132,7 +135,7 @@ export function TakeOrbit() {
         {q ? (
           <section className="t3o-results">
             <p className="tl-label">{results.length} {results.length === 1 ? 'match' : 'matches'} for “{q}”</p>
-            <div className="tl-grid">{results.map((t, i) => <Reveal key={t.slug} delay={i * 50}><Card t={t} /></Reveal>)}</div>
+            <div className="tl-grid">{results.map((t, i) => <Reveal key={t.slug} delay={i * 50}><Card t={orbitTool(t)} /></Reveal>)}</div>
           </section>
         ) : (
           <div className="t3o-bento">
@@ -153,12 +156,12 @@ export function TakeOrbit() {
                     <button type="button" className="t3o-box-head" onClick={() => setOpen(isOpen ? null : j)} aria-expanded={isOpen}>
                       <span className="t3o-box-art" style={{ backgroundImage: `url(${jobArt(j)})` }} />
                       <span className="t3o-box-name">{j}</span>
-                      <span className="t3o-box-tiles">{tools.map((t) => <Tile key={t.slug} tool={t} />)}</span>
+                      <span className="t3o-box-tiles">{tools.map((t) => <Tile key={t.slug} tool={orbitTool(t)} />)}</span>
                       <span className="t3o-box-n">{tools.length} {tools.length === 1 ? 'tool' : 'tools'} · {isOpen ? 'Close' : 'Open'}</span>
                     </button>
                     {/* Opens in place: the box spans the row and its tools slide down. */}
                     <div className="t3o-box-body" aria-hidden={!isOpen}>
-                      <div className="t3o-box-grid">{tools.map((t) => <Card key={t.slug} t={t} />)}</div>
+                      <div className="t3o-box-grid">{tools.map((t) => <Card key={t.slug} t={orbitTool(t)} />)}</div>
                     </div>
                   </article>
                 </Reveal>

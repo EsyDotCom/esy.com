@@ -5,7 +5,9 @@
    The list's shape:
    - Every signup is a contact with string properties `confirmed` ("false" until
      the confirmation link is clicked), `source` (the page) and `video` (the
-     YouTube video, when there is one).
+     YouTube video, when there is one). `reminder` holds the id of the one
+     "still want it?" email scheduled two days after signup, so confirming can
+     cancel it (2026-11-01).
    - Only confirmed contacts are in the Newsletter segment
      (RESEND_NEWSLETTER_SEGMENT_ID), and issues go to that segment only.
    - Resend's own `unsubscribed` flag is left alone: it means "opted out", and
@@ -73,12 +75,13 @@ export async function addToNewsletter(email) {
   if (!res.ok) throw new Error(`Resend segment add failed (${res.status})`);
 }
 
-/** Sends one email. The idempotency key stops a retried request from sending it twice. */
-export async function sendEmail({ to, subject, html, text, idempotencyKey }) {
+/** Sends one email, now or at `scheduledAt` (an ISO time, up to 30 days out).
+ *  The idempotency key stops a retried request from sending it twice. */
+export async function sendEmail({ to, subject, html, text, idempotencyKey, scheduledAt }) {
   const res = await call(
     'POST',
     '/emails',
-    { from: FROM, reply_to: REPLY_TO, to: [to], subject, html, text },
+    { from: FROM, reply_to: REPLY_TO, to: [to], subject, html, text, ...(scheduledAt ? { scheduled_at: scheduledAt } : {}) },
     idempotencyKey ? { 'Idempotency-Key': idempotencyKey } : {},
   );
   // 409 on a keyed send means this key already sent an email in the last 24
@@ -86,6 +89,24 @@ export async function sendEmail({ to, subject, html, text, idempotencyKey }) {
   if (res.status === 409 && idempotencyKey) return { duplicate: true };
   if (!res.ok) throw new Error(`Resend send failed (${res.status}): ${res.data?.message || ''}`);
   return res.data;
+}
+
+/** Cancels an email scheduled for later. False when it couldn't be (already
+ *  sent, already cancelled, or gone): callers treat that as nothing to do. */
+export async function cancelEmail(id) {
+  const res = await call('POST', `/emails/${encodeURIComponent(id)}/cancel`);
+  return res.ok;
+}
+
+// Resend saves a contact property only once its key is defined. Each key this
+// code introduces is defined the first time it's needed (once per server);
+// a key that already exists makes the create fail, which is fine.
+const defined = new Map();
+export function defineProperty(key) {
+  if (!defined.has(key)) {
+    defined.set(key, call('POST', '/contact-properties', { key, type: 'string', fallback_value: '' }).catch(() => null));
+  }
+  return defined.get(key);
 }
 
 /** Tells Resend something happened to a contact, which starts any Automation

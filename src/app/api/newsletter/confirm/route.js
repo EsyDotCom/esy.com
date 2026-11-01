@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 import { attribute } from '@/lib/newsletter/attribution';
 import { mirrorToBeehiiv } from '@/lib/newsletter/beehiiv';
-import { addToNewsletter, createContact, getContact, isConfigured, prop, sendEvent, updateContact } from '@/lib/newsletter/resend';
+import { addToNewsletter, cancelEmail, createContact, getContact, isConfigured, prop, sendEvent, updateContact } from '@/lib/newsletter/resend';
 import { readToken } from '@/lib/newsletter/tokens';
 
 /* The confirmation link's second half (2026-10-09). /newsletter/confirm posts
@@ -54,6 +54,13 @@ export async function POST(request) {
     // the contact stays unconfirmed and a second click tries again.
     await addToNewsletter(email);
     await updateContact(email, { confirmed: 'true' });
+
+    // They confirmed, so the "still want it?" reminder must not arrive. Best
+    // effort: once it's sent there's nothing to cancel, and that's fine.
+    const reminder = prop(contact, 'reminder');
+    if (reminder) {
+      await cancelEmail(reminder).catch((error) => console.warn('[newsletter] reminder not cancelled:', error?.message));
+    }
 
     // What happens next for them depends on where they came from, so the event
     // carries it. Best effort: with no Automation listening yet the event has

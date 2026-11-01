@@ -2,8 +2,8 @@ import { NextResponse } from 'next/server';
 
 import { EMAIL_REGEX, clientIp, detectBot } from '@/lib/botCheck';
 import { attribute, formLabel } from '@/lib/newsletter/attribution';
-import { confirmLink, confirmationEmail } from '@/lib/newsletter/confirmEmail';
-import { createContact, getContact, isConfigured, prop, sendEmail } from '@/lib/newsletter/resend';
+import { REMINDER_AFTER_MS, confirmLink, confirmationEmail, reminderEmail } from '@/lib/newsletter/confirmEmail';
+import { createContact, defineProperty, getContact, isConfigured, prop, sendEmail, updateContact } from '@/lib/newsletter/resend';
 import { signToken } from '@/lib/newsletter/tokens';
 
 /* Every newsletter signup on esy.com posts here: the homepage, /seo, /skills,
@@ -14,6 +14,8 @@ import { signToken } from '@/lib/newsletter/tokens';
       page (and YouTube video) it came from, and which signup box (`form`).
    2. We send the confirmation email. Its link opens /newsletter/confirm, which
       marks the contact confirmed and adds it to the Newsletter segment.
+   3. A first signup also gets one reminder, scheduled for two days later and
+      cancelled if they confirm before then (2026-11-01).
 
    Nobody receives an issue until step 2, so a typo'd or stranger's address
    never joins the list. */
@@ -25,6 +27,26 @@ function silentlyAccept(reason, meta) {
   return NextResponse.json({ success: true });
 }
 
+
+/* Schedules the reminder and notes its id on the contact. Best effort: a
+   reminder that can't be scheduled must never fail the signup itself. Its
+   link is signed now and good for 7 days, so 5 days after it arrives. */
+async function scheduleReminder(request, address) {
+  try {
+    const reminder = await sendEmail({
+      to: address,
+      ...reminderEmail(confirmLink(request, signToken('confirm', address))),
+      scheduledAt: new Date(Date.now() + REMINDER_AFTER_MS).toISOString(),
+      idempotencyKey: `confirm-reminder-${address}`,
+    });
+    if (reminder?.id) {
+      await defineProperty('reminder');
+      await updateContact(address, { reminder: reminder.id });
+    }
+  } catch (error) {
+    console.warn('[newsletter] reminder not scheduled:', error?.message);
+  }
+}
 
 export async function POST(request) {
   try {
@@ -92,6 +114,11 @@ export async function POST(request) {
       ...confirmationEmail(link),
       idempotencyKey: `confirm-signup-${address}-${Math.floor(Date.now() / 60000)}`,
     });
+
+    // A first signup also gets one reminder, two days on, cancelled if they
+    // confirm first (/api/newsletter/confirm). Only ever one per address, so
+    // signing up again doesn't add more.
+    if (!existing) await scheduleReminder(request, address);
 
     // The pass for the form's "what should I call you?" step
     // (/api/newsletter/name). Bot rejections above never get one.

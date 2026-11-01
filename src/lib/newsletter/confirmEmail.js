@@ -44,6 +44,45 @@ export function confirmationEmail(link) {
   return { subject, html, text };
 }
 
+/** How long after signup the one reminder goes out, if they haven't confirmed. */
+export const REMINDER_AFTER_MS = 2 * 24 * 60 * 60 * 1000;
+
+/** { subject, html, text } for the one reminder: sent two days after signup to
+ *  someone who hasn't confirmed, and cancelled the moment they do. It's the
+ *  last email they get unless they click, and it says so. */
+export function reminderEmail(link) {
+  const href = escapeHtml(link);
+  const subject = 'Still want The Marketing Engineer?';
+
+  const html = `<!doctype html>
+<html><body style="margin:0;padding:0;background:#ffffff;">
+  <div style="max-width:520px;margin:0 auto;padding:40px 24px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:${NAVY};line-height:1.6;font-size:16px;">
+    <p style="margin:0 0 24px;font-size:20px;font-weight:700;letter-spacing:-0.01em;">You&rsquo;re one click away.</p>
+    <p style="margin:0 0 28px;">You signed up for The Marketing Engineer a couple of days ago, but the confirmation is still waiting. Confirm and the next issue comes straight to you.</p>
+    <p style="margin:0 0 32px;">
+      <a href="${href}" style="display:inline-block;background:${JADE};color:#ffffff;text-decoration:none;font-weight:600;padding:13px 22px;border-radius:10px;">Confirm my email</a>
+    </p>
+    <p style="margin:0 0 8px;color:${MUTED};font-size:14px;">This is the only reminder. If you&rsquo;d rather not, ignore it and you won&rsquo;t hear from me again.</p>
+    <p style="margin:24px 0 0;">Zev</p>
+    <p style="margin:32px 0 0;color:${MUTED};font-size:12px;">esy.com &middot; Reply any time, it comes straight to me.</p>
+  </div>
+</body></html>`;
+
+  const text = [
+    'You’re one click away.',
+    '',
+    'You signed up for The Marketing Engineer a couple of days ago, but the confirmation is still waiting. Confirm and the next issue comes straight to you.',
+    '',
+    `Confirm my email: ${link}`,
+    '',
+    'This is the only reminder. If you’d rather not, ignore it and you won’t hear from me again.',
+    '',
+    'Zev',
+  ].join('\n');
+
+  return { subject, html, text };
+}
+
 /** Where the confirmation link points: the site that took the signup when it's
  *  one of ours (esy.com, a Vercel preview, localhost while testing), otherwise
  *  esy.com. Checked against known hosts so a forged Host header can't send

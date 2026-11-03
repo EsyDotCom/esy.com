@@ -11,10 +11,10 @@
     "build": "ESY_BUILD_PHASE=1 next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "node --test orchestration/runner/__tests__/validator.test.js orchestration/runner/__tests__/contracts.test.js orchestration/runner/__tests__/regression.test.js src/lib/newsletter/__tests__/confirmEmail.test.mjs",
+    "test": "node --test orchestration/runner/__tests__/validator.test.js orchestration/runner/__tests__/contracts.test.js orchestration/runner/__tests__/regression.test.js src/lib/newsletter/__tests__/confirmEmail.test.mjs src/lib/newsletter/__tests__/attribution.test.mjs",
     "test:validator": "node --test orchestration/runner/__tests__/validator.test.js",
     "test:contracts": "node --test orchestration/runner/__tests__/contracts.test.js",
-    "test:regression": "node --test orchestration/runner/__tests__/regression.test.js src/lib/newsletter/__tests__/confirmEmail.test.mjs",
+    "test:regression": "node --test orchestration/runner/__tests__/regression.test.js src/lib/newsletter/__tests__/confirmEmail.test.mjs src/lib/newsletter/__tests__/attribution.test.mjs",
     "test:smoke": "node --test orchestration/runner/__tests__/smoke.test.js",
     "test:install-hook": "cp scripts/pre-commit-hook.sh .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit && echo 'Pre-commit hook installed'"
   },

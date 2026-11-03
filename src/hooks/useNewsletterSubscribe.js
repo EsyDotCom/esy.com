@@ -27,6 +27,8 @@ const HONEYPOT_STYLE = {
  *   - `hp`        honeypot field value; non-empty means an indiscriminate filler
  *   - `elapsedMs` time from form mount to submit; implausibly fast means a script
  *   - `source`    the real page path, since the API can no longer assume /engineer
+ *   - `src`       the ?src= tag of the link that brought them (2026-11-03), kept for
+ *                 the visit so a reader who clicks on before signing up still counts
  *
  * @param {Object} opts
  * @param {string} [opts.endpoint='/api/newsletter/subscribe'] - API endpoint to POST to
@@ -41,6 +43,18 @@ const HONEYPOT_STYLE = {
  * `canSaveName` says whether there's a token to use. It resolves to an error
  * message, or null when the name was saved.
  */
+/** The ?src= tag this visit arrived with: the page's own, or the one remembered from landing. */
+function visitSrc() {
+  if (typeof window === 'undefined') return '';
+  const here = new URLSearchParams(window.location.search).get('src') || '';
+  try {
+    if (here) window.sessionStorage.setItem('esy-src', here);
+    return here || window.sessionStorage.getItem('esy-src') || '';
+  } catch {
+    return here;
+  }
+}
+
 export function useNewsletterSubscribe({ endpoint = '/api/newsletter/subscribe', errorResetMs = 5000, form = '' } = {}) {
   const [status, setStatus] = useState('idle');
   const [nameToken, setNameToken] = useState(null);
@@ -97,6 +111,7 @@ export function useNewsletterSubscribe({ endpoint = '/api/newsletter/subscribe',
           hp: honeypotRef.current?.value || '',
           elapsedMs: Date.now() - mountedAtRef.current,
           source: typeof window !== 'undefined' ? window.location.pathname : '',
+          src: visitSrc(),
           form,
         }),
       });

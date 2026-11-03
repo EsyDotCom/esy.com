@@ -50,7 +50,7 @@ async function scheduleReminder(request, address) {
 
 export async function POST(request) {
   try {
-    const { email, hp, elapsedMs, source, video, name, form } = await request.json();
+    const { email, hp, elapsedMs, source, video, name, form, src } = await request.json();
 
     if (!email || !EMAIL_REGEX.test(String(email).trim())) {
       return NextResponse.json({ error: 'A valid email address is required.' }, { status: 400 });
@@ -92,7 +92,10 @@ export async function POST(request) {
     // The skills course form asks for a first name up front; it's cleaned
     // like the name step's (no markup, no control characters, capped).
     if (!existing) {
-      const where = attribute(source, video);
+      const where = attribute(source, video, src);
+      // Defined once per server; Resend drops a property whose key isn't defined.
+      if (where.src) await defineProperty('src');
+      if (where.page) await defineProperty('page');
       const firstName = typeof name === 'string'
         ? name.replace(/[\u0000-\u001f\u007f<>]/g, '').replace(/\s+/g, ' ').trim().slice(0, 80)
         : '';
@@ -101,6 +104,9 @@ export async function POST(request) {
         confirmed: 'false',
         source: where.path || '/',
         video: where.video,
+        // The ?src= of the link that brought them, and the article they were reading.
+        src: where.src,
+        page: where.page,
         // Which box on that page: the header, the hero, the band at the foot...
         form: formLabel(form),
       });

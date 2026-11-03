@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 
 import { attribute } from '@/lib/newsletter/attribution';
 import { mirrorToBeehiiv } from '@/lib/newsletter/beehiiv';
+import { callEsy, confirmOutcome } from '@/lib/newsletter/esy';
 import { addToNewsletter, cancelEmail, createContact, getContact, isConfigured, prop, sendEvent, updateContact } from '@/lib/newsletter/resend';
 import { readToken } from '@/lib/newsletter/tokens';
 
@@ -14,13 +15,22 @@ import { readToken } from '@/lib/newsletter/tokens';
    Newsletter segment (the list issues go to), and fires "newsletter.confirmed"
    with where they came from, which starts any Automation listening for it
    (the email course, the YouTube welcome with the video files). Confirming
-   twice is harmless: the second time changes nothing and fires nothing. */
+   twice is harmless: the second time changes nothing and fires nothing.
+
+   Links Esy sent (2026-11-03) carry `esyToken` instead: Esy signed it, so Esy
+   checks it, confirms, and cancels its own reminder. Today's links (`token`)
+   keep the Resend-direct path below until the last of them has expired. */
 
 const CONFIRMED_EVENT = 'newsletter.confirmed';
 
 export async function POST(request) {
   try {
-    const { token } = await request.json();
+    const { token, esyToken } = await request.json();
+
+    if (typeof esyToken === 'string' && esyToken) {
+      const outcome = confirmOutcome(await callEsy('confirm', { token: esyToken }));
+      return NextResponse.json(outcome.body, { status: outcome.status });
+    }
 
     const pass = readToken('confirm', token);
     if (!pass) {

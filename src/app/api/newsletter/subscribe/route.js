@@ -118,8 +118,7 @@ export async function POST(request) {
 
     // Through Esy: the same cleaned source, video, form and name the Resend
     // contact would get, and one requestId per submit so a retried request
-    // reaches Esy once (API-004). No name step afterwards: Esy has no route
-    // for it yet, and without a nameToken the form simply skips it.
+    // reaches Esy once (API-004). Esy's answer carries the name step's pass.
     if (viaEsy()) {
       const where = attribute(source, video);
       const outcome = subscribeOutcome(await callEsy('', {

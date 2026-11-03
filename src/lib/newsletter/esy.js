@@ -28,10 +28,12 @@ export function subscriptionsUrl(action = '', env = process.env) {
 /* One call to Esy. Never throws: a network failure or a timeout comes back as
    status 0, which every outcome below turns into a polite "try again". The
    reader's IP rides along, so Esy's per-network limit counts people, not
-   esy.com's servers. */
+   esy.com's servers; Esy only believes it with ESY_SIGNUP_KEY (the API's
+   NEWSLETTER_SIGNUP_KEY), and without it the whole site shares one limit. */
 export async function callEsy(action, body, { clientIp, env = process.env, fetchImpl = fetch, timeoutMs = 10000 } = {}) {
   const headers = { 'Content-Type': 'application/json', Accept: 'application/json' };
   if (clientIp) headers['X-Forwarded-For'] = clientIp;
+  if (env.ESY_SIGNUP_KEY) headers['X-Esy-Signup-Key'] = env.ESY_SIGNUP_KEY;
   try {
     const res = await fetchImpl(subscriptionsUrl(action, env), {
       method: 'POST',
@@ -56,8 +58,9 @@ const refused = (status) => [400, 401, 403, 404, 422].includes(status);
    signup the same way, whoever it is, so there's no "already subscribed" to
    pass on: the form says "check your email" either way. Esy's own error
    wording is for Esy's clients, not readers, so it's never shown. */
-export function subscribeOutcome({ status }) {
-  if (ok(status)) return { status: 200, body: { success: true } };
+export function subscribeOutcome({ status, data }) {
+  // Esy's pass for the name step, given for every real signup alike.
+  if (ok(status)) return { status: 200, body: { success: true, ...(data?.nameToken ? { nameToken: data.nameToken } : {}) } };
   if (status === 429) {
     return { status: 429, body: { error: 'Too many signups from your network just now. Please try again in a few minutes.' } };
   }
@@ -72,6 +75,12 @@ export function confirmOutcome({ status, data }) {
   }
   if (refused(status)) return { status: 400, body: { error: 'This link isn’t valid.' } };
   return { status: 502, body: { error: 'Something went wrong. Please try the link again.' } };
+}
+
+export function nameOutcome({ status }) {
+  if (ok(status)) return { status: 200, body: { success: true } };
+  if (status === 410 || refused(status)) return { status: 403, body: { error: 'This step has expired. You’re still signed up.' } };
+  return { status: 502, body: { error: 'Couldn’t save your name just now. You’re still signed up.' } };
 }
 
 export function unsubscribeOutcome({ status }) {

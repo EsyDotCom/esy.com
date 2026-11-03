@@ -3,7 +3,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
-import { callEsy, confirmOutcome, subscribeOutcome, subscriptionsUrl, unsubscribeOutcome, viaEsy } from '../esy.js';
+import { callEsy, confirmOutcome, nameOutcome, subscribeOutcome, subscriptionsUrl, unsubscribeOutcome, viaEsy } from '../esy.js';
 
 test('the switch is off unless set to exactly "true"', () => {
   assert.equal(viaEsy({}), false);
@@ -51,4 +51,20 @@ test('unsubscribe answers map onto the page’s screens', () => {
   assert.equal(unsubscribeOutcome({ status: 204, data: {} }).status, 200);
   assert.equal(unsubscribeOutcome({ status: 403, data: {} }).status, 400);
   assert.equal(unsubscribeOutcome({ status: 0, data: {} }).status, 502);
+});
+
+test('the signup key rides along only when set', async () => {
+  let headers;
+  const fetchImpl = async (url, init) => { headers = init.headers; return new Response('{}', { status: 202 }); };
+  await callEsy('', {}, { env: {}, fetchImpl });
+  assert.equal(headers['X-Esy-Signup-Key'], undefined);
+  await callEsy('', {}, { env: { ESY_SIGNUP_KEY: 'k' }, fetchImpl });
+  assert.equal(headers['X-Esy-Signup-Key'], 'k');
+});
+
+test('Esy’s name pass reaches the form, and the name step reads Esy’s answer', () => {
+  assert.deepEqual(subscribeOutcome({ status: 202, data: { status: 'check_email', nameToken: 'p' } }), { status: 200, body: { success: true, nameToken: 'p' } });
+  assert.equal(nameOutcome({ status: 204, data: {} }).status, 200);
+  assert.equal(nameOutcome({ status: 410, data: {} }).status, 403);
+  assert.equal(nameOutcome({ status: 0, data: {} }).status, 502);
 });

@@ -49,7 +49,7 @@ const EsyCookieNotice = () => {
     {
       key: 'personalization',
       title: 'Personalization',
-      description: 'Tailor content and recommendations to your research needs',
+      description: 'Tailor content and recommendations to what you read',
       required: false
     }
   ];
@@ -488,9 +488,9 @@ const EsyCookieNotice = () => {
                 margin: 0,
                 fontFamily: 'system-ui, -apple-system, sans-serif'
               }}>
-                We use cookies to enhance your academic research experience with personalized insights, 
-                improved writing assistance, and seamless platform functionality. 
-                Accepting all cookies helps us provide the best possible service.{' '}
+                We use essential cookies to keep esy.com working. With your OK, we also use analytics
+                cookies (Google Analytics, Microsoft Clarity) to see which pages help people. We never
+                sell your data.{' '}
                 <a 
                   href="/privacy/" 
                   style={{ 

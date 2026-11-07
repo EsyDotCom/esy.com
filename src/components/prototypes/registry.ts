@@ -3679,6 +3679,24 @@ export const PROTOTYPES: Prototype[] = [
       { slug: 'company', key: 'R3b', name: 'A company\u2019s page', round: 1, title: 'Every post that names Salesforce.', blurb: 'Where R3\u2019s names lead: a page per company listing each post and its role in it, with its site and Wikipedia, the page that can rank for \u201cSalesforce AI news\u201d.', poster: ['#0A2540', '#F8F9FA'] },
     ],
   },
+  {
+    slug: 'privacy',
+    name: 'The privacy policy',
+    date: '2026-11-06',
+    headline: 'A privacy policy you can actually read.',
+    intro:
+      'The same rewritten policy, three ways: the short version first, start from what you did, or the full text with plain notes in the margin. It now covers the newsletter, Scout and affiliate links, and drops the old app.esy.com wording.',
+    summary: 'esy.com/privacy rewritten for what Esy runs today, in three designs: short version first, by situation, or annotated.',
+    rounds: [
+      { n: 2, title: 'P1 shipped', summary: 'Zev picked P1 (2026-11-06): quick answers first, and the whole text on the page so ⌘F, search engines and reviewers see all of it. It replaced /privacy, with Microsoft Clarity now waiting for consent and the cookie notice rewritten to match.' },
+      { n: 1, title: 'Three ways to read the same policy', summary: 'P1 leads with six plain points and a contents rail; P2 starts from what you did (read, subscribe, ask for a map, use an app, be in Scout); P3 puts a plain note beside every section.' },
+    ],
+    variants: [
+      { slug: 'short', key: 'P1', name: 'The short version', round: 1, live: true, liveHref: '/privacy/', title: 'Six plain points, then the full text.', blurb: 'The promise and six points up top; the full policy below with a contents rail that follows you, each section opening with its one-line answer.', poster: ['#FFFFFF', '#00A896'] },
+      { slug: 'situations', key: 'P2', name: 'What you did', round: 1, title: 'Start from your situation.', blurb: 'Pick what you did and see what we keep, why, who helps, how long and how to stop; the full policy as numbered sections that open.', poster: ['#F8F9FA', '#0A2540'] },
+      { slug: 'annotated', key: 'P3', name: 'Annotated', round: 1, title: 'The full text, with notes in the margin.', blurb: 'The policy as a document with a plain-English note beside every section, and Your choices in view as you read.', poster: ['#0A2540', '#F8F9FA'] },
+    ],
+  },
 ];
 
 export const findPrototype = (slug: string) => PROTOTYPES.find((p) => p.slug === slug);

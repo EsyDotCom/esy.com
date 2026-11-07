@@ -1,0 +1,111 @@
+/* esy.com/privacy takes (2026-11-06). Prefix pv-. The site's navy, teal and paper (as on the July 2025
+   page: #0A2540, #00A896, #F8FAFC), Literata for headings, Inter for reading. Calm and plain: a legal
+   page should feel easy, not designed at you. */
+
+.pv { --pv-navy: #0a2540; --pv-teal: #00a896; --pv-teal-deep: #007a6d; --pv-wash: #e6f6f4; --pv-paper: #ffffff; --pv-surface: #f6f8fa; --pv-ink: #1a2b3c; --pv-soft: rgba(10, 37, 64, 0.68); --pv-faint: rgba(10, 37, 64, 0.48); --pv-hair: rgba(10, 37, 64, 0.1);
+  max-width: 1160px; margin: 0 auto; padding: 56px 24px 120px; color: var(--pv-ink); font-family: var(--font-inter), system-ui, sans-serif; }
+.pv a { color: var(--pv-teal-deep); }
+
+.pv-head { max-width: 760px; padding-bottom: 36px; border-bottom: 1px solid var(--pv-hair); }
+.pv-kicker { margin: 0; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--pv-teal-deep); }
+.pv-h1 { margin: 12px 0 0; font-family: var(--font-literata), Georgia, serif; font-size: clamp(2.2rem, 4.4vw, 3.4rem); font-weight: 600; line-height: 1.05; letter-spacing: -0.02em; color: var(--pv-navy); }
+.pv-promise { margin: 18px 0 0; font-size: 1.15rem; line-height: 1.55; color: var(--pv-soft); }
+.pv-meta { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 18px 0 0; font-size: 0.85rem; color: var(--pv-faint); }
+.pv-h2 { display: flex; align-items: baseline; gap: 12px; margin: 0; font-family: var(--font-literata), Georgia, serif; font-size: 1.45rem; font-weight: 600; line-height: 1.2; color: var(--pv-navy); }
+.pv-sec-n { flex: none; font-family: var(--font-inter), system-ui, sans-serif; font-size: 0.78rem; font-weight: 600; color: var(--pv-teal-deep); font-variant-numeric: tabular-nums; }
+
+.pv p { line-height: 1.65; }
+.pv-list { margin: 10px 0 14px; padding-left: 1.2em; line-height: 1.6; }
+.pv-list li { margin: 4px 0; }
+.pv-address { display: grid; gap: 2px; margin: 12px 0; font-style: normal; line-height: 1.5; }
+.pv-address b { color: var(--pv-navy); }
+
+/* A situation's facts: a quiet definition table */
+.pv-facts { display: grid; gap: 0; margin: 10px 0 0; }
+.pv-facts > div { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 16px; padding: 10px 0; border-top: 1px solid var(--pv-hair); }
+.pv-facts dt { font-size: 0.8rem; font-weight: 600; color: var(--pv-faint); }
+.pv-facts dd { margin: 0; font-size: 0.94rem; line-height: 1.55; }
+.pv-facts ul { margin: 0; padding-left: 1.1em; }
+.pv-sits { display: grid; gap: 22px; margin: 18px 0; }
+.pv-sit h4 { margin: 0; font-size: 1rem; color: var(--pv-navy); }
+
+/* Your choices */
+.pv-choices { display: grid; gap: 10px; padding: 20px; border-radius: 16px; background: var(--pv-surface); }
+.pv-choices-h { display: flex; align-items: center; gap: 8px; margin: 0; font-weight: 600; color: var(--pv-navy); }
+.pv-choices-h svg { color: var(--pv-teal); }
+.pv-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 14px; border: 1px solid var(--pv-navy); border-radius: 10px; background: var(--pv-navy); color: #fff !important; font: inherit; font-size: 0.9rem; font-weight: 600; text-decoration: none; cursor: pointer; }
+.pv-btn--ghost { background: transparent; color: var(--pv-navy) !important; }
+.pv-choices-note { margin: 0; font-size: 0.82rem; line-height: 1.5 !important; color: var(--pv-soft); }
+.pv-choices.is-compact { margin-top: 24px; padding: 16px; }
+
+/* P1 · the short version, then the document with a rail */
+.pv-short { padding: 40px 0; border-bottom: 1px solid var(--pv-hair); }
+.pv-short-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 20px 0 0; padding: 0; list-style: none; }
+.pv-short-grid li { display: grid; gap: 4px; align-content: start; padding: 18px; border-radius: 14px; background: var(--pv-surface); }
+.pv-short-grid b { color: var(--pv-navy); }
+.pv-short-grid p { margin: 0; font-size: 0.92rem; line-height: 1.55; color: var(--pv-soft); }
+.pv-n { display: inline-grid; place-items: center; width: 24px; height: 24px; margin-bottom: 6px; border-radius: 50%; background: var(--pv-wash); color: var(--pv-teal-deep); font-size: 0.78rem; font-weight: 700; }
+.pv-doc { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 56px; padding-top: 40px; }
+.pv-toc { position: sticky; top: 96px; align-self: start; }
+.pv-toc-h { margin: 0 0 10px; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pv-faint); }
+.pv-toc ol { margin: 0; padding: 0; list-style: none; }
+.pv-toc a { display: flex; gap: 10px; padding: 6px 0; font-size: 0.9rem; color: var(--pv-soft); text-decoration: none; }
+.pv-toc a span { min-width: 18px; font-size: 0.78rem; color: var(--pv-faint); font-variant-numeric: tabular-nums; }
+.pv-toc a.is-on { color: var(--pv-navy); font-weight: 600; }
+.pv-toc a.is-on span { color: var(--pv-teal-deep); }
+.pv-article { max-width: 720px; }
+.pv-sec { padding: 8px 0 34px; scroll-margin-top: 96px; }
+.pv-answer { margin: 10px 0 12px; padding-left: 14px; border-left: 3px solid var(--pv-teal); font-size: 1.05rem; font-weight: 500; color: var(--pv-navy); }
+
+/* P2 · what you did */
+.pv-pick { padding: 40px 0 28px; }
+.pv-pick-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; }
+.pv-pick-tabs button { padding: 10px 16px; border: 1px solid var(--pv-hair); border-radius: 999px; background: var(--pv-paper); font: inherit; font-size: 0.92rem; color: var(--pv-ink); cursor: pointer; }
+.pv-pick-tabs button:hover { border-color: var(--pv-navy); }
+.pv-pick-tabs button.is-on { border-color: var(--pv-navy); background: var(--pv-navy); color: #fff; }
+.pv-pick-panel { margin-top: 18px; padding: 24px 28px; border-radius: 18px; background: var(--pv-surface); }
+.pv-pick-panel h3 { margin: 0 0 6px; font-family: var(--font-literata), Georgia, serif; font-size: 1.3rem; color: var(--pv-navy); }
+.pv-short--row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 28px; padding: 28px 0; }
+.pv-short--row p { margin: 0; font-size: 0.9rem; color: var(--pv-soft); }
+.pv-short--row b { color: var(--pv-navy); }
+.pv-accordion { padding-top: 36px; }
+.pv-accordion-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 10px; }
+.pv-textbtn { padding: 0; border: 0; background: none; font: inherit; font-size: 0.88rem; color: var(--pv-teal-deep); cursor: pointer; }
+.pv-acc { border-top: 1px solid var(--pv-hair); scroll-margin-top: 96px; }
+.pv-acc:last-child { border-bottom: 1px solid var(--pv-hair); }
+.pv-acc-head { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; align-items: center; gap: 12px; width: 100%; padding: 16px 0; border: 0; background: none; font: inherit; text-align: left; color: var(--pv-ink); cursor: pointer; }
+.pv-acc-title { display: grid; gap: 2px; }
+.pv-acc-title b { font-family: var(--font-literata), Georgia, serif; font-size: 1.15rem; font-weight: 600; color: var(--pv-navy); }
+.pv-acc-title small { font-size: 0.9rem; color: var(--pv-soft); }
+.pv-acc-head svg { color: var(--pv-faint); transition: transform 160ms ease; }
+.pv-acc.is-open .pv-acc-head svg { transform: rotate(180deg); }
+.pv-acc-body { max-width: 760px; padding: 0 0 22px 40px; }
+.pv-see-above { font-size: 0.9rem; color: var(--pv-soft); }
+.pv-foot-choices { max-width: 520px; margin-top: 40px; }
+
+/* P3 · annotated: the document with a margin of plain notes */
+.pv-notes-doc { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 48px; padding-top: 40px; }
+.pv-note-row { display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 36px; padding: 6px 0 30px; scroll-margin-top: 96px; }
+.pv-note-text { max-width: 660px; }
+.pv-note-text .pv-h2 { margin-bottom: 8px; }
+.pv-note { align-self: start; margin-top: 4px; padding: 0 0 0 16px; border-left: 2px solid var(--pv-teal); font-family: var(--font-literata), Georgia, serif; font-size: 1rem; font-style: italic; line-height: 1.5; color: var(--pv-navy); }
+.pv-note span { display: block; margin-bottom: 4px; font-family: var(--font-inter), system-ui, sans-serif; font-size: 0.7rem; font-style: normal; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pv-teal-deep); }
+.pv-notes-rail { position: sticky; top: 96px; align-self: start; display: grid; gap: 14px; }
+.pv-rail-addr { display: flex; align-items: center; gap: 6px; margin: 0; font-size: 0.8rem; color: var(--pv-faint); }
+
+@media (max-width: 960px) {
+  .pv-doc, .pv-notes-doc { grid-template-columns: minmax(0, 1fr); }
+  .pv-toc, .pv-notes-rail { position: static; }
+  .pv-note-row { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .pv-note { order: -1; }
+}
+@media (max-width: 720px) {
+  .pv { padding: 36px 16px 120px; }
+  .pv-short-grid, .pv-short--row { grid-template-columns: minmax(0, 1fr); }
+  .pv-facts > div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .pv-acc-body { padding-left: 0; }
+}
+/* The site resets list styles; the policy's lists keep their bullets. */
+.pv .pv-list, .pv .pv-facts ul { list-style: disc; }
+.pv .pv-facts dd ul { padding-left: 1.1em; }
+.folio .pv-sit h4, .pv .pv-sit h4 { font-family: var(--font-literata), Georgia, serif; font-size: 1.08rem; font-weight: 600; }

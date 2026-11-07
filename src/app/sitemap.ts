@@ -12,6 +12,7 @@ import {
 } from '@/lib/published-articles'
 import { articlePath } from '@/lib/article-path'
 import { TOPICS, topicHref } from '@/data/topics'
+import { CREATOR_LIST, slugOf } from '@/components/Scout/creatorData'
 import {
   getAllPatternSlugs,
   getAllTermSlugs,
@@ -228,6 +229,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         courseRouteCount++
       })
     })
+  })
+
+  // Scout: each creator's page (esy.com/scout/creators/<name>, 2026-11-07), from the public snapshot.
+  CREATOR_LIST.forEach((c) => {
+    sitemap.push({ url: `${baseUrl}/scout/creators/${slugOf(c)}/`, lastModified: new Date(`${c.readOn}T12:00:00Z`), changeFrequency: 'monthly', priority: 0.6 })
   })
 
   // AI Agents reference pages (patterns, terms, workflows)

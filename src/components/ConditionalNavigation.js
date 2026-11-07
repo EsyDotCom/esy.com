@@ -107,7 +107,8 @@ const ConditionalNavigation = () => {
   // esy.com/tools (2026-10-09), AI Marketing Tools, renders LightHeader itself.
   const isToolsPage = normalizedPath === '/tools';
   // esy.com/scout (2026-11-07), Scout's funnel maps, brings its own Folio bar, as /skills does.
-  const isScoutPage = normalizedPath === '/scout';
+  // esy.com/scout and every page under it (the creators' pages, 2026-11-07) bring their own Folio bar.
+  const isScoutPage = normalizedPath === '/scout' || normalizedPath?.startsWith('/scout/');
   // esy.com/marketing-engineer (2026-11-07) renders LightHeader itself.
   const isMarketingEngineerPage = normalizedPath === '/marketing-engineer';
 

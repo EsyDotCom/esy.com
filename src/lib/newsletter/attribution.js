@@ -28,7 +28,7 @@ export function attribute(source, video, src) {
   // page as /skills. Matched on "/news" or "/news/…" exactly, so /newsletter
   // isn't swallowed by /news.
   const under = (hub) => trimmed === hub || trimmed.startsWith(`${hub}/`);
-  const normalized = under('/news') ? '/news' : under('/skills') ? '/skills' : under('/articles') ? '/articles' : trimmed;
+  const normalized = under('/news') ? '/news' : under('/skills') ? '/skills' : under('/articles') ? '/articles' : under('/scout') ? '/scout' : trimmed;
   const path = KNOWN_SOURCES.has(normalized) ? normalized : '';
 
   // Skills signups carry the page under /skills (a take, later a skill);

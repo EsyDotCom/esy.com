@@ -104,6 +104,10 @@ export default async function HomePage() {
       // in the product's own styles, tilted in space and settling flat on hover.
       // osApps="plates" brings back O5's simple frames.
       osApps="plates-float"
+      // The head over the apps (2026-11-07): H2 · Suite from /prototypes/home-os-head/, the OS mark
+      // and "The AI marketing suite for marketing engineers." over a lineup of the four apps,
+      // running into the first plate. Delete `osHead` to bring back "01 · Esy OS".
+      osHead="suite"
       newsColumn
       // B · Trimmed (2026-10-12, /prototypes/home-focus/): no 02 Creatives or 03
       // Films (SEOPage's explainer lives in its story in the tour), no work

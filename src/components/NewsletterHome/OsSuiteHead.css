@@ -1,0 +1,126 @@
+/* The head over the Esy OS plates (OsSuiteHead.tsx, 2026-11-07, /prototypes/home-os-head/).
+   sh- prefix. Paper takes use the homepage's nl- tokens; Suite sits on agency's ground (#0A2540)
+   so it runs into the first plate with no seam. */
+
+.sh { --sh-serif: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif; }
+.sh-eyebrow {
+  margin: 0; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--nl-jade, #00A896);
+}
+.sh-title {
+  margin: 0; font-family: var(--sh-serif); font-weight: 600; letter-spacing: -0.02em; line-height: 1.02;
+  color: var(--nl-navy, #0A2540); text-wrap: balance;
+}
+.sh-title em { font-style: italic; font-weight: 500; color: var(--nl-jade, #00A896); }
+.sh-lede { margin: 0; font-size: 1.06rem; line-height: 1.62; color: var(--nl-ink-soft, #41566D); max-width: 52ch; }
+
+/* ── H1 · Statement: the category as the headline, the marks as its index ── */
+.sh--statement { display: grid; gap: 22px; padding-top: 104px !important; padding-bottom: 56px !important; }
+.sh--statement .sh-title { font-size: clamp(2.6rem, 6.2vw, 5.4rem); max-width: 15ch; }
+.sh--statement .sh-title em { display: block; }
+.sh-foot {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; align-items: end;
+  margin-top: 18px; padding-top: 28px; border-top: 1px solid var(--nl-seam, rgba(10, 37, 64, 0.1));
+}
+.sh-marks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; }
+.sh-marks > * {
+  display: grid; gap: 8px; padding: 6px 18px; text-decoration: none;
+  border-left: 1px solid var(--nl-seam, rgba(10, 37, 64, 0.1));
+}
+.sh-marks > *:first-child { border-left: 0; padding-left: 0; }
+.sh-marks .oa-mark { font-size: 1.5rem; transition: transform 0.25s ease; }
+.sh-marks small { font-size: 0.8rem; color: var(--nl-ink-soft, #41566D); }
+.sh-marks a:hover .oa-mark { transform: translateY(-2px); }
+.sh-marks a:focus-visible { outline: 2px solid var(--nl-jade, #00A896); outline-offset: 4px; border-radius: 4px; }
+.sh-marks .is-soon { opacity: 0.45; }
+
+/* ── H2 · Suite: navy, a launch lineup that runs into the first plate ── */
+.sh-night { background: #0A2540; position: relative; overflow: hidden; }
+.sh-night::before {
+  content: ''; position: absolute; inset: -40% -10% auto; height: 120%; pointer-events: none;
+  background: radial-gradient(ellipse 50% 45% at 50% 0%, rgba(0, 212, 170, 0.13), transparent 70%);
+}
+.sh--suite {
+  position: relative; display: grid; justify-items: center; text-align: center; gap: 22px;
+  padding-top: 112px !important; padding-bottom: 24px !important;
+}
+.sh-os { margin: 0; line-height: 1; }
+.sh-os .oa-mark { display: inline-block; font-size: 2.4rem; letter-spacing: 0.02em; }
+.sh-pill {
+  display: inline-flex; align-items: center; gap: 8px; margin: 0; padding: 6px 12px; border-radius: 999px;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.14); background: rgba(255, 255, 255, 0.04);
+}
+.sh-pill i { width: 6px; height: 6px; border-radius: 50%; background: #00D4AA; box-shadow: 0 0 10px #00D4AA; }
+.sh--suite .sh-title { color: #FFFFFF; font-size: clamp(2.4rem, 5.4vw, 4.6rem); max-width: 20ch; }
+.sh--suite .sh-title em { color: #00D4AA; display: block; }
+.sh--suite .sh-lede { color: rgba(255, 255, 255, 0.68); max-width: 58ch; }
+.sh-lineup {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); width: 100%; margin: 42px 0 0; padding: 0; list-style: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.sh-lineup li + li { border-left: 1px solid rgba(255, 255, 255, 0.1); }
+.sh-lineup a {
+  display: grid; grid-template-rows: auto 1fr auto; gap: 12px; height: 100%; padding: 26px 22px 22px; text-align: left;
+  text-decoration: none; transition: background 0.25s ease;
+}
+.sh-lineup a:hover { background: rgba(255, 255, 255, 0.035); }
+.sh-lineup a:focus-visible { outline: 2px solid #00D4AA; outline-offset: -2px; }
+.sh-lineup .oa-mark { font-size: 1.7rem; }
+.sh-job { font-size: 0.9rem; line-height: 1.5; color: rgba(255, 255, 255, 0.62); }
+.sh-access {
+  display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #00D4AA;
+}
+.sh-lineup a:hover .sh-access svg { transform: translateY(2px); }
+.sh-access svg { transition: transform 0.25s ease; }
+.sh-lineup .is-soon .oa-mark, .sh-lineup .is-soon .sh-job { opacity: 0.45; }
+.sh-lineup .is-soon .sh-access { color: rgba(255, 255, 255, 0.45); }
+
+/* ── H3 · Proof: the headline beside a ledger of real things already made ── */
+.sh--proof {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 72px; align-items: end;
+  padding-top: 104px !important; padding-bottom: 60px !important;
+}
+.sh-proof-text { display: grid; gap: 20px; }
+.sh--proof .sh-title { font-size: clamp(2.3rem, 4.2vw, 3.7rem); }
+.sh--proof .sh-title em { display: block; margin-top: 6px; }
+.sh-ledger-label {
+  margin: 0 0 6px; font-family: var(--font-geist-mono), ui-monospace, monospace; font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-ink-soft, #41566D);
+}
+.sh-ledger ul { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--nl-navy, #0A2540); }
+.sh-ledger li {
+  display: grid; grid-template-columns: 136px minmax(0, 1fr) auto; gap: 18px; align-items: baseline;
+  padding: 18px 0; border-bottom: 1px solid var(--nl-seam, rgba(10, 37, 64, 0.1));
+}
+.sh-ledger-mark { text-decoration: none; }
+.sh-ledger-mark .oa-mark, .sh-ledger-soon .oa-mark { display: inline-block; }
+.sh-ledger-mark .oa-mark { font-size: 1.2rem; }
+.sh-ledger-what { font-family: var(--sh-serif); font-size: 1.28rem; font-weight: 500; line-height: 1.3; color: var(--nl-ink, #102033); }
+.sh-ledger-where {
+  display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; font-size: 0.82rem; font-weight: 600;
+  color: var(--nl-jade, #00A896); text-decoration: none;
+}
+.sh-ledger-where:hover { text-decoration: underline; text-underline-offset: 3px; }
+.sh-ledger-soon { display: flex; align-items: baseline; gap: 8px; margin: 14px 0 0; font-size: 0.88rem; color: var(--nl-ink-soft, #41566D); }
+.sh-ledger-soon .oa-mark { opacity: 0.6; }
+
+/* Plates are anchors now; keep them clear of the sticky site bar. */
+.ox-plate[id] { scroll-margin-top: 64px; }
+
+@media (max-width: 900px) {
+  .sh--statement, .sh--proof { padding-top: 64px !important; padding-bottom: 36px !important; }
+  .sh-foot, .sh--proof { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .sh-marks, .sh-lineup { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sh-marks > :nth-child(3) { border-left: 0; padding-left: 0; }
+  .sh-marks > * { padding-top: 12px; padding-bottom: 12px; }
+  .sh--suite { padding-top: 72px !important; }
+  .sh-lineup li:nth-child(3) { border-left: 0; }
+  .sh-lineup li:nth-child(n + 3) { border-top: 1px solid rgba(255, 255, 255, 0.1); }
+  .sh-ledger li { grid-template-columns: minmax(0, 1fr) auto; }
+  .sh-ledger-what { grid-column: 1 / -1; grid-row: 2; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sh-marks .oa-mark, .sh-access svg { transition: none; }
+}

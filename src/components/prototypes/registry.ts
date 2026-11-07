@@ -43,6 +43,28 @@ export interface Prototype {
 // link to a prototype keeps its place on the page after the next one is built.
 export const PROTOTYPES: Prototype[] = [
   {
+    slug: 'home-os-head',
+    name: 'The homepage, AI marketing tools head',
+    date: '2026-11-07',
+    headline: 'AI marketing tools for the marketing engineer.',
+    intro:
+      'The head over the Esy OS apps said “01 · Esy OS · The apps I run the business on.” Nothing follows 01 on the homepage now, and the line didn’t say what the apps are. Three heads that sell them as AI marketing tools for the marketing engineer, each on the live homepage above O8’s plates.',
+    summary: 'The head over the homepage’s apps, without the 01: a statement (H1), a suite lineup (H2), or proof (H3).',
+    rounds: [
+      {
+        n: 1,
+        title: 'Say what they are',
+        summary:
+          'H1 makes the category and the reader the headline, with the apps as marks that jump to their plates. H2 is a navy launch lineup of the four apps, each with its job and whether you can use it yet, running straight into the first plate. H3 puts the headline beside a ledger of what each tool has already made, every row real and linked.',
+      },
+    ],
+    variants: [
+      { slug: 'statement', key: 'H1', name: 'Statement', round: 1, title: 'AI marketing tools for the marketing engineer.', blurb: 'Paper. The category and the reader as one big headline; the apps as a row of marks with their jobs that jump to their plates.', poster: ['#FFFFFF', '#00A896'] },
+      { slug: 'suite', key: 'H2', name: 'Suite', round: 1, live: true, liveHref: '/', title: 'The AI marketing suite for marketing engineers.', blurb: 'Navy, under the OS mark, flowing into the plates: a launch-style lineup of agency, compose, scout and echo, each with what it does and whether it’s open, waitlist or coming.', poster: ['#0A2540', '#00D4AA'] },
+      { slug: 'proof', key: 'H3', name: 'Proof', round: 1, title: 'Tested on my own business.', blurb: 'Paper. The headline beside a ledger of what each tool has already made: AI Marketing News, the funnel maps, ESY LLC’s own clients and work.', poster: ['#FFFFFF', '#0A2540'] },
+    ],
+  },
+  {
     slug: 'home-os-apps',
     name: 'The homepage, Esy OS apps only',
     date: '2026-11-07',

@@ -257,8 +257,8 @@ export const PRINCIPLES: Principle[] = [
           We never publish earnings or personal details, no one pays to be in Scout, and it has no affiliate links.
         </p>
         <p>
-          Corrections and removals go to <a href="mailto:scout@esy.com">scout@esy.com</a>; factual errors are fixed within
-          five business days and logged. The full method, rules and corrections log are at{' '}
+          Corrections and removal requests go to <a href="mailto:scout@esy.com">scout@esy.com</a>; we review each one,
+          and confirmed errors are fixed within five business days and logged. The full method, rules and corrections log are at{' '}
           <Link href="/scout/how-we-work/">How Scout works</Link>.
         </p>
       </>

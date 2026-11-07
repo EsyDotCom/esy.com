@@ -33,11 +33,14 @@ person's name, implies they endorse us, or gets facts wrong. These rules keep Sc
 - The same template for everyone (no favourites, which also signals no endorsement).
 
 ## Corrections and removals (scout@esy.com)
-- Factual errors: fixed within 5 business days, then logged in `src/data/scout/corrections.json`
+- Every request is reviewed, not actioned automatically: check who's asking (the creator or their team?)
+  and verify against the page's sources. Unaffiliated requests don't change a page on their own.
+- Confirmed factual errors: fixed within 5 business days, then logged in `src/data/scout/corrections.json`
   (date, creator, page, kind, what, why; never who asked) and shipped.
-- Photo removal: always, on request. Replace the avatar with their initial in the snapshot.
-- Personal information: remove at once.
-- Whole-page removal: considered; answer every request and log the outcome if the page comes down.
+- Photo removal: when the creator or their team asks, review and usually honour it; replace the avatar
+  with their initial in the snapshot.
+- Personal information that shouldn't be there: review promptly and remove when confirmed.
+- Whole-page removal: evaluated case by case; log it if a page comes down.
 - GDPR objections from EU creators: weigh legitimate interests and journalism (Art. 85); explain the decision.
 
 ## Open items (owner: Zev)

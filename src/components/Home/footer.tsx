@@ -297,9 +297,7 @@ export default function Footer () {
             title="Read"
             links={[
               { href: "/news/", text: "AI Marketing News" },
-              { href: "/newsletter/", text: "The Marketing Engineer" },
               { href: "/topics/", text: "Topics" },
-              { href: "/tools/", text: "AI Marketing Tools" },
             ]}
           />
 
@@ -316,6 +314,8 @@ export default function Footer () {
             title="Company"
             links={[
               { href: "/about/", text: "About" },
+              // "Newsletter", not its name, so it never reads like the marketing engineer page (Zev, 2026-11-07).
+              { href: "/newsletter/", text: "Newsletter" },
               { href: "mailto:zev@esy.com", text: "Contact" },
               { href: "/docs", text: "Docs" },
               // The brand kit and Mason's page (2026-10-14): nothing linked to
@@ -324,6 +324,22 @@ export default function Footer () {
               { href: "/mason/", text: "OctoMason™" },
             ]}
           />
+        </div>
+
+        {/* Marketing Pages & Tools (Zev, 2026-11-07): the landing pages, a full-width row above
+            Run on Esy OS, linked from every page so they can rank. AI Marketing Tools moved here
+            from Read. */}
+        <div className="footer-extended">
+          <h4>Marketing Pages &amp; Tools</h4>
+          <div className="footer-extended-links">
+            {[
+              { href: "/marketing-engineer/", text: "What is a marketing engineer?" },
+              { href: "/scout/", text: "Scout: funnel maps of AI companies" },
+              { href: "/tools/", text: "AI Marketing Tools" },
+            ].map((l) => (
+              <a key={l.href} href={l.href} className="footer-link">{l.text}</a>
+            ))}
+          </div>
         </div>
 
         {/* From ESY — the full-width band: standalone businesses ESY built,

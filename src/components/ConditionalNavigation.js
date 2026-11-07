@@ -108,6 +108,8 @@ const ConditionalNavigation = () => {
   const isToolsPage = normalizedPath === '/tools';
   // esy.com/scout (2026-11-07), Scout's funnel maps, brings its own Folio bar, as /skills does.
   const isScoutPage = normalizedPath === '/scout';
+  // esy.com/marketing-engineer (2026-11-07) renders LightHeader itself.
+  const isMarketingEngineerPage = normalizedPath === '/marketing-engineer';
 
   // Don't render navigation on:
   // - Essay view pages (focused reading)
@@ -117,7 +119,7 @@ const ConditionalNavigation = () => {
   // - Agents pages (own sidebar navigation)
   // - Scrollytelling story pages (own header via ScrollytellingHeader)
   // - Photo essays landing page (immersive experience with own header)
-  if (isEssayViewPage || isInfographicViewPage || isClipArtViewPage || isDocsPage || isAgentsPage || isScrollytellingStoryPage || isPhotoEssaysPage || isHomepage || isWaitlistPage || isTopicsPage || isArticlePage || isPrototypesPage || isFilmPage || isEditorialPage || isCoursesPage || isNewsPage || isSkillsPage || isSeoPage || isNewsletterPage || isInvitePage || isToolsPage || isScoutPage) {
+  if (isEssayViewPage || isInfographicViewPage || isClipArtViewPage || isDocsPage || isAgentsPage || isScrollytellingStoryPage || isPhotoEssaysPage || isHomepage || isWaitlistPage || isTopicsPage || isArticlePage || isPrototypesPage || isFilmPage || isEditorialPage || isCoursesPage || isNewsPage || isSkillsPage || isSeoPage || isNewsletterPage || isInvitePage || isToolsPage || isScoutPage || isMarketingEngineerPage) {
     return null;
   }
 

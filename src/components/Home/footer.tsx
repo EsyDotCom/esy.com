@@ -297,7 +297,6 @@ export default function Footer () {
             title="Read"
             links={[
               { href: "/news/", text: "AI Marketing News" },
-              { href: "/newsletter/", text: "The Marketing Engineer" },
               { href: "/topics/", text: "Topics" },
               { href: "/tools/", text: "AI Marketing Tools" },
             ]}
@@ -306,6 +305,8 @@ export default function Footer () {
           <FooterColumn
             title="Learn"
             links={[
+              // The term's own page (2026-11-07), linked sitewide so it can rank.
+              { href: "/marketing-engineer/", text: "What is a marketing engineer?" },
               { href: "/courses/", text: "Courses" },
               { href: "/skills/", text: "Skills" },
               { href: "/films/", text: "Films" },
@@ -316,6 +317,8 @@ export default function Footer () {
             title="Company"
             links={[
               { href: "/about/", text: "About" },
+              // "Newsletter", not its name, so it never reads as the marketing engineer page in Learn (Zev, 2026-11-07).
+              { href: "/newsletter/", text: "Newsletter" },
               { href: "mailto:zev@esy.com", text: "Contact" },
               { href: "/docs", text: "Docs" },
               // The brand kit and Mason's page (2026-10-14): nothing linked to

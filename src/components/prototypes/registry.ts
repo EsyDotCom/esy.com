@@ -43,6 +43,43 @@ export interface Prototype {
 // link to a prototype keeps its place on the page after the next one is built.
 export const PROTOTYPES: Prototype[] = [
   {
+    slug: 'marketing-engineer',
+    name: 'What is a marketing engineer?',
+    date: '2026-11-07',
+    headline: 'What is a marketing engineer?',
+    intro:
+      'A page of its own for “marketing engineer”, so the term can rank while esy.com/newsletter stays the newsletter. It defines the job in my voice, shows it, and ends in The Marketing Engineer signup. Three directions, each with Mason, each with working email forms.',
+    summary: 'esy.com/marketing-engineer: Mason with a job in every arm (A), a dictionary entry (B), or a day in the system (C).',
+    rounds: [
+      {
+        n: 1,
+        title: 'Three ways to own the term',
+        summary:
+          'A is navy and interactive: Mason holds a job in each of his eight arms, and picking one says what the system does and what you still do. B is a white dictionary entry built for the definition snippet, with the vinyl Mason as Fig. 1 and an anatomy plate of his arms. C opens on Mason at his desk at night and shows the job as a sample day scrolling past a sticky clock, the person’s few minutes lit.',
+      },      {
+        n: 2,
+        title: 'C, sharpened',
+        summary:
+          'Zev liked C. D keeps its night and its sample day, and fixes four things: the question “What is a marketing engineer?” is the headline, the eight jobs and the skills get a section of their own (A’s arms in C’s night), the photo never stretches past its real width, and the page stays night to the end. The FAQ is rebuilt from what people search for and what the term really means.',
+      },
+      {
+        n: 3,
+        title: 'Eight jobs, said once',
+        summary:
+          'Zev: D’s jobs section was everywhere. Each take says one thing with Mason doing the showing, every arm does one job and you keep the decision, and the skills and proof strip leave it. E puts Mason alone in the centre with his arms lighting in turn and one line beneath. F says it in one sentence of verbs, each lighting its arm. G holds Mason still while eight rows and a ninth, you, scroll past. The FAQ now links every source and credits Profound for the AI-era meaning.',
+      },
+    ],
+    variants: [
+      { slug: 'arms', key: 'A', name: 'Eight Arms', round: 1, title: 'A job in every arm.', blurb: 'Navy. The live stencil Mason holds research, writing, checks, publishing, the newsletter, social, search and outreach; pick an arm to see what the system does and what you do.', poster: ['#061527', '#00D4AA'] },
+      { slug: 'entry', key: 'B', name: 'The Entry', round: 1, title: 'marketing engineer, noun.', blurb: 'White. A dictionary entry with pronunciation and senses, the vinyl Mason as Fig. 1, an anatomy plate of his eight arms, and numbered sections.', poster: ['#FFFFFF', '#0A2540'] },
+      { slug: 'day', key: 'C', name: 'One Day', round: 1, title: 'The day starts with the work done.', blurb: 'Night. Mason at his desk, then a sample day of the system past a sticky clock that lights his arms; your part, three decisions, is highlighted.', poster: ['#0A2540', '#00A896'] },
+      { slug: 'day-2', key: 'D', name: 'One Day II', round: 2, mergeOf: ['C', 'A'], title: 'What is a marketing engineer?', blurb: 'C with the question as the headline, A’s eight arms and the skills as a section in C’s night, the photo held to its real width, night to the end, and a researched FAQ.', poster: ['#061527', '#00D4AA'] },
+      { slug: 'jobs-spotlight', key: 'E', name: 'Spotlight', round: 3, mergeOf: ['D'], title: 'One arm at a time.', blurb: 'D with Mason alone in the centre, his arms lighting one by one, one line beneath saying what that arm does and what you decide.', poster: ['#F4F8F8', '#0A2540'] },
+      { slug: 'jobs-sentence', key: 'F', name: 'Sentence', round: 3, mergeOf: ['D'], live: true, liveHref: '/marketing-engineer/', title: 'Mason researches, writes, checks… You decide.', blurb: 'D with the section as one serif sentence of verbs beside Mason; resting on a verb lights its arm.', poster: ['#F4F8F8', '#00A896'] },
+      { slug: 'jobs-roll', key: 'G', name: 'Roll call', round: 3, mergeOf: ['D'], title: 'Eight rows and you.', blurb: 'D with Mason held still while eight short rows scroll past, each lighting its arm, and a ninth row, you, closing it.', poster: ['#FFFFFF', '#0A2540'] },
+    ],
+  },
+  {
     slug: 'home-os-head',
     name: 'The homepage, AI marketing tools head',
     date: '2026-11-07',

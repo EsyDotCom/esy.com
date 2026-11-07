@@ -13,7 +13,8 @@
 # topics, so these go straight there in one hop.
 /agentic /topics 301
 /agentic/:slug* /articles/:slug* 301
-/marketing-engineer /newsletter 301
+# /marketing-engineer used to forward to /newsletter; since 2026-11-07 it's its own page
+# ("What is a marketing engineer?", which ends in the newsletter signup).
 
 # The docs moved to docs.esy.com as their own site (2026-09-13). Every docs
 # address forwards to the same path there, so old links and search results

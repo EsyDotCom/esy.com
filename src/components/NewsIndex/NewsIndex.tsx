@@ -16,6 +16,7 @@ import { useState } from 'react';
 import NewsletterSignup from '@/components/NewsletterHome/NewsletterSignup';
 import WeeklyEmailBand from '@/components/NewsletterHome/WeeklyEmailBand';
 import { NEWS_TOPICS, NEWS_POSTS, byDay, dayLabel, timeLabel, type NewsPost, type NewsTopic } from './news-examples';
+import { relFor } from '@/lib/outbound';
 
 const posts = NEWS_POSTS;
 
@@ -34,7 +35,7 @@ export function Meta({ post, time = false }: { post: NewsPost; time?: boolean })
       <span className={`nw-label nw-label--${post.label.toLowerCase()}`}>{post.label}</span>
       <span className="nw-topic">{post.topic}</span>
       <span>{time ? timeLabel(post.publishedAt) : dayLabel(post.publishedAt)}</span>
-      <a className="nw-source" href={post.source.url} target="_blank" rel="noopener noreferrer">via {post.source.name}</a>
+      <a className="nw-source" href={post.source.url} target="_blank" rel={relFor(post.source.url, { newTab: true })}>via {post.source.name}</a>
       <span>{post.readMinutes} min read</span>
     </p>
   );

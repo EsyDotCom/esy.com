@@ -19,6 +19,7 @@ import { CLIPART_RUN } from '@/components/NewsletterHome/clipartRun';
 import { articlePath } from '@/lib/article-path';
 import { filmHref } from '@/data/films';
 import { CREATIVE, EMAIL, FACTS, FILM, NAME, PLACE, PORTRAIT, PROMISE, ROLE, SOCIALS, STORY } from './content';
+import { relFor } from '@/lib/outbound';
 
 /** The three numbers that carry weight; single-digit counts read thin. */
 export const STRONG_FACTS = FACTS.slice(0, 3);
@@ -47,7 +48,7 @@ export function StudioHero({ signup = false, facts = false }: { signup?: boolean
           <ul className="ab-studio-socials">
             {SOCIALS.map(({ label, href, Icon }) => (
               <li key={label}>
-                <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label}>
+                <a href={href} target="_blank" rel={relFor(href, { newTab: true })} aria-label={label}>
                   <Icon size={17} />
                 </a>
               </li>

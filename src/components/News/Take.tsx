@@ -6,6 +6,7 @@
 
 import Link from 'next/link';
 import type { NewsPost } from '@/data/news';
+import { relFor } from '@/lib/outbound';
 
 // Links, then bold, then italic: the only marks a take carries.
 // A link may carry a title, [text](url "title"), which the API keeps; the title is dropped here.
@@ -17,7 +18,8 @@ function TakeLink({ href, children }: { href: string; children: string }) {
   const own = href.match(/^https:\/\/(?:www\.)?esy\.com(\/.*)$/)?.[1] ?? (href.startsWith('/') ? href : null);
   if (own) return <Link href={own}>{children}</Link>;
   if (!/^https?:\/\//.test(href)) return <>{children}</>;
-  return <a href={href} rel="noopener">{children}</a>;
+  // Outside links never pass link equity (lib/outbound).
+  return <a href={href} rel={relFor(href)}>{children}</a>;
 }
 
 function paragraph(md: string) {

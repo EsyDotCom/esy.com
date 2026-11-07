@@ -13,6 +13,7 @@
 import { type DesksProps } from './NewsFronts';
 import { StoryRows } from './Monitors';
 import { NEWS_POSTS, byDay, timeLabel } from './news-examples';
+import { relFor } from '@/lib/outbound';
 
 /** A's wire, full width: every post, grouped by day. */
 function Wire() {
@@ -34,7 +35,7 @@ function Wire() {
                     <p className="nw-meta">
                       <span className={`nw-label nw-label--${p.label.toLowerCase()}`}>{p.label}</span>
                       <span className="nw-topic">{p.trend}</span>
-                      <a className="nw-source" href={p.source.url} target="_blank" rel="noopener noreferrer">via {p.source.name}</a>
+                      <a className="nw-source" href={p.source.url} target="_blank" rel={relFor(p.source.url, { newTab: true })}>via {p.source.name}</a>
                     </p>
                     <h4 className="nw-wire-headline">{p.headline}</h4>
                     <p className="nw-wire-dek">{p.dek}</p>

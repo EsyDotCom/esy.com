@@ -13,11 +13,13 @@ import FilmHeader from "./FilmHeader";
 import FilmHeroA from "./FilmHeroA";
 import FilmReelA from "./FilmReelA";
 import "./films-a.css";
+import { relFor } from '@/lib/outbound';
 
 // Direction A's index is a prototype now (/films shipped the title sequence);
 // its film card opens prototype A's film page.
 const FILM_HREF = "/prototypes/films/a-film/";
-const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
+// New-tab links; outside ones are nofollow (lib/outbound), clip.art stays followed.
+const ext = (href: string) => ({ target: "_blank", rel: relFor(href, { newTab: true }) }) as const;
 
 function Steps() {
   return (
@@ -47,7 +49,7 @@ export function FilmsIndexA() {
             </h1>
             <p className="fa-log">A four-minute bedtime film made from a clip.art pack. Lullo the Post Bear, the night postman, follows a letter with no address across the sky.</p>
             <div className="fa-btns">
-              <a className="fa-btn fa-btn--go" href={LETTER.animaticUrl} {...ext}>▶ Watch the animatic</a>
+              <a className="fa-btn fa-btn--go" href={LETTER.animaticUrl} {...ext(LETTER.animaticUrl)}>▶ Watch the animatic</a>
               <Link className="fa-btn" href={FILM_HREF}>How it was made</Link>
             </div>
           </div>
@@ -69,11 +71,11 @@ export function FilmsIndexA() {
               <span className="fa-poster-im"><p>Lullo, film two<span>in script</span></p></span>
               <small>{LETTER.series} · next</small>
             </div>
-            <a className="fa-poster fa-poster--ghost" href={LETTER.storybookUrl} {...ext}>
+            <a className="fa-poster fa-poster--ghost" href={LETTER.storybookUrl} {...ext(LETTER.storybookUrl)}>
               <span className="fa-poster-im"><p>The storybook<span>where Lullo started, on clip.art ↗</span></p></span>
               <small>{LETTER.series} · read now</small>
             </a>
-            <a className="fa-poster fa-poster--ghost" href={LETTER.packsUrl} {...ext}>
+            <a className="fa-poster fa-poster--ghost" href={LETTER.packsUrl} {...ext(LETTER.packsUrl)}>
               <span className="fa-poster-im"><p>Every film starts as a pack<span>browse packs on clip.art ↗</span></p></span>
               <small>clip.art</small>
             </a>

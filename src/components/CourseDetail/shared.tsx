@@ -8,6 +8,7 @@ import { ArrowRight, ArrowUpRight, Check } from 'lucide-react';
 import type { Course, LessonResource } from '@/lib/learn/types';
 import { courses as allCourses } from '@/lib/learn/mockData';
 import { lessonHref, lessonsOf } from '@/components/CoursesIndex/shared';
+import { relFor } from '@/lib/outbound';
 
 /** The course's number in the catalog: "01" for the first course. */
 export function courseNumber(course: Course): string {
@@ -82,7 +83,7 @@ export function TeacherBlock({ course }: { course: Course }) {
           I spent a decade shipping production web products, from fuboTV&apos;s streaming apps to Vroom&apos;s online
           car storefront. Now I build Esy and the businesses that run on it. Every course comes out of that work.
         </p>
-        <a href="https://www.youtube.com/@EsyDotCom" target="_blank" rel="noopener noreferrer" className="nl-inline-link">
+        <a href="https://www.youtube.com/@EsyDotCom" target="_blank" rel="nofollow noopener noreferrer" className="nl-inline-link">
           Watch on YouTube <ArrowUpRight size={15} aria-hidden="true" />
         </a>
       </div>
@@ -98,7 +99,7 @@ export function ResourceList({ course }: { course: Course }) {
     <ul className="cd-resources">
       {resources.map((r) => (
         <li key={r.url}>
-          <a href={r.url} target="_blank" rel="noopener noreferrer" className="cd-resource">
+          <a href={r.url} target="_blank" rel={relFor(r.url, { newTab: true })} className="cd-resource">
             <span className="cd-resource-title">{r.title}</span>
             <span className="cd-resource-desc">{r.description}</span>
             <ArrowUpRight size={16} aria-hidden="true" />

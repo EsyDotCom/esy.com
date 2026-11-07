@@ -50,6 +50,7 @@ import type { OsHeadTake } from './OsSuiteHead';
 import NewsColumn from './NewsColumn';
 import { APP_STORIES } from './apps';
 import './NewsletterHome.css';
+import { relFor } from '@/lib/outbound';
 
 const YOUTUBE_URL = 'https://www.youtube.com/@EsyDotCom';
 
@@ -432,7 +433,7 @@ export default async function NewsletterHomePage({
                 <div className="nl-ledger-body">
                   <span className="nl-ledger-role">{role}</span>
                   <p>{body}</p>
-                  <a href={href} target="_blank" rel="noopener noreferrer" className="nl-inline-link">
+                  <a href={href} target="_blank" rel={relFor(href, { newTab: true })} className="nl-inline-link">
                     {domain} <ArrowUpRight size={15} aria-hidden="true" />
                   </a>
                 </div>
@@ -696,7 +697,7 @@ export default async function NewsletterHomePage({
               did.
             </p>
             <div className="nl-author-links">
-              <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer" className="nl-inline-link">
+              <a href={YOUTUBE_URL} target="_blank" rel={relFor(YOUTUBE_URL, { newTab: true })} className="nl-inline-link">
                 Watch on YouTube <ArrowUpRight size={15} aria-hidden="true" />
               </a>
               <div className="nl-socials" role="group" aria-label="Zev Uhuru social links">
@@ -705,7 +706,7 @@ export default async function NewsletterHomePage({
                     key={label}
                     href={href}
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel={relFor(href, { newTab: true })}
                     aria-label={label}
                     className="nl-social"
                   >

@@ -11,6 +11,7 @@ import { useState } from 'react';
 import KIT from './social-kit.json';
 import { profileOf, type SocialPlatform } from '@/lib/social-profiles';
 import { Download } from './parts';
+import { relFor } from '@/lib/outbound';
 
 const DIR = '/brand/social';
 type Avatar = (typeof KIT.avatars)[number];
@@ -32,9 +33,9 @@ function Live({ platform }: { platform: SocialPlatform }) {
   if (!p?.href) return <span className="bk-sk-live is-off">Not set up yet</span>;
   return (
     <span className="bk-sk-live">
-      <a href={p.href} target="_blank" rel="noopener">{p.handle}</a>
+      <a href={p.href} target="_blank" rel={relFor(p.href, { newTab: true })}>{p.handle}</a>
       {p.note && <em> ({p.note})</em>}
-      <a className="bk-sk-see" href={p.href} target="_blank" rel="noopener">See it live ↗</a>
+      <a className="bk-sk-see" href={p.href} target="_blank" rel={relFor(p.href, { newTab: true })}>See it live ↗</a>
     </span>
   );
 }
@@ -42,7 +43,7 @@ function Live({ platform }: { platform: SocialPlatform }) {
 /** Where a size comes from: the platform's own help page, or "no official size". */
 function Source({ href, official }: { href: string; official: boolean }) {
   return (
-    <a className="bk-sk-src" href={href} target="_blank" rel="noopener">
+    <a className="bk-sk-src" href={href} target="_blank" rel={relFor(href, { newTab: true })}>
       {official ? 'Platform’s size' : 'No official size, safe default'}
     </a>
   );

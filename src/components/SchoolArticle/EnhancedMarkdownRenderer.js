@@ -7,6 +7,7 @@ import remarkDirective from 'remark-directive';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeRaw from 'rehype-raw';
 import styles from './EnhancedMarkdownRenderer.module.css';
+import { relFor } from '@/lib/outbound';
 import { visit } from 'unist-util-visit';
 import CardGroup from './CardGroup';
 import Image from 'next/image';
@@ -52,7 +53,7 @@ const CallToAction = ({ title, description, buttonText, buttonLink }) => (
   <div className={styles.callToAction}>
     <h3 className={styles.ctaTitle}>{title}</h3>
     <p className={styles.ctaDescription}>{description}</p>
-    <a href={buttonLink} className={styles.ctaButton}>
+    <a href={buttonLink} className={styles.ctaButton} rel={relFor(buttonLink || '')}>
       {buttonText}
     </a>
   </div>
@@ -151,9 +152,10 @@ const components = {
   ol: ({ children }) => <ol className={styles.ol}>{children}</ol>,
   li: ({ children }) => <li className={styles.li}>{children}</li>,
   
-  // Handle links with better styling
+  // Handle links with better styling. Outside links are nofollow (lib/outbound: link equity goes
+  // only to ESY's own properties); this covers every article and lesson body, raw HTML included.
   a: ({ href, children }) => (
-    <a href={href} className={styles.link} target="_blank" rel="noopener noreferrer">
+    <a href={href} className={styles.link} target="_blank" rel={relFor(href || '', { newTab: true })}>
       {children}
     </a>
   ),

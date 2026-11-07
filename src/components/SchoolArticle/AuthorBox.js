@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { relFor } from '@/lib/outbound';
 
 const AuthorBox = ({ author, theme, isDarkMode = true }) => {
   const [isMobile, setIsMobile] = useState(false);
@@ -148,7 +149,7 @@ const AuthorBox = ({ author, theme, isDarkMode = true }) => {
                   key={social.label}
                   href={social.url}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel={relFor(social.url, { newTab: true })}
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',

@@ -54,10 +54,10 @@ export default function SocialAvatar({
 
   const links = (
     <span className="sa-links">
-      <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="sa-link" aria-label="Zev Uhuru on LinkedIn">
+      <a href={LINKEDIN_URL} target="_blank" rel="nofollow noopener noreferrer" className="sa-link" aria-label="Zev Uhuru on LinkedIn">
         <Linkedin size={16} aria-hidden="true" /> <span className="sa-link-label">LinkedIn</span>
       </a>
-      <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="sa-link" aria-label="Zev Uhuru on GitHub">
+      <a href={GITHUB_URL} target="_blank" rel="nofollow noopener noreferrer" className="sa-link" aria-label="Zev Uhuru on GitHub">
         <Github size={16} aria-hidden="true" /> <span className="sa-link-label">GitHub</span>
       </a>
     </span>

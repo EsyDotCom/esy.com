@@ -6,6 +6,7 @@
 import { useState } from 'react';
 import { dayLabel } from '@/components/NewsIndex/news-examples';
 import { CHAPTER_NAMES, POST, STORY } from './post';
+import { relFor } from '@/lib/outbound';
 
 const CHAPTERS = [...STORY].reverse();
 
@@ -42,7 +43,7 @@ export default function StoryLine() {
           <p className="nw-meta">
             <span className={`nw-label nw-label--${preview.label.toLowerCase()}`}>{preview.label}</span>
             <span>{dayLabel(preview.publishedAt)}</span>
-            <a className="nw-source" href={preview.source.url} target="_blank" rel="noopener noreferrer">via {preview.source.name}</a>
+            <a className="nw-source" href={preview.source.url} target="_blank" rel={relFor(preview.source.url, { newTab: true })}>via {preview.source.name}</a>
           </p>
           <p className="npg-preview-title">{preview.headline}</p>
           <p className="npg-preview-dek">{preview.dek}</p>

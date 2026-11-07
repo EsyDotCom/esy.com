@@ -44,10 +44,10 @@ export function ChannelLine() {
   return (
     <p className="eh-channels">
       <span>Also on</span>
-      <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer">
+      <a href={YOUTUBE_URL} target="_blank" rel="nofollow noopener noreferrer">
         <Youtube size={15} aria-hidden="true" /> YouTube
       </a>
-      <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
+      <a href={LINKEDIN_URL} target="_blank" rel="nofollow noopener noreferrer">
         <Linkedin size={14} aria-hidden="true" /> LinkedIn
       </a>
     </p>

@@ -29,6 +29,7 @@ import { CLIPART_RUN } from '@/components/NewsletterHome/clipartRun';
 import { articlePath } from '@/lib/article-path';
 import { filmHref } from '@/data/films';
 import { CREATIVE, FILM, WORK } from './content';
+import { relFor } from '@/lib/outbound';
 
 // clip.art's visual: one prompt in six styles, each a recorded run.
 const STYLES = ['flat', 'watercolor', 'outline', 'pixel', 'clay', '3d'].map((f) => `/prototypes/home-clipart/${f}.webp`);
@@ -131,7 +132,7 @@ function ledgerRows(): LedgerRow[] {
 /** A row's link: external rows open in a new tab. */
 function RowLink({ row, className, children, ...rest }: { row: LedgerRow; className: string; children: React.ReactNode } & React.HTMLAttributes<HTMLElement>) {
   if (row.external) {
-    return <a href={row.href} target="_blank" rel="noopener noreferrer" className={className} {...rest}>{children}</a>;
+    return <a href={row.href} target="_blank" rel={relFor(row.href, { newTab: true })} className={className} {...rest}>{children}</a>;
   }
   return <Link href={row.href} className={className} {...rest}>{children}</Link>;
 }

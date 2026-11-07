@@ -62,7 +62,7 @@ export function CookiesPage() {
                     ))}
                   </tbody>
                 </table>
-                {g.vendor && <p className="ck-vendor">Lifetimes are the vendors’ published defaults and can change; see <a href={g.vendor.href} target="_blank" rel="noreferrer">Google’s</a> and <a href="https://learn.microsoft.com/en-us/clarity/setup-and-installation/cookie-list" target="_blank" rel="noreferrer">Microsoft’s</a> lists.</p>}
+                {g.vendor && <p className="ck-vendor">Lifetimes are the vendors’ published defaults and can change; see <a href={g.vendor.href} target="_blank" rel="nofollow noreferrer">Google’s</a> and <a href="https://learn.microsoft.com/en-us/clarity/setup-and-installation/cookie-list" target="_blank" rel="nofollow noreferrer">Microsoft’s</a> lists.</p>}
               </div>
             ))}
           </section>

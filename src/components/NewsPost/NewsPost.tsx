@@ -18,6 +18,7 @@ import NewsletterSignup from '@/components/NewsletterHome/NewsletterSignup';
 import WeeklyEmailBand from '@/components/NewsletterHome/WeeklyEmailBand';
 import { dayLabel, timeLabel, type NewsPost } from '@/components/NewsIndex/news-examples';
 import { MORE, POST, STORY, STORY_OTHERS, articleJsonLd } from './post';
+import { relFor } from '@/lib/outbound';
 
 const post = POST;
 
@@ -53,7 +54,7 @@ export function Byline({ onDark = false }: { onDark?: boolean }) {
 export function Source() {
   return (
     <p className="np-source">
-      Source: <a href={post.source.url} target="_blank" rel="noopener noreferrer">{post.source.name} <ArrowUpRight size={13} aria-hidden="true" /></a>
+      Source: <a href={post.source.url} target="_blank" rel={relFor(post.source.url, { newTab: true })}>{post.source.name} <ArrowUpRight size={13} aria-hidden="true" /></a>
     </p>
   );
 }

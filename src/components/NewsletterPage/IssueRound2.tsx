@@ -26,6 +26,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { relFor } from '@/lib/outbound';
 import { createContext, useContext, useState } from 'react';
 import { ArrowLeft, ArrowRight, Copy } from 'lucide-react';
 import SocialAvatar from '@/components/EducationHero/SocialAvatar';
@@ -402,7 +403,7 @@ function Reads() {
   return (
     <div className="nlp-reads">
       <p className="nlp-h">Worth your time</p>
-      <ul>{r.items.map((x) => <li key={x.title}><Link href={x.href}>{x.title}</Link>: {x.why}</li>)}</ul>
+      <ul>{r.items.map((x) => <li key={x.title}><Link href={x.href} rel={relFor(x.href)}>{x.title}</Link>: {x.why}</li>)}</ul>
     </div>
   );
 }
@@ -430,7 +431,7 @@ function Scoreboard({ tone = 'light' }: { tone?: 'light' | 'dark' }) {
 function Next() {
   const n = usePart('next');
   if (!n) return null;
-  return <p className="nlp-next">{n.text} <a href={n.href}>{n.cta} <ArrowRight size={13} aria-hidden="true" /></a></p>;
+  return <p className="nlp-next">{n.text} <a href={n.href} rel={relFor(n.href)}>{n.cta} <ArrowRight size={13} aria-hidden="true" /></a></p>;
 }
 
 function Sign() {

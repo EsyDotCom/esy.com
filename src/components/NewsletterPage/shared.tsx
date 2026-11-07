@@ -9,6 +9,7 @@
 import SocialAvatar from '@/components/EducationHero/SocialAvatar';
 import { createContext, useContext, useState } from 'react';
 import Link from 'next/link';
+import { relFor } from '@/lib/outbound';
 import { ArrowLeft, ArrowRight, Copy, MailCheck } from 'lucide-react';
 import NewsletterSignup from '@/components/NewsletterHome/NewsletterSignup';
 import { findPost, postPath } from '@/data/news';
@@ -199,7 +200,7 @@ function Section({ s, id }: { s: IssueSection; id: string }) {
           <p className="nlp-h">Worth your time</p>
           <ul>
             {s.items.map((r) => (
-              <li key={r.title}><Link href={r.href}>{r.title}</Link>: {r.why}</li>
+              <li key={r.title}><Link href={r.href} rel={relFor(r.href)}>{r.title}</Link>: {r.why}</li>
             ))}
           </ul>
         </div>
@@ -207,7 +208,7 @@ function Section({ s, id }: { s: IssueSection; id: string }) {
     case 'next':
       return (
         <p className="nlp-next">
-          {s.text} <a href={s.href}>{s.cta} <ArrowRight size={13} aria-hidden="true" /></a>
+          {s.text} <a href={s.href} rel={relFor(s.href)}>{s.cta} <ArrowRight size={13} aria-hidden="true" /></a>
         </p>
       );
     // The parts for agencies (results, clients, scoreboard) have their own

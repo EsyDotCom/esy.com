@@ -22,6 +22,7 @@ import { FunnelMap } from '@/components/Scout/FunnelMap';
 import { FUNNELS } from '@/components/Scout/funnels';
 import { cormorant } from '@/components/SkillsHub/folio/font';
 import { OPEN_APPS, OS_APPS, type OsApp, type OsAppId } from './osApps';
+import { OsSuiteHead, type OsHeadTake } from './OsSuiteHead';
 import { OsMark } from './OsMark';
 import OsAppSections, { type SectionsTake } from './OsAppSections';
 import '@/components/SkillsHub/folio/folio.css';
@@ -271,10 +272,11 @@ function OneWindow() {
 
 // ── The section ──────────────────────────────────────────────────────────────────────────
 
-export default function OsAppsShowcase({ take }: { take: OsAppsTake }) {
+// `head` swaps the numbered "01 · Esy OS" head for one of /prototypes/home-os-head/'s (OsSuiteHead.tsx).
+export default function OsAppsShowcase({ take, head }: { take: OsAppsTake; head?: OsHeadTake }) {
   return (
     <section className={`as oa oa--${take} ${cormorant.variable}`} id="work-apps" aria-labelledby="nl-where-title">
-      <div className="nl-container as-head">
+      {head ? <OsSuiteHead take={head} /> : <div className="nl-container as-head">
         <div className="nl-work-head">
           <span className="nl-work-n" aria-hidden="true">01</span>
           <p className="nl-eyebrow">Esy OS</p>
@@ -285,7 +287,7 @@ export default function OsAppsShowcase({ take }: { take: OsAppsTake }) {
             Esy OS is where ESY LLC is run: agency for clients and the work, compose for writing, scout for studying who’s ahead. AI Marketing News is written in compose, and the funnel maps at esy.com/scout come from scout.
           </p>
         </div>
-      </div>
+      </div>}
       {SECTIONS.includes(take) ? <OsAppSections take={take as SectionsTake} />
         : take === 'launcher' ? <Launcher /> : take === 'window' ? <OneWindow /> : <Tour />}
     </section>

@@ -137,7 +137,7 @@ function Chapters() {
 function Plate({ s, n, z, container }: { s: AppSection; n: number; z: number; container?: ContainerKind }) {
   const [on, setOn] = useState(0);
   return (
-    <section className="ox-plate" style={{ '--ground': s.ground, zIndex: z } as CSSProperties} aria-label={appOf(s.app).name}>
+    <section className="ox-plate" id={`os-${s.app}`} style={{ '--ground': s.ground, zIndex: z } as CSSProperties} aria-label={appOf(s.app).name}>
       <div className="nl-container ox-plate-in">
         <div className="ox-plate-text">
           <Head s={s} n={n} tone="night" />

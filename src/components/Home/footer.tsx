@@ -8,7 +8,6 @@ import FooterColumn from "@/components/Home/footerColumn";
 import Logo from "@/components/Logo";
 import ClipArtWordmark from "@/components/NewsletterHome/ClipArtWordmark";
 import SeoPageWordmark from "@/components/NewsletterHome/SeoPageWordmark";
-import ComposeWordmark from "@/components/NewsletterHome/ComposeWordmark";
 import { getPageSuffix } from "./navigation";
 import { elevatedDarkTheme } from '@/lib/theme';
 
@@ -330,25 +329,17 @@ export default function Footer () {
         {/* From ESY — the full-width band: standalone businesses ESY built,
             then the showcase catalogs its engine produced. */}
         <div className="footer-extended">
-          <h4>From Esy</h4>
-          {/* The apps as their own wordmarks, not text (clip.art's SVG,
-              SEOPage's lettering, Compose's stencil), sized to read as one row. */}
+          {/* "Also from Esy" (Zev, 2026-11-07): the homepage now shows Esy OS's own apps, so the
+              footer lists the other things Esy makes. OS and Compose left this row then. */}
+          <h4>Also from Esy</h4>
+          {/* The businesses as their own wordmarks, not text (clip.art's SVG, SEOPage's
+              lettering), sized to read as one row. */}
           <div className="footer-extended-links footer-marks">
             <a href="https://clip.art" target="_blank" rel="noopener noreferrer" className="footer-mark" aria-label="clip.art">
               <ClipArtWordmark className="footer-mark-clipart" />
             </a>
             <a href="https://seo.page" target="_blank" rel="noopener noreferrer" className="footer-mark footer-mark--seopage" aria-label="SEOPage">
               <SeoPageWordmark weight="light" />
-            </a>
-            {/* OS (2026-10-06): "OS" alone in the esy stencil, its O in teal,
-                a sibling of Compose's stencil mark (same classes, same size). */}
-            <a href="https://os.esy.com" target="_blank" rel="noopener noreferrer" className="footer-mark footer-mark--compose" aria-label="Esy OS">
-              <span role="img" aria-label="Esy OS" className="cw cw--stencil">
-                <span className="cw-face" aria-hidden="true">OS</span>
-              </span>
-            </a>
-            <a href="https://compose.esy.com" target="_blank" rel="noopener noreferrer" className="footer-mark footer-mark--compose" aria-label="Esy Compose">
-              <ComposeWordmark mark="stencil" />
             </a>
           </div>
         </div>

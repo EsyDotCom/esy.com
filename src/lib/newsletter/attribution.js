@@ -11,7 +11,7 @@
    into a subscriber record; anything else counts as the bare domain. */
 
 const KNOWN_SOURCES = new Set([
-  '/', '/engineer', '/agentic', '/school', '/research', '/courses', '/about', '/waitlist', '/news', '/skills', '/seo', '/invite', '/newsletter', '/articles',
+  '/', '/engineer', '/agentic', '/school', '/research', '/courses', '/about', '/waitlist', '/news', '/skills', '/seo', '/invite', '/newsletter', '/articles', '/scout',
 ]);
 
 // Letters, digits and hyphens only, capped: the shape of a page or video slug.

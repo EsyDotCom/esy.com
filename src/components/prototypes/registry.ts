@@ -43,6 +43,28 @@ export interface Prototype {
 // link to a prototype keeps its place on the page after the next one is built.
 export const PROTOTYPES: Prototype[] = [
   {
+    slug: 'scout-hero',
+    name: 'esy.com/scout, the hero',
+    date: '2026-11-07',
+    headline: 'Study the creators converting social traffic into digital product sales.',
+    intro:
+      '“See how they get their customers” didn’t say who or what. Three heroes that say what Scout is, how top creators turn social traffic into digital product businesses, and make the creators proud to be on the list. Each sits above the live Scout tool. The numbers come from the list itself; no one’s earnings are claimed.',
+    summary: 'The Scout hero: an honour roll of faces (H1), a real post-to-product path (H2), or a magazine cover (H3).',
+    rounds: [
+      {
+        n: 1,
+        title: 'Say who and what',
+        summary:
+          'H1 makes the roster an honour roll: every face, and the list’s numbers (creators, combined followers, offers mapped, how many are free). H2 states the promise and proves it with a real path cycling through creators: the platform and its audience, the free thing, the product. H3 is a magazine cover: one creator in the spotlight, rotating, the rest of the list beside them.',
+      },
+    ],
+    variants: [
+      { slug: 'list', key: 'H1', name: 'The list', round: 1, live: true, liveHref: '/scout/', title: 'An honour roll.', blurb: 'Study the creators converting social traffic into digital product sales: a wall of all their faces, and the list’s numbers.', poster: ['#0A2540', '#00D4AA'] },
+      { slug: 'pipeline', key: 'H2', name: 'Post to product', round: 1, title: 'From the post to the product.', blurb: 'See how top creators turn social traffic into digital products, proved by a real path that cycles through creators: traffic → free thing → product.', poster: ['#061527', '#00A896'] },
+      { slug: 'cover', key: 'H3', name: 'Cover', round: 1, title: 'Who’s winning on social.', blurb: 'A magazine cover: one creator in the spotlight with their biggest audience and game plan, rotating, the rest of the list beside them.', poster: ['#0A2540', '#C9A227'] },
+    ],
+  },
+  {
     slug: 'scout-creators',
     name: 'esy.com/scout, creators’ game plans',
     date: '2026-11-07',

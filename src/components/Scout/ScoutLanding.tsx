@@ -24,6 +24,7 @@ import { BASIS, COLS, FUNNELS, type Basis } from './funnels';
 import { BasisChip, FunnelMap, Readout } from './FunnelMap';
 import { CreatorIndex, CreatorLookup, CreatorShelf, CreatorShell, type CreatorsTake } from './CreatorPlans';
 import type { FunnelView } from './FunnelViews';
+import { ScoutHero, type HeroTake } from './ScoutHeroes';
 
 // The AI tools Marcus uses (Zev, 2026-11-06). `map` is the funnel id when its map is done.
 const COMPANIES: { id: string; name: string; job: string; map?: string }[] = [
@@ -74,7 +75,7 @@ function Join({ form, big }: { form: string; big?: boolean }) {
 
 // `creators` (prototypes only, /prototypes/scout-creators/) adds the creators' game plans in one of
 // three placements (CreatorPlans.tsx); without it the page is exactly the live one.
-export function ScoutLanding({ creators, funnel }: { creators?: CreatorsTake; funnel?: FunnelView } = {}) {
+export function ScoutLanding({ creators, funnel, heroTake }: { creators?: CreatorsTake; funnel?: FunnelView; heroTake?: HeroTake } = {}) {
   const [id, setId] = useState('gamma');
   // S8 · Lookup: the hero's plate shows creators' game plans first, the company maps on the other tab.
   const [side, setSide] = useState<'creators' | 'maps'>('creators');
@@ -132,10 +133,13 @@ export function ScoutLanding({ creators, funnel }: { creators?: CreatorsTake; fu
         {/* The hero: one funnel map, whole, on the night plate, across the four that are done. */}
         <section className="ld-maphero is-map-night">
           <div className="ld-maphero-text">
+            {/* /prototypes/scout-hero/ swaps the headline block for one of three heroes (ScoutHeroes.tsx). */}
+            {heroTake ? <ScoutHero take={heroTake} join={<Join form="scout-hero" />} /> : (<>
             <p className="fo-label fo-label--jade">Scout · funnel maps by Esy</p>
             <h1 className="ld-h1">See how they get their customers.</h1>
             <p className="ld-lede">Scout maps the funnels of the creators and AI companies marketing engineers learn from: where people find them, where they land, what they pay for, and the one move that makes it work. Every line says how we know it.</p>
             <Join form="scout-hero" />
+            </>)}
           </div>
           <figure className="ld-mapfig" id="map" ref={mapRef}>
             {creators === 'lookup' && (

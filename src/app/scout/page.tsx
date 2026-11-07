@@ -9,9 +9,9 @@ import '@/components/Scout/scout.css';
 // its own bar, so the global navigation skips /scout (ConditionalNavigation). Signups go to The
 // Marketing Engineer, marked as from /scout (src/lib/newsletter/attribution.js).
 
-const TITLE = 'Scout: Funnel Maps of AI Companies and Creators';
+const TITLE = 'Scout: How Top Creators Convert Social Traffic into Digital Product Sales';
 const DESCRIPTION =
-  'The game plans of 35 creators and the funnel maps of n8n, Gamma and Clay: where people find them, where they land, what they pay for, and the one move that makes it work. Every line says how we know it.';
+  'Study the creators converting social traffic into digital product sales: where their traffic comes from, the free thing that catches it, and the courses, communities and software they sell. 35 game plans, read from their own public pages.';
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -25,8 +25,9 @@ export default function ScoutPage() {
   return (
     <div className={`folio ${cormorant.variable}`}>
       {/* S11 · Lanes from /prototypes/scout-creators/ (Zev, 2026-11-07): the creators' game plans in
-          the Scout shell, above the fold, each funnel drawn as a row per platform. */}
-      <ScoutLanding creators="search" funnel="lanes" />
+          the Scout shell, each funnel drawn as a row per platform; H1 · The list from
+          /prototypes/scout-hero/ above it (centred, the signup below the wall of faces). */}
+      <ScoutLanding creators="search" funnel="lanes" heroTake="list" />
     </div>
   );
 }

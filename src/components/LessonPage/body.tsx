@@ -20,6 +20,7 @@ import { COURSE_ART } from '@/components/CoursesIndex/covers';
 import { CourseCoverArt } from '@/components/CourseCovers/covers';
 import { courseHref, lessonHref, lessonsOf } from '@/components/CoursesIndex/shared';
 import { getAdjacentLessons } from '@/lib/learn/mockData';
+import { relFor } from '@/lib/outbound';
 
 /**
  * The notes as sections. The notes open with a `##` that repeats the lesson
@@ -143,7 +144,7 @@ export function BodyKit({ course, lesson }: { course: Course; lesson: Lesson }) 
             <div className="lp-kit-block">
               <p className="lp-kit-label lp-kit-label--ink">Resources</p>
               {links.map((r) => (
-                <a key={r.url} href={r.url} target="_blank" rel="noopener noreferrer" className="lp-kit-res">
+                <a key={r.url} href={r.url} target="_blank" rel={relFor(r.url, { newTab: true })} className="lp-kit-res">
                   {r.title} <ArrowUpRight size={13} aria-hidden="true" />
                 </a>
               ))}

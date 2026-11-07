@@ -26,6 +26,7 @@ import SeoPageReplay from './SeoPageReplay';
 import { ComposeReplay } from './ComposeBand';
 import { APP_STORIES, type AppId, type AppStory } from './apps';
 import './AppsShowcase.css';
+import { relFor } from '@/lib/outbound';
 
 export type AppsLayout = 'tabs' | 'rail' | 'tour';
 
@@ -65,7 +66,7 @@ function Story({ app, title = true, extra }: { app: AppStory; title?: boolean; e
         <div className="nl-case-pills">{app.pills.map((p) => <span key={p} className="nl-case-pill">{p}</span>)}</div>
       </div>
       <div>
-        <a href={app.href} target="_blank" rel="noopener noreferrer" className="nl-case-cta as-cta">
+        <a href={app.href} target="_blank" rel={relFor(app.href, { newTab: true })} className="nl-case-cta as-cta">
           {app.cta} <ArrowUpRight size={14} aria-hidden="true" />
         </a>
       </div>

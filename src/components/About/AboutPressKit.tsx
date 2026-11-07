@@ -10,6 +10,7 @@ import { BookACallButton } from '@/components/BookACallButton';
 import WeeklyEmailBand from '@/components/NewsletterHome/WeeklyEmailBand';
 import CopyButton from './CopyButton';
 import { BIO_LONG, BIO_SHORT, EMAIL, ETYMOLOGY, FACTS, NAME, NOW, NOW_DATE, PLACE, PORTRAIT, PROMISE, ROLE, SOCIALS, WORK } from './content';
+import { relFor } from '@/lib/outbound';
 
 export default function AboutPressKit() {
   return (
@@ -87,7 +88,7 @@ export default function AboutPressKit() {
               <ul className="ab-links">
                 {SOCIALS.map(({ label, href, handle, Icon }) => (
                   <li key={label}>
-                    <a href={href} target="_blank" rel="noopener noreferrer">
+                    <a href={href} target="_blank" rel={relFor(href, { newTab: true })}>
                       <Icon size={16} />
                       <span><b>{label}</b>{handle}</span>
                       <ArrowUpRight size={14} aria-hidden="true" />

@@ -15,6 +15,7 @@
  * No labels ("Breaking" etc.): the dates say when things happened.
  */
 import Link from 'next/link';
+import { relFor } from '@/lib/outbound';
 import type { ReactNode } from 'react';
 import {
   ArrowRight, ArrowUpRight, Building2, CalendarDays, Download, Globe2, Info, MapPin, Plug, ShieldCheck, Sparkles, Store, Tag, Users,
@@ -364,7 +365,7 @@ export function NewsPostPage({ post, news, sample = false, slots }: {
                     {src.secondary && <span className="nx-source-tag">Reporting</span>}
                     <span>{src.date}</span>
                   </p>
-                  <a href={src.url} target="_blank" rel="noopener noreferrer" className="nx-source-title">
+                  <a href={src.url} target="_blank" rel={relFor(src.url, { newTab: true })} className="nx-source-title">
                     {src.title} <ArrowUpRight size={13} aria-hidden="true" />
                   </a>
                   <p className="nx-source-supports">Backs up: {src.supports}</p>

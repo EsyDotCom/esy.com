@@ -9,6 +9,7 @@ import { ArrowUpRight } from 'lucide-react';
 import NewsletterSignup from '@/components/NewsletterHome/NewsletterSignup';
 import { BookACallButton } from '@/components/BookACallButton';
 import { EMAIL, ETYMOLOGY, NAME, PLACE, PORTRAIT, ROLE, SOCIALS, WORK } from './content';
+import { relFor } from '@/lib/outbound';
 
 export default function AboutLetter() {
   return (
@@ -62,7 +63,7 @@ export default function AboutLetter() {
           <ul className="ab-ledger">
             {[WORK.clipart, WORK.seopage, WORK.os].map((w) => (
               <li key={w.name}>
-                <a href={w.href} target="_blank" rel="noopener noreferrer">
+                <a href={w.href} target="_blank" rel={relFor(w.href, { newTab: true })}>
                   {w.name} <ArrowUpRight size={14} aria-hidden="true" />
                 </a>
                 <span>{w.line}</span>
@@ -98,7 +99,7 @@ export default function AboutLetter() {
           <ul className="ab-socials">
             {SOCIALS.map(({ label, href, handle, Icon }) => (
               <li key={label}>
-                <a href={href} target="_blank" rel="noopener noreferrer">
+                <a href={href} target="_blank" rel={relFor(href, { newTab: true })}>
                   <Icon size={15} /> {handle}
                 </a>
               </li>

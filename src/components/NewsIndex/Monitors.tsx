@@ -28,6 +28,7 @@ import {
 import {
   AREAS, COSTS_SNAPSHOT, ESY_COSTS, GOOGLE_UPDATES, GOOGLE_UPDATES_SOURCE, PLATFORMS, cell, costMove, daysBetween, usd,
 } from './monitor-data';
+import { relFor } from '@/lib/outbound';
 
 const posts = NEWS_POSTS;
 const LABELS: NewsLabel[] = ['Breaking', 'Tested', 'Follow-up', 'How-to', 'Explainer', 'Take'];
@@ -291,7 +292,7 @@ export function MonitorRollout({ trends }: DesksProps) {
               </div>
             );
           })}
-          <p className="nm-source">Source: <a href={GOOGLE_UPDATES_SOURCE.url} target="_blank" rel="noopener noreferrer">{GOOGLE_UPDATES_SOURCE.name}</a></p>
+          <p className="nm-source">Source: <a href={GOOGLE_UPDATES_SOURCE.url} target="_blank" rel={relFor(GOOGLE_UPDATES_SOURCE.url, { newTab: true })}>{GOOGLE_UPDATES_SOURCE.name}</a></p>
         </div>
       </section>
       <StoryRows trends={trends} />

@@ -13,8 +13,10 @@ import Logo from "@/components/Logo";
 import { LETTER } from "@/data/films/the-letter-with-no-address";
 
 import FilmPlayer from "./FilmPlayer";
+import { relFor } from '@/lib/outbound';
 
-const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
+// New-tab links; outside ones are nofollow (lib/outbound), clip.art stays followed.
+const ext = (href: string) => ({ target: "_blank", rel: relFor(href, { newTab: true }) }) as const;
 const IMG = (n: string) => `/films/${LETTER.slug}/${n}.webp`;
 const SOCIAL = (f: string) => (/^https?:/.test(f) ? f : `${LETTER.social.base}/${f}`);
 const SCENES = [
@@ -73,7 +75,7 @@ export default function FilmReelA() {
         <section className="fr-sec" id="fr-now" aria-labelledby="fr-now-h">
           <h2 className="fr-h" id="fr-now-h"><small>Scene 01 · Now showing</small>The film</h2>
           <FilmPlayer media={LETTER.film.media} title={LETTER.title} poster={LETTER.film.poster} />
-          <div className="fr-tc"><span>00:00:00:00</span><span>{LETTER.runtime} · English captions · <a href={LETTER.film.download} download>download in 4K ↓</a> · <a href={LETTER.animaticUrl} {...ext}>the animatic ↗</a></span><span>00:0{LETTER.runtime}:00</span></div>
+          <div className="fr-tc"><span>00:00:00:00</span><span>{LETTER.runtime} · English captions · <a href={LETTER.film.download} download>download in 4K ↓</a> · <a href={LETTER.animaticUrl} {...ext(LETTER.animaticUrl)}>the animatic ↗</a></span><span>00:0{LETTER.runtime}:00</span></div>
         </section>
 
         <section className="fr-sec" id="fr-story" aria-labelledby="fr-story-h">
@@ -120,7 +122,7 @@ export default function FilmReelA() {
 
         <section className="fr-sec" id="fr-social" aria-labelledby="fr-social-h">
           <h2 className="fr-h" id="fr-social-h"><small>Scene 05 · Social</small>Lullo on YouTube, and everything to post</h2>
-          <a className="fr-yt" href={LETTER.social.youtube.url} {...ext} style={{ backgroundImage: `url(${LETTER.film.poster})` }}>
+          <a className="fr-yt" href={LETTER.social.youtube.url} {...ext(LETTER.social.youtube.url)} style={{ backgroundImage: `url(${LETTER.film.poster})` }}>
             <img src={SOCIAL("lullo-profile-1-with-the-letter.jpg")} alt="" width={96} height={96} />
             <span><small>YouTube channel</small><b>{LETTER.social.youtube.name}</b><span>{LETTER.social.youtube.handle} · bedtime films from Starlight Town</span></span>
             <span className="fr-yt-go">Watch on YouTube ↗</span>
@@ -133,7 +135,7 @@ export default function FilmReelA() {
                 {g.assets.map((a) => (
                   <li key={a.file} className={`fr-dl-item fr-dl-item--${a.shape}`}>
                     {a.preview ? (
-                      <a className="fr-dl-prev" href={SOCIAL(a.preview)} {...ext} aria-label={`Open ${a.title} full size`}>
+                      <a className="fr-dl-prev" href={SOCIAL(a.preview)} {...ext(SOCIAL(a.preview))} aria-label={`Open ${a.title} full size`}>
                         <img src={SOCIAL(a.preview)} alt="" loading="lazy" />
                       </a>
                     ) : (
@@ -160,7 +162,7 @@ export default function FilmReelA() {
               );
               return p.private
                 ? <div key={p.title} className="fr-can fr-can--private">{body}</div>
-                : <a key={p.title} className="fr-can" href={p.url} {...ext}>{body}</a>;
+                : <a key={p.title} className="fr-can" href={p.url} {...ext(p.url)}>{body}</a>;
             })}
           </div>
         </section>
@@ -183,7 +185,7 @@ export default function FilmReelA() {
           </Link>
           <nav aria-label="Esy">
             {LINKS.map((l) => (l.external
-              ? <a key={l.label} href={l.href} {...ext}>{l.label}</a>
+              ? <a key={l.label} href={l.href} {...ext(l.href)}>{l.label}</a>
               : <Link key={l.label} href={l.href}>{l.label}</Link>))}
           </nav>
         </div>

@@ -2,6 +2,7 @@
 
 import React, { useMemo } from 'react';
 import Link from 'next/link';
+import { relFor } from '@/lib/outbound';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import SocialAvatar from '@/components/EducationHero/SocialAvatar';
@@ -149,6 +150,8 @@ export default function GlossaryTermPage({ term }: GlossaryTermPageProps) {
                       const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
                       return <h2 id={id}>{children}</h2>;
                     },
+                    // Outside links in a term's body are nofollow (lib/outbound).
+                    a: ({ href, children }) => <a href={href} rel={relFor(href || '')}>{children}</a>,
                   }}
                 >
                   {term.content}
@@ -169,7 +172,7 @@ export default function GlossaryTermPage({ term }: GlossaryTermPageProps) {
                     <a
                       href="https://www.linkedin.com/in/zevuhuru/"
                       target="_blank"
-                      rel="noopener noreferrer"
+                      rel="nofollow noopener noreferrer"
                       className={styles.authorSocialLink}
                       aria-label="LinkedIn"
                     >
@@ -179,7 +182,7 @@ export default function GlossaryTermPage({ term }: GlossaryTermPageProps) {
                     <a
                       href="https://github.com/ZevUhuru"
                       target="_blank"
-                      rel="noopener noreferrer"
+                      rel="nofollow noopener noreferrer"
                       className={styles.authorSocialLink}
                       aria-label="GitHub"
                     >
@@ -236,7 +239,7 @@ export default function GlossaryTermPage({ term }: GlossaryTermPageProps) {
                     components={{
                       p: ({ children }) => <p className={styles.inEsyText}>{children}</p>,
                       a: ({ href, children }) => (
-                        <Link href={href || '#'} className={styles.inEsyLink}>
+                        <Link href={href || '#'} className={styles.inEsyLink} rel={relFor(href || '#')}>
                           {children} <ArrowRight size={12} />
                         </Link>
                       ),

@@ -92,7 +92,7 @@ function ShareRow({ target, vertical = false }: { target: Target; vertical?: boo
       {shareLinks(target).map((l) => {
         const Mark = MARK[l.network];
         return (
-          <a key={l.network} className="nws-icon" href={l.href} target={l.network === 'email' ? undefined : '_blank'} rel="noopener noreferrer" aria-label={l.label} title={l.label}>
+          <a key={l.network} className="nws-icon" href={l.href} target={l.network === 'email' ? undefined : '_blank'} rel="nofollow noopener noreferrer" aria-label={l.label} title={l.label}>
             <Mark />
           </a>
         );
@@ -108,7 +108,7 @@ export function ShareBar({ url, title }: Target) {
   return (
     <div className="nws-bar" data-share-bar>
       <ShareRow target={{ url, title }} />
-      <a className="nws-badge" href={PREFERRED_SOURCE_URL} target="_blank" rel="noopener noreferrer">
+      <a className="nws-badge" href={PREFERRED_SOURCE_URL} target="_blank" rel="nofollow noopener noreferrer">
         {/* eslint-disable-next-line @next/next/no-img-element -- Google's official badge, served as-is */}
         <img src={`${src}.png`} srcSet={`${src}.png 1x, ${src}@2x.png 2x`} width={169} height={53} alt="Add esy.com as a preferred source on Google" />
       </a>

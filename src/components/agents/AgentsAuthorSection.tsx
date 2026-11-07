@@ -1,5 +1,6 @@
 import SocialAvatar from "@/components/EducationHero/SocialAvatar";
 import { Linkedin, Github } from "lucide-react";
+import { relFor } from '@/lib/outbound';
 
 interface AuthorSocial {
   platform: "linkedin" | "github";
@@ -44,7 +45,7 @@ export function AgentsAuthorSection({
                   key={social.platform}
                   href={social.url}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel={relFor(social.url, { newTab: true })}
                   className="agents-author-social-link"
                   aria-label={social.label}
                 >

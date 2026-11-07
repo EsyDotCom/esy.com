@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { AUTHOR_SOCIALS } from "./authorSocials";
 import { BookACallButton } from "@/components/BookACallButton";
+import { relFor } from '@/lib/outbound';
 
 // Operator band for the /agentic index — the recruiter-grade "who's behind
 // this" surface. Dark and bold to match the hero, with hard proof points from
@@ -224,7 +225,7 @@ export function AgenticOperator({
                   key={label}
                   href={href}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel={relFor(href, { newTab: true })}
                   aria-label={label}
                   className="agentic-operator-social-link"
                   style={{

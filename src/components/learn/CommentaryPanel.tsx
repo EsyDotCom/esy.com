@@ -5,6 +5,7 @@ import {
   ExternalLink, Download, Github, FileText, Clock
 } from 'lucide-react';
 import type { LessonCommentary, LessonResource, TimestampRef } from '@/lib/learn/types';
+import { relFor } from '@/lib/outbound';
 
 interface CommentaryPanelProps {
   commentary: LessonCommentary;
@@ -329,7 +330,7 @@ export default function CommentaryPanel({ commentary, onSeek, isDark }: Commenta
                 key={i}
                 href={res.url}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel={relFor(res.url, { newTab: true })}
                 style={{
                   display: 'flex', alignItems: 'flex-start', gap: '0.75rem',
                   padding: '0.625rem 0.75rem',

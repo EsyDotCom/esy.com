@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ArrowRight, CalendarDays } from "lucide-react";
 import { CAL_BOOKING_URL, isBookingEnabled } from "@/lib/booking";
+import { relFor } from '@/lib/outbound';
 
 // The "Let's talk" CTA. Used in two places, both of which frame the ask as a
 // professional conversation: the /agentic operator band (after the résumé
@@ -26,7 +27,7 @@ export function BookACallButton() {
     <a
       href={CAL_BOOKING_URL}
       target="_blank"
-      rel="noopener noreferrer"
+      rel={relFor(CAL_BOOKING_URL, { newTab: true })}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onFocus={() => setHovered(true)}

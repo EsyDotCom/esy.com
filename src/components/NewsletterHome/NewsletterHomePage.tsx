@@ -45,6 +45,7 @@ import { CLIPART_STYLES, SEOPAGE_STEPS, SEOPAGE_STEP_COUNT } from './apps';
 import ComposeWordmark, { type ComposeMarkStyle } from './ComposeWordmark';
 import ComposeBand, { type ComposeBandStyle } from './ComposeBand';
 import AppsShowcase, { type AppsLayout } from './AppsShowcase';
+import OsAppsShowcase, { type OsAppsTake } from './OsAppsShowcase';
 import NewsColumn from './NewsColumn';
 import { APP_STORIES } from './apps';
 import './NewsletterHome.css';
@@ -177,6 +178,7 @@ export default async function NewsletterHomePage({
   clipartVisual = 'control',
   compose,
   appsLayout = 'bands',
+  osApps,
   newsColumn = false,
   trim = false,
   appsFirst = false,
@@ -187,6 +189,9 @@ export default async function NewsletterHomePage({
    *  merged into one band that shows one app at a time (/prototypes/home-trim/).
    *  The merged layouts always include Compose. */
   appsLayout?: 'bands' | AppsLayout;
+  /** 01 as Esy OS's own apps (agency, compose, scout; echo coming) instead of clip.art, SEOPage and
+   *  Compose (2026-11-07, /prototypes/home-os-apps/). When set, it replaces the apps section above. */
+  osApps?: OsAppsTake;
   /** AI Marketing News's newest headlines in a slim column beside Latest (/prototypes/home-trim/). */
   newsColumn?: boolean;
   /** The focused page (/prototypes/home-focus/): no 02 Creatives or 03 Films (SEOPage's explainer moves
@@ -562,6 +567,9 @@ export default async function NewsletterHomePage({
     </>
   );
 
+  // Esy OS's own apps, when asked for, stand in for the clip.art / SEOPage / Compose section.
+  const workSection = osApps ? <OsAppsShowcase take={osApps} /> : appsSection;
+
   return (
     <div className={`nl ${nlSerif.variable}`}>
       <LightHeader latest={toNavArticles(articles)} />
@@ -569,7 +577,7 @@ export default async function NewsletterHomePage({
       {/* ══ Masthead: name, promise, one action (or the page's own hero) ══ */}
       {hero ?? <NewsletterHero />}
 
-      {appsFirst ? <>{appsSection}{latestSection}</> : <>{latestSection}{appsSection}</>}
+      {appsFirst ? <>{workSection}{latestSection}</> : <>{latestSection}{workSection}</>}
 
       {!trim && (
         <>

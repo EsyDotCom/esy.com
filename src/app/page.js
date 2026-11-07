@@ -94,7 +94,16 @@ export default async function HomePage() {
   return (
     <NewsletterHomePage
       compose={COMPOSE}
-      appsLayout="tour"
+      // The old 01, the tour of clip.art, SEOPage and Compose, kept but switched off
+      // (Zev, 2026-11-07: the section shows Esy OS's own apps only). To bring it
+      // back, uncomment the next line and delete `osApps`:
+      // appsLayout="tour"
+      // 01 is Esy OS's apps, one section each: agency, compose and scout, with echo as
+      // coming. O8 · Float from /prototypes/home-os-apps/ (picked by Zev, 2026-11-07):
+      // O5's plates (each app's section slides up over the last) with every screen drawn
+      // in the product's own styles, tilted in space and settling flat on hover.
+      // osApps="plates" brings back O5's simple frames.
+      osApps="plates-float"
       newsColumn
       // B · Trimmed (2026-10-12, /prototypes/home-focus/): no 02 Creatives or 03
       // Films (SEOPage's explainer lives in its story in the tour), no work

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { ScoutMethods } from '@/components/Scout/ScoutMethods';
+import { ScoutMethodsTake } from '@/components/Scout/ScoutMethodsTakes';
 import { cormorant } from '@/components/SkillsHub/folio/font';
 import '@/components/SkillsHub/folio/folio.css';
 import '@/components/Scout/scout.css';
@@ -15,5 +15,6 @@ export const metadata: Metadata = {
 };
 
 export default function ScoutHowWeWorkPage() {
-  return <div className={`folio ${cormorant.variable}`}><ScoutMethods /></div>;
+  // M4 · Commitments + promises from /prototypes/scout-methods/ (Zev, 2026-11-07).
+  return <div className={`folio ${cormorant.variable}`}><ScoutMethodsTake take="merge" /></div>;
 }

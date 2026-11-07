@@ -43,6 +43,34 @@ export interface Prototype {
 // link to a prototype keeps its place on the page after the next one is built.
 export const PROTOTYPES: Prototype[] = [
   {
+    slug: 'scout-methods',
+    name: 'How Scout works',
+    date: '2026-11-07',
+    headline: 'How we study creators, and how to correct us.',
+    intro:
+      'esy.com/scout/how-we-work/ says where Scout comes from, how every line is labelled, what we never publish, and how anyone can ask for a correction. The words are settled; these are three designs for them.',
+    summary: 'How Scout works, designed three ways: commitments with a sticky index (M1), promises and always / never (M2), or how a page is made (M3).',
+    rounds: [
+      {
+        n: 1,
+        title: 'Three designs for the same rules',
+        summary:
+          'M1 is editorial: a sticky index that follows you, each rule a big statement with its detail beside it. M2 opens on a navy band of three promises, then a two-column always / never split, the label key as a visual and a corrections panel with turnaround times. M3 draws the process as four stages (public page, read and labelled, published, corrected) and the correction process as a timeline.',
+      },
+      {
+        n: 2,
+        title: 'M1, with the promises',
+        summary: 'Zev picked M1 and asked for M2’s three points in it. M4 puts the three promises as a navy panel under the headline, then M1’s sticky index and rules. Live as esy.com/scout/how-we-work/.',
+      },
+    ],
+    variants: [
+      { slug: 'commitments', key: 'M1', name: 'Commitments', round: 1, title: 'A rule per statement.', blurb: 'A sticky numbered index that follows you; each rule a big serif statement with its detail beside it; the label key, turnaround times and the log inside.', poster: ['#FFFFFF', '#0A2540'] },
+      { slug: 'split', key: 'M2', name: 'Always / Never', round: 1, title: 'Three promises.', blurb: 'A navy band of three promises (public only, labelled, correctable), an always / never split, the label key with examples, and a corrections panel.', poster: ['#0A2540', '#00D4AA'] },
+      { slug: 'process', key: 'M3', name: 'How a page is made', round: 1, title: 'From public page to correction.', blurb: 'Four stages you can step through (public page, read and labelled, published, corrected), what we never publish, and the correction process as a timeline.', poster: ['#EDF1F5', '#00A896'] },
+      { slug: 'merge', key: 'M4', name: 'Commitments + promises', round: 2, mergeOf: ['M1', 'M2'], live: true, liveHref: '/scout/how-we-work/', title: 'Three promises, then the rules.', blurb: 'M1’s editorial page with M2’s three promises (public only, labelled, correctable) as a navy panel under the headline.', poster: ['#FFFFFF', '#0A2540'] },
+    ],
+  },
+  {
     slug: 'scout-profile',
     name: 'A creator’s Scout page',
     date: '2026-11-07',

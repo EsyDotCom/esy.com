@@ -329,9 +329,10 @@ export default function Footer () {
         {/* From ESY — the full-width band: standalone businesses ESY built,
             then the showcase catalogs its engine produced. */}
         <div className="footer-extended">
-          {/* "Also from Esy" (Zev, 2026-11-07): the homepage now shows Esy OS's own apps, so the
-              footer lists the other things Esy makes. OS and Compose left this row then. */}
-          <h4>Also from Esy</h4>
+          {/* "Run on Esy OS" (Zev, 2026-11-07): ESY LLC's own businesses, run from os.esy.com, as the
+              proof under the homepage's AI marketing suite. OS and Compose left this row the same day,
+              since the homepage shows Esy OS's apps itself. Was "From Esy", then "Also from Esy". */}
+          <h4>Run on Esy OS</h4>
           {/* The businesses as their own wordmarks, not text (clip.art's SVG, SEOPage's
               lettering), sized to read as one row. */}
           <div className="footer-extended-links footer-marks">

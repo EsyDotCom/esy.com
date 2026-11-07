@@ -6,12 +6,15 @@
    - Minimum age 16, matching the privacy policy.
    - Nothing is sold on esy.com yet, so there are no payment terms; clip.art and SEOPage are ESY LLC
      brands with their own terms (clip.art/terms; seopage.com has none yet).
+   2026-11-07: Scout's section points to scout@esy.com and esy.com/scout/how-we-work/, and says what a
+   Scout page is (analysis and opinion on the facts shown); esy.com has no affiliate links, so the
+   links section says so.
    The June 2025 terms described "an AI-powered academic writing platform", a 7-day trial and
    auto-renewing subscriptions, and listed 24 sections with text for a handful. */
 
 import type { Section } from './policy';
 
-export const TERMS_UPDATED = 'November 6, 2026';
+export const TERMS_UPDATED = 'November 7, 2026';
 
 export const TERMS_PROMISE = 'The deal for using esy.com and the Esy apps, in plain words. Using them means you agree to it.';
 
@@ -60,8 +63,8 @@ export const TERMS: Section[] = [
     id: 'scout', title: 'Scout',
     short: 'Independent analysis of public pages. Dated, sourced, and sometimes out of date.',
     body: [
-      'Scout analyses how creators and companies market themselves, using only what they’ve made public. Every line says how we know it and when we read it, but pages change and we can be wrong. Scout isn’t affiliated with or endorsed by anyone it covers, and it isn’t business, financial or legal advice.',
-      `Spotted something wrong, or want something removed? Write to ${CONTACT}.`,
+      'Scout analyses how creators and companies market themselves, using only what they’ve made public. Every line says how we know it and when we read it, and a creator’s game plan is our opinion based on the facts shown beside it. Pages change and we can be wrong: audience counts and prices are as shown on the date given, not today. Scout isn’t affiliated with or endorsed by anyone it covers, no one pays to be in it, and it isn’t business, financial or legal advice.',
+      'Spotted something wrong, or want a photo or page removed? Write to scout@esy.com. How Scout works, and its corrections log, are at esy.com/scout/how-we-work/.',
     ],
   },
   {
@@ -108,10 +111,10 @@ export const TERMS: Section[] = [
     ],
   },
   {
-    id: 'links', title: 'Links and affiliate links',
-    short: 'Other sites have their own terms. Some links earn us a commission.',
+    id: 'links', title: 'Links',
+    short: 'Other sites have their own terms. We don’t use affiliate links.',
     body: [
-      'We link to other companies’ sites and products. Their terms and privacy policies apply there, and we’re not responsible for them. Some links are affiliate links: if you buy through one, we may earn a commission. That never changes what we write.',
+      'We link to other companies’ sites and products. Their terms and privacy policies apply there, and we’re not responsible for them. We don’t use affiliate or sponsored links, and no one pays us to link to them.',
     ],
   },
   {

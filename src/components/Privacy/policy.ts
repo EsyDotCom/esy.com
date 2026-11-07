@@ -6,11 +6,17 @@
    - Microsoft Clarity, described here as consent-based. NOTE: src/components/MicrosoftClarity.js loads
      it without checking consent today, so the code has to change before this text goes live;
    - The Marketing Engineer on Resend, with esy.com's own double opt-in (src/app/api/newsletter/subscribe);
-   - Cloudflare Turnstile on the waitlist; Scout's analysis of public pages; affiliate links.
-   Contact is zev@esy.com (Zev, 2026-11-06), the same address Scout gives for corrections and removals. */
+   - Cloudflare Turnstile on the waitlist; Scout's analysis of public pages.
+   Contact is zev@esy.com (Zev, 2026-11-06).
+   2026-11-07, after the legal research on Scout's creator pages: Scout has its own address,
+   scout@esy.com, and its section now gives creators the notice the GDPR asks for when data isn't
+   collected from the person (what, where from, why, legal basis, how long, rights; Art. 14), and
+   points to esy.com/scout/how-we-work/. esy.com has no affiliate links, so that line is gone. */
 
-export const UPDATED = 'November 6, 2026';
+export const UPDATED = 'November 7, 2026';
 export const CONTACT = 'zev@esy.com';
+/** Scout's own address for corrections, removals and objections (Zev, 2026-11-07). */
+export const SCOUT_CONTACT = 'scout@esy.com';
 export const COMPANY = { name: 'ESY, LLC', lines: ['8 The Green, STE B', 'Dover, DE 19901', 'United States'] };
 
 /** The promise, in one breath: what the page opens with. */
@@ -23,7 +29,7 @@ export const SHORT: { title: string; text: string }[] = [
   { title: 'We never sell it', text: 'Not your email, not your activity. We share data only with the services that run esy.com for us.' },
   { title: 'Cookies are your call', text: 'Analytics run only after you say yes in the cookie notice, and you can change your mind anytime.' },
   { title: 'Emails are opt-in', text: 'You confirm before you get an issue, and every email has an unsubscribe link.' },
-  { title: 'Creators can ask', text: 'Scout analyses public pages. Anyone in it can ask for a correction or removal.' },
+  { title: 'Creators can ask', text: `Scout analyses public pages. Anyone in it can ask for a correction or removal at ${SCOUT_CONTACT}.` },
   { title: 'One person to write to', text: `Questions, copies, corrections or deletion: ${CONTACT}.` },
 ];
 
@@ -72,11 +78,11 @@ export const SITUATIONS: Situation[] = [
   },
   {
     id: 'creator', you: 'You’re a creator or company in Scout',
-    keep: ['Your public name, profile photo and accounts', 'Public numbers about your posts, and your public offers and prices, with the day we read them'],
+    keep: ['Your public name, the link to your public profile photo, and your public accounts and handles', 'Public audience counts, where your links lead, and your public offers and prices, each with the day we read them'],
     why: 'Independent analysis of how creators and companies market themselves, published as commentary.',
-    helpers: 'None beyond our hosting. We read only public pages and posts.',
-    howLong: 'While the analysis is published; refreshed or retired as pages change.',
-    stop: `Write to ${CONTACT} for a correction or removal, or to object.`,
+    helpers: 'None beyond our hosting. We read only public pages and posts, and we never sell or license this data.',
+    howLong: 'While your page is published; refreshed when we read your pages again, or removed.',
+    stop: `Write to ${SCOUT_CONTACT} for a correction, to remove your photo or page, or to object.`,
   },
 ];
 
@@ -124,7 +130,7 @@ export const SECTIONS: Section[] = [
       { list: [
         'Consent: for analytics cookies and the newsletter. You can withdraw it anytime.',
         'Contract: to run an account or a service you signed up for.',
-        'Legitimate interests: to keep the site secure, and to publish Scout’s analysis of public pages as commentary. You can object, and we’ll weigh it.',
+        'Legitimate interests: to keep the site secure, and to publish Scout’s analysis of public pages as commentary and journalism. You can object, and we’ll weigh it.',
         'Legal obligation: when the law requires us to keep or share something.',
       ] },
     ],
@@ -150,15 +156,25 @@ export const SECTIONS: Section[] = [
     short: 'Essential cookies always; analytics only if you say yes.',
     body: [
       'Essential cookies keep the site working and remember your cookie choice. Analytics cookies (Google Analytics, Microsoft Clarity) load only after you accept them in the cookie notice. You can change your choice anytime with Cookie settings on this page, or in your browser.',
-      'Some pages link to other companies’ products, and some of those links are affiliate links. When you click one, that company may set its own cookies to credit us for the visit. Their privacy policies cover what they collect.',
+      'We don’t use affiliate links. When you follow a link to another company’s site, their cookies and privacy policy apply there.',
     ],
   },
   {
     id: 'scout', title: 'Scout and the people in it',
-    short: 'We analyse public pages and posts, and remove or correct on request.',
+    short: 'We analyse public pages and posts, and correct or remove on request.',
     body: [
-      'Scout publishes independent analysis of how creators and companies market themselves. It uses only what they’ve made public: names, profile photos, accounts, public numbers about their posts, and their offers and prices, each with the day we read it. It isn’t affiliated with or endorsed by anyone shown.',
-      `If you’re in Scout, you can ask us to correct something, remove your photo or your page, or object to the analysis: write to ${CONTACT}.`,
+      'Scout publishes independent analysis of how creators and companies market themselves. If you’re in it, this is what we hold about you and why.',
+      { list: [
+        'What: your public name, a link to your public profile photo, your public accounts and handles, public audience counts, where your public links lead, and your public offers and prices, each with the day we read them, plus our labelled reading of your strategy.',
+        'Where it comes from: your own public profiles, posts and pages, read the way any visitor can. We never sign up, buy, join private groups or use anything behind a login or paywall.',
+        'Why: to publish analysis and commentary for marketers learning how creators build their businesses.',
+        'Legal basis (UK, EU and similar laws): our legitimate interest in publishing that analysis, and freedom of expression for journalistic purposes.',
+        'What we never publish: earnings or income, personal or family details, private messages, or anything outside your public business.',
+        'How long: while your page is published. We refresh it when we read your pages again, and delete it if the page is removed.',
+        'Sharing: none beyond our hosting. We don’t sell or license this data, and your name and photo never appear in our ads or sales emails.',
+      ] },
+      `Your rights: you can ask us to correct anything, to remove your photo (we always will), to remove your page, or to object to the processing. Write to ${SCOUT_CONTACT}; factual errors are fixed within five business days. Some rights, such as erasure, have limits where publishing is protected expression; we’ll explain any decision, and you can complain to your data protection authority.`,
+      'How Scout works, its labels and its corrections log: esy.com/scout/how-we-work/.',
     ],
   },
   {

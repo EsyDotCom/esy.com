@@ -10,6 +10,12 @@ export type PublicCreator = { id: string; name: string; avatar: string; readOn: 
 
 export const CREATOR_LIST = data.creators as PublicCreator[];
 
+/** Scout's corrections and removals address (Zev, 2026-11-07) and its methods page. */
+export const SCOUT_CONTACT = 'scout@esy.com';
+export const SCOUT_METHODS = '/scout/how-we-work/';
+/** A correction email for one creator's page, the subject filled in. */
+export const correctionMail = (name?: string) => `mailto:${SCOUT_CONTACT}?subject=${encodeURIComponent(name ? `Correction or removal: ${name}` : 'Scout correction or removal')}`;
+
 /** esy.com/scout/<slug>: the creator's name, lowercased and hyphenated ("Nick Saraev" → nick-saraev). */
 export const slugOf = (c: PublicCreator) => c.name.toLowerCase().normalize('NFKD').replace(/[^\w\s-]/g, '').trim().replace(/\s+/g, '-');
 export const bySlug = (slug: string) => CREATOR_LIST.find((c) => slugOf(c) === slug);
@@ -103,8 +109,9 @@ export function faqFor(c: PublicCreator): FaqItem[] {
 
   // 9. Independence, always last.
   items.push({ q: `Is this page affiliated with ${c.name}?`, a: [
-    { text: `No. This is Esy’s independent analysis of ${first}’s public pages, read on ${read}; ${c.name} hasn’t reviewed or endorsed it. Every line on the page says how we know it. Corrections or removal: ` },
-    { text: 'zev@esy.com', href: 'mailto:zev@esy.com' }, { text: '.' },
+    { text: `No. This is Esy’s independent analysis of ${first}’s public pages, read on ${read}; ${c.name} hasn’t reviewed or endorsed it, and no one pays to be in Scout. Every line on the page says how we know it, as explained in ` },
+    { text: 'how Scout works', href: SCOUT_METHODS }, { text: '. Corrections or removal: ' },
+    { text: SCOUT_CONTACT, href: correctionMail(c.name) }, { text: '.' },
   ] });
 
   return items;

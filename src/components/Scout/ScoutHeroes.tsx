@@ -11,6 +11,7 @@
  *                                 platform and audience → the free thing → the paid offer.
  *   cover     H3 · Cover        a magazine cover: one creator in the spotlight (rotating), the rest
  *                                 of the list beside them. */
+import Link from 'next/link';
 import { useEffect, useState, type ReactNode } from 'react';
 import { ArrowDown, ArrowRight } from 'lucide-react';
 import { CREATORS, Face, type PublicCreator } from './CreatorPlans';
@@ -94,7 +95,7 @@ function List({ join }: { join: ReactNode }) {
           ))}
         </ul>
         <Stats />
-        <p className="sh2-indep">Followers combined across their platforms, as each profile showed them. Independent analysis of public pages, not affiliated with or endorsed by anyone shown. Corrections or removal: <a href="mailto:zev@esy.com">zev@esy.com</a></p>
+        <p className="sh2-indep">Followers combined across their platforms, as each profile showed them. Independent analysis of public pages, not affiliated with or endorsed by anyone shown. Corrections or removal: <a href="mailto:scout@esy.com">scout@esy.com</a> · <Link href="/scout/how-we-work/">How Scout works</Link></p>
         {SEE}
       </div>
       <div className="sh2-joinrow">

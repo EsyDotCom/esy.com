@@ -11,7 +11,7 @@
  */
 import Link from 'next/link';
 
-export const STANDARDS_UPDATED = '2026-10-12';
+export const STANDARDS_UPDATED = '2026-11-07';
 
 export const updatedLabel = () =>
   new Date(`${STANDARDS_UPDATED}T12:00:00Z`).toLocaleDateString('en-US', {
@@ -71,7 +71,7 @@ export const COMPARISON_SHORT: [string, string, string][] = [
 export const RULE_STAGES: { name: string; ids: string[] }[] = [
   { name: 'Before you write', ids: ['grey-area', 'news-post', 'article'] },
   { name: 'While you write', ids: ['accuracy', 'ai', 'search', 'style'] },
-  { name: 'After you publish', ids: ['how-they-connect', 'upkeep', 'corrections', 'our-products'] },
+  { name: 'After you publish', ids: ['how-they-connect', 'upkeep', 'corrections', 'our-products', 'scout'] },
 ];
 
 // Real pieces, sorted by the six-month test (titles are looked up at render).
@@ -243,6 +243,25 @@ export const PRINCIPLES: Principle[] = [
         approve what we write. Their logos appear only as their own files, unchanged, where their brand terms allow
         news use; otherwise we just use their name.
       </p>
+    ),
+  },
+  {
+    id: 'scout',
+    title: 'Scout',
+    body: (
+      <>
+        <p>
+          Scout is our analysis of how creators and companies market themselves, held to the same standards. Each
+          creator&apos;s page is built from their own study, not generated from a feed: only what they&apos;ve made public,
+          every line labelled with how we know it and the day we read it, and their game plan marked as our reading.
+          We never publish earnings or personal details, no one pays to be in Scout, and it has no affiliate links.
+        </p>
+        <p>
+          Corrections and removals go to <a href="mailto:scout@esy.com">scout@esy.com</a>; factual errors are fixed within
+          five business days and logged. The full method, rules and corrections log are at{' '}
+          <Link href="/scout/how-we-work/">How Scout works</Link>.
+        </p>
+      </>
     ),
   },
   {

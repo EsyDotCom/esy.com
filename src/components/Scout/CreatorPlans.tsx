@@ -139,7 +139,7 @@ export function CreatorPlan({ c, tone = 'paper', view }: { c: PublicCreator; ton
       </section>
 
       </>}
-      <p className="cp-fine">Read from their public pages on {day(c.readOn)}. Audiences, prices and pages as shown that day. Esy’s reading of public pages; not affiliated with {c.name}. Corrections: zev@esy.com.</p>
+      <p className="cp-fine">Read from their public pages on {day(c.readOn)}. Audiences, prices and pages as shown that day. Esy’s reading of public pages; not affiliated with {c.name}. Corrections: scout@esy.com.</p>
     </article>
   );
 }

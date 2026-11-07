@@ -17,7 +17,7 @@ import { useState } from 'react';
 import { ArrowLeft, Check, Link2, Plus } from 'lucide-react';
 import { relFor } from '@/lib/outbound';
 import { CREATORS, Face } from './CreatorPlans';
-import { faqFor, slugOf, type PublicCreator } from './creatorData';
+import { SCOUT_CONTACT, SCOUT_METHODS, correctionMail, faqFor, slugOf, type PublicCreator } from './creatorData';
 import { BasisChip } from './FunnelMap';
 import { BASIS, type Basis } from './funnels';
 import { FunnelDiagram, PlatformMark, audience } from './FunnelViews';
@@ -119,7 +119,12 @@ function HowWeKnow() {
 }
 
 function Indep({ c }: { c: PublicCreator }) {
-  return <p className="pf-indep">Read from {c.name}’s own public pages on {day(c.readOn)}; audiences and prices as shown that day. Independent analysis, not affiliated with or endorsed by {c.name}. Corrections or removal: <a href="mailto:zev@esy.com">zev@esy.com</a></p>;
+  return (
+    <div className="pf-indep">
+      <p>Read from {c.name}’s own public pages on {day(c.readOn)}; audiences and prices as shown that day. Independent analysis by Esy, not affiliated with or endorsed by {c.name}; no one pays to be in Scout.</p>
+      <p className="pf-indep-links"><a href={correctionMail(c.name)}>Request a correction or removal</a><span aria-hidden="true">·</span><Link href={SCOUT_METHODS}>How Scout works</Link></p>
+    </div>
+  );
 }
 
 function More({ c }: { c: PublicCreator }) {
@@ -226,6 +231,7 @@ function Merge({ c }: { c: PublicCreator }) {
             </div>
           </header>
           <Game c={c} />
+          <p className="pf-byline">Analysis by Esy · read {day(c.readOn)} · <Link href={SCOUT_METHODS}>how we know</Link> · <a href={correctionMail(c.name)}>request a correction</a></p>
         </div>
         <ScoutCard c={c} />
       </div>
@@ -285,7 +291,7 @@ export function ProfilePage({ take, c }: { take: ProfileTake; c: PublicCreator }
     <div className="ld ld--map-night has-band pf-page">
       <header className="ld-head">
         <Link className="fo-lockup ld-lockup" href="/scout/" aria-label="Scout"><span className="fo-wordmark">esy</span><span className="fo-lockup-sep" /><span className="fo-lockup-name">Scout</span></Link>
-        <nav className="ld-head-nav" aria-label="Scout"><Link href="/scout/creators/">All creators</Link><Link href="/scout/#how">How we know</Link></nav>
+        <nav className="ld-head-nav" aria-label="Scout"><Link href="/scout/creators/">All creators</Link><Link href={SCOUT_METHODS}>How Scout works</Link></nav>
         <Link className="fo-btn fo-btn--primary ld-head-cta" href="/scout/#join">Get the newsletter</Link>
       </header>
       <main className="ld-main"><ScoutProfile take={take} c={c} /></main>
@@ -300,7 +306,7 @@ export function CreatorsIndex() {
     <div className="ld ld--map-night has-band pf-page">
       <header className="ld-head">
         <Link className="fo-lockup ld-lockup" href="/scout/" aria-label="Scout"><span className="fo-wordmark">esy</span><span className="fo-lockup-sep" /><span className="fo-lockup-name">Scout</span></Link>
-        <nav className="ld-head-nav" aria-label="Scout"><Link href="/scout/">The tool</Link><Link href="/scout/#how">How we know</Link></nav>
+        <nav className="ld-head-nav" aria-label="Scout"><Link href="/scout/">The tool</Link><Link href={SCOUT_METHODS}>How Scout works</Link></nav>
         <Link className="fo-btn fo-btn--primary ld-head-cta" href="/scout/#join">Get the newsletter</Link>
       </header>
       <main className="ld-main">
@@ -323,7 +329,7 @@ export function CreatorsIndex() {
               </li>
             ))}
           </ul>
-          <p className="pf-indep">Independent analysis of public pages, not affiliated with or endorsed by anyone shown. Corrections or removal: <a href="mailto:zev@esy.com">zev@esy.com</a></p>
+          <div className="pf-indep"><p>Independent analysis of public pages, not affiliated with or endorsed by anyone shown; no one pays to be in Scout.</p><p className="pf-indep-links"><a href={correctionMail()}>Request a correction or removal</a><span aria-hidden="true">·</span><Link href={SCOUT_METHODS}>How Scout works</Link></p></div>
         </section>
       </main>
     </div>

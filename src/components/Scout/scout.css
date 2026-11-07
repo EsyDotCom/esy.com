@@ -668,3 +668,144 @@
 @media (max-width: 480px) { .folio .sh2-stack.is-center .sh2-wall li { flex-basis: calc(100% / 5); } }
 /* "Study the …" adds a word to line one; the size keeps both lines whole. */
 .folio .ld.has-band .ld-maphero-text .ld-h1.sh2-h1-2 { font-size: clamp(2.3rem, 4.9vw, 4.3rem); }
+
+/* ── A creator's Scout page (2026-11-07, /prototypes/scout-profile/, ScoutProfiles.tsx) ────────
+   pf- prefix. Paper page under the navy Scout header; no signup on the profile itself. */
+.folio .pf-page .ld-main { padding-bottom: 96px; }
+.folio .pf { display: grid; gap: 0; padding-top: 28px; }
+.folio .pf-crumbs { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--fo-ink-faint); }
+.folio .pf-crumbs a { display: inline-flex; align-items: center; gap: 4px; color: var(--fo-jade-deep); font-weight: 600; text-decoration: none; }
+.folio .pf-crumbs a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.folio .pf-name { margin: 6px 0 0; font-family: var(--fo-serif); font-weight: 700; font-size: clamp(2.4rem, 5vw, 3.8rem); line-height: 1; letter-spacing: -0.02em; color: var(--fo-navy); }
+.folio .pf .sc-av { border-radius: 50%; object-fit: cover; flex: none; }
+.folio .pf-socials { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 0; padding: 0; list-style: none; }
+.folio .pf-socials a { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px 5px 9px; border: 1px solid var(--fo-hair-strong); border-radius: 999px; font-size: 0.8rem; font-weight: 600; color: var(--fo-navy); text-decoration: none; transition: background var(--fo-ease), color var(--fo-ease), border-color var(--fo-ease); }
+.folio .pf-socials a:hover { background: var(--fo-navy); border-color: var(--fo-navy); color: var(--fo-paper); }
+.folio .pf-game { margin: 0; max-width: 62ch; font-family: var(--fo-serif); font-size: clamp(1.3rem, 2vw, 1.6rem); line-height: 1.4; color: var(--fo-ink); text-wrap: pretty; }
+.folio .pf-game .sc-basis { vertical-align: 4px; margin-left: 4px; }
+.folio .pf-game.is-quiet { font-size: 1.1rem; font-style: italic; color: var(--fo-ink-soft); }
+.folio .pf-glance { display: flex; flex-wrap: wrap; gap: 14px 48px; margin: 0; padding: 22px 0; border-top: 1px solid var(--fo-hair); border-bottom: 1px solid var(--fo-hair); }
+.folio .pf-glance div { display: grid; gap: 4px; }
+.folio .pf-glance dt { order: 2; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fo-ink-faint); }
+.folio .pf-glance dd { order: 1; display: flex; align-items: baseline; gap: 8px; margin: 0; font-family: var(--fo-serif); font-size: 2rem; font-weight: 700; line-height: 1; color: var(--fo-navy); font-feature-settings: "lnum" 1; }
+.folio .pf-glance dd small { font-family: var(--font-inter), sans-serif; font-size: 0.78rem; font-weight: 500; color: var(--fo-ink-soft); }
+.folio .pf-sec { padding: 40px 0 0; }
+.folio .pf-sec--quiet { padding-top: 44px; }
+.folio .pf-h2 { margin: 0 0 6px; font-family: var(--fo-serif); font-weight: 700; font-size: clamp(1.5rem, 2.4vw, 2rem); line-height: 1.1; color: var(--fo-navy); }
+.folio .pf-lede { margin: 0 0 18px; font-size: 0.95rem; color: var(--fo-ink-soft); }
+.folio .pf-sec .fv { margin-top: 14px; }
+.folio .pf-offers { display: grid; gap: 0; margin: 14px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--fo-hair); }
+.folio .pf-offers li { display: grid; grid-template-columns: 150px minmax(0, 1fr) auto; column-gap: 18px; row-gap: 2px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--fo-hair); }
+.folio .pf-offer-price { grid-row: span 2; font-family: var(--fo-serif); font-size: 1.25rem; font-weight: 700; color: var(--fo-jade-deep); }
+.folio .pf-offers li.is-free .pf-offer-price { color: var(--fo-ink-soft); }
+.folio .pf-offer-name, .folio .pf-offer-name a { font-weight: 600; color: var(--fo-navy); text-decoration: none; }
+.folio .pf-offer-name a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.folio .pf-offer-what { grid-column: 2; font-size: 0.88rem; line-height: 1.5; color: var(--fo-ink-soft); }
+.folio .pf-offers .sc-basis { grid-column: 3; grid-row: 1; }
+.folio .pf-know { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 28px; margin: 14px 0 0; padding: 0; list-style: none; }
+.folio .pf-know li { display: flex; align-items: baseline; gap: 10px; font-size: 0.86rem; color: var(--fo-ink-soft); }
+.folio .pf-indep { margin: 18px 0 0; max-width: 76ch; font-size: 0.8rem; line-height: 1.55; color: var(--fo-ink-faint); }
+.folio .pf-indep a { color: var(--fo-ink-soft); text-decoration: underline; text-underline-offset: 2px; }
+.folio .pf-more { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 14px 0 0; padding: 0; list-style: none; }
+.folio .pf-more a { display: flex; align-items: center; gap: 10px; padding: 10px; border: 1px solid var(--fo-hair); border-radius: 12px; text-decoration: none; transition: border-color var(--fo-ease), transform var(--fo-ease); }
+.folio .pf-more a:hover { border-color: var(--fo-navy); transform: translateY(-2px); }
+.folio .pf-more b { display: block; font-size: 0.9rem; color: var(--fo-navy); }
+.folio .pf-more small { display: block; font-size: 0.74rem; color: var(--fo-ink-faint); }
+
+/* P1 · Dossier */
+.folio .pf--dossier .pf-hero { display: flex; align-items: center; gap: 28px; margin: 28px 0 24px; }
+.folio .pf--dossier .pf-hero .sc-av { box-shadow: 0 0 0 4px var(--fo-paper), 0 0 0 5px var(--fo-hair-strong); }
+.folio .pf--dossier > .pf-game { margin-bottom: 26px; }
+
+/* P2 · Funnel: sticky profile left, the diagram right */
+.folio .pf-split { display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 44px; align-items: start; margin-top: 22px; }
+.folio .pf-side { position: sticky; top: 84px; display: grid; gap: 10px; justify-items: start; padding: 24px; border-radius: 16px; background: var(--fo-canvas); }
+.folio .pf-side .pf-name { font-size: 2.3rem; }
+.folio .pf-side .pf-socials { margin-top: 4px; }
+.folio .pf-side .pf-socials .pf-handle { display: none; }
+.folio .pf-side .pf-socials a { padding: 6px; }
+.folio .pf-side .pf-game { font-size: 1.12rem; }
+.folio .pf-side .pf-glance { flex-direction: column; gap: 12px; width: 100%; padding: 14px 0; }
+.folio .pf-side .pf-glance dd { font-size: 1.5rem; }
+.folio .pf-side .pf-indep { margin-top: 4px; font-size: 0.74rem; }
+.folio .pf-main .pf-sec--first { padding-top: 0; }
+.folio .pf-main .pf-more { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+/* P3 · Card: a shareable Scout card first */
+.folio .pf-scard { position: relative; display: grid; gap: 22px; max-width: 820px; margin: 26px auto 8px; padding: 26px 30px 24px; border-radius: 22px; color: var(--fo-paper); background: radial-gradient(ellipse 70% 80% at 0% 0%, rgba(0, 212, 170, 0.2), transparent 60%), linear-gradient(160deg, #0F3355 0%, #0A2540 55%, #061527 100%); box-shadow: 0 40px 80px -36px rgba(10, 37, 64, 0.6); }
+.folio .pf-scard-top { display: flex; justify-content: space-between; align-items: center; }
+.folio .pf-scard-brand { display: inline-flex; align-items: center; gap: 10px; }
+.folio .pf-scard-brand .fo-wordmark { color: #FFFFFF; font-size: 1.2rem; }
+.folio .pf-scard-brand .fo-wordmark::first-letter { color: #00D4AA; }
+.folio .pf-scard-brand .fo-lockup-sep { background: rgba(255, 255, 255, 0.35); }
+.folio .pf-scard-brand .fo-lockup-name { color: rgba(255, 255, 255, 0.65); }
+.folio .pf-scard-date { font-size: 0.74rem; color: rgba(255, 255, 255, 0.55); }
+.folio .pf-scard-body { display: flex; gap: 24px; align-items: flex-start; }
+.folio .pf-scard-body .sc-av { box-shadow: 0 0 0 4px rgba(0, 212, 170, 0.35); }
+.folio .pf-scard .pf-name { color: #FFFFFF; font-size: clamp(2.2rem, 4vw, 3rem); }
+.folio .pf-scard .pf-socials a { border-color: rgba(255, 255, 255, 0.2); color: #FFFFFF; }
+.folio .pf-scard .pf-socials a:hover { background: #00D4AA; border-color: #00D4AA; color: var(--fo-navy-deep); }
+.folio .pf-scard .pf-game { margin-top: 14px; font-size: 1.15rem; color: rgba(255, 255, 255, 0.85); }
+.folio .pf-scard .pf-game .sc-basis { border-color: rgba(201, 162, 39, 0.7); color: #E8C766; }
+.folio .pf-scard-facts { display: flex; flex-wrap: wrap; gap: 14px 40px; margin: 0; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, 0.12); }
+.folio .pf-scard-facts div { display: grid; gap: 4px; }
+.folio .pf-scard-facts dt { display: flex; align-items: center; gap: 6px; order: 2; font-size: 0.72rem; color: rgba(255, 255, 255, 0.6); }
+.folio .pf-scard-facts dd { order: 1; margin: 0; font-family: var(--fo-serif); font-size: 1.8rem; font-weight: 700; line-height: 1; color: #FFFFFF; font-feature-settings: "lnum" 1; }
+.folio .pf-share { justify-self: start; display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 999px; background: rgba(255, 255, 255, 0.06); font: inherit; font-size: 0.84rem; font-weight: 600; color: #FFFFFF; cursor: pointer; }
+.folio .pf-share:hover { background: rgba(255, 255, 255, 0.12); }
+.folio .pf--card > .pf-sec, .folio .pf--card > .pf-crumbs { max-width: 1180px; }
+
+@media (max-width: 900px) {
+  .folio .pf-split { grid-template-columns: minmax(0, 1fr); }
+  .folio .pf-side { position: static; }
+  .folio .pf-more, .folio .pf-main .pf-more { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .folio .pf-know { grid-template-columns: minmax(0, 1fr); }
+  .folio .pf-offers li { grid-template-columns: minmax(0, 1fr) auto; }
+  .folio .pf-offer-price { grid-row: auto; }
+  .folio .pf-offer-what { grid-column: 1 / -1; }
+  .folio .pf-offers .sc-basis { grid-column: 2; }
+  .folio .pf--dossier .pf-hero, .folio .pf-scard-body { flex-direction: column; align-items: flex-start; gap: 16px; }
+}
+
+.folio .pf .fv-letter { background: none; border: 0; font-family: var(--font-inter), sans-serif; font-weight: 800; }
+
+/* P4 · Dossier + card: the editorial top beside P3's card as the fact box. */
+.folio .pf-top { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 48px; align-items: start; margin-top: 26px; }
+.folio .pf--merge .pf-hero { display: flex; align-items: center; gap: 26px; margin-bottom: 22px; }
+.folio .pf--merge .pf-hero .sc-av { box-shadow: 0 0 0 4px var(--fo-paper), 0 0 0 5px var(--fo-hair-strong); }
+.folio .pf-scard--box { max-width: none; margin: 0; padding: 20px 22px; gap: 18px; position: sticky; top: 84px; }
+.folio .pf-scard--box .pf-scard-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 18px; padding-top: 16px; }
+.folio .pf-scard--box .pf-scard-facts dd { display: flex; align-items: baseline; gap: 6px; font-size: 1.6rem; }
+.folio .pf-scard--box .pf-scard-facts dd small { font-family: var(--font-inter), sans-serif; font-size: 0.74rem; font-weight: 500; color: rgba(255, 255, 255, 0.6); }
+.folio .pf-scard--box .pf-scard-facts .is-wide { grid-column: 1 / -1; }
+.folio .pf-scard--box .pf-share { justify-self: stretch; justify-content: center; }
+@media (max-width: 900px) {
+  .folio .pf-top { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .folio .pf-scard--box { position: static; }
+  .folio .pf--merge .pf-hero { flex-direction: column; align-items: flex-start; gap: 16px; }
+}
+
+/* esy.com/scout/creators/ (2026-11-07): the index of creator pages, and the tool's link to each. */
+.folio .pf-index .pf-name { font-size: clamp(2.2rem, 4.4vw, 3.4rem); }
+.folio .pf-index .pf-lede { max-width: 62ch; margin-top: 12px; font-size: 1.05rem; }
+.folio .pf-index-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 26px 0 0; padding: 0; list-style: none; }
+.folio .pf-index-grid a { display: flex; gap: 14px; align-items: flex-start; height: 100%; padding: 16px; border: 1px solid var(--fo-hair); border-radius: 14px; text-decoration: none; transition: border-color var(--fo-ease), transform var(--fo-ease), box-shadow var(--fo-ease); }
+.folio .pf-index-grid a:hover { border-color: var(--fo-navy); transform: translateY(-2px); box-shadow: 0 14px 30px -22px rgba(10, 37, 64, 0.5); }
+.folio .pf-index-grid b { display: block; font-family: var(--fo-serif); font-size: 1.25rem; color: var(--fo-navy); }
+.folio .pf-index-grid small { display: block; margin-top: 2px; font-size: 0.76rem; color: var(--fo-ink-faint); }
+.folio .pf-index-grid em { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-top: 8px; font-style: normal; font-size: 0.84rem; line-height: 1.45; color: var(--fo-ink-soft); }
+.folio .cs-full { display: inline-flex; margin-top: 18px; font-size: 0.88rem; font-weight: 600; color: var(--fo-jade-deep); text-decoration: none; }
+.folio .cs-full:hover { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 900px) { .folio .pf-index-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* A creator's FAQ (2026-11-07): questions from their public data, answers citing their own links. */
+.folio .pf-faq { margin-top: 14px; border-top: 1px solid var(--fo-hair); }
+.folio .pf-faq details { border-bottom: 1px solid var(--fo-hair); }
+.folio .pf-faq summary { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 18px 0; cursor: pointer; list-style: none; font-family: var(--fo-serif); font-size: 1.3rem; font-weight: 700; line-height: 1.25; color: var(--fo-navy); }
+.folio .pf-faq summary::-webkit-details-marker { display: none; }
+.folio .pf-faq summary svg { flex: none; color: var(--fo-jade); transition: transform 0.25s ease; }
+.folio .pf-faq details[open] summary svg { transform: rotate(45deg); }
+.folio .pf-faq summary:focus-visible { outline: 2px solid var(--fo-jade); outline-offset: 4px; border-radius: 4px; }
+.folio .pf-faq p { margin: -4px 0 20px; max-width: 72ch; font-size: 0.98rem; line-height: 1.7; color: var(--fo-ink-soft); }
+.folio .pf-faq p a { font-weight: 600; color: var(--fo-navy); text-decoration: underline; text-decoration-color: var(--fo-jade); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.folio .pf-faq p a:hover { color: var(--fo-jade-deep); }

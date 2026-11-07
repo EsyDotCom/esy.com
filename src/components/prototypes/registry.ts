@@ -43,6 +43,34 @@ export interface Prototype {
 // link to a prototype keeps its place on the page after the next one is built.
 export const PROTOTYPES: Prototype[] = [
   {
+    slug: 'scout-profile',
+    name: 'A creator’s Scout page',
+    date: '2026-11-07',
+    headline: 'Each creator, their own page.',
+    intro:
+      'For a future esy.com/scout/<name>: one editorial page per creator, like a magazine profile. Only the public snapshot is shown, every line says how we know it, and there is no newsletter signup on or around the profile, only the header’s button. Change the name at the end of the address to see anyone on the list.',
+    summary: 'A creator’s own Scout page: a magazine profile (P1), the funnel as the page (P2), or a shareable card first (P3).',
+    rounds: [
+      {
+        n: 1,
+        title: 'Three ways to profile a creator',
+        summary:
+          'P1 is a dossier: the person and their game plan as the standfirst, an at-a-glance strip, the funnel in lanes, the offers, how we know, more creators on the same platform. P2 makes the funnel the page: a sticky profile on the left, the wires diagram and the offers on the right. P3 opens on a Scout card made to be shared by the creator, with a copy-link button, then the funnel and offers.',
+      },
+      {
+        n: 2,
+        title: 'The merge',
+        summary: 'P4 keeps P1’s editorial page and puts P3’s Scout card beside the top as the fact box: top audiences, offers, the first paid step, the read date and copy link.',
+      },
+    ],
+    variants: [
+      { slug: 'dossier', key: 'P1', name: 'Dossier', round: 1, title: 'A magazine profile.', blurb: 'The person, their socials and their game plan as the standfirst; an at-a-glance strip; the funnel in lanes; the offers; how we know; more creators.', poster: ['#FFFFFF', '#0A2540'] },
+      { slug: 'funnel', key: 'P2', name: 'Funnel', round: 1, title: 'The funnel is the page.', blurb: 'A sticky profile on the left; the wires diagram and the offers fill the right.', poster: ['#EDF1F5', '#00A896'] },
+      { slug: 'card', key: 'P3', name: 'Card', round: 1, title: 'A card to share.', blurb: 'A Scout card first (face, socials, game plan, audiences, first paid step, copy link), then the funnel and offers.', poster: ['#0A2540', '#C9A227'] },
+      { slug: 'merge', key: 'P4', name: 'Dossier + card', round: 2, mergeOf: ['P1', 'P3'], live: true, liveHref: '/scout/creators/nick-saraev/', title: 'A profile with a fact box.', blurb: 'P1’s editorial top (face, name, socials, the game plan as the standfirst) with P3’s navy Scout card beside it as the fact box, then P1’s funnel, offers, how we know and more creators.', poster: ['#FFFFFF', '#0A2540'] },
+    ],
+  },
+  {
     slug: 'scout-hero',
     name: 'esy.com/scout, the hero',
     date: '2026-11-07',

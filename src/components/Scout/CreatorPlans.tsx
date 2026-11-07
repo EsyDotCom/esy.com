@@ -14,12 +14,14 @@
  *   search  S9 · Lookup + search  S8 with search (Zev, round 2), then the whole tool in an app shell
  *                        (CreatorShell): Scout's window bar with the two tabs and search, a rail of
  *                        creators with their biggest audience, and the plan beside it. */
+import Link from 'next/link';
 import { useMemo, useState, type ReactNode } from 'react';
 import { ArrowRight, Search } from 'lucide-react';
 import data from '@/data/scout/creators.json';
 import { relFor } from '@/lib/outbound';
 import { BasisChip } from './FunnelMap';
 import { FunnelDiagram, PlatformMark, type FunnelView } from './FunnelViews';
+import { slugOf } from './creatorData';
 import type { Basis } from './funnels';
 
 export type CreatorsTake = 'shelf' | 'index' | 'lookup' | 'search';
@@ -288,7 +290,7 @@ export function CreatorShell({ side, setSide, maps, view }: { side: 'creators' |
             ))}
             {list.length === 0 && <li className="cp-empty">No creator matches.</li>}
           </ul>
-          <div className="cs-main" key={c.id}><CreatorPlan c={c} view={view} /></div>
+          <div className="cs-main" key={c.id}><CreatorPlan c={c} view={view} /><Link className="cs-full" href={`/scout/creators/${slugOf(c)}/`}>Open {c.name}’s full page →</Link></div>
         </div>
       ) : (
         <div className="cs-maps">{maps}</div>

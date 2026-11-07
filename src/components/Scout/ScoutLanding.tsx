@@ -124,7 +124,7 @@ export function ScoutLanding({ creators, funnel, heroTake }: { creators?: Creato
           {creators && creators !== 'lookup' && <a href="#creators">Creators</a>}
           <a href="#read">How to read a map</a>
           <a href="#directory">The directory</a>
-          <a href="#how">How we know</a>
+          <Link href="/scout/how-we-work/">How Scout works</Link>
         </nav>
         <a className="fo-btn fo-btn--primary ld-head-cta" href="#join">Get the newsletter</a>
       </header>
@@ -231,7 +231,7 @@ export function Directory({ open, companiesOnly = false }: { open: (funnel: stri
           </ul>
         </div>
       </div>
-      <p className="ld-disclaim">Scout is independent analysis of public pages and posts. It isn’t affiliated with or endorsed by any creator or company shown; names and photos identify whose public marketing is studied. To ask for a correction or removal, write to zev@esy.com. Some links are affiliate links; Esy may earn a commission, and it never changes a map.</p>
+      <p className="ld-disclaim">Scout is independent analysis of public pages and posts. It isn’t affiliated with or endorsed by any creator or company shown, no one pays to be in it, and it has no affiliate links; names and photos identify whose public marketing is studied. To ask for a correction or removal, write to <a href="mailto:scout@esy.com">scout@esy.com</a>. <Link href="/scout/how-we-work/">How Scout works</Link>.</p>
     </section>
   );
 }

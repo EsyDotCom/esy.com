@@ -1,0 +1,5 @@
+{
+  "schema": "scout-corrections/1",
+  "note": "Every correction, photo removal or page removal on Scout, newest first, shown on esy.com/scout/how-we-work/. Add one entry per change: { date (YYYY-MM-DD), creator (name), page (slug or null), kind (correction | photo-removed | page-removed | update), what (what changed, one line), why (one line) }. Never name who asked.",
+  "entries": []
+}

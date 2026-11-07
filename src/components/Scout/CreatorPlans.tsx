@@ -73,7 +73,8 @@ export function CreatorPlan({ c, tone = 'paper', view }: { c: PublicCreator; ton
         <Face c={c} size={64} />
         <div className="cp-head-text">
           <div className="cp-head-row">
-            <h3>{c.name}</h3>
+            {/* The name opens the creator's own page (Zev, 2026-11-07). */}
+            <h3><Link className="cp-name-link" href={`/scout/creators/${slugOf(c)}/`}>{c.name}<span aria-hidden="true">→</span></Link></h3>
             {c.links.length > 0 && (
               <ul className="cp-socials" aria-label={`${c.name} on social`}>
                 {c.links.map((l) => (
@@ -275,6 +276,7 @@ export function CreatorShell({ side, setSide, maps, view }: { side: 'creators' |
             {q.trim() && <span className="cs-count" aria-live="polite">{list.length}</span>}
           </form>
         )}
+        <Link className="cs-all" href="/scout/creators/">All creators →</Link>
         <span className="cs-status"><i aria-hidden="true" />Public pages only</span>
       </div>
       {side === 'creators' ? (

@@ -1,0 +1,5300 @@
+{
+  "schema": "scout-public-creators/1",
+  "takenOn": "2026-11-07",
+  "creators": [
+    {
+      "id": "alex",
+      "name": "Alex Finn",
+      "avatar": "https://yt3.googleusercontent.com/-f755CqfJVpDAZZCQU5b_-9OVVDsqFoW8aSV9sOgGp4VfBx-AJR62Q4j-OmoO-muAw1LqE-vEA=s900-c-k-c0x00ffffff-no-rj",
+      "readOn": "2026-11-06",
+      "game": "Be the friendly first look at every new AI agent, on YouTube almost daily and in X demo videos, and send the people who want to build along into a $99-a-month Skool academy. Creator Buddy, his $49 X-writing app, is the proof he points to; sponsors fill link 1 on half his videos.",
+      "platforms": [
+        {
+          "name": "X",
+          "followers": 486567,
+          "url": "https://x.com/AlexFinn"
+        },
+        {
+          "name": "YouTube",
+          "followers": 249000,
+          "url": "https://www.youtube.com/@AlexFinnOfficial"
+        },
+        {
+          "name": "Newsletter",
+          "followers": 43000,
+          "url": "https://www.alexfinn.ai"
+        },
+        {
+          "name": "Skool",
+          "followers": 655,
+          "url": "https://www.skool.com/vibe-coding-academy/about"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "A sponsor",
+              "does": "Link 1 on 3 of 6 newest (HubSpot, Superhuman, Micro Center).",
+              "basis": "seen"
+            },
+            {
+              "at": "Vibe Coding Academy",
+              "does": "Link 1 on 2 of 6; on all 6.",
+              "basis": "seen",
+              "url": "https://www.skool.com/vibe-coding-academy"
+            },
+            {
+              "at": "instagram.com/alexfinnai",
+              "does": "On all 6.",
+              "basis": "seen"
+            },
+            {
+              "at": "agentusecases.ai",
+              "does": "On all 6: the free directory and daily email.",
+              "basis": "seen",
+              "url": "https://agentusecases.ai"
+            },
+            {
+              "at": "shipitweekly.com",
+              "does": "The newsletter, on all 6.",
+              "basis": "seen",
+              "url": "https://www.alexfinn.ai"
+            },
+            {
+              "at": "meethenry.ai and creatorbuddy.io",
+              "does": "Last, on 5 of 6.",
+              "basis": "seen",
+              "url": "https://www.creatorbuddy.io"
+            }
+          ]
+        },
+        {
+          "from": "X",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "A video of an agent doing something",
+              "does": "About 1.7 posts a day; usual 78K views.",
+              "basis": "counted"
+            },
+            {
+              "at": "“Master Grok Bot” in his header",
+              "does": "Links the Skool.",
+              "basis": "seen",
+              "url": "https://x.com/AlexFinn"
+            },
+            {
+              "at": "Vibe Coding Academy, $99/mo",
+              "does": "655 members.",
+              "basis": "seen",
+              "url": "https://www.skool.com/vibe-coding-academy/about"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "YouTube and X",
+          "price": "Free",
+          "kind": "free",
+          "what": "First looks and setup guides for new agents.",
+          "basis": "seen",
+          "url": "https://www.youtube.com/@AlexFinnOfficial"
+        },
+        {
+          "name": "Ship/It Weekly",
+          "price": "Free",
+          "kind": "free",
+          "what": "Weekly beginner AI guides; 43,000+, his figure.",
+          "basis": "seen",
+          "url": "https://www.alexfinn.ai"
+        },
+        {
+          "name": "Agent Use Cases",
+          "price": "Free",
+          "kind": "free",
+          "what": "1,912 agent use cases with prompts; optional daily email.",
+          "basis": "seen",
+          "url": "https://agentusecases.ai"
+        },
+        {
+          "name": "Creator Buddy",
+          "price": "$49/mo (7-day trial)",
+          "kind": "paid",
+          "what": "AI coach and writer for X posts.",
+          "basis": "seen",
+          "url": "https://www.creatorbuddy.io"
+        },
+        {
+          "name": "Vibe Coding Academy",
+          "price": "$99/mo",
+          "kind": "paid",
+          "what": "Skool: agent and Claude Code masterclasses, two weekly calls.",
+          "basis": "seen",
+          "url": "https://www.skool.com/vibe-coding-academy/about"
+        },
+        {
+          "name": "Henry Intelligent Machines",
+          "price": "Not shown",
+          "kind": "paid",
+          "what": "Autonomous agent swarms; request access.",
+          "basis": "seen",
+          "url": "https://meethenry.ai"
+        },
+        {
+          "name": "Sponsorships",
+          "price": "Not public",
+          "kind": "paid",
+          "what": "Link 1 and reads on YouTube.",
+          "basis": "seen"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@AlexFinnOfficial",
+          "url": "https://www.youtube.com/@AlexFinnOfficial",
+          "label": "YouTube"
+        },
+        {
+          "kind": "YouTube",
+          "handle": "@AlexFinnLabsOfficial",
+          "url": "https://www.youtube.com/@AlexFinnLabsOfficial",
+          "label": "Alex Finn Labs (second channel)"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@alexfinnai",
+          "url": "https://www.instagram.com/alexfinnai/",
+          "label": "Instagram"
+        },
+        {
+          "kind": "X",
+          "handle": "@AlexFinn",
+          "url": "https://twitter.com/AlexFinn",
+          "label": "@AlexFinn"
+        },
+        {
+          "kind": "X",
+          "handle": "@CreatorBuddyX",
+          "url": "https://x.com/CreatorBuddyX",
+          "label": "@CreatorBuddyX"
+        }
+      ]
+    },
+    {
+      "id": "hormozi",
+      "name": "Alex Hormozi",
+      "avatar": "https://yt3.googleusercontent.com/4To_zqG1x2hAszdNGNtYaNGxDOPoPA77fDlQTnLZ7ehDBCH0piv5XetKK_DAe7Uk3PY8odSCI98=s900-c-k-c0x00ffffff-no-rj",
+      "readOn": "2026-11-06",
+      "game": "Give the whole playbook away: free courses with no email step, books, 4.6M on YouTube, daily text posts on X. Every video then points owners to one free form, a personalized scaling roadmap, which leads to $5,000 workshops in Las Vegas and a $36,000-a-year membership for owners past $1M. Skool, which he co-owns, is always the second link.",
+      "platforms": [
+        {
+          "name": "Instagram",
+          "followers": 5018296,
+          "url": "https://www.instagram.com/hormozi/"
+        },
+        {
+          "name": "YouTube",
+          "followers": 4620000,
+          "url": "https://www.youtube.com/@AlexHormozi"
+        },
+        {
+          "name": "X",
+          "followers": 1086643,
+          "url": "https://x.com/AlexHormozi"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "Free Scaling Roadmap",
+              "does": "Link 1 on 5 of 6 recent videos and the only About link; a form.",
+              "basis": "seen",
+              "url": "https://www.acquisition.com/roadmap"
+            },
+            {
+              "at": "Skool.com",
+              "does": "Link 2 on all 6.",
+              "basis": "seen",
+              "url": "https://www.skool.com"
+            }
+          ]
+        },
+        {
+          "from": "X",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "A short text post on money or work",
+              "does": "1.2 a day; usual 159K views.",
+              "basis": "counted"
+            },
+            {
+              "at": "Free 2026 scaling roadmap",
+              "does": "The link in his bio.",
+              "basis": "seen",
+              "url": "https://acquisition.com/a-x"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "Free courses",
+          "price": "Free",
+          "kind": "free",
+          "what": "Money Models, Offers and Leads on video, with worksheets; no email step shown.",
+          "basis": "seen",
+          "url": "https://www.acquisition.com/books"
+        },
+        {
+          "name": "Free Scaling Roadmap",
+          "price": "Free",
+          "kind": "free",
+          "what": "A personalized roadmap behind a contact form.",
+          "basis": "seen",
+          "url": "https://www.acquisition.com/roadmap"
+        },
+        {
+          "name": "Mozi Money Minute",
+          "price": "Free",
+          "kind": "free",
+          "what": "Newsletter sign-up on acquisition.com.",
+          "basis": "seen",
+          "url": "https://www.acquisition.com/newsletter"
+        },
+        {
+          "name": "$100M books",
+          "price": "Not seen (store rate-limited)",
+          "kind": "paid",
+          "what": "Offers, Leads, Money Models in hardcover; about $30 per a third-party summary.",
+          "basis": "open",
+          "url": "https://www.acquisition.com/books"
+        },
+        {
+          "name": "Skool",
+          "price": "$9/month (Hobby) or $99/month (Pro)",
+          "kind": "paid",
+          "what": "The community platform he co-owns; his page offers a 14-day trial.",
+          "basis": "seen",
+          "url": "https://www.skool.com/pricing"
+        },
+        {
+          "name": "Workshops",
+          "price": "$5,000 per seat",
+          "kind": "paid",
+          "what": "Two days in Las Vegas; owners over $1M a year; capped at 100.",
+          "basis": "seen",
+          "url": "https://www.acquisition.com/workshops"
+        },
+        {
+          "name": "Advisory",
+          "price": "$5K, $35K or $135K",
+          "kind": "paid",
+          "what": "Sold by phone; prices from a third-party summary of Ep 965.",
+          "basis": "open"
+        },
+        {
+          "name": "ACQ Vantage VIP",
+          "price": "$36,000/yr",
+          "kind": "paid",
+          "what": "Invite after a workshop: $1M+ community, advisors, ACQ AI.",
+          "basis": "seen",
+          "url": "https://vantage.acquisition.com/"
+        },
+        {
+          "name": "Partner With Us",
+          "price": "Equity; terms not shown",
+          "kind": "paid",
+          "what": "Acquisition.com invests in or buys into businesses (20–100% stakes, his figure).",
+          "basis": "open",
+          "url": "https://www.acquisition.com/apply"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@AlexHormozi",
+          "url": "https://www.youtube.com/@AlexHormozi",
+          "label": "YouTube"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@hormozi",
+          "url": "https://www.instagram.com/hormozi/",
+          "label": "Instagram"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "alexhormozi",
+          "url": "https://www.linkedin.com/in/alexhormozi/",
+          "label": "LinkedIn"
+        },
+        {
+          "kind": "X",
+          "handle": "@AlexHormozi",
+          "url": "https://x.com/AlexHormozi",
+          "label": "@AlexHormozi on X"
+        },
+        {
+          "kind": "TikTok",
+          "handle": "@ahormozi",
+          "url": "https://www.tiktok.com/@ahormozi",
+          "label": "TikTok"
+        },
+        {
+          "kind": "Threads",
+          "handle": "@hormozi",
+          "url": "https://www.threads.net/@hormozi",
+          "label": "Threads"
+        },
+        {
+          "kind": "Facebook",
+          "handle": "@ahormozi",
+          "url": "https://www.facebook.com/ahormozi",
+          "label": "Facebook"
+        }
+      ]
+    },
+    {
+      "id": "allie",
+      "name": "Allie K. Miller",
+      "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_n0zGbBf_0Edix4Mf35YPQ-7fK5gXSzdGDR5loPNB_lqw=s900-c-k-c0x00ffffff-no-rj",
+      "readOn": "2026-11-06",
+      "game": "A former AWS and IBM AI leader who speaks to business professionals, mostly on LinkedIn (she says 2M followers across platforms). Free 5-day email courses and a weekly newsletter collect them; she sells a lifetime AI-First Academy with team seats, a 4-week AI agent cohort, and her time as keynote speaker and advisor.",
+      "platforms": [
+        {
+          "name": "Instagram",
+          "followers": 212404,
+          "url": "https://www.instagram.com/alliekmiller/"
+        },
+        {
+          "name": "TikTok",
+          "followers": 114500,
+          "url": "https://www.tiktok.com/@alliekmiller"
+        },
+        {
+          "name": "X",
+          "followers": 111670,
+          "url": "https://x.com/alliekmiller"
+        },
+        {
+          "name": "YouTube",
+          "followers": 61600,
+          "url": "https://www.youtube.com/@AKMofficial"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "Her other videos",
+              "does": "First on 5 of 6.",
+              "basis": "seen"
+            },
+            {
+              "at": "The AI Fast Track",
+              "does": "Free 5-day email course.",
+              "basis": "seen",
+              "url": "https://www.alliekmiller.com/the-ai-fast-track"
+            },
+            {
+              "at": "AI-First Academy",
+              "does": "$397 lifetime, plus team seats.",
+              "basis": "seen",
+              "url": "https://academy.alliekmiller.com/"
+            },
+            {
+              "at": "AI with ALLIE",
+              "does": "The weekly newsletter.",
+              "basis": "seen",
+              "url": "https://www.aiwithallie.com/"
+            }
+          ]
+        },
+        {
+          "from": "X",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "A practical take or list",
+              "does": "About 1.6 a day; usual 9K views.",
+              "basis": "counted"
+            },
+            {
+              "at": "linktr.ee/alliekmiller",
+              "does": "Her bio: “AI-First courses in 🔗”.",
+              "basis": "seen",
+              "url": "https://linktr.ee/alliekmiller"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "The AI Fast Track",
+          "price": "Free",
+          "kind": "free",
+          "what": "5-day email course on Claude for everyday work.",
+          "basis": "seen",
+          "url": "https://www.alliekmiller.com/the-ai-fast-track"
+        },
+        {
+          "name": "AI with ALLIE",
+          "price": "Free",
+          "kind": "free",
+          "what": "Weekly newsletter on beehiiv.",
+          "basis": "seen",
+          "url": "https://www.aiwithallie.com/"
+        },
+        {
+          "name": "The AI Daily Planner (PDF)",
+          "price": "$28.00",
+          "kind": "paid",
+          "what": "60 weekly AI lessons with planning pages.",
+          "basis": "seen",
+          "url": "https://www.alliekmiller.com/product/p/theaidailyplannerpdf"
+        },
+        {
+          "name": "AI-First Academy",
+          "price": "$397, plus $127 a seat",
+          "kind": "paid",
+          "what": "Lifetime self-paced course; team seats up to 100; Enterprise custom.",
+          "basis": "seen",
+          "url": "https://academy.alliekmiller.com/"
+        },
+        {
+          "name": "Enterprise AI Mastery Toolkit",
+          "price": "$499.00",
+          "kind": "paid",
+          "what": "Worksheets for an AI rollout; 60+ pages.",
+          "basis": "seen",
+          "url": "https://www.alliekmiller.com/enterprise-ai-mastery-toolkit"
+        },
+        {
+          "name": "AI Agent Mastermind",
+          "price": "$997 or $1,997 shown",
+          "kind": "paid",
+          "what": "4-week live cohort with Slack; price unclear.",
+          "basis": "seen",
+          "url": "https://joinaiagentmastermind.com/3"
+        },
+        {
+          "name": "Keynotes and advising",
+          "price": "Not shown",
+          "kind": "paid",
+          "what": "Through CAA or a request form.",
+          "basis": "seen",
+          "url": "https://www.alliekmiller.com"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@AKMofficial",
+          "url": "https://www.youtube.com/@AKMofficial",
+          "label": "YouTube"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@alliekmiller",
+          "url": "https://www.instagram.com/alliekmiller/",
+          "label": "Instagram (CreatorDB, Oct 2)"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "alliekmiller",
+          "url": "https://www.linkedin.com/in/alliekmiller/",
+          "label": "LinkedIn"
+        },
+        {
+          "kind": "X",
+          "handle": "@alliekmiller",
+          "url": "https://twitter.com/alliekmiller",
+          "label": "@alliekmiller"
+        },
+        {
+          "kind": "TikTok",
+          "handle": "@alliekmiller",
+          "url": "https://www.tiktok.com/@alliekmiller",
+          "label": "TikTok (CreatorDB, Oct 2)"
+        }
+      ]
+    },
+    {
+      "id": "chris",
+      "name": "Christopher S. Penn",
+      "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_lWaUpRX34yszjC5geYc_k60tBtP_vyVDJXtRw_yZcA8Jg=s900-c-k-c0x00ffffff-no-rj",
+      "readOn": "2026-11-06",
+      "game": "One weekly newsletter, written for two decades, does the selling: Almost Timely (about 293K, his figure) teaches AI and analytics to marketers, and every issue carries the same sales sections for his company Trust Insights: a plug, an ad for its own course, a shop of $20 skills and $99–$1,499 courses, and where he’s speaking.",
+      "platforms": [
+        {
+          "name": "Newsletter",
+          "followers": 293000,
+          "url": "https://almosttimely.substack.com"
+        },
+        {
+          "name": "X",
+          "followers": 83800,
+          "url": "https://x.com/cspenn"
+        },
+        {
+          "name": "YouTube",
+          "followers": 5450,
+          "url": "https://www.youtube.com/@cspenn"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "Almost Timely newsletter",
+              "does": "Link 1 on all 6.",
+              "basis": "seen",
+              "url": "https://www.christopherspenn.com/newsletter"
+            },
+            {
+              "at": "Trust Insights contact",
+              "does": "Consulting enquiries.",
+              "basis": "seen",
+              "url": "https://www.trustinsights.ai/contact"
+            },
+            {
+              "at": "Analytics for Marketers Slack",
+              "does": "Free; the link opens a Slack invite.",
+              "basis": "seen",
+              "url": "https://www.trustinsights.ai/analyticsformarketers"
+            },
+            {
+              "at": "Trust Insights Academy",
+              "does": "Courses $99–$1,499.",
+              "basis": "seen",
+              "url": "https://www.trustinsights.ai/expertise/services-training-education-and-professional-development/trust-insights-academy/"
+            },
+            {
+              "at": "Almost Timeless (book)",
+              "does": "On Gumroad.",
+              "basis": "seen",
+              "url": "https://cspenn.gumroad.com/l/almosttimeless"
+            }
+          ]
+        },
+        {
+          "from": "X",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "A promo or a one-line take",
+              "does": "17 in two months; usual 386 views.",
+              "basis": "counted"
+            },
+            {
+              "at": "trustinsights.ai/aicourse",
+              "does": "The link in his header.",
+              "basis": "seen",
+              "url": "https://trustinsights.ai/aicourse"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "LinkedIn Algorithm Guide and AI kit",
+          "price": "Free",
+          "kind": "free",
+          "what": "Guides refreshed every quarter; free mini-courses.",
+          "basis": "seen",
+          "url": "https://www.trustinsights.ai/expertise/services-training-education-and-professional-development/trust-insights-academy/"
+        },
+        {
+          "name": "Almost Timely",
+          "price": "Free",
+          "kind": "free",
+          "what": "Weekly newsletter, also as video and audio.",
+          "basis": "seen",
+          "url": "https://almosttimely.substack.com"
+        },
+        {
+          "name": "Analytics for Marketers Slack",
+          "price": "Free",
+          "kind": "free",
+          "what": "Community.",
+          "basis": "seen",
+          "url": "https://www.trustinsights.ai/analyticsformarketers"
+        },
+        {
+          "name": "Skills and ebooks",
+          "price": "$19.99–$20",
+          "kind": "paid",
+          "what": "Claude skills, plugins and two ebooks.",
+          "basis": "seen",
+          "url": "https://www.trustinsights.ai/expertise/services-training-education-and-professional-development/trust-insights-academy/"
+        },
+        {
+          "name": "The Prompt Playbook",
+          "price": "$19/month",
+          "kind": "paid",
+          "what": "Weekly prompt collections.",
+          "basis": "seen",
+          "url": "https://academy.trustinsights.ai/bundles/trust-insights-prompt-playbook"
+        },
+        {
+          "name": "Courses",
+          "price": "$99, $149, $199, $397, $799",
+          "kind": "paid",
+          "what": "GEO, deep research, prompt engineering, AI for writers, generative AI for marketers.",
+          "basis": "seen",
+          "url": "https://www.trustinsights.ai/expertise/services-training-education-and-professional-development/trust-insights-academy/"
+        },
+        {
+          "name": "AI-Ready Strategist Master Course",
+          "price": "$1,499",
+          "kind": "paid",
+          "what": "The top course; its worksheets sell alone at $399.",
+          "basis": "seen",
+          "url": "https://www.trustinsights.ai/aistrategycourse"
+        },
+        {
+          "name": "Keynotes and consulting",
+          "price": "Not shown",
+          "kind": "paid",
+          "what": "Booked by budget band; Trust Insights consulting.",
+          "basis": "seen",
+          "url": "https://www.trustinsights.ai/expertise/services-training-education-and-professional-development/marketing-keynote-speakers/"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@cspenn",
+          "url": "https://www.youtube.com/@cspenn",
+          "label": "YouTube"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@cspenn",
+          "url": "https://instagram.com/cspenn",
+          "label": "Instagram"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "cspenn",
+          "url": "https://www.linkedin.com/in/cspenn",
+          "label": "LinkedIn"
+        },
+        {
+          "kind": "X",
+          "handle": "@cspenn",
+          "url": "https://x.com/cspenn",
+          "label": "@cspenn (promo account)"
+        }
+      ]
+    },
+    {
+      "id": "cody",
+      "name": "Cody Schneider",
+      "avatar": "https://yt3.googleusercontent.com/5brb3DcVnxjMezFdGureEIU2fe9cBKqyn48fqlk5JB0qMemrQE662PY9_IsQdTLC8HHn_Ztw=s176-c-k-c0x00ffffff-no-rj",
+      "readOn": "2026-11-04",
+      "game": "Teach marketing engineering in public, about 7 scheduled X posts and three LinkedIn posts a day plus Claude Code crash courses on YouTube, and point all of it at Graphed, his software for running AI agents in marketing: on X a Graphed pitch sits under nearly every post. There's no community or paid course; the audience is Graphed's sales channel, and the seed raise is part of the story he tells.",
+      "platforms": [
+        {
+          "name": "X",
+          "followers": 67089,
+          "url": "https://x.com/codyschneider"
+        },
+        {
+          "name": "LinkedIn",
+          "followers": 32080,
+          "url": "https://www.linkedin.com/in/codyxschneider/"
+        },
+        {
+          "name": "YouTube",
+          "followers": 28800,
+          "url": "https://www.youtube.com/@codyschneiderx"
+        },
+        {
+          "name": "Instagram",
+          "followers": 8191,
+          "url": "https://www.instagram.com/codyschneiderx/"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "Graphed",
+              "does": "Link 1 on all five newest. The homepage asks you to book a demo.",
+              "basis": "seen",
+              "url": "https://www.graphed.com/"
+            },
+            {
+              "at": "GTM Engineering Course",
+              "does": "On the newest video only. Just a title so far.",
+              "basis": "seen",
+              "url": "https://gtmengineeringcourse.com/"
+            }
+          ]
+        },
+        {
+          "from": "LinkedIn",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "A tactic, plus follow me",
+              "does": "16 of his last 20 posts.",
+              "basis": "seen"
+            },
+            {
+              "at": "Start Graphed for free",
+              "does": "The link in each post, tagged as his campaign.",
+              "basis": "seen",
+              "url": "https://www.graphed.com/platform"
+            }
+          ]
+        },
+        {
+          "from": "X",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "A tactic post, mostly video",
+              "does": "About 7 a day, scheduled on the hour.",
+              "basis": "counted"
+            },
+            {
+              "at": "His own reply: the Graphed pitch",
+              "does": "Within seconds, under 137 of 190 posts.",
+              "basis": "counted"
+            },
+            {
+              "at": "Graphed",
+              "does": "Named in the pitch; also his bio link.",
+              "basis": "seen",
+              "url": "https://www.graphed.com/"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "His newsletter",
+          "price": "Free",
+          "kind": "free",
+          "what": "Occasional essays on beehiiv; the last was Feb 4, 2026.",
+          "basis": "seen",
+          "url": "https://investorupdate.beehiiv.com/"
+        },
+        {
+          "name": "Graphed, start free",
+          "price": "Free",
+          "kind": "free",
+          "what": "Self-serve start on the platform; limits not shown. Podcast listeners get a 10-seat trial.",
+          "basis": "seen",
+          "url": "https://www.graphed.com/platform"
+        },
+        {
+          "name": "Graphed, set up with you",
+          "price": "Scoped per setup",
+          "kind": "paid",
+          "what": "A 30-minute discovery call, then engineers set the agents up for your team.",
+          "basis": "seen",
+          "url": "https://www.graphed.com/"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@codyschneiderx",
+          "url": "https://www.youtube.com/@codyschneiderx",
+          "label": "YouTube"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@codyschneiderx",
+          "url": "https://www.instagram.com/codyschneiderx/",
+          "label": "@codyschneiderx"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "codyxschneider",
+          "url": "https://linkedin.com/in/codyxschneider",
+          "label": "LinkedIn"
+        },
+        {
+          "kind": "X",
+          "handle": "@codyschneider",
+          "url": "https://x.com/codyschneider",
+          "label": "X"
+        }
+      ]
+    },
+    {
+      "id": "dan",
+      "name": "Dan Shipper",
+      "avatar": "https://yt3.googleusercontent.com/n6p0RudkPKoaFsxiZfunvI5MpqS443Qfbf2E4mmAy1k0etF4M7etYyJAJ_RMknfit6Tnxx4Du4g=s900-c-k-c0x00ffffff-no-rj",
+      "readOn": "2026-11-06",
+      "game": "Run a daily AI publication as a company, not a solo newsletter: Dan breaks news on X and tests every new model, Every’s writers publish daily, and one subscription ($30 a month or $288 a year) bundles the writing with Every’s own apps. A consulting arm that trains companies on AI pays for much of it.",
+      "platforms": [
+        {
+          "name": "X",
+          "followers": 145033,
+          "url": "https://x.com/danshipper"
+        },
+        {
+          "name": "Newsletter",
+          "followers": 100000,
+          "url": "https://every.to"
+        },
+        {
+          "name": "YouTube",
+          "followers": 50400,
+          "url": "https://www.youtube.com/@EveryInc"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "A sponsor",
+              "does": "Google’s Gemini audio, link 1 on 2 of 6.",
+              "basis": "seen"
+            },
+            {
+              "at": "Every’s YouTube trial page",
+              "does": "14 days free, then $288 a year; on 3 of 6.",
+              "basis": "seen",
+              "url": "https://every.to/youtube-every-offer"
+            },
+            {
+              "at": "every.to/subscribe",
+              "does": "On 2 of 6.",
+              "basis": "seen",
+              "url": "https://every.to/subscribe"
+            }
+          ]
+        },
+        {
+          "from": "X",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "A take on a new model",
+              "does": "About 3.5 a day; usual 12.3K views.",
+              "basis": "counted"
+            },
+            {
+              "at": "every.to",
+              "does": "In his header; bio sells the subscription.",
+              "basis": "seen",
+              "url": "https://every.to/"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "Free tier",
+          "price": "Free",
+          "kind": "free",
+          "what": "Limited access to essays and apps; free guides.",
+          "basis": "seen",
+          "url": "https://every.to/subscribe"
+        },
+        {
+          "name": "Free trial",
+          "price": "14 days free",
+          "kind": "free",
+          "what": "Then the annual plan.",
+          "basis": "seen",
+          "url": "https://every.to/youtube-every-offer"
+        },
+        {
+          "name": "Every, monthly",
+          "price": "$30/mo",
+          "kind": "paid",
+          "what": "All writing, five apps, workshops, no ads.",
+          "basis": "seen",
+          "url": "https://every.to/subscribe"
+        },
+        {
+          "name": "Every, annual",
+          "price": "$24/mo, billed $288 a year",
+          "kind": "paid",
+          "what": "The same, after a 14-day trial.",
+          "basis": "seen",
+          "url": "https://every.to/subscribe"
+        },
+        {
+          "name": "Every Consulting",
+          "price": "Not shown",
+          "kind": "paid",
+          "what": "AI training and adoption for companies; budgets from under $10K to $1M+ on the form.",
+          "basis": "seen",
+          "url": "https://every.to/consulting"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@EveryInc",
+          "url": "https://www.youtube.com/@EveryInc",
+          "label": "Every on YouTube (company channel)"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "danshipper",
+          "url": "https://www.linkedin.com/in/danshipper/",
+          "label": "LinkedIn"
+        },
+        {
+          "kind": "X",
+          "handle": "@danshipper",
+          "url": "https://x.com/danshipper",
+          "label": "@danshipper"
+        },
+        {
+          "kind": "X",
+          "handle": "@every",
+          "url": "https://x.com/every",
+          "label": "@every (company)"
+        }
+      ]
+    },
+    {
+      "id": "grace",
+      "name": "Grace Leung",
+      "avatar": "https://yt3.googleusercontent.com/jMP2p3bKb_P0W7-Sr9orseCWwPtPvAzb8cUKfX3eM_EUqa38yVkjy-gyGsx0QI9AEOF8CNAlPw=s160-c-k-c0x00ffffff-no-rj",
+      "readOn": "2026-11-02",
+      "game": "Tool workflows for marketers, 16 to 30 minutes long, paid for by a sponsor in the first link. Her own funnel goes to a paid 30-day sprint with a community, with the newsletter and free setup kits beside it.",
+      "platforms": [
+        {
+          "name": "YouTube",
+          "followers": 150000,
+          "url": "https://www.youtube.com/@graceleungyl"
+        },
+        {
+          "name": "Instagram",
+          "followers": 1643,
+          "url": "https://www.instagram.com/graceleungyl/"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "A sponsor",
+              "does": "HubSpot or a Claude referral link.",
+              "basis": "seen"
+            },
+            {
+              "at": "The Sprint",
+              "does": "Her own top link since October.",
+              "basis": "seen",
+              "url": "https://www.grooveanchor.com/"
+            },
+            {
+              "at": "The newsletter",
+              "does": "Second or third of her own.",
+              "basis": "seen",
+              "url": "https://www.graceleung.com/newsletter/"
+            }
+          ]
+        },
+        {
+          "from": "Instagram",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "Comment a keyword",
+              "does": "2 of her last 12 posts.",
+              "basis": "seen"
+            },
+            {
+              "at": "DM with details or a kit",
+              "does": "As the captions promise.",
+              "basis": "seen"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "Newsletter and setup kits",
+          "price": "Free",
+          "kind": "free",
+          "what": "Kits like the ChatGPT Marketing Setup Kit, for an email.",
+          "basis": "seen",
+          "url": "https://www.graceleung.com/newsletter/"
+        },
+        {
+          "name": "30-Day AI Marketing System Sprint",
+          "price": "$597",
+          "kind": "paid",
+          "what": "For 3 months, then $199 a quarter, with her community. Waitlist only right now.",
+          "basis": "seen",
+          "url": "https://www.grooveanchor.com/"
+        },
+        {
+          "name": "Consulting, speaking, sponsorships",
+          "price": "Not shown",
+          "kind": "paid",
+          "what": "Through a contact form.",
+          "basis": "seen",
+          "url": "https://www.graceleung.com/connect/"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@graceleungyl",
+          "url": "https://www.youtube.com/@graceleungyl",
+          "label": "YouTube"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@graceleungyl",
+          "url": "https://www.instagram.com/graceleungyl/",
+          "label": "Instagram"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "grace-leung-yl",
+          "url": "https://www.linkedin.com/in/grace-leung-yl/",
+          "label": "LinkedIn"
+        },
+        {
+          "kind": "X",
+          "handle": "@graceleungyl",
+          "url": "https://twitter.com/graceleungyl",
+          "label": "X"
+        }
+      ]
+    },
+    {
+      "id": "greg",
+      "name": "Greg Isenberg",
+      "avatar": "https://yt3.googleusercontent.com/5wiiTxMamM0NnCmGOt0iJ6eoVRmFLNIGF-BEiTZ_AVqaS02YIxAsB-2XY6xwLCUWQfoENG1MHKo=s900-c-k-c0x00ffffff-no-rj",
+      "readOn": "2026-11-06",
+      "game": "A twice-weekly podcast, published as long YouTube episodes, on what money each new AI tool opens up, plus daily idea posts on X. Every episode description sells his own studio first: Ideabrowser, the startup-idea software, and Late Checkout Agency for big brands.",
+      "platforms": [
+        {
+          "name": "X",
+          "followers": 758500,
+          "url": "https://x.com/gregisenberg"
+        },
+        {
+          "name": "YouTube",
+          "followers": 739000,
+          "url": "https://www.youtube.com/@GregIsenberg"
+        },
+        {
+          "name": "Newsletter",
+          "followers": 158485,
+          "url": "https://www.gregisenberg.com"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "ideabrowser.com",
+              "does": "Link 1 on 3 of 6 newest; on 5 of 6.",
+              "basis": "seen",
+              "url": "https://www.ideabrowser.com"
+            },
+            {
+              "at": "A sponsor",
+              "does": "Link 1 on 2 of 6, as tracked startup-ideas-pod.link links.",
+              "basis": "seen"
+            },
+            {
+              "at": "latecheckout.agency",
+              "does": "On 5 of 6.",
+              "basis": "seen",
+              "url": "https://www.latecheckout.agency/"
+            },
+            {
+              "at": "His X, Instagram and LinkedIn",
+              "does": "On all 6.",
+              "basis": "seen",
+              "url": "https://x.com/gregisenberg"
+            }
+          ]
+        },
+        {
+          "from": "X",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "A big-picture AI opportunity take",
+              "does": "About 1.6 a day; usual 80K views.",
+              "basis": "counted"
+            },
+            {
+              "at": "gregisenberg.com",
+              "does": "In his header: the newsletter and free guides.",
+              "basis": "seen",
+              "url": "https://www.gregisenberg.com"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "The Startup Ideas Podcast",
+          "price": "Free",
+          "kind": "free",
+          "what": "Twice-weekly episodes on YouTube, Spotify and Apple.",
+          "basis": "seen",
+          "url": "https://www.youtube.com/@GregIsenberg"
+        },
+        {
+          "name": "Greg’s Letter",
+          "price": "Free",
+          "kind": "free",
+          "what": "Weekly startup ideas and frameworks; free workshops with recordings.",
+          "basis": "seen",
+          "url": "https://gregisenberg.kit.com"
+        },
+        {
+          "name": "Free guides",
+          "price": "Free",
+          "kind": "free",
+          "what": "Playbooks on his site (funnels, AI content, Claude Code).",
+          "basis": "seen",
+          "url": "https://www.gregisenberg.com"
+        },
+        {
+          "name": "The Vibe Marketer",
+          "price": "$49/mo, $199/yr or $999 lifetime",
+          "kind": "paid",
+          "what": "AI marketing community from his studio, run by James.",
+          "basis": "seen",
+          "url": "https://www.thevibemarketer.com/"
+        },
+        {
+          "name": "Ideabrowser",
+          "price": "Free; $499, $1,499 or $2,999/yr",
+          "kind": "paid",
+          "what": "Startup-idea database and research agent; top plan adds coaching. Prices from comparison pages.",
+          "basis": "seen",
+          "url": "https://www.ideabrowser.com"
+        },
+        {
+          "name": "Offline Mode",
+          "price": "$5,375 (earlier capture)",
+          "kind": "paid",
+          "what": "Private 2-day in-person workshop.",
+          "basis": "seen",
+          "url": "https://lu.ma/pasrqagn"
+        },
+        {
+          "name": "Late Checkout Agency",
+          "price": "Not public",
+          "kind": "paid",
+          "what": "Strategy, design and build sprints for large companies.",
+          "basis": "seen",
+          "url": "https://www.latecheckout.agency/"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@GregIsenberg",
+          "url": "https://www.youtube.com/@GregIsenberg",
+          "label": "YouTube"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@gregisenberg",
+          "url": "https://www.instagram.com/gregisenberg/",
+          "label": "Instagram"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "gisenberg",
+          "url": "https://www.linkedin.com/in/gisenberg/",
+          "label": "LinkedIn"
+        },
+        {
+          "kind": "X",
+          "handle": "@gregisenberg",
+          "url": "https://x.com/gregisenberg",
+          "label": "@gregisenberg"
+        }
+      ]
+    },
+    {
+      "id": "igor",
+      "name": "Igor Pogany",
+      "avatar": "https://yt3.googleusercontent.com/DvaUGxvtI8_VHscLePaF-JO0kMrzluLkGQWDIOtbHvAkmlRaX_gh3YATlFu8046lrNjBQ0cmIw=s900-c-k-c0x00ffffff-no-rj",
+      "readOn": "2026-11-06",
+      "game": "He built The AI Advantage, plain-language ChatGPT and Claude walk-throughs for non-technical people, then sold the company to Tony Robbins and Dean Graziosi and stayed on as its teacher. Now every video points to a $1 trial of a $37-a-month club, and free summits sell a $997 bootcamp.",
+      "platforms": [
+        {
+          "name": "YouTube",
+          "followers": 493000,
+          "url": "https://www.youtube.com/@aiadvantage"
+        },
+        {
+          "name": "Skool",
+          "followers": 130600,
+          "url": "https://www.skool.com/the-ai-advantage/about"
+        },
+        {
+          "name": "X",
+          "followers": 7068,
+          "url": "https://x.com/IgorPogany"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "AIA Club",
+              "does": "Link 1 on 5 of 6 newest: the Club sign-up ($1 trial on its sales page).",
+              "basis": "seen",
+              "url": "https://joinaiaclub.com/igor"
+            },
+            {
+              "at": "The tools in the video",
+              "does": "ChatGPT, Claude, GitHub repos.",
+              "basis": "seen"
+            },
+            {
+              "at": "Instagram",
+              "does": "Last on all 6.",
+              "basis": "seen",
+              "url": "https://www.instagram.com/igorpogany/"
+            }
+          ]
+        },
+        {
+          "from": "X",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "A rare post",
+              "does": "3 in two months.",
+              "basis": "counted"
+            },
+            {
+              "at": "YouTube",
+              "does": "The link in his profile.",
+              "basis": "seen",
+              "url": "https://www.youtube.com/@aiadvantage"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "AI Advantage Summit",
+          "price": "Free",
+          "kind": "free",
+          "what": "Three days online, about three hours a day.",
+          "basis": "seen",
+          "url": "https://www.newswire.com/news/dean-graziosi-tony-robbins-say-the-ai-advantage-summit-will-help-close-22756060"
+        },
+        {
+          "name": "The AI Advantage (free Skool)",
+          "price": "Free",
+          "kind": "free",
+          "what": "Tools, prompts, frameworks, community.",
+          "basis": "seen",
+          "url": "https://www.skool.com/the-ai-advantage/about"
+        },
+        {
+          "name": "Free PDFs and content tool",
+          "price": "Free",
+          "kind": "free",
+          "what": "ChatGPT guides and Social Media in Seconds.",
+          "basis": "seen",
+          "url": "https://aiadvantage.com/"
+        },
+        {
+          "name": "AI Advantage Club",
+          "price": "$1 for 30 days, then $37/month",
+          "kind": "paid",
+          "what": "Live trainings, quick-start course, summit replays, community.",
+          "basis": "seen",
+          "url": "https://summit.aiadvantage.com"
+        },
+        {
+          "name": "Order bumps",
+          "price": "$17, $27 (or “Just $77”), $39, $47",
+          "kind": "paid",
+          "what": "Playbooks and cards on the Club page.",
+          "basis": "seen",
+          "url": "https://summit.aiadvantage.com"
+        },
+        {
+          "name": "AI Advantage Bootcamp",
+          "price": "$997, or three payments of $380",
+          "kind": "paid",
+          "what": "Five weekly live workshops; 90 days of Club included.",
+          "basis": "seen",
+          "url": "https://mastermind.com/?p=3004"
+        },
+        {
+          "name": "Mastery Program, Inner Circle, teams program, coaching",
+          "price": "No prices shown",
+          "kind": "paid",
+          "what": "Higher tiers; coaching by invitation.",
+          "basis": "seen",
+          "url": "https://aiadvantage.com/"
+        },
+        {
+          "name": "The Ultimate ChatGPT Prompt Book",
+          "price": "Not checked",
+          "kind": "paid",
+          "what": "750+ prompts; Jan 2026.",
+          "basis": "open"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@aiadvantage",
+          "url": "https://www.youtube.com/@aiadvantage",
+          "label": "YouTube"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@igorpogany",
+          "url": "https://www.instagram.com/igorpogany/",
+          "label": "Instagram"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "igorpogany",
+          "url": "https://www.linkedin.com/in/igorpogany",
+          "label": "LinkedIn"
+        },
+        {
+          "kind": "X",
+          "handle": "@IgorPogany",
+          "url": "https://x.com/IgorPogany",
+          "label": "@IgorPogany"
+        }
+      ]
+    },
+    {
+      "id": "jeff",
+      "name": "Jeff Su",
+      "avatar": "https://yt3.googleusercontent.com/fHDMaIjQYS0XTz17AL-iIxdfyrGJfLliAJTQmJE931P1OareLsLIvFeJDcDtI3QpkD9HLnvI7Gw=s900-c-k-c0x00ffffff-no-rj",
+      "readOn": "2026-11-06",
+      "game": "A polished explainer every two weeks or so, “Learn 80% of X” or “X, Clearly Explained”, to 1.94M. It sells one academy per tool at one-time prices, corporate training from $22K, and sponsor spots at $27,500 a video; a weekly AI-tip newsletter and free toolkits collect the emails.",
+      "platforms": [
+        {
+          "name": "YouTube",
+          "followers": 1940000,
+          "url": "https://www.youtube.com/@JeffSu"
+        },
+        {
+          "name": "Newsletter",
+          "followers": 130000,
+          "url": "https://www.jeffsu.org/newsletter/"
+        },
+        {
+          "name": "LinkedIn",
+          "followers": 65000,
+          "url": "https://www.linkedin.com/in/jsu05/"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "A sponsor",
+              "does": "Link 1 on 3 of 6: HubSpot, Granola, Dropbox.",
+              "basis": "seen"
+            },
+            {
+              "at": "AI Essentials newsletter",
+              "does": "On all 6; link 1 on 2.",
+              "basis": "seen",
+              "url": "https://www.jeffsu.org/newsletter/"
+            },
+            {
+              "at": "Claude starter kit",
+              "does": "Free 7-day email course; on 3 of 6.",
+              "basis": "seen",
+              "url": "https://coworkacademy.ai/toolkit"
+            },
+            {
+              "at": "Cowork Academy",
+              "does": "On all 6.",
+              "basis": "seen",
+              "url": "https://coworkacademy.ai/"
+            },
+            {
+              "at": "Workspace Academy and the Notion course",
+              "does": "On all 6, then Instagram and LinkedIn.",
+              "basis": "seen",
+              "url": "https://academy.jeffsu.org/workspace-academy"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "AI Essentials newsletter",
+          "price": "Free",
+          "kind": "free",
+          "what": "One AI tip a week.",
+          "basis": "seen",
+          "url": "https://www.jeffsu.org/newsletter/"
+        },
+        {
+          "name": "Free toolkits",
+          "price": "Free (email)",
+          "kind": "free",
+          "what": "A 7-day Claude starter kit; AI, Workspace, Notion and job-search kits.",
+          "basis": "seen",
+          "url": "https://coworkacademy.ai/toolkit"
+        },
+        {
+          "name": "Gumroad templates",
+          "price": "Not checked",
+          "kind": "free",
+          "what": "Templates, about 90% free, his figure.",
+          "basis": "open",
+          "url": "https://jeffsu.gumroad.com/"
+        },
+        {
+          "name": "Notion Command Center course",
+          "price": "Not shown",
+          "kind": "paid",
+          "what": "On PressPlay Academy.",
+          "basis": "open",
+          "url": "https://www.pressplay.cc/link/s/0765E058"
+        },
+        {
+          "name": "Workspace Academy",
+          "price": "$329 (The Basics) or $399 (The Full Stack, shown against $699)",
+          "kind": "paid",
+          "what": "4 modules, 21 lessons, templates and scripts.",
+          "basis": "seen",
+          "url": "https://academy.jeffsu.org/workspace-academy"
+        },
+        {
+          "name": "Cowork Academy",
+          "price": "$497 (Basic) or $597 (Core)",
+          "kind": "paid",
+          "what": "8 modules, 100+ templates, 12 automations.",
+          "basis": "seen",
+          "url": "https://coworkacademy.ai/"
+        },
+        {
+          "name": "AI Systems Academy",
+          "price": "Free to join the waitlist",
+          "kind": "free",
+          "what": "Not launched; 15,110+ waiting, his figure.",
+          "basis": "seen",
+          "url": "https://systemsacademy.ai/"
+        },
+        {
+          "name": "Workspace training for companies",
+          "price": "From $22,000",
+          "kind": "paid",
+          "what": "In person, at the client’s office.",
+          "basis": "seen",
+          "url": "https://academy.jeffsu.org/workspace-academy"
+        },
+        {
+          "name": "Cowork Academy for Teams",
+          "price": "From $30,000",
+          "kind": "paid",
+          "what": "A Command Center set up across a team.",
+          "basis": "seen",
+          "url": "https://coworkacademy.ai/"
+        },
+        {
+          "name": "Sponsorships",
+          "price": "$27,500 a video; $5,000 a LinkedIn post",
+          "kind": "paid",
+          "what": "Booked through Passionfroot.",
+          "basis": "seen",
+          "url": "https://www.passionfroot.me/jeffsu"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@JeffSu",
+          "url": "https://www.youtube.com/@JeffSu",
+          "label": "YouTube"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@j.sushie",
+          "url": "https://www.instagram.com/j.sushie/",
+          "label": "Instagram"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "jsu05",
+          "url": "https://www.linkedin.com/in/jsu05/",
+          "label": "LinkedIn"
+        }
+      ]
+    },
+    {
+      "id": "jordan",
+      "name": "Jordan Wilson",
+      "avatar": "https://yt3.googleusercontent.com/OTGtDnhko8SO8EYS2a9SW1xdmowgGk_5JGQ-hGaIe4EIIJoZ2tZlsjP98yHuK5KeC5c5-YIplQ=s900-c-k-c0x00ffffff-no-rj",
+      "readOn": "2026-11-06",
+      "game": "A Chicago agency owner runs a daily AI live show, streamed to LinkedIn, YouTube, Facebook and X and re-cut as a podcast, with a daily newsletter (310,500+, his figure). The show is the shop window for his services: a free live ChatGPT class leads to a $349 consult, private trainings, keynotes and sponsorships.",
+      "platforms": [
+        {
+          "name": "Newsletter",
+          "followers": 310500,
+          "url": "https://www.youreverydayai.com/"
+        },
+        {
+          "name": "YouTube",
+          "followers": 26200,
+          "url": "https://www.youtube.com/@EverydayAI_"
+        },
+        {
+          "name": "X",
+          "followers": 3074,
+          "url": "https://x.com/EverydayAI_"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "youreverydayai.com",
+              "does": "Link 1 on 5 of 6 recent episodes; newsletter signup.",
+              "basis": "seen",
+              "url": "https://www.youreverydayai.com/"
+            },
+            {
+              "at": "The episode page",
+              "does": "Next on 5 of 6.",
+              "basis": "seen"
+            },
+            {
+              "at": "His LinkedIn post for the episode",
+              "does": "Next on 5 of 6.",
+              "basis": "seen"
+            },
+            {
+              "at": "Live schedule and a Start Here episode",
+              "does": "Then his LinkedIn profile and fan mail.",
+              "basis": "seen"
+            }
+          ]
+        },
+        {
+          "from": "X",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "A post",
+              "does": "One in two months.",
+              "basis": "counted"
+            },
+            {
+              "at": "youreverydayai.com",
+              "does": "In the profile.",
+              "basis": "seen",
+              "url": "https://www.youreverydayai.com/"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "Become a ChatGPT Pro in 60 Minutes",
+          "price": "Free",
+          "kind": "free",
+          "what": "Live class on his Prime, Prompt, Polish method.",
+          "basis": "seen",
+          "url": "https://www.youreverydayai.com/ppp-registration/"
+        },
+        {
+          "name": "Everyday AI newsletter and show",
+          "price": "Free",
+          "kind": "free",
+          "what": "Daily email, live show and podcast.",
+          "basis": "seen",
+          "url": "https://www.youreverydayai.com/"
+        },
+        {
+          "name": "Inner Circle community",
+          "price": "Free",
+          "kind": "free",
+          "what": "Via the Start Here Series; inside not seen.",
+          "basis": "open",
+          "url": "https://starthereseries.com/"
+        },
+        {
+          "name": "ChatGPT Consult",
+          "price": "$349",
+          "kind": "paid",
+          "what": "90 minutes on your business problem.",
+          "basis": "seen",
+          "url": "https://www.youreverydayai.com/chatgpt-consultant/"
+        },
+        {
+          "name": "PPP Biz, advisory, keynotes",
+          "price": "Not shown",
+          "kind": "paid",
+          "what": "Personal 2–3 hour training; equity-for-advice; talks.",
+          "basis": "seen",
+          "url": "https://www.youreverydayai.com/partner"
+        },
+        {
+          "name": "Sponsorships",
+          "price": "Not public",
+          "kind": "paid",
+          "what": "Show and newsletter; a form.",
+          "basis": "seen",
+          "url": "https://www.youreverydayai.com/partner"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@EverydayAI_",
+          "url": "https://www.youtube.com/@EverydayAI_",
+          "label": "YouTube"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@_everydayai",
+          "url": "https://www.instagram.com/_everydayai",
+          "label": "Instagram"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "jordanwilson04",
+          "url": "https://www.linkedin.com/in/jordanwilson04/",
+          "label": "Jordan on LinkedIn"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "everydayai",
+          "url": "https://www.linkedin.com/company/everydayai",
+          "label": "Everyday AI (company page)"
+        },
+        {
+          "kind": "X",
+          "handle": "@EverydayAI_",
+          "url": "https://x.com/EverydayAI_",
+          "label": "@EverydayAI_ on X"
+        },
+        {
+          "kind": "TikTok",
+          "handle": "@everydayai_",
+          "url": "https://www.tiktok.com/@everydayai_",
+          "label": "TikTok"
+        },
+        {
+          "kind": "Facebook",
+          "handle": "@youreverydayai",
+          "url": "https://www.facebook.com/youreverydayai/",
+          "label": "Facebook"
+        }
+      ]
+    },
+    {
+      "id": "julian",
+      "name": "Julian Goldie",
+      "avatar": "https://yt3.googleusercontent.com/g6KXuoAcpwiyGjDFvI7kY6tlAEdw5Ec2jKgyOTGVCER4O2ov0a2DYaONmsecjpv2z6J_eMKsm58=s900-c-k-c0x00ffffff-no-rj",
+      "readOn": "2026-11-06",
+      "game": "Volume over views: about 30 short AI-news videos a day, many made with an AI avatar of himself (his own account), and about 30 X posts a day put his paid Skool, AI Profit Boardroom, in front of everyone, with a free Skool and opt-in freebies beside it. Behind it sits the business that paid first: Goldie Agency’s SEO and link building.",
+      "platforms": [
+        {
+          "name": "YouTube",
+          "followers": 437000,
+          "url": "https://www.youtube.com/@JulianGoldieSEO"
+        },
+        {
+          "name": "X",
+          "followers": 171800,
+          "url": "https://x.com/JulianGoldieSEO"
+        },
+        {
+          "name": "Skool (AI Money Lab)",
+          "followers": 94600,
+          "url": "https://www.skool.com/ai-seo-with-julian-goldie-1553/about"
+        },
+        {
+          "name": "Skool (Boardroom)",
+          "followers": 3500,
+          "url": "https://www.skool.com/ai-profit-lab-7462/about"
+        },
+        {
+          "name": "Skool (Elite Circle)",
+          "followers": 715,
+          "url": "https://www.skool.com/seo-mastermind-2356/about"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "AI Profit Boardroom",
+              "does": "Link 1 on all 6 newest; paid Skool.",
+              "basis": "seen",
+              "url": "https://www.skool.com/ai-profit-lab-7462/about"
+            },
+            {
+              "at": "AI Money Lab",
+              "does": "Link 2 on 3 of 6; free Skool.",
+              "basis": "seen",
+              "url": "https://www.skool.com/ai-seo-with-julian-goldie-1553/about"
+            },
+            {
+              "at": "aiprofitboardroom.com",
+              "does": "Link 2 on the other 3.",
+              "basis": "seen",
+              "url": "https://aiprofitboardroom.com/"
+            },
+            {
+              "at": "Agency sign-up and free strategy call",
+              "does": "On 3 of 6, with a backlink portal.",
+              "basis": "seen",
+              "url": "https://go.juliangoldie.com/strategy-session"
+            },
+            {
+              "at": "Free AI SEO course and free book",
+              "does": "Last on the same 3; both ask for an email.",
+              "basis": "seen",
+              "url": "https://go.juliangoldie.com/chat-gpt-prompts"
+            }
+          ]
+        },
+        {
+          "from": "X",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "A post on a new AI agent",
+              "does": "About 30 a day; usual 1.7K views.",
+              "basis": "counted"
+            },
+            {
+              "at": "Free AI course + community",
+              "does": "First link in his bio; then a backlink gameplan.",
+              "basis": "seen",
+              "url": "https://juliangoldieai.com/jeFE7"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "AI Money Lab (free Skool)",
+          "price": "Free",
+          "kind": "free",
+          "what": "Workflows, prompts, tools, a lead-generation blueprint.",
+          "basis": "seen",
+          "url": "https://www.skool.com/ai-seo-with-julian-goldie-1553/about"
+        },
+        {
+          "name": "Free AI SEO course",
+          "price": "“FREE TODAY” (struck $5,000+); email",
+          "kind": "free",
+          "what": "262 video lessons in 22 modules.",
+          "basis": "seen",
+          "url": "https://go.juliangoldie.com/chat-gpt-prompts"
+        },
+        {
+          "name": "Link Building Mastery (book)",
+          "price": "Free; email",
+          "kind": "free",
+          "what": "100+ pages on link building.",
+          "basis": "seen",
+          "url": "https://go.juliangoldie.com/opt-in"
+        },
+        {
+          "name": "Free strategy session",
+          "price": "Free call",
+          "kind": "free",
+          "what": "A 30-minute audit call for the agency.",
+          "basis": "seen",
+          "url": "https://go.juliangoldie.com/strategy-session"
+        },
+        {
+          "name": "AI Profit Boardroom",
+          "price": "$39/month on Skool (struck $69); $59/month on its own site (struck $71)",
+          "kind": "paid",
+          "what": "Live calls, daily Q&A, automation kits, giveaways.",
+          "basis": "seen",
+          "url": "https://www.skool.com/ai-profit-lab-7462/about"
+        },
+        {
+          "name": "SEO Elite Circle",
+          "price": "$149/month",
+          "kind": "paid",
+          "what": "Weekly hot-seat calls and direct messages.",
+          "basis": "seen",
+          "url": "https://www.skool.com/seo-mastermind-2356/about"
+        },
+        {
+          "name": "Goldie Agency AI SEO",
+          "price": "From $497/month",
+          "kind": "paid",
+          "what": "Content, digital PR, links and AI visibility tracking.",
+          "basis": "seen",
+          "url": "https://goldie.agency"
+        },
+        {
+          "name": "Link building and SEO packages",
+          "price": "No prices shown",
+          "kind": "paid",
+          "what": "Ordered through the agency’s order pages.",
+          "basis": "seen",
+          "url": "https://orders.goldie.agency/order/85J85W"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@JulianGoldieSEO",
+          "url": "https://www.youtube.com/@JulianGoldieSEO",
+          "label": "YouTube"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@juliangoldieai",
+          "url": "https://www.instagram.com/juliangoldieai/",
+          "label": "Instagram"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "juliangoldieseo",
+          "url": "https://www.linkedin.com/in/juliangoldieseo/",
+          "label": "LinkedIn"
+        },
+        {
+          "kind": "X",
+          "handle": "@JulianGoldieSEO",
+          "url": "https://x.com/JulianGoldieSEO",
+          "label": "@JulianGoldieSEO"
+        },
+        {
+          "kind": "Facebook",
+          "handle": "@groups",
+          "url": "https://www.facebook.com/groups/whitehatlinkbuilding",
+          "label": "Facebook group"
+        }
+      ]
+    },
+    {
+      "id": "kallaway",
+      "name": "Kallaway",
+      "avatar": "https://yt3.googleusercontent.com/XIzKvW4GPNDLqQR-xKLYVPZRP8OHXbkh1P3Ri7r_yQUqBa9Yg98XEUT4WsBuojwKB_qYBSw-MLU=s160-c-k-c0x00ffffff-no-rj",
+      "readOn": "2026-11-02",
+      "game": "Teach hooks and storytelling, capture emails with a free 7-day course, and sell his own software (Sandcastles), a live cohort and weekly coaching. On Instagram nearly every post trades a guide for a comment.",
+      "platforms": [
+        {
+          "name": "YouTube",
+          "followers": 481000,
+          "url": "https://www.youtube.com/@kallawaymarketing"
+        },
+        {
+          "name": "Instagram",
+          "followers": 196000,
+          "url": "https://www.instagram.com/kallawaymarketing/"
+        },
+        {
+          "name": "LinkedIn",
+          "followers": 37636,
+          "url": "https://www.linkedin.com/in/kanekallaway/"
+        },
+        {
+          "name": "X",
+          "followers": 17747,
+          "url": "https://x.com/kanekallaway"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "Free 7-day course",
+              "does": "Email. The cohort takes this slot during a launch.",
+              "basis": "seen",
+              "url": "https://shortformsystem.co/"
+            },
+            {
+              "at": "Sandcastles",
+              "does": "His software.",
+              "basis": "seen",
+              "url": "https://sandcastles.ai/"
+            },
+            {
+              "at": "Work with me",
+              "does": "Weekly coaching.",
+              "basis": "seen",
+              "url": "https://onefactor.ai/kallaway/academy"
+            }
+          ]
+        },
+        {
+          "from": "Instagram",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "Comment a keyword",
+              "does": "11 of his last 12 posts.",
+              "basis": "seen"
+            },
+            {
+              "at": "DM with the link",
+              "does": "Promised in the captions; the DM itself needs a comment to see.",
+              "basis": "open"
+            },
+            {
+              "at": "Bio: the Academy",
+              "does": "kallaway.co/academy, the coaching.",
+              "basis": "seen",
+              "url": "https://onefactor.ai/kallaway/academy"
+            }
+          ]
+        },
+        {
+          "from": "LinkedIn",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "Comment a keyword",
+              "does": "4 posts.",
+              "basis": "counted"
+            },
+            {
+              "at": "Few takers",
+              "does": "3, 4, 4, 23 reactions.",
+              "basis": "counted"
+            }
+          ]
+        },
+        {
+          "from": "X",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "His YouTube",
+              "does": "The profile’s one link.",
+              "basis": "seen",
+              "url": "https://youtube.com/@kallawaymarketing"
+            },
+            {
+              "at": "Sandcastles",
+              "does": "Named in the bio: the software he’s building.",
+              "basis": "seen",
+              "url": "https://sandcastles.ai/"
+            },
+            {
+              "at": "Short Form Academy",
+              "does": "Named in the bio; kallaway.co/academy lands on the Academy page.",
+              "basis": "seen",
+              "url": "https://onefactor.ai/kallaway/academy"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "Free 7-day email course",
+          "price": "Free",
+          "kind": "free",
+          "what": "Short-form content, by email.",
+          "basis": "seen",
+          "url": "https://shortformsystem.co/"
+        },
+        {
+          "name": "Sandcastles",
+          "price": "$49–$499/mo",
+          "kind": "paid",
+          "what": "His content software. Yearly: $39, $79 or $399 a month.",
+          "basis": "seen",
+          "url": "https://sandcastles.ai/"
+        },
+        {
+          "name": "Short Form Launch",
+          "price": "Not shown",
+          "kind": "paid",
+          "what": "4-week live cohort, waitlist only. The page lists its “value” as $11,225.",
+          "basis": "seen",
+          "url": "https://onefactor.ai/kallaway/launch"
+        },
+        {
+          "name": "Short Form Academy",
+          "price": "$297/week",
+          "kind": "paid",
+          "what": "1:1 coaching, cancel anytime; leaving bars you for 12 months. An older page says it’s closed.",
+          "basis": "seen",
+          "url": "https://onefactor.ai/kallaway/academy"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@kallawaymarketing",
+          "url": "https://www.youtube.com/@kallawaymarketing",
+          "label": "YouTube"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@kallawaymarketing",
+          "url": "https://www.instagram.com/kallawaymarketing/",
+          "label": "Instagram"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "kanekallaway",
+          "url": "https://www.linkedin.com/in/kanekallaway/",
+          "label": "LinkedIn"
+        },
+        {
+          "kind": "X",
+          "handle": "@kanekallaway",
+          "url": "https://x.com/kanekallaway",
+          "label": "@kanekallaway on X"
+        }
+      ]
+    },
+    {
+      "id": "kieran",
+      "name": "Kieran Flanagan · MATG",
+      "avatar": "https://yt3.googleusercontent.com/_Elo3_9mVlpeklJsam8fj50KnvE24IiDXPtQ074_HCG4kRp1f0GhWVqfPsY9HEgNOBOJXCwN=s160-c-k-c0x00ffffff-no-rj",
+      "readOn": "2026-11-02",
+      "game": "A company show done well: two HubSpot executives make long AI-marketing episodes, often with a guest, and every episode trades a free download made for that topic for a HubSpot lead. The money is HubSpot’s, not theirs.",
+      "platforms": [
+        {
+          "name": "YouTube",
+          "followers": 100000,
+          "url": "https://www.youtube.com/@MATGpod/about"
+        },
+        {
+          "name": "Instagram",
+          "followers": 239,
+          "url": "https://www.instagram.com/matgpod/"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "A free download for this episode",
+              "does": "HubSpot form: name, email, website, company size.",
+              "basis": "seen",
+              "url": "https://offers.hubspot.com/use-claude-like-an-ai-expert"
+            },
+            {
+              "at": "Loop, their book",
+              "does": "Pre-order from HubSpot.",
+              "basis": "seen",
+              "url": "https://www.hubspot.com/loop-marketing-book"
+            }
+          ]
+        },
+        {
+          "from": "Instagram",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "Dormant",
+              "does": "Last post October 2024.",
+              "basis": "seen"
+            }
+          ]
+        },
+        {
+          "from": "LinkedIn",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "Not captured yet",
+              "does": "Kieran posts on LinkedIn; this test run stopped before that capture.",
+              "basis": "open"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "A download per episode",
+          "price": "Free",
+          "kind": "free",
+          "what": "Frameworks, prompts and lesson lists, for an email and company details.",
+          "basis": "seen",
+          "url": "https://offers.hubspot.com/use-claude-like-an-ai-expert"
+        },
+        {
+          "name": "Loop, the book",
+          "price": "Not shown",
+          "kind": "paid",
+          "what": "By Kipp Bodnar and Kieran Flanagan. On pre-order.",
+          "basis": "seen",
+          "url": "https://www.hubspot.com/loop-marketing-book"
+        },
+        {
+          "name": "HubSpot",
+          "price": "Not checked",
+          "kind": "paid",
+          "what": "What the leads are for, as far as can be seen. HubSpot’s pricing wasn’t looked at.",
+          "basis": "open"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@MATGpod",
+          "url": "https://www.youtube.com/@MATGpod",
+          "label": "YouTube"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@matgpod",
+          "url": "https://www.instagram.com/matgpod/",
+          "label": "@matgpod on Instagram"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "kieranjflanagan",
+          "url": "https://www.linkedin.com/in/kieranjflanagan/",
+          "label": "LinkedIn"
+        }
+      ]
+    },
+    {
+      "id": "liam",
+      "name": "Liam Ottley",
+      "avatar": "https://yt3.googleusercontent.com/81YBrChz5qTRqj6J2rrzqJgD4y_n3SMkfVdQX66X7EhpfVwDh-xUJBEG5GaneiO5Bpr_km96VQ=s160-c-k-c0x00ffffff-no-rj",
+      "readOn": "2026-11-02",
+      "game": "Long beginner guides to building and selling AI made the channel. Now YouTube sends people to his newsletter, then to an application for AI Makeover, his done-for-you service. His big Skool group and accelerator run under another company’s name.",
+      "platforms": [
+        {
+          "name": "YouTube",
+          "followers": 865000,
+          "url": "https://www.youtube.com/@LiamOttleyVLOGs/featured"
+        },
+        {
+          "name": "Instagram",
+          "followers": 45000,
+          "url": "https://www.instagram.com/liamottley"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "Liam’s Levers",
+              "does": "His newsletter: the first link he owns.",
+              "basis": "seen",
+              "url": "https://liamottley.com/join"
+            },
+            {
+              "at": "AI Makeover",
+              "does": "Application only. The channel header link goes to its form.",
+              "basis": "seen",
+              "url": "https://aimakeover.com/"
+            }
+          ]
+        },
+        {
+          "from": "Instagram",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "Comment a keyword",
+              "does": "2 of his last 12 posts.",
+              "basis": "seen"
+            },
+            {
+              "at": "DM with a video link",
+              "does": "Back to YouTube.",
+              "basis": "seen"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "Liam’s Levers",
+          "price": "Free",
+          "kind": "free",
+          "what": "Newsletter on Kit, “a few times a week”. “100K+ founders”, his own figure.",
+          "basis": "seen",
+          "url": "https://liamottley.com/join"
+        },
+        {
+          "name": "A download for an email",
+          "price": "Free",
+          "kind": "free",
+          "what": "Behind an email form; contents not checked.",
+          "basis": "open",
+          "url": "https://liamottley.com/waiting-room"
+        },
+        {
+          "name": "AI Makeover",
+          "price": "Not shown",
+          "kind": "paid",
+          "what": "Done-for-you rebuild of a business with AI. Application only.",
+          "basis": "seen",
+          "url": "https://aimakeover.com/"
+        },
+        {
+          "name": "AAA Accelerator",
+          "price": "Not shown",
+          "kind": "paid",
+          "what": "Every button books a call; the site never names him. Reviews say about $5K–$7K, unconfirmed.",
+          "basis": "open",
+          "url": "https://aaaaccelerator.com/"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@LiamOttleyVLOGs",
+          "url": "https://www.youtube.com/@LiamOttleyVLOGs/featured",
+          "label": "VLOG Channel"
+        },
+        {
+          "kind": "YouTube",
+          "handle": "@LiamOttley",
+          "url": "https://www.youtube.com/@LiamOttley",
+          "label": "YouTube"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@liamottley",
+          "url": "https://www.instagram.com/liamottley",
+          "label": "Instagram"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "liamottley",
+          "url": "https://www.linkedin.com/in/liamottley/",
+          "label": "LinkedIn"
+        },
+        {
+          "kind": "X",
+          "handle": "@liamottley_",
+          "url": "https://www.x.com/liamottley_",
+          "label": "X"
+        }
+      ]
+    },
+    {
+      "id": "marc",
+      "name": "Marc Lou",
+      "avatar": "https://pbs.twimg.com/profile_images/2081903460199641088/YZJqLn39_400x400.jpg",
+      "readOn": "2026-11-06",
+      "game": null,
+      "platforms": [
+        {
+          "name": "X",
+          "followers": 422938,
+          "url": "https://x.com/marclou"
+        },
+        {
+          "name": "YouTube",
+          "followers": 163000,
+          "url": "https://www.youtube.com/@marc-lou"
+        },
+        {
+          "name": "LinkedIn",
+          "followers": 59000,
+          "url": "https://www.linkedin.com/in/marclouvion/"
+        },
+        {
+          "name": "Instagram",
+          "followers": 32000,
+          "url": "https://www.instagram.com/marclouvion/"
+        },
+        {
+          "name": "GitHub",
+          "followers": 2478,
+          "url": "https://github.com/marclou"
+        },
+        {
+          "name": "TikTok",
+          "followers": 1477,
+          "url": "https://www.tiktok.com/@marclouv"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "The video’s own page",
+              "does": "The free book, a race page or the post it came from.",
+              "basis": "seen",
+              "url": "https://book.marclou.com/"
+            },
+            {
+              "at": "marclou.com",
+              "does": "Then CodeFast, DataFast, TrustMRR and the newsletter.",
+              "basis": "seen",
+              "url": "https://marclou.com"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "Just Ship It newsletter",
+          "price": "Free",
+          "kind": "free",
+          "what": "Ideas, launching and getting profitable; irregular.",
+          "basis": "seen",
+          "url": "https://marclou.com/newsletter"
+        },
+        {
+          "name": "CodeFast",
+          "price": "$169",
+          "kind": "paid",
+          "what": "Learn to code to ship; on sale from $299.",
+          "basis": "seen",
+          "url": "https://codefa.st"
+        },
+        {
+          "name": "ShipFast",
+          "price": "$199–$299",
+          "kind": "paid",
+          "what": "A Next.js starter to launch a SaaS fast; one-time.",
+          "basis": "seen",
+          "url": "https://shipfa.st"
+        },
+        {
+          "name": "Ship or Die",
+          "price": "$399",
+          "kind": "paid",
+          "what": "Ship an app in 30 days or get kicked out; with Jack Friks.",
+          "basis": "seen",
+          "url": "https://www.ship-or-die.com"
+        },
+        {
+          "name": "MailCheap",
+          "price": "$19–$799/mo",
+          "kind": "paid",
+          "what": "Newsletter sending, priced by emails sent.",
+          "basis": "seen",
+          "url": "https://mailcheap.ai"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@marc-lou",
+          "url": "https://www.youtube.com/@marc-lou",
+          "label": "YouTube"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@marclouvion",
+          "url": "https://www.instagram.com/marclouvion/",
+          "label": "Instagram"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "marclouvion",
+          "url": "https://www.linkedin.com/in/marclouvion/",
+          "label": "LinkedIn"
+        },
+        {
+          "kind": "X",
+          "handle": "@marclou",
+          "url": "https://twitter.com/marclou",
+          "label": "@marclou"
+        },
+        {
+          "kind": "TikTok",
+          "handle": "@marclouv",
+          "url": "https://www.tiktok.com/@marclouv",
+          "label": "TikTok"
+        },
+        {
+          "kind": "GitHub",
+          "handle": "@marclou",
+          "url": "https://github.com/marclou",
+          "label": "GitHub"
+        }
+      ]
+    },
+    {
+      "id": "mark",
+      "name": "Mark Kashef",
+      "avatar": "https://yt3.googleusercontent.com/-pBSgbiB5HgpqtBg5wqvtmOkDNUQ8W82mJlAEpjpYJHV-wNp-R67eS-tE5yK5xdjTUfrIX-MxNc=s900-c-k-c0x00ffffff-no-rj",
+      "readOn": "2026-11-06",
+      "game": "A small YouTube channel (89.6K) of careful tool tests sells two businesses straight from the About page: Prompt Advisers, his AI consultancy since late 2022, and a paid-only Skool, Early AI-dopters, at $43 a month. A security scanner he sells, Lockpick, is now included in the membership.",
+      "platforms": [
+        {
+          "name": "YouTube",
+          "followers": 89600,
+          "url": "https://www.youtube.com/@Mark_Kashef"
+        },
+        {
+          "name": "Skool (Early AI-dopters)",
+          "followers": 1100,
+          "url": "https://www.skool.com/earlyaidopters/about"
+        },
+        {
+          "name": "X",
+          "followers": 384,
+          "url": "https://x.com/MarkKashef"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "Early AI-dopters",
+              "does": "Link 1 on 4 of 6 newest; paid Skool.",
+              "basis": "seen",
+              "url": "https://www.skool.com/earlyaidopters/about"
+            },
+            {
+              "at": "A Gumroad kit",
+              "does": "On 4 of 6, matched to the video.",
+              "basis": "seen",
+              "url": "https://markkashef.gumroad.com/l/hack-yourself-checklist"
+            },
+            {
+              "at": "Lockpick",
+              "does": "On 3 of 6; link 1 once.",
+              "basis": "seen",
+              "url": "https://lockpick.app"
+            },
+            {
+              "at": "Prompt Advisers",
+              "does": "On 4 of 6, then his socials.",
+              "basis": "seen",
+              "url": "https://www.promptadvisers.com"
+            }
+          ]
+        },
+        {
+          "from": "X",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "A tool tip or take",
+              "does": "About 1.7 a day; usual 172 views.",
+              "basis": "counted"
+            },
+            {
+              "at": "promptadvisers.com",
+              "does": "The site in his profile.",
+              "basis": "seen",
+              "url": "https://www.promptadvisers.com"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "Lockpick Free",
+          "price": "$0/month",
+          "kind": "free",
+          "what": "5 scans a month on one site.",
+          "basis": "seen",
+          "url": "https://lockpick.app"
+        },
+        {
+          "name": "Gumroad kits",
+          "price": "Not shown",
+          "kind": "free",
+          "what": "A checklist or audit tied to each video.",
+          "basis": "open",
+          "url": "https://markkashef.gumroad.com/l/hack-yourself-checklist"
+        },
+        {
+          "name": "Early AI-dopters",
+          "price": "$43/month",
+          "kind": "paid",
+          "what": "Courses, coaching, weekly calls, Lockpick included.",
+          "basis": "seen",
+          "url": "https://www.skool.com/earlyaidopters/about"
+        },
+        {
+          "name": "Lockpick Deep",
+          "price": "$19/month or $190/year; Master Key from $49/month, coming soon",
+          "kind": "paid",
+          "what": "Deeper security scans, 10 sites, 3 seats.",
+          "basis": "seen",
+          "url": "https://lockpick.app"
+        },
+        {
+          "name": "O’Reilly live courses",
+          "price": "Through an O’Reilly subscription",
+          "kind": "paid",
+          "what": "Claude Code for Everyone and others.",
+          "basis": "seen",
+          "url": "https://www.oreilly.com/live-events/claude-code-for-everyone/0642572274368/"
+        },
+        {
+          "name": "Prompt Advisers",
+          "price": "No prices shown; free 15-minute call",
+          "kind": "paid",
+          "what": "Consulting, workshops, fractional AI leadership, security reviews.",
+          "basis": "seen",
+          "url": "https://www.promptadvisers.com"
+        },
+        {
+          "name": "Keynotes",
+          "price": "$6k–10k CAD (speaker agency listing)",
+          "kind": "paid",
+          "what": "Talks booked through PepTalk.",
+          "basis": "seen",
+          "url": "https://www.getapeptalk.com/experts/mark-kashef-speaker"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@Mark_Kashef",
+          "url": "https://www.youtube.com/@Mark_Kashef",
+          "label": "YouTube"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@markkashef",
+          "url": "https://www.instagram.com/markkashef/",
+          "label": "Instagram"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "mkashef",
+          "url": "https://www.linkedin.com/in/mkashef/",
+          "label": "LinkedIn"
+        },
+        {
+          "kind": "X",
+          "handle": "@MarkKashef",
+          "url": "https://x.com/MarkKashef",
+          "label": "@MarkKashef"
+        },
+        {
+          "kind": "TikTok",
+          "handle": "@markkashef",
+          "url": "https://www.tiktok.com/@markkashef",
+          "label": "TikTok"
+        }
+      ]
+    },
+    {
+      "id": "matt",
+      "name": "Matt Wolfe",
+      "avatar": "https://yt3.googleusercontent.com/Xfsv8L8S4Dt2PPpgaexoMluK9gkm4H77TY-Sae7DbY8qKSaGI0FOS_uzw65kxVtdQlYvc02bB6k=s900-c-k-c0x00ffffff-no-rj",
+      "readOn": "2026-11-06",
+      "game": "Be the friendly filter for AI news: a weekly AI News roundup and new-model tests on a 1M-subscriber YouTube channel, all pointing to FutureTools.io, a free tools directory that ranks in search, and a free twice-weekly newsletter. He sells nothing of his own: sponsors and affiliate links pay.",
+      "platforms": [
+        {
+          "name": "YouTube",
+          "followers": 1030000,
+          "url": "https://www.youtube.com/@mreflow"
+        },
+        {
+          "name": "Newsletter",
+          "followers": 250000,
+          "url": "https://www.futuretools.io/newsletter"
+        },
+        {
+          "name": "X",
+          "followers": 121700,
+          "url": "https://x.com/mreflow"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "A sponsor",
+              "does": "Link 1 on 5 of 6 recent videos.",
+              "basis": "seen"
+            },
+            {
+              "at": "FutureTools.io",
+              "does": "Next on all 6.",
+              "basis": "seen",
+              "url": "https://www.futuretools.io/"
+            },
+            {
+              "at": "His socials",
+              "does": "X, Instagram, Threads, LinkedIn, Facebook.",
+              "basis": "seen"
+            }
+          ]
+        },
+        {
+          "from": "X",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "A reaction, a demo or a personal post",
+              "does": "About 0.9 a day; usual 7.8K views.",
+              "basis": "counted"
+            },
+            {
+              "at": "futuretools.beehiiv.com/subscribe",
+              "does": "In his profile: “Join 250,000+ Readers”.",
+              "basis": "seen",
+              "url": "https://futuretools.beehiiv.com/subscribe"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "FutureTools.io",
+          "price": "Free",
+          "kind": "free",
+          "what": "4,500+ AI tools, a top-20 list, news; free tool submissions.",
+          "basis": "seen",
+          "url": "https://www.futuretools.io/"
+        },
+        {
+          "name": "Future Tools newsletter",
+          "price": "Free",
+          "kind": "free",
+          "what": "Twice a week; 250,000+ readers, his figure.",
+          "basis": "seen",
+          "url": "https://www.futuretools.io/newsletter"
+        },
+        {
+          "name": "Sponsorships",
+          "price": "Not public",
+          "kind": "paid",
+          "what": "YouTube and newsletter; through Smooth Media and a business email.",
+          "basis": "seen"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@mreflow",
+          "url": "https://www.youtube.com/@mreflow",
+          "label": "YouTube"
+        },
+        {
+          "kind": "YouTube",
+          "handle": "@TheNextWavePod",
+          "url": "https://www.youtube.com/@TheNextWavePod",
+          "label": "The Next Wave (podcast channel)"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@mr.eflow",
+          "url": "https://instagram.com/mr.eflow",
+          "label": "Instagram"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "matt-wolfe-30841712",
+          "url": "https://www.linkedin.com/in/matt-wolfe-30841712/",
+          "label": "LinkedIn"
+        },
+        {
+          "kind": "X",
+          "handle": "@mreflow",
+          "url": "https://twitter.com/mreflow",
+          "label": "@mreflow"
+        },
+        {
+          "kind": "TikTok",
+          "handle": "@mattrwolfe",
+          "url": "https://www.tiktok.com/@mattrwolfe",
+          "label": "TikTok"
+        },
+        {
+          "kind": "Threads",
+          "handle": "@mr.eflow",
+          "url": "https://www.threads.net/@mr.eflow",
+          "label": "Threads"
+        },
+        {
+          "kind": "Facebook",
+          "handle": "@mattrwolfe",
+          "url": "https://www.facebook.com/mattrwolfe",
+          "label": "Facebook"
+        }
+      ]
+    },
+    {
+      "id": "miles",
+      "name": "Miles Deutscher",
+      "avatar": "https://pbs.twimg.com/profile_images/2043255869513601025/wFHeLjZX_400x400.jpg",
+      "readOn": "2026-11-06",
+      "game": "X is the engine: five or six posts a day of AI prompts, tools and trading setups for 682K followers, with an X Article about once a week as the big swing and quote posts that keep sending people back to it, exactly the routine he teaches. Links mostly stay off X; YouTube and a free AI library collect emails and Skool members, and the money is Miles High Club, a $199-a-month crypto trading community, with an X growth product teased.",
+      "platforms": [
+        {
+          "name": "X",
+          "followers": 682300,
+          "url": "https://x.com/milesdeutscher"
+        },
+        {
+          "name": "YouTube (finance)",
+          "followers": 248000,
+          "url": "https://www.youtube.com/@milesdeutscher1357"
+        },
+        {
+          "name": "YouTube",
+          "followers": 152000,
+          "url": "https://www.youtube.com/@AIEdgeHQ"
+        },
+        {
+          "name": "Instagram",
+          "followers": 106000,
+          "url": "https://www.instagram.com/miles_deutscher/"
+        },
+        {
+          "name": "X (@aiedge_)",
+          "followers": 80523,
+          "url": "https://x.com/aiedge_"
+        },
+        {
+          "name": "X (@mileshighclub_)",
+          "followers": 13485,
+          "url": "https://x.com/mileshighclub_"
+        },
+        {
+          "name": "Threads",
+          "followers": 6900,
+          "url": "https://www.threads.com/@miles_deutscher"
+        },
+        {
+          "name": "Skool (Finance)",
+          "followers": 3208,
+          "url": "https://www.skool.com/milesdeutscherfinance"
+        },
+        {
+          "name": "Skool (AI Edge)",
+          "followers": 3005,
+          "url": "https://www.skool.com/milesdeutscher"
+        }
+      ],
+      "routes": [
+        {
+          "from": "X",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "A prompt, tool or trading post",
+              "does": "About 5.5 a day; usual 39K views.",
+              "basis": "counted"
+            },
+            {
+              "at": "A weekly X Article",
+              "does": "Median 247K views, re-sent with quote posts.",
+              "basis": "counted",
+              "url": "https://x.com/milesdeutscher/articles"
+            },
+            {
+              "at": "YouTube, Skool or the free library",
+              "does": "The profile links YouTube; links in posts are rare.",
+              "basis": "seen",
+              "url": "https://www.youtube.com/@AIEdgeHQ"
+            }
+          ]
+        },
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "AI Edge Skool (free)",
+              "does": "Link 1 on every recent long video.",
+              "basis": "seen",
+              "url": "https://www.skool.com/milesdeutscher"
+            },
+            {
+              "at": "Affiliates",
+              "does": "A financial data API, Quiver Quant, Hostinger, Wispr Flow.",
+              "basis": "seen"
+            }
+          ]
+        },
+        {
+          "from": "YouTube",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "A free resource on milesdeutscher.com",
+              "does": "One per video, 85 in the library.",
+              "basis": "seen",
+              "url": "https://milesdeutscher.com"
+            },
+            {
+              "at": "Email, then WhatsApp",
+              "does": "The email joins the AI Edge newsletter; a WhatsApp number unlocks a join button.",
+              "basis": "seen",
+              "url": "https://www.aiedgehq.co/"
+            },
+            {
+              "at": "What follows",
+              "does": "Needs an email and a phone number to see.",
+              "basis": "open"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "Free AI library",
+          "price": "Free",
+          "kind": "free",
+          "what": "85 prompts, skills and guides; each behind an email.",
+          "basis": "seen",
+          "url": "https://milesdeutscher.com"
+        },
+        {
+          "name": "AI Edge and Finance Skools",
+          "price": "Free",
+          "kind": "free",
+          "what": "Resource library, guides and live Q&As; 3,005 and 3,208 members.",
+          "basis": "seen",
+          "url": "https://www.skool.com/milesdeutscher/about"
+        },
+        {
+          "name": "X Subscriptions",
+          "price": "$19/mo",
+          "kind": "paid",
+          "what": "Subscriber-only posts; 37 subscribers, 11 posts.",
+          "basis": "seen",
+          "url": "https://x.com/milesdeutscher"
+        },
+        {
+          "name": "Miles High Club",
+          "price": "$199/mo",
+          "kind": "paid",
+          "what": "Crypto trading feed from him and five analysts, weekly streams.",
+          "basis": "seen",
+          "url": "https://whop.com/miles-high-club/miles-high-club"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@AIEdgeHQ",
+          "url": "https://www.youtube.com/@AIEdgeHQ",
+          "label": "AI Edge"
+        },
+        {
+          "kind": "YouTube",
+          "handle": "@milesdeutscher1357",
+          "url": "https://www.youtube.com/@milesdeutscher1357",
+          "label": "Miles Deutscher Finance"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@miles_deutscher",
+          "url": "https://www.instagram.com/miles_deutscher/",
+          "label": "@miles_deutscher"
+        },
+        {
+          "kind": "X",
+          "handle": "@milesdeutscher",
+          "url": "https://x.com/milesdeutscher",
+          "label": "@milesdeutscher"
+        },
+        {
+          "kind": "X",
+          "handle": "@aiedge_",
+          "url": "https://x.com/aiedge_",
+          "label": "@aiedge_"
+        },
+        {
+          "kind": "X",
+          "handle": "@mileshighclub_",
+          "url": "https://x.com/mileshighclub_",
+          "label": "@mileshighclub_"
+        },
+        {
+          "kind": "Threads",
+          "handle": "@miles_deutscher",
+          "url": "https://www.threads.com/@miles_deutscher",
+          "label": "Threads"
+        }
+      ]
+    },
+    {
+      "id": "mindstream",
+      "name": "Mindstream",
+      "avatar": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/publication/logo/093c1cec-7758-44d9-af90-0039ca20024f/thumb_logo_2.gif",
+      "readOn": "2026-11-06",
+      "game": "Grow a free daily AI email from LinkedIn carousels and explainers with a subscribe line, keep it free and on time every day, and sell daily sponsor slots. The play ended in a sale: HubSpot bought it 17 months in, at about 150K subscribers, and now runs it as a HubSpot Media title.",
+      "platforms": [
+        {
+          "name": "Newsletter",
+          "followers": 200000,
+          "url": "https://www.mindstream.news/"
+        },
+        {
+          "name": "LinkedIn (Adam Biddlecombe)",
+          "followers": 200000,
+          "url": "https://www.linkedin.com/in/adam-bidd/"
+        }
+      ],
+      "routes": [
+        {
+          "from": "LinkedIn",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "A carousel or explainer",
+              "does": "Educational, with a subscribe line, per Matt.",
+              "basis": "seen"
+            },
+            {
+              "at": "mindstream.news/subscribe",
+              "does": "Free; a Claude Cowork Bundle for joining.",
+              "basis": "seen",
+              "url": "https://www.mindstream.news/subscribe"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "Claude Cowork Bundle",
+          "price": "Free with signup",
+          "kind": "free",
+          "what": "The subscribe page’s gift.",
+          "basis": "seen",
+          "url": "https://www.mindstream.news/subscribe"
+        },
+        {
+          "name": "Most Interesting Women in AI 2026",
+          "price": "Free",
+          "kind": "free",
+          "what": "A yearly list, bannered site-wide.",
+          "basis": "seen",
+          "url": "https://www.mindstream.news/women-in-ai-2026"
+        },
+        {
+          "name": "Mindstream",
+          "price": "Free",
+          "kind": "free",
+          "what": "Daily AI email; 200,000+ readers, their figure.",
+          "basis": "seen",
+          "url": "https://www.mindstream.news/"
+        },
+        {
+          "name": "Sponsorships",
+          "price": "Was $50/day at 5K subs; now not public",
+          "kind": "paid",
+          "what": "Daily slots before the sale; current ad sales not found.",
+          "basis": "seen"
+        }
+      ],
+      "links": [
+        {
+          "kind": "LinkedIn",
+          "handle": "adam-bidd",
+          "url": "https://www.linkedin.com/in/adam-bidd/",
+          "label": "LinkedIn (Adam Biddlecombe)"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "mindstreamnews",
+          "url": "https://www.linkedin.com/company/mindstreamnews",
+          "label": "Mindstream (company page)"
+        }
+      ]
+    },
+    {
+      "id": "nate",
+      "name": "Nate Herk",
+      "avatar": "https://yt3.googleusercontent.com/rjiskq1h4EjTgsqvP_BOsnpwCdHUHKvSo00RmUraoWqDuHQN6RAUMdo1ircHs0ZcKQrrWNvukEs=s900-c-k-c0x00ffffff-no-rj",
+      "readOn": "2026-11-06",
+      "game": "A tutorial a day on YouTube about building and selling AI automations, plus 5- to 10-hour free courses, feeds the biggest free AI Skool (479.8K) and a free PDF that asks for an email. Both lead to one paid tier, AIS+ at $129 a month, now topped by a consultant certification, online events and a book.",
+      "platforms": [
+        {
+          "name": "YouTube",
+          "followers": 1110000,
+          "url": "https://www.youtube.com/@nateherk"
+        },
+        {
+          "name": "Skool (free)",
+          "followers": 479800,
+          "url": "https://www.skool.com/ai-automation-society/about"
+        },
+        {
+          "name": "X",
+          "followers": 37600,
+          "url": "https://x.com/nateherk"
+        },
+        {
+          "name": "Skool (AIS+)",
+          "followers": 3300,
+          "url": "https://www.skool.com/ai-automation-society-plus/about"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "Free PDF for an email",
+              "does": "Link 1 on 4 of 6 newest: First Client SOP, ScrollCraft, AI OS.",
+              "basis": "seen",
+              "url": "https://app.aiautomationsociety.ai/optin/first-client-SOP/"
+            },
+            {
+              "at": "AIS+",
+              "does": "On 4 of 6, usually right after the PDF.",
+              "basis": "seen",
+              "url": "https://www.skool.com/ai-automation-society-plus/about"
+            },
+            {
+              "at": "Free Skool",
+              "does": "On all 6.",
+              "basis": "seen",
+              "url": "https://www.skool.com/ai-automation-society/about"
+            },
+            {
+              "at": "Glaido and Hostinger",
+              "does": "Affiliate links on all 6; Hostinger takes link 1 once.",
+              "basis": "seen"
+            }
+          ]
+        },
+        {
+          "from": "X",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "A build or a tool test",
+              "does": "About 2.8 a day; usual 6.7K views.",
+              "basis": "counted"
+            },
+            {
+              "at": "YouTube",
+              "does": "The only link in his profile; the bio names AI Automation Society.",
+              "basis": "seen",
+              "url": "https://www.youtube.com/@nateherk"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "AI Automation Society (free Skool)",
+          "price": "Free",
+          "kind": "free",
+          "what": "Templates, Claude Code skills, a 7-day challenge, the AI OS repo.",
+          "basis": "seen",
+          "url": "https://www.skool.com/ai-automation-society/about"
+        },
+        {
+          "name": "First Client SOP and other PDFs",
+          "price": "Free (email)",
+          "kind": "free",
+          "what": "A PDF sent by email; one field.",
+          "basis": "seen",
+          "url": "https://app.aiautomationsociety.ai/optin/first-client-SOP/"
+        },
+        {
+          "name": "AI Automation Society Plus",
+          "price": "$129/month",
+          "kind": "paid",
+          "what": "Courses, weekly Q&As, 3 online conferences a year; steps unlock at 30 and 90 days.",
+          "basis": "seen",
+          "url": "https://www.skool.com/ai-automation-society-plus/about"
+        },
+        {
+          "name": "AIS Live",
+          "price": "No prices shown; free for AIS+",
+          "kind": "paid",
+          "what": "Two-day online events; in person June 2027 in Salt Lake City.",
+          "basis": "seen",
+          "url": "https://www.ais.live/"
+        },
+        {
+          "name": "Certified AI Consultant",
+          "price": "$1,000 deposit; tuition “By cohort”",
+          "kind": "paid",
+          "what": "10 weeks, graded portfolio and live interview.",
+          "basis": "seen",
+          "url": "https://aiautomationsociety.ai/certification/"
+        },
+        {
+          "name": "Becoming AI Native (book)",
+          "price": "Not checked",
+          "kind": "paid",
+          "what": "His book, linked from his site.",
+          "basis": "open",
+          "url": "https://www.amazon.com/dp/B0H84Z9CXG"
+        },
+        {
+          "name": "Merch",
+          "price": "From $3.99 (stickers) to from $112.99 (hoodie)",
+          "kind": "paid",
+          "what": "AIS-branded clothes and goods.",
+          "basis": "seen",
+          "url": "https://shop.aiautomationsociety.ai/shop"
+        },
+        {
+          "name": "Uppit AI",
+          "price": "No prices shown",
+          "kind": "paid",
+          "what": "His agency brand; “Work with me” on his site.",
+          "basis": "seen",
+          "url": "https://uppitai.com/"
+        },
+        {
+          "name": "Sponsorships",
+          "price": "Not public",
+          "kind": "paid",
+          "what": "Through a Smooth Media email.",
+          "basis": "seen"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@nateherk",
+          "url": "https://www.youtube.com/@nateherk",
+          "label": "YouTube"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@nateherk",
+          "url": "https://www.instagram.com/nateherk/",
+          "label": "Instagram"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "nateherkelman",
+          "url": "https://www.linkedin.com/in/nateherkelman/",
+          "label": "LinkedIn"
+        },
+        {
+          "kind": "X",
+          "handle": "@nateherk",
+          "url": "https://x.com/nateherk",
+          "label": "@nateherk"
+        },
+        {
+          "kind": "GitHub",
+          "handle": "@nateherkai",
+          "url": "https://github.com/nateherkai",
+          "label": "GitHub"
+        }
+      ]
+    },
+    {
+      "id": "neil",
+      "name": "Neil Patel",
+      "avatar": "https://yt3.googleusercontent.com/4BGzw189O7AoJiYiqwpfwrv0I6gFLXp4oEK1DMjHsR4E1gs0hQs2ieXYNS3dukwsFEWdCYlI=s900-c-k-c0x00ffffff-no-rj",
+      "readOn": "2026-11-06",
+      "game": "Publish every day, everywhere, on what's changing in search (now AI answers), and give away the tools that measure it: free audits, Ubersuggest, AnswerThePublic. The point is agency work: every recent video but one links only to NP Digital, his agency of 1,000+ staff (his figure), with paid software as the cheaper rung.",
+      "platforms": [
+        {
+          "name": "YouTube",
+          "followers": 1600000,
+          "url": "https://www.youtube.com/@neilpatel"
+        },
+        {
+          "name": "Instagram",
+          "followers": 679935,
+          "url": "https://www.instagram.com/neilpatel/"
+        },
+        {
+          "name": "X",
+          "followers": 477849,
+          "url": "https://x.com/neilpatel"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "npdigital.com",
+              "does": "The only link on 5 of 6 recent videos: the agency.",
+              "basis": "seen",
+              "url": "https://npdigital.com"
+            },
+            {
+              "at": "HighLevel 30-day trial",
+              "does": "On the AI-employee video; he's a referral partner.",
+              "basis": "seen",
+              "url": "https://www.gohighlevel.com/neil-patel"
+            }
+          ]
+        },
+        {
+          "from": "X",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "A video or image post on AI search",
+              "does": "3.1 a day, every day; usual 5.5K views.",
+              "basis": "counted"
+            },
+            {
+              "at": "npdigital.com",
+              "does": "The website on his profile.",
+              "basis": "seen",
+              "url": "https://npdigital.com"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "Free SEO + AI Audit and tools",
+          "price": "Free",
+          "kind": "free",
+          "what": "Audit, keywords, backlinks, traffic, A/B calculator.",
+          "basis": "seen",
+          "url": "https://neilpatel.com/seo-analyzer/"
+        },
+        {
+          "name": "Webinars",
+          "price": "Free",
+          "kind": "free",
+          "what": "Live and on-demand; a live one on cutting ad costs, Nov 17.",
+          "basis": "seen",
+          "url": "https://neilpatel.com"
+        },
+        {
+          "name": "AnswerThePublic",
+          "price": "$20, $99 or $199/mo ($120, $594 or $1,194/yr)",
+          "kind": "paid",
+          "what": "Audience questions plus an AI article writer.",
+          "basis": "seen",
+          "url": "https://answerthepublic.com/pricing"
+        },
+        {
+          "name": "Ubersuggest",
+          "price": "$29, $49 or $99/mo; $192, $326 or $657/yr; $290, $490 or $990 lifetime",
+          "kind": "paid",
+          "what": "SEO and AI-visibility tool; 7-day trial on monthly plans.",
+          "basis": "seen",
+          "url": "https://ubersuggest.com/pricing"
+        },
+        {
+          "name": "HighLevel (referral)",
+          "price": "30-day free trial",
+          "kind": "free",
+          "what": "Someone else's software; he's paid per referral.",
+          "basis": "seen",
+          "url": "https://www.gohighlevel.com/neil-patel"
+        },
+        {
+          "name": "NP Digital",
+          "price": "Not public",
+          "kind": "paid",
+          "what": "Agency work, including AI Search Optimization; the form starts at a budget under $750 a month.",
+          "basis": "seen",
+          "url": "https://npdigital.com/about/"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@neilpatel",
+          "url": "https://www.youtube.com/@neilpatel",
+          "label": "YouTube"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@neilpatel",
+          "url": "https://www.instagram.com/neilpatel/",
+          "label": "Instagram"
+        },
+        {
+          "kind": "X",
+          "handle": "@neilpatel",
+          "url": "https://x.com/neilpatel",
+          "label": "@neilpatel on X"
+        }
+      ]
+    },
+    {
+      "id": "nevo",
+      "name": "Nevo David",
+      "avatar": "https://pbs.twimg.com/profile_images/2089387713976041474/I8Jv6dD0_400x400.jpg",
+      "readOn": "2026-11-04",
+      "game": null,
+      "platforms": [
+        {
+          "name": "X",
+          "followers": 26698,
+          "url": "https://x.com/wickedguro"
+        },
+        {
+          "name": "LinkedIn",
+          "followers": 9194,
+          "url": "https://www.linkedin.com/in/nevo-david/"
+        },
+        {
+          "name": "GitHub",
+          "followers": 2100,
+          "url": "https://github.com/nevo-david"
+        }
+      ],
+      "routes": [
+        {
+          "from": "X",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "An Article on how it happened",
+              "does": "About one every two weeks; 30K usual views.",
+              "basis": "counted"
+            },
+            {
+              "at": "Postiz 7-day trial",
+              "does": "A tracked postiz.pro link per Article, and his bio.",
+              "basis": "seen",
+              "url": "https://postiz.com/"
+            }
+          ]
+        },
+        {
+          "from": "X",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "nevo.md",
+              "does": "Bio link 2: the free MCP brain, behind an email sign-in.",
+              "basis": "seen",
+              "url": "https://nevo.md/"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "His X Articles",
+          "price": "Free",
+          "kind": "free",
+          "what": "Long how-I-grew-it Articles, each ending at Postiz.",
+          "basis": "seen",
+          "url": "https://x.com/wickedguro/articles"
+        },
+        {
+          "name": "Nevo's Brain (nevo.md)",
+          "price": "Free",
+          "kind": "free",
+          "what": "An MCP server with his playbook; email sign-in to connect it.",
+          "basis": "seen",
+          "url": "https://nevo.md/"
+        },
+        {
+          "name": "Postiz",
+          "price": "$29–$99/mo",
+          "kind": "paid",
+          "what": "Agentic social media scheduler, 7-day trial, plans by channel count.",
+          "basis": "seen",
+          "url": "https://postiz.com/pricing"
+        }
+      ],
+      "links": [
+        {
+          "kind": "X",
+          "handle": "@wickedguro",
+          "url": "https://x.com/wickedguro",
+          "label": "@wickedguro"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "nevo-david",
+          "url": "https://www.linkedin.com/in/nevo-david/",
+          "label": "LinkedIn"
+        },
+        {
+          "kind": "GitHub",
+          "handle": "nevo-david",
+          "url": "https://github.com/nevo-david",
+          "label": "GitHub"
+        },
+        {
+          "kind": "dev.to",
+          "handle": "nevodavid",
+          "url": "https://dev.to/nevodavid",
+          "label": "dev.to"
+        },
+        {
+          "kind": "X",
+          "handle": "@nevodavid",
+          "url": "https://x.com/nevodavid",
+          "label": "@nevodavid (old)"
+        },
+        {
+          "kind": "TikTok",
+          "handle": "@getpostiz",
+          "url": "https://www.tiktok.com/@getpostiz",
+          "label": "Postiz on TikTok"
+        }
+      ]
+    },
+    {
+      "id": "nick",
+      "name": "Nick Saraev",
+      "avatar": "https://yt3.googleusercontent.com/molHXVKVHeiHHsYtXrxCZNrwfKitFmAoXZ03CNngHmQSRiW9DAjiOYBxQTYiGuXbnLSQnoRa=s160-c-k-c0x00ffffff-no-rj",
+      "readOn": "2026-11-02",
+      "game": "Give away very long courses for free, everywhere, and send everyone to one paid Skool group, Maker School, which promises your first AI client in 90 days or your money back. His agency sits above it for people who’d rather pay than learn.",
+      "platforms": [
+        {
+          "name": "Instagram",
+          "followers": 730000,
+          "url": "https://instagram.com/nick_saraev/"
+        },
+        {
+          "name": "YouTube",
+          "followers": 578000,
+          "url": "https://www.youtube.com/@stackedpod"
+        },
+        {
+          "name": "LinkedIn",
+          "followers": 62064,
+          "url": "https://www.linkedin.com/in/nick-saraev/"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "Maker School",
+              "does": "Paid Skool group. First link, unless a sponsor has it.",
+              "basis": "seen",
+              "url": "https://www.skool.com/makerschool/about"
+            },
+            {
+              "at": "Maker Zero",
+              "does": "Free Skool group. Second link.",
+              "basis": "seen",
+              "url": "https://www.skool.com/maker-zero-8717/about"
+            }
+          ]
+        },
+        {
+          "from": "LinkedIn",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "Comment a keyword, connect",
+              "does": "Spelled out in the post.",
+              "basis": "seen"
+            },
+            {
+              "at": "He DMs the template",
+              "does": "By hand or by a tool: not visible.",
+              "basis": "open"
+            },
+            {
+              "at": "What the DM asks",
+              "does": "Needs a comment to see.",
+              "basis": "open"
+            }
+          ]
+        },
+        {
+          "from": "Instagram",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "Comment a keyword",
+              "does": "12 of his last 12 posts.",
+              "basis": "seen"
+            },
+            {
+              "at": "Automated DM",
+              "does": "Thousands of comments a post suggest a tool. Not observed.",
+              "basis": "reading"
+            },
+            {
+              "at": "Bio link: Maker School",
+              "does": "His profile links straight to it.",
+              "basis": "seen",
+              "url": "https://www.skool.com/makerschool/about"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "Courses on YouTube",
+          "price": "Free",
+          "kind": "free",
+          "what": "Two to six hours each, complete.",
+          "basis": "counted"
+        },
+        {
+          "name": "Maker Zero",
+          "price": "Free",
+          "kind": "free",
+          "what": "Free Skool group, 36.7K members as shown.",
+          "basis": "seen",
+          "url": "https://www.skool.com/maker-zero-8717/about"
+        },
+        {
+          "name": "Maker School",
+          "price": "$184/mo",
+          "kind": "paid",
+          "what": "Paid Skool group, 2.8K members as shown. “First paying AI client in 90 days or your money back.” The page says $194 soon.",
+          "basis": "seen",
+          "url": "https://www.skool.com/makerschool/about"
+        },
+        {
+          "name": "LeftClick, his agency",
+          "price": "From $5K",
+          "kind": "paid",
+          "what": "Most projects $10K–$50K, booked through a free call.",
+          "basis": "seen",
+          "url": "https://leftclick.ai/"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@stackedpod",
+          "url": "https://www.youtube.com/@stackedpod",
+          "label": "Stacked, my podcast"
+        },
+        {
+          "kind": "YouTube",
+          "handle": "@nicksaraev",
+          "url": "https://www.youtube.com/@nicksaraev",
+          "label": "YouTube"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@nick_saraev",
+          "url": "https://instagram.com/nick_saraev/",
+          "label": "Instagram"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "nick-saraev",
+          "url": "https://www.linkedin.com/in/nick-saraev/",
+          "label": "LinkedIn"
+        }
+      ]
+    },
+    {
+      "id": "paul",
+      "name": "Paul Roetzer",
+      "avatar": "https://yt3.googleusercontent.com/UTdtR6p_eCJTNc6_6kseh8h1aE_GetxWY6S0QmqflgjPhZkab8YfNDzuLCB_kCzgnKRr0YQy=s900-c-k-c0x00ffffff-no-rj",
+      "readOn": "2026-11-06",
+      "game": "An agency owner who rebuilt himself as the AI teacher for marketing and business leaders: a weekly news show and a free monthly intro class bring people in, and a company sells them a $999 membership, team seats, a yearly conference in Cleveland, and keynotes from $60,000.",
+      "platforms": [
+        {
+          "name": "Newsletter",
+          "followers": 100000,
+          "url": "https://www.marketingaiinstitute.com/newsletter"
+        },
+        {
+          "name": "YouTube",
+          "followers": 35800,
+          "url": "https://www.youtube.com/@aishowpod"
+        },
+        {
+          "name": "LinkedIn",
+          "followers": 35135,
+          "url": "https://www.linkedin.com/in/paulroetzer"
+        },
+        {
+          "name": "X",
+          "followers": 22000,
+          "url": "https://x.com/paulroetzer"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "Newsletter",
+              "does": "Link 2 on all 6, after the channel itself.",
+              "basis": "seen",
+              "url": "https://www.marketingaiinstitute.com/newsletter"
+            },
+            {
+              "at": "AI Academy",
+              "does": "Courses and AI Mastery.",
+              "basis": "seen",
+              "url": "https://academy.smarterx.ai/"
+            },
+            {
+              "at": "MAICON",
+              "does": "The conference.",
+              "basis": "seen",
+              "url": "https://maicon.ai"
+            },
+            {
+              "at": "Webinars",
+              "does": "Free live classes.",
+              "basis": "seen",
+              "url": "https://smarterx.ai/webinars"
+            },
+            {
+              "at": "Slack community",
+              "does": "Free.",
+              "basis": "seen",
+              "url": "https://smarterx.ai/community"
+            }
+          ]
+        },
+        {
+          "from": "X",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "A quote post on AI news",
+              "does": "About one a day; usual 964 views.",
+              "basis": "counted"
+            },
+            {
+              "at": "smarterx.ai",
+              "does": "In his profile; bio names SmarterX, MAICON and the show.",
+              "basis": "seen",
+              "url": "https://www.smarterx.ai/"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "Intro to AI class",
+          "price": "Free",
+          "kind": "free",
+          "what": "Monthly live class; 40,000+ registrants, his figure.",
+          "basis": "seen",
+          "url": "https://www.smarterx.ai/"
+        },
+        {
+          "name": "Newsletters and Slack",
+          "price": "Free",
+          "kind": "free",
+          "what": "Institute and ExecAI Insider newsletters; a Slack community.",
+          "basis": "seen",
+          "url": "https://www.marketingaiinstitute.com/newsletter"
+        },
+        {
+          "name": "AI Mastery Membership",
+          "price": "$999/year",
+          "kind": "paid",
+          "what": "All courses, weekly demos, quarterly briefings and AMA.",
+          "basis": "seen",
+          "url": "https://www.smarterx.ai/ai-mastery"
+        },
+        {
+          "name": "Business seats",
+          "price": "$399, $349 or $299 per user per year",
+          "kind": "paid",
+          "what": "5–99, 100–999 or 1,000+ seats.",
+          "basis": "seen",
+          "url": "https://www.smarterx.ai/ai-mastery"
+        },
+        {
+          "name": "MAICON 2027",
+          "price": "$1,299 early; $2,299–$3,399",
+          "kind": "paid",
+          "what": "Three-day conference in Cleveland; CMO track; add-ons.",
+          "basis": "seen",
+          "url": "https://www.marketingaiinstitute.com/events/marketing-artificial-intelligence-conference"
+        },
+        {
+          "name": "Keynote",
+          "price": "From $60,000 plus travel",
+          "kind": "paid",
+          "what": "Paul on stage.",
+          "basis": "seen",
+          "url": "https://www.smarterx.ai/"
+        },
+        {
+          "name": "Half-day workshop",
+          "price": "From $75,000",
+          "kind": "paid",
+          "what": "Four workshops for company teams.",
+          "basis": "seen",
+          "url": "https://www.smarterx.ai/"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@aishowpod",
+          "url": "https://www.youtube.com/@aishowpod",
+          "label": "The Artificial Intelligence Show (YouTube)"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "paulroetzer",
+          "url": "https://www.linkedin.com/in/paulroetzer",
+          "label": "LinkedIn (Taplio, undated)"
+        },
+        {
+          "kind": "X",
+          "handle": "@paulroetzer",
+          "url": "https://x.com/paulroetzer",
+          "label": "@paulroetzer"
+        },
+        {
+          "kind": "X",
+          "handle": "@SmarterXAI",
+          "url": "https://x.com/SmarterXAI",
+          "label": "@SmarterXAI (company)"
+        },
+        {
+          "kind": "YouTube",
+          "handle": "@SmarterXAI",
+          "url": "https://www.youtube.com/@SmarterXAI",
+          "label": "SmarterX (company YouTube)"
+        }
+      ]
+    },
+    {
+      "id": "peter",
+      "name": "Peter Yang",
+      "avatar": "https://pbs.twimg.com/profile_images/1454103621516206083/_klMwpkk_400x400.jpg",
+      "readOn": "2026-11-06",
+      "game": "Try every new AI assistant first and post an honest, hands-on take on X the same day, nearly six times a day, then turn the best into YouTube tutorials and interviews almost daily. Everything feeds Behind the Craft, his Substack (154K+ subscribers): about two posts a week, three in four paid, with the free ones as the reach. Money comes from the $200-a-year membership (course, skills, workshops, Slack) and sponsors who have booked all of 2026.",
+      "platforms": [
+        {
+          "name": "X",
+          "followers": 297600,
+          "url": "https://x.com/petergyang"
+        },
+        {
+          "name": "LinkedIn",
+          "followers": 162000,
+          "url": "https://www.linkedin.com/in/petergyang/"
+        },
+        {
+          "name": "Newsletter",
+          "followers": 154000,
+          "url": "https://creatoreconomy.so/"
+        },
+        {
+          "name": "YouTube",
+          "followers": 115000,
+          "url": "https://www.youtube.com/@PeterYangYT"
+        }
+      ],
+      "routes": [
+        {
+          "from": "X",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "A hands-on AI take",
+              "does": "About 5.8 a day; usual 15K views.",
+              "basis": "counted"
+            },
+            {
+              "at": "behindthecraft.com",
+              "does": "Linked in his bio: his AI skills and guides.",
+              "basis": "seen",
+              "url": "https://www.behindthecraft.com/"
+            }
+          ]
+        },
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "behindthecraft.com",
+              "does": "Link 1 on solo videos.",
+              "basis": "seen",
+              "url": "https://www.behindthecraft.com/"
+            },
+            {
+              "at": "Creator Economy newsletter",
+              "does": "Link 2; the channel’s only About link.",
+              "basis": "seen",
+              "url": "https://www.creatoreconomy.so/"
+            },
+            {
+              "at": "Sponsors",
+              "does": "First on interview episodes: Wispr Flow, Riverside.",
+              "basis": "seen"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "Behind the Craft (free)",
+          "price": "Free",
+          "kind": "free",
+          "what": "About two posts a week; one in four free.",
+          "basis": "seen",
+          "url": "https://creatoreconomy.so/"
+        },
+        {
+          "name": "Paid newsletter and membership",
+          "price": "$20/mo or $200/yr",
+          "kind": "paid",
+          "what": "Every post, a 25+ lesson course, 18 skills, workshops, Slack.",
+          "basis": "seen",
+          "url": "https://www.behindthecraft.com/"
+        },
+        {
+          "name": "Founding member",
+          "price": "$500/yr",
+          "kind": "paid",
+          "what": "All of the above plus a 30-minute call.",
+          "basis": "seen",
+          "url": "https://creatoreconomy.so/subscribe"
+        },
+        {
+          "name": "Sponsorships",
+          "price": "From four figures",
+          "kind": "paid",
+          "what": "Quote posts, quarterly and annual packages; 2026 booked.",
+          "basis": "seen",
+          "url": "https://creatoreconomy.so/p/sponsorships"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@PeterYangYT",
+          "url": "https://www.youtube.com/@PeterYangYT",
+          "label": "YouTube"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "petergyang",
+          "url": "https://www.linkedin.com/in/petergyang/",
+          "label": "LinkedIn"
+        },
+        {
+          "kind": "X",
+          "handle": "@petergyang",
+          "url": "https://x.com/petergyang",
+          "label": "@petergyang"
+        }
+      ]
+    },
+    {
+      "id": "pieter",
+      "name": "Pieter Levels",
+      "avatar": "https://yt3.googleusercontent.com/kArVQWThHo21uCBmS2gE4_2GLHu--ReS_f8TTPVzB-5BNuyjN4W5xwKtbyMaVDkbF9Zj-VPVEws=s900-c-k-c0x00ffffff-no-rj",
+      "readOn": "2026-11-06",
+      "game": null,
+      "platforms": [
+        {
+          "name": "X",
+          "followers": 990100,
+          "url": "https://x.com/levelsio"
+        },
+        {
+          "name": "Newsletter",
+          "followers": 185075,
+          "url": "https://levels.io"
+        },
+        {
+          "name": "YouTube",
+          "followers": 35500,
+          "url": "https://www.youtube.com/@levelsio"
+        }
+      ],
+      "routes": [
+        {
+          "from": "X",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "A take on life, tech or AI",
+              "does": "About 8.5 a day; usual 93K views.",
+              "basis": "counted"
+            },
+            {
+              "at": "Straight to a paid plan",
+              "does": "Photo AI or Interior AI pricing; no email step.",
+              "basis": "seen",
+              "url": "https://photoai.com/pricing"
+            }
+          ]
+        },
+        {
+          "from": "X",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "levels.vc",
+              "does": "Bio link 1: his fund.",
+              "basis": "seen",
+              "url": "https://levels.vc"
+            },
+            {
+              "at": "PhotoAI.com",
+              "does": "“$68K/m”.",
+              "basis": "seen",
+              "url": "https://photoai.com"
+            },
+            {
+              "at": "VibeJam.com",
+              "does": "“$44K/m”.",
+              "basis": "seen",
+              "url": "https://vibejam.com"
+            },
+            {
+              "at": "InteriorAI.com",
+              "does": "“$23K/m”.",
+              "basis": "seen",
+              "url": "https://interiorai.com"
+            },
+            {
+              "at": "Nomads.com",
+              "does": "“$7K/m”.",
+              "basis": "seen",
+              "url": "https://nomads.com"
+            },
+            {
+              "at": "Hotelist.com",
+              "does": "“$3K/m”.",
+              "basis": "seen",
+              "url": "https://hotelist.com"
+            },
+            {
+              "at": "levels.io",
+              "does": "Last: the blog and email list.",
+              "basis": "seen",
+              "url": "https://levels.io"
+            }
+          ]
+        },
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "x.com/levelsio",
+              "does": "Link 1 on the newest video.",
+              "basis": "seen",
+              "url": "https://x.com/levelsio"
+            },
+            {
+              "at": "nomads.com/@levelsio",
+              "does": "Link 2.",
+              "basis": "seen"
+            },
+            {
+              "at": "levels.io",
+              "does": "Link 3.",
+              "basis": "seen",
+              "url": "https://levels.io"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "levels.io by email",
+          "price": "Free",
+          "kind": "free",
+          "what": "Blog posts in full by email; 185,075 readers, his figure.",
+          "basis": "seen",
+          "url": "https://levels.io"
+        },
+        {
+          "name": "Nomads.com",
+          "price": "Free",
+          "kind": "free",
+          "what": "Digital nomad community and city data, free since Sept 2026.",
+          "basis": "seen",
+          "url": "https://nomads.com"
+        },
+        {
+          "name": "MAKE book",
+          "price": "Not checked",
+          "kind": "paid",
+          "what": "Bootstrapping book; $4K/m in his header.",
+          "basis": "seen",
+          "url": "https://readmake.com"
+        },
+        {
+          "name": "Photo AI",
+          "price": "$19–$199/mo; $99–$1,199/yr",
+          "kind": "paid",
+          "what": "AI photos of yourself, by credits.",
+          "basis": "seen",
+          "url": "https://photoai.com/pricing"
+        },
+        {
+          "name": "Interior AI",
+          "price": "$49–$199/mo; $349–$1,199/yr",
+          "kind": "paid",
+          "what": "AI interior designs and virtual staging.",
+          "basis": "seen",
+          "url": "https://interiorai.com"
+        },
+        {
+          "name": "Remote OK job post",
+          "price": "From $299 / 30 days",
+          "kind": "paid",
+          "what": "Remote job board for employers.",
+          "basis": "seen",
+          "url": "https://remoteok.com/hire-remotely"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@levelsio",
+          "url": "https://www.youtube.com/@levelsio",
+          "label": "YouTube"
+        },
+        {
+          "kind": "X",
+          "handle": "@levelsio",
+          "url": "https://twitter.com/levelsio",
+          "label": "@levelsio"
+        }
+      ]
+    },
+    {
+      "id": "ray",
+      "name": "Ray Amjad",
+      "avatar": "https://yt3.googleusercontent.com/Sf0eqlRp6Tz4rnHsVB0nM1RjieqmgZLG7jX_i6e5DzkZt7n-3KTk6AuJUocLWjMhB8VoSPWZp9A=s160-c-k-c0x00ffffff-no-rj",
+      "readOn": "2026-11-02",
+      "game": "Explain each new agentic coding release to developers, capture emails with a free 7-day course, and sell a two-week live cohort with an early-bird price. No sponsors, no Skool, almost no Instagram.",
+      "platforms": [
+        {
+          "name": "YouTube",
+          "followers": 51000,
+          "url": "https://www.youtube.com/@RAmjad"
+        },
+        {
+          "name": "Instagram",
+          "followers": 775,
+          "url": "https://instagram.com/theramjad"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "Free 7-day course",
+              "does": "First link until mid-October. Leads into his newsletter.",
+              "basis": "seen",
+              "url": "https://www.agenticcoding.school/free-course"
+            },
+            {
+              "at": "The paid cohort",
+              "does": "First link since Oct 26.",
+              "basis": "seen",
+              "url": "https://www.agenticcoding.school/cohort"
+            }
+          ]
+        },
+        {
+          "from": "Instagram",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "Not used",
+              "does": "One post, from 2022.",
+              "basis": "seen"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "Free 7-day email course",
+          "price": "Free",
+          "kind": "free",
+          "what": "Then the newsletter.",
+          "basis": "seen",
+          "url": "https://www.agenticcoding.school/free-course"
+        },
+        {
+          "name": "HyperWhisper and a cheatsheet",
+          "price": "Free",
+          "kind": "free",
+          "what": "An open-source dictation app and a download.",
+          "basis": "seen"
+        },
+        {
+          "name": "AgentStack",
+          "price": "$30–$400/mo",
+          "kind": "paid",
+          "what": "His software, with a free plan.",
+          "basis": "seen",
+          "url": "https://www.agentstack.build/"
+        },
+        {
+          "name": "The Software Factory Engineer",
+          "price": "$897",
+          "kind": "paid",
+          "what": "Live cohort, Nov 9–20. $1,297 after Nov 6; team seats 30–50% off.",
+          "basis": "seen",
+          "url": "https://www.agenticcoding.school/cohort"
+        },
+        {
+          "name": "Consulting and company training",
+          "price": "Not shown",
+          "kind": "paid",
+          "what": "Booked by call; training priced by proposal.",
+          "basis": "open",
+          "url": "https://www.agenticcoding.school/company-training"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@RAmjad",
+          "url": "https://www.youtube.com/@RAmjad",
+          "label": "YouTube"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@theramjad",
+          "url": "https://instagram.com/theramjad",
+          "label": "Instagram"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "rayamjad",
+          "url": "https://www.linkedin.com/in/rayamjad/",
+          "label": "LinkedIn"
+        },
+        {
+          "kind": "X",
+          "handle": "@theramjad",
+          "url": "https://x.com/theramjad",
+          "label": "X"
+        }
+      ]
+    },
+    {
+      "id": "riley",
+      "name": "Riley Brown",
+      "avatar": "https://pbs.twimg.com/profile_images/1898571530956873728/JALEVTSb_400x400.jpg",
+      "readOn": "2026-11-06",
+      "game": "Be first and hands-on with every new AI model and agent: about five X posts a day, a 20–30 minute YouTube guide almost daily, and short videos to 639K on TikTok. The attention sells the software he co-founds (Vibecode, now Chorus and the Agent Native brand) and sponsors; the free agentnative.inc hub, behind a free Google sign-in, is where the audience lands.",
+      "platforms": [
+        {
+          "name": "TikTok",
+          "followers": 638800,
+          "url": "https://www.tiktok.com/@rileybrown.ai"
+        },
+        {
+          "name": "Instagram",
+          "followers": 331000,
+          "url": "https://www.instagram.com/realrileybrown/"
+        },
+        {
+          "name": "YouTube",
+          "followers": 310000,
+          "url": "https://www.youtube.com/@rileybrownai"
+        },
+        {
+          "name": "X",
+          "followers": 263500,
+          "url": "https://x.com/rileybrown"
+        },
+        {
+          "name": "X (@agentnative_)",
+          "followers": 11700,
+          "url": "https://x.com/agentnative_"
+        },
+        {
+          "name": "Newsletter",
+          "followers": 2000,
+          "url": "https://learn.agentnative.inc/"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "A sponsor",
+              "does": "Link 1 on 4 of 6 recent videos.",
+              "basis": "seen"
+            },
+            {
+              "at": "agentnative.inc",
+              "does": "On all 6: resources or updates.",
+              "basis": "seen",
+              "url": "https://agentnative.inc/"
+            }
+          ]
+        },
+        {
+          "from": "X",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "A first reaction to a new tool",
+              "does": "About 5.2 a day; usual 27K views.",
+              "basis": "counted"
+            },
+            {
+              "at": "agentnative.inc",
+              "does": "In his profile.",
+              "basis": "seen",
+              "url": "https://agentnative.inc/"
+            }
+          ]
+        },
+        {
+          "from": "Instagram",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "chatgpt.com/download",
+              "does": "First bio link; no keyword asks.",
+              "basis": "seen"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "agentnative.inc",
+          "price": "Free",
+          "kind": "free",
+          "what": "Tool map, setup guides and weekly updates; more behind a free Google sign-in.",
+          "basis": "seen",
+          "url": "https://agentnative.inc/"
+        },
+        {
+          "name": "Vibecode",
+          "price": "$20, $50 or $200/mo",
+          "kind": "paid",
+          "what": "Build apps by describing them; first build free.",
+          "basis": "seen",
+          "url": "https://www.vibecodeapp.com/pricing"
+        },
+        {
+          "name": "Chorus",
+          "price": "$20 or $200/mo; Enterprise custom",
+          "kind": "paid",
+          "what": "AI employees, from the same company.",
+          "basis": "seen",
+          "url": "https://chorus.com/pricing"
+        },
+        {
+          "name": "Sponsorships",
+          "price": "Not public",
+          "kind": "paid",
+          "what": "Through Rakugo Media.",
+          "basis": "seen"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@rileybrownai",
+          "url": "https://www.youtube.com/@rileybrownai",
+          "label": "YouTube"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@realrileybrown",
+          "url": "https://www.instagram.com/realrileybrown/",
+          "label": "Instagram"
+        },
+        {
+          "kind": "X",
+          "handle": "@rileybrown",
+          "url": "https://x.com/rileybrown",
+          "label": "@rileybrown"
+        },
+        {
+          "kind": "X",
+          "handle": "@agentnative_",
+          "url": "https://x.com/agentnative_",
+          "label": "@agentnative_"
+        },
+        {
+          "kind": "TikTok",
+          "handle": "@rileybrown.ai",
+          "url": "https://www.tiktok.com/@rileybrown.ai",
+          "label": "TikTok"
+        }
+      ]
+    },
+    {
+      "id": "rowan",
+      "name": "Rowan Cheung",
+      "avatar": "https://yt3.googleusercontent.com/-EJFHz5fLliqUoSVyEB3oFZ3vanSXm6k6hUUdDzUUT2rH8W_fm6UEFmrFN4L2ZXIXvufzfq1=s900-c-k-c0x00ffffff-no-rj",
+      "readOn": "2026-11-06",
+      "game": null,
+      "platforms": [
+        {
+          "name": "Newsletter",
+          "followers": 2100000,
+          "url": "https://www.therundown.ai/"
+        },
+        {
+          "name": "Instagram",
+          "followers": 650000,
+          "url": "https://www.instagram.com/therundownai/"
+        },
+        {
+          "name": "X",
+          "followers": 602932,
+          "url": "https://x.com/rowancheung"
+        },
+        {
+          "name": "Instagram (@rowancheung)",
+          "followers": 497048,
+          "url": "https://www.instagram.com/rowancheung/"
+        },
+        {
+          "name": "X (@TheRundownAI)",
+          "followers": 231115,
+          "url": "https://x.com/TheRundownAI"
+        },
+        {
+          "name": "YouTube",
+          "followers": 202000,
+          "url": "https://www.youtube.com/@TheRundownAI"
+        },
+        {
+          "name": "TikTok",
+          "followers": 41900,
+          "url": "https://www.tiktok.com/@rowancheung"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "therundown.ai/subscribe",
+              "does": "Link 1 on 5 of 6 recent videos.",
+              "basis": "seen",
+              "url": "https://www.therundown.ai/subscribe"
+            },
+            {
+              "at": "His socials and the podcast",
+              "does": "X, LinkedIn, Instagram, Threads, TikTok, Spotify, Apple.",
+              "basis": "seen"
+            },
+            {
+              "at": "Rundown University",
+              "does": "Last link on all 6.",
+              "basis": "seen",
+              "url": "https://www.therundown.ai/ai-university"
+            }
+          ]
+        },
+        {
+          "from": "X",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "A thread or a hands-on video",
+              "does": "0.2 a day on his own account now; usual 34K views.",
+              "basis": "counted"
+            },
+            {
+              "at": "rundown.ai",
+              "does": "In his profile: “Join 3,000,000+ Readers”.",
+              "basis": "seen",
+              "url": "https://www.rundown.ai/"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "Supertools and daily guides",
+          "price": "Free",
+          "kind": "free",
+          "what": "A 1,577-tool directory and 300+ how-to guides.",
+          "basis": "seen",
+          "url": "https://www.therundown.ai/tools"
+        },
+        {
+          "name": "The Rundown AI, Tech and Robotics",
+          "price": "Free",
+          "kind": "free",
+          "what": "Daily emails; 2.1M, 610K+ and 475K+, their figures.",
+          "basis": "seen",
+          "url": "https://www.therundown.ai/"
+        },
+        {
+          "name": "Rundown Pro (AI University)",
+          "price": "$29/mo",
+          "kind": "paid",
+          "what": "All courses, weekly group calls, community, tool perks; most expense it.",
+          "basis": "seen",
+          "url": "https://www.therundown.ai/ai-university"
+        },
+        {
+          "name": "Sponsorships",
+          "price": "Not public",
+          "kind": "paid",
+          "what": "Newsletter slots, Sunday takeover, Instagram posts; after a form.",
+          "basis": "seen",
+          "url": "https://www.therundown.ai/advertise-with-us"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@TheRundownAI",
+          "url": "https://www.youtube.com/@TheRundownAI",
+          "label": "YouTube"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@therundownai",
+          "url": "https://www.instagram.com/therundownai/",
+          "label": "Instagram"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@rowancheung",
+          "url": "https://www.instagram.com/rowancheung/",
+          "label": "Instagram (@rowancheung)"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "the-rundown-ai",
+          "url": "https://www.linkedin.com/company/the-rundown-ai",
+          "label": "LinkedIn"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "rowan-cheung-6309b01bb",
+          "url": "https://www.linkedin.com/in/rowan-cheung-6309b01bb/",
+          "label": "LinkedIn"
+        },
+        {
+          "kind": "X",
+          "handle": "@rowancheung",
+          "url": "https://x.com/rowancheung",
+          "label": "@rowancheung on X"
+        },
+        {
+          "kind": "X",
+          "handle": "@TheRundownAI",
+          "url": "https://x.com/TheRundownAI",
+          "label": "@TheRundownAI (brand)"
+        },
+        {
+          "kind": "TikTok",
+          "handle": "@rowancheung",
+          "url": "https://www.tiktok.com/@rowancheung",
+          "label": "TikTok"
+        },
+        {
+          "kind": "Threads",
+          "handle": "@rowancheung",
+          "url": "https://www.threads.com/@rowancheung",
+          "label": "Threads"
+        },
+        {
+          "kind": "Facebook",
+          "handle": "@rundownnewsletter",
+          "url": "https://www.facebook.com/rundownnewsletter/",
+          "label": "Facebook"
+        }
+      ]
+    },
+    {
+      "id": "ruben",
+      "name": "Ruben Hassid",
+      "avatar": "https://yt3.googleusercontent.com/tLHzn1sPqpNRWum-U78GsIgZ3xKupgpsbQYtU0XZRPcKSXyKZQI3piNA21ZGiLMbttHsmHbK=s900-c-k-c0x00ffffff-no-rj",
+      "readOn": "2026-11-06",
+      "game": "Teach AI step by step to people who don’t code, on LinkedIn twice a day, and move them into a free Substack (now over 1M, his figure) with a prompt library as the hook. The list sells a $200-a-year membership with live classes, and since September 2026 his consultancy GPC sells AI training to companies.",
+      "platforms": [
+        {
+          "name": "Newsletter",
+          "followers": 1000000,
+          "url": "https://ruben.substack.com"
+        },
+        {
+          "name": "LinkedIn",
+          "followers": 800000,
+          "url": "https://www.linkedin.com/in/ruben-hassid/"
+        },
+        {
+          "name": "X",
+          "followers": 97000,
+          "url": "https://x.com/rubenhassid"
+        },
+        {
+          "name": "Instagram",
+          "followers": 78957,
+          "url": "https://www.instagram.com/rubenhassid/"
+        },
+        {
+          "name": "YouTube",
+          "followers": 19000,
+          "url": "https://www.youtube.com/@rubenhassid"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "how-to-ai.guide",
+              "does": "On all 4 videos; lands on the Substack welcome.",
+              "basis": "seen",
+              "url": "https://how-to-ai.guide"
+            }
+          ]
+        },
+        {
+          "from": "X",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "A chart, guide or article",
+              "does": "About 1.8 a day; usual 11.5K views.",
+              "basis": "counted"
+            },
+            {
+              "at": "His Substack",
+              "does": "In his bio and header.",
+              "basis": "seen",
+              "url": "https://ruben.substack.com"
+            }
+          ]
+        },
+        {
+          "from": "LinkedIn",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "Two posts a day",
+              "does": "His own figure; posts not opened.",
+              "basis": "open"
+            },
+            {
+              "at": "How to AI",
+              "does": "Free; prompt library claimed by email.",
+              "basis": "seen",
+              "url": "https://ruben.substack.com/welcome"
+            },
+            {
+              "at": "$200 a year",
+              "does": "Live classes and Circle.",
+              "basis": "seen",
+              "url": "https://ruben.substack.com/p/upgrade"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "Prompt library",
+          "price": "Free",
+          "kind": "free",
+          "what": "Claimed by an email to him; comes with the newsletter.",
+          "basis": "seen",
+          "url": "https://davidmszabo.substack.com/p/copywriting-breakdown-200k-ruben"
+        },
+        {
+          "name": "How to AI",
+          "price": "Free",
+          "kind": "free",
+          "what": "Two emails a week of step-by-step AI guides.",
+          "basis": "seen",
+          "url": "https://ruben.substack.com/welcome"
+        },
+        {
+          "name": "How to start (paid tier)",
+          "price": "$200 a year",
+          "kind": "paid",
+          "what": "Three live classes a week, Circle community, tool discounts. Annual only.",
+          "basis": "seen",
+          "url": "https://ruben.substack.com/p/upgrade"
+        },
+        {
+          "name": "EasyGen",
+          "price": "Closed to new signups",
+          "kind": "paid",
+          "what": "LinkedIn post writer; marked acquired.",
+          "basis": "seen",
+          "url": "https://easygen.io"
+        },
+        {
+          "name": "GPC consulting",
+          "price": "Not shown; first 30 minutes free",
+          "kind": "paid",
+          "what": "AI training and adoption for companies.",
+          "basis": "seen",
+          "url": "https://gpc.consulting"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@rubenhassid",
+          "url": "https://www.youtube.com/@rubenhassid",
+          "label": "YouTube"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@rubenhassid",
+          "url": "https://www.instagram.com/rubenhassid/",
+          "label": "Instagram (CreatorDB, Oct 7)"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "ruben-hassid",
+          "url": "https://www.linkedin.com/in/ruben-hassid/",
+          "label": "LinkedIn (his figure)"
+        },
+        {
+          "kind": "X",
+          "handle": "@rubenhassid",
+          "url": "https://x.com/rubenhassid",
+          "label": "@rubenhassid"
+        }
+      ]
+    },
+    {
+      "id": "sabrina",
+      "name": "Sabrina Ramonov",
+      "avatar": "https://yt3.googleusercontent.com/4xWBLiSBOwmuX6RA3cNVtjzNpR5Rxy0fsK4hjqGKujCuGegLMndIE2yo-co0OQMOzJ2THGXt=s160-c-k-c0x00ffffff-no-rj",
+      "readOn": "2026-11-02",
+      "game": "Teach beginners to make money with AI, free, on every platform, and end every route at her newsletter. She sells no course or community: the money is her own software, Blotato, which runs the comment-to-DM flows she teaches.",
+      "platforms": [
+        {
+          "name": "Instagram",
+          "followers": 1100000,
+          "url": "https://www.instagram.com/sabrina_ramonov"
+        },
+        {
+          "name": "YouTube",
+          "followers": 443000,
+          "url": "https://www.youtube.com/@sabrina_ramonov"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "Blotato",
+              "does": "Her software, usually link 1 or 2.",
+              "basis": "seen",
+              "url": "https://www.blotato.com"
+            },
+            {
+              "at": "The newsletter",
+              "does": "Last line of every description, and the header link.",
+              "basis": "seen",
+              "url": "https://sabrina.dev/p/free"
+            }
+          ]
+        },
+        {
+          "from": "Instagram",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "Comment a keyword",
+              "does": "7 of her last 12 posts.",
+              "basis": "seen"
+            },
+            {
+              "at": "DM with a link",
+              "does": "“Comment → DM → Link”, built in Blotato, as she describes it.",
+              "basis": "seen"
+            },
+            {
+              "at": "Tools, videos, past issues",
+              "does": "Where the DM sends people, as she describes it.",
+              "basis": "seen"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "The newsletter",
+          "price": "Free",
+          "kind": "free",
+          "what": "Substack, about two posts a week, all free. “Free AI courses, automations, agents & prompts.”",
+          "basis": "seen",
+          "url": "https://sabrina.dev/p/free"
+        },
+        {
+          "name": "Women Build AI",
+          "price": "Free",
+          "kind": "free",
+          "what": "Skool group, by application.",
+          "basis": "seen",
+          "url": "https://www.skool.com/women-building-ai-2577/about"
+        },
+        {
+          "name": "Blotato Starter",
+          "price": "$29/mo",
+          "kind": "paid",
+          "what": "Her social posting software. The 7-day trial needs a card.",
+          "basis": "seen",
+          "url": "https://www.blotato.com/pricing"
+        },
+        {
+          "name": "Blotato Creator",
+          "price": "$97/mo",
+          "kind": "paid",
+          "what": "The middle plan.",
+          "basis": "seen",
+          "url": "https://www.blotato.com/pricing"
+        },
+        {
+          "name": "Blotato Agency",
+          "price": "$499/mo",
+          "kind": "paid",
+          "what": "For agencies posting for clients.",
+          "basis": "seen",
+          "url": "https://www.blotato.com/pricing"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@sabrina_ramonov",
+          "url": "https://www.youtube.com/@sabrina_ramonov",
+          "label": "YouTube"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@sabrina_ramonov",
+          "url": "https://www.instagram.com/sabrina_ramonov",
+          "label": "Daily AI Tips on Instagram"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "sabrinaramonov",
+          "url": "https://www.linkedin.com/in/sabrinaramonov/",
+          "label": "LinkedIn"
+        },
+        {
+          "kind": "X",
+          "handle": "@Sabrina_Ramonov",
+          "url": "https://x.com/Sabrina_Ramonov",
+          "label": "X"
+        },
+        {
+          "kind": "TikTok",
+          "handle": "@sabrina_ramonov",
+          "url": "https://www.tiktok.com/@sabrina_ramonov",
+          "label": "TikTok"
+        }
+      ]
+    },
+    {
+      "id": "tibo",
+      "name": "Tibo",
+      "avatar": "https://pbs.twimg.com/profile_images/1631931185180934144/59z_ZFKm_400x400.jpg",
+      "readOn": "2026-11-06",
+      "game": null,
+      "platforms": [
+        {
+          "name": "X",
+          "followers": 217300,
+          "url": "https://x.com/tibo_maker"
+        },
+        {
+          "name": "Newsletter",
+          "followers": 85000,
+          "url": "https://tmaker.io"
+        }
+      ],
+      "routes": [
+        {
+          "from": "X",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "A take on AI agents or growth",
+              "does": "About 4.6 a day; the spikes run 30–70×.",
+              "basis": "counted"
+            },
+            {
+              "at": "His profile",
+              "does": "Seven app links, then tmaker.io.",
+              "basis": "seen",
+              "url": "https://x.com/tibo_maker"
+            },
+            {
+              "at": "A product post with a link",
+              "does": "Separate posts; about a quarter of his usual reach.",
+              "basis": "counted"
+            }
+          ]
+        },
+        {
+          "from": "X",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "revid.ai",
+              "does": "Bio link 1: short AI videos.",
+              "basis": "seen",
+              "url": "https://www.revid.ai"
+            },
+            {
+              "at": "outrank.so",
+              "does": "Bio link 2: SEO articles.",
+              "basis": "seen",
+              "url": "https://www.outrank.so"
+            },
+            {
+              "at": "squad.so",
+              "does": "Bio link 3: AI teammates.",
+              "basis": "seen",
+              "url": "https://squad.so"
+            },
+            {
+              "at": "superx.so",
+              "does": "Bio link 4: X growth.",
+              "basis": "seen",
+              "url": "https://www.superx.so"
+            },
+            {
+              "at": "postsyncer.com",
+              "does": "Bio link 5: cross-posting.",
+              "basis": "seen",
+              "url": "https://postsyncer.com"
+            },
+            {
+              "at": "bazzly.ai",
+              "does": "Bio link 6: customers from Reddit.",
+              "basis": "seen",
+              "url": "https://bazzly.ai"
+            },
+            {
+              "at": "feather.so",
+              "does": "Bio link 7: blogs from Notion.",
+              "basis": "seen",
+              "url": "https://feather.so"
+            },
+            {
+              "at": "tmaker.io",
+              "does": "Last: “growth tips”, the newsletter and free tools.",
+              "basis": "seen",
+              "url": "https://tmaker.io"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "X posts",
+          "price": "Free",
+          "kind": "free",
+          "what": "AI and growth takes, product updates.",
+          "basis": "seen",
+          "url": "https://x.com/tibo_maker"
+        },
+        {
+          "name": "tmaker.io newsletter",
+          "price": "Free",
+          "kind": "free",
+          "what": "Weekly growth playbook, no ads.",
+          "basis": "seen",
+          "url": "https://tmaker.io"
+        },
+        {
+          "name": "Free tools",
+          "price": "Free",
+          "kind": "free",
+          "what": "About 20 small tools (SEO, idea validation, Reddit).",
+          "basis": "seen",
+          "url": "https://tmaker.io"
+        },
+        {
+          "name": "SuperX",
+          "price": "$49–$199/mo",
+          "kind": "paid",
+          "what": "Growth tool for X.",
+          "basis": "seen",
+          "url": "https://www.superx.so/pricing"
+        },
+        {
+          "name": "Revid",
+          "price": "$39–$199/mo; credit tiers to $2,799/mo",
+          "kind": "paid",
+          "what": "AI short-form videos, by credits.",
+          "basis": "seen",
+          "url": "https://www.revid.ai/pricing"
+        },
+        {
+          "name": "Outrank",
+          "price": "$99/mo or $999/yr",
+          "kind": "paid",
+          "what": "30 SEO articles a month, keyword research, backlinks.",
+          "basis": "seen",
+          "url": "https://www.outrank.so/pricing"
+        },
+        {
+          "name": "Founder Room calls",
+          "price": "$99/mo ($49.50 for app customers)",
+          "kind": "paid",
+          "what": "Calls with Tibo every other week, guests, replays.",
+          "basis": "seen",
+          "url": "https://tmaker.io/founders"
+        },
+        {
+          "name": "Outrank Human Curated",
+          "price": "$1,399/mo",
+          "kind": "paid",
+          "what": "Done-for-you article service on top of the app.",
+          "basis": "seen",
+          "url": "https://www.outrank.so/pricing"
+        }
+      ],
+      "links": [
+        {
+          "kind": "LinkedIn",
+          "handle": "tibo-ll",
+          "url": "https://www.linkedin.com/in/tibo-ll",
+          "label": "LinkedIn"
+        },
+        {
+          "kind": "X",
+          "handle": "@tibo_maker",
+          "url": "https://x.com/tibo_maker",
+          "label": "@tibo_maker"
+        }
+      ]
+    },
+    {
+      "id": "tony",
+      "name": "Tony Dinh",
+      "avatar": "https://pbs.twimg.com/profile_images/1995658612677771266/TPla_3lg_400x400.jpg",
+      "readOn": "2026-11-06",
+      "game": "Build small tools he uses himself, show them being built on X, and sell them to that audience with one-time prices; when one product takes off (TypingMind, launched days after OpenAI's API), turn it into a team and enterprise subscription and sell the side products.",
+      "platforms": [
+        {
+          "name": "X",
+          "followers": 207397,
+          "url": "https://x.com/tdinh_me"
+        },
+        {
+          "name": "Newsletter",
+          "followers": 15000,
+          "url": "https://news.tonydinh.com"
+        }
+      ],
+      "routes": [
+        {
+          "from": "X",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "A clip or receipt from his own building",
+              "does": "About 1.6 a day; usual 13.2K views.",
+              "basis": "counted"
+            },
+            {
+              "at": "Buy a license or a Team plan",
+              "does": "No email step in between.",
+              "basis": "seen",
+              "url": "https://custom.typingmind.com/pricing"
+            }
+          ]
+        },
+        {
+          "from": "X",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "survive10waves.com",
+              "does": "Bio link 1, marked new: a game coming to Steam.",
+              "basis": "seen",
+              "url": "https://survive10waves.com"
+            },
+            {
+              "at": "makeawebsite.app",
+              "does": "Bio link 2: an iPhone website builder.",
+              "basis": "seen",
+              "url": "https://makeawebsite.app"
+            },
+            {
+              "at": "typingmind.com",
+              "does": "Bio link 3, with “$137K/m”.",
+              "basis": "seen",
+              "url": "https://www.typingmind.com"
+            },
+            {
+              "at": "devutils.com",
+              "does": "Bio link 4, with “$5K/m”.",
+              "basis": "seen",
+              "url": "https://devutils.com"
+            },
+            {
+              "at": "myindiebook.com",
+              "does": "In the profile header.",
+              "basis": "seen",
+              "url": "https://www.myindiebook.com"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "Tony Dinh’s Newsletter",
+          "price": "Free",
+          "kind": "free",
+          "what": "Updates on his indie journey; 15,000+ subscribers, his figure.",
+          "basis": "seen",
+          "url": "https://news.tonydinh.com"
+        },
+        {
+          "name": "My Indie Book",
+          "price": "$9 (from $24)",
+          "kind": "paid",
+          "what": "His story plus 30+ topics on ideas, building and marketing.",
+          "basis": "seen",
+          "url": "https://www.myindiebook.com"
+        },
+        {
+          "name": "DevUtils",
+          "price": "$29, $39, or $24 per Mac for teams",
+          "kind": "paid",
+          "what": "Mac developer toolbox; one-time, a year of updates.",
+          "basis": "seen",
+          "url": "https://devutils.com/pricing/"
+        },
+        {
+          "name": "TypingMind license",
+          "price": "$39, $79 or $99 one-time",
+          "kind": "paid",
+          "what": "Chat app for AI models with your own API key. Prices from a third-party review, Jul 2026.",
+          "basis": "seen",
+          "url": "https://diyai.io/ai-tools/productivity/reviews/typingmind-review/"
+        },
+        {
+          "name": "TypingMind Team",
+          "price": "$83, $166 or $249/mo (5 seats)",
+          "kind": "paid",
+          "what": "Shared workspace for a team; extra seats $8/month.",
+          "basis": "seen",
+          "url": "https://custom.typingmind.com/pricing"
+        },
+        {
+          "name": "TypingMind Business",
+          "price": "From $18,700/yr",
+          "kind": "paid",
+          "what": "Custom contract, volume seats, dedicated support.",
+          "basis": "seen",
+          "url": "https://custom.typingmind.com/pricing"
+        }
+      ],
+      "links": [
+        {
+          "kind": "X",
+          "handle": "@tdinh_me",
+          "url": "https://x.com/tdinh_me",
+          "label": "@tdinh_me"
+        }
+      ]
+    },
+    {
+      "id": "zain",
+      "name": "Zain Kahn",
+      "avatar": "https://yt3.googleusercontent.com/xUhsRTZ-H2RN2U-zri51_pGc3Z28yN6L2MRo07fjB6iLxPpvrel5NtiQ2ot8xT2mm0tukxsBkQ=s900-c-k-c0x00ffffff-no-rj",
+      "readOn": "2026-11-06",
+      "game": "Turn a large X and LinkedIn following into a free daily AI tutorial email (1M+ on Superhuman, their figure), then sell the list to sponsors through an outbound sales team. A free course academy now fills the list; his own feeds have gone quiet while he builds Lemon, a voice app.",
+      "platforms": [
+        {
+          "name": "Newsletter",
+          "followers": 1000000,
+          "url": "https://www.superhuman.ai/"
+        },
+        {
+          "name": "LinkedIn",
+          "followers": 1000000,
+          "url": "https://www.linkedin.com/in/zainkahn/"
+        },
+        {
+          "name": "X",
+          "followers": 496900,
+          "url": "https://x.com/heykahn"
+        },
+        {
+          "name": "Instagram",
+          "followers": 32200,
+          "url": "https://www.instagram.com/heyzainkahn/"
+        },
+        {
+          "name": "YouTube",
+          "followers": 6740,
+          "url": "https://www.youtube.com/@zain_kahn"
+        }
+      ],
+      "routes": [
+        {
+          "from": "YouTube",
+          "kind": "links",
+          "hops": [
+            {
+              "at": "The tool shown",
+              "does": "Link 1 on 2 of 3 recent videos.",
+              "basis": "seen"
+            },
+            {
+              "at": "superhuman.ai",
+              "does": "On all 3 recent videos.",
+              "basis": "seen",
+              "url": "https://www.superhuman.ai/"
+            },
+            {
+              "at": "Superhuman Academy",
+              "does": "Last, on all 3; free, includes the email.",
+              "basis": "seen",
+              "url": "https://academy.superhuman.ai/"
+            }
+          ]
+        },
+        {
+          "from": "X",
+          "kind": "flow",
+          "hops": [
+            {
+              "at": "A post",
+              "does": "One in two months.",
+              "basis": "counted"
+            },
+            {
+              "at": "heylemon.ai",
+              "does": "In his profile.",
+              "basis": "seen",
+              "url": "https://heylemon.ai/"
+            }
+          ]
+        }
+      ],
+      "ladder": [
+        {
+          "name": "Tools, prompts and guides",
+          "price": "Free",
+          "kind": "free",
+          "what": "125 tools, 1,000+ prompts, 34 guides; no gate seen.",
+          "basis": "seen",
+          "url": "https://www.superhuman.ai/resources"
+        },
+        {
+          "name": "Superhuman AI, The Code, Superhuman Marketing",
+          "price": "Free",
+          "kind": "free",
+          "what": "Daily AI tutorial email and two sister letters.",
+          "basis": "seen",
+          "url": "https://www.superhuman.ai/"
+        },
+        {
+          "name": "Superhuman Academy",
+          "price": "Free",
+          "kind": "free",
+          "what": "100+ short interactive courses and a certificate; was paid at launch in 2024.",
+          "basis": "seen",
+          "url": "https://academy.superhuman.ai/"
+        },
+        {
+          "name": "Lemon",
+          "price": "Free to start",
+          "kind": "free",
+          "what": "Voice-to-task app for Mac and Windows, from his bio.",
+          "basis": "seen",
+          "url": "https://heylemon.ai/"
+        },
+        {
+          "name": "Sponsorships",
+          "price": "Not public",
+          "kind": "paid",
+          "what": "Four slots per issue; media kit after a form.",
+          "basis": "seen",
+          "url": "https://advertise.superhuman.ai/"
+        }
+      ],
+      "links": [
+        {
+          "kind": "YouTube",
+          "handle": "@zain_kahn",
+          "url": "https://www.youtube.com/@zain_kahn",
+          "label": "YouTube"
+        },
+        {
+          "kind": "Instagram",
+          "handle": "@heyzainkahn",
+          "url": "https://www.instagram.com/heyzainkahn/",
+          "label": "Instagram"
+        },
+        {
+          "kind": "LinkedIn",
+          "handle": "zainkahn",
+          "url": "https://www.linkedin.com/in/zainkahn/",
+          "label": "LinkedIn"
+        },
+        {
+          "kind": "X",
+          "handle": "@heykahn",
+          "url": "https://x.com/heykahn",
+          "label": "@heykahn on X"
+        },
+        {
+          "kind": "X",
+          "handle": "@heylemon_ai",
+          "url": "https://x.com/heylemon_ai",
+          "label": "@heylemon_ai (Lemon)"
+        }
+      ]
+    }
+  ]
+}

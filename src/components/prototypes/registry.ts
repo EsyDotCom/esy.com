@@ -43,6 +43,42 @@ export interface Prototype {
 // link to a prototype keeps its place on the page after the next one is built.
 export const PROTOTYPES: Prototype[] = [
   {
+    slug: 'scout-creators',
+    name: 'esy.com/scout, creators’ game plans',
+    date: '2026-11-07',
+    headline: 'How creators turn attention into customers.',
+    intro:
+      'esy.com/scout shows funnel maps of AI companies; the creators’ studies stay inside os.esy.com. These three takes put a small version of the directory on the public page: each creator’s game plan, where each platform sends people, what they sell at the price shown, and their profiles. Nothing else leaves Scout.',
+    summary: 'Creators’ game plans on esy.com/scout: a shelf under the map (S6), a searchable index (S7), or the hero itself (S8).',
+    rounds: [
+      {
+        n: 1,
+        title: 'Where the game plans go',
+        summary:
+          'S6 puts a row of creator cards right under the map, and picking one opens the plan below. S7 is a searchable two-pane directory under the map. S8 brings them above the fold: the hero’s plate opens on creators’ game plans, with the company maps on the other tab. In all three the old directory keeps only the AI companies, and lines that state someone’s income are left out.',
+      },
+      {
+        n: 2,
+        title: 'S8, searchable',
+        summary: 'Zev liked S8 with search. S9 adds a search box over the faces: type a name, a platform or something they sell (Skool, newsletter); the matching creators show with their names, and Enter opens the first.',
+      },
+      {
+        n: 3,
+        title: 'Profile first, funnel as a diagram',
+        summary: 'Zev: the socials belong next to the face and the description, and the funnel needs visuals that show the connections, simply. Each take opens the card as a profile (face, name, socials, the game plan as the description) and draws the funnel one way: S10 joins three columns with thin curves, S11 gives each platform a row read left to right, S12 colours each platform and marks every page and offer it leads to with its dot.',
+      },
+    ],
+    variants: [
+      { slug: 'shelf', key: 'S6', name: 'Shelf', round: 1, title: 'A row of creators under the map.', blurb: 'Creator cards in a row just below the fold; pick one and their game plan, routes, offers and profiles open underneath.', poster: ['#FFFFFF', '#0A2540'] },
+      { slug: 'index', key: 'S7', name: 'Index', round: 1, title: 'Search the creators.', blurb: 'A two-pane directory under the map: search and filter by platform on the left, the picked creator’s game plan on the right.', poster: ['#EDF1F5', '#00A896'] },
+      { slug: 'lookup', key: 'S8', name: 'Lookup', round: 1, title: 'Game plans above the fold.', blurb: 'The hero’s plate opens on creators’ game plans (faces, then the plan as a card); the company funnel maps sit on the other tab.', poster: ['#061527', '#00D4AA'] },
+      { slug: 'lookup-search', key: 'S9', name: 'Lookup + search', round: 2, mergeOf: ['S8'], title: 'Look a creator up, above the fold.', blurb: 'S8 with a search box over the faces: type a name, a platform or an offer; matches show with their names, and Enter opens the first.', poster: ['#061527', '#00D4AA'] },
+      { slug: 'wires', key: 'S10', name: 'Wires', round: 3, mergeOf: ['S9'], title: 'Thin lines between the cards.', blurb: 'S9 with the profile first (face, name, socials, game plan) and the funnel as three columns joined by thin curves; resting on a card lights its path.', poster: ['#FFFFFF', '#00A896'] },
+      { slug: 'lanes', key: 'S11', name: 'Lanes', round: 3, mergeOf: ['S9'], live: true, liveHref: '/scout/', title: 'A row per platform.', blurb: 'S9 with the profile first and the funnel read left to right, one row per platform: its audience, the pages it links to, the offers behind them.', poster: ['#EDF1F5', '#0A2540'] },
+      { slug: 'dots', key: 'S12', name: 'Dots', round: 3, mergeOf: ['S9'], title: 'A colour per platform.', blurb: 'S9 with the profile first and no lines: each platform has a colour, and every page and offer it leads to carries its dot.', poster: ['#FFFFFF', '#C9A227'] },
+    ],
+  },
+  {
     slug: 'marketing-engineer',
     name: 'What is a marketing engineer?',
     date: '2026-11-07',

@@ -11,6 +11,9 @@
 //   - A picked place gets the readout under the map (what it is, how we know, its source).
 // The roster and line counts come from src/data/scout/snapshot.json (scripts/scout-snapshot.mjs),
 // so no line of any study is published. No money claims: only what can be checked.
+// 2026-11-07: the live page passes creators="search" funnel="lanes" (S11 · Lanes): the creators'
+// game plans (src/data/scout/creators.json) in the Scout shell above the fold, the company maps on
+// its other tab, the header and signup on a navy band, and no page footer of its own.
 
 import Link from 'next/link';
 import { useRef, useState, type FormEvent } from 'react';
@@ -19,6 +22,8 @@ import { useNewsletterSubscribe } from '@/hooks/useNewsletterSubscribe';
 import snapshot from '@/data/scout/snapshot.json';
 import { BASIS, COLS, FUNNELS, type Basis } from './funnels';
 import { BasisChip, FunnelMap, Readout } from './FunnelMap';
+import { CreatorIndex, CreatorLookup, CreatorShelf, CreatorShell, type CreatorsTake } from './CreatorPlans';
+import type { FunnelView } from './FunnelViews';
 
 // The AI tools Marcus uses (Zev, 2026-11-06). `map` is the funnel id when its map is done.
 const COMPANIES: { id: string; name: string; job: string; map?: string }[] = [
@@ -67,8 +72,14 @@ function Join({ form, big }: { form: string; big?: boolean }) {
 
 // ── The page ─────────────────────────────────────────────────────────────────────────────
 
-export function ScoutLanding() {
+// `creators` (prototypes only, /prototypes/scout-creators/) adds the creators' game plans in one of
+// three placements (CreatorPlans.tsx); without it the page is exactly the live one.
+export function ScoutLanding({ creators, funnel }: { creators?: CreatorsTake; funnel?: FunnelView } = {}) {
   const [id, setId] = useState('gamma');
+  // S8 · Lookup: the hero's plate shows creators' game plans first, the company maps on the other tab.
+  const [side, setSide] = useState<'creators' | 'maps'>('creators');
+  const hero = creators === 'lookup' || creators === 'search';
+  const lookup = hero && side === 'creators';
   const [pick, setPick] = useState<string | null>(null);
   const mapRef = useRef<HTMLElement>(null);
   const f = FUNNELS.find((x) => x.id === id)!;
@@ -80,11 +91,36 @@ export function ScoutLanding() {
     mapRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
+  // The company maps: tabs, the map, its readout. The live hero shows it; S9's shell holds it in a tab.
+  const mapsView = (<>
+            <div className="ld-maptabs" role="tablist" aria-label="Whose funnel">
+              {/* Monograms, not photos: no one's face sits next to the email box (Zev, 2026-11-06). */}
+              {FUNNELS.map((x) => (
+                <button key={x.id} type="button" role="tab" aria-selected={x.id === id} className={x.id === id ? 'is-on' : ''} onClick={() => { setId(x.id); setPick(null); }}>
+                  <span>{x.name[0]}</span>{x.name}
+                </button>
+              ))}
+            </div>
+            <div className="ld-mapcap">
+              <h2>{f.title}</h2>
+              <p><Sparkles size={14} aria-hidden="true" /><span><b>The move.</b> {f.move.text}</span></p>
+            </div>
+            <p className="sc-answer">{f.answer}</p>
+            <FunnelMap key={f.id} f={f} skin="plate" pick={pick} setPick={setPick} />
+            <Readout f={f} id={pick} />
+            <p className="sc-mapnote">
+              {f.read ? `Read from ${f.name}’s own public pages on ${day(f.read)}; each place links its source.` : `Drawn from ${f.name}’s Scout file: his public videos, profiles and pages.`}
+            </p>
+  </>);
+
   return (
-    <div className="ld ld--map-night">
+    // S8/S9: the header and the hero's newsletter part sit on a navy band (Zev), so the Scout tool
+    // below reads as its own thing.
+    <div className={`ld ld--map-night ${hero ? 'has-band' : ''}`}>
       <header className="ld-head">
         <Link className="fo-lockup ld-lockup" href="/" aria-label="Esy home"><span className="fo-wordmark">esy</span><span className="fo-lockup-sep" /><span className="fo-lockup-name">Scout</span></Link>
         <nav className="ld-head-nav" aria-label="Scout">
+          {creators && creators !== 'lookup' && <a href="#creators">Creators</a>}
           <a href="#read">How to read a map</a>
           <a href="#directory">The directory</a>
           <a href="#how">How we know</a>
@@ -102,26 +138,20 @@ export function ScoutLanding() {
             <Join form="scout-hero" />
           </div>
           <figure className="ld-mapfig" id="map" ref={mapRef}>
-            <div className="ld-maptabs" role="tablist" aria-label="Whose funnel">
-              {/* Monograms, not photos: no one's face sits next to the email box (Zev, 2026-11-06). */}
-              {FUNNELS.map((x) => (
-                <button key={x.id} type="button" role="tab" aria-selected={x.id === id} className={x.id === id ? 'is-on' : ''} onClick={() => { setId(x.id); setPick(null); }}>
-                  <span>{x.name[0]}</span>{x.name}
-                </button>
-              ))}
-            </div>
-            <div className="ld-mapcap">
-              <h2>{f.title}</h2>
-              <p><Sparkles size={14} aria-hidden="true" /><span><b>The move.</b> {f.move.text}</span></p>
-            </div>
-            <p className="sc-answer">{f.answer}</p>
-            <FunnelMap key={f.id} f={f} skin="plate" pick={pick} setPick={setPick} />
-            <Readout f={f} id={pick} />
-            <figcaption className="sc-mapnote">
-              {f.read ? `Read from ${f.name}’s own public pages on ${day(f.read)}; each place links its source.` : `Drawn from ${f.name}’s Scout file: his public videos, profiles and pages.`}
-            </figcaption>
+            {creators === 'lookup' && (
+              <div className="cp-side" role="tablist" aria-label="What to see">
+                <button type="button" role="tab" aria-selected={side === 'creators'} className={side === 'creators' ? 'is-on' : ''} onClick={() => setSide('creators')}>Creators’ game plans</button>
+                <button type="button" role="tab" aria-selected={side === 'maps'} className={side === 'maps' ? 'is-on' : ''} onClick={() => setSide('maps')}>AI company funnel maps</button>
+              </div>
+            )}
+            {creators === 'search' ? <CreatorShell side={side} setSide={setSide} maps={mapsView} view={funnel} />
+              : lookup ? <CreatorLookup /> : mapsView}
           </figure>
+
         </section>
+
+        {creators === 'shelf' && <CreatorShelf />}
+        {creators === 'index' && <CreatorIndex />}
 
         {/* How to read any map: the three columns, the move and the loop, once. */}
         <section id="read" className="ld-section">
@@ -134,7 +164,7 @@ export function ScoutLanding() {
           </ol>
         </section>
 
-        <Directory open={open} />
+        <Directory open={open} companiesOnly={!!creators} />
         <HowWeKnow />
         <MapRequest />
 
@@ -145,13 +175,9 @@ export function ScoutLanding() {
         </section>
       </main>
 
-      <footer className="ld-foot">
-        <span>Scout is an app of Esy OS, made by Esy.</span>
-        <span>Every number is from a public page or post, labelled with how we know it. To ask for a correction or removal, write to <a href="mailto:zev@esy.com">zev@esy.com</a>.</span>
-        <span>Scout isn’t affiliated with or endorsed by any creator or company shown.</span>
-        <span>Some links to creators’ and companies’ products are affiliate links: if you buy through one, Esy may earn a commission. It never changes what a map says.</span>
-        <span><Link href={PRIVACY}>Privacy policy</Link> · <Link href="/terms/">Terms</Link></span>
-      </footer>
+      {/* The page's own footer (S5's) is gone (Zev, 2026-11-07): on esy.com it read as a second footer
+          under the site's. Its lines (independent, not affiliated, affiliate links, corrections)
+          stay in the directory's fine print, and each creator's plan card carries its own. */}
     </div>
   );
 }
@@ -159,16 +185,17 @@ export function ScoutLanding() {
 // ── The directory ────────────────────────────────────────────────────────────────────────
 
 /** Everyone in Scout. The four finished maps open in the hero; the rest are marked as next. */
-export function Directory({ open }: { open: (funnel: string) => void }) {
+// `companiesOnly` (with the creators' game plans above) leaves the creators to their own section.
+export function Directory({ open, companiesOnly = false }: { open: (funnel: string) => void; companiesOnly?: boolean }) {
   const people = snapshot.creators;
   const mapped = FUNNELS.length;
   return (
     <section id="directory" className="ld-section">
       <p className="fo-label">The directory</p>
-      <h2 className="ld-h2">{people.length} creators and {COMPANIES.length} AI companies in Scout</h2>
+      <h2 className="ld-h2">{companiesOnly ? `${COMPANIES.length} AI companies in Scout` : `${people.length} creators and ${COMPANIES.length} AI companies in Scout`}</h2>
       <p className="ld-lede">{mapped} maps are open now. Pick one to see it above; the rest are being mapped the same way.</p>
-      <div className="ld-dir">
-        <div>
+      <div className={`ld-dir ${companiesOnly ? 'is-cos-only' : ''}`}>
+        {!companiesOnly && <div>
           <p className="ld-dir-h">Creators</p>
           <ul className="ld-dir-people">
             {people.map((p) => {
@@ -186,7 +213,7 @@ export function Directory({ open }: { open: (funnel: string) => void }) {
               );
             })}
           </ul>
-        </div>
+        </div>}
         <div>
           <p className="ld-dir-h">AI companies</p>
           <ul className="ld-dir-cos">

@@ -11,7 +11,7 @@ import '@/components/Scout/scout.css';
 
 const TITLE = 'Scout: Funnel Maps of AI Companies and Creators';
 const DESCRIPTION =
-  'How n8n, Gamma, Clay and the creators marketing engineers learn from get their customers: where people find them, where they land, what they pay for, and the one move that makes it work. Every line says how we know it.';
+  'The game plans of 35 creators and the funnel maps of n8n, Gamma and Clay: where people find them, where they land, what they pay for, and the one move that makes it work. Every line says how we know it.';
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -24,7 +24,9 @@ export const metadata: Metadata = {
 export default function ScoutPage() {
   return (
     <div className={`folio ${cormorant.variable}`}>
-      <ScoutLanding />
+      {/* S11 · Lanes from /prototypes/scout-creators/ (Zev, 2026-11-07): the creators' game plans in
+          the Scout shell, above the fold, each funnel drawn as a row per platform. */}
+      <ScoutLanding creators="search" funnel="lanes" />
     </div>
   );
 }

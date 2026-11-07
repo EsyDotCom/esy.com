@@ -64,7 +64,7 @@ export function ScoutMethods() {
 
           <section className="sm-sec" id="photos">
             <h2 className="pf-h2">Photos</h2>
-            <p>We show each creator’s public profile picture, small, only to identify whose marketing a page studies. Faces never appear in Esy’s ads or sales emails, and never next to a sign-up form. You can ask us to remove a photo, and we’ll review the request.</p>
+            <p>We show each creator’s public profile picture, small, only to identify whose marketing a page studies. Faces never appear in Esy’s ads or sales emails, and never next to a sign-up form. If you’re the creator or represent them, you can ask us to remove your photo, and we’ll review the request.</p>
           </section>
 
           <section className="sm-sec" id="independence">
@@ -82,9 +82,9 @@ export function ScoutMethods() {
             <p>If you’re in Scout, or you spot something wrong, write to <a href={correctionMail()}>{SCOUT_CONTACT}</a>. Every page also has a <em>Request a correction or removal</em> link with its name filled in.</p>
             <ul className="sm-list">
               <li><b>Factual errors</b> are reviewed; if we got something wrong, we fix it within five business days and record it in the log below.</li>
-              <li><b>Photos</b>: ask us to remove one and we’ll review the request.</li>
+              <li><b>Photos</b>: the creator or their team can ask us to remove one, and we review each request.</li>
               <li><b>Personal information</b> that shouldn’t be there: flag it and we review it promptly.</li>
-              <li><b>Removing a whole page</b>: tell us why, and we’ll evaluate the request.</li>
+              <li><b>Removing a whole page</b>: tell us who you are and why; we evaluate each request against the page’s value as analysis.</li>
               <li><b>Objections</b> under privacy law (for example the GDPR) are handled as described in our <Link href="/privacy/#scout">privacy policy</Link>.</li>
             </ul>
           </section>

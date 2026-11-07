@@ -55,13 +55,13 @@ const EXAMPLES: Record<Basis, string> = {
 };
 const TURNAROUND = [
   { k: 'Factual errors', t: 'Reviewed; if we got something wrong, fixed within five business days and logged' },
-  { k: 'Photos', t: 'Ask us to remove a photo and we’ll review the request' },
+  { k: 'Photos', t: 'The creator or their team can ask; we review each request' },
   { k: 'Personal information', t: 'Flag anything personal that shouldn’t be there; we review it promptly' },
-  { k: 'A whole page', t: 'Tell us why, and we’ll evaluate the request' },
+  { k: 'A whole page', t: 'Tell us who you are and why; we evaluate each request' },
 ];
 const STEPS = [
   { k: 'You write', t: `To ${SCOUT_CONTACT}, or with the link on any page (its name filled in).` },
-  { k: 'We review', t: 'We look at the request and check it against the page’s sources.' },
+  { k: 'We review', t: 'We look at who’s asking and what’s at issue, and check it against the page’s sources.' },
   { k: 'We fix what’s wrong', t: 'If we got something wrong, we fix it within five business days.' },
   { k: 'It’s logged', t: 'Any change, its date and the reason go in the public log below.' },
 ];
@@ -70,7 +70,7 @@ const STEPS = [
 const DETAIL: Record<string, ReactNode> = {
   what: <>Scout is editorial analysis, published as commentary for marketers and marketing engineers who want to learn how successful creators build their businesses. It covers {CREATOR_LIST.length} creators today, plus AI companies, and each page is built from that creator’s own study, not generated from a feed. It isn’t business, financial or legal advice.</>,
   sources: <>Only what a creator or company has made public: their public profiles and posts, the pages their links lead to, and their own offer and pricing pages. We read them the way any visitor can. When something needs a sign-up or a purchase to see, the line says <em>not checked</em> instead.</>,
-  photos: <>We show each creator’s public profile picture, small, only to identify whose marketing a page studies. Faces never appear in our ads or sales emails, and never next to a sign-up form. You can ask us to remove a photo, and we’ll review the request.</>,
+  photos: <>We show each creator’s public profile picture, small, only to identify whose marketing a page studies. Faces never appear in our ads or sales emails, and never next to a sign-up form. If you’re the creator or represent them, you can ask us to remove your photo, and we’ll review the request.</>,
   independence: <>Scout isn’t affiliated with or endorsed by anyone it covers. No one pays to be in Scout, to be left out, or to be described a certain way, and it has no affiliate or sponsored links. Esy makes its own products for the same readers; we never compare a creator’s offers with ours on a Scout page.</>,
   dates: <>Every page shows the day we read the creator’s pages, and every audience count and price is as shown that day. A page’s date changes only when we read it again.</>,
 };

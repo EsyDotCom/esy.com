@@ -173,7 +173,7 @@ export const SECTIONS: Section[] = [
         'How long: while your page is published. We refresh it when we read your pages again, and delete it if the page is removed.',
         'Sharing: none beyond our hosting. We don’t sell or license this data, and your name and photo never appear in our ads or sales emails.',
       ] },
-      `Your rights: you can ask us to correct something, to remove your photo or your page, or to object to the processing. Write to ${SCOUT_CONTACT}; we review each request, and if we got something wrong we fix it within five business days. Some rights, such as erasure, have limits where publishing is protected expression; we’ll explain any decision, and you can complain to your data protection authority.`,
+      `Your rights: you can ask us to correct something, to remove your photo or your page, or to object to the processing. Write to ${SCOUT_CONTACT} and tell us who you are; we review each request, and if we got something wrong we fix it within five business days. Some rights, such as erasure, have limits where publishing is protected expression; we’ll explain any decision, and you can complain to your data protection authority.`,
       'How Scout works, its labels and its corrections log: esy.com/scout/how-we-work/.',
     ],
   },

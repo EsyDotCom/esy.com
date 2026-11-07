@@ -32,7 +32,7 @@ function Head({ kicker }: { kicker?: string }) {
   );
 }
 
-const Address = () => (
+export const Address = () => (
   <address className="pv-address"><b>{COMPANY.name}</b>{COMPANY.lines.map((l) => <span key={l}>{l}</span>)}</address>
 );
 
@@ -49,7 +49,7 @@ function SituationFacts({ s }: { s: Situation }) {
   );
 }
 
-function Body({ blocks, situations = 'list' }: { blocks: Block[]; situations?: 'list' | 'none' }) {
+export function Body({ blocks, situations = 'list' }: { blocks: Block[]; situations?: 'list' | 'none' }) {
   return (
     <>
       {blocks.map((b, i) => {
@@ -80,7 +80,7 @@ function Choices({ compact }: { compact?: boolean }) {
 }
 
 /** Which section is on screen, for a contents list that follows the reader. */
-function useActive(ids: string[]) {
+export function useActive(ids: string[]) {
   const [active, setActive] = useState(ids[0]);
   useEffect(() => {
     const els = ids.map((id) => document.getElementById(id)).filter((e): e is HTMLElement => !!e);

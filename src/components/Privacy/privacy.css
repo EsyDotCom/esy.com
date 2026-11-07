@@ -109,3 +109,24 @@
 .pv .pv-list, .pv .pv-facts ul { list-style: disc; }
 .pv .pv-facts dd ul { padding-left: 1.1em; }
 .folio .pv-sit h4, .pv .pv-sit h4 { font-family: var(--font-literata), Georgia, serif; font-size: 1.08rem; font-weight: 600; }
+
+/* /cookies (2026-11-06): what esy.com stores, as a table per kind; rows become cards on a phone. */
+.ck-group { margin: 22px 0 6px; }
+.ck-group h3 { margin: 0; font-family: var(--font-literata), Georgia, serif; font-size: 1.15rem; color: var(--pv-navy); }
+.ck-when { margin: 4px 0 10px; font-size: 0.92rem; color: var(--pv-soft); }
+.ck-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; table-layout: fixed; }
+.ck-table th:nth-child(1) { width: 27%; } .ck-table th:nth-child(2) { width: 17%; } .ck-table th:nth-child(4) { width: 18%; }
+.ck-table th { padding: 8px 10px 8px 0; border-bottom: 1px solid var(--pv-hair); font-size: 0.74rem; font-weight: 600; letter-spacing: 0.06em; text-align: left; text-transform: uppercase; color: var(--pv-faint); }
+.ck-table td { padding: 12px 12px 12px 0; border-bottom: 1px solid var(--pv-hair); vertical-align: top; line-height: 1.5; }
+.ck-table code { display: block; overflow-wrap: anywhere; font-family: var(--font-geist-mono), ui-monospace, monospace; font-size: 0.84rem; color: var(--pv-navy); }
+.ck-table small { font-size: 0.76rem; color: var(--pv-faint); }
+.ck-vendor { font-size: 0.82rem; color: var(--pv-faint); }
+@media (max-width: 720px) {
+  .ck-table thead { display: none; }
+  .ck-table tr { display: grid; gap: 4px; padding: 12px 0; border-bottom: 1px solid var(--pv-hair); }
+  .ck-table td { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 10px; padding: 0; border: 0; width: auto !important; white-space: normal !important; }
+  .ck-table td::before { content: attr(data-l); font-size: 0.74rem; font-weight: 600; color: var(--pv-faint); }
+}
+/* The site resets paragraph margins; legal text needs its paragraphs apart. */
+.pv .pv-article p, .pv .pv-acc-body p, .pv .pv-note-text p { margin: 0 0 14px; }
+.pv .pv-article .pv-answer { margin: 10px 0 14px; }

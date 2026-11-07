@@ -57,7 +57,6 @@ const ConditionalNavigation = () => {
   
   // Check if we're on static info pages (always show header search)
   const isAboutPage = normalizedPath === '/about';
-  const isTermsPage = normalizedPath === '/terms';
   const isAgenticWorkflowsPage = normalizedPath === '/agentic-workflows';
   
   // Check if we're on docs pages
@@ -123,11 +122,11 @@ const ConditionalNavigation = () => {
   // The navy bar is legacy (2026-10-12): it renders only on the older pages
   // below, which still rely on it (and its search). Every other page gets the
   // live light header by default, so a new page never falls back to navy.
-  // /privacy left this list on 2026-11-06 when the rewritten policy shipped.
+  // /privacy, /cookies and /terms left this list on 2026-11-06 when they were rewritten.
   // Pages that render their own LightHeader hide this copy (LightHeader.css).
   const isLegacyNavyPage =
     isGlossaryPage || isLearnIndex || isEssaysPage || normalizedPath === '/essays/guides' || isTemplatesPage ||
-    isScrollytellingIndex || isTermsPage || isAgenticWorkflowsPage || normalizedPath === '/cookies';
+    isScrollytellingIndex || isAgenticWorkflowsPage;
   if (!isLegacyNavyPage) {
     return <LightHeader sitewide />;
   }

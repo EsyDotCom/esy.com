@@ -43,6 +43,46 @@ export interface Prototype {
 // link to a prototype keeps its place on the page after the next one is built.
 export const PROTOTYPES: Prototype[] = [
   {
+    slug: 'home-os-apps',
+    name: 'The homepage, Esy OS apps only',
+    date: '2026-11-07',
+    headline: 'The apps I run the business on.',
+    intro:
+      'The homepage’s apps section showed clip.art, SEOPage and Compose. It now shows Esy OS’s own apps only: agency, compose and scout, with echo as coming. Three ways to show them, each on the live homepage.',
+    summary: 'The homepage’s 01 section as Esy OS’s apps: a tour (O1), the launcher (O2), or one window (O3).',
+    rounds: [
+      {
+        n: 1,
+        title: 'Esy OS only',
+        summary:
+          'O1 keeps today’s tour with the new apps. O2 makes the section os.esy.com’s own launcher. O3 puts one os.esy.com window across the band. compose shows its real replay, scout a real funnel map, and agency a drawing of its Today view with sample figures.',
+      },
+      {
+        n: 2,
+        title: 'A section per app',
+        summary:
+          'Zev: a section for each app, more sophisticated, with transitions from one to the next and the features that matter. Each app gets three features, each with a screen that proves it. O4 runs the apps as chapters whose grounds blend, with a screen that stays while its features scroll. O5 stacks them as sheets sliding over each other. O6 puts them on paper with a rail that fills as you read. echo closes the run as one line.',
+      },
+      {
+        n: 3,
+        title: 'Real screens, a better container',
+        summary:
+          'Zev picked O5 and called the browser frame fake looking. Every screen is now drawn at desktop width with the product’s own bar and Folio styles (agency’s live nav, compose’s editor, esy.com/scout’s page), scaled like a screenshot, in one of three containers: O7 a studio display on a stand, O8 the screen floating in space and settling flat, O9 a gallery mount with a museum label.',
+      },
+    ],
+    variants: [
+      { slug: 'tour', key: 'O1', name: 'Tour', round: 1, title: 'Today’s tour, Esy OS’s apps.', blurb: 'agency, compose and scout as the tour’s tabs, each story beside its screen; echo shown as coming.', poster: ['#0A2540', '#00D4AA'] },
+      { slug: 'launcher', key: 'O2', name: 'Launcher', round: 1, title: 'The section is the launcher.', blurb: 'os.esy.com’s app panel, every app with what it does; the picked one opens in a window beside it.', poster: ['#061527', '#00D4AA'] },
+      { slug: 'window', key: 'O3', name: 'One window', round: 1, title: 'One window, every app.', blurb: 'One os.esy.com window across the band with the switcher in its bar; the apps as four columns under it.', poster: ['#071A2E', '#5EEAD4'] },
+      { slug: 'chapters', key: 'O4', name: 'Chapters', round: 2, title: 'Each app a chapter.', blurb: 'agency, compose and scout as chapters on grounds that blend into each other; the screen stays while its three features scroll past.', poster: ['#0A2540', '#061527'] },
+      { slug: 'plates', key: 'O5', name: 'Plates', round: 2, title: 'Each app a sheet.', blurb: 'Each app’s section slides up over the last, like plates stacking; its three features a numbered list beside the screen.', poster: ['#061527', '#00D4AA'] },
+      { slug: 'display', key: 'O7', name: 'Display', round: 3, mergeOf: ['O5'], title: 'On a studio display.', blurb: 'O5 with each real screen on a slim display: dark bezel, camera dot, a sheen on the glass, the stand and its shadow.', poster: ['#0A2540', '#1D2837'] },
+      { slug: 'float', key: 'O8', name: 'Float', round: 3, mergeOf: ['O5'], live: true, liveHref: '/', title: 'In space.', blurb: 'O5 with each real screen tilted in space over jade light, a second pane behind; it swings in and settles flat when you rest on it.', poster: ['#061527', '#00D4AA'] },
+      { slug: 'mat', key: 'O9', name: 'Mat', round: 3, mergeOf: ['O5'], title: 'Mounted, with a label.', blurb: 'O5 with each real screen in a navy gallery mount with a fine jade line, and a museum label: what it is, where it lives, what’s a sample.', poster: ['#0F2D4C', '#00D4AA'] },
+      { slug: 'index', key: 'O6', name: 'Index', round: 2, title: 'On paper, with a rail.', blurb: 'The apps on white, a rail at the side filling as you read each one; every feature a row, text and screen alternating.', poster: ['#FFFFFF', '#0A2540'] },
+    ],
+  },
+  {
     slug: 'hero',
     name: 'The Esy OS homepage hero',
     date: '2026-09-18',

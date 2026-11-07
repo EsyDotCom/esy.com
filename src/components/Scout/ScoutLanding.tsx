@@ -159,7 +159,7 @@ export function ScoutLanding() {
 // ── The directory ────────────────────────────────────────────────────────────────────────
 
 /** Everyone in Scout. The four finished maps open in the hero; the rest are marked as next. */
-function Directory({ open }: { open: (funnel: string) => void }) {
+export function Directory({ open }: { open: (funnel: string) => void }) {
   const people = snapshot.creators;
   const mapped = FUNNELS.length;
   return (
@@ -208,7 +208,7 @@ function Directory({ open }: { open: (funnel: string) => void }) {
 // ── How we know ──────────────────────────────────────────────────────────────────────────
 
 /** Every line on the roster, split by how we know it, from the snapshot. */
-function HowWeKnow() {
+export function HowWeKnow() {
   const order: Basis[] = ['counted', 'seen', 'reading', 'open'];
   const by = order.map((b) => ({ b, n: snapshot.lines[b] }));
   const total = by.reduce((s, x) => s + x.n, 0) || 1;

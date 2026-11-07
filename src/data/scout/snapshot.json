@@ -1,0 +1,187 @@
+{
+  "schema": "scout-snapshot/1",
+  "takenOn": "2026-11-07",
+  "creators": [
+    {
+      "id": "alex",
+      "name": "Alex Finn",
+      "avatar": "https://yt3.googleusercontent.com/-f755CqfJVpDAZZCQU5b_-9OVVDsqFoW8aSV9sOgGp4VfBx-AJR62Q4j-OmoO-muAw1LqE-vEA=s900-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "hormozi",
+      "name": "Alex Hormozi",
+      "avatar": "https://yt3.googleusercontent.com/4To_zqG1x2hAszdNGNtYaNGxDOPoPA77fDlQTnLZ7ehDBCH0piv5XetKK_DAe7Uk3PY8odSCI98=s900-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "allie",
+      "name": "Allie K. Miller",
+      "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_n0zGbBf_0Edix4Mf35YPQ-7fK5gXSzdGDR5loPNB_lqw=s900-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "chris",
+      "name": "Christopher S. Penn",
+      "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_lWaUpRX34yszjC5geYc_k60tBtP_vyVDJXtRw_yZcA8Jg=s900-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "cody",
+      "name": "Cody Schneider",
+      "avatar": "https://yt3.googleusercontent.com/5brb3DcVnxjMezFdGureEIU2fe9cBKqyn48fqlk5JB0qMemrQE662PY9_IsQdTLC8HHn_Ztw=s176-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "dan",
+      "name": "Dan Shipper",
+      "avatar": "https://yt3.googleusercontent.com/n6p0RudkPKoaFsxiZfunvI5MpqS443Qfbf2E4mmAy1k0etF4M7etYyJAJ_RMknfit6Tnxx4Du4g=s900-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "grace",
+      "name": "Grace Leung",
+      "avatar": "https://yt3.googleusercontent.com/jMP2p3bKb_P0W7-Sr9orseCWwPtPvAzb8cUKfX3eM_EUqa38yVkjy-gyGsx0QI9AEOF8CNAlPw=s160-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "greg",
+      "name": "Greg Isenberg",
+      "avatar": "https://yt3.googleusercontent.com/5wiiTxMamM0NnCmGOt0iJ6eoVRmFLNIGF-BEiTZ_AVqaS02YIxAsB-2XY6xwLCUWQfoENG1MHKo=s900-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "igor",
+      "name": "Igor Pogany",
+      "avatar": "https://yt3.googleusercontent.com/DvaUGxvtI8_VHscLePaF-JO0kMrzluLkGQWDIOtbHvAkmlRaX_gh3YATlFu8046lrNjBQ0cmIw=s900-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "jeff",
+      "name": "Jeff Su",
+      "avatar": "https://yt3.googleusercontent.com/fHDMaIjQYS0XTz17AL-iIxdfyrGJfLliAJTQmJE931P1OareLsLIvFeJDcDtI3QpkD9HLnvI7Gw=s900-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "jordan",
+      "name": "Jordan Wilson",
+      "avatar": "https://yt3.googleusercontent.com/OTGtDnhko8SO8EYS2a9SW1xdmowgGk_5JGQ-hGaIe4EIIJoZ2tZlsjP98yHuK5KeC5c5-YIplQ=s900-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "julian",
+      "name": "Julian Goldie",
+      "avatar": "https://yt3.googleusercontent.com/g6KXuoAcpwiyGjDFvI7kY6tlAEdw5Ec2jKgyOTGVCER4O2ov0a2DYaONmsecjpv2z6J_eMKsm58=s900-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "kallaway",
+      "name": "Kallaway",
+      "avatar": "https://yt3.googleusercontent.com/XIzKvW4GPNDLqQR-xKLYVPZRP8OHXbkh1P3Ri7r_yQUqBa9Yg98XEUT4WsBuojwKB_qYBSw-MLU=s160-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "kieran",
+      "name": "Kieran Flanagan · MATG",
+      "avatar": "https://yt3.googleusercontent.com/_Elo3_9mVlpeklJsam8fj50KnvE24IiDXPtQ074_HCG4kRp1f0GhWVqfPsY9HEgNOBOJXCwN=s160-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "liam",
+      "name": "Liam Ottley",
+      "avatar": "https://yt3.googleusercontent.com/81YBrChz5qTRqj6J2rrzqJgD4y_n3SMkfVdQX66X7EhpfVwDh-xUJBEG5GaneiO5Bpr_km96VQ=s160-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "marc",
+      "name": "Marc Lou",
+      "avatar": "https://pbs.twimg.com/profile_images/2081903460199641088/YZJqLn39_400x400.jpg"
+    },
+    {
+      "id": "mark",
+      "name": "Mark Kashef",
+      "avatar": "https://yt3.googleusercontent.com/-pBSgbiB5HgpqtBg5wqvtmOkDNUQ8W82mJlAEpjpYJHV-wNp-R67eS-tE5yK5xdjTUfrIX-MxNc=s900-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "matt",
+      "name": "Matt Wolfe",
+      "avatar": "https://yt3.googleusercontent.com/Xfsv8L8S4Dt2PPpgaexoMluK9gkm4H77TY-Sae7DbY8qKSaGI0FOS_uzw65kxVtdQlYvc02bB6k=s900-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "miles",
+      "name": "Miles Deutscher",
+      "avatar": "https://pbs.twimg.com/profile_images/2043255869513601025/wFHeLjZX_400x400.jpg"
+    },
+    {
+      "id": "mindstream",
+      "name": "Mindstream",
+      "avatar": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/publication/logo/093c1cec-7758-44d9-af90-0039ca20024f/thumb_logo_2.gif"
+    },
+    {
+      "id": "nate",
+      "name": "Nate Herk",
+      "avatar": "https://yt3.googleusercontent.com/rjiskq1h4EjTgsqvP_BOsnpwCdHUHKvSo00RmUraoWqDuHQN6RAUMdo1ircHs0ZcKQrrWNvukEs=s900-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "neil",
+      "name": "Neil Patel",
+      "avatar": "https://yt3.googleusercontent.com/4BGzw189O7AoJiYiqwpfwrv0I6gFLXp4oEK1DMjHsR4E1gs0hQs2ieXYNS3dukwsFEWdCYlI=s900-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "nevo",
+      "name": "Nevo David",
+      "avatar": "https://pbs.twimg.com/profile_images/2089387713976041474/I8Jv6dD0_400x400.jpg"
+    },
+    {
+      "id": "nick",
+      "name": "Nick Saraev",
+      "avatar": "https://yt3.googleusercontent.com/molHXVKVHeiHHsYtXrxCZNrwfKitFmAoXZ03CNngHmQSRiW9DAjiOYBxQTYiGuXbnLSQnoRa=s160-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "paul",
+      "name": "Paul Roetzer",
+      "avatar": "https://yt3.googleusercontent.com/UTdtR6p_eCJTNc6_6kseh8h1aE_GetxWY6S0QmqflgjPhZkab8YfNDzuLCB_kCzgnKRr0YQy=s900-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "peter",
+      "name": "Peter Yang",
+      "avatar": "https://pbs.twimg.com/profile_images/1454103621516206083/_klMwpkk_400x400.jpg"
+    },
+    {
+      "id": "pieter",
+      "name": "Pieter Levels",
+      "avatar": "https://yt3.googleusercontent.com/kArVQWThHo21uCBmS2gE4_2GLHu--ReS_f8TTPVzB-5BNuyjN4W5xwKtbyMaVDkbF9Zj-VPVEws=s900-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "ray",
+      "name": "Ray Amjad",
+      "avatar": "https://yt3.googleusercontent.com/Sf0eqlRp6Tz4rnHsVB0nM1RjieqmgZLG7jX_i6e5DzkZt7n-3KTk6AuJUocLWjMhB8VoSPWZp9A=s160-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "riley",
+      "name": "Riley Brown",
+      "avatar": "https://pbs.twimg.com/profile_images/1898571530956873728/JALEVTSb_400x400.jpg"
+    },
+    {
+      "id": "rowan",
+      "name": "Rowan Cheung",
+      "avatar": "https://yt3.googleusercontent.com/-EJFHz5fLliqUoSVyEB3oFZ3vanSXm6k6hUUdDzUUT2rH8W_fm6UEFmrFN4L2ZXIXvufzfq1=s900-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "ruben",
+      "name": "Ruben Hassid",
+      "avatar": "https://yt3.googleusercontent.com/tLHzn1sPqpNRWum-U78GsIgZ3xKupgpsbQYtU0XZRPcKSXyKZQI3piNA21ZGiLMbttHsmHbK=s900-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "sabrina",
+      "name": "Sabrina Ramonov",
+      "avatar": "https://yt3.googleusercontent.com/4xWBLiSBOwmuX6RA3cNVtjzNpR5Rxy0fsK4hjqGKujCuGegLMndIE2yo-co0OQMOzJ2THGXt=s160-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "tibo",
+      "name": "Tibo",
+      "avatar": "https://pbs.twimg.com/profile_images/1631931185180934144/59z_ZFKm_400x400.jpg"
+    },
+    {
+      "id": "tony",
+      "name": "Tony Dinh",
+      "avatar": "https://pbs.twimg.com/profile_images/1995658612677771266/TPla_3lg_400x400.jpg"
+    },
+    {
+      "id": "zain",
+      "name": "Zain Kahn",
+      "avatar": "https://yt3.googleusercontent.com/xUhsRTZ-H2RN2U-zri51_pGc3Z28yN6L2MRo07fjB6iLxPpvrel5NtiQ2ot8xT2mm0tukxsBkQ=s900-c-k-c0x00ffffff-no-rj"
+    }
+  ],
+  "lines": {
+    "counted": 163,
+    "seen": 227,
+    "reading": 12,
+    "open": 1
+  }
+}

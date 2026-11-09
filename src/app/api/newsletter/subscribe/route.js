@@ -90,9 +90,14 @@ async function noteMapRequest(address, site, isNew) {
   }
 }
 
+/* A giveaway's slug, from its own landing page's form (2026-11-09): Esy emails
+   the giveaway with the confirmation. Letters, digits and hyphens only; Esy
+   ignores one it doesn't have. Only signups through Esy carry it. */
+const giveawaySlug = (value) => (typeof value === 'string' ? value.toLowerCase().replace(/[^a-z0-9-]/g, '').slice(0, 60) : '');
+
 export async function POST(request) {
   try {
-    const { email, hp, elapsedMs, source, video, name, form, src, request: asked } = await request.json();
+    const { email, hp, elapsedMs, source, video, name, form, src, giveaway, request: asked } = await request.json();
 
     if (!email || !EMAIL_REGEX.test(String(email).trim())) {
       return NextResponse.json({ error: 'A valid email address is required.' }, { status: 400 });
@@ -116,17 +121,25 @@ export async function POST(request) {
     }
     if (bot) return silentlyAccept(bot.reason, { address });
 
-    // Through Esy: the same cleaned source, video, form and name the Resend
-    // contact would get, and one requestId per submit so a retried request
-    // reaches Esy once (API-004). Esy's answer carries the name step's pass.
+    // Through Esy: the same cleaned source, video, form, name, ?src= tag and
+    // article the Resend contact would get (the Plan counts readers by them),
+    // a giveaway's slug from its landing page, and one requestId per submit so
+    // a retried request reaches Esy once (API-004). Esy's answer carries the
+    // name step's pass.
     if (viaEsy()) {
-      const where = attribute(source, video);
+      const where = attribute(source, video, src);
+      // A map request from esy.com/scout still reaches Zev; Esy keeps the signup.
+      const site = requestedSite(form, asked);
+      if (site) await noteMapRequest(address, site, true);
       const outcome = subscribeOutcome(await callEsy('', {
         email: address,
         name: cleanFirstName(name) || undefined,
         source: where.path || '/',
         video: where.video || undefined,
         form: formLabel(form) || undefined,
+        src: where.src || undefined,
+        page: where.page || undefined,
+        giveaway: giveawaySlug(giveaway) || undefined,
         hp: hp || '',
         elapsedMs,
         requestId: randomUUID(),

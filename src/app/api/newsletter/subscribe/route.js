@@ -1,8 +1,10 @@
+import { randomUUID } from 'node:crypto';
 import { NextResponse } from 'next/server';
 
 import { EMAIL_REGEX, clientIp, detectBot } from '@/lib/botCheck';
 import { attribute, formLabel } from '@/lib/newsletter/attribution';
 import { REMINDER_AFTER_MS, confirmLink, confirmationEmail, reminderEmail } from '@/lib/newsletter/confirmEmail';
+import { callEsy, subscribeOutcome, viaEsy } from '@/lib/newsletter/esy';
 import { REPLY_TO, createContact, defineProperty, getContact, isConfigured, prop, sendEmail, updateContact } from '@/lib/newsletter/resend';
 import { signToken } from '@/lib/newsletter/tokens';
 
@@ -18,7 +20,16 @@ import { signToken } from '@/lib/newsletter/tokens';
       cancelled if they confirm before then (2026-11-01).
 
    Nobody receives an issue until step 2, so a typo'd or stranger's address
-   never joins the list. */
+   never joins the list.
+
+   With NEWSLETTER_VIA_ESY=true (2026-11-03) all three steps move to Esy
+   (lib/newsletter/esy.js): this route keeps its bot gates and forwards the
+   signup. Esy then sends the confirmation and the reminder itself. */
+
+// A first name from the form: no markup, no control characters, capped.
+const cleanFirstName = (name) => (typeof name === 'string'
+  ? name.replace(/[\u0000-\u001f\u007f<>]/g, '').replace(/\s+/g, ' ').trim().slice(0, 80)
+  : '');
 
 // Bots learn from error messages, so a rejection returns the same shape a real
 // success does. The signup simply never reaches Resend.
@@ -79,9 +90,14 @@ async function noteMapRequest(address, site, isNew) {
   }
 }
 
+/* A giveaway's slug, from its own landing page's form (2026-11-09): Esy emails
+   the giveaway with the confirmation. Letters, digits and hyphens only; Esy
+   ignores one it doesn't have. Only signups through Esy carry it. */
+const giveawaySlug = (value) => (typeof value === 'string' ? value.toLowerCase().replace(/[^a-z0-9-]/g, '').slice(0, 60) : '');
+
 export async function POST(request) {
   try {
-    const { email, hp, elapsedMs, source, video, name, form, src, request: asked } = await request.json();
+    const { email, hp, elapsedMs, source, video, name, form, src, giveaway, request: asked } = await request.json();
 
     if (!email || !EMAIL_REGEX.test(String(email).trim())) {
       return NextResponse.json({ error: 'A valid email address is required.' }, { status: 400 });
@@ -104,6 +120,32 @@ export async function POST(request) {
       );
     }
     if (bot) return silentlyAccept(bot.reason, { address });
+
+    // Through Esy: the same cleaned source, video, form, name, ?src= tag and
+    // article the Resend contact would get (the Plan counts readers by them),
+    // a giveaway's slug from its landing page, and one requestId per submit so
+    // a retried request reaches Esy once (API-004). Esy's answer carries the
+    // name step's pass.
+    if (viaEsy()) {
+      const where = attribute(source, video, src);
+      // A map request from esy.com/scout still reaches Zev; Esy keeps the signup.
+      const site = requestedSite(form, asked);
+      if (site) await noteMapRequest(address, site, true);
+      const outcome = subscribeOutcome(await callEsy('', {
+        email: address,
+        name: cleanFirstName(name) || undefined,
+        source: where.path || '/',
+        video: where.video || undefined,
+        form: formLabel(form) || undefined,
+        src: where.src || undefined,
+        page: where.page || undefined,
+        giveaway: giveawaySlug(giveaway) || undefined,
+        hp: hp || '',
+        elapsedMs,
+        requestId: randomUUID(),
+      }, { clientIp: ip }));
+      return NextResponse.json(outcome.body, { status: outcome.status });
+    }
 
     if (!isConfigured()) {
       console.error('Missing RESEND_API_KEY or RESEND_NEWSLETTER_SEGMENT_ID');
@@ -132,11 +174,8 @@ export async function POST(request) {
       // Defined once per server; Resend drops a property whose key isn't defined.
       if (where.src) await defineProperty('src');
       if (where.page) await defineProperty('page');
-      const firstName = typeof name === 'string'
-        ? name.replace(/[\u0000-\u001f\u007f<>]/g, '').replace(/\s+/g, ' ').trim().slice(0, 80)
-        : '';
       await createContact(address, {
-        firstName,
+        firstName: cleanFirstName(name),
         confirmed: 'false',
         source: where.path || '/',
         video: where.video,

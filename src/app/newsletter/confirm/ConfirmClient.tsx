@@ -9,26 +9,31 @@ import { EsyLoader } from '@/components/EsyLoader';
 /* The confirmation, run from the browser: it posts the pass from the link to
    /api/newsletter/confirm once the page has loaded. Five outcomes, one screen
    each: confirming, confirmed, expired (with a button for a fresh link), a
-   broken link, and a failure worth retrying. */
+   broken link, and a failure worth retrying.
+
+   Two link formats (2026-11-03): `?token=` from emails Esy sends, and `?t=`
+   from the ones esy.com sent before the switch. Esy's are checked by Esy. */
 
 type State = 'confirming' | 'confirmed' | 'expired' | 'invalid' | 'error';
 type Resend = 'idle' | 'sending' | 'sent' | 'failed';
 
 export default function ConfirmClient() {
-  const token = useSearchParams().get('t') || '';
-  const [state, setState] = useState<State>(token ? 'confirming' : 'invalid');
+  const params = useSearchParams();
+  const esyToken = params.get('token') || '';
+  const token = esyToken ? '' : params.get('t') || '';
+  const [state, setState] = useState<State>(token || esyToken ? 'confirming' : 'invalid');
   const [resend, setResend] = useState<Resend>('idle');
 
   // Only the latest run of the effect may set the screen. React runs effects
   // twice in development, which posts twice; that's harmless, because a second
   // confirmation changes nothing and still answers 200.
   useEffect(() => {
-    if (!token) return;
+    if (!token && !esyToken) return;
     let live = true;
     fetch('/api/newsletter/confirm', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ token }),
+      body: JSON.stringify(esyToken ? { esyToken } : { token }),
     })
       .then(async (res) => {
         const data = await res.json().catch(() => ({}));
@@ -42,7 +47,7 @@ export default function ConfirmClient() {
     return () => {
       live = false;
     };
-  }, [token]);
+  }, [token, esyToken]);
 
   // An expired link can still ask for a fresh one: the old pass says where to send it.
   const sendNewLink = async () => {
@@ -79,6 +84,20 @@ export default function ConfirmClient() {
         <p className="nc-sign">Zev</p>
         <Link href="/" className="nc-link">
           Read the latest on esy.com <ArrowRight size={15} aria-hidden="true" />
+        </Link>
+      </>
+    );
+  }
+
+  // An expired link from Esy: Esy has no "new link" route, and signing up
+  // again sends a fresh one, so the page points there instead.
+  if (state === 'expired' && esyToken) {
+    return (
+      <>
+        <h1 className="nl-title">This link has expired.</h1>
+        <p className="nc-body">Confirmation links last 7 days. Sign up again with the same email and a fresh link will arrive.</p>
+        <Link href="/newsletter/" className="nc-link">
+          Sign up again <ArrowRight size={15} aria-hidden="true" />
         </Link>
       </>
     );

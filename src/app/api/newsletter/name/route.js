@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 
+import { callEsy, nameOutcome, viaEsy } from '@/lib/newsletter/esy';
 import { getContact, isConfigured, updateContact } from '@/lib/newsletter/resend';
 import { verifyToken } from '@/lib/newsletter/tokens';
 
@@ -15,6 +16,13 @@ import { verifyToken } from '@/lib/newsletter/tokens';
 export async function POST(request) {
   try {
     const { token, name } = await request.json();
+
+    // Through Esy: its pass, its record. Esy cleans the name and never
+    // overwrites one already there, the same two guards as below.
+    if (viaEsy()) {
+      const outcome = nameOutcome(await callEsy('name', { token, name }));
+      return NextResponse.json(outcome.body, { status: outcome.status });
+    }
 
     const email = verifyToken('name', token);
     if (!email) {

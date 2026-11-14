@@ -29,10 +29,18 @@ export type IssueStep = {
 /* The parts of an issue, matching Esy's "Newsletter issue" template v2
    (api.esy.com esy-issue, 2026-10-15; order in docs/news/README.md). The
    three parts for agencies (results, clients, scoreboard) are optional, so an
-   issue without them reads as it did before. */
+   issue without them reads as it did before.
+
+   Template v3, the weekly issue (api.esy.com #645, 2026-11-14; Compose's N12):
+   The System may be written out (`body`, Markdown), news posts carry a line of
+   ours, The Skill says when to use it, and two parts join: The Study and the
+   sponsor. All additive, so a v2 issue is unchanged. The shapes are what
+   GET /v1/publications/public/engineer/issues returns (public_issues.py
+   `_clean_part`): optional keys are left out when empty. */
 export type IssueSection =
   | { kind: 'lead'; text: string[] }
-  | { kind: 'system'; title: string; steps: IssueStep[] }
+  // The System: the steps (v2), the body written out in Markdown (v3), or both.
+  | { kind: 'system'; title: string; steps: IssueStep[]; body?: string }
   // "What it did for us": the same system on our own pipeline. `per` names the
   // funnel rows to divide the spend by ("Per reply" over "Replied").
   | {
@@ -63,14 +71,53 @@ export type IssueSection =
     }
   // The weekly skill: its name, what it returns, the button, and (issues from
   // Compose) the skill itself, which the button copies.
-  | { kind: 'take'; title: string; what: string; label: string; skill?: string }
+  // `when` (v3): the moment it helps, shown as "When to use it".
+  | { kind: 'take'; title: string; what: string; label: string; skill?: string; when?: string }
   | { kind: 'reads'; items: { title: string; why: string; href: string }[] }
   // Our scoreboard: this week's numbers with the running total.
   | { kind: 'scoreboard'; week: string; rows: { label: string; week: number; total: number }[] }
   | { kind: 'next'; text: string; cta: string; href: string } // the course or os.esy.com
   // The week's AI marketing news: real AI Marketing News posts, by slug, so an
   // issue never restates news in its own words (src/data/news, docs/news).
-  | { kind: 'news'; slugs: string[] };
+  // `lines` (v3): one line of ours under a post's headline, keyed by its slug.
+  | { kind: 'news'; slugs: string[]; lines?: Record<string, string> }
+  | IssueStudy
+  | IssueSponsor;
+
+/** The Study (v3): one creator's funnel in a few labelled lines, linking to
+    their Scout page for the full map. `link` is the link's words. */
+export type IssueStudy = {
+  kind: 'study';
+  creator: string;
+  scoutSlug: string;
+  title: string;
+  lines: { label: string; text: string }[];
+  link: string;
+};
+
+/** The sponsor (v3). Optional: an issue without this part has no sponsor box.
+    Esy hands it over ready to show (API-001): `label` and `line` are already
+    worded (never blank), and `href` already carries its ?src= tag. `placement`
+    "system" means their words close The System and the slot only points back. */
+export type IssueSponsor = {
+  kind: 'sponsor';
+  own: boolean;
+  name: string;
+  href: string;
+  logoUrl: string;
+  format: 'ad' | 'tutorial';
+  placement: 'slot' | 'system';
+  label: string;
+  headline: string;
+  text: string;
+  /** Tutorial only. */
+  steps: string[];
+  /** Tutorial only: where the product comes in. */
+  tool: string;
+  cta: string;
+  line: string;
+  tag?: string;
+};
 
 export interface Issue {
   n: number;
@@ -263,6 +310,14 @@ export const ISSUE_COUNT = ISSUES.length;
 export const findIssue = (n: number) => ISSUES.find((i) => i.n === n);
 /** The issues either side of one, for "previous / next" (older is a lower number). */
 export const neighbours = (n: number) => ({ older: findIssue(n - 1), newer: findIssue(n + 1) });
+
+/** A weekly issue (template v3): it carries The Study, a sponsor, or The
+    System written out. It reads in the weekly order with the weekly headings;
+    every other issue keeps the order it was published in. Same test as Esy's
+    email (issue_email.py), so the page and the email agree. */
+export function isWeeklyIssue(issue: Pick<Issue, 'body'>): boolean {
+  return issue.body.some((s) => s.kind === 'study' || s.kind === 'sponsor' || (s.kind === 'system' && !!s.body?.trim()));
+}
 
 /** "Oct 8, 2026" from a YYYY-MM-DD date, without timezone drift. */
 export function issueDate(date: string): string {

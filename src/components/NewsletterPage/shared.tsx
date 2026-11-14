@@ -218,8 +218,10 @@ function Section({ s, id }: { s: IssueSection; id: string }) {
   }
 }
 
-/** The week's AI marketing news: the real posts' headlines and topics, each linking to its page. */
-export function NewsSection({ slugs, id, variant = 'list' }: { slugs: string[]; id?: string; variant?: 'list' | 'cards' }) {
+/** The week's AI marketing news: the real posts' headlines and topics, each
+    linking to its page. A weekly issue (v3) adds `lines`: one line of ours per
+    post, by slug, shown under its headline. */
+export function NewsSection({ slugs, lines, id, variant = 'list' }: { slugs: string[]; lines?: Record<string, string>; id?: string; variant?: 'list' | 'cards' }) {
   // The registry's posts first; posts published from Compose come from the live page's data.
   const held = useIssueNews();
   const posts = slugs
@@ -234,14 +236,19 @@ export function NewsSection({ slugs, id, variant = 'list' }: { slugs: string[]; 
     <div className={`nlp-news nlp-news--${variant}`} id={id}>
       <p className="nlp-h">This week in AI marketing</p>
       <ul>
-        {posts.map((p) => (
-          <li key={p.slug}>
-            <Link href={postPath(p.slug)}>
-              <span className="nlp-news-topic">{p.topic}</span>
-              <span className="nlp-news-head">{p.headline}</span>
-            </Link>
-          </li>
-        ))}
+        {posts.map((p) => {
+          // Our line sits under the link, not inside it, so the link stays the headline.
+          const line = lines?.[p.slug];
+          return (
+            <li key={p.slug} className={line ? 'has-line' : undefined}>
+              <Link href={postPath(p.slug)}>
+                <span className="nlp-news-topic">{p.topic}</span>
+                <span className="nlp-news-head">{p.headline}</span>
+              </Link>
+              {line && <p className="nlp-news-line">{line}</p>}
+            </li>
+          );
+        })}
       </ul>
       <p className="nlp-news-more"><Link href="/news/">All AI Marketing News <ArrowRight size={13} aria-hidden="true" /></Link></p>
     </div>

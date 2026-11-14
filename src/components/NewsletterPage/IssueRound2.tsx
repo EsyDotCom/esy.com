@@ -22,7 +22,13 @@
    L5 is the live issue page (2026-10-15): /newsletter/<slug>/ renders
    IssueReceipts with a real issue. Every piece reads the issue from context
    and draws nothing when the issue lacks its part, so an issue written before
-   the template's v2 (no results, clients or scoreboard) still reads whole. */
+   the template's v2 (no results, clients or scoreboard) still reads whole.
+
+   The weekly issue (template v3, api.esy.com #645, 2026-11-14) reads as
+   Compose's N12, which Zev picked: the scoreboard under the title, then the
+   lead, the news (each post with a line of ours), The System (written out in
+   Markdown, steps, or both), The Study, The Skill, the sponsor, next week, and
+   any older parts after. Older issues keep L5's order unchanged. */
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -30,7 +36,8 @@ import { relFor } from '@/lib/outbound';
 import { createContext, useContext, useState } from 'react';
 import { ArrowLeft, ArrowRight, Copy } from 'lucide-react';
 import SocialAvatar from '@/components/EducationHero/SocialAvatar';
-import { type IssueStep } from './issues';
+import { type IssueSponsor, type IssueStep, isWeeklyIssue } from './issues';
+import { IssueMarkdown } from './IssueMarkdown';
 import { AGENCY_ISSUE, type AgencyIssue, type AgencySection, usd } from './agency-issue';
 import { CoursePromo, TitleLines } from './IssuePages';
 import { IssueRow, NewsSection, PageSignup, SampleNote, useCover, useDateLabel, useIssueHref, useIssues, useNewsletterMode } from './shared';
@@ -147,7 +154,8 @@ function Cover({ children }: { children?: React.ReactNode }) {
         {children}
       </div>
     </header>
-    {live ? <CoverArt /> : <CoverPicker />}
+    {/* The three-cover switch belongs to the round-2 sample only; any other issue shows its own cover. */}
+    {!live && issue === AGENCY_ISSUE ? <CoverPicker /> : <CoverArt />}
     </>
   );
 }
@@ -170,8 +178,16 @@ function Steps({ proof = false }: { proof?: boolean }) {
   return (
     <div className={`nla-steps${proof ? ' nla-steps--proof' : ''}`} id="system">
       <p className="nlp-h">{s.title}</p>
+      <StepList steps={s.steps} proof={proof} />
+    </div>
+  );
+}
+
+/** The numbered steps themselves, shared by L5's system and the weekly System. */
+function StepList({ steps, proof }: { steps: IssueStep[]; proof: boolean }) {
+  return (
       <ol>
-        {s.steps.map((st, i) => (
+        {steps.map((st, i) => (
           <li key={st.name} className="nla-step">
             <span className="nla-step-n">{i + 1}</span>
             <div className="nla-step-main">
@@ -186,7 +202,6 @@ function Steps({ proof = false }: { proof?: boolean }) {
           </li>
         ))}
       </ol>
-    </div>
   );
 }
 
@@ -394,7 +409,165 @@ function Take() {
 
 function News() {
   const n = usePart('news');
-  return n ? <NewsSection slugs={n.slugs} /> : null;
+  return n ? <NewsSection slugs={n.slugs} lines={n.lines} /> : null;
+}
+
+/* ── The weekly issue (template v3, Compose's N12) ───────────────────────── */
+
+/** The System, weekly: its kicker and heading, the body written out (Markdown,
+    read strictly), the steps when it has them, and, on weeks the sponsor's
+    tool is genuinely The System's job, their words closing it. */
+function WeeklySystem() {
+  const s = usePart('system');
+  const sponsor = usePart('sponsor');
+  if (!s) return null;
+  const proof = s.steps.some((st) => st.result);
+  return (
+    <section className="nlw-sec nlw-system" id="system">
+      <p className="nla-take-kicker">The System</p>
+      <h2 className="nlw-h">{s.title}</h2>
+      {s.body?.trim() && <IssueMarkdown text={s.body} />}
+      {s.steps.length > 0 && (
+        <div className={`nla-steps${proof ? ' nla-steps--proof' : ''}`}>
+          <StepList steps={s.steps} proof={proof} />
+        </div>
+      )}
+      {sponsor && closesSystem(sponsor) && <SponsorClose s={sponsor} />}
+    </section>
+  );
+}
+
+/** True when the sponsor's words end The System (placement "system", with
+    words to show). Otherwise the sponsor gets the full box in its slot, so the
+    slot never points back at nothing. */
+const closesSystem = (s: IssueSponsor) => s.placement === 'system' && !!(s.text || s.headline);
+
+// The sponsor's label and line, as Esy worded them. Esy never sends them blank
+// (sponsor_label / sponsor_line); the fallbacks only guard the disclosure, which
+// must never be missing from the page.
+const sponsorLabel = (s: IssueSponsor) => s.label || (s.format === 'tutorial' ? 'Sponsored tutorial' : 'Sponsor');
+const sponsorLine = (s: IssueSponsor) => s.line || `This issue is sponsored by ${s.name || 'our sponsor'}.`;
+/** The button's link: Esy already tagged it with ?src=…, so it's used as given; only https is followed. */
+const sponsorHref = (s: IssueSponsor) => (/^https:\/\//i.test(s.href) ? s.href : '');
+/** A paid sponsor's link says so to search engines; our own product's doesn't need to. */
+const sponsorRel = (s: IssueSponsor, href: string) => relFor(href, { extra: s.own ? '' : 'sponsored' });
+
+/** The sponsor's words at the end of The System, under "Where {name} comes in". */
+function SponsorClose({ s }: { s: IssueSponsor }) {
+  const href = sponsorHref(s);
+  const name = s.name || 'our sponsor';
+  return (
+    <aside className="nlw-close" aria-label={sponsorLabel(s)}>
+      <p className="nlw-close-h">Where {name} comes in</p>
+      <p className="nlw-close-p">{s.text || s.headline}</p>
+      {href && (
+        <a className="nlw-sp-cta" href={href} rel={sponsorRel(s, href)}>
+          {s.cta || `See ${name}`} <ArrowRight size={14} aria-hidden="true" />
+        </a>
+      )}
+    </aside>
+  );
+}
+
+/** The Study: one creator's funnel in labelled lines, then their Scout page.
+    (#study is where the email's "on the web" card lands.) */
+function Study() {
+  const s = usePart('study');
+  if (!s) return null;
+  // Scout's creator pages live at /scout/creators/<slug>/; src counts the clicks from here.
+  const href = s.scoutSlug ? `/scout/creators/${encodeURIComponent(s.scoutSlug)}/?src=tme-study` : '';
+  const link = s.link || (s.creator ? `See ${s.creator}’s full funnel on Scout` : 'See the full funnel on Scout');
+  return (
+    <section className="nlw-sec nlw-study" id="study">
+      <p className="nla-take-kicker">The Study</p>
+      {s.title && <h2 className="nlw-h">{s.title}</h2>}
+      {s.lines.length > 0 && (
+        <dl className="nlw-lines">
+          {s.lines.map((l, i) => (
+            <div key={i}><dt>{l.label}</dt><dd>{l.text}</dd></div>
+          ))}
+        </dl>
+      )}
+      {href && <Link className="nlw-more" href={href}>{link} <ArrowRight size={13} aria-hidden="true" /></Link>}
+    </section>
+  );
+}
+
+/** The Skill, weekly: the skill by name, what it returns, the skill itself to
+    copy (when Compose wrote it), and when to use it. Stays #take: the email's
+    button opens the skill here. */
+function WeeklyTake() {
+  const t = usePart('take');
+  const [copied, setCopied] = useState(false);
+  if (!t) return null;
+  const copy = () => {
+    if (t.skill) navigator.clipboard?.writeText(t.skill).catch(() => {});
+    setCopied(true);
+  };
+  return (
+    <section className="nlw-sec nlw-skill" id="take">
+      <p className="nla-take-kicker">The Skill</p>
+      <h2 className="nlw-h">{t.title}</h2>
+      <p className="nlp-p">{t.what}</p>
+      {t.skill ? (
+        <div className="nlw-code">
+          <div className="nlw-code-bar">
+            <span>The skill</span>
+            <button type="button" className="nlw-copy" onClick={copy}>
+              <Copy size={13} aria-hidden="true" /> {copied ? 'Copied' : t.label || 'Copy the skill'}
+            </button>
+          </div>
+          <pre>{t.skill}</pre>
+        </div>
+      ) : (
+        <button type="button" className="nlp-take-btn" onClick={copy}>
+          <Copy size={14} aria-hidden="true" /> {copied ? 'Sample: the real issue copies it' : t.label}
+        </button>
+      )}
+      {t.when && <p className="nlw-when"><b>When to use it:</b> {t.when}</p>}
+    </section>
+  );
+}
+
+/** The sponsor's mark: their logo by link, or their name in type. */
+function SponsorMark({ s }: { s: IssueSponsor }) {
+  // A logo only from https or this site; anything else falls back to the name.
+  const logo = /^(https:\/\/|\/(?!\/))/i.test(s.logoUrl) ? s.logoUrl : '';
+  // eslint-disable-next-line @next/next/no-img-element -- the sponsor's own logo, from wherever Esy says it lives
+  if (logo) return <img className="nlw-sp-logo" src={logo} alt={s.name} />;
+  return <span className="nlw-sp-name">{s.name}</span>;
+}
+
+/** The sponsor slot, after The Skill (#sponsor, where the email's card lands).
+    No sponsor part, no box. When their words closed The System, the slot is
+    one muted line pointing back. The label above and the line under the box
+    are always shown: a paid slot never hides that it's paid. */
+function Sponsor() {
+  const s = usePart('sponsor');
+  if (!s) return null;
+  if (closesSystem(s)) {
+    return <p className="nlw-pointer" id="sponsor">{sponsorLine(s)} It’s the tool at the end of The System, above.</p>;
+  }
+  const href = sponsorHref(s);
+  const steps = s.format === 'tutorial' ? s.steps.filter(Boolean) : [];
+  return (
+    <aside className={`nlw-sp${s.own ? ' is-own' : ''}`} id="sponsor" aria-label={sponsorLabel(s)}>
+      <div className="nlw-sp-top">
+        <SponsorMark s={s} />
+        <span className="nlw-sp-label">{sponsorLabel(s)}</span>
+      </div>
+      {s.headline && <h3 className="nlw-sp-h">{s.headline}</h3>}
+      {s.text && <p className="nlw-sp-p">{s.text}</p>}
+      {steps.length > 0 && <ol className="nlw-sp-steps">{steps.map((x, i) => <li key={i}>{x}</li>)}</ol>}
+      {steps.length > 0 && s.tool && <p className="nlw-sp-p nlw-sp-tool">{s.tool}</p>}
+      {s.cta && href && (
+        <a className="nlw-sp-cta" href={href} rel={sponsorRel(s, href)}>
+          {s.cta} <ArrowRight size={14} aria-hidden="true" />
+        </a>
+      )}
+      <p className="nlw-sp-line">{sponsorLine(s)}</p>
+    </aside>
+  );
 }
 
 function Reads() {
@@ -441,7 +614,10 @@ function Sign() {
 /** The foot every take shares: the signup band, the other issues, and what's a sample. */
 function Foot() {
   const href = useIssueHref();
-  const { n } = useIssue();
+  const issue = useIssue();
+  const { n } = issue;
+  // Prototypes: the round-2 sample's note, or another sample issue's own line (the weekly sample).
+  const protoNote = issue === AGENCY_ISSUE ? SAMPLE_LINE : issue.sample ?? SAMPLE_LINE;
   const { live } = useNewsletterMode();
   const issues = useIssues();
   return (
@@ -458,7 +634,7 @@ function Foot() {
       <section className="nlp-wrap">
         <p className="nlp-label">More issues</p>
         <div className="nlp-list">{issues.filter((i) => i.n !== n).map((i) => <IssueRow key={i.n} issue={i} href={href} />)}</div>
-        {live ? <SampleNote /> : <p className="nlp-sample">{SAMPLE_LINE}</p>}
+        {live ? <SampleNote /> : <p className="nlp-sample">{protoNote}</p>}
       </section>
     </>
   );
@@ -502,6 +678,33 @@ export function IssueReceipts({ issue = AGENCY_ISSUE }: { issue?: AgencyIssue })
 function Receipts() {
   // When the steps carry their numbers, the funnel would repeat them: show the spend only.
   const proof = useStepsHaveProof();
+  const weekly = isWeeklyIssue(useIssue());
+  // The weekly issue (v3) reads in N12's order. Any v2 parts it also carries
+  // follow Next, in the email's order, so nothing it has is left out. (The
+  // connection is shown in words here, never as the round-2 mock screen.)
+  if (weekly) {
+    return (
+      <main className="nlp">
+        <Cover><Scoreboard tone="dark" /></Cover>
+        <article className="nlp-letter nlp-letter--cover nla-wide nlw">
+          <Lead />
+          <News />
+          <WeeklySystem />
+          <Study />
+          <WeeklyTake />
+          <Sponsor />
+          <Next />
+          <ConnectBox />
+          <Results withFunnel={!proof} />
+          <Clients card />
+          <Reads />
+          <Sign />
+          <CoursePromo />
+        </article>
+        <Foot />
+      </main>
+    );
+  }
   return (
     <main className="nlp">
       <Cover><Scoreboard tone="dark" /></Cover>

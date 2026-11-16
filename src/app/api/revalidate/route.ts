@@ -115,7 +115,7 @@ export async function POST(request: NextRequest) {
     revalidateTag("published-news");
     revalidateTag("published-news:news");
     revalidatePath("/news", "layout");
-    const paths = ["/", "/news-sitemap.xml", "/news/rss.xml", "/sitemap.xml"];
+    const paths = ["/", "/news-sitemap.xml", "/news/rss.xml", "/news/ai-and-power/rss.xml", "/sitemap.xml"];
     paths.forEach((path) => revalidatePath(path));
 
     return NextResponse.json({

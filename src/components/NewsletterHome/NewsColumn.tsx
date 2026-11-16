@@ -9,14 +9,15 @@
  */
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { eventLabel, findStoryIn, postPath } from '@/data/news';
+import { eventLabel, findStoryIn, postPath, onDesk } from '@/data/news';
 import { getNews } from '@/lib/published-news';
 
 const COUNT = 6;
 
 export default async function NewsColumn() {
   const news = await getNews();
-  const posts = news.posts.slice(0, COUNT);
+  // AI Marketing News only; AI and Power has its own page (2026-11-15).
+  const posts = onDesk(news.posts, 'ai-marketing-news').slice(0, COUNT);
   if (posts.length === 0) return null;
   const story = (slug: string) => findStoryIn(news.stories, slug)?.name ?? '';
 

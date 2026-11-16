@@ -29,12 +29,13 @@
 .nws-badge img { display: block; width: 169px; height: auto; }
 .nws-badge:focus-visible { outline: 2px solid var(--nl-jade-bright); outline-offset: 3px; }
 
-/* The rail beside the column: wide screens only, at rest above the bar. */
+/* The rail beside the column: wide screens only, at rest above the bar. It sits
+   16px clear of the 880px column (it overlapped the text until 2026-11-15). */
 .nws-rail { display: none; }
 @media (min-width: 1200px) {
   .np { position: relative; }
-  .nws-rail { display: block; position: sticky; top: 140px; float: left; z-index: 2; margin-left: calc(50% - 470px); width: 48px; height: 0; }
-  .nws-rail.is-resting { position: absolute; float: none; top: var(--nws-rest-top); left: calc(50% - 470px); margin-left: 0; }
+  .nws-rail { display: block; position: sticky; top: 140px; float: left; z-index: 2; margin-left: calc(50% - 512px); width: 48px; height: 0; }
+  .nws-rail.is-resting { position: absolute; float: none; top: var(--nws-rest-top); left: calc(50% - 512px); margin-left: 0; }
   .nws-rail-box { padding: 6px 4px; border: 1px solid var(--nl-seam); border-radius: 12px; background: #FFFFFF; width: 48px; }
 }
 

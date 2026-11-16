@@ -9,6 +9,10 @@
  *   NewsStoryPage — a story's page: every post in it, the page that can rank
  *                   for the story's name.
  *
+ * Desks (2026-11-15): NewsIndexPage renders one desk (AI Marketing News at
+ * /news, AI and Power at /news/ai-and-power/) with tabs between them; a post
+ * names its desk in its label, fact card, crumbs and "More".
+ *
  * Data and rules: src/data/news/index.ts. Each page gets the posts and stories
  * from its route (getNews() in src/lib/published-news.ts: the registry plus
  * posts published from Compose), so nothing here reads the registry directly.
@@ -28,8 +32,8 @@ import { ZevTake } from './Take';
 import { ShareBar, ShareRail } from './Share';
 import { FactCard, StoryCard } from './FactCard';
 import {
-  eventLabel, findStoryIn, liveStoriesOf, longDate, postPath, postsInStoryOf,
-  type NewsData, type NewsPost, type NewsStory,
+  DEFAULT_DESK, DESK_ORDER, NEWS_DESKS, deskOf, eventLabel, findStoryIn, liveStoriesOf, longDate, onDesk, postPath, postsInStoryOf,
+  type NewsData, type NewsDesk, type NewsPost, type NewsStory,
 } from '@/data/news';
 
 const SITE = 'https://esy.com';
@@ -70,9 +74,27 @@ function Signup({ title }: { title: string }) {
   );
 }
 
-/* ── /news ── */
-export function NewsIndexPage({ news }: { news: NewsData }) {
-  const { posts } = news;
+/** The desks as tabs above the masthead. Shown once a second desk has a post
+ *  (or on that desk's own page), so /news never offers an empty tab. */
+function DeskTabs({ news, current }: { news: NewsData; current: NewsDesk }) {
+  const live = DESK_ORDER.filter((d) => d === DEFAULT_DESK || d === current || onDesk(news.posts, d).length > 0);
+  if (live.length < 2) return null;
+  return (
+    <nav className="nw-desks" aria-label="News desks">
+      {live.map((d) => (
+        <Link key={d} href={NEWS_DESKS[d].path} className="nw-desk-tab" aria-current={d === current ? 'page' : undefined}>
+          {NEWS_DESKS[d].name}
+        </Link>
+      ))}
+    </nav>
+  );
+}
+
+/* ── /news and /news/<desk>/ ── */
+export function NewsIndexPage({ news, desk = DEFAULT_DESK }: { news: NewsData; desk?: NewsDesk }) {
+  const info = NEWS_DESKS[desk];
+  // This desk's posts only; stories follow from them.
+  const posts = onDesk(news.posts, desk);
   const stories = liveStoriesOf(posts, news.stories);
   const postsInStory = (slug: string) => postsInStoryOf(posts, slug);
   const storyOf = (slug: string) => findStoryIn(news.stories, slug);
@@ -86,14 +108,23 @@ export function NewsIndexPage({ news }: { news: NewsData }) {
     <>
       <section className="nw-front">
         <div className="nl-container">
+          <DeskTabs news={news} current={desk} />
           <div className="nw-masthead">
-            <h1 className="nw-masthead-name">AI Marketing News</h1>
-            <p className="nw-masthead-sub">For people who build <em>marketing systems</em></p>
+            <h1 className="nw-masthead-name">{info.name}</h1>
+            <p className="nw-masthead-sub">{info.sub[0]}<em>{info.sub[1]}</em></p>
             <p className="nw-masthead-line">
-              <span>Updated {longDate(posts[0].publishedAt)}</span>
-              <span>{posts.length} posts</span>
+              <span>{posts[0] ? `Updated ${longDate(posts[0].publishedAt)}` : 'The first post is on its way'}</span>
+              <span>{posts.length} {posts.length === 1 ? 'post' : 'posts'}</span>
             </p>
           </div>
+
+          {/* A desk with no posts yet: say so, and offer the email. */}
+          {posts.length === 0 && (
+            <section className="nt-section nw-desk-empty" aria-label="No posts yet">
+              <p>Nothing here yet. The first {info.name} post is on its way.</p>
+              <NewsletterSignup form="news-front" note={SIGNUP_NOTE} />
+            </section>
+          )}
 
           {lead && leadPost && (
             <section className="nw-desk-top" aria-labelledby="nx-lead">
@@ -159,8 +190,8 @@ export function NewsIndexPage({ news }: { news: NewsData }) {
             </section>
           )}
 
-          {/* Every post, as plain links, so each one is linked from /news. */}
-          <section className="nt-section" aria-labelledby="nx-all">
+          {/* Every post, as plain links, so each one is linked from its desk's page. */}
+          {posts.length > 0 && <section className="nt-section" aria-labelledby="nx-all">
             <div className="nt-head">
               <h2 className="nt-title" id="nx-all">Every post</h2>
               <p className="nt-sub">Newest news first.</p>
@@ -177,7 +208,7 @@ export function NewsIndexPage({ news }: { news: NewsData }) {
                 </li>
               ))}
             </ol>
-          </section>
+          </section>}
         </div>
       </section>
       <WeeklyEmailBand />
@@ -248,7 +279,9 @@ export function NewsPostPage({ post, news, sample = false, slots }: {
   // missing one only drops the story line, never the page.
   const story = findStoryIn(news.stories, post.story);
   const storyOf = (slug: string) => findStoryIn(news.stories, slug);
-  const more = news.posts.filter((p) => p.story !== post.story).slice(0, 4);
+  // "More" stays on the post's own desk.
+  const desk = NEWS_DESKS[deskOf(post)];
+  const more = onDesk(news.posts, desk.slug).filter((p) => p.story !== post.story).slice(0, 4);
   // Share (SH4, 2026-10-19): the bar after the article and, from 1200px, the
   // rail beside the column. A prototype passing its own slots draws its own.
   const share = { url: `https://esy.com${postPath(post.slug)}`, title: post.headline };
@@ -266,6 +299,8 @@ export function NewsPostPage({ post, news, sample = false, slots }: {
         {beside}
         <div className="nl-container"><div className="npi-col nx-col">
           {story && <StoryLine post={post} story={story} posts={news.posts} />}
+          {/* Posts off the default desk name theirs above the headline. */}
+          {desk.slug !== DEFAULT_DESK && <p className="np-desk"><Link href={desk.path}>{desk.name}</Link></p>}
           <h1 className="np-title">{post.headline}</h1>
           <p className="np-dek">{post.dek}</p>
           <div className="np-byline">
@@ -377,7 +412,7 @@ export function NewsPostPage({ post, news, sample = false, slots }: {
               {post.writtenBy === 'zev'
                 ? 'Written by Zev in his own words from these sources, every fact checked against them.'
                 : 'Researched and drafted by AI agents, in our own words from these sources; every fact was checked against them, and Zev approved the post before it went up.'}{' '}
-              AI Marketing News is independent: the companies we cover don’t sponsor, review or endorse it. Spotted a mistake? See our <Link href="/editorial-standards/">editorial standards</Link> or email <a href="mailto:zev@esy.com">zev@esy.com</a>.
+              {desk.name} is independent: the companies we cover don’t sponsor, review or endorse it. Spotted a mistake? See our <Link href="/editorial-standards/">editorial standards</Link> or email <a href="mailto:zev@esy.com">zev@esy.com</a>.
             </p>
           </section>
           <Signup title={story ? `Follow ${story.name} by email` : 'Get the week’s AI news by email'} />
@@ -387,7 +422,7 @@ export function NewsPostPage({ post, news, sample = false, slots }: {
       {more.length > 0 && (
         <section className="nl-section nl-section--alt" aria-labelledby="np-more">
           <div className="nl-container">
-            <h2 className="nt-title" id="np-more">More AI Marketing News</h2>
+            <h2 className="nt-title" id="np-more">More {desk.name}</h2>
             <div className="nx-more">{more.map((p) => <PostCard key={p.slug} post={p} story={storyOf(p.story)} />)}</div>
           </div>
         </section>
@@ -400,15 +435,17 @@ export function NewsPostPage({ post, news, sample = false, slots }: {
 /* ── /news/<story>/ ── */
 export function NewsStoryPage({ story, news }: { story: NewsStory; news: NewsData }) {
   const list = postsInStoryOf(news.posts, story.slug);
+  // A story is on the desk of its newest post.
+  const desk = NEWS_DESKS[list[0] ? deskOf(list[0]) : DEFAULT_DESK];
   return (
     <>
       <section className="np nx-story">
         <div className="nl-container"><div className="npi-col nx-col">
-          <p className="np-crumbs"><Link href="/news/">AI Marketing News</Link> <span aria-hidden="true">›</span> <span>The story</span></p>
+          <p className="np-crumbs"><Link href={desk.path}>{desk.name}</Link> <span aria-hidden="true">›</span> <span>The story</span></p>
           <h1 className="np-title">{story.name}</h1>
           <p className="np-dek">{story.line}</p>
           <p className="nx-story-count">{list.length} {list.length === 1 ? 'post' : 'posts'} · latest news {eventLabel(list[0].eventDate)}</p>
-          <figure className="nx-figure"><StoryCard story={story} count={list.length} latest={eventLabel(list[0].eventDate)} /></figure>
+          <figure className="nx-figure"><StoryCard story={story} count={list.length} latest={eventLabel(list[0].eventDate)} desk={desk.slug} /></figure>
           <ol className="nx-story-list">
             {list.map((p) => (
               <li key={p.slug}>
@@ -430,8 +467,8 @@ export function NewsStoryPage({ story, news }: { story: NewsStory; news: NewsDat
 
 /* ── Structured data ── */
 
-/** "AI Search" for the slug "ai-search": the topic as keywords read it. */
-const topicWords = (topic: string) => topic.split('-').map((w) => (w === 'ai' ? 'AI' : w[0]?.toUpperCase() + w.slice(1))).join(' ');
+/** "AI Search" for the slug "ai-search": the topic as keywords read it ("" for none). */
+const topicWords = (topic: string) => topic.split('-').filter(Boolean).map((w) => (w === 'ai' ? 'AI' : w[0].toUpperCase() + w.slice(1))).join(' ');
 
 export function postJsonLd(post: NewsPost, story: NewsStory | undefined) {
   return [
@@ -452,11 +489,12 @@ export function postJsonLd(post: NewsPost, story: NewsStory | undefined) {
       isBasedOn: (post.sources.some((src) => !src.secondary) ? post.sources.filter((src) => !src.secondary) : post.sources).map((src) => src.url),
       citation: post.sources.map((src) => ({ '@type': 'CreativeWork', name: src.title, url: src.url, publisher: src.publisher })),
       about: story?.name,
-      articleSection: 'AI Marketing News',
+      articleSection: NEWS_DESKS[deskOf(post)].name,
       // Who and where (WW2): the companies with their sameAs, the dateline and
       // places, the audience, and corrections. Overrides `about` and
       // `dateModified` when the post has them.
-      ...whoWhereJsonLd(post.whoWhere, topicWords(post.topic)),
+      // An AI and Power post has no topic; its desk stands in as the keyword.
+      ...whoWhereJsonLd(post.whoWhere, topicWords(post.topic) || NEWS_DESKS[deskOf(post)].name),
     },
     post.faq.length > 0 && {
       '@context': 'https://schema.org',

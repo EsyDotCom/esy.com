@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import LightHeader from '@/components/LightHeader/LightHeader';
 import { nlSerif } from '@/components/NewsletterHome/serif';
 import { NewsPostPage, NewsStoryPage, postJsonLd } from '@/components/News/News';
-import { findPostIn, findStoryIn, liveStories, liveStoriesOf, postPath, publishedPosts, type NewsData } from '@/data/news';
+import { NEWS_DESKS, deskOf, findPostIn, findStoryIn, liveStories, liveStoriesOf, postPath, postsInStoryOf, publishedPosts, type NewsData } from '@/data/news';
 import { toNavArticles } from '@/lib/nav-articles';
 import { getAllAgenticArticles } from '@/lib/published-articles';
 import { getNews } from '@/lib/published-news';
@@ -55,7 +55,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const { post, story } = resolve((await newsFor(slug)).news, slug);
   if (post) {
-    const title = `${post.headline} — AI Marketing News`;
+    const desk = NEWS_DESKS[deskOf(post)];
+    const title = `${post.headline} — ${desk.name}`;
     return {
       title,
       description: post.dek,
@@ -67,11 +68,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       // Large image previews in Discover and Top Stories; the RSS feed for readers and publisher tools.
       // A post Esy marks noindex (or a preview) is live but kept out of search.
       robots: inSearch(post) ? { index: true, follow: true, 'max-image-preview': 'large' } : { index: false, follow: true },
-      alternates: { canonical: postPath(post.slug), types: { 'application/rss+xml': [{ url: '/news/rss.xml', title: 'AI Marketing News' }] } },
+      alternates: { canonical: postPath(post.slug), types: { 'application/rss+xml': [{ url: desk.rss, title: desk.name }] } },
     };
   }
   if (story) {
-    const title = `${story.name}: every post — AI Marketing News`;
+    // A story is on the desk of its newest post.
+    const newest = postsInStoryOf((await newsFor(slug)).news.posts, story.slug)[0];
+    const title = `${story.name}: every post — ${NEWS_DESKS[newest ? deskOf(newest) : 'ai-marketing-news'].name}`;
     return {
       title,
       description: story.line,

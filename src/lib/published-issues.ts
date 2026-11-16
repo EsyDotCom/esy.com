@@ -2,6 +2,7 @@ import 'server-only';
 import { cache } from 'react';
 import { ISSUES, type Issue, type IssueSection } from '@/components/NewsletterPage/issues';
 import { getNews } from '@/lib/published-news';
+import { NEWS_DESKS, deskOf } from '@/data/news';
 import { fetchPublicListSafe } from '@/lib/published-articles';
 
 // The Marketing Engineer's issues = the registry in git
@@ -128,6 +129,7 @@ export const getIssueNews = cache(async (issues: Issue[]): Promise<Record<string
   if (!wanted.size) return {};
   const { posts } = await getNews();
   const out: Record<string, IssueNewsLink> = {};
-  for (const p of posts) if (wanted.has(p.slug)) out[p.slug] = { headline: p.headline, topic: p.topic };
+  // An AI and Power post has no topic; its desk's name stands in.
+  for (const p of posts) if (wanted.has(p.slug)) out[p.slug] = { headline: p.headline, topic: p.topic || NEWS_DESKS[deskOf(p)].name };
   return out;
 });

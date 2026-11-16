@@ -113,3 +113,16 @@
 @media (max-width: 640px) {
   .np-details th { width: 40%; }
 }
+
+/* Desks (2026-11-15): AI Marketing News at /news, AI and Power at
+   /news/ai-and-power/. Tabs above the masthead, the current one underlined in
+   jade; an AI and Power post's desk above its headline. Brand only. */
+.nw-desks { display: flex; justify-content: center; gap: 28px; margin: 0 0 14px; }
+.nw-desk-tab { padding: 4px 0; border-bottom: 2px solid transparent; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nl-ink-soft); text-decoration: none; }
+.nw-desk-tab:hover { color: var(--nl-navy); }
+.nw-desk-tab[aria-current='page'] { border-bottom-color: var(--nl-jade); color: var(--nl-navy); }
+.np-desk { margin: 0 0 8px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+.np-desk a { color: var(--nl-jade); text-decoration: none; }
+.np-desk a:hover { color: var(--nl-navy); }
+.nw-desk-empty { max-width: 560px; margin: 40px auto 0; text-align: center; }
+.nw-desk-empty > p { margin: 0 0 16px; font-size: 1.1rem; color: var(--nl-ink-soft); }

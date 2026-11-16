@@ -24,7 +24,68 @@ import type { NewsWhoWhere } from '@/lib/news-who-where';
 // side by side until the topics build moves the registry over.
 export type NewsTopic =
   | 'Ads' | 'SEO' | 'Social' | 'Creative' | 'Marketing Tools' | 'AI Models'
-  | 'ai-advertising' | 'ai-search' | 'ai-social' | 'ai-creative' | 'ai-marketing-tools' | 'ai-models' | 'ai-agents';
+  | 'ai-advertising' | 'ai-search' | 'ai-social' | 'ai-creative' | 'ai-marketing-tools' | 'ai-models' | 'ai-agents'
+  // An AI and Power post isn't asked for a topic: the seven are marketing topics.
+  | '';
+
+/* The desks of esy.com/news (Zev, 2026-11-15). Every post is on one: AI
+ * Marketing News (the default, and every post before then), or AI and Power,
+ * technology and geopolitics. Esy keeps which (api.esy.com, `desk` on a news
+ * post). /news shows AI Marketing News; each other desk has its own page, and
+ * post links stay /news/<post>/ for both. A desk's slug is its page's link, so
+ * no post or story may take one (getNews() skips them; Esy refuses them). */
+export type NewsDesk = 'ai-marketing-news' | 'ai-and-power';
+
+export interface NewsDeskInfo {
+  slug: NewsDesk;
+  name: string;
+  /** The desk's page. */
+  path: string;
+  /** Its RSS feed. */
+  rss: string;
+  /** The masthead's line, with one emphasised phrase. */
+  sub: [lead: string, em: string];
+  /** The page's search title and description. */
+  title: string;
+  description: string;
+}
+
+export const DEFAULT_DESK: NewsDesk = 'ai-marketing-news';
+
+export const NEWS_DESKS: Record<NewsDesk, NewsDeskInfo> = {
+  'ai-marketing-news': {
+    slug: 'ai-marketing-news',
+    name: 'AI Marketing News',
+    path: '/news/',
+    rss: '/news/rss.xml',
+    sub: ['For people who build ', 'marketing systems'],
+    title: 'AI Marketing News — The Marketing Engineer',
+    description:
+      'What changed in the AI tools behind marketing, and why it matters: ads, SEO, social and creative. Each post links its source. From The Marketing Engineer.',
+  },
+  'ai-and-power': {
+    slug: 'ai-and-power',
+    name: 'AI and Power',
+    path: '/news/ai-and-power/',
+    rss: '/news/ai-and-power/rss.xml',
+    sub: ['Where technology meets ', 'geopolitics'],
+    title: 'AI and Power: technology and geopolitics — Esy',
+    description:
+      'Chips, trade and export rules: who controls the technology behind AI, and what it changes for the people who use it. Each post links its source. By Zev Uhuru.',
+  },
+};
+
+/** Desks in tab order. */
+export const DESK_ORDER: NewsDesk[] = ['ai-marketing-news', 'ai-and-power'];
+
+/** A post's desk; posts without one are AI Marketing News. */
+export const deskOf = (post: Pick<NewsPost, 'desk'>): NewsDesk => post.desk ?? DEFAULT_DESK;
+
+/** A list's posts on one desk, in the order given. */
+export const onDesk = (posts: NewsPost[], desk: NewsDesk) => posts.filter((p) => deskOf(p) === desk);
+
+/** True for a slug that is a desk's page, so no post or story can use it. */
+export const isDeskSlug = (slug: string) => (DESK_ORDER as string[]).includes(slug);
 
 export interface NewsCompany {
   name: string;
@@ -69,6 +130,8 @@ export interface NewsPost {
   story: string;
   /** A few words for the story line, e.g. "Small businesses". */
   chapter: string;
+  /** The desk it's on; absent is AI Marketing News (deskOf()). */
+  desk?: NewsDesk;
   topic: NewsTopic;
   headline: string;
   dek: string;

@@ -3,7 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import { getAllTemplates } from '@/lib/templates'
 import { courses } from '@/lib/learn/mockData'
-import { liveStoriesOf, postsInStoryOf } from '@/data/news'
+import { liveStoriesOf, onDesk, postsInStoryOf } from '@/data/news'
 import { getNews } from '@/lib/published-news'
 import { getIssues } from '@/lib/published-issues'
 import { inSearch, issueInSearch } from '@/lib/search-indexing'
@@ -67,6 +67,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/prototypes', // noindex clickable directions, not public pages
     '/newsletter/confirm', // the confirmation link's landing page, noindex
     '/gone', // the 410 page retired addresses render; never a destination
+    '/news/ai-and-power', // listed below once the desk has a post in search
   ]
   
   // Automatically discover all static routes from the app directory
@@ -164,6 +165,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     })
   })
+  // AI and Power's page (2026-11-15), once it has a post that's in search.
+  const powerInSearch = onDesk(newsInSearch, 'ai-and-power')
+  if (powerInSearch.length > 0) {
+    sitemap.push({
+      url: `${baseUrl}/news/ai-and-power/`,
+      lastModified: new Date(powerInSearch[0].publishedAt),
+      changeFrequency: 'daily',
+      priority: 0.8,
+    })
+  }
   liveStoriesOf(newsInSearch, news.stories).forEach(story => {
     sitemap.push({
       url: `${baseUrl}/news/${story.slug}/`,

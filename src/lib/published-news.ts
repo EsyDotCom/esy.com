@@ -3,6 +3,7 @@ import { cache } from 'react';
 import {
   NEWS_POSTS,
   NEWS_STORIES,
+  isDeskSlug,
   newestFirst,
   publishedPosts,
   type NewsData,
@@ -13,6 +14,7 @@ import {
 } from '@/data/news';
 import { fetchPublicListSafe, mergeBySlug } from '@/lib/published-articles';
 import { toWhoWhere } from '@/lib/news-who-where';
+import { withDevDeskSamples } from '@/data/news/dev-desk-samples';
 
 // AI Marketing News = the static registry (src/data/news/index.ts) + posts
 // published from Compose through api.esy.com, merged the way articles are
@@ -31,6 +33,8 @@ export interface PublicNewsPost {
   dek: string;
   story: { slug: string; name: string; line: string; company: string };
   chapter: string;
+  /** Which desk of esy.com/news (api.esy.com, 2026-11-15); absent before then. */
+  desk?: 'ai-marketing-news' | 'ai-and-power';
   topic: NewsTopic;
   why: string;
   body: string[];
@@ -75,6 +79,8 @@ export function toNewsPost(p: PublicNewsPost): NewsPost {
     status: 'published',
     story: p.story.slug,
     chapter: p.chapter,
+    // Only AI and Power is written down; absent reads as AI Marketing News.
+    ...(p.desk === 'ai-and-power' ? { desk: 'ai-and-power' as const } : {}),
     topic: p.topic,
     headline: p.headline,
     dek: p.dek,
@@ -144,6 +150,11 @@ export const getNews = cache(async (): Promise<NewsData> => {
   const storySlugs = new Set([...registryStorySlugs, ...fromApi.map((p) => p.story)]);
   const postSlugs = new Set([...NEWS_POSTS.map((p) => p.slug), ...fromApi.map((p) => p.slug)]);
   const kept = fromApi.filter((p) => {
+    // A desk's page owns its slug (/news/ai-and-power/); Esy refuses these too.
+    if (isDeskSlug(p.slug) || isDeskSlug(p.story)) {
+      console.warn(`[published-news] skipping "${p.slug}": it or its story takes a desk's link.`);
+      return false;
+    }
     if (storySlugs.has(p.slug)) {
       console.warn(`[published-news] skipping "${p.slug}": it's also a story's slug.`);
       return false;
@@ -164,8 +175,11 @@ export const getNews = cache(async (): Promise<NewsData> => {
   }
 
   const keptSet = new Set(kept);
-  return {
+  const news = {
     posts: merged.filter((p) => fromRegistry.has(p) || keptSet.has(p)).sort(newestFirst),
     stories: [...NEWS_STORIES, ...apiStories.values()],
   };
+  // `next dev` only: labelled AI and Power samples until the desk has a real
+  // post, so its page and tabs can be seen locally. Never in a build.
+  return process.env.NODE_ENV === 'development' ? withDevDeskSamples(news) : news;
 });

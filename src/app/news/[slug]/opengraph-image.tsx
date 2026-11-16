@@ -1,10 +1,11 @@
 import { ImageResponse } from 'next/og';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { eventLabel, findPostIn, findStoryIn, liveStories, postsInStoryOf, publishedPosts } from '@/data/news';
+import { NEWS_DESKS, deskOf, eventLabel, findPostIn, findStoryIn, liveStories, postsInStoryOf, publishedPosts } from '@/data/news';
 import { getNews } from '@/lib/published-news';
 
-// The share image for every AI Marketing News post and story: the same fact card as
+// The share image for every news post and story, on either desk (the corner
+// names an AI and Power post's desk): the same fact card as
 // the page's cover (components/News/FactCard.tsx), at 1200×630. Logos are the
 // companies' official SVGs, embedded unchanged.
 //
@@ -41,6 +42,10 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   const kicker = post ? story.name : 'The story';
   const list = postsInStoryOf(news.posts, story.slug);
   const facts = post ? post.card.facts : [`${list.length} ${list.length === 1 ? 'post' : 'posts'}`, `Latest news ${eventLabel(list[0]?.eventDate ?? '2026-09')}`];
+  // The desk: the post's, or the story's newest post's.
+  const desk = NEWS_DESKS[post ? deskOf(post) : list[0] ? deskOf(list[0]) : 'ai-marketing-news'];
+  const pill = desk.slug === 'ai-and-power' ? 'AI AND POWER' : 'AI NEWS';
+  const address = `esy.com${desk.path.replace(/\/$/, '')}`;
   const date = post ? `${eventLabel(post.eventDate)}${post.eventDate.length > 7 ? ', ' : ' '}${post.eventDate.slice(0, 4)}` : story.line;
 
   const [sans, serif, logo] = await Promise.all([
@@ -59,7 +64,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
           ) : (
             <div style={{ fontSize: 54, fontWeight: 700 }}>{story.company.name}</div>
           )}
-          <div style={{ display: 'flex', padding: '10px 24px', borderRadius: 999, border: `2px solid ${JADE}`, color: JADE, fontSize: 24, letterSpacing: 3 }}>AI NEWS</div>
+          <div style={{ display: 'flex', padding: '10px 24px', borderRadius: 999, border: `2px solid ${JADE}`, color: JADE, fontSize: 24, letterSpacing: 3 }}>{pill}</div>
         </div>
         <div style={{ display: 'flex', marginTop: 'auto', color: JADE, fontSize: 28, letterSpacing: 3 }}>{kicker.toUpperCase()}</div>
         <div style={{ display: 'flex', margin: '12px 0 34px', fontFamily: 'Cormorant', fontSize: 88, lineHeight: 1.02 }}>{title}</div>
@@ -70,7 +75,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 44, paddingTop: 22, borderTop: '1px solid rgba(255,255,255,0.18)', fontSize: 26, color: 'rgba(255,255,255,0.72)' }}>
           <div style={{ display: 'flex' }}>{date}</div>
-          <div style={{ display: 'flex' }}>esy.com/news</div>
+          <div style={{ display: 'flex' }}>{address}</div>
         </div>
       </div>
     ),
